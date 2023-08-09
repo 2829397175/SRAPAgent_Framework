@@ -1,0 +1,194 @@
+choose_template:  &choose_template |-
+  Choosing one house needs the following steps: 1.choose community 2.choose type of house 3.choose house
+
+  Here's one example:
+  Step 1: choose community
+  Thought:I need to carefully consider which community will be the best fit for my family. Community 1 seems to have good sports facilities and a large green area, but it lacks important amenities like a subway, shopping mall, and hospital. Community 2 has a good amount of green space and is surrounded by useful amenities, but it doesn't have a hospital. Community 3 seems to have all the necessary amenities, including a hospital, but the rent is the highest. I need to weigh the importance of amenities versus the cost.
+  Output:My choice is community_2.
+
+  Step 2: choose type of house:
+  Thought:The small houses seem like a good option with their affordable rent and decent square footage. However, with only 6 available, I'm not sure if I'll be able to secure one of them.
+  Output:My choice is small_house. 
+
+  Step 3: choose house
+  Thought:I want to find a house that is in a neighborhood with good schools and playgrounds and also fits within my budget. I also want a house that has a balcony and good natural lighting.
+  Output:My choice is house_14.
+
+  {role_description}
+  
+  You're planning to choose one house. In order to choose a house that satisfies you, you are going to {task}. 
+
+  
+  {house_info}
+  
+  - If you made up your choice, respond in this format:
+  Thought: ({thought_type})
+  Action: Choose
+  Action Input: My choice is ({choose_type}).
+  
+  - If you chose none of them, respond in this format:
+  Thought: ({thought_type})
+  Action: Choose
+  Action Input: I choose none of these.
+  
+  Here is your memory:
+  {memory}
+  
+  Respond:
+  {agent_scratchpad}
+
+# remain to be modified!!
+forum_template:  &forum_template |-
+  {role_description}
+  You're planning to choose one house. Keep this in mind!
+
+  You have access to the following tools:
+
+  {tools}
+
+  Your task is to {task}. 
+
+  Give your response in the following format:
+
+  Thought: you should always think about what to do
+  Action: the action to take, should be one of [{tool_names}]
+  Action Input: the input to the action.
+  Observation: the result of the action.
+  ... (this Thought/Action/Action Input/Observation repeat at most {act_time} times!!)
+  Final Answer: An overview of all the information you have collected.
+
+  Here is your memory
+  {memory}
+
+  [!!IMPORTANT!!] You can take Action at most {act_time} times! If you have exceed the limit, give your Final Answer.
+
+  Here is your action history, If you have act {act_time} times, Conclude the process and Give your final answer!
+
+  {agent_scratchpad}
+
+# remain to be modified!!
+# publish_template:  &publish_template |-
+#   {role_description}
+#   You're planning to choose one house. And you're willing to publish house information online. Keep this in mind!
+
+#   You have access to the following tools:
+
+#   {tools}
+
+#   Your task is to {task}. 
+
+#   Give your response in the following format:
+
+#   Thought: you should always think about what to do
+#   Action: the action to take, should be one of [{tool_names}]
+#   Action Input: the input to the action.
+#   Observation: the result of the action.
+#   Final Answer: An overview of all the information you have published.
+
+#   Here is your memory
+#   {memory}
+
+#   [!!IMPORTANT!!] You can take Action at most {act_time} times! If you have exceed the limit, give your Final Answer.
+
+#   Here is your action history, If you have act {act_time} times, Conclude the process and Give your final answer!
+
+#   {agent_scratchpad}
+
+
+
+publish_template:  &publish_template |-
+  {role_description}
+  You're planning to choose one house. And you're willing to publish house information online. Keep this in mind!
+
+  Your task is to {task}. 
+
+  You can publish house information online if you want to.
+
+  The available community index should be one of [{community_ids}].
+
+  - If you want to publish house information online, respond in this format:
+  Thought: (your view on the things you want to publish)
+  Action: Publish
+  Action Input: (community index), (your personal view on the houses)
+  
+  - If you don't want to publish anything respond in this format:
+  Thought: (reason why you don't want to publish anything)
+  Action: Giveup
+  Action Input: I don't want to publish anything.
+
+ 
+  Here is your memory
+  {memory}
+
+  Respond:
+  {agent_scratchpad}
+
+comment_template:  &comment_template |-
+  {role_description}
+
+  You need to make some comments on the following objects:
+
+  {house_info}
+  
+  - Respond in the following format:
+  Thought: ({thought_type})
+  Action: Comment
+  Action Input: ({comment_type})
+  
+  Here is your memory
+  {memory}
+
+  Respond:
+  {agent_scratchpad}
+
+action_plan_template: &action_plan_template |-
+  {role_description}
+
+  Your goal is to rent one house. For now, You can take one action at a time, should be one of [{action_names}]
+  
+  You have access to the following tools:
+
+  {actions}
+  
+  - Respond in the following format:
+
+  Thought: you should always think about what to do
+  Action: the action to take, should be one of [{action_names}]
+  
+  Here is your memory
+  {memory}
+
+  Respond:
+  {history}
+group_discuss_template: &group_discuss_template |-
+  {role_description}
+
+  Your goal is to rent one house. For now, you want to discuss with some acquaintances.
+  
+  Your acquaintances include:
+  {neighbors}
+  
+  - Here's one example:
+  
+  Your acquaintances include:
+  Jake: friend
+  Jane: friend
+  Bob: friend
+  Sarah: friend
+  
+  Thought: I think house price is important, house_10000 is cheap
+  Action: GroupDiscuss
+  Friends: Jane, Jake, Bob
+  Action Input: house_10000 is cheap, we can consider this one
+  
+  - Respond in this format:
+  Thought: you should always think about what to do
+  Action: GroupDiscuss
+  Friends: (friend names)
+  Action Input: (info you want to tell your friend)
+  
+  Here is your memory
+  {memory}
+
+  Respond:
+  {agent_scratchpad}

@@ -1,0 +1,142 @@
+community_summary:  &community_summary |-
+  Progressively summarize new lines provided, adding onto the previous summary returning a new summary.
+
+  EXAMPLE
+  Current summary:
+  You think community_1 have inconvenient facilities. And you didn't make a choce.
+
+  New lines:
+  Thought: Community_2 is close to my wife's workplace and my child's school.
+  Output: My choice is community_2.
+
+  New summary:
+  You think community_2 is ideal for your family members, better than community_1. And you choose community_2.
+  END OF EXAMPLE
+
+  Current summary:
+  {summary}
+
+  New lines of conversation:
+  {new_lines}
+
+  New summary:
+
+
+house_type_summary:  &house_type_summary |-
+  Progressively summarize new lines provided, adding onto the previous summary returning a new summary.
+
+  EXAMPLE
+  Current summary:
+  You think large_house is too big for your family. And you didn't make a choce.
+
+  New lines:
+  Thought: Middle_house can accommodate my family to live in and has high cost-effectiveness.
+  Output: My choice is middle_house.
+
+  New summary:
+  You think middle_house can accommodate your family members, better than large_house. And you choose middle_house.
+  END OF EXAMPLE
+
+  Current summary:
+  {summary}
+
+  New lines of conversation:
+  {new_lines}
+
+  New summary:
+
+house_summary:  &house_summary |-
+  Progressively summarize new lines provided, adding onto the previous summary returning a new summary.
+
+  EXAMPLE
+  Current summary:
+  You think house_1 is very clean, but the rent is too expensive. And you didn't make a choce.
+
+  New lines:
+  Thought: House_2 has convenient transportation, clean environment, affordable rent
+  Output: My choice is house_2.
+
+  New summary:
+  You think house_2 is clean and cheap. And you choose house_2.
+  END OF EXAMPLE
+
+  Current summary:
+  {summary}
+
+  New lines of conversation:
+  {new_lines}
+
+  New summary:
+
+
+forum_search_summary:  &forum_search_summary |-
+  Progressively summarize new lines provided, adding onto the previous summary returning a new summary.
+
+  EXAMPLE
+  Current summary:
+  From the information on forum, community_1 is considered inconvenient for transportation.
+
+  New lines:
+  Output: 
+  community_2:Sophie Mitchell:The community environment seems to meet my requirements in terms of green area and central urban area. Oliver Johnson:Overall, this house is in a convenient area and is in good condition, however, the community environment could be improved. 
+
+  New summary:
+  From the information on forum, community_2 received positive comments, whereas community_1 has inconvenient transportation.
+  END OF EXAMPLE
+
+  Current summary:
+  {summary}
+
+  New lines of conversation:
+  {new_lines}
+
+  New summary:
+
+forum_publish_summary:  &forum_summary |-
+  Progressively summarize new lines provided, adding onto the previous summary returning a new summary.
+
+  EXAMPLE
+  Current summary:
+  I have publish these information on forum: middle house is an acceptable option for my needs. 
+
+  New lines:
+  Thought: I need to publish information about community_2, since it's an ideal community to live in.
+  Output: community_2, close to my wife's workplace and my child's school.
+
+  New summary:
+  I have publish these information on forum: middle house meet my needs and community_2 has convenient transportation.
+  END OF EXAMPLE
+
+  Current summary:
+  {summary}
+
+  New lines of conversation:
+  {new_lines}
+
+  New summary:
+
+synthesize_summary:  &synthesize_summary |-
+  Progressively summarize new lines provided, adding onto the previous summary returning a new summary.
+
+  EXAMPLE
+  Current summary:
+  Middle house is an acceptable option for my needs. 
+
+  New lines:
+  Output: community_1:Jake:The community environment seems to meet my requirements.
+  Thought: I need to publish information about community_2.
+  Output: community_2, close to my wife's workplace and my child's school.
+  Thought: House_4 has cheap rent.
+  Output: My choice is house_4.
+
+  New summary:
+  Community_1 seem to be a good choice. Middle_house meets my requirements and I choose a cheap house to rent.
+  END OF EXAMPLE
+
+  Current summary:
+  {summary}
+
+  New lines of conversation:
+  {new_lines}
+
+  New summary:

@@ -1,0 +1,9 @@
+log
+apis.txt
+*.pyc
+**/__pycache__
+__pycache__/
+revision.md
+.vscode
+experiments
+LLM_PublicHouseAllocation/tasks/PHA_50tenant_3community_19house/backup_data

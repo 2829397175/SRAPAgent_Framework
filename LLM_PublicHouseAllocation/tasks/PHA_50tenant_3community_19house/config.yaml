@@ -1,0 +1,70 @@
+name: PHA_50tenant_3community_19house
+environment:
+  tool: True
+  env_type: rent
+  max_turns: 5
+  rule:
+    order:
+      type: rent
+    updater:
+      type: rent
+    visibility:
+      type: base
+    describer:
+      type: base
+
+managers:
+  house:
+    data_dir: "./LLM_PublicHouseAllocation/tasks/PHA_50tenant_3community_19house/data/house.json"
+    save_dir: "./LLM_PublicHouseAllocation/tasks/PHA_50tenant_3community_19house/result/house.json"
+
+  forum:
+    data_dir: "./LLM_PublicHouseAllocation/tasks/PHA_50tenant_3community_19house/data/forum.json"
+    save_dir: "./LLM_PublicHouseAllocation/tasks/PHA_50tenant_3community_19house/data/forum.json"
+
+  tenant:
+    type_tenant: LangchainTenant
+    data_dir: "./LLM_PublicHouseAllocation/tasks/PHA_50tenant_3community_19house/data/tenant.json"
+    save_dir: "./LLM_PublicHouseAllocation/tasks/PHA_50tenant_3community_19house/result/tenant.json"
+    memory:
+      memory_type: action_history
+      reflection: True # 触发分类reflection
+      llm:
+        llm_type: gpt-3.5-turbo
+        # llm_type: text-davinci-003
+        temperature: 0.8
+        max_tokens: 1000
+    llm:
+      llm_type: gpt-3.5-turbo
+      # llm_type: text-davinci-003
+      temperature: 0.8
+      max_tokens: 1000
+    max_choose: 2
+    max_jug_time: 2
+    agent_rule:
+      # readhouse_rule: topk
+      readhouse_rule: page_generator
+      #  readforum_rule: topk
+      readforum_rule: randomk
+      readcommunity_rule: available
+      writeforum_rule: append
+
+  # tenant:
+  #   type_tenant: CAHTTenant
+  #   data_dir: "./LLM_PublicHouseAllocation/tasks/PHA_50tenant_3community_19house/data/tenant.json"
+  #   save_dir: "./LLM_PublicHouseAllocation/tasks/PHA_50tenant_3community_19house/result/tenant.json"
+  #   memory:
+  #     memory_type: chat_message_history
+  #   llm:
+  #     llm_type: gpt-3.5-turbo
+  #     temperature: 0.8
+  #     max_tokens: 1000
+  #   max_choose: 3
+  #   agent_rule:
+  #      readhouse_rule: topk
+  #      readforum_rule: topk
+
+  community:
+    publish_order: False
+    data_dir: "./LLM_PublicHouseAllocation/tasks/PHA_50tenant_3community_19house/data/community.json"
+    save_dir: "./LLM_PublicHouseAllocation/tasks/PHA_50tenant_3community_19house/result/community.json"
