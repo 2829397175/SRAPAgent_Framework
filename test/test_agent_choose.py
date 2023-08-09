@@ -41,7 +41,7 @@ houses_types_global={"small_house":{
 community_global={
 "community_1":{
   "location":"The community is located in the southeast corner of the city（所有小区位于同一个区，不存在跨区问题，location问题可以商讨）",
-  "surroundings": "The neighborhood offers a variety of amenities, including cafes, restaurants, schools,and parks, all within 2km.（简单描述周围环境，中立性描述，不带情感色彩）",
+  "surroundings": "The friendhood offers a variety of amenities, including cafes, restaurants, schools,and parks, all within 2km.（简单描述周围环境，中立性描述，不带情感色彩）",
   "value_inch":20,
     **houses_types_global
 }

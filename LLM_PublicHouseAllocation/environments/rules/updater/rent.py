@@ -24,7 +24,7 @@ class RentUpdater(BaseUpdater):
                       tenant_manager):
         
         for message in post_messages:
-            for r_id in message.receiver:
+            for r_id in message.receiver.keys():
                 if r_id in tenant_manager.data.keys():
                     tenant_manager.data[r_id].receive_messages(messages=[message])
             

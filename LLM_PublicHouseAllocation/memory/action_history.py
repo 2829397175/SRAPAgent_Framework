@@ -40,13 +40,11 @@ class ActionHistoryMemory(BaseMemory,SummarizerMixin):
                       "house":"house_summary",
                       "search":"forum_search_summary",
                       "publish":"forum_publish_summary",
-                      "synthesize":"synthesize_summary"}
+                      "synthesize":"synthesize_summary",
+                      "social_network":"synthesize_summary"}
     reflection:bool = False # 若设置为true,则触发分类reflection  
     summary_threshold:int = 5 # 每次总结后，再多5条就触发一次总结
     
-    received_messages: Dict[str,List[Message]] = {} # 接受social network 信息
-    received_summarys: Dict[str,Message] = {} # 记录social network信息 的summary
-    received_buffer_step: Dict[str,int] = {} # 记录某类mem，总结到哪个位置（index)
     # 想要发出的message信息，在发出后清空，加入messages中
     post_message_buffer: List = []
     
@@ -59,12 +57,8 @@ class ActionHistoryMemory(BaseMemory,SummarizerMixin):
             self.post_message_buffer.extend(messages)
             return
 
-        if receive:
-            messages_pt = self.received_messages
-            buffer_step_pt = self.received_buffer_step
-        else:
-            messages_pt = self.messages
-            buffer_step_pt = self.buffer_step
+        messages_pt = self.messages
+        buffer_step_pt = self.buffer_step
             
         for message in messages:
             if message.message_type in messages_pt.keys():
@@ -78,7 +72,7 @@ class ActionHistoryMemory(BaseMemory,SummarizerMixin):
             if len(messages_pt[type_m]) - \
                 buffer_step_pt[type_m] > self.summary_threshold:
                     self.summary_type_memory(type_message = type_m,
-                                            receive=receive)
+                                            receive = receive)
             
                 
     def post_meesages(self):
@@ -100,54 +94,9 @@ class ActionHistoryMemory(BaseMemory,SummarizerMixin):
         # 先按照时间排序所有没被总结summary的记忆，选其中前三条
         # 再添加search_forum，publish_forum，choose_community的summary记忆
     
-    def memory_tenant(self,mem_type:str)->str:
-        TYPE_MEM={
-            "community":["community",{"receive":"social_network"}],
-            "house_type":["house_type",{"receive":"social_network"}],
-            "house":["house",{"receive":"social_network"}],
-            "search":["search"],
-            "publish":["search","publish","community","house","house_type",
-                       {"receive":"social_network"},],
-            "social_network":["search","publish","community","house","house_type",
-                       {"receive":"social_network"}],
-            
-        }
-        type_messages = TYPE_MEM.get(mem_type,[])
         
-        if not self.reflection:
-            return self.to_string_default(add_sender_prefix=False,
-                                        type_message=type_messages)
-        else:
-            messages_str = []
-            for type_m in type_messages:
-                if isinstance(type_m,dict):
-                    receive_type_messages = type_m.get("receive",[])
-                    for receive_type_m in receive_type_messages:
-                        if (receive_type_m in self.received_messages.keys()):
-                            messages_str.extend(self.received_messages[type_m][self.received_buffer_step[type_m]+1:])
-                
-                elif (type_m in self.messages.keys()):
-                    messages_str.extend(self.messages[type_m][self.buffer_step[type_m]+1:])
-            
-            messages_str.sort(key=lambda x: x.timestamp)
-            # 零散记忆限制数量为3
-            messages_str = messages_str[:3] if len(messages_str)>3 else messages_str
-            # 零散记忆需要summary吗?暂时没有归到summary的记忆中
-            
-            if mem_type == "publish" and len(messages_str)>0:
-                messages_str=[self.summary_synthesize_memory(messages_str)]
-            
-            for type_m in type_messages:
-                if isinstance(type_m,dict):
-                    receive_type_messages = type_m.get("receive",[])
-                    for receive_type_m in receive_type_messages:
-                        if (receive_type_m in self.received_summarys.keys()):
-                            messages_str.append(self.received_summarys[type_m])
-                
-                elif (type_m in self.summarys.keys()):
-                    messages_str.append(self.summarys.get(type_m))
-            
-            return self.to_string(messages=messages_str)
+    
+    
     
 
     def summary_synthesize_memory(self,messages:List[Message])->str:
@@ -158,20 +107,18 @@ class ActionHistoryMemory(BaseMemory,SummarizerMixin):
         summerize_mem = self.predict_new_summary(messages=messages,
                                                 existing_summary="",
                                                 prompt=prompt)
-        return Message(content=summerize_mem,
-                       message_type = "synthesize")
+        return Message(content = summerize_mem,
+                       message_type = "synthesize",
+                       sender = {"system":"system"}
+                       )
         
     def summary_type_memory(self,
                             type_message:Union[str,List[str]] = "all",
                             receive = False)->str:
-        if receive:
-            messages_pt = self.received_messages
-            message_summary_pt = self.received_summarys
-            buffer_step_pt = self.received_buffer_step
-        else:
-            messages_pt = self.messages
-            message_summary_pt = self.summarys
-            buffer_step_pt = self.buffer_step
+
+        messages_pt = self.messages
+        message_summary_pt = self.summarys
+        buffer_step_pt = self.buffer_step
         
         type_messages = [type_message] if not isinstance(type_message,list) else type_message
         for type_m in type_messages:
@@ -179,10 +126,12 @@ class ActionHistoryMemory(BaseMemory,SummarizerMixin):
             new_messages = messages_pt[type_m][start_idx:]
             
             if receive:
-                type_m="synthesize"
-
-            yaml_key = self.summary_prompt.get(type_m)
-            prompt_template = summary_prompt_default.get(yaml_key,"")
+                # receive的memory暂时都用这个进行summary
+                prompt_template = summary_prompt_default.get("synthesize_summary","") 
+            else:
+                yaml_key = self.summary_prompt.get(type_m)
+                prompt_template = summary_prompt_default.get(yaml_key,"")
+                
             prompt = PromptTemplate(input_variables=["summary", "new_lines"], 
                                     template=prompt_template)
             summerize_mem = self.predict_new_summary(messages=new_messages,
@@ -190,9 +139,9 @@ class ActionHistoryMemory(BaseMemory,SummarizerMixin):
                                                      prompt=prompt)
             message_summary_pt[type_m] = Message(message_type = type_m,
                                             content = summerize_mem.strip())
+            
              # 总结了所有最新信息，更新总结位置
-            if type_m!='synthesize':
-                buffer_step_pt[type_m] = len(messages_pt[type_m]) -1
+            buffer_step_pt[type_m] = len(messages_pt[type_m]) -1
             
 
     def to_string(self, 
@@ -200,16 +149,16 @@ class ActionHistoryMemory(BaseMemory,SummarizerMixin):
                   add_sender_prefix: bool = False,
                   ) -> str:
         if add_sender_prefix:
-            return "".join(
+            return "\n".join(
                 [
-                    f"[{message.sender}]: {message.content}"
-                    if message.sender != ""
+                    f"[{list(message.sender.values())[0]}]: {message.content}"
+                    if list(message.sender.values())[0] != ""
                     else message.content
                     for message in messages
                 ]
             )
         else:
-            return "".join([message.content for message in messages])
+            return "\n".join([message.content for message in messages])
         
     def to_string_default(self, 
                   add_sender_prefix: bool = False,
@@ -223,13 +172,7 @@ class ActionHistoryMemory(BaseMemory,SummarizerMixin):
         type_messages = [type_message] if not isinstance(type_message,list) else type_message
         
         for type_m in type_messages:
-            if isinstance(type_m,dict):
-                receive_type_messages = type_m.get("receive",[])
-                for receive_type_m in receive_type_messages:
-                    if (receive_type_m in self.received_messages.keys()):
-                        messages_return.extend(self.received_messages.get(receive_type_m,[]))
-            
-            elif (type_m in self.messages.keys()):
+            if (type_m in self.messages.keys()):
                 messages_return.extend(self.messages.get(type_m,[]))
         
 
@@ -250,6 +193,107 @@ class ActionHistoryMemory(BaseMemory,SummarizerMixin):
     def reset(self) -> None:
         self.messages = {}
         self.summarys = {}
-        self.received_messages = {}
-        self.received_summarys = {}
         self.post_message_buffer = []
+
+
+    ###############         一系列的 retrive memory rule       ##############
+    
+    #  调用各类 retrive 方法
+    def memory_tenant(self,mem_type:str)->str:
+        TYPE_MEM={
+            "community":["community","social_network"],
+            "house_type":["house_type","social_network"],
+            "house":["house","social_network"],
+            "search":["search"],
+            "publish":["search","publish","community","house","house_type",
+                       "social_network",],
+            
+            
+        }
+        
+        if mem_type in TYPE_MEM.keys():# 默认retrive方法
+            type_messages = TYPE_MEM.get(mem_type,[]) 
+            return self.retrive_basic(type_messages=type_messages,
+                                      mem_type=mem_type)
+        elif mem_type == "social_network":# social_network retrive方法
+            return self.retrive_group_discuss_memory()
+        else: 
+            return ""
+        
+        
+    
+    # 默认retrive方法
+    def retrive_basic(self,
+                      type_messages:List[str],
+                      mem_type:str):
+        
+        if not self.reflection:
+            return self.to_string_default(add_sender_prefix=False,
+                                        type_message=type_messages)
+        else:
+            messages_str = []
+            for type_m in type_messages:
+                if (type_m in self.messages.keys()):
+                    messages_str.extend(self.messages[type_m][self.buffer_step[type_m]+1:])
+            
+            messages_str.sort(key=lambda x: x.timestamp,reverse=True)
+            # 零散记忆限制数量为3
+            messages_str = messages_str[:3] if len(messages_str)>3 else messages_str
+            # 零散记忆需要summary吗?暂时没有归到summary的记忆中
+            
+            if mem_type == "publish" and len(messages_str)>0:
+                messages_str=[self.summary_synthesize_memory(messages_str)]
+            
+            for type_m in type_messages:
+                if (type_m in self.summarys.keys()):
+                    messages_str.append(self.summarys.get(type_m))
+            
+            return self.to_string(messages=messages_str,
+                                  add_sender_prefix=True)
+    
+    # social_network retrive方法
+    def retrive_group_discuss_memory(self):
+        
+        type_messages=["search","publish","community","house","house_type"]
+        
+        if not self.reflection:
+            return self.to_string_default(add_sender_prefix=False,
+                                        type_message=type_messages)
+            
+            
+        template_memory="""\
+{memory_house_info}\n\n\
+Here's your discussion with your acquaintances:\n\n\
+{discussion}"""
+
+        # memory_house_info 部分
+        messages_str = []
+        for type_m in type_messages:
+            if (type_m in self.messages.keys()):
+                messages_str.extend(self.messages[type_m][self.buffer_step[type_m]+1:])
+                
+        messages_str.sort(key=lambda x: x.timestamp,reverse=True)
+        messages_str = messages_str[:3] if len(messages_str)>3 else messages_str
+        
+        for type_m in type_messages:
+            if (type_m in self.summarys.keys()):
+                messages_str.append(self.summarys.get(type_m))
+        
+        memory_house_info = self.to_string(messages=messages_str,
+                                add_sender_prefix=True)
+        
+        # discussion 部分
+        messages_social_net = self.messages.get('social_network',[])
+        messages_social_net.sort(key=lambda x: x.timestamp,reverse=True)
+        messages_social_net = messages_social_net[:3] if len(messages_social_net)>3 else messages_social_net
+        
+        if ('social_network' in self.summarys.keys()):
+            messages_social_net.append(self.summarys.get('social_network'))
+            
+        discussion = self.to_string(messages = messages_social_net,
+                                add_sender_prefix=True)
+        
+        return template_memory.format(memory_house_info=memory_house_info,
+                                      discussion=discussion)
+
+            

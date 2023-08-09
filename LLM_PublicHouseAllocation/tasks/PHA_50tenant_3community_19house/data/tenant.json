@@ -9,7 +9,7 @@
         "monthly_rent_budget":1800.0,
         "special_request":"The Anderson family prefers a home with easy access to public transportation, as they often need to commute for work and school.",
         "en_work_place":"Dongzhimenwai Street, Dongcheng District, Beijing",
-        "neighbors":{
+        "friends":{
             "1":{
                 "relation":"friend"
             },
@@ -32,9 +32,9 @@
         "work_place":"北京市海淀区中关村南大街5号阿里巴巴北京研发中心",
         "monthly_income":14000,
         "monthly_rent_budget":2500,
-        "special_request":"Emma hopes the apartment is in a quiet neighborhood, allowing her to focus on her work.",
+        "special_request":"Emma hopes the apartment is in a quiet friendhood, allowing her to focus on her work.",
         "en_work_place":"Alibaba Beijing R&D Center, No. 5 Zhongguancun South Street, Haidian District, Beijing",
-        "neighbors":{
+        "friends":{
             "0":{
                 "relation":"friend"
             },
@@ -59,7 +59,7 @@
         "monthly_rent_budget":2400.0,
         "special_request":"Mr. Johnson would like an apartment close to parks or green spaces for leisure walks.",
         "en_work_place":"Office Building of the People's Government on the west side of the Great Hall of the People, Dongcheng District, Beijing",
-        "neighbors":{
+        "friends":{
             "0":{
                 "relation":"friend"
             },
@@ -82,9 +82,9 @@
         "work_place":"北京市朝阳区国贸大厦周边的餐馆",
         "monthly_income":7000,
         "monthly_rent_budget":1400.0,
-        "special_request":"Sophia's family needs an apartment in a safe and child-friendly neighborhood with a good daycare nearby.",
+        "special_request":"Sophia's family needs an apartment in a safe and child-friendly friendhood with a good daycare nearby.",
         "en_work_place":"Restaurants near Guomao Building, Chaoyang District, Beijing",
-        "neighbors":{
+        "friends":{
             "0":{
                 "relation":"friend"
             },
@@ -109,7 +109,7 @@
         "monthly_rent_budget":2500,
         "special_request":"William's family prefers an apartment with a short commute to work and school.",
         "en_work_place":"No. 9 Chaoyang North Road, Chaoyang District, Beijing",
-        "neighbors":{
+        "friends":{
             "0":{
                 "relation":"friend"
             },

@@ -1,68 +1,23 @@
 {
-    "longxing":{
-        "47":[
-            " House_8 is an affordable yet stylish house perfect for a family of three on the higher floor with easy access to medical facilities and supermarkets."
-        ],
-        "45":[
-            " The two houses I'm considering are spacious and well-maintained, located close to concert halls and public transportation."
-        ],
-        "4":[
-            " I am considering renting a house in a safe and child-friendly neighborhood with good daycare nearby. I have found three communities with available houses: Longxing, Jinkejiayuan, and Ronghui. I am particularly interested in House 18 in Ronghui and House 14 in Jinkejiayuan for their safety, amenities, and affordability. Additionally, I am considering House_8 in Longxing, House_15 and House_17 in Ronghui, and House_19 within the same community as House_18. I have chosen house_18 as my final choice due to its safety, amenities, and affordability, located 90 minutes away from my workplace by subway and bus. Please let me know your thoughts and any other suggestions you may have. Thank you!"
-        ],
-        "1":[
-            " community_3, House_18"
-        ],
-        "0":[
-            " I am considering renting either House 18 in Ronghui or House 14 in Jinkejiayuan. Both houses are spacious, well-maintained, and located in safe and child-friendly neighborhoods. I would appreciate any feedback or recommendations. Thank you!"
-        ],
+    "jinkejiayuan":{
         "2":[
-            " community_2, community_3. I think House_14 in the Jinkejiayuan community would be a great option for me as it offers green space, amenities, and a balcony with natural lighting. It also has a reasonable commute of 77 minutes to work by subway and bus."
-        ],
-        "3":[
-            " I'm considering renting House 18 in Ronghui or House 14 in Jinkejiayuan. Both houses are spacious, well-maintained, and located in safe and child-friendly neighborhoods. They are also conveniently close to concert halls and public transportation. The rent prices are affordable, and I can easily commute to work within 102 minutes by subway or 81 minutes by bus. I would appreciate any insights or recommendations from others before making a decision."
+            " I think Community_2 is the best choice for my family as it has a metro station, supermarkets, shopping malls, parks, and schools. It is also close to green spaces, which is perfect for leisure walks. The rent is within my budget of 2400.0 per month. Overall, I believe Community_2 will be a great place for my family to live."
         ]
     },
-    "jinkejiayuan":{
-        "24":[
-            " Jinkejiayuan is a safe, convenient and family-friendly community with access to transportation, supermarkets and schools. It also has green areas and sports facilities and is close to metro stations, hospitals and parks."
-        ],
-        "17":[
-            " house_14 has good schools, playgrounds, a balcony, and plenty of natural lighting. It is located in a neighborhood with green space and amenities. The rent is affordable at 2500 per month."
-        ],
+    "longxing":{
         "3":[
-            " House_14 in Community_2 offers amenities such as Sports facilities and supermarkets, which would be convenient for families. It seems like a great choice for those looking for a safe and child-friendly neighborhood."
-        ],
-        "2":[
-            " House_14 is a perfect choice for those who enjoy living close to nature and value a well-maintained house with a balcony and natural lighting. Jinkejiayuan is a safe, convenient and family-friendly community with access to transportation, supermarkets and schools, as well as green areas and sports facilities. It is 87 minutes away from my workplace by subway and bus."
-        ],
-        "0":[
-            " I highly recommend House_14 in Jinkejiayuan community. It offers a balcony and natural lighting, which is great for a family. The community itself has a good amount of green space and is surrounded by useful amenities such as supermarkets, schools, and sports facilities. The commute to work is around 77 minutes by subway and bus, which is reasonable considering the convenient location."
+            " I believe the houses in this community would be a great fit for my family. They are safe, child-friendly, and in a convenient location with access to various amenities. The rent is within our budget of 1800.0 per month."
         ],
         "4":[
-            " I highly recommend House_14 in Community_2 as it is spacious, well-maintained, and located in a safe and child-friendly neighborhood. The community has sports facilities, metro stations, supermarkets, schools, restaurants, banks, and hospitals. Although there is a lack of a hospital, the rent price is affordable and the commute to work takes only 102 minutes by subway or bus. Additionally, the community is near concert halls and public transportation, making it convenient for both work and leisure activities."
+            " I am considering renting a house in Jinkejiayuan in Daxing District. It is a quiet neighborhood close to green spaces, parks, schools, and shopping malls. The rent is also within my budget of 2500 per month. I would appreciate any feedback or suggestions regarding this community or any other potential options. Thank you!"
         ],
-        "1":[
-            " I am considering renting either House_14 or House_18 in Community_2. Both houses provide good amenities and are in a convenient location with access to transportation, supermarkets, schools, and green areas. House_18 is particularly suitable for families with young children, while House_14 offers a balcony and natural lighting. I would appreciate any insights or suggestions from others."
+        "0":[
+            " community_2, community_3\n\nHello everyone! I am James Anderson, a construction worker living in Beijing. I am currently looking for a new home for my family and would like to hear your thoughts on the available options. \n\nOption 1: Community_1 - This community seems to be a good choice. The house meets my requirements and it is affordable with a rent of 1800.0 per month. It also has easy access to public transportation, which is important for my family's daily commute. \n\nOption 2: Community_2 - This community is another good option. The rent is within my budget and it is conveniently located close to my wife's workplace and my child's school. It offers various amenities and facilities, making it a convenient and comfortable place to live.\n\nOption 3: Community_3 - Although the rent in this community is a bit higher, it offers beautiful greenery and a parking lot. It provides a peaceful and relaxing environment for my family.\n\nI would appreciate any feedback or suggestions you may have. Thank you in advance for your help!"
         ]
     },
     "ronghui":{
-        "10":[
-            " I have chosen house_18 in this community as my final choice. It is located in a safe and secure neighborhood, within my budget, and has amenities such as an elevator. It is similar to house_19 in terms of cost and square footage, but house_18 is on a lower floor with an elevator, which is a plus."
-        ],
-        "4":[
-            " House_15 and House_17 are attractive options with beautiful landscapes and views within our budget. We are also considering House_18 in the same community as it is located in a secure neighborhood and has amenities like an elevator. We would appreciate any feedback or suggestions from the community. Thank you!"
-        ],
-        "3":[
-            " House_14 in the Jinkejiayuan community is a great option for families with a newborn. It offers green space and nearby amenities, making it convenient for families. The commute to work may be a bit long at 77 minutes, but the neighborhood is safe and child-friendly."
-        ],
-        "1":[
-            " House 18 in Ronghui is a great option for those who are looking for a safe, affordable, and well-maintained house. It is located in a quiet neighborhood, allowing for a peaceful environment to focus on work. The house is spacious and conveniently located near concert halls and public transportation. The commute to Alibaba Beijing R&D Center may take around 90 minutes by subway and bus, but it is worth considering for its safety, amenities, and affordability."
-        ],
-        "0":[
-            " House_18 is a spacious and well-maintained house located in a secure neighborhood with easy access to public transportation. It is perfect for families and has all the necessary amenities including an elevator. The rent is within budget at 1800 yuan per month."
-        ],
         "2":[
-            " House_18 in Ronghui community is a great option for those who enjoy leisure walks in parks or green spaces. It offers easy access to public transportation, has elevators for convenience, and is located in a secure neighborhood. The house itself is spacious and well-maintained, making it a comfortable living space. I highly recommend considering this house if you value safety, convenience, and proximity to green areas."
+            " I found a house in a quiet neighborhood in Jinkejiayuan, Daxing District. It offers a peaceful and relaxing environment, which is perfect for leisure walks in nearby parks or green spaces. The rent is 2500 per month. I would appreciate any feedback or suggestions regarding this house or any other potential options. Thank you!"
         ]
     }
 }

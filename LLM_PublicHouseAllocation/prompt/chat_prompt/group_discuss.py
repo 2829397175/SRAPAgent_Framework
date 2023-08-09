@@ -14,9 +14,10 @@ class GroupDiscussPromptTemplate(BaseChatPromptTemplate):
 
         input_variables = kwargs.pop("input_variables",
                     ["role_description", 
-                     "neighbors",
+                     "friends",
                      "memory",
-                     "agent_scratchpad"])
+                     "agent_scratchpad",
+                     "tenant_name"])
         super().__init__(template=template,
                          input_variables=input_variables,
                          **kwargs)

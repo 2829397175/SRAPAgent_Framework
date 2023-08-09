@@ -52,7 +52,7 @@ class LangchainTenant(langchainAgent):
     max_jug_time : int = 1 # 错误结果的retry次数
     max_retry:int = 5 #访问api
     workplace: str = ""  # 用来记录工作点的中文名
-    neighbors: dict = {}
+    friends: dict = {}
     mode : str ="choose" # 控制llm_chain 状态（reset_state中改）
     # 这个是为了更改llm_chain
     llm:BaseLanguageModel
@@ -228,18 +228,18 @@ class LangchainTenant(langchainAgent):
         content = [f"{key.capitalize()}:{response[key]}"for key in output_keys]
         content = "\n".join(content)
         
-        if receivers is None:
-            receivers = list(self.neighbors.keys()) if post else [self.id] 
+        # if receivers is None:
+        #     receivers = list(self.friends.keys()) if post else [self.id] 
         
         message = Message(
             content = content,
-            sender = self.id,
+            sender = {self.id:self.name},
             receiver = receivers,
             message_type = step_type,
             tool_response = response.get('intermediate_steps',[])
         ) # 暂时只给自己发信息
         
-        self.memory.add_message(messages=[message],post=post)
+        self.memory.add_message(messages=[message],post = post)
         
     # 发信息给其他tenant
     def post_messages(self):
@@ -304,7 +304,7 @@ class LangchainTenant(langchainAgent):
         output_parser: Optional[AgentOutputParser],
         allowed_tools :Optional[List[str]] = None,
         max_choose:int = 3,
-        neighbors:dict = {}
+        friends:dict = {}
     ) -> langchainAgent:
         """Construct an agent from an LLM and tools."""
         llm_chain = LLMChain(
@@ -325,7 +325,7 @@ class LangchainTenant(langchainAgent):
             memory = memory,
             max_choose = max_choose,
             workplace = work_place,
-            neighbors = neighbors
+            friends = friends
         )
         
     def reset(self):
@@ -533,18 +533,22 @@ You still have {chance_num} chances to choose house.
     
     def group_discuss(self):
         self.reset_state(mode="group_discuss")
-        neighbors = ["{name}:{relation}".format(
+        friends = ["{name}: {relation}".format(
                     name = neigh_tenant_info.get("name",neigh_tenant_id),
                     relation =neigh_tenant_info.get("relation","friend")
                     )
                      for neigh_tenant_id,neigh_tenant_info
-                     in self.neighbors.items()] 
+                     in self.friends.items()] 
+        friends = "\n".join(friends)
                 
         prompt_inputs={
-                'neighbors':neighbors,
+                'friends':friends,
                 'memory':self.memory.memory_tenant("social_network"),
                 'role_description':self.get_role_description(),
+                'tenant_name':self.name
                 }
+        
+        print("SENDER:{name}".format(name=self.name)) #debug
         
         response = self.step(prompt_inputs,
                     step_type="social_network",
@@ -553,18 +557,20 @@ You still have {chance_num} chances to choose house.
         if response.get("output") =="fail to discuss":
             return
         else:
-            receivers = response.get("receivers",[])
+            receivers = response.get("friends",[])
             receivers = receivers.split(",") # list of tenant names
-            receivers_transfered = [] # list of tenant ids
+            receivers_transfered = {} # tenant id:tenant_name
             for receiver in receivers:
                 receiver = receiver.strip()
-                for neighbor_id,neighbor_info in self.neighbors.items():
-                    if (receiver == neighbor_info["name"]):
-                        receivers_transfered.append(neighbor_id)
+                for friend_id,friend_info in self.friends.items():
+                    if (receiver.lower() in friend_info["name"].lower()):
+                        receivers_transfered[friend_id] = friend_info["name"]
                         
+
             self.update_memory(response=response,
                              step_type="social_network", 
-                             receivers=receivers_transfered,                            
+                             receivers=receivers_transfered,  
+                             output_keys=["thought","action","friends","output"] ,                       
                              post=True)
             
     
@@ -596,8 +602,13 @@ You still have {chance_num} chances to choose house.
         if response.get("output") =="I fail to make comments.":
             return
         else:
+            receivers={}
+            for tenant_id,tenant_info in self.friends:
+                receivers[tenant_id] = tenant_info.get("name","")
+                
             self.update_memory(response=response,
                              step_type=step_type,
+                             receivers=receivers,
                              post=True)
         
     
@@ -655,6 +666,7 @@ You still have {chance_num} chances to choose house.
             if (choose_status):
                 if (system.jug_community_valid(choose_idx)):
                     self.update_memory(response=response,
+                                       receivers={self.id:self.name},
                                        step_type="community")
                     return True, choose_idx.lower(), response.get("thought","")
                 else:
@@ -663,6 +675,7 @@ You still have {chance_num} chances to choose house.
                     mem_buffer.append(response)
             else:
                 self.update_memory(response=response,
+                                   receivers={self.id:self.name},
                                     step_type="community")
                 return False,"None", response.get("thought","")
         
@@ -670,8 +683,9 @@ You still have {chance_num} chances to choose house.
         for mem in mem_buffer:
             thought_fail_choose+=mem.get("thought","")
             
-        self.update_memory({"thought":thought_fail_choose,
+        self.update_memory(response={"thought":thought_fail_choose,
                             "output":"I fail to choose valid community."},
+                           receivers={self.id:self.name},
                            step_type="community")
         
         return False,"None", thought_fail_choose
@@ -732,6 +746,7 @@ You still have {chance_num} chances to choose house.
             if (choose_status):
                 if (system.jug_community_housetype_valid(community_id,choose_idx)):   
                     self.update_memory(response=response,
+                                       receivers={self.id:self.name},
                                        step_type="house_type")
                     return True, choose_idx.lower(), response.get("thought","")
                 else:
@@ -739,6 +754,7 @@ You still have {chance_num} chances to choose house.
                     mem_buffer.append(response)
             else:
                 self.update_memory(response=response,
+                                   receivers={self.id:self.name},
                                     step_type="house_type")
                 return False,"None", response.get("thought","")
         
@@ -746,8 +762,9 @@ You still have {chance_num} chances to choose house.
         for mem in mem_buffer:
             thought_fail_choose+=mem.get("thought","")
             
-        self.update_memory({"thought":thought_fail_choose,
+        self.update_memory(response={"thought":thought_fail_choose,
                             "output":"I fail to choose valid house type."},
+                           receivers={self.id:self.name},
                            step_type="house_type")
         
         return False,"None", thought_fail_choose
@@ -864,12 +881,14 @@ You still have {chance_num} chances to choose house.
                     assert len(choose_mem)==1
                     # 选择了房子的情况，只更新关于选择的房子的记忆
                     self.update_memory(response=choose_mem[0],
+                                       receivers={self.id:self.name},
                                     step_type="house",
                                     ) 
                     
                     # 在选择完一个房子后，记忆中添加房子相关暗信息   
                     dark_info = system.get_house_dark_info(choose_id)
-                    self.update_memory({"output":dark_info},
+                    self.update_memory(response={"output":dark_info},
+                                       receivers={self.id:self.name},
                                     step_type="house",
                                     output_keys=["output"])
                     
@@ -881,6 +900,7 @@ You still have {chance_num} chances to choose house.
                 no_choose_thought=""
                 for nochoose_memory in choose_mem:
                     self.update_memory(response=nochoose_memory,
+                                       receivers={self.id:self.name},
                                         step_type="house",
                                         )
                     no_choose_thought += nochoose_memory.get("thought","")   
@@ -890,8 +910,9 @@ You still have {chance_num} chances to choose house.
         for mem in mem_buffer:
             thought_fail_choose+=mem.get("thought","")
             
-        self.update_memory({"thought":thought_fail_choose,
+        self.update_memory(response={"thought":thought_fail_choose,
                             "output":"I fail to choose valid house."},
+                           receivers={self.id:self.name},
                            step_type="house")
         
         return False,"None", thought_fail_choose
@@ -938,8 +959,10 @@ You still have {chance_num} chances to choose house.
         #                     for community_index,search_info in return_infos.items()]
         return_infos_str=log_round.set_forum_conclusion(return_infos)
         for return_info in return_infos_str:
-            self.update_memory({"output":return_info},
+            self.update_memory(
+                            response={"output":return_info},
                             step_type="search",
+                            receivers={self.id:self.name},
                             output_keys=["output"])          
         
         # return_infos_str = "\n".join(return_infos_str) 
@@ -997,7 +1020,9 @@ You still have {chance_num} chances to choose house.
                     response["output"]="{community_name}:{info_post}".format(community_name=community_name,
                                                                              info_post=info_post)
                     
-                    self.update_memory(response=response,step_type="publish")
+                    self.update_memory(response=response,
+                                       step_type="publish",
+                                       receivers={self.id:self.name})
                     #log_round["produce_comment"] = response.get("output","")
                     log_round.set_comment(response.get("output",""))
                     self.reset_state(mode="choose",
@@ -1019,8 +1044,9 @@ You still have {chance_num} chances to choose house.
         for mem in mem_buffer:
             thought_fail_publish+=mem.get("thought","")
             
-        self.update_memory({"thought":thought_fail_publish,
+        self.update_memory(response={"thought":thought_fail_publish,
                             "output":"I fail to publish any information online."},
+                           receivers={self.id:self.name},
                            step_type="publish")
     
         # self.logger.info("publish forum, tenant response:{}".format(content))

@@ -58,7 +58,7 @@ class RentEnvironment(BaseEnvironment):
             return False
         else:
             self.forum_manager.save_data()
-            self.save_tenant_memory()
+            # self.save_tenant_memory()
             return True
 
     #test 测试用 要改
@@ -72,6 +72,8 @@ class RentEnvironment(BaseEnvironment):
                 asyncio.run(tenant.async_communication(self.forum_manager, self.system,self.log,3))
             else:
                 raise NotImplementedError("Tenant type {} not implemented".format(tenant.__class__))
+            self.save_tenant_memory()
+            self.update_social_net(tenant=tenant)
         #return self.log_round
 
     def step(self):
@@ -106,10 +108,11 @@ class RentEnvironment(BaseEnvironment):
         for tenant_id,tenant in self.tenant_manager.data.items():
             assert isinstance(tenant,LangchainTenant)
             memory_temp=copy.deepcopy(tenant.memory)
-            memory_tenant = {"messages":memory_temp.messages,
-                             "summarys":memory_temp.summarys,
-                             "received_messages":memory_temp.received_messages,
-                             "received_summarys":memory_temp.received_summarys,
+            memory_tenant = {
+                            "messages":memory_temp.messages.get("social_network",""),
+                            "summarys":memory_temp.summarys.get("social_network",""),
+                            #  "received_messages":memory_temp.received_messages.get("social_network",""),
+                            #  "received_summarys":memory_temp.received_summarys,
                              "post_message_buffer":memory_temp.post_message_buffer
                              }
             for k,v in memory_tenant.items():
@@ -120,9 +123,11 @@ class RentEnvironment(BaseEnvironment):
                       if isinstance(m_v,list):
                         m_v=[str(m_v_) for m_v_ in m_v]  
                         v[m_k]=m_v
+                else:
+                    memory_tenant[k]=str(v)
                 memory_tenant[k]=v
-                        
-            log_memory[tenant_id]=memory_tenant
+            memory_tenant["name"] = tenant.name        
+            log_memory[tenant_id] = memory_tenant
         with open(dir, encoding='utf-8', mode='w') as fr:
             json.dump(log_memory, fr, indent=4, separators=(',', ':'), ensure_ascii=False)
 

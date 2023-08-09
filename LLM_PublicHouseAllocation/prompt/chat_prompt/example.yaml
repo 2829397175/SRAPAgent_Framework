@@ -8,5 +8,5 @@ choose_example_1: &choose_example_1 |-
   Output:My choice is small_house. 
 
   Step 3: choose house
-  Thought:I want to find a house that is in a neighborhood with good schools and playgrounds and also fits within my budget. I also want a house that has a balcony and good natural lighting.
+  Thought:I want to find a house that is in a friendhood with good schools and playgrounds and also fits within my budget. I also want a house that has a balcony and good natural lighting.
   Output:My choice is house_14.

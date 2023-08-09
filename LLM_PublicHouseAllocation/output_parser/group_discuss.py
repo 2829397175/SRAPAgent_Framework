@@ -29,7 +29,7 @@ class GroupDiscussParser(AgentOutputParser):
         else:
             thought = match_thought.group(1).strip()
 
-        regex = r"Action\s*\d*\s*:(.*?)\nFriends\s*\d*\s*:(.*?)\nAction\s*\d*\s*Input\s*\d*\s*:[\s]*(.*)"
+        regex = r"Action\s*\d*\s*:(.*?)\nFriends\s*\d*\s*:(.*?)\nOutput\s*\d*\s*:(.*)"
         match = re.search(regex, llm_output, re.DOTALL)
         if not match:
             return AgentFinish(return_values={"output":"fail to discuss",
@@ -38,11 +38,12 @@ class GroupDiscussParser(AgentOutputParser):
         try:
             action = match.group(1).strip()
             receivers = match.group(2).strip()
-            action_input = match.group(3)
+            output = match.group(3)
             assert action.lower()=="groupdiscuss"
-            return AgentFinish(return_values={"output":action_input,
-                                            "thought":thought,
-                                            "receivers":receivers,
+            return AgentFinish(return_values={ "thought":thought,
+                                            "action":"GroupDiscuss",
+                                            "friends":receivers,
+                                            "output":output,
                                             },log=llm_output)
         except:
             return AgentFinish(return_values={"output":"fail to discuss",

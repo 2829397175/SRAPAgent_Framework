@@ -53,9 +53,9 @@ for idx in range(int(51/group_size)):
         id_g_tenants_temp=id_g_tenants.copy()
         id_g_tenants_temp.remove(id_t)
         tenant_info = tenant_datas[id_t]
-        tenant_info["neighbors"]={}
+        tenant_info["friends"]={}
         for id_g_ in id_g_tenants_temp:
-            tenant_info["neighbors"][id_g_]={"relation":relation}
+            tenant_info["friends"][id_g_]={"relation":relation}
 
 id_g_tenants=[f"{id_}"  for id_ in range(int(51/group_size)*group_size,51)]     
    
@@ -64,9 +64,9 @@ for id_t in range(int(51/group_size)*group_size,51):
     id_g_tenants_temp=id_g_tenants.copy()
     id_g_tenants_temp.remove(id_t)
     tenant_info = tenant_datas[id_t]
-    tenant_info["neighbors"]={}
+    tenant_info["friends"]={}
     for id_g_ in id_g_tenants_temp:
-        tenant_info["neighbors"][id_g_]={"relation":relation}
+        tenant_info["friends"][id_g_]={"relation":relation}
 
         
 with open(tenant_dir, encoding='utf-8', mode='w') as fr:

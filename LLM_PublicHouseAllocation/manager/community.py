@@ -48,12 +48,11 @@ class CommunityManager(BaseManager):
         len_curcommunity= len(curcommunity_list)
         len_furcommunity = len(furcommunity_list)
         template = """\
-                                {community_id}. {community_name} is located at {en_location}. The rent for this community is {value_inch} dollars per square meter.\
-                                In this community, {description}. {nearby_info}.
-                            """
-        housetype_template = """
-                                        The {housetype} in this community is a {living_room} apartment, with an area of about {size}, the monthly rent  is about {cost} dollars, and there are still {remain_number} houses.
-                                     """
+{community_id}. {community_name} is located at {en_location}. The rent for this community is {value_inch} dollars per square meter.\
+In this community, {description}. {nearby_info}."""
+
+        housetype_template = """\
+The {housetype} in this community is a {living_room} apartment, with an area of about {size}, the monthly rent  is about {cost} dollars, and there are still {remain_number} houses."""
         curcommunity_description = ""
         furcommunity_description = ""
         

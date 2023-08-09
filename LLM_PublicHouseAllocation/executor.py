@@ -67,7 +67,7 @@ class Executor():
         
         while self.environment.is_done():
             self.environment.communication() #测试用
-            self.environment.step()
+            # self.environment.step()
 
     def reset(self):
         self.environment.reset()

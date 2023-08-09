@@ -12,8 +12,8 @@ class Message(BaseModel):
     content: str
     importance_rate: float = 0
     relation_rate :float = 0
-    sender: str = Field(default="")
-    receiver: Set[str] = Field(default = set({"all"}))
+    sender: dict[str,str] = {"system":"system"} # tenant_id:tenant_name
+    receiver: dict[str,str] = {}  # tenant_id:tenant_name
     tool_response: List[Tuple[AgentAction, str]] = Field(default=[])
     
     def __init__(self,**kwargs):
@@ -28,6 +28,7 @@ class Message(BaseModel):
     def type(self) -> str:
         """Type of the message, used for serialization."""
         return "chat"
+    
     def __str__(self):
         return self.content
     
