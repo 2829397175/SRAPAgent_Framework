@@ -11,10 +11,13 @@ from . import visibility_registry
 
 @visibility_registry.register("base")
 class BaseVisibility(BaseModel):
-
-    def update_visible_agents(self, environment: BaseEnvironment):
-        """Update the set of visible agents for the agent"""
-        pass
-
+    rule_description:str=""
+    def filter_community(self, tenant,community_list):
+        
+        return community_list
+    
+    def filter_housetype(self, tenant,housetype_list):
+        
+        return housetype_list
     def reset(self):
         pass

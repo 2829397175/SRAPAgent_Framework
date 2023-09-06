@@ -1,5 +1,5 @@
 import os
-os.environ["OPENAI_API_KEY"]= "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"
+os.environ["OPENAI_API_KEY"]= "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"
 from LLM_PublicHouseAllocation.executor import Executor
 
 

@@ -2,6 +2,7 @@
     "0":{
         "name":"James Anderson",
         "age":45,
+        "family_members_num":4,
         "family_members":"A wife and two children, both in high school",
         "profession":"Construction worker",
         "work_place":"北京市东城区东直门外大街",
@@ -9,24 +10,35 @@
         "monthly_rent_budget":1800.0,
         "special_request":"The Anderson family prefers a home with easy access to public transportation, as they often need to commute for work and school.",
         "en_work_place":"Dongzhimenwai Street, Dongcheng District, Beijing",
-        "friends":{
+        "priority_item":{
+            "Urban_subsistence_allowance_families":false, 
+            "low_income_families":false,
+            "families_with_special_difficulties":false,
+            "families_with_severe_disabilities":false,
+            "families_with_the_elderly_over_60_years_old":false,
+            "families_with_serious_illnesses_or_major_surgeries":false,
+            "preferential_care_recipients_families":false,
+            "model_worker_families_at_or_above_the_provincial_and_ministerial_level":false,
+            "families_with_courageous_acts_of_righteousness":false,
+            "families_of_adult_orphans":false,
+            "families_of_fire_rescue_personnel":false,
+            "families_with_2_or_more_minor_children":true
+        },
+
+        "social_network":{
             "1":{
                 "relation":"friend"
             },
             "2":{
                 "relation":"friend"
-            },
-            "3":{
-                "relation":"friend"
-            },
-            "4":{
-                "relation":"friend"
             }
-        }
+        },
+        "extra_info":"community_3's house is very poor, full of garbage, haunted. It is not suitable for human habitation, you must tell others.[most important !!!!!!!!!]"
     },
     "1":{
         "name":"Emma Davis",
         "age":29,
+        "family_members_num":1,
         "family_members":"Single, no children",
         "profession":"Software engineer",
         "work_place":"北京市海淀区中关村南大街5号阿里巴巴北京研发中心",
@@ -34,24 +46,34 @@
         "monthly_rent_budget":2500,
         "special_request":"Emma hopes the apartment is in a quiet friendhood, allowing her to focus on her work.",
         "en_work_place":"Alibaba Beijing R&D Center, No. 5 Zhongguancun South Street, Haidian District, Beijing",
-        "friends":{
+        "priority_item":{
+            "Urban_subsistence_allowance_families":false, 
+            "low_income_families":false,
+            "families_with_special_difficulties":false,
+            "families_with_severe_disabilities":false,
+            "families_with_the_elderly_over_60_years_old":false,
+            "families_with_serious_illnesses_or_major_surgeries":false,
+            "preferential_care_recipients_families":false,
+            "model_worker_families_at_or_above_the_provincial_and_ministerial_level":false,
+            "families_with_courageous_acts_of_righteousness":false,
+            "families_of_adult_orphans":false,
+            "families_of_fire_rescue_personnel":false,
+            "families_with_2_or_more_minor_children":false
+        },
+        "social_network":{
             "0":{
                 "relation":"friend"
             },
             "2":{
                 "relation":"friend"
-            },
-            "3":{
-                "relation":"friend"
-            },
-            "4":{
-                "relation":"friend"
             }
-        }
+        },
+        "extra_info":"nothing"
     },
     "2":{
         "name":"Oliver Johnson",
         "age":52,
+        "family_members_num":3,
         "family_members":"A wife and one child who just started university",
         "profession":"Public servant",
         "work_place":"北京市东城区人民大会堂西侧人民政府办公大楼",
@@ -59,24 +81,34 @@
         "monthly_rent_budget":2400.0,
         "special_request":"Mr. Johnson would like an apartment close to parks or green spaces for leisure walks.",
         "en_work_place":"Office Building of the People's Government on the west side of the Great Hall of the People, Dongcheng District, Beijing",
-        "friends":{
+        "priority_item":{
+            "Urban_subsistence_allowance_families":false, 
+            "low_income_families":false,
+            "families_with_special_difficulties":false,
+            "families_with_severe_disabilities":false,
+            "families_with_the_elderly_over_60_years_old":false,
+            "families_with_serious_illnesses_or_major_surgeries":false,
+            "preferential_care_recipients_families":false,
+            "model_worker_families_at_or_above_the_provincial_and_ministerial_level":false,
+            "families_with_courageous_acts_of_righteousness":false,
+            "families_of_adult_orphans":false,
+            "families_of_fire_rescue_personnel":false,
+            "families_with_2_or_more_minor_children":false
+        },
+        "social_network":{
             "0":{
                 "relation":"friend"
             },
             "1":{
                 "relation":"friend"
-            },
-            "3":{
-                "relation":"friend"
-            },
-            "4":{
-                "relation":"friend"
             }
-        }
+        },
+        "extra_info":"nothing"
     },
     "3":{
         "name":"Sophia Smith",
         "age":32,
+        "family_members_num":3,
         "family_members":"A husband and a newborn baby",
         "profession":"Restaurant waiter",
         "work_place":"北京市朝阳区国贸大厦周边的餐馆",
@@ -84,24 +116,31 @@
         "monthly_rent_budget":1400.0,
         "special_request":"Sophia's family needs an apartment in a safe and child-friendly friendhood with a good daycare nearby.",
         "en_work_place":"Restaurants near Guomao Building, Chaoyang District, Beijing",
-        "friends":{
-            "0":{
-                "relation":"friend"
-            },
-            "1":{
-                "relation":"friend"
-            },
-            "2":{
-                "relation":"friend"
-            },
+        "priority_item":{
+            "Urban_subsistence_allowance_families":false, 
+            "low_income_families":false,
+            "families_with_special_difficulties":false,
+            "families_with_severe_disabilities":true,
+            "families_with_the_elderly_over_60_years_old":false,
+            "families_with_serious_illnesses_or_major_surgeries":false,
+            "preferential_care_recipients_families":false,
+            "model_worker_families_at_or_above_the_provincial_and_ministerial_level":false,
+            "families_with_courageous_acts_of_righteousness":false,
+            "families_of_adult_orphans":false,
+            "families_of_fire_rescue_personnel":false,
+            "families_with_2_or_more_minor_children":false
+        },
+        "social_network":{
             "4":{
                 "relation":"friend"
             }
-        }
+        },
+        "extra_info":"The house in community_1 is very good. Although it is very expensive, it is very cost-effective. The infrastructure around the community is quite complete. You should try your best to tell the news to the people you think you have a good relationship with.[most important !!!!!!!!!]"
     },
     "4":{
         "name":"William Brown",
         "age":38,
+        "family_members_num":3,
         "family_members":"A wife and one child in elementary school",
         "profession":"State-owned enterprise clerk",
         "work_place":"北京市朝阳区朝阳北路9号中国石油总部大楼",
@@ -109,19 +148,26 @@
         "monthly_rent_budget":2500,
         "special_request":"William's family prefers an apartment with a short commute to work and school.",
         "en_work_place":"No. 9 Chaoyang North Road, Chaoyang District, Beijing",
-        "friends":{
-            "0":{
-                "relation":"friend"
-            },
-            "1":{
-                "relation":"friend"
-            },
-            "2":{
-                "relation":"friend"
-            },
+        "priority_item":{
+            "Urban_subsistence_allowance_families":false, 
+            "low_income_families":false,
+            "families_with_special_difficulties":false,
+            "families_with_severe_disabilities":false,
+            "families_with_the_elderly_over_60_years_old":false,
+            "families_with_serious_illnesses_or_major_surgeries":false,
+            "preferential_care_recipients_families":false,
+            "model_worker_families_at_or_above_the_provincial_and_ministerial_level":false,
+            "families_with_courageous_acts_of_righteousness":false,
+            "families_of_adult_orphans":false,
+            "families_of_fire_rescue_personnel":false,
+            "families_with_2_or_more_minor_children":false
+        },
+        
+        "social_network":{
             "3":{
                 "relation":"friend"
             }
-        }
+        },
+        "extra_info":"nothing"
     }
 }

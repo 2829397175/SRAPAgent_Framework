@@ -60,7 +60,14 @@ class LogRound(BaseModel):
     def set_log_list(self):
         if self.log_round!={}:
             self.log_list.append(self.log_round)
-    
+            
+    def set_message(self,messages):
+        template="""{sname}->{rname}:{content}"""
+        message_str=[]
+        for message in messages:
+            message_str.append(template.format(sname=list(message.sender.values())[0],rname=list(message.receiver.values())[0],content=str(message)))
+        self.log_round["social_net_message"]=message_str
+
     def save_data(self):
         self.log_round={}
         # assert os.path.exists(self.save_dir), "no such file path: {}".format(self.save_dir)

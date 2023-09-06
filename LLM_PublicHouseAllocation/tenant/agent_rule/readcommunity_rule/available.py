@@ -24,12 +24,12 @@ class Available_ReadCommunity(Base_ReadCommunity):
         len_community = len(community_infos)
 
         template = """{index}: 
-{community_name}, located at {en_location}. \
-The rent for this community is {value_inch} dollars per square meter. \
-{get_shortest_commute_time_str}. \
-In this community, {description}. \
-{nearby_info}. \
-There are {remain_house_num} houses."""
+        {community_name}, located at {en_location}. \
+        The rent for this community is {value_inch} dollars per square meter. \
+        {get_shortest_commute_time_str}. \
+        In this community, {description}. \
+        {nearby_info}. \
+        There are {remain_house_num} houses."""
         communitys_str = [
             template.format(index = community_idx,
                             community_name = community_info.get("community_name",""),

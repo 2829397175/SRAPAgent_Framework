@@ -5,11 +5,11 @@ environment:
   max_turns: 5
   rule:
     order:
-      type: rent
+      type: priority
     updater:
       type: rent
     visibility:
-      type: base
+      type: rent
     describer:
       type: base
 
@@ -30,15 +30,15 @@ managers:
       memory_type: action_history
       reflection: True # 触发分类reflection
       llm:
-        llm_type: gpt-3.5-turbo
-        # llm_type: text-davinci-003
+        # llm_type: gpt-3.5-turbo
+        llm_type: gpt-3.5-turbo-16k-0613
         temperature: 0.8
-        max_tokens: 1000
+        max_tokens: 300
     llm:
-      llm_type: gpt-3.5-turbo
+      llm_type: gpt-3.5-turbo-16k-0613
       # llm_type: text-davinci-003
       temperature: 0.8
-      max_tokens: 1000
+      max_tokens: 300
     max_choose: 2
     max_jug_time: 2
     agent_rule:

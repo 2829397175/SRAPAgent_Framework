@@ -61,7 +61,10 @@ def load_llm(llm_config: Dict):
         return ChatOpenAI(**llm_config)
     elif llm_type == 'text-davinci-003':
         return OpenAI(**llm_config)
+    elif llm_type == 'gpt-3.5-turbo-16k-0613':
+        return OpenAI(**llm_config)
     else:
+        #return OpenAI(**llm_config)
         raise NotImplementedError("LLM type {} not implemented".format(llm_type))
 
 

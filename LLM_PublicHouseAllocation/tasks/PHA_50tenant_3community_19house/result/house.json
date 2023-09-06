@@ -115,7 +115,7 @@
         "balcony":"not has",
         "floor":10,
         "elevator":"has",
-        "available":false,
+        "available":true,
         "description":"The lack of a balcony might be a concern for some, but the house is pretty well maintained.",
         "potential_information_house":"The house is a bit old, but the fixtures and appliances have been updated and are in great condition."
     },
@@ -127,7 +127,7 @@
         "balcony":"has",
         "floor":11,
         "elevator":"has",
-        "available":false,
+        "available":true,
         "description":"This house is an excellent balance between size and functionality. The presence of a balcony adds to its charm.",
         "potential_information_house":"The house is well-maintained and well-lit, making it quite inviting."
     },
@@ -139,7 +139,7 @@
         "balcony":"has",
         "floor":15,
         "elevator":"has",
-        "available":false,
+        "available":true,
         "description":"The house provides a comfortable living space and features a balcony for extra outdoor space.",
         "potential_information_house":"The house is quite spacious and benefits from a lot of natural light during the day."
     },
@@ -151,7 +151,7 @@
         "balcony":"has",
         "floor":18,
         "elevator":"has",
-        "available":false,
+        "available":true,
         "description":"Despite being an older property, the house is in excellent condition with a nice view from the balcony.",
         "potential_information_house":"The house has been recently renovated, and all the appliances are pretty new."
     },
@@ -211,7 +211,7 @@
         "balcony":"has",
         "floor":12,
         "elevator":"has",
-        "available":true,
+        "available":false,
         "description":"Despite being smaller, this house is south-facing and offers good green views of the community. It is also well-maintained.",
         "potential_information_house":"The house may be on the smaller side, but it's very well-kept and efficient."
     },
@@ -223,7 +223,7 @@
         "balcony":"has",
         "floor":15,
         "elevator":"has",
-        "available":true,
+        "available":false,
         "description":"The house enjoys a favorable south-facing orientation, and the small floor area is well-designed for efficient use. The greenery around the community is a plus.",
         "potential_information_house":"While small, the house is cozy and makes excellent use of space. It's perfect for a small family or a couple."
     }

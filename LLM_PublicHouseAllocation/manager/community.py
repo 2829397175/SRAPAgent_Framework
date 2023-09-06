@@ -4,7 +4,7 @@ from .base import BaseManager
 from . import manager_registry as ManagerRgistry
 import LLM_PublicHouseAllocation.map as map
 from typing import List
-
+from copy import deepcopy
 @ManagerRgistry.register("community")
 class CommunityManager(BaseManager):
     """
@@ -124,9 +124,9 @@ The {housetype} in this community is a {living_room} apartment, with an area of 
     
 
 
-    def get_house_type(self, community_id):
+    def get_house_type(self, community_id,house_types):
         community_infos = self.data[community_id]
-        house_types = self.get_available_house_type(community_id)
+        #house_types = self.get_available_house_type(community_id)
         house_type_infos = {}
         for house_type in house_types:
             if house_type in community_infos.keys():
@@ -152,16 +152,16 @@ There remains {remain_num} houses of this type."""
 
         return str_house_type_description
     
-    def jug_community_housetype_valid(self,community_id,housetype):
+    def jug_community_housetype_valid(self,community_id,housetype,house_type_ids):
         community_infos = self.data.get(community_id)
 
-        if community_infos!=None and community_infos["available"] and housetype in community_infos and community_infos[housetype]["remain_number"] > 0:
+        if community_infos!=None and community_infos["available"] and housetype in community_infos and community_infos[housetype]["remain_number"] > 0 and housetype in house_type_ids:
             return True
         else:
             return False
         
-    def jug_community_valid(self,community_id):
-        return community_id in self.data.keys() and \
+    def jug_community_valid(self,community_id,community_ids):
+        return community_id in community_ids and community_id in self.data.keys() and \
             self.data[community_id].get("available",False)
             
 
@@ -186,7 +186,7 @@ There remains {remain_num} houses of this type."""
         return house_types
 
     def get_available_community_info(self):
-        community_infos=self.data.copy()
+        community_infos=deepcopy(self.data)
         community_list=[]
         for community_id, community_info in list(community_infos.items()):
             if  community_info["sum_remain_num"] >  0 :

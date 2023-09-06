@@ -1,23 +1,50 @@
 {
     "jinkejiayuan":{
         "2":[
-            " I think Community_2 is the best choice for my family as it has a metro station, supermarkets, shopping malls, parks, and schools. It is also close to green spaces, which is perfect for leisure walks. The rent is within my budget of 2400.0 per month. Overall, I believe Community_2 will be a great place for my family to live."
+            " This community has a larger green area, is surrounded by metro, supermarkets, shopping malls, parks, schools, restaurants and banks. It has small, middle and large houses, with rental prices ranging from 1140 to 2320 dollars. The nearby amenities make it suitable for our needs."
+        ],
+        "4":[
+            " good amenities, close to job and school."
+        ],
+        "0":[
+            " Middle house in Community 3 is a good option, House 18 and 19 offer good views, the community should also have beautiful greenery, a parking lot, and easy access to public transportation with a rent of 2500 per month."
+        ],
+        "1":[
+            " There are small, middle and large houses with rental prices ranging from 1140 to 2320 dollars. The steps of the renting process are in place."
+        ],
+        "3":[
+            " Middle_House has great features such as a balcony, good natural lighting and access to public transportation, supermarkets, malls, hospitals, parks, schools, and restaurants. It is a great fit for my family with a good square footage, greenery, parking lot, and an affordable rent."
         ]
     },
     "longxing":{
         "3":[
-            " I believe the houses in this community would be a great fit for my family. They are safe, child-friendly, and in a convenient location with access to various amenities. The rent is within our budget of 1800.0 per month."
+            " House_19 is my choice due to its more favorable south-facing orientation; Middle_House is also a good option with its affordable rent and decent square footage, as well as features such as a balcony, good natural lighting and access to public transportation, supermarkets, malls, hospitals, parks, schools, and restaurants; Community_3 appears to have better amenities and more green space compared to Community_1, and the rent is only slightly higher."
         ],
         "4":[
-            " I am considering renting a house in Jinkejiayuan in Daxing District. It is a quiet neighborhood close to green spaces, parks, schools, and shopping malls. The rent is also within my budget of 2500 per month. I would appreciate any feedback or suggestions regarding this community or any other potential options. Thank you!"
+            " community_2, community_3. \nI am considering renting a house within a budget of 2500 per month. The house should have a short commute to work and school. My family prefers a community with amenities such as metro stations, supermarkets, shopping malls, parks, and schools. We are also open to communities with beautiful greenery and a parking lot. Any suggestions or recommendations would be greatly appreciated!"
         ],
         "0":[
-            " community_2, community_3\n\nHello everyone! I am James Anderson, a construction worker living in Beijing. I am currently looking for a new home for my family and would like to hear your thoughts on the available options. \n\nOption 1: Community_1 - This community seems to be a good choice. The house meets my requirements and it is affordable with a rent of 1800.0 per month. It also has easy access to public transportation, which is important for my family's daily commute. \n\nOption 2: Community_2 - This community is another good option. The rent is within my budget and it is conveniently located close to my wife's workplace and my child's school. It offers various amenities and facilities, making it a convenient and comfortable place to live.\n\nOption 3: Community_3 - Although the rent in this community is a bit higher, it offers beautiful greenery and a parking lot. It provides a peaceful and relaxing environment for my family.\n\nI would appreciate any feedback or suggestions you may have. Thank you in advance for your help!"
+            " Community_2, and Community_3 should be compared based on rent, surrounding facilities, and transportation convenience, and the importance of convenience should be emphasized. We should also explore the public housing process for other options."
+        ],
+        "1":[
+            " Community_2 and Community_3, provide comfortable places to live with an affordable budget."
+        ],
+        "2":[
+            " community_2, community_3. I am looking for a house close to parks or green spaces for leisure walks."
         ]
     },
     "ronghui":{
         "2":[
-            " I found a house in a quiet neighborhood in Jinkejiayuan, Daxing District. It offers a peaceful and relaxing environment, which is perfect for leisure walks in nearby parks or green spaces. The rent is 2500 per month. I would appreciate any feedback or suggestions regarding this house or any other potential options. Thank you!"
+            " beautiful greenery, parking lot, easy access to public transportation with a rent of 2500 per month."
+        ],
+        "0":[
+            " Community_3 offers the best amenities and green space compared to Community_1, and slightly higher rent."
+        ],
+        "4":[
+            " Suburban atmosphere with beautiful greenery and a parking lot, access to public transportation, supermarkets, malls, hospitals, parks, schools, and restaurants."
+        ],
+        "3":[
+            " Middle_House has a great view, efficient use of space, reasonable square footage and is within budget."
         ]
     }
 }

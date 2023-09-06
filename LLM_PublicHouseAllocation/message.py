@@ -13,8 +13,10 @@ class Message(BaseModel):
     importance_rate: float = 0
     relation_rate :float = 0
     sender: dict[str,str] = {"system":"system"} # tenant_id:tenant_name
-    receiver: dict[str,str] = {}  # tenant_id:tenant_name
+    receiver: List[str] = []  # tenant_id:tenant_name
     tool_response: List[Tuple[AgentAction, str]] = Field(default=[])
+    conver_num:int =0 #记录对话次数
+    context: List[str] = [] #记录的上下文
     
     def __init__(self,**kwargs):
         now = datetime.now()

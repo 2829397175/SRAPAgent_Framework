@@ -67,7 +67,8 @@ class Executor():
         
         while self.environment.is_done():
             self.environment.communication() #测试用
-            # self.environment.step()
+            #if self.environment.cnt_turn>3:
+            self.environment.step()
 
     def reset(self):
         self.environment.reset()

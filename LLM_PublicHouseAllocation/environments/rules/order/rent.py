@@ -17,21 +17,28 @@ class RentOrder(BaseOrder):
     Order for rent.
     random(agents.tenants) (one agent at a time)
     """
-
+    rule_description:str=""
     def get_next_agent_idx(self, environment) :
         """Return the index of the next agent to speak"""
-        tenant=environment.deque.popleft()
-        return tenant
+        result=[]
+        for _,deque in environment.deque_dict.items():
+            if len(deque)>0:
+                result.append(deque.popleft())
+        return result
 
     def generate_deque(self, environment):
         tenantlist=list(environment.tenant_manager.data.values())
         random.shuffle(tenantlist)
-        environment.deque = deque(tenantlist)
-        return environment.deque
+        deque_list = deque(tenantlist) 
+        environment.deque_dict["random_queue"] = deque_list
+        return environment.deque_dict
 
     def requeue(self, environment,tenant):
         """Return the index of the next agent to speak"""
-        environment.deque.append(tenant)
+        environment.deque_dict["random_queue"].append(tenant)
+        
+    def reset(self,environment) -> None:
+        environment.deque_dict["random_queue"].clear()
 
-    def reset(self) -> None:
-        pass
+    def are_all_deques_empty(self,environment) -> bool:
+        return all(len(d) == 0 for d in environment.deque_dict.values())

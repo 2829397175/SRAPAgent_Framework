@@ -43,8 +43,9 @@ class TenantManager(BaseManager):
 
 
             for tenant_id, tenant_config in tenant_configs.items():
-                friends=tenant_config.get("friends",{})
-                for neigh_tenant_id,neigh_tenant_info in friends.items():
+                priority_item=tenant_config.get("priority_item",{})
+                social_network=tenant_config.get("social_network",{})
+                for neigh_tenant_id,neigh_tenant_info in social_network.items():
                     if neigh_tenant_id in tenant_configs.keys():
                         neigh_tenant_info["name"] = tenant_configs[neigh_tenant_id].get("name",tenant_id)
                 
@@ -58,7 +59,9 @@ class TenantManager(BaseManager):
                                                             max_choose=max_choose,
                                                             rule=base_config["agent_rule"],
                                                             work_place=tenant_config.get("work_place",""),
-                                                            friends=friends
+                                                            social_network=social_network,
+                                                            priority_item = priority_item,
+                                                            family_num=tenant_config.get("family_members_num",0),
                                                             )
                 tenants[tenant_id] = tenant
 
@@ -137,8 +140,8 @@ class TenantManager(BaseManager):
     def broadcast(self,system):
         
         broadcast_template = """You are in rent system. Choosing one house needs the following steps:\
-1.choose community 2.choose type of house 3.choose house
-{community_info}"""
+        1.choose community 2.choose type of house 3.choose house
+        {community_info}"""
         community_info = system.get_community_abstract()
         #待改，等community_manager接口
         broadcast_str = broadcast_template.format(community_info=community_info) 
@@ -148,5 +151,4 @@ class TenantManager(BaseManager):
                     ) # 暂时视作小区类信息        
         for tenant in self.data.values():
             assert isinstance(tenant,LangchainTenant)
-
             tenant.memory.add_message([broadcast_message]) # 不发送，在自己的行为队列

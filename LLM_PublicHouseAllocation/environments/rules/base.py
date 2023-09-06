@@ -55,5 +55,16 @@ class Rule(BaseModel):
     def reset(self, environment: BaseEnvironment) -> None:
         self.order.reset()
         
+    def are_all_deques_empty(self, environment: BaseEnvironment) -> None:
+        return self.order.are_all_deques_empty(environment)
+    
     def post_messages(self,**kargs):
         self.updater.post_messages(**kargs)
+    
+    def filter_community(self, tenant,community_list):
+        """Update the set of visible agents for the agent"""
+        return self.visibility.filter_community(tenant,community_list)    
+        
+    def filter_housetype(self, tenant,housetype_list):
+        """Update the set of visible agents for the agent"""
+        return self.visibility.filter_housetype(tenant,housetype_list)

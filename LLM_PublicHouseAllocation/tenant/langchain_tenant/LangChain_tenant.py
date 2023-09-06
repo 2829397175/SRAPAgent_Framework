@@ -8,7 +8,8 @@ from LLM_PublicHouseAllocation.prompt.chat_prompt import (ForumPromptTemplate,
                                                           PublishPromptTemplate,
                                                           CommentPromptTemplate,
                                                           GroupDiscussPromptTemplate,
-                                                          ActionPlanPromptTemplate)
+                                                          ActionPlanPromptTemplate,
+                                                          GroupDiscussBackPromptTemplate)
 from LLM_PublicHouseAllocation.output_parser import (OutputParseError,
                                                      ForumParser,
                                                      ChooseParser,
@@ -43,7 +44,8 @@ from LLM_PublicHouseAllocation.tenant.agent_rule import AgentRule
 
 class LangchainTenant(langchainAgent):
     id :str
-    name :str   
+    name :str 
+    family_num:int=0
     infos : dict 
     memory : ActionHistoryMemory
     choose_times:int = 0
@@ -52,10 +54,11 @@ class LangchainTenant(langchainAgent):
     max_jug_time : int = 1 # 错误结果的retry次数
     max_retry:int = 5 #访问api
     workplace: str = ""  # 用来记录工作点的中文名
-    friends: dict = {}
+    social_network: dict = {}
     mode : str ="choose" # 控制llm_chain 状态（reset_state中改）
     # 这个是为了更改llm_chain
     llm:BaseLanguageModel
+    priority_item:dict = {}
     
     agentrule:AgentRule
     
@@ -178,6 +181,7 @@ class LangchainTenant(langchainAgent):
                 "choose",
                 "comment",
                 "group_discuss",
+                "group_discuss_back",
                 "action_plan")
         
         assert mode in STATES
@@ -201,7 +205,10 @@ class LangchainTenant(langchainAgent):
             output_parser = PublishParser(tenant_name=self.name)
         elif mode == "comment":
             prompt = CommentPromptTemplate()
-            output_parser = CommentParser()     
+            output_parser = CommentParser()
+        elif mode =="group_discuss_back":
+            prompt = GroupDiscussBackPromptTemplate()
+            output_parser = GroupDiscussParser()     
         
         self.mode = mode
         self.llm_chain = self.chain(prompt=prompt,verbose=verbose)
@@ -213,7 +220,9 @@ class LangchainTenant(langchainAgent):
                       step_type,
                       output_keys = ["thought","output"],
                       post = False,
-                      receivers :List[str] = None # list of tenant ids
+                      receivers :List[str] = None ,# list of tenant ids
+                      conver_num=0,
+                      context :List[str] =[]
                      ):
         STEP_TYPES=(
             "community",
@@ -224,22 +233,45 @@ class LangchainTenant(langchainAgent):
             "social_network"
         )
         assert step_type in STEP_TYPES, "invalid type of step"
-        
-        content = [f"{key.capitalize()}:{response[key]}"for key in output_keys]
-        content = "\n".join(content)
-        
+        if isinstance(response,dict):
+            selfcontent = [f"{key.capitalize()}:{response[key]}"for key in output_keys]
+            selfcontent = "\n".join(selfcontent)
+            sendcontent = [f"{response[key].strip()}" for key in output_keys if key in ["output"]]
+            sendcontent = "\n".join(sendcontent)
+            tool_response=response.get('intermediate_steps',[])
+        elif isinstance(response,list):
+            selfcontent=response[1]
+            sendcontent=response[0]
+            tool_response=[]
         # if receivers is None:
         #     receivers = list(self.friends.keys()) if post else [self.id] 
+        if selfcontent!="":
+            selfmessage = Message(
+                content = selfcontent,
+                sender = {self.id:self.name},
+                receiver = receivers,
+                message_type = step_type,
+                tool_response = tool_response
+            ) # 给自己发信息
+            self.memory.add_message(messages=[selfmessage],post = False)
+        if step_type=="social_network" and sendcontent!="":
+            if conver_num==0:
+                context=[]
+            
+            send_str="{name} said:{content}".format(name=self.name,
+                                                    content=sendcontent)
+            context.append(send_str)
+            sendmessage = Message(
+                content = sendcontent,
+                sender = {self.id:self.name},
+                receiver = receivers,
+                message_type = step_type,
+                tool_response = tool_response,
+                conver_num=conver_num+1,
+                context=context
+            ) #给别人发的信息
+            self.memory.add_message(messages=[sendmessage],post = True)
         
-        message = Message(
-            content = content,
-            sender = {self.id:self.name},
-            receiver = receivers,
-            message_type = step_type,
-            tool_response = response.get('intermediate_steps',[])
-        ) # 暂时只给自己发信息
-        
-        self.memory.add_message(messages=[message],post = post)
         
     # 发信息给其他tenant
     def post_messages(self):
@@ -248,7 +280,8 @@ class LangchainTenant(langchainAgent):
     
     def receive_messages(self,messages:List[Message]=[]):
         for message in messages:
-            self.memory.add_message(messages=[message],receive=True)
+            self.memory.receive_message(messages=[message])
+            #self.memory.add_message(messages=[message],receive=True)
     
     def step(self, 
              prompt_inputs:dict, 
@@ -304,7 +337,9 @@ class LangchainTenant(langchainAgent):
         output_parser: Optional[AgentOutputParser],
         allowed_tools :Optional[List[str]] = None,
         max_choose:int = 3,
-        friends:dict = {}
+        social_network:dict = {},
+        priority_item:dict={},
+        family_num:int=0
     ) -> langchainAgent:
         """Construct an agent from an LLM and tools."""
         llm_chain = LLMChain(
@@ -325,7 +360,9 @@ class LangchainTenant(langchainAgent):
             memory = memory,
             max_choose = max_choose,
             workplace = work_place,
-            friends = friends
+            social_network = social_network,
+            priority_item = priority_item,
+            family_num=family_num
         )
         
     def reset(self):
@@ -334,14 +371,15 @@ class LangchainTenant(langchainAgent):
     def get_role_description(self):
         
         template="""
-You are {name}. You earn {monthly_income} per month.
-Your family members include: {family_members}.
-You are {age} years old. Your job is {profession}. 
-Your company is located in {en_work_place}. 
-{special_request} 
-You expect to rent a house for {monthly_rent_budget}.
-You still have {chance_num} chances to choose house.
-"""
+            You are {name}. You earn {monthly_income} per month.
+            Your family members include: {family_members}.
+            You are {age} years old. Your job is {profession}. 
+            Your company is located in {en_work_place}. 
+            {special_request} 
+            You expect to rent a house for {monthly_rent_budget}.
+            You still have {chance_num} chances to choose house.
+            Now you know {extra_info}.
+            """
         return template.format_map({"name":self.name,
                                     "chance_num":self.max_choose-self.choose_times,
                                     **self.infos}
@@ -351,9 +389,10 @@ You still have {chance_num} chances to choose house.
                     actions:dict,
                     forum_manager,
                     system,
+                    rule,
                     log_round,
                     tool=None,
-                    max_action_round=5):
+                   ):
         # actions:{action_name:action_use}
         
         template_action="{id_}. {action_name}:{action_use}"
@@ -368,77 +407,91 @@ You still have {chance_num} chances to choose house.
         action_names=",".join(list(actions.keys()))
         action_log=""
         
-        for _ in range(max_action_round):
-            observation=""
-            prompt_inputs={
-                'actions':action_usages,
-                'action_names':action_names,
-                'memory':"",
-                'role_description':self.get_role_description(),
-                'history':action_log
-                }
-
-            self.reset_state(mode="action_plan")
-            response = self.step(prompt_inputs,
-                                step_type="action_plan",
-                                update_memory=False)
             
-            action = response.get("output","")
-            thought = response.get("thought","")
-            if action == "Search":
-                self.search_forum(forum_manager,
-                                  system,log_round)
-                observation="I have searched some info on forum."
-            elif action == "Publish":
-                self.publish_forum(forum_manager,
-                                   system,
-                                   log_round)
-                observation="I have published some info on forum."
-            elif action == "GroupDiscuss":
-                self.group_discuss()
-                observation="I have discussed with my acquaintances."
-            elif action == "Choose":
-                choose_state,choose_house_id = self.choose_pipeline(
-                        forum_manager=forum_manager,
-                        system=system,
-                        tool=tool,
-                        log_round=log_round)
-                log_round.set_choose_house_state(choose_state)
-                forum_manager.save_data()
-            else: 
-                continue
+        observation=""
+        #action="GroupDiscuss"
+        prompt_inputs={
+            'actions':action_usages,
+            'action_names':action_names,
+            'memory':"",
+            'role_description':self.get_role_description(),
+            'history':action_log
+            }
+
+        self.reset_state(mode="action_plan")
+        response = self.step(prompt_inputs,
+                            step_type="action_plan",
+                            update_memory=False)
+        
+        action = response.get("output","")
+        thought = response.get("thought","")
+        if action == "Search":
+            self.search_forum(forum_manager,
+                                system,log_round)
+            observation="I have searched some info on forum."
+        elif action == "Publish":
+            self.publish_forum(forum_manager,
+                                system,
+                                log_round)
+            observation="I have published some info on forum."
+        elif action == "GroupDiscuss":
+            self.communicate()
+            observation="I have discussed with my acquaintances."
+        elif action == "Choose":
+            choose_state,choose_house_id = self.choose_pipeline(
+                    forum_manager=forum_manager,
+                    system=system,
+                    rule=rule,
+                    tool=tool,
+                    log_round=log_round)
+            log_round.set_choose_house_state(choose_state)
+            forum_manager.save_data()
+        
         
             
-            action_log +=\
-                "Thought:{thought}\nAction:{action}\nObservation:{observation}".format_map({
-                    "thought":thought,
-                    "action":action,
-                    "observation":observation
-                })
+        # action_log +=\
+        #     "Thought:{thought}\nAction:{action}\nObservation:{observation}".format_map({
+        #         "thought":thought,
+        #         "action":action,
+        #         "observation":observation
+        #     })
             
     # 异步的communication过程，包括四种动作（一种放弃）
     async def async_communication(self,
                                   forum_manager,
                                   system,
-                                  log_round,
-                                  max_action_round=5 # 最多做几个动作
+                                  rule,
+                                  log_round
                                   ):
-        actions = {
-            "Search":"search house info from forum",
-            "Publish":"publish house info on forum",
-            "GroupDiscuss":"discuss with other people about house renting",
-            "Giveup":"do nothing"
-            }
-        self.action_plan(actions=actions,
-                         forum_manager=forum_manager,
-                         system=system,
-                         log_round=log_round,
-                         max_action_round=max_action_round)
-
+        if self.memory.messages.get("search")==None:
+            actions = {
+                # "Search":"search house info from forum",
+                # "Publish":"publish house info on forum",
+                "GroupDiscuss":"discuss with other people about house renting",
+                "Giveup":"do nothing"
+                }
+            self.action_plan(actions=actions,
+                                forum_manager=forum_manager,
+                                system=system,
+                                log_round=log_round,
+                                rule=rule,)
+        else:
+            actions = {
+                #"Publish":"publish house info on forum",
+                "GroupDiscuss":"discuss with other people about house renting",
+                "Giveup":"do nothing"
+                }
+            self.action_plan(actions=actions,
+                                forum_manager=forum_manager,
+                                system=system,
+                                log_round=log_round,
+                                rule=rule,
+                                )
     
     def choose_process(self, 
                forum_manager, 
                system, 
+               rule,
                tool, 
                log_round):
         
@@ -450,14 +503,15 @@ You still have {chance_num} chances to choose house.
                          forum_manager=forum_manager,
                          system=system,
                          log_round=log_round,
-                         tool=tool,
-                         max_action_round=1) 
+                         rule=rule,
+                         tool=tool) 
         # 进行1轮，先是否进行选房流程的判断，若否则直接返回
         
     def choose_pipeline(self,
                         forum_manager, 
                         system, 
                         tool, 
+                        rule,
                         log_round):
         log_round.set_tenant_information(self.id,self.name,self.max_choose - self.choose_times)
         # log_round["tenant_id"] = self.id
@@ -472,7 +526,7 @@ You still have {chance_num} chances to choose house.
                                          log_round=log_round)
 
         
-        choose_state, community_id, community_choose_reason = self.choose_community(system,search_infos,log_round)
+        choose_state, community_id, community_choose_reason = self.choose_community(system,search_infos,rule,log_round)
         log_round.set_choose_community(community_id,community_choose_reason)
         # log_round["choose_community_id"] = community_id
         # log_round["choose_community_reason"] = community_choose_reason
@@ -485,7 +539,7 @@ You still have {chance_num} chances to choose house.
         # test
         # self.access_forum(tenant_id=tenant_id)
         
-        choose_state, house_type_id, house_type_reason = self.choose_house_type(system,community_id,log_round)
+        choose_state, house_type_id, house_type_reason = self.choose_house_type(system,community_id,rule,log_round)
         # log_round["choose_house_type"] = house_type_id
         # log_round["choose_house_type_reason"] = house_type_reason
         log_round.set_choose_house_type(house_type_id,house_type_reason)
@@ -527,22 +581,26 @@ You still have {chance_num} chances to choose house.
         return True,house_id.lower()
              
         
-    
+    def communicate(self):
+        if len(self.memory.mail)>0:
+            self.group_discuss_back()       
+        else:
+            self.group_discuss()
         
     # 一系列房子选择的函数，理想中要整合成pipeline之类的格式(待改)
     
     def group_discuss(self):
         self.reset_state(mode="group_discuss")
-        friends = ["{name}: {relation}".format(
+        social_network = ["{name}: {relation}".format(
                     name = neigh_tenant_info.get("name",neigh_tenant_id),
                     relation =neigh_tenant_info.get("relation","friend")
                     )
                      for neigh_tenant_id,neigh_tenant_info
-                     in self.friends.items()] 
-        friends = "\n".join(friends)
+                     in self.social_network.items()] 
+        social_network_str = "\n".join(social_network)
                 
         prompt_inputs={
-                'friends':friends,
+                'friends':social_network_str,
                 'memory':self.memory.memory_tenant("social_network"),
                 'role_description':self.get_role_description(),
                 'tenant_name':self.name
@@ -559,20 +617,66 @@ You still have {chance_num} chances to choose house.
         else:
             receivers = response.get("friends",[])
             receivers = receivers.split(",") # list of tenant names
-            receivers_transfered = {} # tenant id:tenant_name
+            #receivers_transfered = {} # tenant id:tenant_name
+            receivers_transfered = []
             for receiver in receivers:
                 receiver = receiver.strip()
-                for friend_id,friend_info in self.friends.items():
+                for friend_id,friend_info in self.social_network.items():
                     if (receiver.lower() in friend_info["name"].lower()):
-                        receivers_transfered[friend_id] = friend_info["name"]
+                        receivers_transfered.append(friend_id)
+                        #receivers_transfered[friend_id] = friend_info["name"]
                         
 
             self.update_memory(response=response,
                              step_type="social_network", 
                              receivers=receivers_transfered,  
                              output_keys=["thought","action","friends","output"] ,                       
-                             post=True)
-            
+                             post=True,
+                             conver_num=0,
+                             context=[]
+                            )
+    def group_discuss_back(self):
+        self.reset_state(mode="group_discuss_back")
+        for message in self.memory.mail:
+            if message.conver_num <=8:
+                context_str="\n".join(message.context)
+                prompt_inputs={
+                        'memory':self.memory.memory_tenant("social_network_message_back"),
+                        'role_description':self.get_role_description(),
+                        'message_sender':next(iter(message.sender.values())),
+                        'context':context_str,
+                        'message_content':message.content,
+                        'goal':"",
+                        'message_sender2':next(iter(message.sender.values()))
+                        }
+                
+                print("SENDER:{name}".format(name=self.name)) #debug
+                
+                response = self.llm_chain(prompt_inputs)
+                response=response.get('text',None)
+                if response==None:
+                    response="False"
+                response=response.replace("\n","")
+                print(response)
+                if response =="False":
+                    return
+                else:
+                    response_list=[]
+                    response_list.append(response)
+                    message_question="{message_sender} say:{message_content}".format(message_sender=next(iter(message.sender.values())),message_content=message.content)
+                    receivers_transfered=[next(iter(message.sender.keys()))] 
+                    response="Here is my response:"+response
+                    response=message_question+response
+                    response_list.append(response)     
+                    self.update_memory(response=response_list,
+                                        step_type="social_network", 
+                                        receivers=receivers_transfered,  
+                                        output_keys=[] ,                       
+                                        post=True,
+                                        conver_num=message.conver_num,
+                                        context=message.context)
+        self.memory.mail.clear()
+                
     
     def comment(self,description,step_type): # description 可以是community或house_type或house
         self.reset_state(mode="comment")
@@ -603,26 +707,29 @@ You still have {chance_num} chances to choose house.
             return
         else:
             receivers={}
-            for tenant_id,tenant_info in self.friends:
+            for tenant_id,tenant_info in self.social_network:
                 receivers[tenant_id] = tenant_info.get("name","")
                 
             self.update_memory(response=response,
                              step_type=step_type,
-                             receivers=receivers,
-                             post=True)
+                             receivers=[self.id],
+                             post=False)
         
     
     # 返回：（是否选择，选择编号）
-    def choose_community(self,system,search_infos,log_round) ->Tuple[bool,str]:
+    def choose_community(self,system,search_infos,rule,log_round) ->Tuple[bool,str]:
         mem_buffer=[]
         tip=[]
         
-        community_data = system.get_community_data()
-        for community_index,community_info in community_data.items():
-            community_info.update(search_infos.get(community_index,{}))
-            
-        community_description = self.agentrule.read_community_list(community_data)
+        # community_data = system.get_community_data()
+        # for community_index,community_info in community_data.items():
+        #     community_info.update(search_infos.get(community_index,{}))
         
+        # community_description = self.agentrule.read_community_list(community_data)
+        
+        community_description,community_ids =system.get_community_abstract(rule,self)
+        
+        tip=[]
         for _ in range(self.max_jug_time):
             # community_description = system.community_manager.get_available_community_abstract()
             prompt_inputs={
@@ -633,10 +740,10 @@ You still have {chance_num} chances to choose house.
                 'memory':"".join(tip)+self.memory.memory_tenant("community"),
                 'role_description':self.get_role_description()        
                 }
-            # self.comment(description=community_description,
+            # self.comment(descri ption=community_description,
             #              step_type="community")
             
-            
+            #print(self.memory.memory_tenant("community"))
             #log_round["community_available_description"] = community_description
             log_round.set_available_community_description(community_description)
             self.reset_state(mode="choose")
@@ -664,9 +771,9 @@ You still have {chance_num} chances to choose house.
                     choose_status = False
             
             if (choose_status):
-                if (system.jug_community_valid(choose_idx)):
+                if (system.jug_community_valid(choose_idx,community_ids)):
                     self.update_memory(response=response,
-                                       receivers={self.id:self.name},
+                                       receivers=[self.id],
                                        step_type="community")
                     return True, choose_idx.lower(), response.get("thought","")
                 else:
@@ -675,7 +782,7 @@ You still have {chance_num} chances to choose house.
                     mem_buffer.append(response)
             else:
                 self.update_memory(response=response,
-                                   receivers={self.id:self.name},
+                                   receivers=[self.id],
                                     step_type="community")
                 return False,"None", response.get("thought","")
         
@@ -685,18 +792,18 @@ You still have {chance_num} chances to choose house.
             
         self.update_memory(response={"thought":thought_fail_choose,
                             "output":"I fail to choose valid community."},
-                           receivers={self.id:self.name},
+                           receivers=[self.id],
                            step_type="community")
         
         return False,"None", thought_fail_choose
                 
         
         
-    def choose_house_type(self,system,community_id,log_round) -> Tuple[bool,str]:
+    def choose_house_type(self,system,community_id,rule,log_round) -> Tuple[bool,str]:
         mem_buffer=[]
         tip=[]
         for _ in range(self.max_jug_time):
-            house_type_description = system.get_house_type(community_id)
+            house_type_description,house_type_ids = system.get_house_type(community_id,rule,self)
             prompt_inputs={
                 'task':'You need to choose one type of houses.',
                 'thought_type':'Your views on these house types.',
@@ -709,7 +816,7 @@ You still have {chance_num} chances to choose house.
             # self.comment(description=house_type_description,
             #              step_type="house_type")
             
-            
+            #print(self.memory.memory_tenant("house_type"))
             #log_round["available_house_type"] = system.community_manager.get_available_house_type(community_id)
             log_round.set_available_house_type(system.get_available_house_type(community_id))
             self.reset_state(mode="choose")
@@ -744,9 +851,9 @@ You still have {chance_num} chances to choose house.
                     choose_status = False
             
             if (choose_status):
-                if (system.jug_community_housetype_valid(community_id,choose_idx)):   
+                if (system.jug_community_housetype_valid(community_id,choose_idx,house_type_ids)):   
                     self.update_memory(response=response,
-                                       receivers={self.id:self.name},
+                                       receivers=[self.id],
                                        step_type="house_type")
                     return True, choose_idx.lower(), response.get("thought","")
                 else:
@@ -754,7 +861,7 @@ You still have {chance_num} chances to choose house.
                     mem_buffer.append(response)
             else:
                 self.update_memory(response=response,
-                                   receivers={self.id:self.name},
+                                   receivers=[self.id],
                                     step_type="house_type")
                 return False,"None", response.get("thought","")
         
@@ -764,7 +871,7 @@ You still have {chance_num} chances to choose house.
             
         self.update_memory(response={"thought":thought_fail_choose,
                             "output":"I fail to choose valid house type."},
-                           receivers={self.id:self.name},
+                           receivers=[self.id],
                            step_type="house_type")
         
         return False,"None", thought_fail_choose
@@ -881,14 +988,14 @@ You still have {chance_num} chances to choose house.
                     assert len(choose_mem)==1
                     # 选择了房子的情况，只更新关于选择的房子的记忆
                     self.update_memory(response=choose_mem[0],
-                                       receivers={self.id:self.name},
+                                       receivers=[self.id],
                                     step_type="house",
                                     ) 
                     
                     # 在选择完一个房子后，记忆中添加房子相关暗信息   
                     dark_info = system.get_house_dark_info(choose_id)
                     self.update_memory(response={"output":dark_info},
-                                       receivers={self.id:self.name},
+                                       receivers=[self.id],
                                     step_type="house",
                                     output_keys=["output"])
                     
@@ -900,7 +1007,7 @@ You still have {chance_num} chances to choose house.
                 no_choose_thought=""
                 for nochoose_memory in choose_mem:
                     self.update_memory(response=nochoose_memory,
-                                       receivers={self.id:self.name},
+                                       receivers=[self.id],
                                         step_type="house",
                                         )
                     no_choose_thought += nochoose_memory.get("thought","")   
@@ -912,7 +1019,7 @@ You still have {chance_num} chances to choose house.
             
         self.update_memory(response={"thought":thought_fail_choose,
                             "output":"I fail to choose valid house."},
-                           receivers={self.id:self.name},
+                           receivers=[self.id],
                            step_type="house")
         
         return False,"None", thought_fail_choose
@@ -962,7 +1069,7 @@ You still have {chance_num} chances to choose house.
             self.update_memory(
                             response={"output":return_info},
                             step_type="search",
-                            receivers={self.id:self.name},
+                            receivers=[self.id],
                             output_keys=["output"])          
         
         # return_infos_str = "\n".join(return_infos_str) 
@@ -1022,7 +1129,7 @@ You still have {chance_num} chances to choose house.
                     
                     self.update_memory(response=response,
                                        step_type="publish",
-                                       receivers={self.id:self.name})
+                                       receivers=[self.id])
                     #log_round["produce_comment"] = response.get("output","")
                     log_round.set_comment(response.get("output",""))
                     self.reset_state(mode="choose",
@@ -1046,7 +1153,7 @@ You still have {chance_num} chances to choose house.
             
         self.update_memory(response={"thought":thought_fail_publish,
                             "output":"I fail to publish any information online."},
-                           receivers={self.id:self.name},
+                           receivers=[self.id],
                            step_type="publish")
     
         # self.logger.info("publish forum, tenant response:{}".format(content))

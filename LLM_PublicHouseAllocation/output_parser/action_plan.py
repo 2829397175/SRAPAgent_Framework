@@ -28,7 +28,7 @@ class ActionPlanParser(AgentOutputParser):
             thought =""
         else:
             thought = match_thought.group(1).strip()
-
+        
         regex = r"Action\s*\d*\s*:(.*)"
         match = re.search(regex, llm_output, re.DOTALL)
         if not match:

@@ -9,6 +9,8 @@ if TYPE_CHECKING:
 
 
 class BaseOrder(BaseModel):
+    rule_description:str=""
+    
     @abstractmethod
     def get_next_agent_idx(self, environment: BaseEnvironment) -> List[int]:
         """Return the index of the next agent to speak"""
@@ -20,6 +22,7 @@ class BaseOrder(BaseModel):
     @abstractmethod
     def requeue(self, environment: BaseEnvironment,tenant):
         """Return the index of the next agent to speak"""
-
+    def are_all_deques_empty(self,environment):
+        pass
     def reset(self) -> None:
         pass
