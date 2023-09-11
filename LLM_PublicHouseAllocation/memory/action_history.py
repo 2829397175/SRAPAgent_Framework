@@ -24,10 +24,18 @@ class SummarizerMixin(BaseModel):
         existing_summary: str,
         prompt: BasePromptTemplate = SUMMARY_PROMPT
     ) -> str:
-        new_lines = "\n".join([message.content for message in messages])
+        new_lines = "\n".join([str(message) for message in messages])
 
         chain = LLMChain(llm=self.llm, prompt=prompt)
         return chain.predict(summary=existing_summary, new_lines=new_lines)
+    
+    def summarize_paragraph(self,
+                            passage:str,
+                            old_summary:str="",
+                            prompt: BasePromptTemplate = SUMMARY_PROMPT):
+        
+        chain = LLMChain(llm=self.llm, prompt=prompt)
+        return chain.predict(summary="", new_lines=passage)
 
 
 @memory_registry.register("action_history")
@@ -46,29 +54,36 @@ class ActionHistoryMemory(BaseMemory,SummarizerMixin):
     summary_threshold:int = 5 # 每次总结后，再多5条就触发一次总结
     
     # 想要发出的message信息，在发出后清空，加入messages中
-    post_message_buffer: List = []
-    mail:List=[]#用于socialnetwork的接收信息
+    post_message_buffer: List[Message] = []
+    mail:List[Message] = [] # 用于socialnetwork的接收信息
+    
     def receive_message(self, 
                     messages: List[Message]):
         self.mail.extend(messages)
     
-    
+    def post_meesages(self):
+        # for message in self.post_message_buffer:
+        #     self.add_message([message])
+        post_messages = self.post_message_buffer.copy()
+        self.post_message_buffer = []
+        return post_messages
         
+    def add_post_meesage_buffer(self, 
+                    messages: List[Message]):
+        self.post_message_buffer.extend(messages)
+ 
+    
     def add_message(self, 
                     messages: List[Message],
-                    post = False,
-                    receive = False) -> None:
-        if post:
-            self.post_message_buffer.extend(messages)
-            return      
-
+                    receive = False) -> None:   
 
         messages_pt = self.messages
         buffer_step_pt = self.buffer_step
             
         for message in messages:
             if message.message_type in messages_pt.keys():
-                messages_pt[message.message_type].append(message)
+                if (message) not in messages_pt[message.message_type]: # 防止重复append social_network前后信息
+                    messages_pt[message.message_type].append(message)
                 
             else:
                 messages_pt[message.message_type]=[message]
@@ -81,12 +96,7 @@ class ActionHistoryMemory(BaseMemory,SummarizerMixin):
                                             receive = receive)
             
                 
-    def post_meesages(self):
-        # for message in self.post_message_buffer:
-        #     self.add_message([message])
-        post_messages = self.post_message_buffer.copy()
-        self.post_message_buffer = []
-        return post_messages
+
         
     def topk_message_default(self,
                              messages:List[Message],
@@ -157,14 +167,14 @@ class ActionHistoryMemory(BaseMemory,SummarizerMixin):
         if add_sender_prefix:
             return "\n".join(
                 [
-                    f"{message.content}"
+                    f"{list(message.sender.values())[0]}:{str(message)}"
                     if list(message.sender.values())[0] != ""
-                    else message.content
+                    else str(message)
                     for message in messages
                 ]
             )
         else:
-            return "\n".join([message.content for message in messages])
+            return "\n".join([str(message) for message in messages])
         
     def to_string_default(self, 
                   add_sender_prefix: bool = False,
@@ -187,14 +197,14 @@ class ActionHistoryMemory(BaseMemory,SummarizerMixin):
         if add_sender_prefix:
             return "".join(
                 [
-                    f"[{message.sender}]: {message.content}"
+                    f"[{message.sender}]: {str(message)}"
                     if message.sender != ""
-                    else message.content
+                    else str(message)
                     for message in messages_return
                 ]
             )
         else:
-            return "".join([message.content for message in messages_return])
+            return "".join([str(message) for message in messages_return])
 
     def reset(self) -> None:
         self.messages = {}
@@ -221,10 +231,16 @@ class ActionHistoryMemory(BaseMemory,SummarizerMixin):
             type_messages = TYPE_MEM.get(mem_type,[]) 
             return self.retrive_basic(type_messages=type_messages,
                                       mem_type=mem_type)
+        elif mem_type == "social_network_plan":# social_network retrive方法
+            return self.retrive_group_discuss_plan_memory()
         elif mem_type == "social_network":# social_network retrive方法
-            return self.retrive_group_discuss_memory()
+            return self.retrive_group_discuss_plan_memory()
+            # return self.retrive_group_discuss_memory()
         elif mem_type =="social_network_message_back":
-            return self.retrive_group_discuss_message_back_memory()
+            return self.retrive_group_discuss_plan_memory()
+            # return self.retrive_group_discuss_message_back_memory()
+        elif mem_type == "relation":
+            return "" # 未写， 这里的memory应该包括个人比较确信的信息（不同的信息源）
         else: 
             return ""
         
@@ -259,6 +275,69 @@ class ActionHistoryMemory(BaseMemory,SummarizerMixin):
             return self.to_string(messages=messages_str,
                                   add_sender_prefix=True)
     
+    # needs modification; 需要summary
+    # 这里会把所有social network中的信息汇总到memory中
+    
+    def retrive_group_discuss_plan_memory(self):
+        
+        type_messages=["search","publish","community","house","house_type"]
+        
+        if not self.reflection:
+            return self.to_string_default(add_sender_prefix=False,
+                                        type_message=type_messages)
+            
+            
+        template_memory="""{memory_house_info}"""
+
+        # memory_house_info 部分
+        messages_str = []
+        for type_m in type_messages:
+            if (type_m in self.messages.keys()):
+                messages_str.extend(self.messages[type_m][self.buffer_step[type_m]+1:])
+                
+        messages_str.sort(key=lambda x: x.timestamp,reverse=True)
+        messages_str = messages_str[:3] if len(messages_str)>3 else messages_str
+        
+        for type_m in type_messages:
+            if (type_m in self.summarys.keys()):
+                messages_str.append(self.summarys.get(type_m))
+        
+        memory_house_info = self.to_string(messages=messages_str,
+                                add_sender_prefix=False)
+        
+        # 这里对于house_info做一次summary.
+        prompt_template = summary_prompt_default.get("paragraph_summary")
+        prompt = PromptTemplate(input_variables=["summary", "new_lines"], 
+                                    template=prompt_template)
+        memory_house_info = self.summarize_paragraph(passage=memory_house_info,
+                                                     old_summary="",
+                                                     prompt=prompt)
+        
+        # discussion 部分
+        messages_social_net = self.messages.get('social_network',[])
+        messages_social_net.sort(key=lambda x: x.timestamp,reverse=True)
+        messages_social_net = messages_social_net[:3] if len(messages_social_net)>3 else messages_social_net
+        
+        if ('social_network' in self.summarys.keys()):
+            messages_social_net.append(self.summarys.get('social_network'))
+            
+        discussion = self.to_string(messages = messages_social_net,add_sender_prefix=True)
+        
+        memory_group_discuss = template_memory.format(memory_house_info=memory_house_info)
+        
+        if discussion.strip() !="":
+#             memory_group_discuss+="""Here's your discussion with your acquaintances:\n\n\
+# {discussion}""".format(discussion=discussion)
+
+            discussion = self.summarize_paragraph(passage=discussion,
+                                                     old_summary="",
+                                                     prompt=prompt)
+
+            memory_group_discuss += discussion
+            
+        return memory_group_discuss
+    
+    
     # social_network retrive方法
     def retrive_group_discuss_memory(self):
         
@@ -270,9 +349,7 @@ class ActionHistoryMemory(BaseMemory,SummarizerMixin):
             
             
         template_memory="""\
-        {memory_house_info}\n\n\
-        Here's your discussion with your acquaintances:\n\n\
-        {discussion}"""
+{memory_house_info}\n\n"""
 
         # memory_house_info 部分
         messages_str = []
@@ -300,8 +377,13 @@ class ActionHistoryMemory(BaseMemory,SummarizerMixin):
             
         discussion = self.to_string(messages = messages_social_net,add_sender_prefix=True)
         
-        return template_memory.format(memory_house_info=memory_house_info,
-                                      discussion=discussion)
+        memory_group_discuss = template_memory.format(memory_house_info=memory_house_info)
+        
+        if discussion.strip() !="":
+            memory_group_discuss+="""Here's your discussion with your acquaintances:\n\n\
+{discussion}""".format(discussion=discussion)
+
+        return memory_group_discuss
         
     
     def retrive_group_discuss_message_back_memory(self):
@@ -314,9 +396,7 @@ class ActionHistoryMemory(BaseMemory,SummarizerMixin):
             
             
         template_memory="""\
-        {memory_house_info}\n\n\
-        Here's your discussion with your acquaintances:\n\n\
-        {discussion}"""
+{memory_house_info}\n\n"""
 
         # memory_house_info 部分
         messages_str = []
@@ -344,7 +424,12 @@ class ActionHistoryMemory(BaseMemory,SummarizerMixin):
             
         discussion = self.to_string(messages = messages_social_net,add_sender_prefix=True)
         
-        return template_memory.format(memory_house_info=memory_house_info,
-                                    discussion=discussion)
+        memory_group_discuss = template_memory.format(memory_house_info=memory_house_info)
+        
+        if discussion.strip() !="":
+            memory_group_discuss+="""Here's your discussion with your acquaintances:\n\n\
+{discussion}""".format(discussion=discussion)
+
+        return memory_group_discuss
 
         

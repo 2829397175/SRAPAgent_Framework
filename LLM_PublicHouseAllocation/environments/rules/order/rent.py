@@ -28,7 +28,7 @@ class RentOrder(BaseOrder):
 
     def generate_deque(self, environment):
         tenantlist=list(environment.tenant_manager.data.values())
-        random.shuffle(tenantlist)
+        # random.shuffle(tenantlist) # 测试
         deque_list = deque(tenantlist) 
         environment.deque_dict["random_queue"] = deque_list
         return environment.deque_dict

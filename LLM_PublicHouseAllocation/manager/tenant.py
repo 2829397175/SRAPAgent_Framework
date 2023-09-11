@@ -139,13 +139,32 @@ class TenantManager(BaseManager):
 
     def broadcast(self,system):
         
-        broadcast_template = """You are in rent system. Choosing one house needs the following steps:\
-        1.choose community 2.choose type of house 3.choose house
-        {community_info}"""
+        broadcast_template = """You are in rent system. Choosing one house needs the following steps:
+1.choose community 
+2.choose type of house 
+3.choose house
+\n{community_info}"""
         community_info = system.get_community_abstract()
         #待改，等community_manager接口
         broadcast_str = broadcast_template.format(community_info=community_info) 
         broadcast_message = Message(message_type = "community",
+                        content = broadcast_str,
+                        sender = {"system":"system"},
+                    ) # 暂时视作小区类信息        
+        for tenant in self.data.values():
+            assert isinstance(tenant,LangchainTenant)
+            tenant.memory.add_message([broadcast_message]) # 不发送，在自己的行为队列
+            
+    def broadcast_rule(self,rule):
+        
+        broadcast_template = """
+You are in rent system. The queuing rules of this system is as follows:
+{rule_order}
+"""
+        rule_order = rule.order.rule_description
+        #待改，等community_manager接口
+        broadcast_str = broadcast_template.format(rule_order=rule_order) 
+        broadcast_message = Message(message_type = "order",
                         content = broadcast_str,
                         sender = {"system":"system"}
                     ) # 暂时视作小区类信息        

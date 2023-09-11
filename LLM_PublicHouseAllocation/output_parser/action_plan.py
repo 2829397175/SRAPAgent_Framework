@@ -35,5 +35,6 @@ class ActionPlanParser(AgentOutputParser):
             raise ValueError(f"Could not parse LLM output: `{llm_output}`")
         action = match.group(1).strip()
         
-        return AgentFinish(return_values={"output":action,"thought":thought},log=llm_output)
+        return AgentFinish(return_values={"return_values":{"output":action,"thought":thought}},
+                           log=llm_output)
         

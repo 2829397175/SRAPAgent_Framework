@@ -27,9 +27,9 @@ class SummarizerMixin(BaseModel):
         for message in messages:
             if message.role == "":
                 # no role. it's tool responses
-                lines.append(message.content)
+                lines.append(str(message))
             else:
-                lines.append(f"{message.role}: {message.content}")
+                lines.append(f"{message.role}: {str(message)}")
         new_lines = "\n".join(lines)
 
         chain = LLMChain(llm=self.llm, prompt=self.prompt)

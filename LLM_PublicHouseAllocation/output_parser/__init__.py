@@ -15,4 +15,8 @@ from .forum import ForumParser
 from .publish import PublishParser
 from .comment import CommentParser
 from .action_plan import ActionPlanParser
-from .group_discuss import GroupDiscussParser
+from .group_discuss_oldver import Oldver_GroupDiscussParser
+from .group_discuss import (GroupDiscussPlanParser,
+                            GroupDiscussParser,
+                            GroupDiscussBackParser,
+                            RelationParser)

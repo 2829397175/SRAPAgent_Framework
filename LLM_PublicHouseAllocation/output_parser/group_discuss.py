@@ -9,42 +9,95 @@ from langchain.schema import AgentAction, AgentFinish
 from . import OutputParseError, output_parser_registry
 
 
+@output_parser_registry.register("group_discuss_plan")
+class GroupDiscussPlanParser(AgentOutputParser):
+    
+    def parse(self, llm_output: str) -> Union[AgentAction, AgentFinish]:
+        # outputs = llm_output.split("\n")
+        # return_values = {}
+        # try:
+        #     true_opinion = outputs[0]
+        #     decision_honesty = outputs[1]
+        #     plan = outputs[2]
+        #     return_values = {"true_opinion":true_opinion,
+        #                      "decision_honesty":decision_honesty,
+        #                      "plan":plan,
+        #                      }
+        # except Exception as e:
+        #     return_values = {}
+        return AgentFinish(return_values={"return_values":{"plan":llm_output}},log=llm_output)
+    
+    
+    
 @output_parser_registry.register("group_discuss")
 class GroupDiscussParser(AgentOutputParser):
     
     def parse(self, llm_output: str) -> Union[AgentAction, AgentFinish]:
         
-        # Parse out thought
-        regexs=[r"Thought\s*\d*\s*:(.*?)\nAction",
-                r"(.*?)\nAction\s*\d*\s*Input",
-                r"(.*?)\nFinal Answer:"]
+        regex = r"Thought\s*\d*\s*:(.*?)\nAcquaintance\s*\d*\s*:(.*?)\nOutput\s*\d*\s*:(.*?)\n"
+        llm_output +="\n"
         
-        for regex in regexs:
-            match_thought = re.search(regex, llm_output, re.DOTALL)
-            if match_thought:
-                break
-            
-        if not match_thought:
-            thought =""
-        else:
-            thought = match_thought.group(1).strip()
-
-        regex = r"Action\s*\d*\s*:(.*?)\nFriends\s*\d*\s*:(.*?)\nOutput\s*\d*\s*:(.*)"
-        match = re.search(regex, llm_output, re.DOTALL)
-        if not match:
-            return AgentFinish(return_values={"output":"fail to discuss",
-                                            "thought":thought},log=llm_output)
-
+        matchs = re.findall(regex, llm_output, re.DOTALL)
+        
+        
         try:
-            action = match.group(1).strip()
-            receivers = match.group(2).strip()
-            output = match.group(3)
-            assert action.lower()=="groupdiscuss"
-            return AgentFinish(return_values={ "thought":thought,
-                                            "action":"GroupDiscuss",
-                                            "friends":receivers,
-                                            "output":output,
-                                            },log=llm_output)
-        except:
-            return AgentFinish(return_values={"output":"fail to discuss",
-                                            "thought":thought},log=llm_output)
+            return_values={"communication":[]} # 返回一个和各个熟人的交流结果
+            for match in matchs:    
+                communication={
+                        "thought":match[0],
+                        "acquaintance_names":match[1],
+                        "output":match[2].strip(),
+                    }
+                return_values["communication"].append(communication)
+                    
+            return AgentFinish(return_values={"return_values":return_values},
+                                    log=llm_output)
+        except Exception as e:
+            raise OutputParseError("Output Format Error")
+    
+    
+    
+@output_parser_registry.register("group_discuss_back")
+class GroupDiscussBackParser(AgentOutputParser):
+    
+    def parse(self, llm_output: str) -> Union[AgentAction, AgentFinish]:
+        try:
+            outputs = llm_output.strip().split("\n")
+
+            try:
+                continue_dialogue = outputs[0].split(":")[-1].strip().lower() == "true"
+            except:
+                continue_dialogue = outputs[0].strip() == "true" # 无法parse的情况，都视为continue
+                
+            output = outputs[1].strip()
+            output = re.sub('\\(.*?\\)','',output) # 删除括号及括号内内容
+            
+            return AgentFinish(return_values={"return_values":{"continue_dialogue":continue_dialogue,
+                                                               "output":output}},
+                            log=llm_output)
+        except Exception as e:
+             raise OutputParseError("Output Format Error")
+        
+        
+@output_parser_registry.register("relation")
+class RelationParser(AgentOutputParser):
+    
+    def parse(self, llm_output: str) -> Union[AgentAction, AgentFinish]:
+        
+        try:
+            outputs = llm_output.strip().split("\n")
+            try:
+                relation = outputs[0].split(":")[-1].strip()
+            except:
+                relation = outputs[0].strip()
+                
+            comment = outputs[1].strip()
+            
+            return AgentFinish(return_values={"return_values":{"relation":relation,
+                                                            "comment":comment}},
+                            log=llm_output)
+        except Exception as e:
+            raise OutputParseError("Output Format Error")
+        
+        
+        

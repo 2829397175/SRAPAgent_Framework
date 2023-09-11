@@ -5,7 +5,8 @@ environment:
   max_turns: 5
   rule:
     order:
-      type: priority
+      # type: priority
+      type: rent
     updater:
       type: rent
     visibility:

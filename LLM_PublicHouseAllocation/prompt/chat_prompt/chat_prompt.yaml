@@ -160,7 +160,9 @@ action_plan_template: &action_plan_template |-
 
   Respond:
   {history}
-group_discuss_template: &group_discuss_template |-
+
+# modification
+group_discuss_template_oldver: &group_discuss_template_oldver |-
   {role_description}
 
   Your goal is to rent one house. For now, you want to discuss with some acquaintances.
@@ -175,7 +177,6 @@ group_discuss_template: &group_discuss_template |-
   Jake: friend
   Jane: friend
   Bob: friend
-  Sarah: friend
 
   [Sarah]:
   Thought: I think house price is important, house_10000 is cheap
@@ -192,7 +193,74 @@ group_discuss_template: &group_discuss_template |-
 
   [{tenant_name}]:{agent_scratchpad}
 
-group_discuss_back_template: &group_discuss_back_template |-
+
+group_discuss_plan_template: &group_discuss_plan_template |-
+  {concise_role_description}
+  
+  Your want to rent one house. For now, you want to discuss with some acquaintances.
+  {acquaintance_desciption}
+
+  Here is your memory
+  {memory}
+    
+  {extra_information}
+
+  The current situation of the renting system is: {system_competiveness_description}
+
+  Your personality is {personality}
+  Your goal is {goal}.
+
+  Respond in this format:
+  {respond_format}
+
+  Respond in the second person:
+  {agent_scratchpad}
+
+group_discuss_template: &group_discuss_template |-
+  {concise_role_description}
+
+  Here is your memory
+  {memory}
+    
+  {extra_information}
+
+  Your goal is to rent one house. For now, you want tgroo discuss with some acquaintances.
+
+  {plan}
+
+  Your acquaintances include:
+  {acquaintances}
+
+  
+  EXAMPLE:
+  Your acquaintances include:
+  Jake Daniel: friend
+  Jane Green: friend
+  Bob Harper: competitor
+
+  Thought: I should provide honest information to your friend Jake about the cheap price.
+  Friend: Jake Daniel,Jane Green
+  Output: Hi Jake, we should consider house_10000, since it's cheap.
+
+  Thought: I personally don't like Bob, so I'll tell him the wrong information.
+  Friend: Bob Harper
+  Output: Hey Bob, long time no see. House_10000 is in a bad and dirty environment, It's definitely not a good choice for living.
+
+  END OF EXAMPLE
+
+  !![IMPORTANT]: the information in EXAMPLE should NOT appear in response !!
+
+  - Respond in this format:
+  Thought: (You always think about what to do)
+  Acquaintance: (Acquaintance name, could be a list or string)
+  Output: (things you want to tell this Acquaintance in particular)
+  .. (this Thought/Acquaintance/Output repeat at most {acquaintance_num} times!!)
+
+  Respond:
+  {agent_scratchpad}
+
+  
+group_discuss_back_template_oldver: &group_discuss_back_template_oldver |-
   {role_description}
   Here is your memory:
   {memory}
@@ -203,5 +271,45 @@ group_discuss_back_template: &group_discuss_back_template |-
   {goal}
   Task: Given the above, what should you say to {message_sender2} next in the conversation? 
   Please send me a paragraph directly!!!
+
+
+group_discuss_back_template: &group_discuss_back_template |-
+  {concise_role_description}
+  Your goal is to rent one house. You are chatting with your acquanitances. And your acquanitances have sent some messages to you.
+
+  Here's your memory:
+    {memory}
+    {extra_information}
+
+  Here's your plan to response to these messages:
+    {plan}
+
+  Here's your communication dialogue with your acquaintances:
+    {acquaintance_communication}
+    
+  Respond in this format:
+  Your decision on continue this chatting dialogue: (True/False)
+  (The words you want to say to {acquaintance_name}, make your words informative, concise and clear)
+
+  Now please respond to {acquaintance_name}:
+  {agent_scratchpad}
   
   
+relation_template: &relation_template |-
+  Your task is to update the following information, based on your previous view of {acquaintance_name} and recent communication.
+
+  {role_description}
+
+  Here is your memory:
+  {memory}
+
+  {relation}
+
+  Here's your recent communication with {acquaintance_name}:
+  {communication}
+
+  - Respond in this format:
+  My Relation with A : friend (friend/enemy/competitor/mate/colleague/stranger/..)
+  A is an honest and trustworthy person, and I think he is worth making friends with. (My view of this person)
+
+  Respond:

@@ -6,17 +6,26 @@ from LLM_PublicHouseAllocation.message import Message
 from LLM_PublicHouseAllocation.prompt.chat_prompt import (ForumPromptTemplate,
                                                           ChoosePromptTemplate,
                                                           PublishPromptTemplate,
-                                                          CommentPromptTemplate,
-                                                          GroupDiscussPromptTemplate,
+                                                          CommentPromptTemplate,                                                          
                                                           ActionPlanPromptTemplate,
-                                                          GroupDiscussBackPromptTemplate)
+                                                          GroupDiscussPlanPromptTemplate,
+                                                          GroupDiscussPromptTemplate,
+                                                          GroupDiscussBackPromptTemplate,
+                                                          RelationPromptTemplate,
+                                                          chat_prompt_registry)
+
 from LLM_PublicHouseAllocation.output_parser import (OutputParseError,
                                                      ForumParser,
                                                      ChooseParser,
                                                      PublishParser,
                                                      CommentParser,
                                                      GroupDiscussParser,
-                                                     ActionPlanParser)
+                                                     ActionPlanParser,
+                                                     GroupDiscussPlanParser,
+                                                     GroupDiscussBackParser,
+                                                     RelationParser,
+                                                     output_parser_registry
+                                                     )
 import LLM_PublicHouseAllocation.map as map
 
 from langchain.agents.agent import Agent as langchainAgent
@@ -39,6 +48,7 @@ from LLM_PublicHouseAllocation.tenant.langchain_tenant.utils import load_memory
 from LLM_PublicHouseAllocation.tenant.langchain_tenant.Langchain_agent_executor import House_AgentExecutor
 import re
 import random
+import copy
 from LLM_PublicHouseAllocation.tenant.agent_rule import AgentRule
 
 
@@ -51,7 +61,7 @@ class LangchainTenant(langchainAgent):
     choose_times:int = 0
     max_choose:int = 3
     available:bool = True
-    max_jug_time : int = 1 # 错误结果的retry次数
+    max_jug_time : int = 2 # 错误结果的retry次数
     max_retry:int = 5 #访问api
     workplace: str = ""  # 用来记录工作点的中文名
     social_network: dict = {}
@@ -110,10 +120,11 @@ class LangchainTenant(langchainAgent):
         """Prefix to append the observation with."""
         return "Observation: "
     
+    # 这个返回值，限制output_parser的返回内容
     @property
     def return_values(self) -> List[str]:
         """Return values of the agent."""
-        return ["output","thought"]
+        return ["return_values"]
     
     @property
     def input_keys(self) -> List[str]:
@@ -123,6 +134,7 @@ class LangchainTenant(langchainAgent):
         """
         #input_keys=set(self.llm_chain.input_keys) - {"intermediate_steps"}
         return list(set(self.llm_chain.input_keys)-{"agent_scratchpad"})
+    
     
     @root_validator()
     def validate_prompt(cls, values) :
@@ -181,49 +193,66 @@ class LangchainTenant(langchainAgent):
                 "choose",
                 "comment",
                 "group_discuss",
+                "group_discuss_plan",
                 "group_discuss_back",
-                "action_plan")
+                "action_plan",
+                "relation")
         
         assert mode in STATES
         if self.mode == mode : return
         
-        
+
         if mode == "access_forum":
             prompt = ForumPromptTemplate(tools=allowed_tools)
             output_parser = ForumParser(tenant_name=self.name)
-        elif mode =="group_discuss":
-            prompt = GroupDiscussPromptTemplate()
-            output_parser = GroupDiscussParser()
-        elif mode == "action_plan":
-            prompt = ActionPlanPromptTemplate()
-            output_parser = ActionPlanParser()
-        elif mode == "choose":
-            prompt = ChoosePromptTemplate()
-            output_parser = ChooseParser()
-        elif mode == "publish_forum":
-            prompt = PublishPromptTemplate()
-            output_parser = PublishParser(tenant_name=self.name)
-        elif mode == "comment":
-            prompt = CommentPromptTemplate()
-            output_parser = CommentParser()
-        elif mode =="group_discuss_back":
-            prompt = GroupDiscussBackPromptTemplate()
-            output_parser = GroupDiscussParser()     
+        else:
+            prompt = chat_prompt_registry.build(mode)
+            output_parser = output_parser_registry.build(mode)
+
         
         self.mode = mode
         self.llm_chain = self.chain(prompt=prompt,verbose=verbose)
         self.output_parser = output_parser
         self.allowed_tools = allowed_tools
             
+    # 发消息给别人
+    def send_message(self,
+                     step_type,
+                      sendcontent :dict= {},
+                      tool_response = [],
+                      receivers : dict = {}, # tenant_id: tenant_name
+                      conver_num = 0, # 表示本轮更新前的conver数
+                      context :List[str] = [], # 表示本轮更新前的context       
+                      continue_dialogue : bool = True     # 记录对话是否继续
+                      ):
+        
+        kargs={ "content":sendcontent,
+                "sender":{self.id:self.name},
+                "receivers":receivers,
+                "message_type":step_type,
+                "tool_response": tool_response,
+                "conver_num":conver_num,
+                "context":context,
+                "continue_dialogue":continue_dialogue}
+        
+
+        sendmessage = Message(
+                **kargs
+            ) #给别人发的信息
+            
+        self.memory.add_post_meesage_buffer(messages=[sendmessage])
+            
+    # 更新自己的记忆（发消息给自己）
     def update_memory(self,
-                      response,
                       step_type,
-                      output_keys = ["thought","output"],
-                      post = False,
-                      receivers :List[str] = None ,# list of tenant ids
-                      conver_num=0,
-                      context :List[str] =[]
-                     ):
+                      selfcontent : dict= {},
+                      tool_response = [],
+                      receivers : dict = {}, # tenant_id: tenant_name
+                      # 下面三个参数，仅在step_type == "social_network"时用到
+                      conver_num = 0, # 表示本轮更新前的conver数
+                      context :List[str] = [], # 表示本轮更新前的context       
+                      continue_dialogue : bool = True     # 记录对话是否继续          
+                      ):
         STEP_TYPES=(
             "community",
             "house_type",
@@ -233,44 +262,25 @@ class LangchainTenant(langchainAgent):
             "social_network"
         )
         assert step_type in STEP_TYPES, "invalid type of step"
-        if isinstance(response,dict):
-            selfcontent = [f"{key.capitalize()}:{response[key]}"for key in output_keys]
-            selfcontent = "\n".join(selfcontent)
-            sendcontent = [f"{response[key].strip()}" for key in output_keys if key in ["output"]]
-            sendcontent = "\n".join(sendcontent)
-            tool_response=response.get('intermediate_steps',[])
-        elif isinstance(response,list):
-            selfcontent=response[1]
-            sendcontent=response[0]
-            tool_response=[]
-        # if receivers is None:
-        #     receivers = list(self.friends.keys()) if post else [self.id] 
-        if selfcontent!="":
-            selfmessage = Message(
-                content = selfcontent,
-                sender = {self.id:self.name},
-                receiver = receivers,
-                message_type = step_type,
-                tool_response = tool_response
-            ) # 给自己发信息
-            self.memory.add_message(messages=[selfmessage],post = False)
-        if step_type=="social_network" and sendcontent!="":
-            if conver_num==0:
-                context=[]
+        
+        kargs={ "content": selfcontent,
+                "sender":{self.id:self.name},
+                "receivers":receivers,
+                "message_type":step_type,
+                "tool_response": tool_response,
+                "conver_num":conver_num,
+                "context":context,
+                "continue_dialogue":continue_dialogue}
+        
+
+        selfmessage = Message(
+                **kargs
+            ) 
             
-            send_str="{name} said:{content}".format(name=self.name,
-                                                    content=sendcontent)
-            context.append(send_str)
-            sendmessage = Message(
-                content = sendcontent,
-                sender = {self.id:self.name},
-                receiver = receivers,
-                message_type = step_type,
-                tool_response = tool_response,
-                conver_num=conver_num+1,
-                context=context
-            ) #给别人发的信息
-            self.memory.add_message(messages=[sendmessage],post = True)
+        self.memory.add_message(messages=[selfmessage])
+        return selfmessage
+            
+            
         
         
     # 发信息给其他tenant
@@ -280,14 +290,14 @@ class LangchainTenant(langchainAgent):
     
     def receive_messages(self,messages:List[Message]=[]):
         for message in messages:
-            self.memory.receive_message(messages=[message])
-            #self.memory.add_message(messages=[message],receive=True)
+            if (message.message_type == "social_network"):
+                self.memory.receive_message(messages=[message])
+            else:
+                self.memory.add_message(messages=[message],receive=True)
     
     def step(self, 
              prompt_inputs:dict, 
-             step_type:str = "",
              tools=[],
-             update_memory = False,
              ) -> Message:
         """Generate the next message"""
 
@@ -313,11 +323,39 @@ class LangchainTenant(langchainAgent):
             return {"output":f"{self.name} failed to generate valid response.",
                     "thought":""
                     }
+
+        return response
+    
+    
+    # 异步版本的step
+    async def astep(self, 
+             prompt_inputs:dict, 
+             tools=[],
+             ) -> Message:
+        """Generate the next message"""
+
         
-        if update_memory:
-            self.update_memory(response=response,
-                               step_type=step_type,
-                               )
+        executor = House_AgentExecutor(
+            agent = self,
+            tools = tools,
+            verbose = True,
+            return_intermediate_steps=True,
+        )
+
+        response = None
+        for i in range(self.max_retry):
+            try:
+                response = await executor.acall(prompt_inputs)
+                break
+            except OutputParseError as e:
+                print(e)
+                print("Retrying...")
+                continue
+        if response is None:
+            # raise ValueError(f"{self.name} failed to generate valid response.")
+            return {"output":f"{self.name} failed to generate valid response.",
+                    "thought":""
+            }
         return response
             
 
@@ -367,19 +405,27 @@ class LangchainTenant(langchainAgent):
         
     def reset(self):
         self.memory.reset()
+     
+    def get_concise_role_description(self):
+        
+        template="""\
+You are {name}. You earn {monthly_income} per month.\
+Your family members include: {family_members}."""
+        return template.format_map({"name":self.name,
+                                    **self.infos}
+                                   ) 
         
     def get_role_description(self):
         
-        template="""
-            You are {name}. You earn {monthly_income} per month.
-            Your family members include: {family_members}.
-            You are {age} years old. Your job is {profession}. 
-            Your company is located in {en_work_place}. 
-            {special_request} 
-            You expect to rent a house for {monthly_rent_budget}.
-            You still have {chance_num} chances to choose house.
-            Now you know {extra_info}.
-            """
+        template="""\
+You are {name}. You earn {monthly_income} per month.\
+Your family members include: {family_members}.\
+You are {age} years old. Your job is {profession}. \
+Your company is located in {en_work_place}. \
+{special_request} \
+You expect to rent a house for {monthly_rent_budget}.\
+You still have {chance_num} chances to choose house.\
+Now you know {extra_info}."""
         return template.format_map({"name":self.name,
                                     "chance_num":self.max_choose-self.choose_times,
                                     **self.infos}
@@ -419,9 +465,9 @@ class LangchainTenant(langchainAgent):
             }
 
         self.reset_state(mode="action_plan")
-        response = self.step(prompt_inputs,
-                            step_type="action_plan",
-                            update_memory=False)
+        # response = await self.astep(prompt_inputs)
+        response = self.step(prompt_inputs)
+        response = response.get("return_values",{})
         
         action = response.get("output","")
         thought = response.get("thought","")
@@ -463,30 +509,34 @@ class LangchainTenant(langchainAgent):
                                   rule,
                                   log_round
                                   ):
-        if self.memory.messages.get("search")==None:
-            actions = {
-                # "Search":"search house info from forum",
-                # "Publish":"publish house info on forum",
-                "GroupDiscuss":"discuss with other people about house renting",
-                "Giveup":"do nothing"
-                }
-            self.action_plan(actions=actions,
-                                forum_manager=forum_manager,
-                                system=system,
-                                log_round=log_round,
-                                rule=rule,)
-        else:
-            actions = {
-                #"Publish":"publish house info on forum",
-                "GroupDiscuss":"discuss with other people about house renting",
-                "Giveup":"do nothing"
-                }
-            self.action_plan(actions=actions,
-                                forum_manager=forum_manager,
-                                system=system,
-                                log_round=log_round,
-                                rule=rule,
-                                )
+        
+        # debug
+        self.communicate()
+        
+        # if self.memory.messages.get("search")==None:
+        #     actions = {
+        #         # "Search":"search house info from forum",
+        #         # "Publish":"publish house info on forum",
+        #         "GroupDiscuss":"discuss with other people about house renting",
+        #         "Giveup":"do nothing"
+        #         }
+        #     self.action_plan(actions=actions,
+        #                         forum_manager=forum_manager,
+        #                         system=system,
+        #                         log_round=log_round,
+        #                         rule=rule,)
+        # else:
+        #     actions = {
+        #         #"Publish":"publish house info on forum",
+        #         "GroupDiscuss":"discuss with other people about house renting",
+        #         "Giveup":"do nothing"
+        #         }
+        #     self.action_plan(actions=actions,
+        #                         forum_manager=forum_manager,
+        #                         system=system,
+        #                         log_round=log_round,
+        #                         rule=rule,
+        #                         )
     
     def choose_process(self, 
                forum_manager, 
@@ -589,7 +639,56 @@ class LangchainTenant(langchainAgent):
         
     # 一系列房子选择的函数，理想中要整合成pipeline之类的格式(待改)
     
+    def group_discuss_plan(self,respond_format):
+        self.reset_state(mode="group_discuss_plan")
+        
+        acquantice_template = "Your acquaintances include {acquantice_type}."
+        ac_types=[]
+        for ac_info in self.social_network.values():
+            ac_type = ac_info.get("relation")
+            if ac_type not in ac_types:
+                ac_types.append(ac_type)
+        ac_description = acquantice_template.format(acquantice_type=",".join(ac_types))
+        
+        extra_information = self.infos.get("extra_info")
+        extra_information = """You can choose to be honest or dishonest about this information.\
+The most important information you have received is:\n {}""".format(extra_information)
+
+        personality = self.infos.get("personality")
+        
+        # test: 需要llm_chain summary
+        system_competiveness_description = """competitive, the community_1 has been almost \
+fully selected, the community_2 has a relatively sufficient house, the community_3 has not \
+been chosen yet."""
+        
+        # fixed , 需要改
+        goal = """ to develop a plan that is most beneficial to you to increase \
+your chances of choosing a house in the current situation"""
+        
+        prompt_inputs={
+                "concise_role_description":self.get_concise_role_description(),
+                "acquaintance_desciption":ac_description,
+                "memory":self.memory.memory_tenant("social_network_plan"),
+                "extra_information":extra_information,
+                "personality":personality,
+                "system_competiveness_description":system_competiveness_description,
+                "goal":goal,
+                "respond_format":respond_format
+                }
+        
+        print("The group discuss plan of:{name}".format(name=self.name)) #debug
+        
+        response = self.step(prompt_inputs)
+        
+        return response 
+    
+    
     def group_discuss(self):
+        respond_format = """you think (Your true opionion about these communities or houses).
+For now, Whether you want to provide information honestly to acquaintances: (Yes or No)
+Your current plan is (Your plan to communicate with your friends, competitors, be concise)"""
+        group_discuss_plan = self.group_discuss_plan(respond_format=respond_format)
+        
         self.reset_state(mode="group_discuss")
         social_network = ["{name}: {relation}".format(
                     name = neigh_tenant_info.get("name",neigh_tenant_id),
@@ -600,81 +699,178 @@ class LangchainTenant(langchainAgent):
         social_network_str = "\n".join(social_network)
                 
         prompt_inputs={
-                'friends':social_network_str,
-                'memory':self.memory.memory_tenant("social_network"),
-                'role_description':self.get_role_description(),
-                'tenant_name':self.name
+                "concise_role_description":self.get_concise_role_description(),
+                "plan":group_discuss_plan["return_values"].get("plan"),
+                "acquaintances":social_network_str,
+                "acquaintance_num":len(self.social_network),
+                "memory": self.memory.memory_tenant("social_network"),
+                "extra_information": self.infos.get("extra_info")
                 }
         
         print("SENDER:{name}".format(name=self.name)) #debug
         
-        response = self.step(prompt_inputs,
-                    step_type="social_network",
-                    update_memory=False)
-        
-        if response.get("output") =="fail to discuss":
-            return
-        else:
-            receivers = response.get("friends",[])
-            receivers = receivers.split(",") # list of tenant names
-            #receivers_transfered = {} # tenant id:tenant_name
-            receivers_transfered = []
-            for receiver in receivers:
-                receiver = receiver.strip()
-                for friend_id,friend_info in self.social_network.items():
-                    if (receiver.lower() in friend_info["name"].lower()):
-                        receivers_transfered.append(friend_id)
-                        #receivers_transfered[friend_id] = friend_info["name"]
+        for _ in range(self.max_jug_time):
+            response = self.step(prompt_inputs).get("return_values")
+            
+            if response.get("output") =="fail to discuss":
+                continue
+            else:
+                jug_response = True
+                receivers = {}
+                for response_round in response["communication"]:
+                    receiver_list = response_round.get("acquaintance_names")
+                    receiver_list = receiver_list.split(",")
+                    # receiver_ids = []
+                    
+                    for receiver in receiver_list:
+                        for friend_id,friend_info in self.social_network.items():
+                            if (receiver.strip().lower() in friend_info["name"].lower()):
+                                response_round["acquaintance_id"] = friend_id  
+                                receivers[friend_id] = friend_info["name"]
+                                
+                    if len(receivers) == len(receiver_list): # 所有receiver均合法
                         
+                        send_str="{name} said: {content}".format(name=self.name,content=response_round["output"])
+                        
+                        self.update_memory( 
+                                        step_type="social_network",        
+                                        selfcontent=response_round,
+                                        receivers=receivers,               
+                                        conver_num=0,
+                                        context=[send_str],
+                                        continue_dialogue=True
+                                        )
+                        
+                        # 这里需要重新声明类，因为content不能重新改
+                        self.send_message(step_type = "social_network", 
+                                          sendcontent = {"output":response_round["output"]},# 不发送 thought，name
+                                          receivers = receivers,
+                                        conver_num = 0,
+                                        context = [send_str],
+                                        continue_dialogue = True
+                                        )
+                        
+                       
+                        # 注： 在对话未结束之前，在buffer 和 自己记忆库（这里存在重复存储的问题） 中保留对话记录
+                        
+                    else:
+                        jug_response = False
+                        
+                if jug_response: # 如果此round response 含有非法内容，rerun; 否则break
+                    break
+                
+                    
+    # 在调用discuss_back之后，重新更新社交关系
+    # context是最新，含有对话细节的message的context
+    def update_acquaintance_relation(self,
+                                     context,
+                                     acquaintance_id:str):
+        
+        self.reset_state(mode="relation")
+        
+        role_description = """You are {name}. You want to rent a house, \
+you're communicating with your acquaintances about house renting.""".format(name = self.name)
 
-            self.update_memory(response=response,
-                             step_type="social_network", 
-                             receivers=receivers_transfered,  
-                             output_keys=["thought","action","friends","output"] ,                       
-                             post=True,
-                             conver_num=0,
-                             context=[]
-                            )
+        comment = self.social_network[acquaintance_id].get("comment","")
+        if comment != "":
+            comment = "and your comment on him is: {}".format(comment)
+            
+        relation = """So far, you think {ac_name} is a {relation} of yours.{comment}""".format(ac_name = self.social_network[acquaintance_id].get("name"),
+                                                                                    relation = self.social_network[acquaintance_id].get("relation"),
+                                                                                    comment=comment)
+        communication = "\n".join(context)
+        
+        prompt_inputs = {
+            "acquaintance_name":self.social_network[acquaintance_id].get("name"), 
+            "role_description":role_description,
+            "memory":self.memory.memory_tenant("relation"),
+            "relation":relation,
+            "communication":communication,
+        }
+        response = self.step(prompt_inputs = prompt_inputs).get("return_values")
+        
+        try:
+            self.social_network[acquaintance_id]["relation"] = response.get("relation")
+            self.social_network[acquaintance_id]["comment"] = response.get("comment")
+        except Exception as e:
+            print("Fail to update relation")
+              
+                
     def group_discuss_back(self):
-        self.reset_state(mode="group_discuss_back")
         for message in self.memory.mail:
-            if message.conver_num <=8:
+            assert isinstance(message,Message)
+            acquantice_name = list(message.sender.values())[0]
+            acquantice_id = list(message.sender.keys())[0]
+            
+            if acquantice_id not in self.social_network:
+                self.social_network[acquantice_id]= {"name":acquantice_name,
+                                                     "relation":"stranger"} # 如果有陌生人给你发消息，加入到自己的社交关系中，设定陌生人。
+                                
+            acquantice_type = self.social_network[acquantice_id].get("relation")
+            acquantice_comment = self.social_network[acquantice_id].get("comment")
+            
+            respond_format = """you think (Your true opionion about these communities or houses).
+For now, Whether you want to provide information honestly to {acquantice_name}: (Yes or No)
+Your current plan is (Your plan to communicate with your {acquantice_name}, be concise)
+Your relationship with {acquantice_name} is {acquantice_type}. {comment}\
+You think {acquantice_name} is (your belif in the information provided by this person)"""
+            respond_format = respond_format.format(acquantice_name=acquantice_name,
+                                                   comment = acquantice_comment,
+                                                   acquantice_type=acquantice_type)
+            
+            group_discuss_plan = self.group_discuss_plan(respond_format=respond_format)
+            
+            
+            
+            self.reset_state(mode="group_discuss_back")
+            if message.conver_num <=8 : # 小于8轮的情况会结束 
                 context_str="\n".join(message.context)
                 prompt_inputs={
-                        'memory':self.memory.memory_tenant("social_network_message_back"),
-                        'role_description':self.get_role_description(),
-                        'message_sender':next(iter(message.sender.values())),
-                        'context':context_str,
-                        'message_content':message.content,
-                        'goal':"",
-                        'message_sender2':next(iter(message.sender.values()))
+                        "concise_role_description":self.get_concise_role_description(),
+                        "memory":self.memory.memory_tenant("social_network_message_back"),
+                        "extra_information":self.infos.get("extra_info"),
+                        "plan":group_discuss_plan["return_values"].get("plan"),
+                        "acquaintance_communication":context_str,
+                        "acquaintance_name":acquantice_name
                         }
                 
                 print("SENDER:{name}".format(name=self.name)) #debug
                 
-                response = self.llm_chain(prompt_inputs)
-                response=response.get('text',None)
-                if response==None:
-                    response="False"
-                response=response.replace("\n","")
-                print(response)
-                if response =="False":
+                # response = self.llm_chain(prompt_inputs)
+                response = self.step(prompt_inputs = prompt_inputs).get("return_values")
+                
+                if response is None:
                     return
                 else:
-                    response_list=[]
-                    response_list.append(response)
-                    message_question="{message_sender} say:{message_content}".format(message_sender=next(iter(message.sender.values())),message_content=message.content)
-                    receivers_transfered=[next(iter(message.sender.keys()))] 
-                    response="Here is my response:"+response
-                    response=message_question+response
-                    response_list.append(response)     
-                    self.update_memory(response=response_list,
-                                        step_type="social_network", 
-                                        receivers=receivers_transfered,  
-                                        output_keys=[] ,                       
-                                        post=True,
-                                        conver_num=message.conver_num,
-                                        context=message.context)
+                    context = copy.deepcopy(message.context) # 这里需不需要deepcopy？
+                    continue_dialogue = response.pop("continue_dialogue",True)
+                    
+                    send_str="{name} said: {content}".format(name=self.name,
+                                                    content=response["output"])
+                    context.append(send_str)
+                    
+                    if continue_dialogue: #希望结束对话，则不发送信息
+                        self.send_message(step_type = "social_network", 
+                                            sendcontent = response,
+                                            receivers = message.sender,
+                                            conver_num = message.conver_num+1,
+                                            context = context,
+                                            continue_dialogue = continue_dialogue
+                                            )
+                    
+                    self.update_memory(
+                        step_type = "social_network",
+                        selfcontent = response,
+                        receivers = message.sender,
+                        conver_num = message.conver_num + 1,
+                        context = context,
+                        continue_dialogue = continue_dialogue
+                    ) # 这里存在的问题： 如何覆盖之前的信息
+
+                        
+                    self.update_acquaintance_relation(context = context,
+                                                      acquaintance_id = list(message.sender.keys())[0])
+                    
         self.memory.mail.clear()
                 
     
@@ -699,9 +895,7 @@ class LangchainTenant(langchainAgent):
                 'message_type':step_type
                 }
         
-        response = self.step(prompt_inputs,
-                    step_type=step_type,
-                    update_memory=False)
+        response = self.step(prompt_inputs).get("return_values")
         
         if response.get("output") =="I fail to make comments.":
             return
@@ -709,23 +903,16 @@ class LangchainTenant(langchainAgent):
             receivers={}
             for tenant_id,tenant_info in self.social_network:
                 receivers[tenant_id] = tenant_info.get("name","")
-                
-            self.update_memory(response=response,
-                             step_type=step_type,
-                             receivers=[self.id],
-                             post=False)
+            
+            self.update_memory(selfcontent = response,
+                               step_type=step_type,
+                               receivers={self.id:self.name})
         
     
     # 返回：（是否选择，选择编号）
     def choose_community(self,system,search_infos,rule,log_round) ->Tuple[bool,str]:
         mem_buffer=[]
         tip=[]
-        
-        # community_data = system.get_community_data()
-        # for community_index,community_info in community_data.items():
-        #     community_info.update(search_infos.get(community_index,{}))
-        
-        # community_description = self.agentrule.read_community_list(community_data)
         
         community_description,community_ids =system.get_community_abstract(rule,self)
         
@@ -747,9 +934,7 @@ class LangchainTenant(langchainAgent):
             #log_round["community_available_description"] = community_description
             log_round.set_available_community_description(community_description)
             self.reset_state(mode="choose")
-            response = self.step(prompt_inputs,
-                                step_type="community",
-                                update_memory=False)
+            response = self.step(prompt_inputs).get("return_values")
             # self.logger.info("choose community, tenant reponse:{}".format(response.get("output","")))
             # parse community choosing reponse
             choose_status = False
@@ -772,17 +957,18 @@ class LangchainTenant(langchainAgent):
             
             if (choose_status):
                 if (system.jug_community_valid(choose_idx,community_ids)):
-                    self.update_memory(response=response,
-                                       receivers=[self.id],
-                                       step_type="community")
+                    self.update_memory(step_type="community",
+                                        selfcontent=response,
+                                       receivers={self.id:self.name},
+                                       )
                     return True, choose_idx.lower(), response.get("thought","")
                 else:
                     tip.append(f"{choose_idx.lower()} is not available now.")
 
                     mem_buffer.append(response)
             else:
-                self.update_memory(response=response,
-                                   receivers=[self.id],
+                self.update_memory(selfcontent=response,
+                                   receivers={self.id:self.name},
                                     step_type="community")
                 return False,"None", response.get("thought","")
         
@@ -790,9 +976,9 @@ class LangchainTenant(langchainAgent):
         for mem in mem_buffer:
             thought_fail_choose+=mem.get("thought","")
             
-        self.update_memory(response={"thought":thought_fail_choose,
+        self.update_memory(selfcontent={"thought":thought_fail_choose,
                             "output":"I fail to choose valid community."},
-                           receivers=[self.id],
+                           receivers={self.id:self.name},
                            step_type="community")
         
         return False,"None", thought_fail_choose
@@ -820,9 +1006,7 @@ class LangchainTenant(langchainAgent):
             #log_round["available_house_type"] = system.community_manager.get_available_house_type(community_id)
             log_round.set_available_house_type(system.get_available_house_type(community_id))
             self.reset_state(mode="choose")
-            response = self.step(prompt_inputs,
-                                step_type="house_type",
-                                update_memory=False)
+            response = self.step(prompt_inputs).get("return_values")
             # parse community choosing reponse
             choose_status = False
             choose_idx = None
@@ -852,16 +1036,16 @@ class LangchainTenant(langchainAgent):
             
             if (choose_status):
                 if (system.jug_community_housetype_valid(community_id,choose_idx,house_type_ids)):   
-                    self.update_memory(response=response,
-                                       receivers=[self.id],
+                    self.update_memory(selfcontent=response,
+                                       receivers={self.id:self.name},
                                        step_type="house_type")
                     return True, choose_idx.lower(), response.get("thought","")
                 else:
                     tip.append(f"{choose_idx.lower()} is not available any more, keep this in mind.")
                     mem_buffer.append(response)
             else:
-                self.update_memory(response=response,
-                                   receivers=[self.id],
+                self.update_memory(selfcontent=response,
+                                   receivers={self.id:self.name},
                                     step_type="house_type")
                 return False,"None", response.get("thought","")
         
@@ -869,9 +1053,9 @@ class LangchainTenant(langchainAgent):
         for mem in mem_buffer:
             thought_fail_choose+=mem.get("thought","")
             
-        self.update_memory(response={"thought":thought_fail_choose,
+        self.update_memory(selfcontent={"thought":thought_fail_choose,
                             "output":"I fail to choose valid house type."},
-                           receivers=[self.id],
+                           receivers={self.id:self.name},
                            step_type="house_type")
         
         return False,"None", thought_fail_choose
@@ -883,10 +1067,6 @@ class LangchainTenant(langchainAgent):
                           log_round_houses:list=[],
                           round_retry:int = 0,
                           tip:list=[]):
-        # houses_description_generator = system.get_houses_generator(house_ids=house_ids,
-        #                                                             page_size=page_size,
-        #                                                             log_round_houses=log_round["house_available_description"],
-        #                                                             round_retry = round_retry)
         
         houses_description_generator = self.agentrule.get_houses_generator(
                              house_data = house_infos,
@@ -914,9 +1094,7 @@ class LangchainTenant(langchainAgent):
             #              step_type="house")
             
             self.reset_state(mode="choose")
-            response = self.step(prompt_inputs,
-                                 step_type="house",
-                                 update_memory=False) # 这里不更新记忆，仅更新最后一步
+            response = self.step(prompt_inputs).get("return_values") # 这里不更新记忆，仅更新最后一步
             # self.logger.debug("choose houses, tenant reponse:{}".format(response.get("output","")))
             # parse community choosing reponse
         
@@ -951,15 +1129,6 @@ class LangchainTenant(langchainAgent):
             choose_house=choose_page_results[0]
             return True, choose_house, choose_memory_cache
 
-        
-        # 最终一个都没选的话，将所有不选择的记忆都更新（仅末页）
-        # no_choose_thought=""
-        # for nochoose_memory in nochoose_memory_cache:
-        #     self.update_memory(response=nochoose_memory,
-        #                        step_type="house",
-        #                        )
-        #     no_choose_thought += nochoose_memory.get("thought","")
-            
         return False,"None", nochoose_memory_cache
 
         
@@ -987,17 +1156,16 @@ class LangchainTenant(langchainAgent):
                 if (system.jug_house_valid(choose_id)):
                     assert len(choose_mem)==1
                     # 选择了房子的情况，只更新关于选择的房子的记忆
-                    self.update_memory(response=choose_mem[0],
-                                       receivers=[self.id],
+                    self.update_memory(selfcontent=choose_mem[0],
+                                       receivers={self.id:self.name},
                                     step_type="house",
                                     ) 
                     
                     # 在选择完一个房子后，记忆中添加房子相关暗信息   
                     dark_info = system.get_house_dark_info(choose_id)
-                    self.update_memory(response={"output":dark_info},
-                                       receivers=[self.id],
-                                    step_type="house",
-                                    output_keys=["output"])
+                    self.update_memory(selfcontent={"output":dark_info},
+                                       receivers={self.id:self.name},
+                                    step_type="house")
                     
                     return True, choose_id, choose_mem[0].get("thought")
                 else:
@@ -1006,8 +1174,8 @@ class LangchainTenant(langchainAgent):
             else:
                 no_choose_thought=""
                 for nochoose_memory in choose_mem:
-                    self.update_memory(response=nochoose_memory,
-                                       receivers=[self.id],
+                    self.update_memory(selfcontent=nochoose_memory,
+                                       receivers={self.id:self.name},
                                         step_type="house",
                                         )
                     no_choose_thought += nochoose_memory.get("thought","")   
@@ -1017,9 +1185,9 @@ class LangchainTenant(langchainAgent):
         for mem in mem_buffer:
             thought_fail_choose+=mem.get("thought","")
             
-        self.update_memory(response={"thought":thought_fail_choose,
+        self.update_memory(selfcontent={"thought":thought_fail_choose,
                             "output":"I fail to choose valid house."},
-                           receivers=[self.id],
+                           receivers={self.id:self.name},
                            step_type="house")
         
         return False,"None", thought_fail_choose
@@ -1058,22 +1226,14 @@ class LangchainTenant(langchainAgent):
                 }
                 
    
-                
-        # template = """{community_index}:{search_info}. This community is {get_shortest_commute_time_str} away from my workplace."""
-        
-        # return_infos_str = [template.format_map({"community_index":community_index,
-        #                                         **search_info}) 
-        #                     for community_index,search_info in return_infos.items()]
         return_infos_str=log_round.set_forum_conclusion(return_infos)
         for return_info in return_infos_str:
             self.update_memory(
-                            response={"output":return_info},
+                            selfcontent={"output":return_info},
                             step_type="search",
-                            receivers=[self.id],
-                            output_keys=["output"])          
+                            receivers={self.id:self.name})          
         
-        # return_infos_str = "\n".join(return_infos_str) 
-        # log_round["forum_conclusion"] = return_infos_str
+
         return return_infos
     
     # publish info only, using ReAct
@@ -1097,9 +1257,7 @@ class LangchainTenant(langchainAgent):
             }
             
             
-            response = self.step(prompt_inputs,
-                                step_type="publish",
-                                update_memory=False)
+            response = self.step(prompt_inputs)
             
             if (response.get("publish",False)):
                 information = response.get("information","").split(",")
@@ -1127,9 +1285,9 @@ class LangchainTenant(langchainAgent):
                     response["output"]="{community_name}:{info_post}".format(community_name=community_name,
                                                                              info_post=info_post)
                     
-                    self.update_memory(response=response,
+                    self.update_memory(selfcontent=response,
                                        step_type="publish",
-                                       receivers=[self.id])
+                                       receivers={self.id:self.name})
                     #log_round["produce_comment"] = response.get("output","")
                     log_round.set_comment(response.get("output",""))
                     self.reset_state(mode="choose",
@@ -1153,18 +1311,15 @@ class LangchainTenant(langchainAgent):
             
         self.update_memory(response={"thought":thought_fail_publish,
                             "output":"I fail to publish any information online."},
-                           receivers=[self.id],
+                           receivers={self.id:self.name},
                            step_type="publish")
-    
-        # self.logger.info("publish forum, tenant response:{}".format(content))
-        # parse community choosing reponse
-        #log_round["produce_comment"] = "I fail to publish any information online."
+
         log_round.set_comment("I fail to publish any information online.")
     
         self.reset_state(mode="choose",
                         allowed_tools=[]) 
 
-    # old ver: search and publish ,using ReAct
+    # old ver: search and publish, using ReAct
     def access_forum(self,tool,log_round):
         
         tools = tool.get_tools()

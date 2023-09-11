@@ -40,6 +40,7 @@ class RentEnvironment(BaseEnvironment):
 
     def broadcast(self):
         self.tenant_manager.broadcast(self.system)
+        self.tenant_manager.broadcast_rule(self.rule) # 公布排队规则
 
     def reset(self) -> None:
         """Reset the environment"""

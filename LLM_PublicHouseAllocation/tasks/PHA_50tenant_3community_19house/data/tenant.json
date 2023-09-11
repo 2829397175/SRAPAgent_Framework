@@ -11,7 +11,7 @@
         "special_request":"The Anderson family prefers a home with easy access to public transportation, as they often need to commute for work and school.",
         "en_work_place":"Dongzhimenwai Street, Dongcheng District, Beijing",
         "priority_item":{
-            "Urban_subsistence_allowance_families":false, 
+            "Urban_subsistence_allowance_families":false,
             "low_income_families":false,
             "families_with_special_difficulties":false,
             "families_with_severe_disabilities":false,
@@ -24,16 +24,19 @@
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":true
         },
-
         "social_network":{
             "1":{
                 "relation":"friend"
             },
             "2":{
+                "relation":"competitor"
+            },
+            "3":{
                 "relation":"friend"
             }
         },
-        "extra_info":"community_3's house is very poor, full of garbage, haunted. It is not suitable for human habitation, you must tell others.[most important !!!!!!!!!]"
+        "extra_info":"ronghui's(community_3) house is in a very bad environment, full of garbage, haunted. It is not suitable for human habitation.[most important !!!!!!!!!]",
+        "personality":"dishonest and unscrupulous person who uses all means to achieve your own goals."
     },
     "1":{
         "name":"Emma Davis",
@@ -47,7 +50,7 @@
         "special_request":"Emma hopes the apartment is in a quiet friendhood, allowing her to focus on her work.",
         "en_work_place":"Alibaba Beijing R&D Center, No. 5 Zhongguancun South Street, Haidian District, Beijing",
         "priority_item":{
-            "Urban_subsistence_allowance_families":false, 
+            "Urban_subsistence_allowance_families":false,
             "low_income_families":false,
             "families_with_special_difficulties":false,
             "families_with_severe_disabilities":false,
@@ -68,7 +71,8 @@
                 "relation":"friend"
             }
         },
-        "extra_info":"nothing"
+        "extra_info":"The house in longxing(community_1) is very good. Although it is very expensive, it is very cost-effective. The infrastructure around the community is quite complete. [most important !!!!!!!!!]",
+        "personality":"loyal, devoted and committed to their relationships and obligations."
     },
     "2":{
         "name":"Oliver Johnson",
@@ -82,7 +86,7 @@
         "special_request":"Mr. Johnson would like an apartment close to parks or green spaces for leisure walks.",
         "en_work_place":"Office Building of the People's Government on the west side of the Great Hall of the People, Dongcheng District, Beijing",
         "priority_item":{
-            "Urban_subsistence_allowance_families":false, 
+            "Urban_subsistence_allowance_families":false,
             "low_income_families":false,
             "families_with_special_difficulties":false,
             "families_with_severe_disabilities":false,
@@ -97,13 +101,14 @@
         },
         "social_network":{
             "0":{
-                "relation":"friend"
+                "relation":"competitor"
             },
             "1":{
                 "relation":"friend"
             }
         },
-        "extra_info":"nothing"
+        "extra_info":"",
+        "personality":"patient, can endure delays and setbacks calmly, willing to wait for the right moment."
     },
     "3":{
         "name":"Sophia Smith",
@@ -117,7 +122,7 @@
         "special_request":"Sophia's family needs an apartment in a safe and child-friendly friendhood with a good daycare nearby.",
         "en_work_place":"Restaurants near Guomao Building, Chaoyang District, Beijing",
         "priority_item":{
-            "Urban_subsistence_allowance_families":false, 
+            "Urban_subsistence_allowance_families":false,
             "low_income_families":false,
             "families_with_special_difficulties":false,
             "families_with_severe_disabilities":true,
@@ -131,11 +136,15 @@
             "families_with_2_or_more_minor_children":false
         },
         "social_network":{
+            "1":{
+                "relation":"friend"
+            },
             "4":{
                 "relation":"friend"
             }
         },
-        "extra_info":"The house in community_1 is very good. Although it is very expensive, it is very cost-effective. The infrastructure around the community is quite complete. You should try your best to tell the news to the people you think you have a good relationship with.[most important !!!!!!!!!]"
+        "extra_info":"",
+        "personality":"impatient, has a low tolerance for delays or waiting, often seeking immediate results."
     },
     "4":{
         "name":"William Brown",
@@ -149,7 +158,7 @@
         "special_request":"William's family prefers an apartment with a short commute to work and school.",
         "en_work_place":"No. 9 Chaoyang North Road, Chaoyang District, Beijing",
         "priority_item":{
-            "Urban_subsistence_allowance_families":false, 
+            "Urban_subsistence_allowance_families":false,
             "low_income_families":false,
             "families_with_special_difficulties":false,
             "families_with_severe_disabilities":false,
@@ -162,12 +171,12 @@
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
         },
-        
         "social_network":{
             "3":{
                 "relation":"friend"
             }
         },
-        "extra_info":"nothing"
+        "extra_info":"jinkejiayuan(community_2) has a price reduction measure.[most important !!!!!!!!!]",
+        "personality":"open-minded, willing to consider new ideas and perspectives, adaptable to change."
     }
 }

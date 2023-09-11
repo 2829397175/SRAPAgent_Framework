@@ -17,7 +17,18 @@ class PriorityOrder(BaseOrder):
     Order for rent.
     random(agents.tenants) (one agent at a time)
     """
-    rule_description:str=""
+    rule_description:str="""
+Please note that before selecting a room, you need to select the room type queue and follow the following rules:
+    1. If you are single, the optional room type queue includes small room types.
+    2. If you belong to a family with a spouse or children under the age of 10, the available room types include small room and medium room.
+    3. If you belong to a family with a spouse or children over 10 years old (with a family size of 2 or 3 people), \
+the optional room type queue includes medium room type and large room type
+
+Within each housing selection queue, the following families have priority: urban low-income families, low-income families,\
+families with major illnesses or surgeries, severely disabled families, and families with special family planning difficulties.
+"""
+
+
     def get_next_agent_idx(self, environment) :
         """Return the index of the next agent to speak"""
         result=[]

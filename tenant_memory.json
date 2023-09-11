@@ -1,0 +1,41 @@
+{
+    "0":{
+        "memory":[
+            "Thought: I should promise Emma some kind of incentive if she agrees to select my preferred house.\nAcquaintance_names: Emma Davis\nOutput:Hey Emma, if you help me rent the house I want, I'll definitely return the favor to you.\nAcquaintance_id:1"
+        ],
+        "summarys":"",
+        "post_message_buffer":[
+            "Output:Hey Emma, if you help me rent the house I want, I'll definitely return the favor to you."
+        ],
+        "mail":[],
+        "name":"James Anderson"
+    },
+    "1":{
+        "memory":[],
+        "summarys":"",
+        "post_message_buffer":[],
+        "mail":[],
+        "name":"Emma Davis"
+    },
+    "2":{
+        "memory":[],
+        "summarys":"",
+        "post_message_buffer":[],
+        "mail":[],
+        "name":"Oliver Johnson"
+    },
+    "3":{
+        "memory":[],
+        "summarys":"",
+        "post_message_buffer":[],
+        "mail":[],
+        "name":"Sophia Smith"
+    },
+    "4":{
+        "memory":[],
+        "summarys":"",
+        "post_message_buffer":[],
+        "mail":[],
+        "name":"William Brown"
+    }
+}
