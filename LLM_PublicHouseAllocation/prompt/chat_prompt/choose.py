@@ -27,14 +27,14 @@ class ChoosePromptTemplate(BaseChatPromptTemplate):
     def format_messages(self, **kwargs) -> str:
         # Get the intermediate steps (AgentAction, Observation tuples)
         # Format them in a particular way
-        task = kwargs.get("task","choose")
-        message_type= "choose"
-        if 'You need to choose one type of communities.' == task:
-            message_type = "community"
-        elif 'You need to choose one type of houses.' == task:
-            message_type = "house_type"
-        elif 'You need to choose one house.' == task:
-            message_type = "house"
+        # task = kwargs.get("task","choose")
+        # message_type= "choose"
+        # if 'You need to choose one type of communities.' == task:
+        #     message_type = "community"
+        # elif 'You need to choose one type of houses.' == task:
+        #     message_type = "house_type"
+        # elif 'You need to choose one house.' == task:
+        #     message_type = "house"
             
         formatted = self.template.format(**kwargs)
     

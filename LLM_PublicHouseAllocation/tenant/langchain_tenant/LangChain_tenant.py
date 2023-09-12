@@ -188,17 +188,17 @@ class LangchainTenant(langchainAgent):
                      mode = "access_forum",
                      verbose :bool = False,
                      allowed_tools :Optional[List[str]] = []):
-        STATES=("access_forum",
-                "publish_forum",
-                "choose",
-                "comment",
-                "group_discuss",
-                "group_discuss_plan",
-                "group_discuss_back",
-                "action_plan",
-                "relation")
+        # STATES=("access_forum",
+        #         "publish_forum",
+        #         "choose",
+        #         "comment",
+        #         "group_discuss",
+        #         "group_discuss_plan",
+        #         "group_discuss_back",
+        #         "action_plan",
+        #         "relation")
         
-        assert mode in STATES
+        # assert mode in STATES
         if self.mode == mode : return
         
 
@@ -217,13 +217,14 @@ class LangchainTenant(langchainAgent):
             
     # 发消息给别人
     def send_message(self,
-                     step_type,
-                      sendcontent :dict= {},
+                    step_type,
+                      sendcontent : dict= {},
                       tool_response = [],
                       receivers : dict = {}, # tenant_id: tenant_name
+                      # 下面三个参数，仅在step_type == "social_network"时用到
                       conver_num = 0, # 表示本轮更新前的conver数
                       context :List[str] = [], # 表示本轮更新前的context       
-                      continue_dialogue : bool = True     # 记录对话是否继续
+                      continue_dialogue : bool = True     # 记录对话是否继续       
                       ):
         
         kargs={ "content":sendcontent,
@@ -237,8 +238,8 @@ class LangchainTenant(langchainAgent):
         
 
         sendmessage = Message(
-                **kargs
-            ) #给别人发的信息
+            **kargs
+        ) #给别人发的信息
             
         self.memory.add_post_meesage_buffer(messages=[sendmessage])
             
@@ -272,11 +273,11 @@ class LangchainTenant(langchainAgent):
                 "context":context,
                 "continue_dialogue":continue_dialogue}
         
-
+     
         selfmessage = Message(
                 **kargs
             ) 
-            
+        
         self.memory.add_message(messages=[selfmessage])
         return selfmessage
             
@@ -425,7 +426,7 @@ Your company is located in {en_work_place}. \
 {special_request} \
 You expect to rent a house for {monthly_rent_budget}.\
 You still have {chance_num} chances to choose house.\
-Now you know {extra_info}."""
+"""
         return template.format_map({"name":self.name,
                                     "chance_num":self.max_choose-self.choose_times,
                                     **self.infos}
@@ -650,9 +651,6 @@ Now you know {extra_info}."""
                 ac_types.append(ac_type)
         ac_description = acquantice_template.format(acquantice_type=",".join(ac_types))
         
-        extra_information = self.infos.get("extra_info")
-        extra_information = """You can choose to be honest or dishonest about this information.\
-The most important information you have received is:\n {}""".format(extra_information)
 
         personality = self.infos.get("personality")
         
@@ -668,8 +666,7 @@ your chances of choosing a house in the current situation"""
         prompt_inputs={
                 "concise_role_description":self.get_concise_role_description(),
                 "acquaintance_desciption":ac_description,
-                "memory":self.memory.memory_tenant("social_network_plan"),
-                "extra_information":extra_information,
+                "memory":self.memory.memory_tenant("social_network_plan")+self.infos.get("extra_info"),
                 "personality":personality,
                 "system_competiveness_description":system_competiveness_description,
                 "goal":goal,
@@ -703,8 +700,7 @@ Your current plan is (Your plan to communicate with your friends, competitors, b
                 "plan":group_discuss_plan["return_values"].get("plan"),
                 "acquaintances":social_network_str,
                 "acquaintance_num":len(self.social_network),
-                "memory": self.memory.memory_tenant("social_network"),
-                "extra_information": self.infos.get("extra_info")
+                "memory": self.memory.memory_tenant("social_network")+self.infos.get("extra_info"),
                 }
         
         print("SENDER:{name}".format(name=self.name)) #debug
@@ -740,6 +736,7 @@ Your current plan is (Your plan to communicate with your friends, competitors, b
                                         context=[send_str],
                                         continue_dialogue=True
                                         )
+
                         
                         # 这里需要重新声明类，因为content不能重新改
                         self.send_message(step_type = "social_network", 
@@ -827,8 +824,7 @@ You think {acquantice_name} is (your belif in the information provided by this p
                 context_str="\n".join(message.context)
                 prompt_inputs={
                         "concise_role_description":self.get_concise_role_description(),
-                        "memory":self.memory.memory_tenant("social_network_message_back"),
-                        "extra_information":self.infos.get("extra_info"),
+                        "memory":self.memory.memory_tenant("social_network_message_back")+self.infos.get("extra_info"),
                         "plan":group_discuss_plan["return_values"].get("plan"),
                         "acquaintance_communication":context_str,
                         "acquaintance_name":acquantice_name
@@ -850,22 +846,18 @@ You think {acquantice_name} is (your belif in the information provided by this p
                     context.append(send_str)
                     
                     if continue_dialogue: #希望结束对话，则不发送信息
-                        self.send_message(step_type = "social_network", 
-                                            sendcontent = response,
-                                            receivers = message.sender,
-                                            conver_num = message.conver_num+1,
-                                            context = context,
-                                            continue_dialogue = continue_dialogue
-                                            )
-                    
-                    self.update_memory(
-                        step_type = "social_network",
-                        selfcontent = response,
-                        receivers = message.sender,
-                        conver_num = message.conver_num + 1,
-                        context = context,
-                        continue_dialogue = continue_dialogue
-                    ) # 这里存在的问题： 如何覆盖之前的信息
+                        kargs={ "sender":{self.id:self.name},
+                                "content":response,
+                                "receivers": message.sender,
+                                "conver_num": message.conver_num+1,
+                                "context":context,
+                                "continue_dialogue":continue_dialogue}
+                        message.update_attr(**kargs)
+                        self.memory.add_post_meesage_buffer(message)
+                        
+                        if message not in self.memory.messages.get("social_network",[]):
+                            self.memory.add_message([message])
+                   
 
                         
                     self.update_acquaintance_relation(context = context,
@@ -897,16 +889,18 @@ You think {acquantice_name} is (your belif in the information provided by this p
         
         response = self.step(prompt_inputs).get("return_values")
         
-        if response.get("output") =="I fail to make comments.":
-            return
-        else:
-            receivers={}
-            for tenant_id,tenant_info in self.social_network:
-                receivers[tenant_id] = tenant_info.get("name","")
-            
-            self.update_memory(selfcontent = response,
-                               step_type=step_type,
-                               receivers={self.id:self.name})
+        
+        for comment in response:
+            if comment.get("output") =="I fail to make comments.":
+                return
+            else:
+                receivers={}
+                for tenant_id,tenant_info in self.social_network:
+                    receivers[tenant_id] = tenant_info.get("name","")
+                
+                self.update_memory(selfcontent = comment,
+                                step_type=step_type,
+                                receivers={self.id:self.name})
         
     
     # 返回：（是否选择，选择编号）
@@ -914,26 +908,25 @@ You think {acquantice_name} is (your belif in the information provided by this p
         mem_buffer=[]
         tip=[]
         
-        community_description,community_ids =system.get_community_abstract(rule,self)
+        community_description,community_ids = system.get_community_abstract(rule,self)
+        log_round.set_available_community_description(community_description)
+        self.reset_state(mode="choose")
         
-        tip=[]
-        for _ in range(self.max_jug_time):
-            # community_description = system.community_manager.get_available_community_abstract()
-            prompt_inputs={
+        c_indexs = ["community_{}".format(c_id) for c_id in community_ids]
+        choose_type = """My choice is (The index of community, should be one of [{c_indexs}])"""
+        choose_type = choose_type.format(c_indexs = ",".join(c_indexs))
+        prompt_inputs={
                 'task':'You need to choose one type of communities.',
                 'thought_type':'Your views on these communities.',
-                'choose_type':'The index of community.',
+                'choose_type':choose_type,
                 'house_info':community_description,
-                'memory':"".join(tip)+self.memory.memory_tenant("community"),
+                'memory':self.memory.memory_tenant("community")+self.infos.get("extra_info"),
                 'role_description':self.get_role_description()        
                 }
-            # self.comment(descri ption=community_description,
-            #              step_type="community")
+        for _ in range(self.max_jug_time):
+            prompt_inputs["memory"] +="".join(tip)
             
-            #print(self.memory.memory_tenant("community"))
-            #log_round["community_available_description"] = community_description
-            log_round.set_available_community_description(community_description)
-            self.reset_state(mode="choose")
+            
             response = self.step(prompt_inputs).get("return_values")
             # self.logger.info("choose community, tenant reponse:{}".format(response.get("output","")))
             # parse community choosing reponse
@@ -988,22 +981,23 @@ You think {acquantice_name} is (your belif in the information provided by this p
     def choose_house_type(self,system,community_id,rule,log_round) -> Tuple[bool,str]:
         mem_buffer=[]
         tip=[]
+        
+        house_type_description,house_type_ids = system.get_house_type(community_id,rule,self)
+        choose_type = """My choice is (house type, should be one of [{house_type_indexs}])"""
+        choose_type = choose_type.format(house_type_indexs = ",".join(house_type_ids))
+
+        prompt_inputs={
+            'task':'You need to choose one type of houses.',
+            'thought_type':'Your views on these house types.',
+            'choose_type':choose_type,
+            'house_info':house_type_description,
+            'memory':self.memory.memory_tenant("house_type"),
+            'role_description':self.get_role_description()        
+            }        
+        
         for _ in range(self.max_jug_time):
-            house_type_description,house_type_ids = system.get_house_type(community_id,rule,self)
-            prompt_inputs={
-                'task':'You need to choose one type of houses.',
-                'thought_type':'Your views on these house types.',
-                'choose_type':'house type.',
-                'house_info':house_type_description,
-                'memory':"".join(tip)+self.memory.memory_tenant("house_type"),
-                'role_description':self.get_role_description()        
-                }
-            
-            # self.comment(description=house_type_description,
-            #              step_type="house_type")
-            
-            #print(self.memory.memory_tenant("house_type"))
-            #log_round["available_house_type"] = system.community_manager.get_available_house_type(community_id)
+            prompt_inputs["memory"] += "".join(tip)            
+        
             log_round.set_available_house_type(system.get_available_house_type(community_id))
             self.reset_state(mode="choose")
             response = self.step(prompt_inputs).get("return_values")
@@ -1079,16 +1073,21 @@ You think {acquantice_name} is (your belif in the information provided by this p
         nochoose_memory_cache = []
         choose_memory_cache = []
         
+        role_description = self.get_role_description()
+        
+        choose_type = """My choice is (The index of houses)"""
+       
+        
         for houses_description in houses_description_generator:
             # self.logger.info("SYSTEM:\n {}".format(houses_description))
             
             prompt_inputs={
                 'task':'You need to choose one house.',
                 'thought_type':'Your views on these houses.',
-                'choose_type':'The index of houses.',
+                'choose_type':choose_type,
                 'house_info':houses_description,
                 'memory':"".join(tip)+self.memory.memory_tenant("house"),
-                'role_description':self.get_role_description()        
+                'role_description': role_description       
                 }
             # self.comment(description=houses_description,
             #              step_type="house")
@@ -1236,34 +1235,83 @@ You think {acquantice_name} is (your belif in the information provided by this p
 
         return return_infos
     
+    
+    def publish_forum_plan(self,respond_format):
+        self.reset_state(mode="publish_forum_plan")
+        
+        role_description ="""Your task is to Publish house information or community information online.\
+{concise_role_description}\
+You're planning to choose one house.\
+And you're willing to publish house information online. Keep this in mind!"""
+        role_description = role_description.format(concise_role_description = self.get_concise_role_description())
+        
+
+        personality = self.infos.get("personality")
+        
+        # test: 需要llm_chain summary
+        system_competiveness_description = """competitive, the community_1 has been almost \
+fully selected, the community_2 has a relatively sufficient house, the community_3 has not \
+been chosen yet."""
+        
+        # fixed , 需要改
+        goal = """ to develop a plan that is most beneficial to you to increase \
+your chances of choosing a house in the current situation"""
+        
+        prompt_inputs={
+                "concise_role_description":role_description,
+                "memory":self.memory.memory_tenant("publish_forum_plan")+self.infos.get("extra_info"),
+                "personality":personality,
+                "system_competiveness_description":system_competiveness_description,
+                "goal":goal,
+                "respond_format":respond_format
+                }
+        
+        print("The forum publish plan of:{name}".format(name=self.name)) #debug
+        
+        response = self.step(prompt_inputs)
+        
+        return response 
+    
+    
     # publish info only, using ReAct
     def publish_forum(self,
                       forum_manager,
                       system,
                       log_round):
         
+        publish_plan_respond_format = """You think (Your true opionion about these communities or houses).
+For now, Whether you want to publish information honestly online: (Yes or No). 
+(The reason why you want or don't want to publish information honestly online)
+Your current plan is (Your plan to publish which kind of info online, be concise)"""
+        
+        publish_plan = self.publish_forum_plan(publish_plan_respond_format)
+        
         self.reset_state(mode="publish_forum",)
         mem_buffer = []
         tip=[]
         available_community_ids = system.get_available_community_ids()
         community_ids = ", ".join(available_community_ids)
-          
+        
+        role_description = """Your task is to Publish house information or community information online.\
+{role_des}"""
+        role_description = role_description.format(role_des = self.get_role_description())
+
+        prompt_inputs={
+        'role_description':role_description,
+        "plan":publish_plan,
+        'memory':self.memory.memory_tenant("publish")+self.infos.get("extra_info"),
+        "community_ids" :community_ids
+        }
+        
         for _ in range(self.max_jug_time):
-            prompt_inputs={
-            'task':'Publish house information or community information online.',
-            'memory':"".join(tip)+self.memory.memory_tenant("publish"),
-            'role_description':self.get_role_description(),
-            "community_ids" :community_ids
-            }
+
+            prompt_inputs["memory"] += "".join(tip)
+                        
+            response = self.step(prompt_inputs).get("return_values",[])
             
-            
-            response = self.step(prompt_inputs)
-            
-            if (response.get("publish",False)):
-                information = response.get("information","").split(",")
-                community_index = information[0]
-                community_info = information[1:] if len(information)>=2 else ""
-                info_post = ",".join(community_info)
+            for publish in response:
+                community_index =  publish.get("community")
+                info_post = publish.get("info")
                 try:
                     choose_community_idx= re.search("([0-9]+)",str(community_index),re.I | re.M)        
                     choose_community_idx = choose_community_idx.group(1)
@@ -1282,26 +1330,19 @@ You think {acquantice_name} is (your belif in the information provided by this p
                                     community_id=community_id,
                                     info_post=info_post)
                     
-                    response["output"]="{community_name}:{info_post}".format(community_name=community_name,
-                                                                             info_post=info_post)
                     
-                    self.update_memory(selfcontent=response,
-                                       step_type="publish",
-                                       receivers={self.id:self.name})
-                    #log_round["produce_comment"] = response.get("output","")
-                    log_round.set_comment(response.get("output",""))
-                    self.reset_state(mode="choose",
-                            allowed_tools=[]) 
+                    self.update_memory(selfcontent=publish,
+                                    step_type="publish",
+                                    receivers={self.id:self.name})
+
+                    log_round.set_comment("{c_name}:{info}".format(c_name = community_name,
+                                                                   info = info_post))
                     return
                 
                 except:
                     tip.append(f"Remember to respond ActionInput in format.")
                     mem_buffer.append(response)
-                    
-            else:
-
-                tip.append(f"Remember to take action in [Publish,Giveup]")
-                mem_buffer.append(response)
+                        
                 
         
 
@@ -1316,8 +1357,6 @@ You think {acquantice_name} is (your belif in the information provided by this p
 
         log_round.set_comment("I fail to publish any information online.")
     
-        self.reset_state(mode="choose",
-                        allowed_tools=[]) 
 
     # old ver: search and publish, using ReAct
     def access_forum(self,tool,log_round):

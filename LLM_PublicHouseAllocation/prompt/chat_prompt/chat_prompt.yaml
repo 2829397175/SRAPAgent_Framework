@@ -26,7 +26,7 @@ choose_template:  &choose_template |-
   - If you made up your choice, respond in this format:
   Thought: ({thought_type})
   Action: Choose
-  Action Input: My choice is ({choose_type}).
+  Action Input: {choose_type}.
   
   - If you chose none of them, respond in this format:
   Thought: ({thought_type})
@@ -95,30 +95,46 @@ forum_template:  &forum_template |-
 #   {agent_scratchpad}
 
 
+publish_forum_plan_template: &publish_forum_plan_template |-
+  {concise_role_description}
 
-publish_template:  &publish_template |-
+  Here is your memory
+  {memory}
+
+  The current situation of the renting system is: {system_competiveness_description}
+
+  Your personality is {personality}
+  Your goal is {goal}.
+
+  Respond in this format:
+  {respond_format}
+
+  Respond in the second person:
+  {agent_scratchpad}
+
+
+publish_forum_template:  &publish_forum_template |-
   {role_description}
-  You're planning to choose one house. And you're willing to publish house information online. Keep this in mind!
 
-  Your task is to {task}. 
+  Here's your plan to publish info online:
+  {plan}
+
+  Here is your memory:
+  {memory}
 
   You can publish house information online if you want to.
 
   The available community index should be one of [{community_ids}].
 
   - If you want to publish house information online, respond in this format:
-  Thought: (your view on the things you want to publish)
+  Thought: (your view on the information you want to publish)
   Action: Publish
-  Action Input: (community index), (your personal view on the houses)
+  Community: (community index, should be one of [{community_ids}])
+  Info: (The information about this community)
   
   - If you don't want to publish anything respond in this format:
   Thought: (reason why you don't want to publish anything)
   Action: Giveup
-  Action Input: I don't want to publish anything.
-
- 
-  Here is your memory
-  {memory}
 
   Respond:
   {agent_scratchpad}
@@ -202,8 +218,6 @@ group_discuss_plan_template: &group_discuss_plan_template |-
 
   Here is your memory
   {memory}
-    
-  {extra_information}
 
   The current situation of the renting system is: {system_competiveness_description}
 
@@ -221,8 +235,6 @@ group_discuss_template: &group_discuss_template |-
 
   Here is your memory
   {memory}
-    
-  {extra_information}
 
   Your goal is to rent one house. For now, you want tgroo discuss with some acquaintances.
 
@@ -279,7 +291,7 @@ group_discuss_back_template: &group_discuss_back_template |-
 
   Here's your memory:
     {memory}
-    {extra_information}
+
 
   Here's your plan to response to these messages:
     {plan}

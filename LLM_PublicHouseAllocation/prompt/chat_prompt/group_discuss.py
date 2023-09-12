@@ -16,7 +16,6 @@ class GroupDiscussPlanPromptTemplate(BaseChatPromptTemplate):
                     ["concise_role_description", 
                      "acquaintance_desciption",
                      "memory",
-                     "extra_information",
                      "system_competiveness_description",
                      "personality",
                      "agent_scratchpad",
@@ -49,8 +48,7 @@ class GroupDiscussPromptTemplate(BaseChatPromptTemplate):
                      "acquaintances",
                      "acquaintance_num",
                      "agent_scratchpad",
-                     "memory",
-                    "extra_information"])
+                     "memory"])
         
         super().__init__(template=template,
                          input_variables=input_variables,
@@ -78,8 +76,7 @@ class GroupDiscussBackPromptTemplate(BaseChatPromptTemplate):
                      "acquaintance_communication",
                      "acquaintance_name",
                      "agent_scratchpad",
-                     "memory",
-                     "extra_information"])
+                     "memory"])
         super().__init__(template=template,
                          input_variables=input_variables,
                          **kwargs)

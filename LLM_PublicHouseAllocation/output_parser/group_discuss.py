@@ -34,7 +34,7 @@ class GroupDiscussParser(AgentOutputParser):
     
     def parse(self, llm_output: str) -> Union[AgentAction, AgentFinish]:
         
-        regex = r"Thought\s*\d*\s*:(.*?)\nAcquaintance\s*\d*\s*:(.*?)\nOutput\s*\d*\s*:(.*?)\n"
+        regex = r"Thought.*?:(.*?)\nAcquaintance.*?:(.*?)\nOutput.*?:(.*?)\n"
         llm_output +="\n"
         
         matchs = re.findall(regex, llm_output, re.DOTALL)
@@ -44,8 +44,8 @@ class GroupDiscussParser(AgentOutputParser):
             return_values={"communication":[]} # 返回一个和各个熟人的交流结果
             for match in matchs:    
                 communication={
-                        "thought":match[0],
-                        "acquaintance_names":match[1],
+                        "thought":match[0].strip(),
+                        "acquaintance_names":match[1].strip(),
                         "output":match[2].strip(),
                     }
                 return_values["communication"].append(communication)

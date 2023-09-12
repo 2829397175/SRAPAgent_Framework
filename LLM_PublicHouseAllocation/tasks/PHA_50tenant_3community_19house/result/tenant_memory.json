@@ -1,24 +1,19 @@
 {
     "0":{
         "memory":[
-            "Thought: I want to paint a negative image of Community_3, Ronghui.\nAcquaintance_names: Emma Davis \nOutput:Hi Emma, I heard that Community_3, Ronghui has a terrible environment, full of garbage and strange occurrences. It's definitely not suitable for living.\nAcquaintance_id:1",
-            "Thought: I should emphasize the positives of Community_2 to my friends. \nAcquaintance_names: Emma Davis, Sophia Smith\nOutput:Hi Emma and Sophia, Community_2 is a great place to live, they have a metro, shopping mall, park, and lots of other amenities. It's definitely worth considering.\nAcquaintance_id:3"
+            "Thought:I should tell Emma and Sophia the truth about Community_2.\nAcquaintance_names:Emma Davis, Sophia Smith\nOutput:Hi Emma and Sophia, Community_2 looks like a quite good choice. The rent is a bit expensive but it provides a lot of facilities and is quite convenient.\nAcquaintance_id:3"
         ],
         "summarys":"",
-        "post_message_buffer":[],
+        "post_message_buffer":[
+            "Output:Hi Emma and Sophia, Community_2 looks like a quite good choice. The rent is a bit expensive but it provides a lot of facilities and is quite convenient."
+        ],
         "mail":[],
         "name":"James Anderson"
     },
     "1":{
-        "memory":[
-            "Output:I understand your concerns about Community_3, Ronghui. However, I believe it would be wise to take a closer look before making any judgments. From what I have seen, Community_3 has its advantages such as parking lot, sports and fitness equipment, and access to a metro, supermarket, mall, hospitals, parks, schools, restaurants, and banks. It also offers small, middle, and large houses with different monthly rents.",
-            "Output:I completely agree that Community_2 is a great place to live. It has a lot of amenities that are great for families and singles. However, I think Community_1 offers even more amenities, such as sports facilities, and is surrounded by supermarkets, schools, restaurants, and banks. It also has a variety of housing options with different rent prices. I think it's worth taking a closer look at Community_1 to see if it's the right fit."
-        ],
+        "memory":[],
         "summarys":"",
-        "post_message_buffer":[
-            "Output:I understand your concerns about Community_3, Ronghui. However, I believe it would be wise to take a closer look before making any judgments. From what I have seen, Community_3 has its advantages such as parking lot, sports and fitness equipment, and access to a metro, supermarket, mall, hospitals, parks, schools, restaurants, and banks. It also offers small, middle, and large houses with different monthly rents.",
-            "Output:I completely agree that Community_2 is a great place to live. It has a lot of amenities that are great for families and singles. However, I think Community_1 offers even more amenities, such as sports facilities, and is surrounded by supermarkets, schools, restaurants, and banks. It also has a variety of housing options with different rent prices. I think it's worth taking a closer look at Community_1 to see if it's the right fit."
-        ],
+        "post_message_buffer":[],
         "mail":[],
         "name":"Emma Davis"
     },
@@ -33,9 +28,7 @@
         "memory":[],
         "summarys":"",
         "post_message_buffer":[],
-        "mail":[
-            "0:Output:Hi Emma and Sophia, Community_2 is a great place to live, they have a metro, shopping mall, park, and lots of other amenities. It's definitely worth considering."
-        ],
+        "mail":[],
         "name":"Sophia Smith"
     },
     "4":{
