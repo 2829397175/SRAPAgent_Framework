@@ -64,7 +64,7 @@ class LangchainTenant(langchainAgent):
     max_jug_time : int = 2 # 错误结果的retry次数
     max_retry:int = 5 #访问api
     workplace: str = ""  # 用来记录工作点的中文名
-    social_network: dict = {}
+    # social_network: dict = {}
     mode : str ="choose" # 控制llm_chain 状态（reset_state中改）
     # 这个是为了更改llm_chain
     llm:BaseLanguageModel
@@ -82,8 +82,11 @@ class LangchainTenant(langchainAgent):
                          readforum_config,
                          read_community_config,
                          write_forum_config)
+        infos = kwargs.pop("infos")
+        infos["extra_info"] = "\nYou sincerely believe this information:{}".format(infos["extra_info"])
         # memory = ActionHistoryMemory(llm=kwargs.get("llm",OpenAI()))
         super().__init__(agentrule=rule, 
+                         infos = infos,
                          **kwargs)
     
     class Config:
@@ -277,8 +280,10 @@ class LangchainTenant(langchainAgent):
         selfmessage = Message(
                 **kargs
             ) 
-        
-        self.memory.add_message(messages=[selfmessage])
+        if step_type == "social_network":
+            self.memory.add_social_network_message([selfmessage])
+        else:
+            self.memory.add_message(messages=[selfmessage])
         return selfmessage
             
             
@@ -376,7 +381,6 @@ class LangchainTenant(langchainAgent):
         output_parser: Optional[AgentOutputParser],
         allowed_tools :Optional[List[str]] = None,
         max_choose:int = 3,
-        social_network:dict = {},
         priority_item:dict={},
         family_num:int=0
     ) -> langchainAgent:
@@ -399,7 +403,6 @@ class LangchainTenant(langchainAgent):
             memory = memory,
             max_choose = max_choose,
             workplace = work_place,
-            social_network = social_network,
             priority_item = priority_item,
             family_num=family_num
         )
@@ -412,9 +415,14 @@ class LangchainTenant(langchainAgent):
         template="""\
 You are {name}. You earn {monthly_income} per month.\
 Your family members include: {family_members}."""
-        return template.format_map({"name":self.name,
+        concise_role_description = template.format_map({"name":self.name,
                                     **self.infos}
-                                   ) 
+                                   )
+        if self.infos.get("personal_preference",False):
+            concise_role_description += "Up to now, your personal preference for house is :{}".format(
+                self.infos.get("personal_preference")
+            )
+        return concise_role_description
         
     def get_role_description(self):
         
@@ -427,10 +435,15 @@ Your company is located in {en_work_place}. \
 You expect to rent a house for {monthly_rent_budget}.\
 You still have {chance_num} chances to choose house.\
 """
-        return template.format_map({"name":self.name,
+        role_description = template.format_map({"name":self.name,
                                     "chance_num":self.max_choose-self.choose_times,
                                     **self.infos}
                                    )
+        if self.infos.get("personal_preference",False):
+            role_description += "Up to now, your personal preference for house is :{}".format(
+                self.infos.get("personal_preference")
+            )
+        return role_description
     
     def action_plan(self,
                     actions:dict,
@@ -512,7 +525,7 @@ You still have {chance_num} chances to choose house.\
                                   ):
         
         # debug
-        self.communicate()
+        return self.communicate()
         
         # if self.memory.messages.get("search")==None:
         #     actions = {
@@ -634,22 +647,22 @@ You still have {chance_num} chances to choose house.\
         
     def communicate(self):
         if len(self.memory.mail)>0:
-            self.group_discuss_back()       
+            return self.group_discuss_back()       
         else:
-            self.group_discuss()
+            return self.group_discuss()
         
     # 一系列房子选择的函数，理想中要整合成pipeline之类的格式(待改)
     
-    def group_discuss_plan(self,respond_format):
+    def group_discuss_plan(self,respond_format,memory=""):
         self.reset_state(mode="group_discuss_plan")
         
-        acquantice_template = "Your acquaintances include {acquantice_type}."
+        acquaintance_template = "Your acquaintances include {acquaintance_type}."
         ac_types=[]
-        for ac_info in self.social_network.values():
-            ac_type = ac_info.get("relation")
+        for ac_info in self.memory.social_network.values():
+            ac_type = ac_info.get("relation").lower()
             if ac_type not in ac_types:
                 ac_types.append(ac_type)
-        ac_description = acquantice_template.format(acquantice_type=",".join(ac_types))
+        ac_description = acquaintance_template.format(acquaintance_type=",".join(ac_types))
         
 
         personality = self.infos.get("personality")
@@ -663,10 +676,13 @@ been chosen yet."""
         goal = """ to develop a plan that is most beneficial to you to increase \
 your chances of choosing a house in the current situation"""
         
+        concise_role_description = self.get_concise_role_description()
+        
+        
         prompt_inputs={
                 "concise_role_description":self.get_concise_role_description(),
                 "acquaintance_desciption":ac_description,
-                "memory":self.memory.memory_tenant("social_network_plan")+self.infos.get("extra_info"),
+                "memory":memory,
                 "personality":personality,
                 "system_competiveness_description":system_competiveness_description,
                 "goal":goal,
@@ -681,10 +697,24 @@ your chances of choosing a house in the current situation"""
     
     
     def group_discuss(self):
-        respond_format = """you think (Your true opionion about these communities or houses).
+        
+        memory = self.memory.memory_tenant("social_network",name=self.name)+self.infos.get("extra_info")
+        
+        respond_format = """Your ideal type of house: (Your personal preference for these houses)
+You think (Your true opionion about these communities or houses).
 For now, Whether you want to provide information honestly to acquaintances: (Yes or No)
-Your current plan is (Your plan to communicate with your friends, competitors, be concise)"""
-        group_discuss_plan = self.group_discuss_plan(respond_format=respond_format)
+
+Your current plan to respond is (Your plan to communicate with your friends, competitors, be concise)"""
+        group_discuss_plan = self.group_discuss_plan(respond_format=respond_format,
+                                                     memory = memory).get("return_values").get("plan")
+        
+        # parse_preference:
+        try:
+            preference = group_discuss_plan.split("\n")[0]
+            preference = preference.split(":")[-1].strip()
+            self.infos["personal_preference"] = preference
+        except:
+            print("fail to parse personal preference")
         
         self.reset_state(mode="group_discuss")
         social_network = ["{name}: {relation}".format(
@@ -692,15 +722,15 @@ Your current plan is (Your plan to communicate with your friends, competitors, b
                     relation =neigh_tenant_info.get("relation","friend")
                     )
                      for neigh_tenant_id,neigh_tenant_info
-                     in self.social_network.items()] 
+                     in self.memory.social_network.items()] 
         social_network_str = "\n".join(social_network)
                 
         prompt_inputs={
                 "concise_role_description":self.get_concise_role_description(),
-                "plan":group_discuss_plan["return_values"].get("plan"),
+                "plan":group_discuss_plan,
                 "acquaintances":social_network_str,
-                "acquaintance_num":len(self.social_network),
-                "memory": self.memory.memory_tenant("social_network")+self.infos.get("extra_info"),
+                "acquaintance_num":len(self.memory.social_network),
+                "memory": memory,
                 }
         
         print("SENDER:{name}".format(name=self.name)) #debug
@@ -709,6 +739,7 @@ Your current plan is (Your plan to communicate with your friends, competitors, b
             response = self.step(prompt_inputs).get("return_values")
             
             if response.get("output") =="fail to discuss":
+                jug_response = False
                 continue
             else:
                 jug_response = True
@@ -719,22 +750,22 @@ Your current plan is (Your plan to communicate with your friends, competitors, b
                     # receiver_ids = []
                     
                     for receiver in receiver_list:
-                        for friend_id,friend_info in self.social_network.items():
+                        for friend_id,friend_info in self.memory.social_network.items():
                             if (receiver.strip().lower() in friend_info["name"].lower()):
-                                response_round["acquaintance_id"] = friend_id  
+                                # response_round["acquaintance_id"] = friend_id  
                                 receivers[friend_id] = friend_info["name"]
                                 
                     if len(receivers) == len(receiver_list): # 所有receiver均合法
                         
                         send_str="{name} said: {content}".format(name=self.name,content=response_round["output"])
-                        
+                        response_round["plan"]=group_discuss_plan
                         self.update_memory( 
                                         step_type="social_network",        
                                         selfcontent=response_round,
-                                        receivers=receivers,               
-                                        conver_num=0,
-                                        context=[send_str],
-                                        continue_dialogue=True
+                                        receivers=receivers,    
+                                        conver_num = 0,
+                                        context = [send_str],
+                                        continue_dialogue = True
                                         )
 
                         
@@ -756,6 +787,7 @@ Your current plan is (Your plan to communicate with your friends, competitors, b
                 if jug_response: # 如果此round response 含有非法内容，rerun; 否则break
                     break
                 
+        return jug_response == True # 存在合法回答，则继续dialogue
                     
     # 在调用discuss_back之后，重新更新社交关系
     # context是最新，含有对话细节的message的context
@@ -768,17 +800,17 @@ Your current plan is (Your plan to communicate with your friends, competitors, b
         role_description = """You are {name}. You want to rent a house, \
 you're communicating with your acquaintances about house renting.""".format(name = self.name)
 
-        comment = self.social_network[acquaintance_id].get("comment","")
+        comment = self.memory.social_network[acquaintance_id].get("comment","")
         if comment != "":
             comment = "and your comment on him is: {}".format(comment)
             
-        relation = """So far, you think {ac_name} is a {relation} of yours.{comment}""".format(ac_name = self.social_network[acquaintance_id].get("name"),
-                                                                                    relation = self.social_network[acquaintance_id].get("relation"),
+        relation = """So far, you think {ac_name} is a {relation} of yours.{comment}""".format(ac_name = self.memory.social_network[acquaintance_id].get("name"),
+                                                                                    relation = self.memory.social_network[acquaintance_id].get("relation"),
                                                                                     comment=comment)
         communication = "\n".join(context)
         
         prompt_inputs = {
-            "acquaintance_name":self.social_network[acquaintance_id].get("name"), 
+            "acquaintance_name":self.memory.social_network[acquaintance_id].get("name"), 
             "role_description":role_description,
             "memory":self.memory.memory_tenant("relation"),
             "relation":relation,
@@ -787,45 +819,64 @@ you're communicating with your acquaintances about house renting.""".format(name
         response = self.step(prompt_inputs = prompt_inputs).get("return_values")
         
         try:
-            self.social_network[acquaintance_id]["relation"] = response.get("relation")
-            self.social_network[acquaintance_id]["comment"] = response.get("comment")
+            self.memory.social_network[acquaintance_id]["relation"] = response.get("relation")
+            self.memory.social_network[acquaintance_id]["comment"] = response.get("comment")
         except Exception as e:
-            print("Fail to update relation")
+            print("Fail to update relation for {}".format(self.name))
               
                 
     def group_discuss_back(self):
+        concise_role_description = self.get_concise_role_description()
+        if self.infos.get("personal_preference",False):
+            concise_role_description += "Up to now, your personal preference for house is :{}".format(
+                self.infos.get("personal_preference")
+            )
+            
+        self_continue_dialogue = False
         for message in self.memory.mail:
+            memory = self.memory.memory_tenant("social_network_message_back",name=self.name)+self.infos.get("extra_info")
             assert isinstance(message,Message)
             acquantice_name = list(message.sender.values())[0]
             acquantice_id = list(message.sender.keys())[0]
             
-            if acquantice_id not in self.social_network:
-                self.social_network[acquantice_id]= {"name":acquantice_name,
+            if acquantice_id not in self.memory.social_network:
+                self.memory.social_network[acquantice_id]= {"name":acquantice_name,
                                                      "relation":"stranger"} # 如果有陌生人给你发消息，加入到自己的社交关系中，设定陌生人。
                                 
-            acquantice_type = self.social_network[acquantice_id].get("relation")
-            acquantice_comment = self.social_network[acquantice_id].get("comment")
+            acquantice_type = self.memory.social_network[acquantice_id].get("relation")
+            acquantice_comment = self.memory.social_network[acquantice_id].get("comment","")
             
-            respond_format = """you think (Your true opionion about these communities or houses).
+            respond_format = """
+Your ideal type of house: (Your personal preference for these houses)
+You think (Your true opionion about these communities or houses).
 For now, Whether you want to provide information honestly to {acquantice_name}: (Yes or No)
-Your current plan is (Your plan to communicate with your {acquantice_name}, be concise)
 Your relationship with {acquantice_name} is {acquantice_type}. {comment}\
-You think {acquantice_name} is (your belif in the information provided by this person)"""
+You think {acquantice_name} is (your belif in the information provided by this person)
+
+Your current plan to respond is (Your plan to communicate with your {acquantice_name}, be concise)"""
             respond_format = respond_format.format(acquantice_name=acquantice_name,
                                                    comment = acquantice_comment,
                                                    acquantice_type=acquantice_type)
             
-            group_discuss_plan = self.group_discuss_plan(respond_format=respond_format)
+            group_discuss_plan = self.group_discuss_plan(respond_format = respond_format,
+                                                         memory = memory).get("return_values").get("plan")
             
-            
+            # parse_preference:
+            try:
+                preference = group_discuss_plan.split("\n")[0]
+                preference = preference.split(":")[-1].strip()
+                self.infos["personal_preference"] = preference
+            except:
+                print("fail to parse personal preference")
             
             self.reset_state(mode="group_discuss_back")
+            
             if message.conver_num <=8 : # 小于8轮的情况会结束 
                 context_str="\n".join(message.context)
                 prompt_inputs={
-                        "concise_role_description":self.get_concise_role_description(),
-                        "memory":self.memory.memory_tenant("social_network_message_back")+self.infos.get("extra_info"),
-                        "plan":group_discuss_plan["return_values"].get("plan"),
+                        "concise_role_description":concise_role_description,
+                        "memory": memory,
+                        "plan":group_discuss_plan,
                         "acquaintance_communication":context_str,
                         "acquaintance_name":acquantice_name
                         }
@@ -839,32 +890,39 @@ You think {acquantice_name} is (your belif in the information provided by this p
                     return
                 else:
                     context = copy.deepcopy(message.context) # 这里需不需要deepcopy？
+                    sender_id = copy.deepcopy(list(message.sender.keys())[0])
                     continue_dialogue = response.pop("continue_dialogue",True)
                     
                     send_str="{name} said: {content}".format(name=self.name,
                                                     content=response["output"])
                     context.append(send_str)
                     
-                    if continue_dialogue: #希望结束对话，则不发送信息
-                        kargs={ "sender":{self.id:self.name},
+                    if continue_dialogue: #希望结束对话，则不发送信息,不做这一步
+                        self_continue_dialogue = True
+                        kargs={ "message_type":"social_network",
+                                "sender":{self.id:self.name},
                                 "content":response,
                                 "receivers": message.sender,
                                 "conver_num": message.conver_num+1,
                                 "context":context,
                                 "continue_dialogue":continue_dialogue}
-                        message.update_attr(**kargs)
-                        self.memory.add_post_meesage_buffer(message)
                         
-                        if message not in self.memory.messages.get("social_network",[]):
-                            self.memory.add_message([message])
+                        message_send = Message(**kargs)
+                        self.memory.add_post_meesage_buffer([message_send])
+                        
+                        
+                        message_self = copy.deepcopy(message_send) # 必须新创建，否则传到listener那里会影响这里的内容。
+                        message_self.content.update({"plan":group_discuss_plan})
+                        self.memory.add_social_network_message([message_self]) 
                    
 
                         
                     self.update_acquaintance_relation(context = context,
-                                                      acquaintance_id = list(message.sender.keys())[0])
+                                                      acquaintance_id = sender_id)
                     
         self.memory.mail.clear()
-                
+        return self_continue_dialogue
+
     
     def comment(self,description,step_type): # description 可以是community或house_type或house
         self.reset_state(mode="comment")
@@ -895,7 +953,7 @@ You think {acquantice_name} is (your belif in the information provided by this p
                 return
             else:
                 receivers={}
-                for tenant_id,tenant_info in self.social_network:
+                for tenant_id,tenant_info in self.memory.social_network:
                     receivers[tenant_id] = tenant_info.get("name","")
                 
                 self.update_memory(selfcontent = comment,
@@ -915,16 +973,17 @@ You think {acquantice_name} is (your belif in the information provided by this p
         c_indexs = ["community_{}".format(c_id) for c_id in community_ids]
         choose_type = """My choice is (The index of community, should be one of [{c_indexs}])"""
         choose_type = choose_type.format(c_indexs = ",".join(c_indexs))
+        memory = self.memory.memory_tenant("community",name=self.name) + self.infos.get("extra_info")
         prompt_inputs={
                 'task':'You need to choose one type of communities.',
                 'thought_type':'Your views on these communities.',
                 'choose_type':choose_type,
                 'house_info':community_description,
-                'memory':self.memory.memory_tenant("community")+self.infos.get("extra_info"),
+                'memory': memory,
                 'role_description':self.get_role_description()        
                 }
         for _ in range(self.max_jug_time):
-            prompt_inputs["memory"] +="".join(tip)
+            prompt_inputs["memory"] = memory + "\n" + "".join(tip)
             
             
             response = self.step(prompt_inputs).get("return_values")
@@ -986,17 +1045,18 @@ You think {acquantice_name} is (your belif in the information provided by this p
         choose_type = """My choice is (house type, should be one of [{house_type_indexs}])"""
         choose_type = choose_type.format(house_type_indexs = ",".join(house_type_ids))
 
+        memory = self.memory.memory_tenant("house_type",name=self.name)
         prompt_inputs={
             'task':'You need to choose one type of houses.',
             'thought_type':'Your views on these house types.',
             'choose_type':choose_type,
             'house_info':house_type_description,
-            'memory':self.memory.memory_tenant("house_type"),
+            'memory':memory,
             'role_description':self.get_role_description()        
             }        
         
         for _ in range(self.max_jug_time):
-            prompt_inputs["memory"] += "".join(tip)            
+            prompt_inputs["memory"] = memory + "\n" + "".join(tip)            
         
             log_round.set_available_house_type(system.get_available_house_type(community_id))
             self.reset_state(mode="choose")
@@ -1077,16 +1137,16 @@ You think {acquantice_name} is (your belif in the information provided by this p
         
         choose_type = """My choice is (The index of houses)"""
        
-        
+        memory = self.memory.memory_tenant("house",name=self.name)
         for houses_description in houses_description_generator:
             # self.logger.info("SYSTEM:\n {}".format(houses_description))
-            
+
             prompt_inputs={
                 'task':'You need to choose one house.',
                 'thought_type':'Your views on these houses.',
                 'choose_type':choose_type,
                 'house_info':houses_description,
-                'memory':"".join(tip)+self.memory.memory_tenant("house"),
+                'memory':memory +"\n" + "".join(tip),
                 'role_description': role_description       
                 }
             # self.comment(description=houses_description,
@@ -1236,7 +1296,7 @@ You think {acquantice_name} is (your belif in the information provided by this p
         return return_infos
     
     
-    def publish_forum_plan(self,respond_format):
+    def publish_forum_plan(self,respond_format,memory=""):
         self.reset_state(mode="publish_forum_plan")
         
         role_description ="""Your task is to Publish house information or community information online.\
@@ -1259,7 +1319,7 @@ your chances of choosing a house in the current situation"""
         
         prompt_inputs={
                 "concise_role_description":role_description,
-                "memory":self.memory.memory_tenant("publish_forum_plan")+self.infos.get("extra_info"),
+                "memory":memory+self.infos.get("extra_info"),
                 "personality":personality,
                 "system_competiveness_description":system_competiveness_description,
                 "goal":goal,
@@ -1278,13 +1338,13 @@ your chances of choosing a house in the current situation"""
                       forum_manager,
                       system,
                       log_round):
-        
+        publish_memory = self.memory.memory_tenant("publish",name=self.name)+self.infos.get("extra_info")
         publish_plan_respond_format = """You think (Your true opionion about these communities or houses).
 For now, Whether you want to publish information honestly online: (Yes or No). 
 (The reason why you want or don't want to publish information honestly online)
 Your current plan is (Your plan to publish which kind of info online, be concise)"""
         
-        publish_plan = self.publish_forum_plan(publish_plan_respond_format)
+        publish_plan = self.publish_forum_plan(publish_plan_respond_format,memory=publish_memory)
         
         self.reset_state(mode="publish_forum",)
         mem_buffer = []
@@ -1299,13 +1359,13 @@ Your current plan is (Your plan to publish which kind of info online, be concise
         prompt_inputs={
         'role_description':role_description,
         "plan":publish_plan,
-        'memory':self.memory.memory_tenant("publish")+self.infos.get("extra_info"),
+        'memory':publish_memory,
         "community_ids" :community_ids
         }
         
         for _ in range(self.max_jug_time):
 
-            prompt_inputs["memory"] += "".join(tip)
+            prompt_inputs["memory"] = publish_memory + "\n" + "".join(tip)
                         
             response = self.step(prompt_inputs).get("return_values",[])
             
@@ -1341,7 +1401,7 @@ Your current plan is (Your plan to publish which kind of info online, be concise
                 
                 except:
                     tip.append(f"Remember to respond ActionInput in format.")
-                    mem_buffer.append(response)
+                    mem_buffer.append(publish)
                         
                 
         

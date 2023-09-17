@@ -26,6 +26,12 @@ import re
 #     return_values["communication"].append(communication)
 
 
-text ="""2"""
-output = re.sub('\\(.*?\\)','',text)
-output
+# text ="""Words to say to A: 23333"""
+
+# output = re.sub('Words to say to .*?:','',text,flags=re.IGNORECASE)
+# output
+
+li = [1,2,3]
+while len(li)>0:
+    print(li[0])
+    li.pop(0)

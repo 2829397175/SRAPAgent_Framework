@@ -20,7 +20,7 @@ class Oldver_GroupDiscussParser(AgentOutputParser):
                 r"(.*?)\nFinal Answer:"]
         
         for regex in regexs:
-            match_thought = re.search(regex, llm_output, re.DOTALL)
+            match_thought = re.search(regex, llm_output, re.DOTALL|re.IGNORECASE)
             if match_thought:
                 break
             

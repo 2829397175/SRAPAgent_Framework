@@ -236,7 +236,7 @@ group_discuss_template: &group_discuss_template |-
   Here is your memory
   {memory}
 
-  Your goal is to rent one house. For now, you want tgroo discuss with some acquaintances.
+  Your goal is to rent one house. For now, you want to discuss with some acquaintances.
 
   {plan}
 
@@ -292,16 +292,19 @@ group_discuss_back_template: &group_discuss_back_template |-
   Here's your memory:
     {memory}
 
-
   Here's your plan to response to these messages:
     {plan}
 
   Here's your communication dialogue with your acquaintances:
     {acquaintance_communication}
     
-  Respond in this format:
-  Your decision on continue this chatting dialogue: (True/False)
-  (The words you want to say to {acquaintance_name}, make your words informative, concise and clear)
+  - If you have collected enough information, or the chatting dialogue starts repeatation, Respond in this format.
+    Your decision on continue this chatting dialogue: False
+    (The words you want to say to {acquaintance_name}, make your words informative, concise and clear)
+
+  - If you wish to continue this chatting dialogue, Respond in this format:
+    Your decision on continue this chatting dialogue: True
+    (The words you want to say to {acquaintance_name}, make your words informative, concise and clear)
 
   Now please respond to {acquaintance_name}:
   {agent_scratchpad}

@@ -26,7 +26,7 @@ class ForumParser(AgentOutputParser):
                 r"(.*?)\nFinal Answer:"]
         
         for regex in regexs:
-            match_thought = re.search(regex, llm_output, re.DOTALL)
+            match_thought = re.search(regex, llm_output, re.DOTALL|re.IGNORECASE)
             if match_thought:
                 break
             
@@ -49,7 +49,7 @@ class ForumParser(AgentOutputParser):
             
         # Parse out the action and action input
         regex = r"\s*\d*\s*Action\s*\d*\s*:(.*?)\nAction\s*\d*\s*Input\s*\d*\s*:[\s]*(.*)"
-        match = re.search(regex, llm_output, re.DOTALL)
+        match = re.search(regex, llm_output, re.DOTALL|re.IGNORECASE)
         if not match:
             raise ValueError(f"Could not parse LLM output: `{llm_output}`")
         action = match.group(1).strip()

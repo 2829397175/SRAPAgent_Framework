@@ -35,7 +35,7 @@ class ChooseParser(AgentOutputParser):
         regex = r"Thought\s*\d*\s*:(.*?)Action\s*\d*\s*:(.*?)\nAction\s*\d*\s*Input\s*\d*\s*:[\s]*(.*?)\n"
         llm_output +="\n"
         
-        match = re.search(regex, llm_output, re.DOTALL)
+        match = re.search(regex, llm_output, re.DOTALL|re.IGNORECASE)
         
         
         if not match:

@@ -48,6 +48,7 @@ class TenantManager(BaseManager):
                 for neigh_tenant_id,neigh_tenant_info in social_network.items():
                     if neigh_tenant_id in tenant_configs.keys():
                         neigh_tenant_info["name"] = tenant_configs[neigh_tenant_id].get("name",tenant_id)
+                memory_config.update({"social_network":social_network})
                 
                 tenant = LangchainTenant.from_llm_and_tools(name=tenant_config.get("name",tenant_id),
                                                             id=tenant_id,
@@ -59,7 +60,6 @@ class TenantManager(BaseManager):
                                                             max_choose=max_choose,
                                                             rule=base_config["agent_rule"],
                                                             work_place=tenant_config.get("work_place",""),
-                                                            social_network=social_network,
                                                             priority_item = priority_item,
                                                             family_num=tenant_config.get("family_members_num",0),
                                                             )

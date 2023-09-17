@@ -69,8 +69,9 @@ class GroupDiscussBackParser(AgentOutputParser):
             except:
                 continue_dialogue = outputs[0].strip() == "true" # 无法parse的情况，都视为continue
                 
-            output = outputs[1].strip()
+            output = "".join(outputs[1:]).strip()
             output = re.sub('\\(.*?\\)','',output) # 删除括号及括号内内容
+            output = re.sub('Words to say to .*?:','',output,flags=re.IGNORECASE)
             
             return AgentFinish(return_values={"return_values":{"continue_dialogue":continue_dialogue,
                                                                "output":output}},

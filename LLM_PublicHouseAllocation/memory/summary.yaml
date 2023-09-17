@@ -116,30 +116,30 @@ forum_publish_summary:  &forum_summary |-
   New summary:
 
 synthesize_summary:  &synthesize_summary |-
-  Progressively summarize new lines provided, adding onto the previous summary returning a new summary.
+  progessively summarize new lines provided, adding onto the previous summary. Return a new summary within 10 sentences.
 
   EXAMPLE
   Current summary:
-  Middle house is an acceptable option for my needs. 
+  You think community_1 have inconvenient facilities. And you didn't make a choce.
 
   New lines:
-  Output: community_1:Jake:The community environment seems to meet my requirements.
-  Thought: I need to publish information about community_2.
-  Output: community_2, close to my wife's workplace and my child's school.
-  Thought: House_4 has cheap rent.
-  Output: My choice is house_4.
+  Thought: Community_2 is close to my wife's workplace and my child's school.
+  Output: My choice is community_2.
 
   New summary:
-  Community_1 seem to be a good choice. Middle_house meets my requirements and I choose a cheap house to rent.
+  You think community_2 is ideal for your family members, better than community_1. And you choose community_2.
   END OF EXAMPLE
-
+  
+  
+  
   Current summary:
   {summary}
-
-  New lines of conversation:
+  
+  New lines:
   {new_lines}
+  
+  New Summary:
 
-  New summary:
 
 paragraph_summary:  &paragraph_summary |-
   progessively summarize new lines provided, adding onto the previous summary. Return a new summary within 10 sentences.
@@ -165,3 +165,25 @@ paragraph_summary:  &paragraph_summary |-
   {new_lines}
   
   New Summary:
+
+
+social_network_summary:  &social_network_summary |-
+  You're {name}. You're planning to choose one house.  
+
+  Your task is to use memory to assess the credibility of communication information and summarize the useful information in the conversation.
+
+  {acquaintance_description}
+
+  Here's your memory
+  {memory}
+
+  Here's your chatting dialogue with {acquaintance_name}.
+  {dialogue}
+
+  - Respond in this format:
+  Trusted: (Summary of the useful information, which you assessed as trustworthy in the conversation)
+  Suspicious: (Summary of the untrusted information, which you suspicious as trustworthy in the conversation; If there's no untrusted information, simply return None)
+  Reason: (why {acquaintance_name} say these things?Try to find a reasonal intention for {acquaintance_name})
+
+
+  Respond:

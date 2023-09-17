@@ -59,7 +59,7 @@ class Rule(BaseModel):
         return self.order.are_all_deques_empty(environment)
     
     def post_messages(self,**kargs):
-        self.updater.post_messages(**kargs)
+        return self.updater.post_messages(**kargs)
     
     def filter_community(self, tenant,community_list):
         """Update the set of visible agents for the agent"""

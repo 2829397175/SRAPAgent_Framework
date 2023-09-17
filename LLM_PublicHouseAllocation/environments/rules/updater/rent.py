@@ -22,12 +22,14 @@ class RentUpdater(BaseUpdater):
     def post_messages(self, 
                       post_messages:List[Message],
                       tenant_manager):
-        
+        receiver_ids = []
         for message in post_messages:
             for r_id in message.receivers.keys():
                 if r_id in tenant_manager.data.keys():
                     tenant_manager.data[r_id].receive_messages(messages=[message])
-            
+                    if (r_id not in receiver_ids): receiver_ids.append(r_id)
+                    
+        return receiver_ids
                     
     def reset(self):
         pass

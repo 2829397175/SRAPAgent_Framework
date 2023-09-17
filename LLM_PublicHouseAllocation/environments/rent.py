@@ -63,19 +63,38 @@ class RentEnvironment(BaseEnvironment):
             return True
 
     #test 测试用 要改
-    def communication(self,communication_num=3):
+    def communication(self,communication_num=6):
         tenant_ids = list(self.tenant_manager.data.keys())
         # tenant_ids = tenant_ids[:2] # test
-        for i in range(communication_num):
-            for tenant_id in tenant_ids:
-                tenant = self.tenant_manager.data[tenant_id]
-                if isinstance(tenant, LangchainTenant):
-                    asyncio.run(tenant.async_communication(self.forum_manager, self.system,self.rule,self.log))
-                else:
-                    raise NotImplementedError("Tenant type {} not implemented".format(tenant.__class__))
-                self.save_tenant_memory()
-                self.update_social_net(tenant=tenant)
-        #return self.log_round
+        
+        # for i in range(communication_num):
+        #     for tenant_id in tenant_ids:
+        #         tenant = self.tenant_manager.data[tenant_id]
+        #         if isinstance(tenant, LangchainTenant):
+        #             asyncio.run(tenant.async_communication(self.forum_manager, self.system,self.rule,self.log))
+        #         else:
+        #             raise NotImplementedError("Tenant type {} not implemented".format(tenant.__class__))
+        #         self.save_tenant_memory()
+        #         self.update_social_net(tenant=tenant)
+        c_num = 0
+        
+        while (len(tenant_ids) > 0 and c_num < communication_num):
+            tenant_id = tenant_ids[0]
+            tenant_ids.pop(0)
+            tenant = self.tenant_manager.data[tenant_id]
+            if isinstance(tenant, LangchainTenant):
+                continue_communication = asyncio.run(tenant.async_communication(self.forum_manager, self.system,self.rule,self.log))
+                receiver_ids = self.update_social_net(tenant=tenant) # 先把receiver放进communication队列
+                for r_id in receiver_ids:
+                    if (r_id) not in tenant_ids:
+                        tenant_ids.append(r_id)
+                if (continue_communication): tenant_ids.append(tenant_id)
+            else:
+                raise NotImplementedError("Tenant type {} not implemented".format(tenant.__class__))
+            self.save_tenant_memory() ## log
+            c_num += 1 
+            
+        
 
     def step(self):
         tenant_list = self.rule.get_next_agent_idx(self)
@@ -100,8 +119,10 @@ class RentEnvironment(BaseEnvironment):
         assert isinstance(tenant,LangchainTenant)
         post_messages = tenant.post_messages()
         if len(post_messages)>0:
-            self.rule.post_messages(post_messages=post_messages,
+            return self.rule.post_messages(post_messages=post_messages,
                                 tenant_manager=self.tenant_manager)
+        else:
+            return []
         
 
     def save_tenant_memory(self, dir="LLM_PublicHouseAllocation/tasks/PHA_50tenant_3community_19house/result/tenant_memory.json"):

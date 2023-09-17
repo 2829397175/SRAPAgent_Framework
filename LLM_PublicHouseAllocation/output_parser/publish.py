@@ -105,7 +105,7 @@ class PublishParser(AgentOutputParser):
         llm_output += "\n"
         # Parse out the action and action input
         regex = r"\s*\d*\s*Thought\s*\d*\s*:(.*?)\nAction\s*\d*\s*:(.*?)\nCommunity\s*\d*\s*:(.*?)\nInfo\s*\d*\s*:(.*?)\n"
-        matchs = re.findall(regex, llm_output, re.DOTALL)
+        matchs = re.findall(regex, llm_output, re.DOTALL|re.IGNORECASE)
 
         if not matchs:
             raise OutputParseError("Output Format Error")

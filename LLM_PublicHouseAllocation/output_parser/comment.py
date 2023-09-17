@@ -20,7 +20,7 @@ class CommentParser(AgentOutputParser):
         regex = r"Thought\s*\d*\s*:(.*?)\nAction\s*\d*\s*:(.*?)\nAction\s*\d*\s*Input\s*\d*\s*:[\s]*(.*)"
         llm_output +="\n"
         
-        matchs = re.findall(regex, llm_output, re.DOTALL)
+        matchs = re.findall(regex, llm_output, re.DOTALL|re.IGNORECASE)
         
         if not matchs:
             raise OutputParseError("Output Format Error")

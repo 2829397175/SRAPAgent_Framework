@@ -1,12 +1,8 @@
 {
     "0":{
-        "memory":[
-            "Thought:I should tell Emma and Sophia the truth about Community_2.\nAcquaintance_names:Emma Davis, Sophia Smith\nOutput:Hi Emma and Sophia, Community_2 looks like a quite good choice. The rent is a bit expensive but it provides a lot of facilities and is quite convenient.\nAcquaintance_id:3"
-        ],
+        "memory":[],
         "summarys":"",
-        "post_message_buffer":[
-            "Output:Hi Emma and Sophia, Community_2 looks like a quite good choice. The rent is a bit expensive but it provides a lot of facilities and is quite convenient."
-        ],
+        "post_message_buffer":[],
         "mail":[],
         "name":"James Anderson"
     },
@@ -14,28 +10,18 @@
         "memory":[],
         "summarys":"",
         "post_message_buffer":[],
-        "mail":[],
+        "mail":[
+            "0:Output:Hi Emma and Oliver, I think Community_2 is the best choice. It has everything we need, reasonable rent, close to public transportation and other amenities."
+        ],
         "name":"Emma Davis"
     },
     "2":{
         "memory":[],
         "summarys":"",
         "post_message_buffer":[],
-        "mail":[],
+        "mail":[
+            "0:Output:Hi Emma and Oliver, I think Community_2 is the best choice. It has everything we need, reasonable rent, close to public transportation and other amenities."
+        ],
         "name":"Oliver Johnson"
-    },
-    "3":{
-        "memory":[],
-        "summarys":"",
-        "post_message_buffer":[],
-        "mail":[],
-        "name":"Sophia Smith"
-    },
-    "4":{
-        "memory":[],
-        "summarys":"",
-        "post_message_buffer":[],
-        "mail":[],
-        "name":"William Brown"
     }
 }
