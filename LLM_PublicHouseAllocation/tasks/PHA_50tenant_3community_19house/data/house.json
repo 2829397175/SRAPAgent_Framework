@@ -56,7 +56,7 @@
          "balcony": "has",
          "floor": 9,
          "elevator": "has",
-      "available": true,
+         "available": true,
          "description": "The house has poor sound insulation and the community environment is not the best.",
          "potential_information_house": "The house is in a good condition, but the small kitchen might be a drawback for some. The water pressure might be slightly low on higher floors."
     },

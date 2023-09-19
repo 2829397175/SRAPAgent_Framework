@@ -61,9 +61,9 @@ class Rule(BaseModel):
     def post_messages(self,**kargs):
         return self.updater.post_messages(**kargs)
     
-    def filter_community(self, tenant,community_list):
+    def filter_community(self, **kwargs):
         """Update the set of visible agents for the agent"""
-        return self.visibility.filter_community(tenant,community_list)    
+        return self.visibility.filter_community(**kwargs)    
         
     def filter_housetype(self, tenant,housetype_list):
         """Update the set of visible agents for the agent"""

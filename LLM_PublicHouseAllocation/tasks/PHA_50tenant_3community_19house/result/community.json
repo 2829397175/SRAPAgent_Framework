@@ -5,16 +5,15 @@
         "location":"北京市大兴区隆平大街2号",
         "en_location":"No. 2, Longping Street, Daxing District, Beijing",
         "value_inch":30,
-        "sum_remain_num":8,
+        "sum_remain_num":7,
         "description":"There are sports facilities, including football fields and basketball courts, with a large green area and a large distance between buildings.",
         "nearby_info":"This community is surrounded by: Supermarkets include Hualian Boutique Supermarket (Guaxiang Road Branch), Carrefour Supermarket (Danish Town Branch); Schools include Zhongrui Hotel Management College, Beijing Second Foreign Language College Zhongrui Hotel Management College Living Area; Restaurants include microfood origin Hunan Cuisine (Hunan Cuisine Branch), fisherman's handle iron pot (Longjing Bay 2nd District Branch); Banks include Agricultural Bank of China ATM (Longgazhuang Shunjing Road Branch); .This commnunity does not have: subway, shopping mall, hospital, park,",
         "large_house":{
-            "remain_number":5,
+            "remain_number":4,
             "living_room":"one room",
             "index":[
                 "house_1",
                 "house_2",
-                "house_3",
                 "house_4",
                 "house_5"
             ],
@@ -50,8 +49,8 @@
                 "house_9",
                 "house_10",
                 "house_11",
-                "house_12",
-                "house_13"
+                "house_13",
+                "house_14"
             ],
             "size":"27.76-44.62",
             "cost":"952-1517"
@@ -64,7 +63,7 @@
         "location":"北京市大兴区华伦路1号院",
         "en_location":"Courtyard No. 1, Hualun Road, Daxing District, Beijing",
         "value_inch":40,
-        "sum_remain_num":3,
+        "sum_remain_num":4,
         "description":"The community has good greenery, a parking lot, and several kinds of sports and fitness equipment.",
         "nearby_info":"This commnunity is surrounded by: Metro includes Huangcun Railway Station, Huangcun West Street; Supermarket includes Wumi Supermarket (Jianxing Store), Ma Jie Department Store Flagship Store (Daxing Daxing Dazhong Fengli Store); Mall includes Daxing Dazheng Chunli, Daxing Xingcheng Commercial Building; Hospital includes Beijing Daxing Town Dazheng Dongli Community Health Service Station, Beijing Daxing Jingnan Traditional Chinese Medicine Hospital; Park includes Daxing Street Park, Daxing Agricultural Machinery Park; School includes Beijing Daxing District First Middle School, Beijing Daxing District Fifth Elementary School; Restaurants include Half-Demon Green Pepper Grilled Fish (Daxing Hotel Branch), Meizhou Dongpo Restaurant (Daxing Huangcun Branch); Bank includes Industrial and Commercial Bank of China ATM (Beijing Daxing Branch), Postal Savings Bank of China (Daxing Branch); .This commnunity: not have\n",
         "large_house":{
@@ -79,9 +78,11 @@
             "cost":"2240-2320"
         },
         "middle_house":{
-            "remain_number":0,
+            "remain_number":1,
             "living_room":"one room",
-            "index":[],
+            "index":[
+                "house_18"
+            ],
             "size":"44.96-47.13",
             "cost":"1800-1885"
         },

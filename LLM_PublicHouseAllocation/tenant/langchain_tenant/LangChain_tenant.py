@@ -50,7 +50,7 @@ import re
 import random
 import copy
 from LLM_PublicHouseAllocation.tenant.agent_rule import AgentRule
-
+from LLM_PublicHouseAllocation.tenant.policy import BasePolicy
 
 class LangchainTenant(langchainAgent):
     id :str
@@ -71,6 +71,8 @@ class LangchainTenant(langchainAgent):
     priority_item:dict = {}
     
     agentrule:AgentRule
+    
+    policy: BasePolicy
     
     def __init__(self, rule, **kwargs):
         rule_config = rule
@@ -263,7 +265,8 @@ class LangchainTenant(langchainAgent):
             "house",
             "publish",
             "search",
-            "social_network"
+            "social_network",
+            "house_orientation"
         )
         assert step_type in STEP_TYPES, "invalid type of step"
         
@@ -379,10 +382,11 @@ class LangchainTenant(langchainAgent):
         rule: dict,
         work_place :str,
         output_parser: Optional[AgentOutputParser],
+        policy:BasePolicy,
         allowed_tools :Optional[List[str]] = None,
         max_choose:int = 3,
         priority_item:dict={},
-        family_num:int=0
+        family_num:int=0,
     ) -> langchainAgent:
         """Construct an agent from an LLM and tools."""
         llm_chain = LLMChain(
@@ -404,7 +408,8 @@ class LangchainTenant(langchainAgent):
             max_choose = max_choose,
             workplace = work_place,
             priority_item = priority_item,
-            family_num=family_num
+            family_num=family_num,
+            policy = policy
         )
         
     def reset(self):
@@ -498,7 +503,8 @@ You still have {chance_num} chances to choose house.\
             self.communicate()
             observation="I have discussed with my acquaintances."
         elif action == "Choose":
-            choose_state,choose_house_id = self.choose_pipeline(
+            choose_state,choose_house_id = self.policy.choose_pipeline(
+                    tenant= self,
                     forum_manager=forum_manager,
                     system=system,
                     rule=rule,
@@ -552,6 +558,19 @@ You still have {chance_num} chances to choose house.\
         #                         rule=rule,
         #                         )
     
+    def group(self,
+                forum_manager, 
+                system,  
+                rule,
+                tool,
+                log_round):
+        return self.policy.group(self,
+                          forum_manager, 
+                            system,  
+                            rule,
+                            tool,
+                            log_round)
+    
     def choose_process(self, 
                forum_manager, 
                system, 
@@ -571,78 +590,78 @@ You still have {chance_num} chances to choose house.\
                          tool=tool) 
         # 进行1轮，先是否进行选房流程的判断，若否则直接返回
         
-    def choose_pipeline(self,
-                        forum_manager, 
-                        system, 
-                        tool, 
-                        rule,
-                        log_round):
-        log_round.set_tenant_information(self.id,self.name,self.max_choose - self.choose_times)
-        # log_round["tenant_id"] = self.id
-        # log_round["tenant_name"] = self.name
-        # log_round["available_times"] = self.max_choose - self.choose_times
+    # def choose_pipeline(self,
+    #                     forum_manager, 
+    #                     system, 
+    #                     tool, 
+    #                     rule,
+    #                     log_round):
+    #     log_round.set_tenant_information(self.id,self.name,self.max_choose - self.choose_times)
+    #     # log_round["tenant_id"] = self.id
+    #     # log_round["tenant_name"] = self.name
+    #     # log_round["available_times"] = self.max_choose - self.choose_times
             
-        choose_state = False
-        # search_forum test
-        # search_infos = self.search_forum(tool,log_round)
-        search_infos = self.search_forum(forum_manager=forum_manager,
-                                         system=system,
-                                         log_round=log_round)
+    #     choose_state = False
+    #     # search_forum test
+    #     # search_infos = self.search_forum(tool,log_round)
+    #     search_infos = self.search_forum(forum_manager=forum_manager,
+    #                                      system=system,
+    #                                      log_round=log_round)
 
         
-        choose_state, community_id, community_choose_reason = self.choose_community(system,search_infos,rule,log_round)
-        log_round.set_choose_community(community_id,community_choose_reason)
-        # log_round["choose_community_id"] = community_id
-        # log_round["choose_community_reason"] = community_choose_reason
+    #     choose_state, community_id, community_choose_reason = self.choose_community(system,search_infos,rule,log_round)
+    #     log_round.set_choose_community(community_id,community_choose_reason)
+    #     # log_round["choose_community_id"] = community_id
+    #     # log_round["choose_community_reason"] = community_choose_reason
         
-        if not choose_state:
-            self.update_times(choose_state)
-            self.publish_forum(forum_manager,system,log_round)
-            return False,"None"
+    #     if not choose_state:
+    #         self.update_times(choose_state)
+    #         self.publish_forum(forum_manager,system,log_round)
+    #         return False,"None"
         
-        # test
-        # self.access_forum(tenant_id=tenant_id)
+    #     # test
+    #     # self.access_forum(tenant_id=tenant_id)
         
-        choose_state, house_type_id, house_type_reason = self.choose_house_type(system,community_id,rule,log_round)
-        # log_round["choose_house_type"] = house_type_id
-        # log_round["choose_house_type_reason"] = house_type_reason
-        log_round.set_choose_house_type(house_type_id,house_type_reason)
-        if not choose_state:
-            self.update_times(choose_state)
-            self.publish_forum(forum_manager,system,log_round)
-            return False,"None"
+    #     choose_state, house_type_id, house_type_reason = self.choose_house_type(system,community_id,rule,log_round)
+    #     # log_round["choose_house_type"] = house_type_id
+    #     # log_round["choose_house_type_reason"] = house_type_reason
+    #     log_round.set_choose_house_type(house_type_id,house_type_reason)
+    #     if not choose_state:
+    #         self.update_times(choose_state)
+    #         self.publish_forum(forum_manager,system,log_round)
+    #         return False,"None"
         
-        if not isinstance(house_type_id,list):
-            house_filter_ids = [house_type_id] #这里存储 某个community中的，某些类型的房子
-        else:
-            house_filter_ids = house_type_id
+    #     if not isinstance(house_type_id,list):
+    #         house_filter_ids = [house_type_id] #这里存储 某个community中的，某些类型的房子
+    #     else:
+    #         house_filter_ids = house_type_id
             
             
        
             
-        choose_state, house_id, house_choose_reason = self.choose_house(
-                                                   system,
-                                                   community_id,
-                                                   house_filter_ids,
-                                                   log_round)
+    #     choose_state, house_id, house_choose_reason = self.choose_house(
+    #                                                system,
+    #                                                community_id,
+    #                                                house_filter_ids,
+    #                                                log_round)
         
-        # log_round["choose_house_id"] = house_id
-        # log_round["choose_house_reason"] = house_choose_reason
-        log_round.set_choose_house(house_id,house_choose_reason)
+    #     # log_round["choose_house_id"] = house_id
+    #     # log_round["choose_house_reason"] = house_choose_reason
+    #     log_round.set_choose_house(house_id,house_choose_reason)
         
-        self.publish_forum(system=system,
-                           forum_manager=forum_manager,
-                           log_round=log_round)
-        # 更改tenant 的选择状态
-        self.update_times(choose_state)
+    #     self.publish_forum(system=system,
+    #                        forum_manager=forum_manager,
+    #                        log_round=log_round)
+    #     # 更改tenant 的选择状态
+    #     self.update_times(choose_state)
              
-        if not choose_state:
-            return False,"None"
+    #     if not choose_state:
+    #         return False,"None"
         
-        # 更改communitymanager中的remain_num
-        system.set_chosed_house(house_id,community_id,house_filter_ids)
+    #     # 更改communitymanager中的remain_num
+    #     system.set_chosed_house(house_id,community_id,house_filter_ids)
 
-        return True,house_id.lower()
+    #     return True,house_id.lower()
              
         
     def communicate(self):
@@ -966,13 +985,15 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
         mem_buffer=[]
         tip=[]
         
-        community_description,community_ids = system.get_community_abstract(rule,self)
+        choose_house_type = log_round.log_round.get("choose_house_type", None)
+        
+        community_description, community_ids = system.get_community_abstract(rule, self, choose_house_type)
         log_round.set_available_community_description(community_description)
         self.reset_state(mode="choose")
         
-        c_indexs = ["community_{}".format(c_id) for c_id in community_ids]
-        choose_type = """My choice is (The index of community, should be one of [{c_indexs}])"""
-        choose_type = choose_type.format(c_indexs = ",".join(c_indexs))
+
+        choose_type = """My choice is (The index of community, should be one of [{community_ids}])"""
+        choose_type = choose_type.format(community_ids=",".join(community_ids))
         memory = self.memory.memory_tenant("community",name=self.name) + self.infos.get("extra_info")
         prompt_inputs={
                 'task':'You need to choose one type of communities.',
@@ -1037,11 +1058,13 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
                 
         
         
-    def choose_house_type(self,system,community_id,rule,log_round) -> Tuple[bool,str]:
+
+        
+    def choose_house_type(self,system,rule,log_round,community_id = None) -> Tuple[bool,str]:
         mem_buffer=[]
         tip=[]
         
-        house_type_description,house_type_ids = system.get_house_type(community_id,rule,self)
+        house_type_description, house_type_ids = system.get_house_type(community_id,rule,self)
         choose_type = """My choice is (house type, should be one of [{house_type_indexs}])"""
         choose_type = choose_type.format(house_type_indexs = ",".join(house_type_ids))
 
@@ -1075,8 +1098,7 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
                     content = response.get("output","")
                     if "mid"  in content:
                         choose_idx = "middle_house"
-                        choose_status = True
-                        
+                        choose_status = True 
                     elif "large" in content:
                         choose_idx = "large_house"
                         choose_status = True
@@ -1089,7 +1111,10 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
                     choose_status = False
             
             if (choose_status):
-                if (system.jug_community_housetype_valid(community_id,choose_idx,house_type_ids)):   
+                if community_id is None or \
+                    (system.jug_community_housetype_valid(community_id,choose_idx,house_type_ids)):   
+                        # 如果在选小区之前选房型（community_id is None），就视作可行解
+                        
                     self.update_memory(selfcontent=response,
                                        receivers={self.id:self.name},
                                        step_type="house_type")
@@ -1253,6 +1278,154 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
         
     
     
+    def choose_orientation(self,system,rule,log_round,community_id = None) -> Tuple[bool,str]:
+        mem_buffer=[]
+        tip=[]
+        
+        available_orientation_description, available_orientations = system.get_house_orientation(community_id=community_id,
+                                                                                               rule=rule,
+                                                                                               tenant=self)
+
+        choose_type = """My choice is (house orientation, should be one of [{house_type_indexs}])"""
+        choose_type = choose_type.format(house_type_indexs = ",".join(available_orientations))
+
+        memory = self.memory.memory_tenant("house_orientation",name=self.name)
+        prompt_inputs={
+            'task':'You need to choose one type of house orientation.',
+            'thought_type':'Your views on these house orientations.',
+            'choose_type':choose_type,
+            'house_info':available_orientation_description,
+            'memory':memory,
+            'role_description':self.get_role_description()        
+            }        
+        
+        for _ in range(self.max_jug_time):
+            prompt_inputs["memory"] = memory + "\n" + "".join(tip)            
+        
+            log_round.set_available_house_type(system.get_available_house_type(community_id))
+            self.reset_state(mode="choose")
+            response = self.step(prompt_inputs).get("return_values")
+            # parse community choosing reponse
+            choose_status = False
+            chosen_orientation = None
+            try:
+                content = response.get("output","")
+                content = re.search(".*?choice.*?is (.*)",str(content),re.I | re.M)
+                content = content.groups()[0].upper()
+                
+                for orientation in {"north",'west','east','south'}:
+                    if orientation in content.lower():
+                        choose_status = True
+                        chosen_orientation = orientation
+                        break
+                    
+                if not choose_status:
+                    for orientation in {"N",'W','E','S'}:
+                        if orientation in content.upper():
+                            choose_status = True
+                            chosen_orientation = orientation
+                            break
+                        
+            except Exception as e:
+                choose_status = False
+            
+            if (choose_status):
+                if chosen_orientation  in available_orientations:
+                    # 如果在选小区之前选房型（community_id is None），就视作可行解    
+                    self.update_memory(selfcontent=response,
+                                       receivers={self.id:self.name},
+                                       step_type="house_orientation")
+                    return True, chosen_orientation, response.get("thought","")
+                else:
+                    tip.append(f"{chosen_orientation} is not available any more, keep this in mind.")
+                    mem_buffer.append(response)
+            else:
+                self.update_memory(selfcontent=response,
+                                   receivers={self.id:self.name},
+                                    step_type="house_orientation")
+                return False,"None", response.get("thought","")
+        
+        thought_fail_choose="" # 每一次的选择都是非法结果
+        for mem in mem_buffer:
+            thought_fail_choose+=mem.get("thought","")
+            
+        self.update_memory(selfcontent={"thought":thought_fail_choose},
+                           receivers={self.id:self.name},
+                           step_type="house_type")
+        
+        return False,"None", thought_fail_choose
+    
+    
+    def choose_floor(self,system,rule,log_round,community_id = None) -> Tuple[bool,str]:
+        mem_buffer=[]
+        tip=[]
+        
+        available_floor_description, available_floors = system.get_house_floor(community_id=community_id,
+                                                                                               rule=rule,
+                                                                                               tenant=self)
+
+        choose_type = """My choice is (house floor, should be one of [{floor_types}])"""
+        choose_type = choose_type.format(floor_types = ",".join(available_floors))
+
+        memory = self.memory.memory_tenant("floor_type",name=self.name)
+        prompt_inputs={
+            'task':'You need to choose one type of house orientation.',
+            'thought_type':'Your views on these house orientations.',
+            'choose_type':choose_type,
+            'house_info':available_floor_description,
+            'memory':memory,
+            'role_description':self.get_role_description()        
+            }        
+        
+        for _ in range(self.max_jug_time):
+            prompt_inputs["memory"] = memory + "\n" + "".join(tip)            
+        
+            log_round.set_available_house_type(system.get_available_house_type(community_id))
+            self.reset_state(mode="choose")
+            response = self.step(prompt_inputs).get("return_values")
+            # parse community choosing reponse
+            choose_status = False
+            try:
+                content = response.get("output","")
+                content = re.search(".*?choice.*?is (.*)",str(content),re.I | re.M)
+                content = content.groups()[0].strip()
+                
+                for floor in {"high",'low'}:
+                    if floor in content.lower():
+                        choose_status = True
+                        chosen_floor = floor
+                        break
+                    
+                        
+            except Exception as e:
+                choose_status = False
+            
+            if (choose_status):
+                if chosen_floor  in available_floors:
+                    # 如果在选小区之前选房型（community_id is None），就视作可行解    
+                    self.update_memory(selfcontent=response,
+                                       receivers={self.id:self.name},
+                                       step_type="house_orientation")
+                    return True, chosen_floor, response.get("thought","")
+                else:
+                    tip.append(f"{chosen_floor} is not available any more, keep this in mind.")
+                    mem_buffer.append(response)
+            else:
+                self.update_memory(selfcontent=response,
+                                   receivers={self.id:self.name},
+                                    step_type="house_orientation")
+                return False,"None", response.get("thought","")
+        
+        thought_fail_choose="" # 每一次的选择都是非法结果
+        for mem in mem_buffer:
+            thought_fail_choose+=mem.get("thought","")
+            
+        self.update_memory(selfcontent={"thought":thought_fail_choose},
+                           receivers={self.id:self.name},
+                           step_type="house_type")
+        
+        return False,"None", thought_fail_choose
+    
     
     def search_forum(self,
                      forum_manager,
@@ -1346,11 +1519,18 @@ Your current plan is (Your plan to publish which kind of info online, be concise
         
         publish_plan = self.publish_forum_plan(publish_plan_respond_format,memory=publish_memory)
         
-        self.reset_state(mode="publish_forum",)
+        
+        self.reset_state(mode="publish_forum")
         mem_buffer = []
         tip=[]
-        available_community_ids = system.get_available_community_ids()
-        community_ids = ", ".join(available_community_ids)
+        
+        # 限制发布信息的小区，是否可以选择
+        # available_community_ids = system.get_available_community_ids()
+        # community_ids = ", ".join(available_community_ids)
+        
+        # 不限制发布信息的小区，是否可以选择
+        community_ids = ", ".join(list(system.community_manager.data.keys()))
+        
         
         role_description = """Your task is to Publish house information or community information online.\
 {role_des}"""
@@ -1358,7 +1538,7 @@ Your current plan is (Your plan to publish which kind of info online, be concise
 
         prompt_inputs={
         'role_description':role_description,
-        "plan":publish_plan,
+        "plan":publish_plan["return_values"].get("plan",""),
         'memory':publish_memory,
         "community_ids" :community_ids
         }
@@ -1378,7 +1558,8 @@ Your current plan is (Your plan to publish which kind of info online, be concise
                     
                     community_id = f"community_{choose_community_idx}".lower()
                     
-                    assert system.jug_community_valid(community_id)
+                    assert community_id in system.community_manager.data.keys(),\
+                        "invalid community index"
                     
                     community_name = system.community_id_to_name(community_id)
                     
@@ -1410,7 +1591,7 @@ Your current plan is (Your plan to publish which kind of info online, be concise
         for mem in mem_buffer:
             thought_fail_publish+=mem.get("thought","")
             
-        self.update_memory(response={"thought":thought_fail_publish,
+        self.update_memory(selfcontent={"thought":thought_fail_publish,
                             "output":"I fail to publish any information online."},
                            receivers={self.id:self.name},
                            step_type="publish")

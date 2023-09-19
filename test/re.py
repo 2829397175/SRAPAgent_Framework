@@ -30,7 +30,8 @@ import re
 
 # output = re.sub('Words to say to .*?:','',text,flags=re.IGNORECASE)
 # output
-
+content = "My choice is S."
+a =re.search(".*?choice.*?is (.*)",str(content),re.I | re.M)
 li = [1,2,3]
 while len(li)>0:
     print(li[0])

@@ -5,8 +5,8 @@ environment:
   max_turns: 5
   rule:
     order:
-      # type: priority
-      type: rent
+      type: priority
+      # type: rent
     updater:
       type: rent
     visibility:
@@ -24,6 +24,12 @@ managers:
     save_dir: "./LLM_PublicHouseAllocation/tasks/PHA_50tenant_3community_19house/data/forum.json"
 
   tenant:
+    policy: 
+      type : ver1 # 表示分房政策
+      filter_house_labels: ["house_type",
+                           "house_orientation",
+                           "floor_type"]
+
     type_tenant: LangchainTenant
     data_dir: "./LLM_PublicHouseAllocation/tasks/PHA_50tenant_3community_19house/data/tenant.json"
     save_dir: "./LLM_PublicHouseAllocation/tasks/PHA_50tenant_3community_19house/result/tenant.json"

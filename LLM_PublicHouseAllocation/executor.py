@@ -62,11 +62,12 @@ class Executor():
         #     loop = asyncio.get_event_loop()
         #     loop.run_until_complete(self.environment.step())
         self.environment.log.reset()
+        self.environment.group()
         self.environment.line_up()
         self.environment.broadcast()
         
         while self.environment.is_done():
-            self.environment.communication() #测试用
+            # self.environment.communication() #测试用
             #if self.environment.cnt_turn>3:
             self.environment.step()
 

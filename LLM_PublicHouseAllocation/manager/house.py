@@ -86,6 +86,39 @@ class HouseManager(BaseManager):
         houses=self.get_available_houses(community_name,housetype)
         return len(houses)
 
+    def get_filtered_house_ids(self,house_filter_ids:dict):
+        """this function filter house_ids from house_filter_ids
+            house_filter_ids:{
+                filter_key:filter_value
+            }
+            exp. 
+            house_filter_ids:{"floor":"high"}
+        """
+        
+        house_filter_ids = list(self.data.keys())
+        
+        if "floor_type" in house_filter_ids.keys():
+            house_types = house_filter_ids["floor_type"]
+            for k,v in self.data.items():
+                v["floor_type"] = "high" if v["floor"] >=10 else "low"
+                
+            house_filter_ids = list(filter(lambda idx: self.data["floor_type"] in house_types,house_filter_ids))
+                
+        if "house_orientation" in house_filter_ids.keys():
+            house_orientations = house_filter_ids["house_orientation"]
+            
+            def judge_ori(ori,ori_filters):
+                for ori_f in ori_filters:
+                    if ori_f.upper() in ori.upper():
+                        return True
+                return False
+            
+            house_filter_ids = list(filter(lambda idx: judge_ori(self.data["toward"],house_orientations),house_filter_ids))
+            
+        return house_filter_ids
+            
+                
+        
 
     def save_data(self):
         # assert os.path.exists(self.save_dir), "no such file path: {}".format(self.save_dir)

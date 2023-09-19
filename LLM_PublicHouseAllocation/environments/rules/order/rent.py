@@ -34,7 +34,7 @@ class RentOrder(BaseOrder):
         return environment.deque_dict
 
     def requeue(self, environment,tenant):
-        """Return the index of the next agent to speak"""
+        """re-queue"""
         environment.deque_dict["random_queue"].append(tenant)
         
     def reset(self,environment) -> None:

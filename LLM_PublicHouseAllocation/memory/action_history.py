@@ -258,12 +258,17 @@ class ActionHistoryMemory(BaseMemory,SummarizerMixin):
     
     #  调用各类 retrive 方法
     def memory_tenant(self,mem_type:str,name=None)->str:
+        house_attrs =("house_type",
+                      "house_orientation",
+                      "floor_type")
+        
         TYPE_MEM={
             "community":["search","community"],
-            "house_type":["house_type"],
             "house":["house"],
-            "search":["search","community"]# 搜索的话，需要关于小区的记忆（在search,community,social_network 中都有）
+            "search":["search","community"],# 搜索的话，需要关于小区的记忆（在search,community,social_network 中都有）
+            **{key:[key] for key in house_attrs}
         } # 注 forum暂时只有小区消息
+        
         
         if mem_type in TYPE_MEM.keys():# 默认retrive方法
             type_messages = TYPE_MEM.get(mem_type,[]) 

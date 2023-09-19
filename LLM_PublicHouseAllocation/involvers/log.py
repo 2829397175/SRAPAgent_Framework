@@ -5,6 +5,10 @@ class LogRound(BaseModel):
     log_list:list=[]
     log_round:dict={}
     save_dir:str=""
+    
+    def init_log_round_from_dict(self, kwargs):
+        self.log_round = kwargs 
+    
     def set_tenant_information(self,id,name,available_times):
         self.log_round["tenant_id"] = id
         self.log_round["tenant_name"] = name
@@ -22,14 +26,35 @@ class LogRound(BaseModel):
         
     def set_available_community_description(self, community_description):
         self.log_round["community_available_description"] = community_description
+        
     def set_choose_community(self,community_id,reason):
         self.log_round["choose_community_id"] = community_id
         self.log_round["choose_community_reason"] = reason
+        
+    def get_choose_community(self):
+        assert "choose_community_id" in self.log_round.keys(), "Not chosen community yet"
+        return self.log_round["choose_community_id"],self.log_round["choose_community_reason"]
+        
     def set_available_house_type(self,available_house_type):
-        self.log_round["available_house_type"]=available_house_type
+        self.log_round["available_house_type"] = available_house_type
+        
     def set_choose_house_type(self,house_type,reason):
         self.log_round["choose_house_type"] = house_type
         self.log_round["choose_house_type_reason"] = reason
+        
+    def set_choose_house_orientation(self,house_orientation,reason):
+        self.log_round["choose_house_orientation"] = house_orientation
+        self.log_round["choose_house_orientation_reason"] = reason
+        
+    def set_choose_floor_type(self,floor_type,reason):
+        self.log_round["choose_floor_type"] = floor_type
+        self.log_round["choose_floor_type_reason"] = reason
+        
+        
+    def get_choose_house_type(self):
+        assert "choose_house_type" in self.log_round.keys(), "Not chosen house type yet"
+        return  self.log_round["choose_house_type"],self.log_round["choose_house_type_reason"]
+        
     def set_available_house_description(self,housedic):
         house_info_description = "{house_id}: The house is a {house_type} with an area of {house_area} square meters and a monthly rent of {rent_money} yuan." \
                                      "It {balcony} a balcony and {elevator} an elevator. " \
@@ -57,6 +82,7 @@ class LogRound(BaseModel):
         
     def set_comment(self,comment):
         self.log_round["produce_comment"] = comment
+        
     def set_log_list(self):
         if self.log_round!={}:
             self.log_list.append(self.log_round)
@@ -73,6 +99,7 @@ class LogRound(BaseModel):
         # assert os.path.exists(self.save_dir), "no such file path: {}".format(self.save_dir)
         with open("LLM_PublicHouseAllocation/tasks/PHA_50tenant_3community_19house/result/tenantal_system.json", 'w', encoding='utf-8') as file:
             json.dump(self.log_list, file, indent=4,separators=(',', ':'),ensure_ascii=False)
+            
     def reset(self):
         self.log_round={}
         self.log_list=[]

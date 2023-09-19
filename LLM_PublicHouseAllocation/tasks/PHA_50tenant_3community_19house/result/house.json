@@ -31,7 +31,7 @@
         "balcony":"has",
         "floor":8,
         "elevator":"has",
-        "available":true,
+        "available":false,
         "description":"While located in a convenient area, this house suffers from poor sound insulation and the community environment could be better.",
         "potential_information_house":"The house is in a new condition, but the small kitchen and slightly old appliances might be a drawback for some people."
     },
@@ -139,7 +139,7 @@
         "balcony":"has",
         "floor":15,
         "elevator":"has",
-        "available":true,
+        "available":false,
         "description":"The house provides a comfortable living space and features a balcony for extra outdoor space.",
         "potential_information_house":"The house is quite spacious and benefits from a lot of natural light during the day."
     },
@@ -163,7 +163,7 @@
         "balcony":"has",
         "floor":20,
         "elevator":"has",
-        "available":false,
+        "available":true,
         "description":"The house is the largest in the community and enjoys good natural lighting. It also benefits from a balcony.",
         "potential_information_house":"The spacious living area is a standout feature of the house, and the balcony provides excellent views."
     },
@@ -211,7 +211,7 @@
         "balcony":"has",
         "floor":12,
         "elevator":"has",
-        "available":false,
+        "available":true,
         "description":"Despite being smaller, this house is south-facing and offers good green views of the community. It is also well-maintained.",
         "potential_information_house":"The house may be on the smaller side, but it's very well-kept and efficient."
     },

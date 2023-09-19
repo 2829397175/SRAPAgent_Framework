@@ -130,13 +130,13 @@ publish_forum_template:  &publish_forum_template |-
   Thought: (your view on the information you want to publish)
   Action: Publish
   Community: (community index, should be one of [{community_ids}])
-  Info: (The information about this community)
+  Info: (The information you want to publish about this community, stay consistent with your plan and thought; Ensure that the information is specific and clear)
   
   - If you don't want to publish anything respond in this format:
   Thought: (reason why you don't want to publish anything)
   Action: Giveup
 
-  Respond:
+  Respond in first person:
   {agent_scratchpad}
 
 comment_template:  &comment_template |-
@@ -265,10 +265,10 @@ group_discuss_template: &group_discuss_template |-
   - Respond in this format:
   Thought: (You always think about what to do)
   Acquaintance: (Acquaintance name, could be a list or string)
-  Output: (things you want to tell this Acquaintance in particular)
+  Output: (things you want to tell this Acquaintance in particular, stay consistent with your plan and thought)
   .. (this Thought/Acquaintance/Output repeat at most {acquaintance_num} times!!)
 
-  Respond:
+  Respond in first person:
   {agent_scratchpad}
 
   
@@ -300,13 +300,13 @@ group_discuss_back_template: &group_discuss_back_template |-
     
   - If you have collected enough information, or the chatting dialogue starts repeatation, Respond in this format.
     Your decision on continue this chatting dialogue: False
-    (The words you want to say to {acquaintance_name}, make your words informative, concise and clear)
+    (The words you want to say to {acquaintance_name}, make your words informative, concise and clear; make sure your words are consistent with your plan and thought)
 
   - If you wish to continue this chatting dialogue, Respond in this format:
     Your decision on continue this chatting dialogue: True
-    (The words you want to say to {acquaintance_name}, make your words informative, concise and clear)
+    (The words you want to say to {acquaintance_name}, make your words informative, concise and clear; make sure your words are consistent with your plan and thought)
 
-  Now please respond to {acquaintance_name}:
+  Now please respond to {acquaintance_name} in first person:
   {agent_scratchpad}
   
   

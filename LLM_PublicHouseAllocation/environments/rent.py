@@ -114,7 +114,18 @@ class RentEnvironment(BaseEnvironment):
             if (self.cnt_turn+1) %5==0:
                 self.system.community_manager.publish_community()
 
-
+    
+    def group(self):
+        tenant_groups = {}
+        for tenant_id,tenant in self.tenant_manager.data.items():
+            group_id = tenant.group(self.forum_manager, self.system, self.rule,self.tool, self.log)
+            if group_id in tenant_groups.keys():
+                tenant_groups[group_id].append(tenant_id)
+            else:
+                tenant_groups[group_id] = [tenant_id]
+        self.tenant_manager.groups = tenant_groups
+       
+    
     def update_social_net(self,tenant):
         assert isinstance(tenant,LangchainTenant)
         post_messages = tenant.post_messages()

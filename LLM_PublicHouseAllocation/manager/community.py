@@ -20,7 +20,7 @@ class CommunityManager(BaseManager):
         with open(data_dir,'r',encoding = 'utf-8') as f:
             community_datas = json.load(f)
             
-        publish_order = kwargs.pop("publish_order",True)
+        publish_order = kwargs.pop("publish_order",False)
         id_ = 0
         for community_name, community_info in community_datas.items():
             if publish_order:
@@ -165,10 +165,14 @@ There remains {remain_num} houses of this type."""
             self.data[community_id].get("available",False)
             
 
-
-    def get_filtered_house_ids(self, community_id, house_filter_ids: list):
+    
+    def get_filtered_house_ids(self, community_id, house_types: list):
+        """
+        filter from house_type (large/small/middle)
+        """
+        
         community_infos = self.data[community_id]
-        house_indexs = [community_infos[filter_key].get('index', []) for filter_key in house_filter_ids]
+        house_indexs = [community_infos[filter_key].get('index', []) for filter_key in house_types]
 
         house_indexs_concat = []
         for house_index in house_indexs:

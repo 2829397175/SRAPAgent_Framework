@@ -3,6 +3,7 @@ import os
 
 from LLM_PublicHouseAllocation.tenant.multiprompt_tenant import CAHTTenant
 from LLM_PublicHouseAllocation.tenant.langchain_tenant import LangchainTenant
+from LLM_PublicHouseAllocation.tenant.policy import policy_registry
 from LLM_PublicHouseAllocation.output_parser import output_parser_registry
 from . import manager_registry as ManagerRgistry
 from .base import BaseManager
@@ -18,6 +19,8 @@ class TenantManager(BaseManager):
     Args:
         tenants: list[Tenant]
     """
+    
+    groups:dict = {} # group_id:[tenant_id]
 
     @classmethod
     def load_data(
@@ -31,6 +34,11 @@ class TenantManager(BaseManager):
             tenant_configs = json.load(f)
 
         base_config = kwargs
+        
+        policy_kwargs = base_config.get("policy")
+        policy_type = policy_kwargs.pop("type","ver1")
+        policy = policy_registry.build(policy_type,**policy_kwargs)
+        
         tenants = {}
         if base_config.get("type_tenant") == "LangchainTenant":
             llm_base = load_llm(base_config.pop('llm'))
@@ -57,11 +65,13 @@ class TenantManager(BaseManager):
                                                             llm=llm_base,
                                                             prompt=prompt_base,
                                                             output_parser=output_parser_base,
+                                                            policy = policy,
                                                             max_choose=max_choose,
                                                             rule=base_config["agent_rule"],
                                                             work_place=tenant_config.get("work_place",""),
                                                             priority_item = priority_item,
                                                             family_num=tenant_config.get("family_members_num",0),
+                                                            
                                                             )
                 tenants[tenant_id] = tenant
 
