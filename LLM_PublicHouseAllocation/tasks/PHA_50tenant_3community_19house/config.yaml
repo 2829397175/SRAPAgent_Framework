@@ -2,7 +2,7 @@ name: PHA_50tenant_3community_19house
 environment:
   tool: True
   env_type: rent
-  max_turns: 5
+  max_turns: 10
   rule:
     order:
       type: priority

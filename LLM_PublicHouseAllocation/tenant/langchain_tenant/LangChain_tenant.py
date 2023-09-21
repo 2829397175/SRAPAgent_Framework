@@ -485,8 +485,8 @@ You still have {chance_num} chances to choose house.\
 
         self.reset_state(mode="action_plan")
         # response = await self.astep(prompt_inputs)
-        response = self.step(prompt_inputs)
-        response = response.get("return_values",{})
+        response = self.step(prompt_inputs).get("return_values",{})
+
         
         action = response.get("output","")
         thought = response.get("thought","")
@@ -500,7 +500,7 @@ You still have {chance_num} chances to choose house.\
                                 log_round)
             observation="I have published some info on forum."
         elif action == "GroupDiscuss":
-            self.communicate()
+            self.communicate(log=log_round)
             observation="I have discussed with my acquaintances."
         elif action == "Choose":
             choose_state,choose_house_id = self.policy.choose_pipeline(
@@ -527,11 +527,12 @@ You still have {chance_num} chances to choose house.\
                                   forum_manager,
                                   system,
                                   rule,
-                                  log_round
+                                  log_round,
+                                  round_index
                                   ):
         
         # debug
-        return self.communicate()
+        return self.communicate(log_round=log_round,round_index=round_index)
         
         # if self.memory.messages.get("search")==None:
         #     actions = {
@@ -590,89 +591,21 @@ You still have {chance_num} chances to choose house.\
                          tool=tool) 
         # 进行1轮，先是否进行选房流程的判断，若否则直接返回
         
-    # def choose_pipeline(self,
-    #                     forum_manager, 
-    #                     system, 
-    #                     tool, 
-    #                     rule,
-    #                     log_round):
-    #     log_round.set_tenant_information(self.id,self.name,self.max_choose - self.choose_times)
-    #     # log_round["tenant_id"] = self.id
-    #     # log_round["tenant_name"] = self.name
-    #     # log_round["available_times"] = self.max_choose - self.choose_times
-            
-    #     choose_state = False
-    #     # search_forum test
-    #     # search_infos = self.search_forum(tool,log_round)
-    #     search_infos = self.search_forum(forum_manager=forum_manager,
-    #                                      system=system,
-    #                                      log_round=log_round)
-
-        
-    #     choose_state, community_id, community_choose_reason = self.choose_community(system,search_infos,rule,log_round)
-    #     log_round.set_choose_community(community_id,community_choose_reason)
-    #     # log_round["choose_community_id"] = community_id
-    #     # log_round["choose_community_reason"] = community_choose_reason
-        
-    #     if not choose_state:
-    #         self.update_times(choose_state)
-    #         self.publish_forum(forum_manager,system,log_round)
-    #         return False,"None"
-        
-    #     # test
-    #     # self.access_forum(tenant_id=tenant_id)
-        
-    #     choose_state, house_type_id, house_type_reason = self.choose_house_type(system,community_id,rule,log_round)
-    #     # log_round["choose_house_type"] = house_type_id
-    #     # log_round["choose_house_type_reason"] = house_type_reason
-    #     log_round.set_choose_house_type(house_type_id,house_type_reason)
-    #     if not choose_state:
-    #         self.update_times(choose_state)
-    #         self.publish_forum(forum_manager,system,log_round)
-    #         return False,"None"
-        
-    #     if not isinstance(house_type_id,list):
-    #         house_filter_ids = [house_type_id] #这里存储 某个community中的，某些类型的房子
-    #     else:
-    #         house_filter_ids = house_type_id
-            
-            
-       
-            
-    #     choose_state, house_id, house_choose_reason = self.choose_house(
-    #                                                system,
-    #                                                community_id,
-    #                                                house_filter_ids,
-    #                                                log_round)
-        
-    #     # log_round["choose_house_id"] = house_id
-    #     # log_round["choose_house_reason"] = house_choose_reason
-    #     log_round.set_choose_house(house_id,house_choose_reason)
-        
-    #     self.publish_forum(system=system,
-    #                        forum_manager=forum_manager,
-    #                        log_round=log_round)
-    #     # 更改tenant 的选择状态
-    #     self.update_times(choose_state)
-             
-    #     if not choose_state:
-    #         return False,"None"
-        
-    #     # 更改communitymanager中的remain_num
-    #     system.set_chosed_house(house_id,community_id,house_filter_ids)
-
-    #     return True,house_id.lower()
-             
-        
-    def communicate(self):
+  
+    def communicate(self,log_round,round_index=0):
         if len(self.memory.mail)>0:
-            return self.group_discuss_back()       
+            return self.group_discuss_back(log_round=log_round,round_index=round_index)       
         else:
-            return self.group_discuss()
+            return self.group_discuss(log_round=log_round,round_index=round_index)
         
     # 一系列房子选择的函数，理想中要整合成pipeline之类的格式(待改)
     
-    def group_discuss_plan(self,respond_format,memory=""):
+    def group_discuss_plan(self,
+                           respond_format,
+                           log_round,
+                           memory="",
+                           step_type ="group_discuss_plan",
+                           round_index=10):
         self.reset_state(mode="group_discuss_plan")
         
         acquaintance_template = "Your acquaintances include {acquaintance_type}."
@@ -699,7 +632,7 @@ your chances of choosing a house in the current situation"""
         
         
         prompt_inputs={
-                "concise_role_description":self.get_concise_role_description(),
+                "concise_role_description":concise_role_description,
                 "acquaintance_desciption":ac_description,
                 "memory":memory,
                 "personality":personality,
@@ -710,14 +643,21 @@ your chances of choosing a house in the current situation"""
         
         print("The group discuss plan of:{name}".format(name=self.name)) #debug
         
-        response = self.step(prompt_inputs)
+        response = self.step(prompt_inputs).get("return_values")
+        
+        log_round.set_social_network(prompt_inputs,
+                                     response,
+                                     id = self.id,
+                                     name = self.name,
+                                     round_index = round_index,
+                                     step_type = step_type)
         
         return response 
     
-    
-    def group_discuss(self):
+    # 这里加一个recent chat
+    def group_discuss(self,log_round,round_index =10):
         
-        memory = self.memory.memory_tenant("social_network",name=self.name)+self.infos.get("extra_info")
+        memory = self.memory.memory_tenant("social_network",name=self.name) + self.infos.get("extra_info")
         
         respond_format = """Your ideal type of house: (Your personal preference for these houses)
 You think (Your true opionion about these communities or houses).
@@ -725,7 +665,12 @@ For now, Whether you want to provide information honestly to acquaintances: (Yes
 
 Your current plan to respond is (Your plan to communicate with your friends, competitors, be concise)"""
         group_discuss_plan = self.group_discuss_plan(respond_format=respond_format,
-                                                     memory = memory).get("return_values").get("plan")
+                                                     log_round=log_round,
+                                                     memory = memory,
+                                                     step_type = "group_discuss_plan").get("plan")
+        recent_chats = self.memory.retrieve_recent_chat()
+        if recent_chats.strip() == "":
+            recent_chats = "None"
         
         # parse_preference:
         try:
@@ -747,6 +692,7 @@ Your current plan to respond is (Your plan to communicate with your friends, com
         prompt_inputs={
                 "concise_role_description":self.get_concise_role_description(),
                 "plan":group_discuss_plan,
+                "recent_chats":recent_chats,
                 "acquaintances":social_network_str,
                 "acquaintance_num":len(self.memory.social_network),
                 "memory": memory,
@@ -756,6 +702,12 @@ Your current plan to respond is (Your plan to communicate with your friends, com
         
         for _ in range(self.max_jug_time):
             response = self.step(prompt_inputs).get("return_values")
+            log_round.set_social_network(prompt_inputs,
+                                     response,
+                                     id = self.id,
+                                     name = self.name,
+                                     round_index = round_index,
+                                     step_type = "group_discuss") # 如果存在retry，后一次的覆盖会覆盖前一次
             
             if response.get("output") =="fail to discuss":
                 jug_response = False
@@ -777,7 +729,7 @@ Your current plan to respond is (Your plan to communicate with your friends, com
                     if len(receivers) == len(receiver_list): # 所有receiver均合法
                         
                         send_str="{name} said: {content}".format(name=self.name,content=response_round["output"])
-                        response_round["plan"]=group_discuss_plan
+                        response_round["plan"] = group_discuss_plan
                         self.update_memory( 
                                         step_type="social_network",        
                                         selfcontent=response_round,
@@ -812,7 +764,9 @@ Your current plan to respond is (Your plan to communicate with your friends, com
     # context是最新，含有对话细节的message的context
     def update_acquaintance_relation(self,
                                      context,
-                                     acquaintance_id:str):
+                                     acquaintance_id:str,
+                                     log_round,
+                                     round_index = 10):
         
         self.reset_state(mode="relation")
         
@@ -837,6 +791,13 @@ you're communicating with your acquaintances about house renting.""".format(name
         }
         response = self.step(prompt_inputs = prompt_inputs).get("return_values")
         
+        log_round.set_social_network(prompt_inputs,
+                                     response,
+                                     id = self.id,
+                                     name = self.name,
+                                     round_index = round_index,
+                                     step_type ="relation")
+        
         try:
             self.memory.social_network[acquaintance_id]["relation"] = response.get("relation")
             self.memory.social_network[acquaintance_id]["comment"] = response.get("comment")
@@ -844,7 +805,7 @@ you're communicating with your acquaintances about house renting.""".format(name
             print("Fail to update relation for {}".format(self.name))
               
                 
-    def group_discuss_back(self):
+    def group_discuss_back(self, log_round,round_index = 10):
         concise_role_description = self.get_concise_role_description()
         if self.infos.get("personal_preference",False):
             concise_role_description += "Up to now, your personal preference for house is :{}".format(
@@ -878,7 +839,10 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
                                                    acquantice_type=acquantice_type)
             
             group_discuss_plan = self.group_discuss_plan(respond_format = respond_format,
-                                                         memory = memory).get("return_values").get("plan")
+                                                         memory = memory,
+                                                         log_round=log_round,
+                                                         step_type="gorup_discuss_back_plan",
+                                                         round_index=round_index).get("plan")
             
             # parse_preference:
             try:
@@ -890,7 +854,7 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
             
             self.reset_state(mode="group_discuss_back")
             
-            if message.conver_num <=8 : # 小于8轮的情况会结束 
+            if message.conver_num <=8 : # 大于8轮的情况会结束 
                 context_str="\n".join(message.context)
                 prompt_inputs={
                         "concise_role_description":concise_role_description,
@@ -904,6 +868,13 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
                 
                 # response = self.llm_chain(prompt_inputs)
                 response = self.step(prompt_inputs = prompt_inputs).get("return_values")
+                
+                log_round.set_social_network(prompt_inputs,
+                                     response,
+                                     id = self.id,
+                                     name = self.name,
+                                     round_index = round_index,
+                                     step_type ="group_discuss_back")
                 
                 if response is None:
                     return
@@ -937,7 +908,8 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
 
                         
                     self.update_acquaintance_relation(context = context,
-                                                      acquaintance_id = sender_id)
+                                                      acquaintance_id = sender_id,
+                                                      log_round = log_round)
                     
         self.memory.mail.clear()
         return self_continue_dialogue
@@ -1505,7 +1477,7 @@ your chances of choosing a house in the current situation"""
         
         print("The forum publish plan of:{name}".format(name=self.name)) #debug
         
-        response = self.step(prompt_inputs)
+        response = self.step(prompt_inputs).get("return_values")
         
         return response 
     
@@ -1542,7 +1514,7 @@ Your current plan is (Your plan to publish which kind of info online, be concise
 
         prompt_inputs={
         'role_description':role_description,
-        "plan":publish_plan["return_values"].get("plan",""),
+        "plan":publish_plan.get("plan",""),
         'memory':publish_memory,
         "community_ids" :community_ids
         }

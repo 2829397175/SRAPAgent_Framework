@@ -87,7 +87,11 @@ class HouseManager(BaseManager):
         return len(houses)
 
     def get_filtered_house_ids(self,house_filter_ids:dict):
-        """this function filter house_ids from house_filter_ids
+        """this function:
+        1.  filter house_ids from house_filter_ids
+        2.  filter available house_id
+            
+            
             house_filter_ids:{
                 filter_key:filter_value
             }
@@ -117,6 +121,8 @@ class HouseManager(BaseManager):
                 return False
             
             house_ids = list(filter(lambda idx: judge_ori(self.data[idx]["toward"],house_orientations),house_ids))
+            
+        house_ids = list(filter(lambda house_id:self.data[house_id]["available"], house_ids ))
             
         return house_ids
             

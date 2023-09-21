@@ -6,7 +6,9 @@ step函数返回每一步的json数据
 LangchainTenant框架：
 
 待改以及需要确定的
-1. memory机制没加（environment的rule 除了order都没用），chat_history是保留的
+1. group discuss plan 和 publish plan 里面的system_competiveness_description以及goal
+2. relation 经常出现output format问题，改改（而且基本不改变关系？）
+3. dialogue 里面存在重复，按照时间戳删除部分outdated数据（优先大小的queue）
 
 流程图(outdated)
 ![流程图（已经不一致了）](readme/image.png)

@@ -9,6 +9,7 @@ from LLM_PublicHouseAllocation.involvers import System,Tool,Search_forum_topk,Lo
 from . import env_registry as EnvironmentRegistry
 from .base import BaseEnvironment
 import copy
+import os
 @EnvironmentRegistry.register("rent")
 class RentEnvironment(BaseEnvironment):
     """
@@ -52,38 +53,35 @@ class RentEnvironment(BaseEnvironment):
 
     def is_done(self) -> bool:
         """Check if the environment is done"""
-        self.log.set_log_list()
+        self.log.step()
         self.log.save_data()
         cur,fur=self.system.community_manager.split(self.system.community_manager.get_available_community_info())
-        if (cur==[] and fur==[] ) or self.rule.are_all_deques_empty(self):
+        self.cnt_turn += 1
+        if self.cnt_turn > self.max_turns:
+            self.forum_manager.save_data()
+            return True
+        elif (cur==[] and fur==[] ) or self.rule.are_all_deques_empty(self):
             return False
         else:
             self.forum_manager.save_data()
-            # self.save_tenant_memory()
             return True
+        
 
     #test 测试用 要改
-    def communication(self,communication_num=6):
+    def communication(self, communication_num = 3):
         tenant_ids = list(self.tenant_manager.data.keys())
-        # tenant_ids = tenant_ids[:2] # test
         
-        # for i in range(communication_num):
-        #     for tenant_id in tenant_ids:
-        #         tenant = self.tenant_manager.data[tenant_id]
-        #         if isinstance(tenant, LangchainTenant):
-        #             asyncio.run(tenant.async_communication(self.forum_manager, self.system,self.rule,self.log))
-        #         else:
-        #             raise NotImplementedError("Tenant type {} not implemented".format(tenant.__class__))
-        #         self.save_tenant_memory()
-        #         self.update_social_net(tenant=tenant)
         c_num = 0
-        
         while (len(tenant_ids) > 0 and c_num < communication_num):
             tenant_id = tenant_ids[0]
             tenant_ids.pop(0)
             tenant = self.tenant_manager.data[tenant_id]
             if isinstance(tenant, LangchainTenant):
-                continue_communication = asyncio.run(tenant.async_communication(self.forum_manager, self.system,self.rule,self.log))
+                continue_communication = asyncio.run(tenant.async_communication(self.forum_manager, 
+                                                                                self.system,
+                                                                                self.rule,
+                                                                                self.log,
+                                                                                c_num))
                 receiver_ids = self.update_social_net(tenant=tenant) # 先把receiver放进communication队列
                 for r_id in receiver_ids:
                     if (r_id) not in tenant_ids:
@@ -91,8 +89,9 @@ class RentEnvironment(BaseEnvironment):
                 if (continue_communication): tenant_ids.append(tenant_id)
             else:
                 raise NotImplementedError("Tenant type {} not implemented".format(tenant.__class__))
-            self.save_tenant_memory() ## log
+            
             c_num += 1 
+        self.set_tenant_memory_log() ## log
             
         
 
@@ -136,22 +135,55 @@ class RentEnvironment(BaseEnvironment):
             return []
         
 
-    def save_tenant_memory(self, dir="LLM_PublicHouseAllocation/tasks/PHA_50tenant_3community_19house/result/tenant_memory.json"):
+    def set_tenant_memory_log(self):
         log_memory={}
         for tenant_id,tenant in self.tenant_manager.data.items():
             assert isinstance(tenant,LangchainTenant)
             memory_temp=copy.deepcopy(tenant.memory)
             memory_tenant = {
-                            "memory":memory_temp.messages.get("social_network",[]),
-                            "summarys":memory_temp.summarys.get("social_network",""),
                             #  "received_messages":memory_temp.received_messages.get("social_network",""),
                             #  "received_summarys":memory_temp.received_summarys,
-                             "post_message_buffer":memory_temp.post_message_buffer,
-                             "mail":memory_temp.mail
+                            #  "post_message_buffer":memory_temp.post_message_buffer,
+                             "mail":memory_temp.mail,
+                             "social_network":memory_temp.social_network,
                              }
+            
+            keys_message = ["timestamp",
+                    "content",
+                    "output_keys",
+                    "sender",
+                    "receivers",
+                    "conver_num",
+                    "context",
+                    "continue_dialogue"]
             for k,v in memory_tenant.items():
                 if k=="mail":
-                    v=[f"{next(iter(v_.sender.keys()))}:"+str(v_) for v_ in v]
+                    v=[
+                        { 
+                        self.tenant_manager[list(v_.sender.keys())[0]].name : \
+                        str(v_.content["output"]) for v_ in v
+                        }
+                        ]
+                elif k == "social_network":
+                    for t_id, t_infos in v.items():
+                        dialogue_transfered = []
+                        for dialogue in t_infos.get("dialogues",[]):
+                            dialogue_dict = {}
+                            for key in keys_message:
+                                dialogue_dict[key] = getattr(dialogue,key)
+                            dialogue_transfered.append(dialogue_dict)
+                        t_infos["dialogues"] = dialogue_transfered
+                        
+                elif k == "post_message_buffer":
+                    dialogue_transfered = []
+                    for dialogue in v:
+                        dialogue_dict = {}
+                        for key in keys_message:
+                            dialogue_dict[key] = getattr(dialogue,key)
+                        dialogue_transfered.append(dialogue_dict)
+                    v = dialogue_transfered
+                    
+                    
                 elif isinstance(v,list):
                     v=[str(v_) for v_ in v]
                 elif isinstance(v,dict):
@@ -164,8 +196,7 @@ class RentEnvironment(BaseEnvironment):
                 memory_tenant[k]=v
             memory_tenant["name"] = tenant.name        
             log_memory[tenant_id] = memory_tenant
-        with open(dir, encoding='utf-8', mode='w') as fr:
-            json.dump(log_memory, fr, indent=4, separators=(',', ':'), ensure_ascii=False)
+        self.log.set_social_network_mem(social_network_mem=log_memory)
 
 
 

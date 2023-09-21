@@ -291,6 +291,21 @@ class ActionHistoryMemory(BaseMemory,SummarizerMixin):
         else: 
             return ""
         
+    def retrieve_recent_chat(self,
+                             tenant_ids: Union[List,str] = "all"):
+        if tenant_ids == "all":
+            tenant_ids = list(self.social_network.keys())
+            
+        recent_chats = []
+        
+        for tenant_id in tenant_ids:
+            if ("dialogues" in self.social_network[tenant_id].keys()):
+                dialogue_sn = self.social_network[tenant_id].get("dialogues")
+                if isinstance(dialogue_sn,Message):
+                    context_sn = dialogue_sn.context
+                    recent_chats.append(context_sn)
+                
+        return "\n".join(recent_chats)
         
     
     # 默认retrive方法
@@ -460,7 +475,8 @@ but the number of houses in the system is limited. You are in a competitive rela
                     for key in infos.keys():
                         if key not in acquaintance_info.keys():
                             acquaintance_info[key]=[infos[key]]
-                        else:
+                        # 这里为什么会有重复内容，重复reflect了吗
+                        elif infos[key] not in acquaintance_info[key]: 
                             acquaintance_info[key].append(infos[key])
                         
                     infos.update({"ac_name":acquaintance_info["name"]})

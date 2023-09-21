@@ -2,10 +2,66 @@ from pydantic import BaseModel
 import json
 # Design a basic LogRound class
 class LogRound(BaseModel):
-    log_list:list=[]
-    log_round:dict={}
+    round_id :int = 0 # 标注是哪一轮的  
+    
+    # 所有轮数的log
+    # round_id : {log_round,log_social_network}
+    log: dict = {}
+    
+    # 某一轮内部 选择过程的log
+    log_round:dict = {}
+    
+    # social_network_mem: 关于一轮对话结束后每个人的memory变化情况
+    # social_network: 关于一轮对话里，每个人经过的所有trajectory的 prompt和 输出的内容
+    log_social_network:dict={} 
     save_dir:str=""
     
+    def step(self):
+        self.log[self.round_id] = {
+            "log_round":self.log_round,
+            "log_social_network":self.log_social_network
+        }
+        self.round_id += 1
+
+    
+    def save_social_network(self,
+                            dir:str):
+        
+        with open(dir, encoding='utf-8', mode='w') as fr:
+            json.dump(self.log_social_network, fr, indent=4, separators=(',', ':'), ensure_ascii=False)
+            
+    def set_social_network_mem(self,social_network_mem:dict):
+        self.log_social_network["social_network_mem"] = social_network_mem
+        
+    def set_social_network(self,
+                           prompt_inputs,
+                           response,
+                           id,
+                           name,
+                           round_index, #某轮内第几个发言
+                           step_type):
+        if round_index not in self.log_social_network.keys():
+            self.log_social_network[round_index] = {}
+        
+        if step_type == "group_discuss_back":
+            if "group_discuss_back" not in self.log_social_network[round_index].keys():
+                self.log_social_network[round_index][step_type] = []
+            
+            self.log_social_network[round_index][step_type].append({
+                "prompt_inputs":prompt_inputs,
+                "response":response,
+                "id":id,
+                "name":name
+            } )
+        else:
+            self.log_social_network[round_index][step_type] = {
+                "prompt_inputs":prompt_inputs,
+                "response":response,
+                "id":id,
+                "name":name
+            }   
+        
+        
     def init_log_round_from_dict(self, kwargs):
         self.log_round = kwargs 
     
@@ -82,10 +138,6 @@ class LogRound(BaseModel):
         
     def set_comment(self,comment):
         self.log_round["produce_comment"] = comment
-        
-    def set_log_list(self):
-        if self.log_round!={}:
-            self.log_list.append(self.log_round)
             
     def set_message(self,messages):
         template="""{sname}->{rname}:{content}"""
@@ -98,8 +150,8 @@ class LogRound(BaseModel):
         self.log_round={}
         # assert os.path.exists(self.save_dir), "no such file path: {}".format(self.save_dir)
         with open("LLM_PublicHouseAllocation/tasks/PHA_50tenant_3community_19house/result/tenantal_system.json", 'w', encoding='utf-8') as file:
-            json.dump(self.log_list, file, indent=4,separators=(',', ':'),ensure_ascii=False)
-            
+            json.dump(self.log, file, indent=4,separators=(',', ':'),ensure_ascii=False)
+
     def reset(self):
         self.log_round={}
-        self.log_list=[]
+        self.log={}

@@ -243,6 +243,8 @@ group_discuss_template: &group_discuss_template |-
   Your acquaintances include:
   {acquaintances}
 
+  Your recent chat records with your acquaintances:
+  {recent_chats}
   
   EXAMPLE:
   Your acquaintances include:
