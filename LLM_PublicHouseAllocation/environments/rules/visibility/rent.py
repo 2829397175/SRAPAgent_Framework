@@ -12,8 +12,8 @@ import copy
 
 @visibility_registry.register("rent")
 class RentVisibility(BaseVisibility):
-    rule_description:str="" # 第一个版本的rule
-    available_housetype:dict={
+    rule_description:str = "" # 第一个版本的rule
+    available_housetype:dict = {
             "1":["small_house"],
             "2":["small_house","middle_house"],
             "3":["large_house","middle_house"]

@@ -150,11 +150,11 @@ and there will be exposure to sunlight indoors on summer afternoons."""}
         orientation_description_template = """({orientation}){description}"""
         for orientation in orientations:
             for key in common_knowledge_orientation.keys():
-                if (key) in orientation.upper():
+                if (key in orientation.upper()) and \
+                    (key not in return_orientation):
                     return_orientation.append(key)
                     orientation_description.append(orientation_description_template.format(orientation = key,
                                                     description = common_knowledge_orientation[key]))
-                    return_orientation.append(key)
                     break
         
         str_orientation_description = "\n\n".join(orientation_description)

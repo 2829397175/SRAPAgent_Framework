@@ -95,27 +95,30 @@ class HouseManager(BaseManager):
             house_filter_ids:{"floor":"high"}
         """
         
-        house_filter_ids = list(self.data.keys())
+        house_ids = list(self.data.keys())
         
         if "floor_type" in house_filter_ids.keys():
             house_types = house_filter_ids["floor_type"]
+            if not isinstance(house_types,list):
+                house_types = [house_types]
             for k,v in self.data.items():
                 v["floor_type"] = "high" if v["floor"] >=10 else "low"
                 
-            house_filter_ids = list(filter(lambda idx: self.data["floor_type"] in house_types,house_filter_ids))
+            house_ids = list(filter(lambda idx: self.data[idx]["floor_type"] in house_types,house_ids))
                 
         if "house_orientation" in house_filter_ids.keys():
             house_orientations = house_filter_ids["house_orientation"]
-            
+            if not isinstance(house_orientations,list):
+                house_orientations = [house_orientations]
             def judge_ori(ori,ori_filters):
                 for ori_f in ori_filters:
                     if ori_f.upper() in ori.upper():
                         return True
                 return False
             
-            house_filter_ids = list(filter(lambda idx: judge_ori(self.data["toward"],house_orientations),house_filter_ids))
+            house_ids = list(filter(lambda idx: judge_ori(self.data[idx]["toward"],house_orientations),house_ids))
             
-        return house_filter_ids
+        return house_ids
             
                 
         

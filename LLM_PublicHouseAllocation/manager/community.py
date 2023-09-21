@@ -3,7 +3,7 @@ import os
 from .base import BaseManager
 from . import manager_registry as ManagerRgistry
 import LLM_PublicHouseAllocation.map as map
-from typing import List
+from typing import List,Union
 from copy import deepcopy
 @ManagerRgistry.register("community")
 class CommunityManager(BaseManager):
@@ -166,11 +166,12 @@ There remains {remain_num} houses of this type."""
             
 
     
-    def get_filtered_house_ids(self, community_id, house_types: list):
+    def get_filtered_house_ids(self, community_id, house_types: Union[list,str] ):
         """
         filter from house_type (large/small/middle)
         """
-        
+        if not isinstance(house_types,list):
+            house_types = [house_types]
         community_infos = self.data[community_id]
         house_indexs = [community_infos[filter_key].get('index', []) for filter_key in house_types]
 
@@ -236,15 +237,7 @@ There remains {remain_num} houses of this type."""
 
 
 
-    def get_filtered_house_ids(self,community_id,house_filter_ids:list):
-        community_infos = self.data[community_id]
-        house_indexs = [community_infos[filter_key].get('index',[]) for filter_key in house_filter_ids]
-        
-        house_indexs_concat = []
-        for house_index in house_indexs:
-            house_indexs_concat.extend(house_index)
-        return house_indexs_concat
-
+    
 
     def save_data(self):
         # assert os.path.exists(self.save_dir), "no such file path: {}".format(self.save_dir)

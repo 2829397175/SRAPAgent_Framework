@@ -55,10 +55,6 @@ class Ver1Policy(BasePolicy):
                 tenant.publish_forum(forum_manager,system,log_round)
                 return False,"None"
         
-        if not isinstance(house_type_id,list):
-            house_filter_ids = [house_type_id] #这里存储 某个community中的，某些类型的房子
-        else:
-            house_filter_ids = house_type_id
             
         choose_state, house_id, house_choose_reason = tenant.choose_house(
                                                    system,

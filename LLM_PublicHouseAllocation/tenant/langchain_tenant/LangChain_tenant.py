@@ -1285,7 +1285,8 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
         available_orientation_description, available_orientations = system.get_house_orientation(community_id=community_id,
                                                                                                rule=rule,
                                                                                                tenant=self)
-
+        if len(available_orientations) == 1:
+            return True, available_orientations[0], "There's only one type of house orientation."
         choose_type = """My choice is (house orientation, should be one of [{house_type_indexs}])"""
         choose_type = choose_type.format(house_type_indexs = ",".join(available_orientations))
 
@@ -1316,7 +1317,7 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
                 for orientation in {"north",'west','east','south'}:
                     if orientation in content.lower():
                         choose_status = True
-                        chosen_orientation = orientation
+                        chosen_orientation = orientation[0].upper()
                         break
                     
                 if not choose_status:
@@ -1363,7 +1364,10 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
         available_floor_description, available_floors = system.get_house_floor(community_id=community_id,
                                                                                                rule=rule,
                                                                                                tenant=self)
-
+        
+        if (len(available_floors)==1):
+            return True, available_floors[0], "There's only one type of floor type."
+        
         choose_type = """My choice is (house floor, should be one of [{floor_types}])"""
         choose_type = choose_type.format(floor_types = ",".join(available_floors))
 
