@@ -7,7 +7,7 @@ import logging
 import time
 from abc import abstractmethod
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Sequence, Tuple, Union
+from typing import Any, Dict, List, Optional, Sequence, Tuple, Union, Callable
 
 import yaml
 from pydantic import BaseModel, root_validator
@@ -48,7 +48,7 @@ class House_AgentExecutor(Chain):
     max_iterations: Optional[int] = 15
     max_execution_time: Optional[float] = None
     early_stopping_method: str = "force"
-    handle_parsing_errors: bool = False
+    handle_parsing_errors: Union[bool,str,Callable] = False
 
     class Config:
         arbitrary_types_allowed = True

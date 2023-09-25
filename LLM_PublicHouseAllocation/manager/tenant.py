@@ -145,7 +145,7 @@ class TenantManager(BaseManager):
     def save_data(self):
         # assert os.path.exists(self.save_dir), "no such file path: {}".format(self.save_dir)
         with open(self.save_dir, 'w') as file:
-            json.dump(self.record, file, indent=4,separators=(',', ':'),ensure_ascii=False)
+            json.dump(self.data, file, indent=4,separators=(',', ':'),ensure_ascii=False)
 
     def broadcast(self,system):
         

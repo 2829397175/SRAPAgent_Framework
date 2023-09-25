@@ -79,7 +79,7 @@ class GroupDiscussBackParser(AgentOutputParser):
             if (len(outputs) == 1):
                 output = llm_output
                 output = re.sub('\\(.*?\\)','',output) # 删除括号及括号内内容
-                output = re.sub('Words to say to .*?:','',output,flags=re.IGNORECASE)
+                output = re.sub('Words to say to .*?:','',output,flags=re.DOTALL|re.IGNORECASE)
                 return AgentFinish(return_values={"return_values":{"continue_dialogue":True,
                                                                "output":output}},
                                    log =llm_output)
@@ -97,7 +97,7 @@ class GroupDiscussBackParser(AgentOutputParser):
                 
             output = "".join(outputs[1:]).strip()
             output = re.sub('\\(.*?\\)','',output) # 删除括号及括号内内容
-            output = re.sub('Words to say to .*?:','',output,flags=re.IGNORECASE)
+            output = re.sub('Words to say to .*?:','',output,flags=re.DOTALL|re.IGNORECASE)
             
             return AgentFinish(return_values={"return_values":{"continue_dialogue":continue_dialogue,
                                                                "output":output}},
@@ -124,7 +124,16 @@ class RelationParser(AgentOutputParser):
                                                             "comment":comment}},
                             log=llm_output)
         except Exception as e:
-            raise OutputParseError("Output Format Error")
+            try: 
+                regex = "My.*?relation.*?with.*?:.*?(\w+).(.*)"
+                match = re.search(regex,llm_output,re.DOTALL|re.IGNORECASE)
+                relation = match.group(1).strip()
+                comment = match.group(2).strip()
+                return AgentFinish(return_values={"return_values":{"relation":relation,
+                                                            "comment":comment}},
+                            log=llm_output)
+            except:
+                raise OutputParseError("Output Format Error")
         
         
         

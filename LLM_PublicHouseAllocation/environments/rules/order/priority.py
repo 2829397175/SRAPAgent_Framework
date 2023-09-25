@@ -29,7 +29,7 @@ families with major illnesses or surgeries, severely disabled families, and fami
 """
 
 
-    def get_next_agent_idx(self, environment) :
+    def get_next_agent_idx(self, environment) -> dict:
         """Return the index of the next agent to speak"""
         # result=[]
         # for _,deque in environment.deque_dict.items():
@@ -39,7 +39,7 @@ families with major illnesses or surgeries, severely disabled families, and fami
         
         
         # 我觉得优先是priority_queue 都选完，才轮到non_priority_queue
-        result = []
+        result = [] # group_id:tenant_id
         
         for group_id, queues in environment.deque_dict.items():
             if len(queues["priority_queue"]) > 0:

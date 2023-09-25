@@ -52,6 +52,8 @@ import copy
 from LLM_PublicHouseAllocation.tenant.agent_rule import AgentRule
 from LLM_PublicHouseAllocation.tenant.policy import BasePolicy
 
+from openai.error import RateLimitError
+
 class LangchainTenant(langchainAgent):
     id :str
     name :str 
@@ -310,6 +312,7 @@ class LangchainTenant(langchainAgent):
              ) -> Message:
         """Generate the next message"""
 
+
         
         executor = House_AgentExecutor(
             agent = self,
@@ -327,6 +330,8 @@ class LangchainTenant(langchainAgent):
                 print(e)
                 print("Retrying...")
                 continue
+            except RateLimitError as e:
+                e
         if response is None:
             # raise ValueError(f"{self.name} failed to generate valid response.")
             return {"output":f"{self.name} failed to generate valid response.",
@@ -394,7 +399,7 @@ class LangchainTenant(langchainAgent):
             prompt=prompt,
         )
         
-        memory = load_memory(memory_config=memory_config)
+        memory = load_memory(memory_config = memory_config)
         return cls(
             llm_chain = llm_chain,
             output_parser = output_parser,
@@ -500,7 +505,7 @@ You still have {chance_num} chances to choose house.\
                                 log_round)
             observation="I have published some info on forum."
         elif action == "GroupDiscuss":
-            self.communicate(log=log_round)
+            self.communicate(log=log_round,system=system)
             observation="I have discussed with my acquaintances."
         elif action == "Choose":
             choose_state,choose_house_id = self.policy.choose_pipeline(
@@ -532,7 +537,9 @@ You still have {chance_num} chances to choose house.\
                                   ):
         
         # debug
-        return self.communicate(log_round=log_round,round_index=round_index)
+        return self.communicate(log_round=log_round,
+                                system=system,
+                                round_index=round_index)
         
         # if self.memory.messages.get("search")==None:
         #     actions = {
@@ -592,17 +599,18 @@ You still have {chance_num} chances to choose house.\
         # 进行1轮，先是否进行选房流程的判断，若否则直接返回
         
   
-    def communicate(self,log_round,round_index=0):
+    def communicate(self,log_round,system,round_index=0):
         if len(self.memory.mail)>0:
-            return self.group_discuss_back(log_round=log_round,round_index=round_index)       
+            return self.group_discuss_back(log_round=log_round,system=system,round_index=round_index)       
         else:
-            return self.group_discuss(log_round=log_round,round_index=round_index)
+            return self.group_discuss(log_round=log_round,system=system,round_index=round_index)
         
     # 一系列房子选择的函数，理想中要整合成pipeline之类的格式(待改)
     
     def group_discuss_plan(self,
                            respond_format,
                            log_round,
+                           system,
                            memory="",
                            step_type ="group_discuss_plan",
                            round_index=10):
@@ -619,14 +627,9 @@ You still have {chance_num} chances to choose house.\
 
         personality = self.infos.get("personality")
         
-        # test: 需要llm_chain summary
-        system_competiveness_description = """competitive, the community_1 has been almost \
-fully selected, the community_2 has a relatively sufficient house, the community_3 has not \
-been chosen yet."""
+        system_competiveness_description = system.get_system_competiveness_description()
         
-        # fixed , 需要改
-        goal = """ to develop a plan that is most beneficial to you to increase \
-your chances of choosing a house in the current situation"""
+        goal = system.get_goal()
         
         concise_role_description = self.get_concise_role_description()
         
@@ -655,7 +658,7 @@ your chances of choosing a house in the current situation"""
         return response 
     
     # 这里加一个recent chat
-    def group_discuss(self,log_round,round_index =10):
+    def group_discuss(self,log_round,system,round_index =10):
         
         memory = self.memory.memory_tenant("social_network",name=self.name) + self.infos.get("extra_info")
         
@@ -666,6 +669,7 @@ For now, Whether you want to provide information honestly to acquaintances: (Yes
 Your current plan to respond is (Your plan to communicate with your friends, competitors, be concise)"""
         group_discuss_plan = self.group_discuss_plan(respond_format=respond_format,
                                                      log_round=log_round,
+                                                     system=system,
                                                      memory = memory,
                                                      step_type = "group_discuss_plan").get("plan")
         recent_chats = self.memory.retrieve_recent_chat()
@@ -805,7 +809,7 @@ you're communicating with your acquaintances about house renting.""".format(name
             print("Fail to update relation for {}".format(self.name))
               
                 
-    def group_discuss_back(self, log_round,round_index = 10):
+    def group_discuss_back(self, log_round,system,round_index = 10):
         concise_role_description = self.get_concise_role_description()
         if self.infos.get("personal_preference",False):
             concise_role_description += "Up to now, your personal preference for house is :{}".format(
@@ -840,6 +844,7 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
             
             group_discuss_plan = self.group_discuss_plan(respond_format = respond_format,
                                                          memory = memory,
+                                                         system = system,
                                                          log_round=log_round,
                                                          step_type="gorup_discuss_back_plan",
                                                          round_index=round_index).get("plan")
@@ -980,6 +985,9 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
             
             
             response = self.step(prompt_inputs).get("return_values")
+            log_round.set_choose_history(prompt_inputs = prompt_inputs,
+                                         response = response,
+                                         step_type = "choose_community")
             # self.logger.info("choose community, tenant reponse:{}".format(response.get("output","")))
             # parse community choosing reponse
             choose_status = False
@@ -1037,6 +1045,8 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
         tip=[]
         
         house_type_description, house_type_ids = system.get_house_type(community_id,rule,self)
+        log_round.set_available_house_type(house_type_ids)
+        
         choose_type = """My choice is (house type, should be one of [{house_type_indexs}])"""
         choose_type = choose_type.format(house_type_indexs = ",".join(house_type_ids))
 
@@ -1053,9 +1063,13 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
         for _ in range(self.max_jug_time):
             prompt_inputs["memory"] = memory + "\n" + "".join(tip)            
         
-            log_round.set_available_house_type(system.get_available_house_type(community_id))
+            
             self.reset_state(mode="choose")
             response = self.step(prompt_inputs).get("return_values")
+            log_round.set_choose_history(prompt_inputs = prompt_inputs,
+                                response = response,
+                                step_type = "choose_house_type")
+
             # parse community choosing reponse
             choose_status = False
             choose_idx = None
@@ -1112,10 +1126,10 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
         return False,"None", thought_fail_choose
             
     def choose_house_page(self, 
+                          log_round_houses:List[set],
                           house_infos, 
                           house_ids:list, 
                           page_size:int = 20,
-                          log_round_houses:list=[],
                           round_retry:int = 0,
                           tip:list=[]):
         
@@ -1153,7 +1167,8 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
             response = self.step(prompt_inputs).get("return_values") # 这里不更新记忆，仅更新最后一步
             # self.logger.debug("choose houses, tenant reponse:{}".format(response.get("output","")))
             # parse community choosing reponse
-        
+            
+            log_round_houses.append((prompt_inputs,response))
             
             try:
                 content = response.get("output","")
@@ -1176,10 +1191,11 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
         
         if len(choose_page_results) > 1 :
             # 这里选择和不选择的记忆没有更新，忽略掉。
-            return self.choose_house_page(house_infos,
+            return self.choose_house_page(log_round_houses,
+                                          house_infos,
                                           choose_page_results,
                                           page_size=page_size,
-                                          log_round_houses=log_round_houses)
+                                         )
         
         elif len(choose_page_results) == 1:
             choose_house=choose_page_results[0]
@@ -1193,20 +1209,31 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
                      community_id,
                      house_filter_ids:list, 
                      log_round:dict)->Tuple[bool,str]:
+        
+        # 这里的log_round 中存储一开始的所有info（未分页）
         house_ids = system.get_filtered_houses_ids(community_id=community_id,
-                                                        house_filter_ids=house_filter_ids)
+                                                   house_filter_ids=house_filter_ids)
         #log_round["house_available_description"] = []
         house_infos=system.house_ids_to_infos(house_ids)            
         log_round.set_available_house_description(house_infos)
         mem_buffer = []
-        tip=[]
+        tip = []
+        log_round_houses = []
         for round_retry in range(self.max_jug_time):
             choose_status,choose_id,choose_mem = \
-            self.choose_house_page(house_infos,
+            self.choose_house_page(log_round_houses=log_round_houses,
+                                   house_infos=house_infos,
                                    house_ids=house_ids,
                                    page_size=20,
                                    round_retry=round_retry,
                                    tip=tip)
+            log_round_houses_dict = {idx:{
+                                       "prompt_inputs":log_round_houses[0],
+                                       "response":log_round_houses[1]
+                                       } 
+                                     for idx,log_round_houses in enumerate(log_round_houses)}
+            log_round.set_choose_history(step_type = "choose_house",
+                                         log_round_houses_dict = log_round_houses_dict)
             
             if (choose_status):
                 if (system.jug_house_valid(choose_id)):
@@ -1278,6 +1305,10 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
             log_round.set_available_house_type(system.get_available_house_type(community_id))
             self.reset_state(mode="choose")
             response = self.step(prompt_inputs).get("return_values")
+            
+            log_round.set_choose_history(prompt_inputs = prompt_inputs,
+                                response = response,
+                                step_type = "choose_house_orientation")
             # parse community choosing reponse
             choose_status = False
             chosen_orientation = None
@@ -1359,6 +1390,9 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
             log_round.set_available_house_type(system.get_available_house_type(community_id))
             self.reset_state(mode="choose")
             response = self.step(prompt_inputs).get("return_values")
+            log_round.set_choose_history(prompt_inputs = prompt_inputs,
+                    response = response,
+                    step_type = "choose_floor")
             # parse community choosing reponse
             choose_status = False
             try:
@@ -1445,7 +1479,7 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
         return return_infos
     
     
-    def publish_forum_plan(self,respond_format,memory=""):
+    def publish_forum_plan(self,respond_format,system,log_round,memory=""):
         self.reset_state(mode="publish_forum_plan")
         
         role_description ="""Your task is to Publish house information or community information online.\
@@ -1458,13 +1492,10 @@ And you're willing to publish house information online. Keep this in mind!"""
         personality = self.infos.get("personality")
         
         # test: 需要llm_chain summary
-        system_competiveness_description = """competitive, the community_1 has been almost \
-fully selected, the community_2 has a relatively sufficient house, the community_3 has not \
-been chosen yet."""
+        system_competiveness_description = system.get_system_competiveness_description()
         
         # fixed , 需要改
-        goal = """ to develop a plan that is most beneficial to you to increase \
-your chances of choosing a house in the current situation"""
+        goal = system.get_goal()
         
         prompt_inputs={
                 "concise_role_description":role_description,
@@ -1479,6 +1510,9 @@ your chances of choosing a house in the current situation"""
         
         response = self.step(prompt_inputs).get("return_values")
         
+        log_round.set_choose_history(prompt_inputs = prompt_inputs,
+                    response = response,
+                    step_type = "publish_forum_plan")
         return response 
     
     
@@ -1493,7 +1527,10 @@ For now, Whether you want to publish information honestly online: (Yes or No).
 (The reason why you want or don't want to publish information honestly online)
 Your current plan is (Your plan to publish which kind of info online, be concise)"""
         
-        publish_plan = self.publish_forum_plan(publish_plan_respond_format,memory=publish_memory)
+        publish_plan = self.publish_forum_plan(publish_plan_respond_format,
+                                               system=system,
+                                               log_round=log_round,
+                                               memory=publish_memory)
         
         
         self.reset_state(mode="publish_forum")
@@ -1524,6 +1561,10 @@ Your current plan is (Your plan to publish which kind of info online, be concise
             prompt_inputs["memory"] = publish_memory + "\n" + "".join(tip)
                         
             response = self.step(prompt_inputs).get("return_values",[])
+            
+            log_round.set_choose_history(prompt_inputs = prompt_inputs,
+                    response = response,
+                    step_type = "publish_forum")
             
             for publish in response:
                 community_index =  publish.get("community")

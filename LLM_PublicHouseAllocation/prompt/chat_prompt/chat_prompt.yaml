@@ -104,7 +104,7 @@ publish_forum_plan_template: &publish_forum_plan_template |-
   The current situation of the renting system is: {system_competiveness_description}
 
   Your personality is {personality}
-  Your goal is {goal}.
+  {goal}
 
   Respond in this format:
   {respond_format}
@@ -222,7 +222,7 @@ group_discuss_plan_template: &group_discuss_plan_template |-
   The current situation of the renting system is: {system_competiveness_description}
 
   Your personality is {personality}
-  Your goal is {goal}.
+  {goal}
 
   Respond in this format:
   {respond_format}
@@ -313,7 +313,15 @@ group_discuss_back_template: &group_discuss_back_template |-
   
   
 relation_template: &relation_template |-
-  Your task is to update the following information, based on your previous view of {acquaintance_name} and recent communication.
+  Your relationship with your acquaintances may include:
+  Friend: A person with whom one shares a close and mutually supportive bond of affection and trust.
+  Enemy: A person who is actively opposed or hostile to another, often due to conflicts or animosity.
+  Competitor: Someone who engages in rivalry or competition with another, typically in the same field or for the same goal.
+  Mate: A partner in a romantic or sexual relationship, often implying a deep emotional connection.
+  Colleague: A person with whom one works or collaborates, typically within the same organization or profession.
+  Stranger: An individual who is not known or familiar to someone, often encountered for the first time.
+
+  Your task is to update your relation with {acquaintance_name}, based on your previous view of {acquaintance_name} and recent communication.
 
   {role_description}
 

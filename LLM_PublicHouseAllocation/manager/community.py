@@ -240,23 +240,50 @@ There remains {remain_num} houses of this type."""
     
 
     def save_data(self):
-        # assert os.path.exists(self.save_dir), "no such file path: {}".format(self.save_dir)
+       
         with open(self.save_dir, 'w', encoding='utf-8') as file:
             json.dump(self.data, file, indent=4,separators=(',', ':'),ensure_ascii=False)
 
-    def set_chosed_house(self,house_id,community_id,house_filter_ids):
+    def set_chosed_house(self,house_id,community_id,house_types:Union[list,str]):
+        if not isinstance(house_types,list):
+            house_types = [house_types]
         self.data[community_id]["sum_remain_num"]=self.data[community_id].get("sum_remain_num",1) - 1
-        for filter_id in house_filter_ids:
+        for filter_id in house_types:
             self.data[community_id][filter_id]["remain_number"] \
             = self.data[community_id][filter_id].get("remain_number",1) - 1
             if house_id in self.data[community_id][filter_id]['index']:
                 self.data[community_id][filter_id]['index'].remove(house_id)
 
     
-    def get_available_community_ids(self)->List[str]:
+    def get_available_community_ids(self) -> List[str]:
         community_data = self.data
         community_ids = self.data.keys()
         available_ids=list(filter(lambda community_id:community_id in community_data.keys() \
             and community_data[community_id].get("available",False), community_ids))
 
         return available_ids
+    
+    def get_system_competiveness_description(self) -> str:
+        description_general={
+            "large_portion":"The {c_name} has been almost fully selected.",
+            "small_portion": "A small portion of properties in {c_name} have been selected.",
+            "none":"The {c_name} has not been chosen yet."
+        } # 注：选完了的项目不会出现在description里面
+        
+        available_c_ids = self.get_available_community_ids()
+        system_competiveness_description = []
+        for c_id in available_c_ids:
+            chosen_portion = self.data[c_id].get("sum_remain_num",0)/self.data[c_id].get("sum_num",1)
+            if (chosen_portion ==0):
+                system_competiveness_description.append(description_general["none"].format(
+                    c_name = f"{c_id}({self.data[c_id].get('community_name')})"
+                    ))
+            elif (chosen_portion >0.5):
+                system_competiveness_description.append(description_general["large_portion"].format(
+                    c_name = f"{c_id}({self.data[c_id].get('community_name')})"
+                    ))
+            else:
+                system_competiveness_description.append(description_general["small_portion"].format(
+                    c_name = f"{c_id}({self.data[c_id].get('community_name')})"
+                    ))
+        return " ".join(system_competiveness_description)

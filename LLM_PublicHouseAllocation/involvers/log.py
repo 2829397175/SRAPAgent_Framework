@@ -1,28 +1,60 @@
 from pydantic import BaseModel
 import json
+import time
 # Design a basic LogRound class
 class LogRound(BaseModel):
     round_id :int = 0 # 标注是哪一轮的  
+    
+    
     
     # 所有轮数的log
     # round_id : {log_round,log_social_network}
     log: dict = {}
     
-    # 某一轮内部 选择过程的log
-    log_round:dict = {}
+    # 某一轮内部 选择过程的log (choose过程)
+    log_round:dict = {} 
+    log_round_prompts:dict = {}
+    
     
     # social_network_mem: 关于一轮对话结束后每个人的memory变化情况
     # social_network: 关于一轮对话里，每个人经过的所有trajectory的 prompt和 输出的内容
     log_social_network:dict={} 
     save_dir:str=""
     
-    def step(self):
-        self.log[self.round_id] = {
-            "log_round":self.log_round,
-            "log_social_network":self.log_social_network
-        }
-        self.round_id += 1
+    
 
+    
+    def step(self):
+        if self.round_id != 0:
+            self.log[self.round_id][ "log_social_network"] = self.log_social_network
+            
+        self.round_id += 1
+        self.log[self.round_id] = {} # 下一轮log的 initialize
+    
+    def set_one_tenant_choose_process(self,tenant_id):
+        if self.round_id > 0:
+            if "log_round" not in self.log[self.round_id].keys():
+                self.log[self.round_id]["log_round"] = {}
+            if "log_round_prompts" not in self.log[self.round_id].keys():
+                self.log[self.round_id]["log_round_prompts"] = {}
+            if tenant_id in self.log[self.round_id]["log_round"].keys():
+                self.log[self.round_id]["log_round"][tenant_id].update(self.log_round)
+            else:
+                self.log[self.round_id]["log_round"][tenant_id] = self.log_round
+            if tenant_id in self.log[self.round_id]["log_round_prompts"].keys():
+                self.log[self.round_id]["log_round_prompts"][tenant_id].update(self.log_round_prompts)
+            else:
+                self.log[self.round_id]["log_round_prompts"][tenant_id] = self.log_round_prompts
+    
+    
+    def set_group_log(self,tenant_id):
+        if "group" not in self.log.keys():
+            self.log["group"] = {}
+        self.log["group"][tenant_id] = {
+            "log_round" : self.log_round,
+            "log_round_prompts": self.log_round_prompts
+        }
+    
     
     def save_social_network(self,
                             dir:str):
@@ -38,7 +70,7 @@ class LogRound(BaseModel):
                            response,
                            id,
                            name,
-                           round_index, #某轮内第几个发言
+                           round_index, #轮内第几个发言
                            step_type):
         if round_index not in self.log_social_network.keys():
             self.log_social_network[round_index] = {}
@@ -60,6 +92,11 @@ class LogRound(BaseModel):
                 "id":id,
                 "name":name
             }   
+            
+    def set_choose_history(self,
+                           step_type,
+                           **kwargs):
+        self.log_round_prompts[step_type] = kwargs
         
         
     def init_log_round_from_dict(self, kwargs):
@@ -148,8 +185,7 @@ class LogRound(BaseModel):
 
     def save_data(self):
         self.log_round={}
-        # assert os.path.exists(self.save_dir), "no such file path: {}".format(self.save_dir)
-        with open("LLM_PublicHouseAllocation/tasks/PHA_50tenant_3community_19house/result/tenantal_system.json", 'w', encoding='utf-8') as file:
+        with open(self.save_dir, 'w', encoding='utf-8') as file:
             json.dump(self.log, file, indent=4,separators=(',', ':'),ensure_ascii=False)
 
     def reset(self):

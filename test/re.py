@@ -29,9 +29,12 @@ import re
 # text ="""Words to say to A: 23333"""
 
 # output = re.sub('Words to say to .*?:','',text,flags=re.IGNORECASE)
-# output
-content = "My choice is S."
-a =re.search(".*?choice.*?is (.*)",str(content),re.I | re.M)
+regex = "My.*?relation.*?with.*?:.*?(\w+).(.*)"
+llm = """"My Relation with James Anderson: friend.James is an honest and trustworthy person, and I think he is worth making friends with. He provided a thoughtful suggestion about Community_2, and I appreciate his input in our house-hunting process. (My view of this person)"""
+a = re.search(regex,llm,re.I | re.M)
+
+r = a.group(1)
+c =a.group(2)
 li = [1,2,3]
 while len(li)>0:
     print(li[0])

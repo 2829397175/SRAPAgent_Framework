@@ -1,3 +1,6 @@
-translate
-langchain
-tiktoken
+translate == 3.6.1
+langchain == 0.0.166
+tiktoken == 0.4.0
+openai == 0.27.6
+openapi-schema-pydantic == 1.2.4
+huggingface-hub == 0.14.1

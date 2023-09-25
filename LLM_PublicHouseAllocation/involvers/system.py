@@ -11,11 +11,15 @@ class System(BaseModel):
     def reset(self):
         pass
     
-    def set_chosed_house(self,house_id,community_id,house_filter_ids:List):
-        self.community_manager.set_chosed_house(house_id,community_id,house_filter_ids)
-        self.house_manager.set_chosed_house(house_id)
+    def save_data(self):
         self.community_manager.save_data()
         self.house_manager.save_data()
+        
+    def set_chosed_house(self,house_id,community_id,house_filter_ids:dict):
+        house_types = house_filter_ids.get("house_type")
+        self.community_manager.set_chosed_house(house_id,community_id,house_types)
+        self.house_manager.set_chosed_house(house_id)
+        
     
         
     
@@ -165,7 +169,7 @@ and there will be exposure to sunlight indoors on summer afternoons."""}
     
     
     def get_filtered_houses_ids(self,community_id,house_filter_ids:dict):
-        house_types =  house_filter_ids.pop("house_type")
+        house_types =  house_filter_ids.get("house_type")
         house_ids = self.community_manager.get_filtered_house_ids(
             community_id = community_id,
             house_types = house_types
@@ -210,3 +214,14 @@ and there will be exposure to sunlight indoors on summer afternoons."""}
     def get_available_community_ids(self):
         return self.community_manager.get_available_community_ids()
     
+    def get_system_competiveness_description(self):
+        # test:experiment
+        return """"competitive, the community_1 has been almost \
+fully selected, the community_2 has a relatively sufficient house, the community_3 has not \
+been chosen yet."""
+        # return self.community_manager.get_system_competiveness_description()
+    
+    # fixed , 需要改
+    def get_goal(self): # 给出租房系统中，所有人的整体目标
+        return "Your goal is to develop a plan that is most beneficial to you \
+to increase your chances of choosing a house in the current situation."

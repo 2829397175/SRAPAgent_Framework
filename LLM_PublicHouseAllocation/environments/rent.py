@@ -27,8 +27,10 @@ class RentEnvironment(BaseEnvironment):
     forum_manager: ForumManager
     system: System
     tool: Optional[Tool] = None
-    deque_dict: dict={}
-    log:Optional[LogRound]=None
+    deque_dict: dict = {}
+    log:Optional[LogRound] = None
+    save_log:bool = True
+    
     class Config:
         arbitrary_types_allowed = True
 
@@ -54,17 +56,24 @@ class RentEnvironment(BaseEnvironment):
     def is_done(self) -> bool:
         """Check if the environment is done"""
         self.log.step()
-        self.log.save_data()
-        cur,fur=self.system.community_manager.split(self.system.community_manager.get_available_community_info())
+        if (self.save_log):
+            self.log.save_data() # 每一步的log
+            
+        cur,fur = self.system.community_manager.split(self.system.community_manager.get_available_community_info())
         self.cnt_turn += 1
+        
         if self.cnt_turn > self.max_turns:
-            self.forum_manager.save_data()
+            if(self.save_log): # 整体系统的log，仅在退出时save
+                self.system.save_data()
+                self.forum_manager.save_data()
             return True
         elif (cur==[] and fur==[] ) or self.rule.are_all_deques_empty(self):
-            return False
-        else:
-            self.forum_manager.save_data()
+            if(self.save_log):
+                self.system.save_data()
+                self.forum_manager.save_data()
             return True
+        else:
+            return False
         
 
     #test 测试用 要改
@@ -98,6 +107,7 @@ class RentEnvironment(BaseEnvironment):
     def step(self):
         tenant_list = self.rule.get_next_agent_idx(self)
         for tenant in tenant_list:
+            tenant_id = tenant.id
             if isinstance(tenant, LangchainTenant):
                 choose_state= tenant.choose_process(self.forum_manager, self.system, self.rule,self.tool, self.log)
             elif isinstance(tenant,BaseMultiPromptTenant):
@@ -106,18 +116,19 @@ class RentEnvironment(BaseEnvironment):
                 raise NotImplementedError("Tenant type {} not implemented".format(tenant.__class__))
             if not choose_state and tenant.available==True:
                 self.rule.requeue(self,tenant)
-            
+                
+            self.log.set_one_tenant_choose_process(tenant_id)
             self.update_social_net(tenant=tenant)
-            
-            self.cnt_turn += 1
-            if (self.cnt_turn+1) %5==0:
-                self.system.community_manager.publish_community()
+
+        if (self.cnt_turn + 1) %5==0:
+            self.system.community_manager.publish_community()
 
     
     def group(self):
         tenant_groups = {}
         for tenant_id,tenant in self.tenant_manager.data.items():
             group_id = tenant.group(self.forum_manager, self.system, self.rule,self.tool, self.log)
+            self.log.set_group_log(tenant_id)
             if group_id in tenant_groups.keys():
                 tenant_groups[group_id].append(tenant_id)
             else:
