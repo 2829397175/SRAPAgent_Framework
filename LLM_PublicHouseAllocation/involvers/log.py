@@ -5,9 +5,6 @@ import copy
 # Design a basic LogRound class
 class LogRound(BaseModel):
     round_id :int = 0 # 标注是哪一轮的  
-    
-    
-    
     # 所有轮数的log
     # round_id : {log_round,log_social_network}
     log: dict = {}
@@ -16,14 +13,10 @@ class LogRound(BaseModel):
     log_round:dict = {} 
     log_round_prompts:dict = {}
     
-    
     # social_network_mem: 关于一轮对话结束后每个人的memory变化情况
     # social_network: 关于一轮对话里，每个人经过的所有trajectory的 prompt和 输出的内容
     log_social_network:dict={} 
     save_dir:str=""
-    
-    
-
     
     def step(self):
         if self.round_id != 0:

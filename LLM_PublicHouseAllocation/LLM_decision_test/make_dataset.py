@@ -1,5 +1,7 @@
 import os
 import json
+import numpy as np
+
 def read_data(path="LLM_PublicHouseAllocation/LLM_decision_test/data/1.json"):
     assert os.path.exists(path),"no such file path: {}".format(path)
     with open(path,'r',encoding = 'utf-8') as f:
@@ -65,5 +67,32 @@ def batch_read_data():
         communityQA,housetypeQA,houseQA=read_data(path)
         save_database(communityQA,housetypeQA,houseQA)
         
-clear_database()
-batch_read_data()
+     
+def clear_response(json_types,rate = 0.1):
+    """
+    rate 代表clear response的比例
+    """
+    for json_type in json_types:
+        json_dir = "LLM_PublicHouseAllocation\LLM_decision_test\{}_qa.json".format(json_type)
+        with open(json_dir,'r',encoding = 'utf-8') as f:
+            data = json.load(f)
+        clear_indexs = np.random.choice(list(range(len(data))),
+                                        size=int(rate*len(data)),replace=False)
+        for c_idx in clear_indexs:
+            del data[c_idx]["response"]
+            
+        save_dir = "LLM_PublicHouseAllocation\LLM_decision_test\qa_clear_data\{}_qa.json".format(json_type)
+        with open(save_dir,'w',encoding = 'utf-8') as f:
+            json.dump(data,f, indent=4,separators=(',', ':'),ensure_ascii=False)
+        
+    
+
+if __name__ == "__main__":
+    # make data
+    # clear_database()
+    # batch_read_data()
+    
+    
+    # clear response
+    json_types = ["community","house","housetype"]
+    clear_response(json_types)
