@@ -13,7 +13,7 @@ LangchainTenant框架：
 
 3. dialogue 里面存在重复，按照时间戳删除部分outdated数据（优先大小的queue）√
 
-4. self.environment.group() # 这里的log没改好
+4. self.environment.group() # 这里的log没改好 √
 
 
 流程图(outdated)

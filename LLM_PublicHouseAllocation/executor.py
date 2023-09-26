@@ -95,7 +95,7 @@ class Executor():
         self.environment.broadcast()
         
         while not self.environment.is_done():
-            self.environment.communication(communication_num = 3) #测试用
+            # self.environment.communication(communication_num = 3) #测试用
             #if self.environment.cnt_turn>3:
             self.environment.step()
 

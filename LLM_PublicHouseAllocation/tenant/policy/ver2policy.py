@@ -1,12 +1,12 @@
 from . import policy_registry
 from .base import BasePolicy
-import copy 
+
 # 分组部分：选组（房型）
 # 选择部分：按照项目，房子的顺序
 
 @policy_registry.register("ver2")
 class Ver2Policy(BasePolicy):
-    log_fixed : dict = {} # tenant_id:{house_type_id, house_type_reason}
+    log_fixed : dict = {} # tenant_id: {house_type_id, house_type_reason}
     
     def group(self,
               tenant,

@@ -37,7 +37,7 @@ class System(BaseModel):
             community_ids = [d["community_id"] for d in filter_community_list if "community_id" in d]
             return community_str,community_ids
         else:
-            community_list=self.community_manager.get_available_community_info()
+            community_list = self.community_manager.get_available_community_info()
             community_str,_=self.community_manager.community_str(community_list,[])
             return community_str
         
@@ -175,7 +175,8 @@ and there will be exposure to sunlight indoors on summer afternoons."""}
             house_types = house_types
         )
         house_ids = self.house_manager.get_filtered_house_ids(
-            house_filter_ids = house_filter_ids
+            house_filter_ids = house_filter_ids,
+            house_ids = house_ids
         )
         
         return house_ids
@@ -216,10 +217,10 @@ and there will be exposure to sunlight indoors on summer afternoons."""}
     
     def get_system_competiveness_description(self):
         # test:experiment
-        return """"competitive, the community_1 has been almost \
-fully selected, the community_2 has a relatively sufficient house, the community_3 has not \
-been chosen yet."""
-        # return self.community_manager.get_system_competiveness_description()
+#         return """"competitive, the community_1 has been almost \
+# fully selected, the community_2 has a relatively sufficient house, the community_3 has not \
+# been chosen yet."""
+        return self.community_manager.get_system_competiveness_description()
     
     # fixed , 需要改
     def get_goal(self): # 给出租房系统中，所有人的整体目标

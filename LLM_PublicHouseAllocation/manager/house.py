@@ -86,7 +86,7 @@ class HouseManager(BaseManager):
         houses=self.get_available_houses(community_name,housetype)
         return len(houses)
 
-    def get_filtered_house_ids(self,house_filter_ids:dict):
+    def get_filtered_house_ids(self,house_filter_ids:dict,house_ids:list):
         """this function:
         1.  filter house_ids from house_filter_ids
         2.  filter available house_id
@@ -99,7 +99,6 @@ class HouseManager(BaseManager):
             house_filter_ids:{"floor":"high"}
         """
         
-        house_ids = list(self.data.keys())
         
         if "floor_type" in house_filter_ids.keys():
             house_types = house_filter_ids["floor_type"]

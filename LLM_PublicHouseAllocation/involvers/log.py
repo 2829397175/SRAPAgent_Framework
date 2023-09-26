@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 import json
 import time
+import copy
 # Design a basic LogRound class
 class LogRound(BaseModel):
     round_id :int = 0 # 标注是哪一轮的  
@@ -51,8 +52,8 @@ class LogRound(BaseModel):
         if "group" not in self.log.keys():
             self.log["group"] = {}
         self.log["group"][tenant_id] = {
-            "log_round" : self.log_round,
-            "log_round_prompts": self.log_round_prompts
+            "log_round" : copy.deepcopy(self.log_round),
+            "log_round_prompts": copy.deepcopy(self.log_round_prompts)
         }
     
     

@@ -122,7 +122,7 @@ publish_forum_template:  &publish_forum_template |-
   Here is your memory:
   {memory}
 
-  You can publish house information online if you want to.
+  You can publish house information online if you want to. The Info you posted should contain information about community, house and 
 
   The available community index should be one of [{community_ids}].
 
