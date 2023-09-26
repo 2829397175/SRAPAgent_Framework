@@ -1,0 +1,72 @@
+[
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
+            "house_info":"There are 2 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child. ",
+            "memory":"You were considering between two communities. Community_1 has inconvenient facilities, and Community_2 is close to your wife's workplace and your child's school. Therefore, you decided to settle in Community_2, as it would be more suitable for your family needs.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are William Brown. You earn 15000 per month.Your family members include: A wife and one child in elementary school.You are 38 years old. Your job is State-owned enterprise clerk. Your company is located in No. 9 Chaoyang North Road, Chaoyang District, Beijing. William's family prefers an apartment with a short commute to work and school. You expect to rent a house for 2500.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is large_house.",
+            "thought":"The large_house seems like a good option since it can accommodate my family of three."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
+            "house_info":"There are 2 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child. ",
+            "memory":"You were considering between two communities. Community_1 has inconvenient facilities, and Community_2 is close to your wife's workplace and your child's school. Therefore, you decided to settle in Community_2, as it would be more suitable for your family needs.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are William Brown. You earn 15000 per month.Your family members include: A wife and one child in elementary school.You are 38 years old. Your job is State-owned enterprise clerk. Your company is located in No. 9 Chaoyang North Road, Chaoyang District, Beijing. William's family prefers an apartment with a short commute to work and school. You expect to rent a house for 2500.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is large_house.",
+            "thought":"The large_house seems like a good option since it can accommodate my family of three."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
+            "house_info":"There are 2 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child. ",
+            "memory":"You were considering between two communities. Community_1 has inconvenient facilities, and Community_2 is close to your wife's workplace and your child's school. Therefore, you decided to settle in Community_2, as it would be more suitable for your family needs.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are William Brown. You earn 15000 per month.Your family members include: A wife and one child in elementary school.You are 38 years old. Your job is State-owned enterprise clerk. Your company is located in No. 9 Chaoyang North Road, Chaoyang District, Beijing. William's family prefers an apartment with a short commute to work and school. You expect to rent a house for 2500.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is large_house.",
+            "thought":"The large_house seems like a good option since it can accommodate my family of three."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
+            "house_info":"There are 2 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child. ",
+            "memory":"You were considering between two communities. Community_1 has inconvenient facilities, and Community_2 is close to your wife's workplace and your child's school. Therefore, you decided to settle in Community_2, as it would be more suitable for your family needs.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are William Brown. You earn 15000 per month.Your family members include: A wife and one child in elementary school.You are 38 years old. Your job is State-owned enterprise clerk. Your company is located in No. 9 Chaoyang North Road, Chaoyang District, Beijing. William's family prefers an apartment with a short commute to work and school. You expect to rent a house for 2500.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is large_house.",
+            "thought":"The large_house seems like a good option since it can accommodate my family of three."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
+            "house_info":"There are 2 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child. ",
+            "memory":"You were considering between two communities. Community_1 has inconvenient facilities, and Community_2 is close to your wife's workplace and your child's school. Therefore, you decided to settle in Community_2, as it would be more suitable for your family needs.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are William Brown. You earn 15000 per month.Your family members include: A wife and one child in elementary school.You are 38 years old. Your job is State-owned enterprise clerk. Your company is located in No. 9 Chaoyang North Road, Chaoyang District, Beijing. William's family prefers an apartment with a short commute to work and school. You expect to rent a house for 2500.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is large_house.",
+            "thought":"The large_house seems like a good option since it can accommodate my family of three."
+        }
+    }
+]
