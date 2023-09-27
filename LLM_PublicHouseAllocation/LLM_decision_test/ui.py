@@ -148,7 +148,7 @@ class App:
                 self.insert_and_resize_textbox2(self.thought_text, thought_content)
         else:
             messagebox.showinfo("Done", "All data has been checked!")
-            self.window.destroy()
+            self.save_and_exit()
 
     def save_and_exit(self):
         # 保存 data_list（在这个例子中我们只是将其打印到控制台）
