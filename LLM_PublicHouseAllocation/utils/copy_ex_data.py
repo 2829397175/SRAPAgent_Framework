@@ -2,8 +2,9 @@ import os
 import shutil
 root_dir = "LLM_PublicHouseAllocation/tasks"
 
-tasks = os.listdir(root_dir)
-tasks.remove("backup_data")
+# tasks = os.listdir(root_dir)
+# tasks.remove("backup_data")
+tasks =["PHA_5tenant_3community_19house_ver1_nofilter_hightem"]
 
 for task in tasks:
     results_dir = os.path.join(root_dir,task,"result")

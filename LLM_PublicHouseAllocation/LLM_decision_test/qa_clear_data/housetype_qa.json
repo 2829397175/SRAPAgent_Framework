@@ -4,13 +4,13 @@
             "task":"You need to choose one type of houses.",
             "thought_type":"Your views on these house types.",
             "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
-            "house_info":"There are 2 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child. ",
-            "memory":"You were considering between two communities. Community_1 has inconvenient facilities, and Community_2 is close to your wife's workplace and your child's school. Therefore, you decided to settle in Community_2, as it would be more suitable for your family needs.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
-            "role_description":"You are William Brown. You earn 15000 per month.Your family members include: A wife and one child in elementary school.You are 38 years old. Your job is State-owned enterprise clerk. Your company is located in No. 9 Chaoyang North Road, Chaoyang District, Beijing. William's family prefers an apartment with a short commute to work and school. You expect to rent a house for 2500.You still have 2 chances to choose house."
+            "house_info":"There are 2 house types available. The infomation of these house types are listed as follows:\nlarge_house:\nThis type house's rent is around 2240-2320,and it's square footage is around 56.14-58.33.There remains 3 houses of this type.\n\nmiddle_house:\nThis type house's rent is around 1800-1885,and it's square footage is around 44.96-47.13.There remains 2 houses of this type. ",
+            "memory":"You were considering two different communities, community_1 and community_2. Community_1 had inconvenient facilities, so you decided to look into community_2. You found that it was close to your wife's workplace and your child's school, making it the ideal choice for your family. You decided to choose community_2 over community_1.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Sophia Smith. You earn 7000 per month.Your family members include: A husband and a newborn baby.You are 32 years old. Your job is Restaurant waiter. Your company is located in Restaurants near Guomao Building, Chaoyang District, Beijing. Sophia's family needs an apartment in a safe and child-friendly friendhood with a good daycare nearby. You expect to rent a house for 1400.0.You still have 2 chances to choose house."
         },
         "response":{
-            "output":"My choice is large_house.",
-            "thought":"The large_house seems like a good option since it can accommodate my family of three."
+            "output":"My choice is middle_house.",
+            "thought":"The large house has more square footage, but it's more expensive than the middle house. The middle house is more affordable, but it has less space."
         }
     },
     {
@@ -18,51 +18,55 @@
             "task":"You need to choose one type of houses.",
             "thought_type":"Your views on these house types.",
             "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
-            "house_info":"There are 2 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child. ",
-            "memory":"You were considering between two communities. Community_1 has inconvenient facilities, and Community_2 is close to your wife's workplace and your child's school. Therefore, you decided to settle in Community_2, as it would be more suitable for your family needs.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
-            "role_description":"You are William Brown. You earn 15000 per month.Your family members include: A wife and one child in elementary school.You are 38 years old. Your job is State-owned enterprise clerk. Your company is located in No. 9 Chaoyang North Road, Chaoyang District, Beijing. William's family prefers an apartment with a short commute to work and school. You expect to rent a house for 2500.You still have 2 chances to choose house."
+            "house_info":"There are 2 house types available. The infomation of these house types are listed as follows:\nlarge_house:\nThis type house's rent is around 2240-2320,and it's square footage is around 56.14-58.33.There remains 3 houses of this type.\n\nmiddle_house:\nThis type house's rent is around 1800-1885,and it's square footage is around 44.96-47.13.There remains 1 houses of this type. ",
+            "memory":"You were considering two different communities, community_1 and community_2. Community_1 had inconvenient facilities, so you decided to look into community_2. You found that community_2 was close to your wife's workplace and your child's school, making it the ideal choice for your family. As a result, you decided to choose community_2.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are James Anderson. You earn 9000 per month.Your family members include: A wife and two children, both in high school.You are 45 years old. Your job is Construction worker. Your company is located in Dongzhimenwai Street, Dongcheng District, Beijing. The Anderson family prefers a home with easy access to public transportation, as they often need to commute for work and school. You expect to rent a house for 1800.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is middle_house.",
+            "thought":"The large house has more space and amenities, but the rent is higher. The middle house has a more affordable rent, but it's smaller."
         }
     },
     {
         "prompt_inputs":{
             "task":"You need to choose one type of houses.",
             "thought_type":"Your views on these house types.",
-            "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
-            "house_info":"There are 2 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child. ",
-            "memory":"You were considering between two communities. Community_1 has inconvenient facilities, and Community_2 is close to your wife's workplace and your child's school. Therefore, you decided to settle in Community_2, as it would be more suitable for your family needs.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
-            "role_description":"You are William Brown. You earn 15000 per month.Your family members include: A wife and one child in elementary school.You are 38 years old. Your job is State-owned enterprise clerk. Your company is located in No. 9 Chaoyang North Road, Chaoyang District, Beijing. William's family prefers an apartment with a short commute to work and school. You expect to rent a house for 2500.You still have 2 chances to choose house."
+            "choose_type":"My choice is (house type, should be one of [large_house])",
+            "house_info":"There are 1 house types available. The infomation of these house types are listed as follows:\nlarge_house:\nThis type house's rent is around 2240-2320,and it's square footage is around 56.14-58.33.There remains 3 houses of this type. ",
+            "memory":"You were considering two different communities, community_1 and community_2. Community_1 had inconvenient facilities, so you were hesitant to choose it. However, community_2 was close to your wife's workplace and your child's school, making it the ideal choice for your family. You decided to choose community_2.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Oliver Johnson. You earn 12000 per month.Your family members include: A wife and one child who just started university.You are 52 years old. Your job is Public servant. Your company is located in Office Building of the People's Government on the west side of the Great Hall of the People, Dongcheng District, Beijing. Mr. Johnson would like an apartment close to parks or green spaces for leisure walks. You expect to rent a house for 2400.0.You still have 2 chances to choose house."
         },
         "response":{
             "output":"My choice is large_house.",
-            "thought":"The large_house seems like a good option since it can accommodate my family of three."
+            "thought":"Large houses seem to have a good balance of rent and square footage, and there are still 3 available."
         }
     },
     {
         "prompt_inputs":{
             "task":"You need to choose one type of houses.",
             "thought_type":"Your views on these house types.",
-            "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
-            "house_info":"There are 2 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child. ",
-            "memory":"You were considering between two communities. Community_1 has inconvenient facilities, and Community_2 is close to your wife's workplace and your child's school. Therefore, you decided to settle in Community_2, as it would be more suitable for your family needs.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "choose_type":"My choice is (house type, should be one of [large_house])",
+            "house_info":"There are 1 house types available. The infomation of these house types are listed as follows:\nlarge_house:\nThis type house's rent is around 2240-2320,and it's square footage is around 56.14-58.33.There remains 2 houses of this type. ",
+            "memory":"The decision to move to a new community was a difficult one. After considering the convenience of community_1, you decided to look into community_2. You found that community_2 was close to your wife's workplace and your child's school, making it the ideal choice for your family. You ultimately decided to move to community_2.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
             "role_description":"You are William Brown. You earn 15000 per month.Your family members include: A wife and one child in elementary school.You are 38 years old. Your job is State-owned enterprise clerk. Your company is located in No. 9 Chaoyang North Road, Chaoyang District, Beijing. William's family prefers an apartment with a short commute to work and school. You expect to rent a house for 2500.You still have 2 chances to choose house."
         },
         "response":{
             "output":"My choice is large_house.",
-            "thought":"The large_house seems like a good option since it can accommodate my family of three."
+            "thought":"The large house type seems to be the best option for my family as it is within our budget and has enough square footage for us."
         }
     },
     {
         "prompt_inputs":{
             "task":"You need to choose one type of houses.",
             "thought_type":"Your views on these house types.",
-            "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
-            "house_info":"There are 2 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child. ",
-            "memory":"You were considering between two communities. Community_1 has inconvenient facilities, and Community_2 is close to your wife's workplace and your child's school. Therefore, you decided to settle in Community_2, as it would be more suitable for your family needs.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
-            "role_description":"You are William Brown. You earn 15000 per month.Your family members include: A wife and one child in elementary school.You are 38 years old. Your job is State-owned enterprise clerk. Your company is located in No. 9 Chaoyang North Road, Chaoyang District, Beijing. William's family prefers an apartment with a short commute to work and school. You expect to rent a house for 2500.You still have 2 chances to choose house."
+            "choose_type":"My choice is (house type, should be one of [small_house])",
+            "house_info":"There are 1 house types available. The infomation of these house types are listed as follows:\nsmall_house:\nThis type house's rent is around 952-1517,and it's square footage is around 27.76-44.62.There remains 6 houses of this type. ",
+            "memory":"You were considering two communities for your family to move to, community_1 and community_2. Community_1 had inconvenient facilities, and so you decided to look into community_2. You found that community_2 was close to your wife's workplace and your child's school, making it the ideal choice for your family. You decided to move to community_2.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Emma Davis. You earn 14000 per month.Your family members include: Single, no children.You are 29 years old. Your job is Software engineer. Your company is located in Alibaba Beijing R&D Center, No. 5 Zhongguancun South Street, Haidian District, Beijing. Emma hopes the apartment is in a quiet friendhood, allowing her to focus on her work. You expect to rent a house for 2500.You still have 2 chances to choose house."
         },
         "response":{
-            "output":"My choice is large_house.",
-            "thought":"The large_house seems like a good option since it can accommodate my family of three."
+            "output":"My choice is small_house.",
+            "thought":"The small house type seems to be the best option for me as it fits within my budget and has decent square footage."
         }
     },
     {
@@ -71,12 +75,40 @@
             "thought_type":"Your views on these house types.",
             "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
             "house_info":"There are 2 house types available. The infomation of these house types are listed as follows:\nlarge_house:\nThis type house's rent is around 2240-2320,and it's square footage is around 56.14-58.33.There remains 3 houses of this type.\n\nmiddle_house:\nThis type house's rent is around 1800-1885,and it's square footage is around 44.96-47.13.There remains 2 houses of this type. ",
-            "memory":"You are deciding between two communities and weighing the pros and cons of each. The first community, community_1, has inconvenient facilities, causing you to consider the second option. Community_2 is located closer to your wife's workplace and your child's school, making it a more convenient choice for your family. Ultimately, you decide to choose community_2 and make it your new home.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "memory":"You were considering two communities, community_1 and community_2, but you decided that community_2 was the better choice due to its proximity to your wife's workplace and your child's school. You were also likely swayed by the convenience of the facilities in community_2 compared to those in community_1. You ultimately made the decision to go with community_2.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
             "role_description":"You are Sophia Smith. You earn 7000 per month.Your family members include: A husband and a newborn baby.You are 32 years old. Your job is Restaurant waiter. Your company is located in Restaurants near Guomao Building, Chaoyang District, Beijing. Sophia's family needs an apartment in a safe and child-friendly friendhood with a good daycare nearby. You expect to rent a house for 1400.0.You still have 2 chances to choose house."
         },
         "response":{
             "output":"My choice is middle_house.",
-            "thought":"I want to find a house that is in a child-friendly friendhood with a good daycare nearby and I have a limited budget. The middle_house seems more affordable and still within my budget, but it's a bit smaller than the large_house."
+            "thought":"The large houses look like they have a lot of space but the rent is higher than I expected. The middle houses have more affordable rent but could be too small for our family."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
+            "house_info":"There are 2 house types available. The infomation of these house types are listed as follows:\nlarge_house:\nThis type house's rent is around 2240-2320,and it's square footage is around 56.14-58.33.There remains 3 houses of this type.\n\nmiddle_house:\nThis type house's rent is around 1800-1885,and it's square footage is around 44.96-47.13.There remains 1 houses of this type. ",
+            "memory":"You had been considering two different communities for your family and had found that community_1 had inconvenient facilities. However, you soon realized that community_2 not only was much closer to your wife's workplace and your child's school, but also it had more appropriate facilities for your family's needs, leading to your decision to choose community_2 instead.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are James Anderson. You earn 9000 per month.Your family members include: A wife and two children, both in high school.You are 45 years old. Your job is Construction worker. Your company is located in Dongzhimenwai Street, Dongcheng District, Beijing. The Anderson family prefers a home with easy access to public transportation, as they often need to commute for work and school. You expect to rent a house for 1800.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is large_house.",
+            "thought":"The large_house has bigger space, higher rent, but more choices, while the middle_house has more affordable rent, but less space and only one choice."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
+            "house_info":"There are 2 house types available. The infomation of these house types are listed as follows:\nlarge_house:\nThis type house's rent is around 2240-2320,and it's square footage is around 56.14-58.33.There remains 2 houses of this type.\n\nmiddle_house:\nThis type house's rent is around 1800-1885,and it's square footage is around 44.96-47.13.There remains 1 houses of this type. ",
+            "memory":"You were comparing two different communities, and found that while community_1 had inconvenient facilities, community_2 was ideal for your family due to its being close to your wife's workplace and your child's school. So you chose community_2, deciding its proximity to your family's life events was more important than any potential inconveniences in community_1.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Oliver Johnson. You earn 12000 per month.Your family members include: A wife and one child who just started university.You are 52 years old. Your job is Public servant. Your company is located in Office Building of the People's Government on the west side of the Great Hall of the People, Dongcheng District, Beijing. Mr. Johnson would like an apartment close to parks or green spaces for leisure walks. You expect to rent a house for 2400.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is middle_house.",
+            "thought":"I need a house with affordable rent and good square footage that can fit my budget."
         }
     },
     {
@@ -85,32 +117,51 @@
             "thought_type":"Your views on these house types.",
             "choose_type":"My choice is (house type, should be one of [small_house])",
             "house_info":"There are 1 house types available. The infomation of these house types are listed as follows:\nsmall_house:\nThis type house's rent is around 952-1517,and it's square footage is around 27.76-44.62.There remains 6 houses of this type. ",
-            "memory":"You were considering two different communities for your family and had been uncertain which to choose. Community_1 had inconvenient facilities, so you decided to consider Community_2 which was closer to your wife's workplace and your child's school. After examining the options, you decided that Community_2 was more suitable and made the choice to move there.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
-            "role_description":"You are Emma Davis. You earn 14000 per month.Your family members include: Single, no children.You are 29 years old. Your job is Software engineer. Your company is located in Alibaba Beijing R&D Center, No. 5 Zhongguancun South Street, Haidian District, Beijing. Emma hopes the apartment is in a quiet friendhood, allowing her to focus on her work. You expect to rent a house for 2500.You still have 2 chances to choose house."
-        }
-    },
-    {
-        "prompt_inputs":{
-            "task":"You need to choose one type of houses.",
-            "thought_type":"Your views on these house types.",
-            "choose_type":"My choice is (house type, should be one of [small_house])",
-            "house_info":"There are 1 house types available. The infomation of these house types are listed as follows:\nsmall_house:\nThis type house's rent is around 952-1517,and it's square footage is around 27.76-44.62.There remains 6 houses of this type. ",
-            "memory":"You were considering two different communities for your family and had been uncertain which to choose. Community_1 had inconvenient facilities, so you decided to consider Community_2 which was closer to your wife's workplace and your child's school. After examining the options, you decided that Community_2 was more suitable and made the choice to move there.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
-            "role_description":"You are Emma Davis. You earn 14000 per month.Your family members include: Single, no children.You are 29 years old. Your job is Software engineer. Your company is located in Alibaba Beijing R&D Center, No. 5 Zhongguancun South Street, Haidian District, Beijing. Emma hopes the apartment is in a quiet friendhood, allowing her to focus on her work. You expect to rent a house for 2500.You still have 2 chances to choose house."
-        }
-    },
-    {
-        "prompt_inputs":{
-            "task":"You need to choose one type of houses.",
-            "thought_type":"Your views on these house types.",
-            "choose_type":"My choice is (house type, should be one of [small_house])",
-            "house_info":"There are 1 house types available. The infomation of these house types are listed as follows:\nsmall_house:\nThis type house's rent is around 952-1517,and it's square footage is around 27.76-44.62.There remains 6 houses of this type. ",
-            "memory":"You were considering two different communities for your family and had been uncertain which to choose. Community_1 had inconvenient facilities, so you decided to consider Community_2 which was closer to your wife's workplace and your child's school. After examining the options, you decided that Community_2 was more suitable and made the choice to move there.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "memory":"The speaker was considering two different communities, community_1 and community_2. Community_1 had inconvenient facilities so the speaker was skeptical about living there. Community_2, on the other hand, was close to their wife's workplace, their child's school, and other important amenities, making it the preferred choice. The speaker thus decided that community_2 would be the best choice for their family and decided to move there.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
             "role_description":"You are Emma Davis. You earn 14000 per month.Your family members include: Single, no children.You are 29 years old. Your job is Software engineer. Your company is located in Alibaba Beijing R&D Center, No. 5 Zhongguancun South Street, Haidian District, Beijing. Emma hopes the apartment is in a quiet friendhood, allowing her to focus on her work. You expect to rent a house for 2500.You still have 2 chances to choose house."
         },
         "response":{
             "output":"My choice is small_house.",
-            "thought":"small_house seems to fit my budget and offer a good amount of space."
+            "thought":"I think the small houses have a good balance of square footage and affordability."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house])",
+            "house_info":"There are 1 house types available. The infomation of these house types are listed as follows:\nlarge_house:\nThis type house's rent is around 2240-2320,and it's square footage is around 56.14-58.33.There remains 2 houses of this type. ",
+            "memory":"You are considering between two communities, community_1 and community_2. Community_1 has inconvenient facilities while community_2 is close to your wife's workplace and your child's school. These factors lead you to choose community_2 over community_1, and it will be the ideal choice for your family.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are William Brown. You earn 15000 per month.Your family members include: A wife and one child in elementary school.You are 38 years old. Your job is State-owned enterprise clerk. Your company is located in No. 9 Chaoyang North Road, Chaoyang District, Beijing. William's family prefers an apartment with a short commute to work and school. You expect to rent a house for 2500.You still have 2 chances to choose house."
+        },
+        "response":{}
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house])",
+            "house_info":"There are 1 house types available. The infomation of these house types are listed as follows:\nlarge_house:\nThis type house's rent is around 1830,and it's square footage is around 60.92-61.8.There remains 5 houses of this type. ",
+            "memory":"You are deciding between two communities, community_1 and community_2. Community_1 has inconvenient facilities while community_2 is situated close to your wife’s workplace and your child’s school. As a result, you have determined that community_2 is the best option for your family, and you have made the decision to move there.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are James Anderson. You earn 9000 per month.Your family members include: A wife and two children, both in high school.You are 45 years old. Your job is Construction worker. Your company is located in Dongzhimenwai Street, Dongcheng District, Beijing. The Anderson family prefers a home with easy access to public transportation, as they often need to commute for work and school. You expect to rent a house for 1800.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is large_house.",
+            "thought":"The large house seem like a good option with the moderate rent and decent square footage. I am willing to pay a bit more for the additional space and the better location."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house])",
+            "house_info":"There are 1 house types available. The infomation of these house types are listed as follows:\nlarge_house:\nThis type house's rent is around 1830,and it's square footage is around 60.92-61.8.There remains 5 houses of this type. ",
+            "memory":"You were considering two different communities; community_1 and community_2. Community_1 had inconvenient facilities while community_2 is close to important places for your family such as your wife's workplace and your child's school. This has led to you deciding to take up the offer of community_2, as it is more ideal for your family's needs.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are James Anderson. You earn 9000 per month.Your family members include: A wife and two children, both in high school.You are 45 years old. Your job is Construction worker. Your company is located in Dongzhimenwai Street, Dongcheng District, Beijing. The Anderson family prefers a home with easy access to public transportation, as they often need to commute for work and school. You expect to rent a house for 1800.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is large_house.",
+            "thought":"The large house has a slightly higher rent than my budget and is close to my wife's workplace and my children's schools. I think it would be a wise choice for us."
         }
     },
     {
@@ -118,37 +169,24 @@
             "task":"You need to choose one type of houses.",
             "thought_type":"Your views on these house types.",
             "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
-            "house_info":"There are 2 house types available. The infomation of these house types are listed as follows:\nlarge_house:\nThis type house's rent is around 2240-2320,and it's square footage is around 56.14-58.33.There remains 3 houses of this type.\n\nmiddle_house:\nThis type house's rent is around 1800-1885,and it's square footage is around 44.96-47.13.There remains 1 houses of this type. ",
-            "memory":"You were considering two different communities for you and your family, with community_1 having inconvenient facilities. However, community_2 was closer to your wife's workplace, and your child's school, so you decided it was the best choice for your family.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "house_info":"There are 2 house types available. The infomation of these house types are listed as follows:\nlarge_house:\nThis type house's rent is around 2240-2320,and it's square footage is around 56.14-58.33.There remains 3 houses of this type.\n\nmiddle_house:\nThis type house's rent is around 1800-1885,and it's square footage is around 44.96-47.13.There remains 2 houses of this type. ",
+            "memory":"The original choice was between community_1 and community_2, with the former having inconvenient facilities. However, community_2 was chosen because it offered proximity to both the wife's workplace and the child's school, thus offering more convenience for the family. The final decision was to choose community_2.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are William Brown. You earn 15000 per month.Your family members include: A wife and one child in elementary school.You are 38 years old. Your job is State-owned enterprise clerk. Your company is located in No. 9 Chaoyang North Road, Chaoyang District, Beijing. William's family prefers an apartment with a short commute to work and school. You expect to rent a house for 2500.You still have 2 chances to choose house."
+        },
+        "response":{}
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
+            "house_info":"There are 2 house types available. The infomation of these house types are listed as follows:\nlarge_house:\nThis type house's rent is around 2240-2320,and it's square footage is around 56.14-58.33.There remains 2 houses of this type.\n\nmiddle_house:\nThis type house's rent is around 1800-1885,and it's square footage is around 44.96-47.13.There remains 2 houses of this type. ",
+            "memory":"You are considering two different communities - community_1 and community_2. You think community_1 have inconvenient facilities, and it is further away from your family's needs. Community_2, however, is much closer to your wife's workplace and your child's school, making it the ideal option for your family. As a result, you have decided to choose community_2.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
             "role_description":"You are Oliver Johnson. You earn 12000 per month.Your family members include: A wife and one child who just started university.You are 52 years old. Your job is Public servant. Your company is located in Office Building of the People's Government on the west side of the Great Hall of the People, Dongcheng District, Beijing. Mr. Johnson would like an apartment close to parks or green spaces for leisure walks. You expect to rent a house for 2400.0.You still have 2 chances to choose house."
         },
         "response":{
-            "output":"My choice is middle_house.",
-            "thought":"I'm looking for a house that is close to parks or green spaces for leisure walks, while meeting my budget and other requirements. The large_house is more expensive but has more square footage, while the middle_house is more affordable but smaller in size."
-        }
-    },
-    {
-        "prompt_inputs":{
-            "task":"You need to choose one type of houses.",
-            "thought_type":"Your views on these house types.",
-            "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
-            "house_info":"There are 2 house types available. The infomation of these house types are listed as follows:\nlarge_house:\nThis type house's rent is around 2240-2320,and it's square footage is around 56.14-58.33.There remains 3 houses of this type.\n\nmiddle_house:\nThis type house's rent is around 1800-1885,and it's square footage is around 44.96-47.13.There remains 1 houses of this type. ",
-            "memory":"You were considering two different communities for you and your family, with community_1 having inconvenient facilities. However, community_2 was closer to your wife's workplace, and your child's school, so you decided it was the best choice for your family.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
-            "role_description":"You are Oliver Johnson. You earn 12000 per month.Your family members include: A wife and one child who just started university.You are 52 years old. Your job is Public servant. Your company is located in Office Building of the People's Government on the west side of the Great Hall of the People, Dongcheng District, Beijing. Mr. Johnson would like an apartment close to parks or green spaces for leisure walks. You expect to rent a house for 2400.0.You still have 2 chances to choose house."
-        }
-    },
-    {
-        "prompt_inputs":{
-            "task":"You need to choose one type of houses.",
-            "thought_type":"Your views on these house types.",
-            "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
-            "house_info":"There are 2 house types available. The infomation of these house types are listed as follows:\nlarge_house:\nThis type house's rent is around 2240-2320,and it's square footage is around 56.14-58.33.There remains 3 houses of this type.\n\nmiddle_house:\nThis type house's rent is around 1800-1885,and it's square footage is around 44.96-47.13.There remains 1 houses of this type. ",
-            "memory":"You were considering two different communities for you and your family, with community_1 having inconvenient facilities. However, community_2 was closer to your wife's workplace, and your child's school, so you decided it was the best choice for your family.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
-            "role_description":"You are Oliver Johnson. You earn 12000 per month.Your family members include: A wife and one child who just started university.You are 52 years old. Your job is Public servant. Your company is located in Office Building of the People's Government on the west side of the Great Hall of the People, Dongcheng District, Beijing. Mr. Johnson would like an apartment close to parks or green spaces for leisure walks. You expect to rent a house for 2400.0.You still have 2 chances to choose house."
-        },
-        "response":{
-            "output":"My choice is middle_house.",
-            "thought":"I'm looking for a house that is close to parks or green spaces for leisure walks, while meeting my budget and other requirements. The large_house is more expensive but has more square footage, while the middle_house is more affordable but smaller in size."
+            "output":"My choice is large_house.",
+            "thought":"I need to find a house with a good amount of square footage. The middle house seems to offer the best value for money, but it doesn't have enough square footage. The large house is more expensive but it looks more suitable for my needs."
         }
     },
     {
@@ -157,12 +195,68 @@
             "thought_type":"Your views on these house types.",
             "choose_type":"My choice is (house type, should be one of [small_house])",
             "house_info":"There are 1 house types available. The infomation of these house types are listed as follows:\nsmall_house:\nThis type house's rent is around 952-1517,and it's square footage is around 27.76-44.62.There remains 6 houses of this type. ",
-            "memory":"You were considering two different communities for your family and had been uncertain which to choose. Community_1 had inconvenient facilities, so you decided to consider Community_2 which was closer to your wife's workplace and your child's school. After examining the options, you decided that Community_2 was more suitable and made the choice to move there.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "memory":"You were considering two communities, community_1 and community_2. After weighing their pros and cons, you've decided to choose community_2 as it is more convenient for your family, being closer to your wife's workplace and to your child's school. You believe that it is an ideal choice since it fulfills all of your needs better than community_1.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
             "role_description":"You are Emma Davis. You earn 14000 per month.Your family members include: Single, no children.You are 29 years old. Your job is Software engineer. Your company is located in Alibaba Beijing R&D Center, No. 5 Zhongguancun South Street, Haidian District, Beijing. Emma hopes the apartment is in a quiet friendhood, allowing her to focus on her work. You expect to rent a house for 2500.You still have 2 chances to choose house."
         },
         "response":{
             "output":"My choice is small_house.",
-            "thought":"small_house seems to fit my budget and offer a good amount of space."
+            "thought":"The small houses seem like a good option with their affordable rent and decent square footage."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
+            "house_info":"There are 2 house types available. The infomation of these house types are listed as follows:\nlarge_house:\nThis type house's rent is around 2240-2320,and it's square footage is around 56.14-58.33.There remains 3 houses of this type.\n\nmiddle_house:\nThis type house's rent is around 1800-1885,and it's square footage is around 44.96-47.13.There remains 2 houses of this type. ",
+            "memory":"You were undecided between two communities, community_1 and community_2. Although community_1 had inconvenient facilities, you decided to move to community_2 as it is close to your wife's workplace and your child's school. This would make it easier for them to reach their destinations and would work better for your family. Therefore, you chose community_2 as the ideal place for you and your family.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Sophia Smith. You earn 7000 per month.Your family members include: A husband and a newborn baby.You are 32 years old. Your job is Restaurant waiter. Your company is located in Restaurants near Guomao Building, Chaoyang District, Beijing. Sophia's family needs an apartment in a safe and child-friendly friendhood with a good daycare nearby. You expect to rent a house for 1400.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is middle_house.",
+            "thought":"The square footage of the large house is better, but it is a bit more expensive. The middle house is more within my budget, but the square footage is a bit smaller."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
+            "house_info":"There are 2 house types available. The infomation of these house types are listed as follows:\nlarge_house:\nThis type house's rent is around 2240-2320,and it's square footage is around 56.14-58.33.There remains 3 houses of this type.\n\nmiddle_house:\nThis type house's rent is around 1800-1885,and it's square footage is around 44.96-47.13.There remains 2 houses of this type. ",
+            "memory":"You have to choose between two communities, with community_1 being far away with inconvenient facilities. However, after having a thought about community_2's proximity to your wife's workplace and your child's school, you decided that it would be a better option for your family and thus made your choice.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Sophia Smith. You earn 7000 per month.Your family members include: A husband and a newborn baby.You are 32 years old. Your job is Restaurant waiter. Your company is located in Restaurants near Guomao Building, Chaoyang District, Beijing. Sophia's family needs an apartment in a safe and child-friendly friendhood with a good daycare nearby. You expect to rent a house for 1400.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is middle_house.",
+            "thought":"The large house has a bigger square footage and a slightly higher rent but I need to consider the cost of paying more in rent compared to the benefit of having more space."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house])",
+            "house_info":"There are 1 house types available. The infomation of these house types are listed as follows:\nlarge_house:\nThis type house's rent is around 1830,and it's square footage is around 60.92-61.8.There remains 5 houses of this type. ",
+            "memory":"You are deciding between two communities, community_1 and community_2. Community_1 is seen to have inconvenient facilities so you weigh the advantages of community_2. It is close to your wife's workplace and your child's school, making it an ideal choice. You take into account the convenience it provides and choose community_2.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are James Anderson. You earn 9000 per month.Your family members include: A wife and two children, both in high school.You are 45 years old. Your job is Construction worker. Your company is located in Dongzhimenwai Street, Dongcheng District, Beijing. The Anderson family prefers a home with easy access to public transportation, as they often need to commute for work and school. You expect to rent a house for 1800.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is large_house.",
+            "thought":"The large house type seems to be the one that fits my criteria the best, offering me enough space for a family of four and the amenity of easier access to public transportation."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
+            "house_info":"There are 2 house types available. The infomation of these house types are listed as follows:\nlarge_house:\nThis type house's rent is around 2240-2320,and it's square footage is around 56.14-58.33.There remains 3 houses of this type.\n\nmiddle_house:\nThis type house's rent is around 1800-1885,and it's square footage is around 44.96-47.13.There remains 1 houses of this type. ",
+            "memory":"You have been considering two different communities and had difficulty deciding between them for a while. After giving it thought, you decided on community_2 due to its proximity to your wife's workplace and your child's school. This presented a more convenient and practical location for your family, and prompted you to make the decision to move to community_2.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Oliver Johnson. You earn 12000 per month.Your family members include: A wife and one child who just started university.You are 52 years old. Your job is Public servant. Your company is located in Office Building of the People's Government on the west side of the Great Hall of the People, Dongcheng District, Beijing. Mr. Johnson would like an apartment close to parks or green spaces for leisure walks. You expect to rent a house for 2400.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is large_house.",
+            "thought":"The large_house has the best square footage, and its rent is very close to my budget. The middle_house is cheaper but has lower square footage."
         }
     },
     {
@@ -171,26 +265,12 @@
             "thought_type":"Your views on these house types.",
             "choose_type":"My choice is (house type, should be one of [small_house])",
             "house_info":"There are 1 house types available. The infomation of these house types are listed as follows:\nsmall_house:\nThis type house's rent is around 952-1517,and it's square footage is around 27.76-44.62.There remains 6 houses of this type. ",
-            "memory":"You were considering two different communities for your family and had been uncertain which to choose. Community_1 had inconvenient facilities, so you decided to consider Community_2 which was closer to your wife's workplace and your child's school. After examining the options, you decided that Community_2 was more suitable and made the choice to move there.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "memory":"The decision was made to choose community_2 as it is better suited to the needs of the family. It is close to both the wife's workplace and the child's school, making it the more convenient option. This choice was weighed and considered against community_1 which had inconvenient facilities. Therefore, the conclusion was made to select community_2 for its practicality and proximity to important places.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
             "role_description":"You are Emma Davis. You earn 14000 per month.Your family members include: Single, no children.You are 29 years old. Your job is Software engineer. Your company is located in Alibaba Beijing R&D Center, No. 5 Zhongguancun South Street, Haidian District, Beijing. Emma hopes the apartment is in a quiet friendhood, allowing her to focus on her work. You expect to rent a house for 2500.You still have 2 chances to choose house."
         },
         "response":{
             "output":"My choice is small_house.",
-            "thought":"small_house seems to fit my budget and offer a good amount of space."
-        }
-    },
-    {
-        "prompt_inputs":{
-            "task":"You need to choose one type of houses.",
-            "thought_type":"Your views on these house types.",
-            "choose_type":"My choice is (house type, should be one of [small_house])",
-            "house_info":"There are 1 house types available. The infomation of these house types are listed as follows:\nsmall_house:\nThis type house's rent is around 952-1517,and it's square footage is around 27.76-44.62.There remains 6 houses of this type. ",
-            "memory":"You were considering two different communities for your family and had been uncertain which to choose. Community_1 had inconvenient facilities, so you decided to consider Community_2 which was closer to your wife's workplace and your child's school. After examining the options, you decided that Community_2 was more suitable and made the choice to move there.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
-            "role_description":"You are Emma Davis. You earn 14000 per month.Your family members include: Single, no children.You are 29 years old. Your job is Software engineer. Your company is located in Alibaba Beijing R&D Center, No. 5 Zhongguancun South Street, Haidian District, Beijing. Emma hopes the apartment is in a quiet friendhood, allowing her to focus on her work. You expect to rent a house for 2500.You still have 2 chances to choose house."
-        },
-        "response":{
-            "output":"My choice is small_house.",
-            "thought":"small_house seems to fit my budget and offer a good amount of space."
+            "thought":"Small houses seem like a good option with their competitive rent and decent square footage, and I need to make sure I can secure one of them."
         }
     },
     {
@@ -198,499 +278,13 @@
             "task":"You need to choose one type of houses.",
             "thought_type":"Your views on these house types.",
             "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
-            "house_info":"There are 2 house types available. The infomation of these house types are listed as follows:\nlarge_house:\nThis type house's rent is around 2240-2320,and it's square footage is around 56.14-58.33.There remains 3 houses of this type.\n\nmiddle_house:\nThis type house's rent is around 1800-1885,and it's square footage is around 44.96-47.13.There remains 1 houses of this type. ",
-            "memory":"You were considering two different communities for you and your family, with community_1 having inconvenient facilities. However, community_2 was closer to your wife's workplace, and your child's school, so you decided it was the best choice for your family.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
-            "role_description":"You are Oliver Johnson. You earn 12000 per month.Your family members include: A wife and one child who just started university.You are 52 years old. Your job is Public servant. Your company is located in Office Building of the People's Government on the west side of the Great Hall of the People, Dongcheng District, Beijing. Mr. Johnson would like an apartment close to parks or green spaces for leisure walks. You expect to rent a house for 2400.0.You still have 2 chances to choose house."
-        },
-        "response":{
-            "output":"My choice is middle_house.",
-            "thought":"I'm looking for a house that is close to parks or green spaces for leisure walks, while meeting my budget and other requirements. The large_house is more expensive but has more square footage, while the middle_house is more affordable but smaller in size."
-        }
-    },
-    {
-        "prompt_inputs":{
-            "task":"You need to choose one type of houses.",
-            "thought_type":"Your views on these house types.",
-            "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
-            "house_info":"There are 2 house types available. The infomation of these house types are listed as follows:\nlarge_house:\nThis type house's rent is around 2240-2320,and it's square footage is around 56.14-58.33.There remains 3 houses of this type.\n\nmiddle_house:\nThis type house's rent is around 1800-1885,and it's square footage is around 44.96-47.13.There remains 1 houses of this type. ",
-            "memory":"You were considering two different communities for you and your family, with community_1 having inconvenient facilities. However, community_2 was closer to your wife's workplace, and your child's school, so you decided it was the best choice for your family.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
-            "role_description":"You are Oliver Johnson. You earn 12000 per month.Your family members include: A wife and one child who just started university.You are 52 years old. Your job is Public servant. Your company is located in Office Building of the People's Government on the west side of the Great Hall of the People, Dongcheng District, Beijing. Mr. Johnson would like an apartment close to parks or green spaces for leisure walks. You expect to rent a house for 2400.0.You still have 2 chances to choose house."
-        },
-        "response":{
-            "output":"My choice is middle_house.",
-            "thought":"I'm looking for a house that is close to parks or green spaces for leisure walks, while meeting my budget and other requirements. The large_house is more expensive but has more square footage, while the middle_house is more affordable but smaller in size."
-        }
-    },
-    {
-        "prompt_inputs":{
-            "task":"You need to choose one type of houses.",
-            "thought_type":"Your views on these house types.",
-            "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
-            "house_info":"There are 2 house types available. The infomation of these house types are listed as follows:\nlarge_house:\nThis type house's rent is around 2240-2320,and it's square footage is around 56.14-58.33.There remains 3 houses of this type.\n\nmiddle_house:\nThis type house's rent is around 1800-1885,and it's square footage is around 44.96-47.13.There remains 1 houses of this type. ",
-            "memory":"You were considering two different communities for you and your family, with community_1 having inconvenient facilities. However, community_2 was closer to your wife's workplace, and your child's school, so you decided it was the best choice for your family.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
-            "role_description":"You are Oliver Johnson. You earn 12000 per month.Your family members include: A wife and one child who just started university.You are 52 years old. Your job is Public servant. Your company is located in Office Building of the People's Government on the west side of the Great Hall of the People, Dongcheng District, Beijing. Mr. Johnson would like an apartment close to parks or green spaces for leisure walks. You expect to rent a house for 2400.0.You still have 2 chances to choose house."
-        },
-        "response":{
-            "output":"My choice is middle_house.",
-            "thought":"I'm looking for a house that is close to parks or green spaces for leisure walks, while meeting my budget and other requirements. The large_house is more expensive but has more square footage, while the middle_house is more affordable but smaller in size."
-        }
-    },
-    {
-        "prompt_inputs":{
-            "task":"You need to choose one type of houses.",
-            "thought_type":"Your views on these house types.",
-            "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
-            "house_info":"There are 2 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child. ",
-            "memory":"You were considering between two communities. Community_1 has inconvenient facilities, and Community_2 is close to your wife's workplace and your child's school. Therefore, you decided to settle in Community_2, as it would be more suitable for your family needs.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "house_info":"There are 2 house types available. The infomation of these house types are listed as follows:\nlarge_house:\nThis type house's rent is around 2240-2320,and it's square footage is around 56.14-58.33.There remains 2 houses of this type.\n\nmiddle_house:\nThis type house's rent is around 1800-1885,and it's square footage is around 44.96-47.13.There remains 1 houses of this type. ",
+            "memory":"After considering the convenience of both community_1 and community_2, you made the decision to settle in community_2. It is close to your wife's workplace and your child's school, and as such seemed to be the most appropriate choice for your family. To be sure you were making the right decision, you did more research on both areas, comparing their facilities and quality of living. In the end, you concluded that community_2 offered more than community_1, and you decided that this was the right fit for your family.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
             "role_description":"You are William Brown. You earn 15000 per month.Your family members include: A wife and one child in elementary school.You are 38 years old. Your job is State-owned enterprise clerk. Your company is located in No. 9 Chaoyang North Road, Chaoyang District, Beijing. William's family prefers an apartment with a short commute to work and school. You expect to rent a house for 2500.You still have 2 chances to choose house."
         },
         "response":{
             "output":"My choice is large_house.",
-            "thought":"The large_house seems like a good option since it can accommodate my family of three."
-        }
-    },
-    {
-        "prompt_inputs":{
-            "task":"You need to choose one type of houses.",
-            "thought_type":"Your views on these house types.",
-            "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
-            "house_info":"There are 2 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child. ",
-            "memory":"You were considering between two communities. Community_1 has inconvenient facilities, and Community_2 is close to your wife's workplace and your child's school. Therefore, you decided to settle in Community_2, as it would be more suitable for your family needs.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
-            "role_description":"You are William Brown. You earn 15000 per month.Your family members include: A wife and one child in elementary school.You are 38 years old. Your job is State-owned enterprise clerk. Your company is located in No. 9 Chaoyang North Road, Chaoyang District, Beijing. William's family prefers an apartment with a short commute to work and school. You expect to rent a house for 2500.You still have 2 chances to choose house."
-        },
-        "response":{
-            "output":"My choice is large_house.",
-            "thought":"The large_house seems like a good option since it can accommodate my family of three."
-        }
-    },
-    {
-        "prompt_inputs":{
-            "task":"You need to choose one type of houses.",
-            "thought_type":"Your views on these house types.",
-            "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
-            "house_info":"There are 2 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child. ",
-            "memory":"You were considering between two communities. Community_1 has inconvenient facilities, and Community_2 is close to your wife's workplace and your child's school. Therefore, you decided to settle in Community_2, as it would be more suitable for your family needs.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
-            "role_description":"You are William Brown. You earn 15000 per month.Your family members include: A wife and one child in elementary school.You are 38 years old. Your job is State-owned enterprise clerk. Your company is located in No. 9 Chaoyang North Road, Chaoyang District, Beijing. William's family prefers an apartment with a short commute to work and school. You expect to rent a house for 2500.You still have 2 chances to choose house."
-        },
-        "response":{
-            "output":"My choice is large_house.",
-            "thought":"The large_house seems like a good option since it can accommodate my family of three."
-        }
-    },
-    {
-        "prompt_inputs":{
-            "task":"You need to choose one type of houses.",
-            "thought_type":"Your views on these house types.",
-            "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
-            "house_info":"There are 2 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child. ",
-            "memory":"You were considering between two communities. Community_1 has inconvenient facilities, and Community_2 is close to your wife's workplace and your child's school. Therefore, you decided to settle in Community_2, as it would be more suitable for your family needs.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
-            "role_description":"You are William Brown. You earn 15000 per month.Your family members include: A wife and one child in elementary school.You are 38 years old. Your job is State-owned enterprise clerk. Your company is located in No. 9 Chaoyang North Road, Chaoyang District, Beijing. William's family prefers an apartment with a short commute to work and school. You expect to rent a house for 2500.You still have 2 chances to choose house."
-        },
-        "response":{
-            "output":"My choice is large_house.",
-            "thought":"The large_house seems like a good option since it can accommodate my family of three."
-        }
-    },
-    {
-        "prompt_inputs":{
-            "task":"You need to choose one type of houses.",
-            "thought_type":"Your views on these house types.",
-            "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
-            "house_info":"There are 2 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child. ",
-            "memory":"You were considering between two communities. Community_1 has inconvenient facilities, and Community_2 is close to your wife's workplace and your child's school. Therefore, you decided to settle in Community_2, as it would be more suitable for your family needs.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
-            "role_description":"You are William Brown. You earn 15000 per month.Your family members include: A wife and one child in elementary school.You are 38 years old. Your job is State-owned enterprise clerk. Your company is located in No. 9 Chaoyang North Road, Chaoyang District, Beijing. William's family prefers an apartment with a short commute to work and school. You expect to rent a house for 2500.You still have 2 chances to choose house."
-        },
-        "response":{
-            "output":"My choice is large_house.",
-            "thought":"The large_house seems like a good option since it can accommodate my family of three."
-        }
-    },
-    {
-        "prompt_inputs":{
-            "task":"You need to choose one type of houses.",
-            "thought_type":"Your views on these house types.",
-            "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
-            "house_info":"There are 2 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child. ",
-            "memory":"You are considering two different communities to live, community_1 and community_2. Community_1 has inconvenient facilities, but community_2 is close to your wife's workplace and your child's school. Therefore, you decided to choose community_2 to settle down. The new community has all the necessary resources for the family and is in close proximity to important places.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
-            "role_description":"You are William Brown. You earn 15000 per month.Your family members include: A wife and one child in elementary school.You are 38 years old. Your job is State-owned enterprise clerk. Your company is located in No. 9 Chaoyang North Road, Chaoyang District, Beijing. William's family prefers an apartment with a short commute to work and school. You expect to rent a house for 2500.You still have 2 chances to choose house."
-        },
-        "response":{
-            "output":"My choice is large_house.",
-            "thought":"I need to consider the size and price of the two house types. The large_house is more expensive, but can accommodate my family better. The middle_house is more affordable, but may not offer enough space for the whole family."
-        }
-    },
-    {
-        "prompt_inputs":{
-            "task":"You need to choose one type of houses.",
-            "thought_type":"Your views on these house types.",
-            "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
-            "house_info":"There are 2 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child. ",
-            "memory":"You are considering two different communities to live, community_1 and community_2. Community_1 has inconvenient facilities, but community_2 is close to your wife's workplace and your child's school. Therefore, you decided to choose community_2 to settle down. The new community has all the necessary resources for the family and is in close proximity to important places.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
-            "role_description":"You are William Brown. You earn 15000 per month.Your family members include: A wife and one child in elementary school.You are 38 years old. Your job is State-owned enterprise clerk. Your company is located in No. 9 Chaoyang North Road, Chaoyang District, Beijing. William's family prefers an apartment with a short commute to work and school. You expect to rent a house for 2500.You still have 2 chances to choose house."
-        },
-        "response":{
-            "output":"My choice is large_house.",
-            "thought":"I need to consider the size and price of the two house types. The large_house is more expensive, but can accommodate my family better. The middle_house is more affordable, but may not offer enough space for the whole family."
-        }
-    },
-    {
-        "prompt_inputs":{
-            "task":"You need to choose one type of houses.",
-            "thought_type":"Your views on these house types.",
-            "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
-            "house_info":"There are 2 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child. ",
-            "memory":"You are considering two different communities to live, community_1 and community_2. Community_1 has inconvenient facilities, but community_2 is close to your wife's workplace and your child's school. Therefore, you decided to choose community_2 to settle down. The new community has all the necessary resources for the family and is in close proximity to important places.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
-            "role_description":"You are William Brown. You earn 15000 per month.Your family members include: A wife and one child in elementary school.You are 38 years old. Your job is State-owned enterprise clerk. Your company is located in No. 9 Chaoyang North Road, Chaoyang District, Beijing. William's family prefers an apartment with a short commute to work and school. You expect to rent a house for 2500.You still have 2 chances to choose house."
-        },
-        "response":{
-            "output":"My choice is large_house.",
-            "thought":"I need to consider the size and price of the two house types. The large_house is more expensive, but can accommodate my family better. The middle_house is more affordable, but may not offer enough space for the whole family."
-        }
-    },
-    {
-        "prompt_inputs":{
-            "task":"You need to choose one type of houses.",
-            "thought_type":"Your views on these house types.",
-            "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
-            "house_info":"There are 2 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child. ",
-            "memory":"You are considering two different communities to live, community_1 and community_2. Community_1 has inconvenient facilities, but community_2 is close to your wife's workplace and your child's school. Therefore, you decided to choose community_2 to settle down. The new community has all the necessary resources for the family and is in close proximity to important places.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
-            "role_description":"You are William Brown. You earn 15000 per month.Your family members include: A wife and one child in elementary school.You are 38 years old. Your job is State-owned enterprise clerk. Your company is located in No. 9 Chaoyang North Road, Chaoyang District, Beijing. William's family prefers an apartment with a short commute to work and school. You expect to rent a house for 2500.You still have 2 chances to choose house."
-        },
-        "response":{
-            "output":"My choice is large_house.",
-            "thought":"I need to consider the size and price of the two house types. The large_house is more expensive, but can accommodate my family better. The middle_house is more affordable, but may not offer enough space for the whole family."
-        }
-    },
-    {
-        "prompt_inputs":{
-            "task":"You need to choose one type of houses.",
-            "thought_type":"Your views on these house types.",
-            "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
-            "house_info":"There are 2 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child. ",
-            "memory":"You are considering two different communities to live, community_1 and community_2. Community_1 has inconvenient facilities, but community_2 is close to your wife's workplace and your child's school. Therefore, you decided to choose community_2 to settle down. The new community has all the necessary resources for the family and is in close proximity to important places.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
-            "role_description":"You are William Brown. You earn 15000 per month.Your family members include: A wife and one child in elementary school.You are 38 years old. Your job is State-owned enterprise clerk. Your company is located in No. 9 Chaoyang North Road, Chaoyang District, Beijing. William's family prefers an apartment with a short commute to work and school. You expect to rent a house for 2500.You still have 2 chances to choose house."
-        },
-        "response":{
-            "output":"My choice is large_house.",
-            "thought":"I need to consider the size and price of the two house types. The large_house is more expensive, but can accommodate my family better. The middle_house is more affordable, but may not offer enough space for the whole family."
-        }
-    },
-    {
-        "prompt_inputs":{
-            "task":"You need to choose one type of houses.",
-            "thought_type":"Your views on these house types.",
-            "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
-            "house_info":"There are 2 house types available. The infomation of these house types are listed as follows:\nlarge_house:\nThis type house's rent is around 2240-2320,and it's square footage is around 56.14-58.33.There remains 1 houses of this type.\n\nmiddle_house:\nThis type house's rent is around 1800-1885,and it's square footage is around 44.96-47.13.There remains 1 houses of this type. ",
-            "memory":"You are considering two communities, community_1 and community_2 for your family. Community_1 has inconvenient facilities, however community_2 is closer to your wife's workplace and your child's school. Therefore, you choose community_2 as the better option. Furthermore, you take into consideration the convenience of the neighborhood, such as the shops, restaurants, and other establishments. Additionally, you consider the safety and amenities of the community. Lastly, you take into consideration the access to public transportation and other recreational activities like parks and playgrounds.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
-            "role_description":"You are William Brown. You earn 15000 per month.Your family members include: A wife and one child in elementary school.You are 38 years old. Your job is State-owned enterprise clerk. Your company is located in No. 9 Chaoyang North Road, Chaoyang District, Beijing. William's family prefers an apartment with a short commute to work and school. You expect to rent a house for 2500.You still have 2 chances to choose house."
-        },
-        "response":{
-            "output":"My choice is large_house.",
-            "thought":"Large house seems to provide more space and amenities, but it's more expensive than middle house."
-        }
-    },
-    {
-        "prompt_inputs":{
-            "task":"You need to choose one type of houses.",
-            "thought_type":"Your views on these house types.",
-            "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
-            "house_info":"There are 2 house types available. The infomation of these house types are listed as follows:\nlarge_house:\nThis type house's rent is around 2240-2320,and it's square footage is around 56.14-58.33.There remains 1 houses of this type.\n\nmiddle_house:\nThis type house's rent is around 1800-1885,and it's square footage is around 44.96-47.13.There remains 1 houses of this type. ",
-            "memory":"You are considering two communities, community_1 and community_2 for your family. Community_1 has inconvenient facilities, however community_2 is closer to your wife's workplace and your child's school. Therefore, you choose community_2 as the better option. Furthermore, you take into consideration the convenience of the neighborhood, such as the shops, restaurants, and other establishments. Additionally, you consider the safety and amenities of the community. Lastly, you take into consideration the access to public transportation and other recreational activities like parks and playgrounds.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
-            "role_description":"You are William Brown. You earn 15000 per month.Your family members include: A wife and one child in elementary school.You are 38 years old. Your job is State-owned enterprise clerk. Your company is located in No. 9 Chaoyang North Road, Chaoyang District, Beijing. William's family prefers an apartment with a short commute to work and school. You expect to rent a house for 2500.You still have 2 chances to choose house."
-        },
-        "response":{
-            "output":"My choice is large_house.",
-            "thought":"Large house seems to provide more space and amenities, but it's more expensive than middle house."
-        }
-    },
-    {
-        "prompt_inputs":{
-            "task":"You need to choose one type of houses.",
-            "thought_type":"Your views on these house types.",
-            "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
-            "house_info":"There are 2 house types available. The infomation of these house types are listed as follows:\nlarge_house:\nThis type house's rent is around 2240-2320,and it's square footage is around 56.14-58.33.There remains 1 houses of this type.\n\nmiddle_house:\nThis type house's rent is around 1800-1885,and it's square footage is around 44.96-47.13.There remains 1 houses of this type. ",
-            "memory":"You are considering two communities, community_1 and community_2 for your family. Community_1 has inconvenient facilities, however community_2 is closer to your wife's workplace and your child's school. Therefore, you choose community_2 as the better option. Furthermore, you take into consideration the convenience of the neighborhood, such as the shops, restaurants, and other establishments. Additionally, you consider the safety and amenities of the community. Lastly, you take into consideration the access to public transportation and other recreational activities like parks and playgrounds.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
-            "role_description":"You are William Brown. You earn 15000 per month.Your family members include: A wife and one child in elementary school.You are 38 years old. Your job is State-owned enterprise clerk. Your company is located in No. 9 Chaoyang North Road, Chaoyang District, Beijing. William's family prefers an apartment with a short commute to work and school. You expect to rent a house for 2500.You still have 2 chances to choose house."
-        },
-        "response":{
-            "output":"My choice is large_house.",
-            "thought":"Large house seems to provide more space and amenities, but it's more expensive than middle house."
-        }
-    },
-    {
-        "prompt_inputs":{
-            "task":"You need to choose one type of houses.",
-            "thought_type":"Your views on these house types.",
-            "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
-            "house_info":"There are 2 house types available. The infomation of these house types are listed as follows:\nlarge_house:\nThis type house's rent is around 2240-2320,and it's square footage is around 56.14-58.33.There remains 1 houses of this type.\n\nmiddle_house:\nThis type house's rent is around 1800-1885,and it's square footage is around 44.96-47.13.There remains 1 houses of this type. ",
-            "memory":"You are considering two communities, community_1 and community_2 for your family. Community_1 has inconvenient facilities, however community_2 is closer to your wife's workplace and your child's school. Therefore, you choose community_2 as the better option. Furthermore, you take into consideration the convenience of the neighborhood, such as the shops, restaurants, and other establishments. Additionally, you consider the safety and amenities of the community. Lastly, you take into consideration the access to public transportation and other recreational activities like parks and playgrounds.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
-            "role_description":"You are William Brown. You earn 15000 per month.Your family members include: A wife and one child in elementary school.You are 38 years old. Your job is State-owned enterprise clerk. Your company is located in No. 9 Chaoyang North Road, Chaoyang District, Beijing. William's family prefers an apartment with a short commute to work and school. You expect to rent a house for 2500.You still have 2 chances to choose house."
-        },
-        "response":{
-            "output":"My choice is large_house.",
-            "thought":"Large house seems to provide more space and amenities, but it's more expensive than middle house."
-        }
-    },
-    {
-        "prompt_inputs":{
-            "task":"You need to choose one type of houses.",
-            "thought_type":"Your views on these house types.",
-            "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
-            "house_info":"There are 2 house types available. The infomation of these house types are listed as follows:\nlarge_house:\nThis type house's rent is around 2240-2320,and it's square footage is around 56.14-58.33.There remains 1 houses of this type.\n\nmiddle_house:\nThis type house's rent is around 1800-1885,and it's square footage is around 44.96-47.13.There remains 1 houses of this type. ",
-            "memory":"You are considering two communities, community_1 and community_2 for your family. Community_1 has inconvenient facilities, however community_2 is closer to your wife's workplace and your child's school. Therefore, you choose community_2 as the better option. Furthermore, you take into consideration the convenience of the neighborhood, such as the shops, restaurants, and other establishments. Additionally, you consider the safety and amenities of the community. Lastly, you take into consideration the access to public transportation and other recreational activities like parks and playgrounds.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
-            "role_description":"You are William Brown. You earn 15000 per month.Your family members include: A wife and one child in elementary school.You are 38 years old. Your job is State-owned enterprise clerk. Your company is located in No. 9 Chaoyang North Road, Chaoyang District, Beijing. William's family prefers an apartment with a short commute to work and school. You expect to rent a house for 2500.You still have 2 chances to choose house."
-        },
-        "response":{
-            "output":"My choice is large_house.",
-            "thought":"Large house seems to provide more space and amenities, but it's more expensive than middle house."
-        }
-    },
-    {
-        "prompt_inputs":{
-            "task":"You need to choose one type of houses.",
-            "thought_type":"Your views on these house types.",
-            "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
-            "house_info":"There are 2 house types available. The infomation of these house types are listed as follows:\nlarge_house:\nThis type house's rent is around 2240-2320,and it's square footage is around 56.14-58.33.There remains 1 houses of this type.\n\nmiddle_house:\nThis type house's rent is around 1800-1885,and it's square footage is around 44.96-47.13.There remains 1 houses of this type. ",
-            "memory":"You are considering two communities, community_1 and community_2 for your family. Community_1 has inconvenient facilities, however community_2 is closer to your wife's workplace and your child's school. Therefore, you choose community_2 as the better option. Furthermore, you take into consideration the convenience of the neighborhood, such as the shops, restaurants, and other establishments. Additionally, you consider the safety and amenities of the community. Lastly, you take into consideration the access to public transportation and other recreational activities like parks and playgrounds.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
-            "role_description":"You are William Brown. You earn 15000 per month.Your family members include: A wife and one child in elementary school.You are 38 years old. Your job is State-owned enterprise clerk. Your company is located in No. 9 Chaoyang North Road, Chaoyang District, Beijing. William's family prefers an apartment with a short commute to work and school. You expect to rent a house for 2500.You still have 2 chances to choose house."
-        },
-        "response":{
-            "output":"My choice is large_house.",
-            "thought":"Large house seems to provide more space and amenities, but it's more expensive than middle house."
-        }
-    },
-    {
-        "prompt_inputs":{
-            "task":"You need to choose one type of houses.",
-            "thought_type":"Your views on these house types.",
-            "choose_type":"My choice is (house type, should be one of [large_house])",
-            "house_info":"There are 1 house types available. The infomation of these house types are listed as follows:\nlarge_house:\nThis type house's rent is around 2240-2320,and it's square footage is around 56.14-58.33.There remains 2 houses of this type. ",
-            "memory":"You had been considering two different communities, community_1 and community_2. Community_1 had inconvenient facilities, and community_2 was close to your wife's workplace and your child's school. Taking everything into consideration, you decided to go with community_2, as it seemed to be the most ideal option for your family.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
-            "role_description":"You are William Brown. You earn 15000 per month.Your family members include: A wife and one child in elementary school.You are 38 years old. Your job is State-owned enterprise clerk. Your company is located in No. 9 Chaoyang North Road, Chaoyang District, Beijing. William's family prefers an apartment with a short commute to work and school. You expect to rent a house for 2500.You still have 2 chances to choose house."
-        },
-        "response":{
-            "output":"My choice is large_house.",
-            "thought":"Large_house seems like the best choice as I need enough space for my family and it's within my budget."
-        }
-    },
-    {
-        "prompt_inputs":{
-            "task":"You need to choose one type of houses.",
-            "thought_type":"Your views on these house types.",
-            "choose_type":"My choice is (house type, should be one of [large_house])",
-            "house_info":"There are 1 house types available. The infomation of these house types are listed as follows:\nlarge_house:\nThis type house's rent is around 2240-2320,and it's square footage is around 56.14-58.33.There remains 2 houses of this type. ",
-            "memory":"You had been considering two different communities, community_1 and community_2. Community_1 had inconvenient facilities, and community_2 was close to your wife's workplace and your child's school. Taking everything into consideration, you decided to go with community_2, as it seemed to be the most ideal option for your family.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
-            "role_description":"You are William Brown. You earn 15000 per month.Your family members include: A wife and one child in elementary school.You are 38 years old. Your job is State-owned enterprise clerk. Your company is located in No. 9 Chaoyang North Road, Chaoyang District, Beijing. William's family prefers an apartment with a short commute to work and school. You expect to rent a house for 2500.You still have 2 chances to choose house."
-        },
-        "response":{
-            "output":"My choice is large_house.",
-            "thought":"Large_house seems like the best choice as I need enough space for my family and it's within my budget."
-        }
-    },
-    {
-        "prompt_inputs":{
-            "task":"You need to choose one type of houses.",
-            "thought_type":"Your views on these house types.",
-            "choose_type":"My choice is (house type, should be one of [large_house])",
-            "house_info":"There are 1 house types available. The infomation of these house types are listed as follows:\nlarge_house:\nThis type house's rent is around 2240-2320,and it's square footage is around 56.14-58.33.There remains 2 houses of this type. ",
-            "memory":"You had been considering two different communities, community_1 and community_2. Community_1 had inconvenient facilities, and community_2 was close to your wife's workplace and your child's school. Taking everything into consideration, you decided to go with community_2, as it seemed to be the most ideal option for your family.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
-            "role_description":"You are William Brown. You earn 15000 per month.Your family members include: A wife and one child in elementary school.You are 38 years old. Your job is State-owned enterprise clerk. Your company is located in No. 9 Chaoyang North Road, Chaoyang District, Beijing. William's family prefers an apartment with a short commute to work and school. You expect to rent a house for 2500.You still have 2 chances to choose house."
-        },
-        "response":{
-            "output":"My choice is large_house.",
-            "thought":"Large_house seems like the best choice as I need enough space for my family and it's within my budget."
-        }
-    },
-    {
-        "prompt_inputs":{
-            "task":"You need to choose one type of houses.",
-            "thought_type":"Your views on these house types.",
-            "choose_type":"My choice is (house type, should be one of [large_house])",
-            "house_info":"There are 1 house types available. The infomation of these house types are listed as follows:\nlarge_house:\nThis type house's rent is around 2240-2320,and it's square footage is around 56.14-58.33.There remains 2 houses of this type. ",
-            "memory":"You had been considering two different communities, community_1 and community_2. Community_1 had inconvenient facilities, and community_2 was close to your wife's workplace and your child's school. Taking everything into consideration, you decided to go with community_2, as it seemed to be the most ideal option for your family.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
-            "role_description":"You are William Brown. You earn 15000 per month.Your family members include: A wife and one child in elementary school.You are 38 years old. Your job is State-owned enterprise clerk. Your company is located in No. 9 Chaoyang North Road, Chaoyang District, Beijing. William's family prefers an apartment with a short commute to work and school. You expect to rent a house for 2500.You still have 2 chances to choose house."
-        },
-        "response":{
-            "output":"My choice is large_house.",
-            "thought":"Large_house seems like the best choice as I need enough space for my family and it's within my budget."
-        }
-    },
-    {
-        "prompt_inputs":{
-            "task":"You need to choose one type of houses.",
-            "thought_type":"Your views on these house types.",
-            "choose_type":"My choice is (house type, should be one of [large_house])",
-            "house_info":"There are 1 house types available. The infomation of these house types are listed as follows:\nlarge_house:\nThis type house's rent is around 2240-2320,and it's square footage is around 56.14-58.33.There remains 2 houses of this type. ",
-            "memory":"You had been considering two different communities, community_1 and community_2. Community_1 had inconvenient facilities, and community_2 was close to your wife's workplace and your child's school. Taking everything into consideration, you decided to go with community_2, as it seemed to be the most ideal option for your family.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
-            "role_description":"You are William Brown. You earn 15000 per month.Your family members include: A wife and one child in elementary school.You are 38 years old. Your job is State-owned enterprise clerk. Your company is located in No. 9 Chaoyang North Road, Chaoyang District, Beijing. William's family prefers an apartment with a short commute to work and school. You expect to rent a house for 2500.You still have 2 chances to choose house."
-        },
-        "response":{
-            "output":"My choice is large_house.",
-            "thought":"Large_house seems like the best choice as I need enough space for my family and it's within my budget."
-        }
-    },
-    {
-        "prompt_inputs":{
-            "task":"You need to choose one type of houses.",
-            "thought_type":"Your views on these house types.",
-            "choose_type":"My choice is (house type, should be one of [large_house])",
-            "house_info":"There are 1 house types available. The infomation of these house types are listed as follows:\nlarge_house:\nThis type house's rent is around 2240-2320,and it's square footage is around 56.14-58.33.There remains 2 houses of this type. ",
-            "memory":"You had been considering two different communities, community_1 and community_2. Community_1 had inconvenient facilities, and community_2 was close to your wife's workplace and your child's school. Taking everything into consideration, you decided to go with community_2, as it seemed to be the most ideal option for your family.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
-            "role_description":"You are William Brown. You earn 15000 per month.Your family members include: A wife and one child in elementary school.You are 38 years old. Your job is State-owned enterprise clerk. Your company is located in No. 9 Chaoyang North Road, Chaoyang District, Beijing. William's family prefers an apartment with a short commute to work and school. You expect to rent a house for 2500.You still have 2 chances to choose house."
-        },
-        "response":{
-            "output":"My choice is large_house.",
-            "thought":"Large_house seems like the best choice as I need enough space for my family and it's within my budget."
-        }
-    },
-    {
-        "prompt_inputs":{
-            "task":"You need to choose one type of houses.",
-            "thought_type":"Your views on these house types.",
-            "choose_type":"My choice is (house type, should be one of [large_house])",
-            "house_info":"There are 1 house types available. The infomation of these house types are listed as follows:\nlarge_house:\nThis type house's rent is around 2240-2320,and it's square footage is around 56.14-58.33.There remains 3 houses of this type. ",
-            "memory":"You have to make a decision between two communities, with community_1 having inconvenient facilities. After considering the proximity of community_2 to your wife's workplace and your child's school, you decide that it is the best option for your family and make the decision to choose community_2.You trust James Anderson said that  Community_3 has good greenery, proximity to amenities, and variety of sports and fitness equipment, with a rent of 40 dollars per square meter.  However you are suspicious of  Community_2 is a better alternative due to its better environment and infrastructure and slightly higher price.  Because  James Anderson may be suggesting Community_2 as an alternative because he believes it is a better option for Oliver's needs and he is looking out for his friend's best interest.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
-            "role_description":"You are Oliver Johnson. You earn 12000 per month.Your family members include: A wife and one child who just started university.You are 52 years old. Your job is Public servant. Your company is located in Office Building of the People's Government on the west side of the Great Hall of the People, Dongcheng District, Beijing. Mr. Johnson would like an apartment close to parks or green spaces for leisure walks. You expect to rent a house for 2400.0.You still have 2 chances to choose house."
-        },
-        "response":{
-            "output":"My choice is large_house.",
-            "thought":"Large house seems to be the best option for me, as it is within my budget and has a good square footage."
-        }
-    },
-    {
-        "prompt_inputs":{
-            "task":"You need to choose one type of houses.",
-            "thought_type":"Your views on these house types.",
-            "choose_type":"My choice is (house type, should be one of [large_house])",
-            "house_info":"There are 1 house types available. The infomation of these house types are listed as follows:\nlarge_house:\nThis type house's rent is around 2240-2320,and it's square footage is around 56.14-58.33.There remains 3 houses of this type. ",
-            "memory":"You have to make a decision between two communities, with community_1 having inconvenient facilities. After considering the proximity of community_2 to your wife's workplace and your child's school, you decide that it is the best option for your family and make the decision to choose community_2.You trust James Anderson said that  Community_3 has good greenery, proximity to amenities, and variety of sports and fitness equipment, with a rent of 40 dollars per square meter.  However you are suspicious of  Community_2 is a better alternative due to its better environment and infrastructure and slightly higher price.  Because  James Anderson may be suggesting Community_2 as an alternative because he believes it is a better option for Oliver's needs and he is looking out for his friend's best interest.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
-            "role_description":"You are Oliver Johnson. You earn 12000 per month.Your family members include: A wife and one child who just started university.You are 52 years old. Your job is Public servant. Your company is located in Office Building of the People's Government on the west side of the Great Hall of the People, Dongcheng District, Beijing. Mr. Johnson would like an apartment close to parks or green spaces for leisure walks. You expect to rent a house for 2400.0.You still have 2 chances to choose house."
-        }
-    },
-    {
-        "prompt_inputs":{
-            "task":"You need to choose one type of houses.",
-            "thought_type":"Your views on these house types.",
-            "choose_type":"My choice is (house type, should be one of [large_house])",
-            "house_info":"There are 1 house types available. The infomation of these house types are listed as follows:\nlarge_house:\nThis type house's rent is around 2240-2320,and it's square footage is around 56.14-58.33.There remains 3 houses of this type. ",
-            "memory":"You have to make a decision between two communities, with community_1 having inconvenient facilities. After considering the proximity of community_2 to your wife's workplace and your child's school, you decide that it is the best option for your family and make the decision to choose community_2.You trust James Anderson said that  Community_3 has good greenery, proximity to amenities, and variety of sports and fitness equipment, with a rent of 40 dollars per square meter.  However you are suspicious of  Community_2 is a better alternative due to its better environment and infrastructure and slightly higher price.  Because  James Anderson may be suggesting Community_2 as an alternative because he believes it is a better option for Oliver's needs and he is looking out for his friend's best interest.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
-            "role_description":"You are Oliver Johnson. You earn 12000 per month.Your family members include: A wife and one child who just started university.You are 52 years old. Your job is Public servant. Your company is located in Office Building of the People's Government on the west side of the Great Hall of the People, Dongcheng District, Beijing. Mr. Johnson would like an apartment close to parks or green spaces for leisure walks. You expect to rent a house for 2400.0.You still have 2 chances to choose house."
-        },
-        "response":{
-            "output":"My choice is large_house.",
-            "thought":"Large house seems to be the best option for me, as it is within my budget and has a good square footage."
-        }
-    },
-    {
-        "prompt_inputs":{
-            "task":"You need to choose one type of houses.",
-            "thought_type":"Your views on these house types.",
-            "choose_type":"My choice is (house type, should be one of [large_house])",
-            "house_info":"There are 1 house types available. The infomation of these house types are listed as follows:\nlarge_house:\nThis type house's rent is around 2240-2320,and it's square footage is around 56.14-58.33.There remains 3 houses of this type. ",
-            "memory":"You have to make a decision between two communities, with community_1 having inconvenient facilities. After considering the proximity of community_2 to your wife's workplace and your child's school, you decide that it is the best option for your family and make the decision to choose community_2.You trust James Anderson said that  Community_3 has good greenery, proximity to amenities, and variety of sports and fitness equipment, with a rent of 40 dollars per square meter.  However you are suspicious of  Community_2 is a better alternative due to its better environment and infrastructure and slightly higher price.  Because  James Anderson may be suggesting Community_2 as an alternative because he believes it is a better option for Oliver's needs and he is looking out for his friend's best interest.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
-            "role_description":"You are Oliver Johnson. You earn 12000 per month.Your family members include: A wife and one child who just started university.You are 52 years old. Your job is Public servant. Your company is located in Office Building of the People's Government on the west side of the Great Hall of the People, Dongcheng District, Beijing. Mr. Johnson would like an apartment close to parks or green spaces for leisure walks. You expect to rent a house for 2400.0.You still have 2 chances to choose house."
-        },
-        "response":{
-            "output":"My choice is large_house.",
-            "thought":"Large house seems to be the best option for me, as it is within my budget and has a good square footage."
-        }
-    },
-    {
-        "prompt_inputs":{
-            "task":"You need to choose one type of houses.",
-            "thought_type":"Your views on these house types.",
-            "choose_type":"My choice is (house type, should be one of [large_house])",
-            "house_info":"There are 1 house types available. The infomation of these house types are listed as follows:\nlarge_house:\nThis type house's rent is around 2240-2320,and it's square footage is around 56.14-58.33.There remains 3 houses of this type. ",
-            "memory":"You have to make a decision between two communities, with community_1 having inconvenient facilities. After considering the proximity of community_2 to your wife's workplace and your child's school, you decide that it is the best option for your family and make the decision to choose community_2.You trust James Anderson said that  Community_3 has good greenery, proximity to amenities, and variety of sports and fitness equipment, with a rent of 40 dollars per square meter.  However you are suspicious of  Community_2 is a better alternative due to its better environment and infrastructure and slightly higher price.  Because  James Anderson may be suggesting Community_2 as an alternative because he believes it is a better option for Oliver's needs and he is looking out for his friend's best interest.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
-            "role_description":"You are Oliver Johnson. You earn 12000 per month.Your family members include: A wife and one child who just started university.You are 52 years old. Your job is Public servant. Your company is located in Office Building of the People's Government on the west side of the Great Hall of the People, Dongcheng District, Beijing. Mr. Johnson would like an apartment close to parks or green spaces for leisure walks. You expect to rent a house for 2400.0.You still have 2 chances to choose house."
-        },
-        "response":{
-            "output":"My choice is large_house.",
-            "thought":"Large house seems to be the best option for me, as it is within my budget and has a good square footage."
-        }
-    },
-    {
-        "prompt_inputs":{
-            "task":"You need to choose one type of houses.",
-            "thought_type":"Your views on these house types.",
-            "choose_type":"My choice is (house type, should be one of [large_house])",
-            "house_info":"There are 1 house types available. The infomation of these house types are listed as follows:\nlarge_house:\nThis type house's rent is around 2240-2320,and it's square footage is around 56.14-58.33.There remains 2 houses of this type. ",
-            "memory":"The speaker is considering two communities for living, community_1 and community_2. Community_1 has inconvenient facilities, and the speaker didn't make a choice yet. However, community_2 is close to both his wife's workplace and his child's school, making it ideal for his family members. Thus, the speaker decides to choose community_2 as his new home.You trust James Anderson said that  Community_3 has great amenities, a hospital, and plenty of green space. Because  James Anderson may have some personal interests in recommending Community 3, as he may be aware of the advantages of the Community 3.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
-            "role_description":"You are Oliver Johnson. You earn 12000 per month.Your family members include: A wife and one child who just started university.You are 52 years old. Your job is Public servant. Your company is located in Office Building of the People's Government on the west side of the Great Hall of the People, Dongcheng District, Beijing. Mr. Johnson would like an apartment close to parks or green spaces for leisure walks. You expect to rent a house for 2400.0.You still have 2 chances to choose house."
-        },
-        "response":{
-            "output":"My choice is large_house.",
-            "thought":"Large houses are spacious and have more amenities than small houses."
-        }
-    },
-    {
-        "prompt_inputs":{
-            "task":"You need to choose one type of houses.",
-            "thought_type":"Your views on these house types.",
-            "choose_type":"My choice is (house type, should be one of [large_house])",
-            "house_info":"There are 1 house types available. The infomation of these house types are listed as follows:\nlarge_house:\nThis type house's rent is around 2240-2320,and it's square footage is around 56.14-58.33.There remains 2 houses of this type. ",
-            "memory":"The speaker is considering two communities for living, community_1 and community_2. Community_1 has inconvenient facilities, and the speaker didn't make a choice yet. However, community_2 is close to both his wife's workplace and his child's school, making it ideal for his family members. Thus, the speaker decides to choose community_2 as his new home.You trust James Anderson said that  Community_3 has great amenities, a hospital, and plenty of green space. Because  James Anderson may have some personal interests in recommending Community 3, as he may be aware of the advantages of the Community 3.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
-            "role_description":"You are Oliver Johnson. You earn 12000 per month.Your family members include: A wife and one child who just started university.You are 52 years old. Your job is Public servant. Your company is located in Office Building of the People's Government on the west side of the Great Hall of the People, Dongcheng District, Beijing. Mr. Johnson would like an apartment close to parks or green spaces for leisure walks. You expect to rent a house for 2400.0.You still have 2 chances to choose house."
-        },
-        "response":{
-            "output":"My choice is large_house.",
-            "thought":"Large houses are spacious and have more amenities than small houses."
-        }
-    },
-    {
-        "prompt_inputs":{
-            "task":"You need to choose one type of houses.",
-            "thought_type":"Your views on these house types.",
-            "choose_type":"My choice is (house type, should be one of [large_house])",
-            "house_info":"There are 1 house types available. The infomation of these house types are listed as follows:\nlarge_house:\nThis type house's rent is around 2240-2320,and it's square footage is around 56.14-58.33.There remains 2 houses of this type. ",
-            "memory":"The speaker is considering two communities for living, community_1 and community_2. Community_1 has inconvenient facilities, and the speaker didn't make a choice yet. However, community_2 is close to both his wife's workplace and his child's school, making it ideal for his family members. Thus, the speaker decides to choose community_2 as his new home.You trust James Anderson said that  Community_3 has great amenities, a hospital, and plenty of green space. Because  James Anderson may have some personal interests in recommending Community 3, as he may be aware of the advantages of the Community 3.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
-            "role_description":"You are Oliver Johnson. You earn 12000 per month.Your family members include: A wife and one child who just started university.You are 52 years old. Your job is Public servant. Your company is located in Office Building of the People's Government on the west side of the Great Hall of the People, Dongcheng District, Beijing. Mr. Johnson would like an apartment close to parks or green spaces for leisure walks. You expect to rent a house for 2400.0.You still have 2 chances to choose house."
-        },
-        "response":{
-            "output":"My choice is large_house.",
-            "thought":"Large houses are spacious and have more amenities than small houses."
-        }
-    },
-    {
-        "prompt_inputs":{
-            "task":"You need to choose one type of houses.",
-            "thought_type":"Your views on these house types.",
-            "choose_type":"My choice is (house type, should be one of [large_house])",
-            "house_info":"There are 1 house types available. The infomation of these house types are listed as follows:\nlarge_house:\nThis type house's rent is around 2240-2320,and it's square footage is around 56.14-58.33.There remains 2 houses of this type. ",
-            "memory":"The speaker is considering two communities for living, community_1 and community_2. Community_1 has inconvenient facilities, and the speaker didn't make a choice yet. However, community_2 is close to both his wife's workplace and his child's school, making it ideal for his family members. Thus, the speaker decides to choose community_2 as his new home.You trust James Anderson said that  Community_3 has great amenities, a hospital, and plenty of green space. Because  James Anderson may have some personal interests in recommending Community 3, as he may be aware of the advantages of the Community 3.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
-            "role_description":"You are Oliver Johnson. You earn 12000 per month.Your family members include: A wife and one child who just started university.You are 52 years old. Your job is Public servant. Your company is located in Office Building of the People's Government on the west side of the Great Hall of the People, Dongcheng District, Beijing. Mr. Johnson would like an apartment close to parks or green spaces for leisure walks. You expect to rent a house for 2400.0.You still have 2 chances to choose house."
-        },
-        "response":{
-            "output":"My choice is large_house.",
-            "thought":"Large houses are spacious and have more amenities than small houses."
-        }
-    },
-    {
-        "prompt_inputs":{
-            "task":"You need to choose one type of houses.",
-            "thought_type":"Your views on these house types.",
-            "choose_type":"My choice is (house type, should be one of [large_house])",
-            "house_info":"There are 1 house types available. The infomation of these house types are listed as follows:\nlarge_house:\nThis type house's rent is around 2240-2320,and it's square footage is around 56.14-58.33.There remains 2 houses of this type. ",
-            "memory":"The speaker is considering two communities for living, community_1 and community_2. Community_1 has inconvenient facilities, and the speaker didn't make a choice yet. However, community_2 is close to both his wife's workplace and his child's school, making it ideal for his family members. Thus, the speaker decides to choose community_2 as his new home.You trust James Anderson said that  Community_3 has great amenities, a hospital, and plenty of green space. Because  James Anderson may have some personal interests in recommending Community 3, as he may be aware of the advantages of the Community 3.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
-            "role_description":"You are Oliver Johnson. You earn 12000 per month.Your family members include: A wife and one child who just started university.You are 52 years old. Your job is Public servant. Your company is located in Office Building of the People's Government on the west side of the Great Hall of the People, Dongcheng District, Beijing. Mr. Johnson would like an apartment close to parks or green spaces for leisure walks. You expect to rent a house for 2400.0.You still have 2 chances to choose house."
-        },
-        "response":{
-            "output":"My choice is large_house.",
-            "thought":"Large houses are spacious and have more amenities than small houses."
-        }
-    },
-    {
-        "prompt_inputs":{
-            "task":"You need to choose one type of houses.",
-            "thought_type":"Your views on these house types.",
-            "choose_type":"My choice is (house type, should be one of [large_house])",
-            "house_info":"There are 1 house types available. The infomation of these house types are listed as follows:\nlarge_house:\nThis type house's rent is around 2240-2320,and it's square footage is around 56.14-58.33.There remains 2 houses of this type. ",
-            "memory":"The speaker is considering two communities for living, community_1 and community_2. Community_1 has inconvenient facilities, and the speaker didn't make a choice yet. However, community_2 is close to both his wife's workplace and his child's school, making it ideal for his family members. Thus, the speaker decides to choose community_2 as his new home.You trust James Anderson said that  Community_3 has great amenities, a hospital, and plenty of green space. Because  James Anderson may have some personal interests in recommending Community 3, as he may be aware of the advantages of the Community 3.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
-            "role_description":"You are Oliver Johnson. You earn 12000 per month.Your family members include: A wife and one child who just started university.You are 52 years old. Your job is Public servant. Your company is located in Office Building of the People's Government on the west side of the Great Hall of the People, Dongcheng District, Beijing. Mr. Johnson would like an apartment close to parks or green spaces for leisure walks. You expect to rent a house for 2400.0.You still have 2 chances to choose house."
-        },
-        "response":{
-            "output":"My choice is large_house.",
-            "thought":"Large houses are spacious and have more amenities than small houses."
+            "thought":"I prefer the large_house type because of the extra convenience and space it provides. Its higher rent is manageable within my budget."
         }
     }
 ]

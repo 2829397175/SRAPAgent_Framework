@@ -20,7 +20,7 @@ class LogRound(BaseModel):
     
     def step(self):
         if self.round_id != 0:
-            self.log[self.round_id][ "log_social_network"] = self.log_social_network
+            self.log[self.round_id][ "log_social_network"] = copy.deepcopy(self.log_social_network)
             
         self.round_id += 1
         self.log[self.round_id] = {} # 下一轮log的 initialize
@@ -32,13 +32,13 @@ class LogRound(BaseModel):
             if "log_round_prompts" not in self.log[self.round_id].keys():
                 self.log[self.round_id]["log_round_prompts"] = {}
             if tenant_id in self.log[self.round_id]["log_round"].keys():
-                self.log[self.round_id]["log_round"][tenant_id].update(self.log_round)
+                self.log[self.round_id]["log_round"][tenant_id].update(copy.deepcopy(self.log_round))
             else:
-                self.log[self.round_id]["log_round"][tenant_id] = self.log_round
+                self.log[self.round_id]["log_round"][tenant_id] = copy.deepcopy(self.log_round)
             if tenant_id in self.log[self.round_id]["log_round_prompts"].keys():
-                self.log[self.round_id]["log_round_prompts"][tenant_id].update(self.log_round_prompts)
+                self.log[self.round_id]["log_round_prompts"][tenant_id].update(copy.deepcopy(self.log_round_prompts))
             else:
-                self.log[self.round_id]["log_round_prompts"][tenant_id] = self.log_round_prompts
+                self.log[self.round_id]["log_round_prompts"][tenant_id] = copy.deepcopy(self.log_round_prompts)
     
     
     def set_group_log(self,tenant_id):
@@ -175,7 +175,7 @@ class LogRound(BaseModel):
         message_str=[]
         for message in messages:
             message_str.append(template.format(sname=list(message.sender.values())[0],rname=list(message.receiver.values())[0],content=str(message)))
-        self.log_round["social_net_message"]=message_str
+        self.log_round["social_net_message"]= copy.deepcopy(message_str)
 
     def save_data(self):
         self.log_round={}
