@@ -52,42 +52,43 @@ class CommunityManager(BaseManager):
 In this community, {description}. {nearby_info}."""
 
         housetype_template = """\
-The {housetype} in this community is a {living_room} apartment, with an area of about {size}, the monthly rent  is about {cost} dollars, and there are still {remain_number} houses."""
-        curcommunity_description = ""
-        furcommunity_description = ""
+The {housetype} in {community_id} is a {living_room} apartment, with an area of about {size}, the monthly rent  is about {cost} dollars, and there are still {remain_number} houses."""
+        curcommunity_description = []
+        furcommunity_description = []
         
         for community_info in curcommunity_list:
-            curcommunity_description += template.format(community_id=community_info["community_id"],
+            curcommunity_description.append(template.format(community_id=community_info["community_id"],
                                                      community_name=community_info["community_name"],
                                                      en_location=community_info["en_location"],
                                                      value_inch=community_info["value_inch"],
                                                      description=community_info["description"],
                                                      nearby_info=community_info["nearby_info"],
-                                                     )
+                                                     ))
             house_types = ['small_house', 'middle_house', 'large_house']
             house_typs=[]
             for house_type in house_types:
                 if house_type in community_info:
-                    curcommunity_description += housetype_template.format(housetype=house_type,
+                    curcommunity_description.append("\t"+housetype_template.format(housetype=house_type,
+                                                                       community_id =community_info["community_id"],
                                                                        living_room=community_info[house_type][
                                                                            "living_room"],
                                                                        size=community_info[house_type]["size"],
                                                                        cost=community_info[house_type]["cost"],
                                                                        remain_number=community_info[house_type][
                                                                            "remain_number"]
-                                                                       )
+                                                                       ))
                     house_typs.append(house_type)
-            house_type_describe_prompt = "There are {num_house_type} room types in this community,including {house_type}. The infomation of room types are listed as follows:\n{room_type}"
-            house_type_describe=house_type_describe_prompt.format(num_house_type=len(house_typs),house_type=",".join(house_typs),room_type=curcommunity_description)
-            house_type_describe += "\n"
+            # house_type_describe_prompt = "There are {num_house_type} room types in this community,including {house_type}. The infomation of room types are listed as follows:\n{room_type}"
+            # house_type_describe=house_type_describe_prompt.format(num_house_type=len(house_typs),house_type=",".join(house_typs),room_type=curcommunity_description)
+            # house_type_describe += "\n"
 
-        curcommunitys_describe_prompt = "There are {num_communitys} communities available. The infomation of these communitys are listed as follows:\n{communitys}"
+        curcommunitys_describe_prompt = "There are {num_communitys} communities available. The infomation of these communitys are listed as follows:\n\n{communitys}"
         curstr = curcommunitys_describe_prompt.format(num_communitys=len_curcommunity,
-                                                                      communitys=curcommunity_description)
+                                                communitys="\n\n".join(curcommunity_description))
         if len(furcommunity_list)==0:
             return curstr,""
         for furcommunity_info in furcommunity_list:
-            furcommunity_description += template.format(community_id=furcommunity_info["community_id"],
+            furcommunity_description.append(template.format(community_id=furcommunity_info["community_id"],
                                                      community_name=furcommunity_info["community_name"],
                                                      en_location=furcommunity_info["en_location"],
                                                      value_inch=furcommunity_info["value_inch"],
@@ -96,30 +97,30 @@ The {housetype} in this community is a {living_room} apartment, with an area of 
                                                          "get_shortest_commute_time"],
                                                      nearby_info=furcommunity_info["nearby_info"],
                                                      comment_summary=furcommunity_info["comment_summary"]
-                                                     )
+                                                     ))
             house_types = ['small_house', 'middle_house', 'large_house']
             house_typs = []
             for house_type in house_types:
                 if house_type in furcommunity_info:
-                    furcommunity_description += housetype_template.format(housetype=house_type,
+                    furcommunity_description.append("\t"+housetype_template.format(housetype=house_type,
                                                                        living_room=furcommunity_info[house_type][
                                                                            "living_room"],
                                                                        size=furcommunity_info[house_type]["size"],
                                                                        cost=furcommunity_info[house_type]["cost"],
                                                                        remain_number=furcommunity_info[house_type][
                                                                            "remain_number"]
-                                                                       )
+                                                                       ))
                     house_typs.append(house_type)
-            house_type_describe_prompt = "There are {num_house_type} room types in this community,including {house_type}. The infomation of room types are listed as follows:\n{room_type}"
-            house_type_describe = house_type_describe_prompt.format(num_house_type=len(house_typs),
-                                                                    house_type=",".join(house_typs),
-                                                                    room_type=furcommunity_description)
-            house_type_describe += "\n"
+            # house_type_describe_prompt = "There are {num_house_type} room types in this community, including {house_type}. The infomation of room types are listed as follows:\n{room_type}"
+            # house_type_describe = house_type_describe_prompt.format(num_house_type=len(house_typs),
+            #                                                         house_type=",".join(house_typs),
+            #                                                         room_type="\n".join(furcommunity_description))
+            # house_type_describe += "\n"
 
 
-        furcommunitys_describe_prompt = "There are {num_communitys} communities that will be released in the future . The infomation of these communitys are listed as follows:\n{communitys}"
+        furcommunitys_describe_prompt = "There are {num_communitys} communities that will be released in the future . The infomation of these communitys are listed as follows:\n\n{communitys}"
         furstr = furcommunitys_describe_prompt.format(num_communitys=len_furcommunity,
-                                                                      communitys=furcommunity_description)
+                                                      communitys="\n\n".join(furcommunity_description))
         return curstr,furstr
     
 

@@ -89,10 +89,10 @@ def clear_response(json_types,rate = 0.1):
 
 if __name__ == "__main__":
     # make data
-    # clear_database()
-    # batch_read_data()
+    clear_database()
+    batch_read_data()
     
     
     # clear response
     json_types = ["community","house","housetype"]
-    clear_response(json_types)
+    clear_response(json_types,rate= 1)

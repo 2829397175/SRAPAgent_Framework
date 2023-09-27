@@ -3,10 +3,11 @@ from tkinter import messagebox, simpledialog
 import os
 import json
 class App:
-    def __init__(self, dir_path):
+    def __init__(self, dir_path, saving_path):
         assert os.path.exists(dir_path),"no such file path: {}".format(dir_path)
         with open(dir_path,'r',encoding = 'utf-8') as f:
             self.data_list = json.load(f)
+        self.saving_path = saving_path
         for data in self.data_list:
             #testflag表示是否被标注过
             data["testflag"]=False
@@ -62,10 +63,10 @@ class App:
         button_frame = tk.Frame(self.window)
         button_frame.grid(row=row_counter, column=0, pady=10)
         
-        self.approve_button = tk.Button(button_frame, text="Approve", command=self.approve)
+        self.approve_button = tk.Button(button_frame, text="Approve (Human Response)", command=self.approve)
         self.approve_button.pack(side=tk.LEFT, padx=10)
         
-        self.reject_button = tk.Button(button_frame, text="Reject", command=self.reject)
+        self.reject_button = tk.Button(button_frame, text="Reject (Robot Response)", command=self.reject)
         self.reject_button.pack(side=tk.LEFT, padx=10)
         
         self.save_button = tk.Button(button_frame, text="Save Response", command=self.save_response)
@@ -142,9 +143,10 @@ class App:
                 thought_content = str(current_data['response']['thought'])
                 self.insert_and_resize_textbox(self.thought_text, thought_content)
             else:
-                output_content = str(current_data['response']['output'])
+                # 这里response 清空了
+                output_content = ""
                 self.insert_and_resize_textbox2(self.output_text, output_content)
-                thought_content = str(current_data['response']['thought'])
+                thought_content = ""
                 self.insert_and_resize_textbox2(self.thought_text, thought_content)
         else:
             messagebox.showinfo("Done", "All data has been checked!")
@@ -152,22 +154,27 @@ class App:
 
     def save_and_exit(self):
         # 保存 data_list（在这个例子中我们只是将其打印到控制台）
-        qa="LLM_PublicHouseAllocation/LLM_decision_test/result/QA_result.json"
-        assert os.path.exists(qa),"no such file path: {}".format(qa)
-        with open(qa,'r',encoding = 'utf-8') as f:
-            QA_result = json.load(f)
-            QA_result.extend(self.data_list)
-        with open(qa, 'w', encoding='utf-8') as file:
+        
+        QA_result = []
+        if os.path.exists(self.saving_path):
+            with open(self.saving_path,'r',encoding = 'utf-8') as f:
+                QA_result = json.load(f)
+        
+        QA_result.extend(self.data_list)
+        with open(self.saving_path, 'w', encoding='utf-8') as file:
             json.dump(QA_result, file, indent=4,separators=(',', ':'),ensure_ascii=False)
 
         # 关闭窗口
         self.window.destroy()
+        
+    # 认为是人类
     def approve(self):
         self.data_list[self.index]["testflag"]=True
         self.data_list[self.index]["turingflag"]=True
         self.index += 1
         self.show_data()
         
+    # 认为是robot
     def reject(self):
         self.data_list[self.index]["testflag"]=True
         self.data_list[self.index]["turingflag"]=False
@@ -191,6 +198,8 @@ class App:
             self.data_list[self.index]["turingflag"]=True
             self.index+=1
             self.show_data()
+        else:
+            messagebox.showerror("Error","Be sure to enter response and thought before saving.")
 
 
 # Sample data
@@ -225,6 +234,19 @@ data = [{
     }]  # Replace with your JSON data
 
 if __name__ == "__main__":
-    data_dir="LLM_PublicHouseAllocation/LLM_decision_test/community_qa.json"
-    app = App(data_dir)
+    
+    ## 标注过程：
+    
+    # root_dir = "LLM_PublicHouseAllocation\LLM_decision_test\qa_clear_data" 
+    # saving_root_dir = "LLM_PublicHouseAllocation\LLM_decision_test/result"
+    # json_dirs = os.listdir(root_dir)
+    # json_dirs.pop(0)
+    # for json_dir in json_dirs:
+    #     data_dir = os.path.join(root_dir,json_dir)
+    #     saving_dir = os.path.join(saving_root_dir,json_dir)
+    #     app = App(data_dir,saving_path=saving_dir)
 
+    # 图灵测试部分：
+    
+    data_dir = "LLM_PublicHouseAllocation\LLM_decision_test/test\saving_QA.json"
+    app = App(data_dir,saving_path = data_dir)
