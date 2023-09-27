@@ -79,7 +79,7 @@ def clear_response(json_types,rate = 0.1):
         clear_indexs = np.random.choice(list(range(len(data))),
                                         size=int(rate*len(data)),replace=False)
         for c_idx in clear_indexs:
-            del data[c_idx]["response"]
+            data[c_idx]["response"]={}
             
         save_dir = "LLM_PublicHouseAllocation\LLM_decision_test\qa_clear_data\{}_qa.json".format(json_type)
         with open(save_dir,'w',encoding = 'utf-8') as f:
