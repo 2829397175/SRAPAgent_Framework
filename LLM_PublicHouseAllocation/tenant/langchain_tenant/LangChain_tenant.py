@@ -231,7 +231,8 @@ class LangchainTenant(langchainAgent):
                       # 下面三个参数，仅在step_type == "social_network"时用到
                       conver_num = 0, # 表示本轮更新前的conver数
                       context :List[str] = [], # 表示本轮更新前的context       
-                      continue_dialogue : bool = True     # 记录对话是否继续       
+                      continue_dialogue : bool = True ,    # 记录对话是否继续 
+                      key_social_network:int = 0      
                       ):
         
         kargs={ "content":sendcontent,
@@ -241,7 +242,8 @@ class LangchainTenant(langchainAgent):
                 "tool_response": tool_response,
                 "conver_num":conver_num,
                 "context":context,
-                "continue_dialogue":continue_dialogue}
+                "continue_dialogue":continue_dialogue,
+                "key_social_network":key_social_network}
         
 
         sendmessage = Message(
@@ -259,7 +261,8 @@ class LangchainTenant(langchainAgent):
                       # 下面三个参数，仅在step_type == "social_network"时用到
                       conver_num = 0, # 表示本轮更新前的conver数
                       context :List[str] = [], # 表示本轮更新前的context       
-                      continue_dialogue : bool = True     # 记录对话是否继续          
+                      continue_dialogue : bool = True,     # 记录对话是否继续,
+                      key_social_network: int =0
                       ):
         STEP_TYPES=(
             "community",
@@ -279,7 +282,8 @@ class LangchainTenant(langchainAgent):
                 "tool_response": tool_response,
                 "conver_num":conver_num,
                 "context":context,
-                "continue_dialogue":continue_dialogue}
+                "continue_dialogue":continue_dialogue,
+                "key_social_network":key_social_network}
         
      
         selfmessage = Message(
@@ -533,13 +537,15 @@ You still have {chance_num} chances to choose house.\
                                   system,
                                   rule,
                                   log_round,
-                                  round_index
+                                  round_index,
+                                  key_social_network
                                   ):
         
         # debug
-        return self.communicate(log_round=log_round,
-                                system=system,
-                                round_index=round_index)
+        return self.communicate(log_round = log_round,
+                                system = system,
+                                round_index = round_index,
+                                key_social_network = key_social_network)
         
         # if self.memory.messages.get("search")==None:
         #     actions = {
@@ -599,11 +605,17 @@ You still have {chance_num} chances to choose house.\
         # 进行1轮，先是否进行选房流程的判断，若否则直接返回
         
   
-    def communicate(self,log_round,system,round_index=0):
+    def communicate(self,log_round,system,round_index = 0, key_social_network=0):
         if len(self.memory.mail)>0:
-            return self.group_discuss_back(log_round=log_round,system=system,round_index=round_index)       
+            return self.group_discuss_back(log_round=log_round,
+                                           system=system,
+                                           round_index=round_index,
+                                           key_social_network=key_social_network)       
         else:
-            return self.group_discuss(log_round=log_round,system=system,round_index=round_index)
+            return self.group_discuss(log_round=log_round,
+                                      system=system,
+                                      round_index=round_index,
+                                      key_social_network=key_social_network)
         
     # 一系列房子选择的函数，理想中要整合成pipeline之类的格式(待改)
     
@@ -613,7 +625,8 @@ You still have {chance_num} chances to choose house.\
                            system,
                            memory="",
                            step_type ="group_discuss_plan",
-                           round_index=10):
+                           round_index=10,
+                           key_social_network=0):
         self.reset_state(mode="group_discuss_plan")
         
         acquaintance_template = "Your acquaintances include {acquaintance_type}."
@@ -648,17 +661,22 @@ You still have {chance_num} chances to choose house.\
         
         response = self.step(prompt_inputs).get("return_values")
         
-        log_round.set_social_network(prompt_inputs,
+        key_social_network = log_round.set_social_network(prompt_inputs,
                                      response,
                                      id = self.id,
                                      name = self.name,
                                      round_index = round_index,
-                                     step_type = step_type)
+                                     step_type = step_type,
+                                     key_social_network = key_social_network)
         
-        return response 
+        return response,key_social_network
     
     # 这里加一个recent chat
-    def group_discuss(self,log_round,system,round_index =10):
+    def group_discuss(self,
+                      log_round,
+                      system,
+                      round_index = 10,
+                      key_social_network = 0):
         
         memory = self.memory.memory_tenant("social_network",name=self.name) + self.infos.get("extra_info")
         
@@ -667,11 +685,16 @@ You think (Your true opionion about these communities or houses).
 For now, Whether you want to provide information honestly to acquaintances: (Yes or No)
 
 Your current plan to respond is (Your plan to communicate with your friends, competitors, be concise)"""
-        group_discuss_plan = self.group_discuss_plan(respond_format=respond_format,
+        group_discuss_plan, key_social_network = self.group_discuss_plan(respond_format=respond_format,
                                                      log_round=log_round,
                                                      system=system,
                                                      memory = memory,
-                                                     step_type = "group_discuss_plan").get("plan")
+                                                     step_type = "group_discuss_plan",
+                                                     round_index = round_index,
+                                                     key_social_network = key_social_network)
+        
+        group_discuss_plan = group_discuss_plan.get("plan")
+        
         recent_chats = self.memory.retrieve_recent_chat()
         if recent_chats.strip() == "":
             recent_chats = "None"
@@ -706,12 +729,13 @@ Your current plan to respond is (Your plan to communicate with your friends, com
         
         for _ in range(self.max_jug_time):
             response = self.step(prompt_inputs).get("return_values")
-            log_round.set_social_network(prompt_inputs,
+            key_social_network = log_round.set_social_network(prompt_inputs,
                                      response,
                                      id = self.id,
                                      name = self.name,
                                      round_index = round_index,
-                                     step_type = "group_discuss") # 如果存在retry，后一次的覆盖会覆盖前一次
+                                     step_type = "group_discuss",
+                                     key_social_network = key_social_network) # 如果存在retry，后一次的覆盖会覆盖前一次
             
             if response.get("output") =="fail to discuss":
                 jug_response = False
@@ -740,7 +764,8 @@ Your current plan to respond is (Your plan to communicate with your friends, com
                                         receivers=receivers,    
                                         conver_num = 0,
                                         context = [send_str],
-                                        continue_dialogue = True
+                                        continue_dialogue = True,
+                                        key_social_network = key_social_network
                                         )
 
                         
@@ -750,7 +775,8 @@ Your current plan to respond is (Your plan to communicate with your friends, com
                                           receivers = receivers,
                                         conver_num = 0,
                                         context = [send_str],
-                                        continue_dialogue = True
+                                        continue_dialogue = True,
+                                        key_social_network = key_social_network
                                         )
                         
                        
@@ -762,7 +788,7 @@ Your current plan to respond is (Your plan to communicate with your friends, com
                 if jug_response: # 如果此round response 含有非法内容，rerun; 否则break
                     break
                 
-        return jug_response == True # 存在合法回答，则继续dialogue
+        return jug_response == True,key_social_network # 存在合法回答，则继续dialogue
                     
     # 在调用discuss_back之后，重新更新社交关系
     # context是最新，含有对话细节的message的context
@@ -770,7 +796,8 @@ Your current plan to respond is (Your plan to communicate with your friends, com
                                      context,
                                      acquaintance_id:str,
                                      log_round,
-                                     round_index = 10):
+                                     round_index:int = 10,
+                                     key_social_network:int = 0):
         
         self.reset_state(mode="relation")
         
@@ -795,12 +822,13 @@ you're communicating with your acquaintances about house renting.""".format(name
         }
         response = self.step(prompt_inputs = prompt_inputs).get("return_values")
         
-        log_round.set_social_network(prompt_inputs,
+        key_social_network = log_round.set_social_network(prompt_inputs,
                                      response,
                                      id = self.id,
                                      name = self.name,
                                      round_index = round_index,
-                                     step_type ="relation")
+                                     step_type ="relation",
+                                     key_social_network = key_social_network)
         
         try:
             self.memory.social_network[acquaintance_id]["relation"] = response.get("relation")
@@ -809,7 +837,11 @@ you're communicating with your acquaintances about house renting.""".format(name
             print("Fail to update relation for {}".format(self.name))
               
                 
-    def group_discuss_back(self, log_round,system,round_index = 10):
+    def group_discuss_back(self, 
+                           log_round,
+                           system,
+                           round_index = 10,
+                           key_social_network=0):
         concise_role_description = self.get_concise_role_description()
         if self.infos.get("personal_preference",False):
             concise_role_description += "Up to now, your personal preference for house is :{}".format(
@@ -842,12 +874,14 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
                                                    comment = acquantice_comment,
                                                    acquantice_type=acquantice_type)
             
-            group_discuss_plan = self.group_discuss_plan(respond_format = respond_format,
+            group_discuss_plan, key_social_network = self.group_discuss_plan(respond_format = respond_format,
                                                          memory = memory,
                                                          system = system,
-                                                         log_round=log_round,
-                                                         step_type="gorup_discuss_back_plan",
-                                                         round_index=round_index).get("plan")
+                                                         log_round = log_round,
+                                                         step_type = "group_discuss_back_plan",
+                                                         round_index = round_index,
+                                                         key_social_network = key_social_network)
+            group_discuss_plan = group_discuss_plan.get("plan")
             
             # parse_preference:
             try:
@@ -874,12 +908,13 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
                 # response = self.llm_chain(prompt_inputs)
                 response = self.step(prompt_inputs = prompt_inputs).get("return_values")
                 
-                log_round.set_social_network(prompt_inputs,
+                key_social_network = log_round.set_social_network(prompt_inputs,
                                      response,
                                      id = self.id,
                                      name = self.name,
                                      round_index = round_index,
-                                     step_type ="group_discuss_back")
+                                     step_type ="group_discuss_back",
+                                     key_social_network = key_social_network)
                 
                 if response is None:
                     return
@@ -900,7 +935,8 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
                                 "receivers": message.sender,
                                 "conver_num": message.conver_num+1,
                                 "context":context,
-                                "continue_dialogue":continue_dialogue}
+                                "continue_dialogue":continue_dialogue,
+                                "key_social_network": key_social_network}
                         
                         message_send = Message(**kargs)
                         self.memory.add_post_meesage_buffer([message_send])
@@ -914,10 +950,12 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
                         
                     self.update_acquaintance_relation(context = context,
                                                       acquaintance_id = sender_id,
-                                                      log_round = log_round)
+                                                      log_round = log_round,
+                                                      round_index = round_index,
+                                                      key_social_network = key_social_network)
                     
         self.memory.mail.clear()
-        return self_continue_dialogue
+        return self_continue_dialogue,key_social_network
 
     
     def comment(self,description,step_type): # description 可以是community或house_type或house

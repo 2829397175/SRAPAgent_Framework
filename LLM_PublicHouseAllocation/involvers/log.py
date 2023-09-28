@@ -65,7 +65,11 @@ class LogRound(BaseModel):
                            id,
                            name,
                            round_index, #轮内第几个发言
-                           step_type):
+                           step_type,
+                           key_social_network):
+        
+        key_social_network += 1
+        
         if round_index not in self.log_social_network.keys():
             self.log_social_network[round_index] = {}
         
@@ -77,15 +81,22 @@ class LogRound(BaseModel):
                 "prompt_inputs":prompt_inputs,
                 "response":response,
                 "id":id,
-                "name":name
+                "name":name,
+                "key_social_network":key_social_network
             } )
+            
+            
         else:
             self.log_social_network[round_index][step_type] = {
                 "prompt_inputs":prompt_inputs,
                 "response":response,
                 "id":id,
-                "name":name
+                "name":name,
+                "key_social_network":key_social_network
             }   
+            
+        
+        return key_social_network
             
     def set_choose_history(self,
                            step_type,

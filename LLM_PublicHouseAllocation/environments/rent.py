@@ -31,6 +31,9 @@ class RentEnvironment(BaseEnvironment):
     log:Optional[LogRound] = None
     save_log:bool = True
     
+    # 对于社交网络信息的主键
+    key_social_net = 0
+    
     class Config:
         arbitrary_types_allowed = True
 
@@ -86,11 +89,12 @@ class RentEnvironment(BaseEnvironment):
             tenant_ids.pop(0)
             tenant = self.tenant_manager.data[tenant_id]
             if isinstance(tenant, LangchainTenant):
-                continue_communication = asyncio.run(tenant.async_communication(self.forum_manager, 
+                continue_communication, self.key_social_net = asyncio.run(tenant.async_communication(self.forum_manager, 
                                                                                 self.system,
                                                                                 self.rule,
                                                                                 self.log,
-                                                                                c_num))
+                                                                                c_num,
+                                                                                self.key_social_net))
                 receiver_ids = self.update_social_net(tenant=tenant) # 先把receiver放进communication队列
                 for r_id in receiver_ids:
                     if (r_id) not in tenant_ids:
@@ -166,7 +170,8 @@ class RentEnvironment(BaseEnvironment):
                     "receivers",
                     "conver_num",
                     "context",
-                    "continue_dialogue"]
+                    "continue_dialogue",
+                    "key_social_network"]
             for k,v in memory_tenant.items():
                 if k=="mail":
                     v=[
