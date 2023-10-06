@@ -28,7 +28,7 @@ class RentEnvironment(BaseEnvironment):
     system: System
     tool: Optional[Tool] = None
     deque_dict: dict = {}
-    log:Optional[LogRound] = None
+    log: Optional[LogRound] = None
     save_log:bool = True
     
     # 对于社交网络信息的主键
