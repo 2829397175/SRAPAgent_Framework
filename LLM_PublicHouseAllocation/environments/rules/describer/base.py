@@ -12,6 +12,6 @@ if TYPE_CHECKING:
 
 @DescriberRegistry.register("base")
 class BaseDescriber(BaseModel):
-
+    rule_description:str=""
     def reset(self) -> None:
         pass

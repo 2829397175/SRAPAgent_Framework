@@ -12,9 +12,7 @@
             "output":"My choice is community_1.",
             "thought":"Community_2 seems to have the most ideal location for my family while community_3 seems to have the most amenities. However, community_1 has the most affordable rent. I need to decide which is the most important factor for my family."
         },
-        "testflag":false,
-        "humanjudge":true,
-        "turingflag":true
+        "humanjudge":true
     },
     {
         "prompt_inputs":{
@@ -29,9 +27,7 @@
             "output":"My choice is community_3.",
             "thought":"Community 1 has good sports facilities and a large green area, but it lacks important amenities like a public transportation, shopping mall, and hospital. Community 2 has a good amount of green space and is surrounded by useful amenities, but it doesn't have a hospital. Community 3 seems to have all the necessary amenities, including a hospital, but the rent is the highest."
         },
-        "testflag":false,
-        "humanjudge":true,
-        "turingflag":true
+        "humanjudge":true
     },
     {
         "prompt_inputs":{
@@ -46,9 +42,7 @@
             "output":"My choice is community_3.",
             "thought":"Community 1 has good sports facilities and a large green area, but it lacks important amenities like a public transportation, shopping mall, and hospital. Community 2 has a good amount of green space and is surrounded by useful amenities, but it doesn't have a hospital. Community 3 seems to have all the necessary amenities, including a hospital, but the rent is the highest."
         },
-        "testflag":false,
-        "humanjudge":true,
-        "turingflag":true
+        "humanjudge":true
     },
     {
         "prompt_inputs":{
@@ -63,9 +57,7 @@
             "output":"My choice is community_1.",
             "thought":"Community_1 is cheaper with the rent of 30. While community_3 is higher in rent."
         },
-        "testflag":false,
-        "humanjudge":true,
-        "turingflag":true
+        "humanjudge":true
     },
     {
         "prompt_inputs":{
@@ -80,9 +72,7 @@
             "output":"My choice is community_3.",
             "thought":"Community_3 has more kinds of houses than community_1. And my salary allows me to rent house in this community."
         },
-        "testflag":false,
-        "humanjudge":true,
-        "turingflag":true
+        "humanjudge":true
     },
     {
         "prompt_inputs":{
@@ -97,9 +87,7 @@
             "output":"My choice is community_3.",
             "thought":"Community_3 has good greenery, a parking lot, and several kinds of sports and fitness equipment. It's suitable for family's habitation."
         },
-        "testflag":false,
-        "humanjudge":true,
-        "turingflag":true
+        "humanjudge":true
     },
     {
         "prompt_inputs":{
@@ -114,9 +102,7 @@
             "output":"My choice is community_3.",
             "thought":"he large_house in community_3 is a two rooms apartment, which is bigger in size. It can accommodate me and my faimilies."
         },
-        "testflag":false,
-        "humanjudge":true,
-        "turingflag":true
+        "humanjudge":true
     },
     {
         "prompt_inputs":{
@@ -131,8 +117,6 @@
             "output":"My choice is community_1.",
             "thought":"The house in longxing(community_1) is very good. Although it is very expensive, it is very cost-effective. So I'll take this option."
         },
-        "testflag":false,
-        "humanjudge":true,
-        "turingflag":true
+        "humanjudge":true
     }
 ]

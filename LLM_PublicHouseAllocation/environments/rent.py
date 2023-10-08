@@ -58,6 +58,7 @@ class RentEnvironment(BaseEnvironment):
 
     def is_done(self) -> bool:
         """Check if the environment is done"""
+        self.system.community_manager.publish_house(self.cnt_turn)
         self.log.step()
         if (self.save_log):
             self.log.save_data() # 每一步的log
@@ -70,7 +71,7 @@ class RentEnvironment(BaseEnvironment):
                 self.system.save_data()
                 self.forum_manager.save_data()
             return True
-        elif (cur==[] and fur==[] ) or self.rule.are_all_deques_empty(self):
+        elif  self.rule.are_all_deques_empty(self):
             if(self.save_log):
                 self.system.save_data()
                 self.forum_manager.save_data()
@@ -124,8 +125,7 @@ class RentEnvironment(BaseEnvironment):
             self.log.set_one_tenant_choose_process(tenant_id)
             self.update_social_net(tenant=tenant)
 
-        if (self.cnt_turn + 1) %5==0:
-            self.system.community_manager.publish_community()
+        
 
     
     def group(self):

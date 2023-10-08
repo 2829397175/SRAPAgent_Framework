@@ -12,9 +12,7 @@
             "output":"My choice is large_house.",
             "thought":"Me and my family members need larger houses."
         },
-        "testflag":false,
-        "humanjudge":true,
-        "turingflag":true
+        "humanjudge":true
     },
     {
         "prompt_inputs":{
@@ -29,9 +27,7 @@
             "output":"My choice is large_house.",
             "thought":"My family members need a bigger home to live, except for the rent."
         },
-        "testflag":false,
-        "humanjudge":true,
-        "turingflag":true
+        "humanjudge":true
     },
     {
         "prompt_inputs":{
@@ -46,9 +42,7 @@
             "output":"My choice is large_house.",
             "thought":"Large_house house type remains 3 houses of this type, it's available to choose."
         },
-        "testflag":false,
-        "humanjudge":true,
-        "turingflag":true
+        "humanjudge":true
     },
     {
         "prompt_inputs":{
@@ -63,9 +57,7 @@
             "output":"My choice is large_house.",
             "thought":"Large_house remains 2 houses of this type. And it's square footage is around 56.14-58.33, its big enough to live."
         },
-        "testflag":false,
-        "humanjudge":true,
-        "turingflag":true
+        "humanjudge":true
     },
     {
         "prompt_inputs":{
@@ -80,8 +72,6 @@
             "output":"My choice is small_house.",
             "thought":"small_house's rent is around 952-1517, which is below 2500."
         },
-        "testflag":false,
-        "humanjudge":true,
-        "turingflag":true
+        "humanjudge":true
     }
 ]
