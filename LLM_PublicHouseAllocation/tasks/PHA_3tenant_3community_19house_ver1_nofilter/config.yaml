@@ -19,6 +19,7 @@ environment:
     describer:
       type: base
 
+
 managers:
   house:
     data_dir: "data/house.json"
@@ -28,6 +29,7 @@ managers:
     
 
   tenant:
+    choose_rating: True
     policy: 
       type : ver1 # 表示分房政策
       filter_house_labels: ["house_type",

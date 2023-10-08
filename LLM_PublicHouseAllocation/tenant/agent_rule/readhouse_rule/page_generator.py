@@ -41,7 +41,7 @@ It's square fortage is about {house_area}. The orientation of the house is {towa
         houses_describe_prompt = "There are {num_houses} houses available. The infomation of these houses are listed as follows:\n{houses} "
         str_house_description = houses_describe_prompt.format(num_houses=len_house,
                                                                 houses=houses_str)
-        return str_house_description
+        return str_house_description,list(house_infos.keys())
         
         
     def get_houses_generator(self,

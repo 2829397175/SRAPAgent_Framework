@@ -29,13 +29,23 @@ import re
 # text ="""Words to say to A: 23333"""
 
 # output = re.sub('Words to say to .*?:','',text,flags=re.IGNORECASE)
-regex = "My.*?relation.*?with.*?:.*?(\w+).(.*)"
-llm = """"My Relation with James Anderson: friend.James is an honest and trustworthy person, and I think he is worth making friends with. He provided a thoughtful suggestion about Community_2, and I appreciate his input in our house-hunting process. (My view of this person)"""
-a = re.search(regex,llm,re.I | re.M)
+regex = r"Rating\s*\d*\s*:(.*?)Reason\s*\d*\s*:(.*)\n"
+llm = """Rating:
+house_18: 7
+house_19: 8
 
-r = a.group(1)
-c =a.group(2)
-li = [1,2,3]
-while len(li)>0:
-    print(li[0])
-    li.pop(0)
+Reason:
+Both house_18 and house_19 are priced similarly and have similar square footage, orientation (NS), and the presence of an elevator. However, house_19 stands out with a slightly higher rating due to its location on the 15th floor, which offers better views and potentially more natural light. Additionally, house_19 is described as having a well-designed layout for efficient use of space, which adds to its appeal. Both houses enjoy a favorable south-facing orientation and offer good green views of the community, making them suitable for comfortable living."""
+llm +="\n"
+
+output = re.search(regex,llm,re.I|re.S)
+
+rating = output.group(1).strip()
+reason = output.group(2).strip()
+
+rating = rating.split("\n")
+rating =  [rating_one.split(":") for rating_one in rating]
+
+for rating_one in rating:
+    rating_one[1] = re.search("([0-9]+)",str(rating_one[1]),re.I | re.M).groups()[0]
+    rating_one[1] = int(rating_one[1])

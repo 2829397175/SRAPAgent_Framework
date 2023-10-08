@@ -20,3 +20,4 @@ from .group_discuss import (GroupDiscussPlanParser,
                             GroupDiscussParser,
                             GroupDiscussBackParser,
                             RelationParser)
+from .rating import ChooseRatingParser
