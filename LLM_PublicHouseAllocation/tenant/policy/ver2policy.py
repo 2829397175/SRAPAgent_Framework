@@ -56,7 +56,7 @@ class Ver2Policy(BasePolicy):
         if not choose_state:
             tenant.update_times(choose_state)
             tenant.publish_forum(forum_manager,system,log_round)
-            return None 
+            return False,"None"
         
         house_type_id,chose_house_type_reason = log_round.get_choose_house_type()
         house_filter_ids = {"house_type":house_type_id}

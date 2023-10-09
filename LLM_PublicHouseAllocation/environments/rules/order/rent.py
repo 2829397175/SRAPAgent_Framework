@@ -34,6 +34,8 @@ class RentOrder(BaseOrder):
         return environment.deque_dict
 
     def requeue(self, environment,tenant):
+        if (tenant.choose_times>=tenant.max_choose):
+            return
         """re-queue"""
         environment.deque_dict["random_queue"].append(tenant)
         

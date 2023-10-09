@@ -119,7 +119,7 @@ class RentEnvironment(BaseEnvironment):
                 choose_state = tenant.choose(self.forum_manager, self.system, self.log)
             else:
                 raise NotImplementedError("Tenant type {} not implemented".format(tenant.__class__))
-            if not choose_state and tenant.available==True:
+            if not choose_state: # 不判断是否available
                 self.rule.requeue(self,tenant)
                 
             self.log.set_one_tenant_choose_process(tenant_id)

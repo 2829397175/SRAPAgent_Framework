@@ -102,8 +102,8 @@ class LangchainTenant(langchainAgent):
             self.available = False
         else:
             self.choose_times+=1
-            if(self.choose_times>=self.max_choose):
-                self.available = False
+            # if(self.choose_times>=self.max_choose):
+            #     self.available = False
     
     @classmethod
     def _get_default_output_parser(cls, **kwargs: Any) -> AgentOutputParser:
@@ -1187,12 +1187,13 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
         
         role_description = self.get_role_description()
         
-        choose_type = """My choice is (The index of houses)"""
-       
+        choose_type_template = """My choice is (The index of houses, should be one of [{house_indexes}])"""
+        
+        
         memory = self.memory.memory_tenant("house",name=self.name)
         for houses_description,house_available_index in houses_description_generator:
             # self.logger.info("SYSTEM:\n {}".format(houses_description))
-
+            choose_type = choose_type_template.format(house_indexes = ",".join(house_available_index))
             prompt_inputs={
                 'task':'You need to choose one house.',
                 'thought_type':'Your views on these houses.',

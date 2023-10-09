@@ -93,7 +93,7 @@ class Executor():
         #     loop = asyncio.get_event_loop()
         #     loop.run_until_complete(self.environment.step())
         self.environment.log.reset()
-        self.environment.group() # 这里的log没改好
+        self.environment.group() 
         self.environment.line_up()
         self.environment.broadcast()
         
