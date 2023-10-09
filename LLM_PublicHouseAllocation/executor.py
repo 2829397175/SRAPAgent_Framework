@@ -7,7 +7,7 @@ from .involvers import System,Tool,LogRound
 from .initialization import (load_environment,
                              load_manager,
                              prepare_task_config)
-
+from LLM_PublicHouseAllocation.global_score import Global_Score
 logging.basicConfig(format='%(asctime)s - %(levelname)s - %(name)s - %(message)s', datefmt='%m/%d/%Y %H:%M:%S', level=logging.INFO)
 
 openai_logger = logging.getLogger("openai")
@@ -41,10 +41,7 @@ class Executor():
         
         if not os.path.exists(save_dir):
             os.makedirs(save_dir)
-        save_evaluation_dir = os.path.join(task_path,
-                                f"global_evaluation")
-        if not os.path.exists(save_evaluation_dir):
-            os.makedirs(save_evaluation_dir)
+        
         manager_configs = task_config.pop('managers')
         for _, config in manager_configs.items():
             if "data_dir" in config.keys():
@@ -81,7 +78,18 @@ class Executor():
 
         environment = load_environment({**env_config,
                                         "save_log":save_log})
-
+        
+        
+        save_evaluation_dic = os.path.join(task_path,
+                                f"global_evaluation")
+        if not os.path.exists(save_evaluation_dic):
+            os.makedirs(save_evaluation_dic) 
+        save_evaluation_dir = os.path.join(save_evaluation_dic,
+                                f"global_score.json") 
+        if not os.path.exists(save_evaluation_dir):
+            global_score=Global_Score.initialization(tenant_manager,system,save_dir=save_evaluation_dir)
+            global_score.rate_score()
+            global_score.save_score()
         return cls(environment)
 
     def run(self):
