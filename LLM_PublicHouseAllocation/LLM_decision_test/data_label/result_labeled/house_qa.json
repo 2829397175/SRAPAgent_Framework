@@ -46,9 +46,7 @@
             "output":"My choice is house_17.",
             "thought":"This house enjoys a well-thought-out layout and a south-facing orientation, which can provide good sunlight exposure."
         },
-        "testflag":false,
-        "humanjudge":true,
-        "turingflag":true
+        "humanjudge":true
     },
     {
         "prompt_inputs":{
@@ -63,9 +61,7 @@
             "output":"My choice is house_16.",
             "thought":"This house is cheaper and has a strategic layout and a favourable southern exposure."
         },
-        "testflag":false,
-        "humanjudge":true,
-        "turingflag":true
+        "humanjudge":true
     },
     {
         "prompt_inputs":{
@@ -80,8 +76,6 @@
             "output":"My choice is house_11.",
             "thought":"This house balance size and functionality, which can make me and my families live in a more comfortable environment."
         },
-        "testflag":false,
-        "humanjudge":true,
-        "turingflag":true
+        "humanjudge":true
     }
 ]

@@ -10,7 +10,7 @@ class CommunityManager(BaseManager):
     """
         manage infos of different community.
     """
-    
+    total_community_datas:dict={}
     @classmethod
     def load_data(cls,
                   data_dir,
@@ -18,31 +18,86 @@ class CommunityManager(BaseManager):
 
         assert os.path.exists(data_dir),"no such file path: {}".format(data_dir)
         with open(data_dir,'r',encoding = 'utf-8') as f:
-            community_datas = json.load(f)
+            total_community_datas = json.load(f)
             
-        publish_order = kwargs.pop("publish_order",False)
-        id_ = 0
-        for community_name, community_info in community_datas.items():
-            if publish_order:
-                community_info["available"] = False
-                if (id_ == 0):
-                    community_info["available"] = True
-                    id_+=1
-            else:
-                community_info["available"] = True
+        # publish_order = kwargs.pop("publish_order",False)
+        # id_ = 0
+        # community_datas=total_community_datas["0"]
+        # for community_name, community_info in community_datas.items():
+        #     if publish_order:
+        #         community_info["available"] = False
+        #         if (id_ == 0):
+        #             community_info["available"] = True
+        #             id_+=1
+        #     else:
+        #         community_info["available"] = True
 
         return cls(
-            data = community_datas,
+            total_community_datas=total_community_datas,
+            data = {},
             data_type= "community_data",
             save_dir= kwargs["save_dir"]
             )
+    def merge_community_info(self,com_a, com_b):
+        # 创建一个新的空字典用于存储合并后的信息
+        merged_community = {}
 
-    def publish_community(self, k=1):
-        for community_id, community in self.data.items():
-            if community["available"] == False and community["sum_remain_num"] >0 and k>0:
-                community["available"]= True
-                k-=1
-                print(community["community_name"]+"  发布新房子了!!!!!\n")
+        # 合并sum_num和sum_remain_num
+        merged_community["sum_num"] = com_a["sum_num"] + com_b["sum_num"]
+        merged_community["sum_remain_num"] = com_a["sum_remain_num"] + com_b["sum_remain_num"]
+
+        # 合并每种房型的信息
+        for house_type in ["large_house","middle_house","small_house"]:
+            if house_type in com_a and house_type in com_b:
+                merged_community[house_type] = {}
+                
+                # 合并remain_number
+                merged_community[house_type]["remain_number"] = com_a[house_type]["remain_number"] + com_b[house_type]["remain_number"]
+                
+                # 合并index
+                merged_community[house_type]["index"] = com_a[house_type]["index"] + com_b[house_type]["index"]
+                
+                # 对于其他的字段（例如living_room、size和cost），可以选择保留其中一个或按需合并。这里仅作为示例保留community_1的内容。
+                for key in ["living_room", "size", "cost"]:
+                    merged_community[house_type][key] = com_a[house_type][key]
+            elif house_type in com_a:
+                merged_community[house_type]=com_a[house_type]
+            elif house_type in com_b:
+                merged_community[house_type]=com_b[house_type]
+                       
+        # 对于其他的字段（例如location、community_name等），可以选择保留其中一个或按需合并。这里仅作为示例保留community_1的内容。
+        for key in ["community_id", "community_name", "location", "en_location", "value_inch", "description", "nearby_info","available"]:
+            merged_community[key] = com_a[key]
+            
+        return merged_community
+    def add_community_pool(self,cur_pool,add_com):
+        if cur_pool=={}:
+            for _,c_info in add_com.items():     
+                c_info["available"]=True
+            return add_com
+        elif add_com=={}:
+            return cur_pool
+        for community_id,community_info in add_com.items():
+            if community_id in cur_pool:
+                cur_pool[community_id]=self.merge_community_info(cur_pool[community_id],community_info)
+                cur_pool[community_id]["available"]=True
+            else:
+                cur_pool[community_id]=community_info
+                cur_pool[community_id]["available"]=True
+        return cur_pool
+    
+    def publish_house(self,cnt_turn):
+        
+        if str(cnt_turn) in self.total_community_datas:
+            self.data=self.add_community_pool(self.data,self.total_community_datas[str(cnt_turn)])
+            print(" 发布新房子了!!!!!\n")
+    
+    # def publish_community(self, k=1):
+    #     for community_id, community in self.data.items():
+    #         if community["available"] == False and community["sum_remain_num"] >0 and k>0:
+    #             community["available"]= True
+    #             k-=1
+    #             print(community["community_name"]+"  发布新房子了!!!!!\n")
     
     def community_str(self,curcommunity_list,furcommunity_list):
         len_curcommunity= len(curcommunity_list)

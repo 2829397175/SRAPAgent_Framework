@@ -172,9 +172,9 @@ class TenantManager(BaseManager):
 You are in rent system. The queuing rules of this system is as follows:
 {rule_order}
 """
-        rule_order = rule.order.rule_description
+        rule_description = rule.rule_description()
         #待改，等community_manager接口
-        broadcast_str = broadcast_template.format(rule_order=rule_order) 
+        broadcast_str = broadcast_template.format(rule_order=rule_description) 
         broadcast_message = Message(message_type = "order",
                         content = broadcast_str,
                         sender = {"system":"system"}

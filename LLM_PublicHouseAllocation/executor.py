@@ -41,7 +41,10 @@ class Executor():
         
         if not os.path.exists(save_dir):
             os.makedirs(save_dir)
-
+        save_evaluation_dir = os.path.join(task_path,
+                                f"global_evaluation")
+        if not os.path.exists(save_evaluation_dir):
+            os.makedirs(save_evaluation_dir)
         manager_configs = task_config.pop('managers')
         for _, config in manager_configs.items():
             if "data_dir" in config.keys():

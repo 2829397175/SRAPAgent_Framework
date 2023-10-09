@@ -8,14 +8,14 @@ class App:
         with open(dir_path,'r',encoding = 'utf-8') as f:
             self.data_list = json.load(f)
         self.saving_path = saving_path
-        for data in self.data_list:
-            #testflag表示是否被标注过
-            data["testflag"]=False
-            #humanjudge表示是否是人类的答案
-            data["humanjudge"]=False
-            #turingflag表示标注的结果，true表示是人类的答案，false表示是LLM的答案
-            data["turingflag"]=False
-        #self.data_list=dir_path
+        # for data in self.data_list:
+        #     #testflag表示是否被标注过
+        #     data["testflag"]=False
+        #     #humanjudge表示是否是人类的答案
+        #     data["humanjudge"]=False
+        #     #turingflag表示标注的结果，true表示是人类的答案，false表示是LLM的答案
+        #     data["turingflag"]=False
+        # #self.data_list=dir_path
         self.index = 0
         self.create_window()
         
@@ -156,9 +156,9 @@ class App:
         # 保存 data_list（在这个例子中我们只是将其打印到控制台）
         
         QA_result = []
-        if os.path.exists(self.saving_path):
-            with open(self.saving_path,'r',encoding = 'utf-8') as f:
-                QA_result = json.load(f)
+        # if os.path.exists(self.saving_path):
+        #     with open(self.saving_path,'r',encoding = 'utf-8') as f:
+        #         QA_result = json.load(f)
         
         QA_result.extend(self.data_list)
         with open(self.saving_path, 'w', encoding='utf-8') as file:
@@ -190,12 +190,8 @@ class App:
             # Save the response to the current data
             self.data_list[self.index]['response']['output'] = output_content
             self.data_list[self.index]['response']['thought'] = thought_content
-            #testflag表示是否被测试过
-            self.data_list[self.index]["testflag"]=False
             #humanjudge表示是否是人类的答案
             self.data_list[self.index]["humanjudge"]=True
-            #turingflag表示标注的结果，true表示是人类的答案，false表示是LLM的答案
-            self.data_list[self.index]["turingflag"]=True
             self.index+=1
             self.show_data()
         else:
@@ -248,5 +244,6 @@ if __name__ == "__main__":
 
     # 图灵测试部分：
     
-    data_dir = "LLM_PublicHouseAllocation\LLM_decision_test/test\saving_QA.json"
-    app = App(data_dir,saving_path = data_dir)
+    data_dir = "LLM_PublicHouseAllocation/LLM_decision_test/test/saving_QA.json"
+    saving_dir = "LLM_PublicHouseAllocation/LLM_decision_test/test/finished_saving_QA.json"
+    app = App(data_dir,saving_path = saving_dir)
