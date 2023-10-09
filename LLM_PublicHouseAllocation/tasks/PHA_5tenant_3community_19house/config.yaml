@@ -29,12 +29,13 @@ managers:
     
 
   tenant:
-    choose_rating: False
+    choose_rating: True
     policy: 
       type : ver1 # 表示分房政策
       filter_house_labels: ["house_type",
-                           "house_orientation",
-                           "floor_type"]
+                          #  "house_orientation",
+                          #  "floor_type"
+                           ]
 
     type_tenant: LangchainTenant
     data_dir: "data/tenant.json"

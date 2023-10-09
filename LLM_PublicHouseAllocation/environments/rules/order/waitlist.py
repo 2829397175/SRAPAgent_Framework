@@ -57,7 +57,11 @@ class WaitListOrder(BaseOrder):
                     if (group_id == "waitlist"):
                         continue
                     if add_tenant.id in group_queue["tenant_ids"]:
-                        group_queue["queue"].remove(add_tenant)
+                        for idx,tenant_queue in enumerate(group_queue["queue"]):
+                            if tenant_queue.id == add_tenant.id:
+                                group_queue["queue"].pop(idx)
+                                break
+
             
         waitlist_return = waitlist["waitlist"]
         waitlist["waitlist"] = []

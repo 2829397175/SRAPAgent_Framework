@@ -2,6 +2,8 @@ from pydantic import BaseModel
 import json
 import time
 import copy
+import os
+
 # Design a basic LogRound class
 class LogRound(BaseModel):
     round_id :int = 0 # 标注是哪一轮的  
@@ -178,6 +180,14 @@ class LogRound(BaseModel):
     def set_choose_house_state(self,choose_house_state):
         self.log_round["choose_house_state"] = choose_house_state
         
+    def set_choose_house_rating_score(self,ratings):
+        self.log_round["choose_house_ratings"] = ratings
+        if len(rating_scores)>0:
+            rating_scores =[rating[1] for rating in ratings]
+            self.log_round["utility"] = sum(rating_scores)/len(rating_scores)
+        else:
+            self.log_round["utility"] = 0
+        
     def set_comment(self,comment):
         self.log_round["produce_comment"] = comment
             
@@ -196,3 +206,72 @@ class LogRound(BaseModel):
     def reset(self):
         self.log_round={}
         self.log={}
+    
+    
+    def evaluation_matrix(self,
+                          tenant_manager): # 评价系统的公平度，满意度
+        
+        save_dir = os.path.dirname(self.save_dir)
+        
+        """this function must be called at the end of running this system."""
+        utility = {}
+        for log_id,log in self.log.items():
+            log_round = log["log_round"]
+            if log_id == "group":
+                continue
+            for tenant_id, tenant_info in log_round.items():
+                ratings = tenant_info["choose_house_ratings"]
+                rating_houses = {}
+                for rating_round,rating_score in ratings.items():
+                    for rating_pair in rating_score:
+                        if rating_pair[0] not in rating_houses.keys():
+                            rating_houses[rating_pair[0]] = [rating_pair[1]]
+                        else:
+                            rating_houses[rating_pair[0]].append(rating_pair[1])
+                for k,v in rating_houses.items():
+                    v = sum(v)/len(v)
+                    
+                rating_score_vis_u = sum(list(rating_houses.values()))/len(rating_houses)
+                rating_score_choose_u = rating_houses[tenant_info["choose_house_id"]]
+                group_id_t = -1
+                for group_id,tenant_ids in tenant_manager.groups.items():
+                    if tenant_id in tenant_ids:
+                        group_id_t=group_id
+                        break
+                    
+                utility[tenant_id] = {
+                    "vis_u":rating_score_vis_u,
+                    "choose_u":rating_score_choose_u,
+                    "group_id":group_id_t 
+                }
+                
+        import pandas as pd
+        import numpy as np
+        
+        utility_matrix = pd.DataFrame()
+        for tenant_id,utility_one in utility.items():
+            for k,v in utility_one.items():
+                utility_matrix.loc[tenant_id,k] = v
+        utility_matrix.to_csv(os.path.join(save_dir,"utility.csv"))
+        
+        utility_eval_matrix = pd.DataFrame()
+        for score_type in ["vis_u","choose_u"]:
+            
+            
+            utility_grouped = utility_matrix.groupby(by = ["group_id"])
+            for group_id, group_utility in utility_grouped:
+                # 公平度
+                scores = group_utility[score_type]
+                utility_eval_matrix.loc[f"least_misery_{group_id}",score_type] = min(scores)
+                utility_eval_matrix.loc[f"variance_{group_id}",score_type] = 1 - np.var(scores)
+                utility_eval_matrix.loc[f"jain'sfair_{group_id}"] = np.square(np.sum(scores))/(np.sum(np.square(scores)) * utility_matrix.size[0])
+                utility_eval_matrix.loc[f"min_max_ratio_{group_id}]"] = np.min(scores)/np.max(scores)
+                
+                # 满意度
+                utility_eval_matrix.loc[f"sw_{group_id}"] = np.sum(scores)/group_utility.size[0]
+                
+        utility_eval_matrix.to_csv(os.path.join(save_dir,"utility_eval_matrix.csv"))
+            # utility_eval_matrix.loc["jains'fairness",score_type] = 
+
+    
+    

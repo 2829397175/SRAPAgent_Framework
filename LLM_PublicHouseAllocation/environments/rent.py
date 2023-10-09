@@ -70,11 +70,13 @@ class RentEnvironment(BaseEnvironment):
             if(self.save_log): # 整体系统的log，仅在退出时save
                 self.system.save_data()
                 self.forum_manager.save_data()
+                self.log.evaluation_matrix(self.tenant_manager)
             return True
         elif  self.rule.are_all_deques_empty(self):
             if(self.save_log):
                 self.system.save_data()
                 self.forum_manager.save_data()
+                self.log.evaluation_matrix(self.tenant_manager)
             return True
         else:
             return False

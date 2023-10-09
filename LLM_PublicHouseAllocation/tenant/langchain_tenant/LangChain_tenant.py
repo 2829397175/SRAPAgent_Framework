@@ -1280,10 +1280,15 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
                                    round_retry=round_retry,
                                    tip=tip)
             log_round_houses_dict = {idx:{
-                                       "prompt_inputs":log_round_houses[0],
-                                       "response":log_round_houses[1]
+                                       "prompt_inputs":log_round_house[0],
+                                       "response":log_round_house[1]
                                        } 
-                                     for idx,log_round_houses in enumerate(log_round_houses)}
+                                     for idx,log_round_house in enumerate(log_round_houses)}
+            if (self.choose_rating):
+                rating_rounds = {idx:log_round_house[1].get("rating") for idx, log_round_house in enumerate(log_round_houses) }
+                
+                log_round.set_choose_house_rating_score(rating_rounds)
+                
             log_round.set_choose_history(step_type = "choose_house",
                                          log_round_houses_dict = log_round_houses_dict)
             
@@ -1372,6 +1377,7 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
             try:
                 rating = response.get('rating',[])
                 rating.sort(key = lambda num:num[1])
+                
                 choose_page_results.append(rating[-1][0].lower())
                 assert rating[-1][0].lower() in house_available_index
                 response["choose_house"] = rating[-1][0].lower()
@@ -1383,7 +1389,7 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
         
         if len(choose_page_results) > 1 :
             # 这里选择和不选择的记忆没有更新，忽略掉。
-            return self.choose_house_page(log_round_houses,
+            return self.choose_house_page_rating(log_round_houses,
                                           house_infos,
                                           choose_page_results,
                                           page_size=page_size,
