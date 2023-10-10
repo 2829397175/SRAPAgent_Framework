@@ -179,12 +179,12 @@ class App:
                 finished_QA_result = json.load(f)
         unfinished_QA_result=[]
         for data in self.data_list:
-            if data["testflag"]!=None and data["turingflag"]!=None:
+            if data.get("testflag",None)!=None and data.get("turingflag",None)!=None:
                 finished_QA_result.append(data)
-            elif data["testflag"]!=None:
+            elif data.get("testflag",None)!=None:
                 del data["testflag"]
                 unfinished_QA_result.append(data)
-            elif data["turingflag"]!=None:
+            elif data.get("turingflag",None)!=None:
                 del data["turingflag"]
                 unfinished_QA_result.append(data)
             else:
@@ -212,10 +212,11 @@ class App:
         self.show_data()
         
     def back(self):
-        del self.data_list[self.index]["testflag"]
-        del self.data_list[self.index]["turingflag"]
+        # del self.data_list[self.index]["testflag"]
+        # del self.data_list[self.index]["turingflag"]
         self.index  -= 1
         self.show_data()
+        
     def save_response(self):
         # Open a dialog to input the response
         

@@ -181,23 +181,6 @@
     },
     {
         "prompt_inputs":{
-            "task":"You need to choose one house.",
-            "thought_type":"Your views on these houses.",
-            "choose_type":"My choice is (The index of houses)",
-            "house_info":"There are 1 houses available. The infomation of these houses are listed as follows:\nhouse_18: \nthis house costs about 1800. It's square fortage is about 45.0. The orientation of the house is NS. It is located at floor 12. It has elevator. Despite being smaller, this house is south-facing and offers good green views of the community. It is also well-maintained. ",
-            "memory":"After deciding that community_1 had inconvenient facilities, you thought community_2 was more ideal for your family members. Being close to your wife's workplace and your child's school, you were able to make an informed decision and chose community_2.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
-            "role_description":"You are James Anderson. You earn 9000 per month.Your family members include: A wife and two children, both in high school.You are 45 years old. Your job is Construction worker. Your company is located in Dongzhimenwai Street, Dongcheng District, Beijing. The Anderson family prefers a home with easy access to public transportation, as they often need to commute for work and school. You expect to rent a house for 1800.0.You still have 2 chances to choose house."
-        },
-        "response":{
-            "output":"My choice is house_18.",
-            "thought":"this house costs about 1800, which is within my budget. This house has elevator, this house is south-facing and offers good green views of the community."
-        },
-        "testflag":false,
-        "humanjudge":true,
-        "turingflag":true
-    },
-    {
-        "prompt_inputs":{
             "task":"You need to choose one type of houses.",
             "thought_type":"Your views on these house types.",
             "choose_type":"My choice is (house type, should be one of [large_house])",
@@ -270,23 +253,6 @@
             "thought":"My family members need a bigger home to live, except for the rent."
         },
         "humanjudge":true
-    },
-    {
-        "prompt_inputs":{
-            "task":"You need to choose one house.",
-            "thought_type":"Your views on these houses.",
-            "choose_type":"My choice is (The index of houses)",
-            "house_info":"There are 2 houses available. The infomation of these houses are listed as follows:\nhouse_18: \nthis house costs about 1800. It's square fortage is about 45.0. The orientation of the house is NS. It is located at floor 12. It has elevator. Despite being smaller, this house is south-facing and offers good green views of the community. It is also well-maintained.\n\nhouse_19: \nthis house costs about 1802. It's square fortage is about 45.05. The orientation of the house is NS. It is located at floor 15. It has elevator. The house enjoys a favorable south-facing orientation, and the small floor area is well-designed for efficient use. The greenery around the community is a plus. ",
-            "memory":"You are trying to decide between two different communities. Community_1 has inconvenient facilities, while Community_2 is close to your wife's workplace and your child's school. Ultimately, you decide to go with Community_2 due to its proximity and convenience. Although it may require more effort to settle into the area, you think it is worth it in the end.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
-            "role_description":"You are Sophia Smith. You earn 7000 per month.Your family members include: A husband and a newborn baby.You are 32 years old. Your job is Restaurant waiter. Your company is located in Restaurants near Guomao Building, Chaoyang District, Beijing. Sophia's family needs an apartment in a safe and child-friendly friendhood with a good daycare nearby. You expect to rent a house for 1400.0.You still have 2 chances to choose house."
-        },
-        "response":{
-            "output":"My choice is house_19.",
-            "thought":"This house enjoys a favorable south-facing orientation, and great greenery."
-        },
-        "testflag":false,
-        "humanjudge":true,
-        "turingflag":true
     },
     {
         "prompt_inputs":{
