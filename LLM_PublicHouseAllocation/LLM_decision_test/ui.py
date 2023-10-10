@@ -166,8 +166,11 @@ class App:
                     unfinished_QA_result.append(data)
                 else:
                     unfinished_QA_result.append(data)
-            auc=self.compute_auc(finished_QA_result)
-            messagebox.showinfo("Done", "All data has been checked!The accuracy is "+str(auc)+" !!")
+            if "testflag" in finished_QA_result[0]:     
+                auc=self.compute_auc(finished_QA_result)
+                messagebox.showinfo("Done", "All data has been checked!The accuracy is "+str(auc)+" !!")
+            else:
+                messagebox.showinfo("Done", "All data has been checked!")
             self.save_and_exit()
 
     def save_and_exit(self):
