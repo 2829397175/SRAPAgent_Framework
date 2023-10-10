@@ -6,6 +6,9 @@ from LLM_PublicHouseAllocation.tenant.langchain_tenant import LangchainTenant
 import json
 from LLM_PublicHouseAllocation.manager import TenantManager,ForumManager
 from LLM_PublicHouseAllocation.involvers import System,Tool,Search_forum_topk,LogRound
+from LLM_PublicHouseAllocation.llms import OpenAILoader
+
+
 from . import env_registry as EnvironmentRegistry
 from .base import BaseEnvironment
 import copy
@@ -33,6 +36,10 @@ class RentEnvironment(BaseEnvironment):
     
     # 对于社交网络信息的主键
     key_social_net = 0
+    
+    # 对于api调换的Loader类
+    llm_loader:OpenAILoader
+    
     
     class Config:
         arbitrary_types_allowed = True
@@ -83,21 +90,28 @@ class RentEnvironment(BaseEnvironment):
         
 
     #test 测试用 要改
-    def communication(self, communication_num = 3):
+    async def communication(self, communication_num = 3):
         tenant_ids = list(self.tenant_manager.data.keys())
         
-        c_num = 0
-        while (len(tenant_ids) > 0 and c_num < communication_num):
-            tenant_id = tenant_ids[0]
-            tenant_ids.pop(0)
+        
+        async def communication_one(tenant_id,c_num):
             tenant = self.tenant_manager.data[tenant_id]
+            
             if isinstance(tenant, LangchainTenant):
-                continue_communication, self.key_social_net = asyncio.run(tenant.async_communication(self.forum_manager, 
-                                                                                self.system,
-                                                                                self.rule,
-                                                                                self.log,
-                                                                                c_num,
-                                                                                self.key_social_net))
+                llm = self.llm_loader.get_communication_llm()
+                # change tenant api
+                tenant.reset_llm(llm) # 修改llm
+                
+                llm_memory = self.llm_loader.get_memory_llm() # 修改memory llm(从pool内取)
+                tenant.reset_memory_llm(llm_memory)
+                
+                continue_communication = await tenant.async_communication(self.forum_manager, 
+                                                            self.system,
+                                                            self.rule,
+                                                            self.log,
+                                                            c_num,
+                                                            self.key_social_net)
+                
                 receiver_ids = self.update_social_net(tenant=tenant) # 先把receiver放进communication队列
                 for r_id in receiver_ids:
                     if (r_id) not in tenant_ids:
@@ -105,15 +119,23 @@ class RentEnvironment(BaseEnvironment):
                 if (continue_communication): tenant_ids.append(tenant_id)
             else:
                 raise NotImplementedError("Tenant type {} not implemented".format(tenant.__class__))
-            
-            c_num += 1 
+        
+        await asyncio.gather(*[communication_one(tenant_id,c_num) for c_num,tenant_id in enumerate(tenant_ids)])
+        
         self.set_tenant_memory_log() ## log
             
-        
+      
 
     def step(self):
+        llm = self.llm_loader.get_step_llm()
         tenant_list = self.rule.get_next_agent_idx(self)
         for tenant in tenant_list:
+            # change tenant api
+            tenant.reset_llm(llm) # 修改llm
+            
+            llm_memory = self.llm_loader.get_memory_llm() # 修改memory llm(从pool内取)
+            tenant.reset_memory_llm(llm_memory)
+            
             tenant_id = tenant.id
             if isinstance(tenant, LangchainTenant):
                 choose_state= tenant.choose_process(self.forum_manager, self.system, self.rule,self.tool, self.log)

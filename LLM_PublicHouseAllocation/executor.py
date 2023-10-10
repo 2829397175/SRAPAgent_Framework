@@ -8,6 +8,9 @@ from .initialization import (load_environment,
                              load_manager,
                              prepare_task_config)
 from LLM_PublicHouseAllocation.global_score import Global_Score
+from LLM_PublicHouseAllocation.llms import OpenAILoader
+
+
 logging.basicConfig(format='%(asctime)s - %(levelname)s - %(name)s - %(message)s', datefmt='%m/%d/%Y %H:%M:%S', level=logging.INFO)
 
 openai_logger = logging.getLogger("openai")
@@ -49,9 +52,18 @@ class Executor():
         
         save_log = task_config.pop("save_log",True)
         
-        tenant_manager = load_manager({**manager_configs.pop('tenant'),
+        tenant_configs = manager_configs.pop('tenant')
+        tenant_llm_configs = tenant_configs["llm"]       
+        communication_llm_configs = tenant_configs["memory"]["llm"]       
+        
+        llm_loader = OpenAILoader(**task_config.pop('llm_loader'),
+                                  tenant_llm_configs=tenant_llm_configs,
+                                  communication_llm_configs=communication_llm_configs)
+        
+        tenant_manager = load_manager({**tenant_configs,
                                        "save_dir": os.path.join(save_dir,"tenant.json")
                                        },'tenant')
+        
         #print(tenant_manager)
         house_manager = load_manager({**manager_configs.pop('house'),
                                      "save_dir": os.path.join(save_dir,"house.json")
@@ -66,6 +78,7 @@ class Executor():
         system = System(house_manager=house_manager,
                 community_manager=community_manager)
         env_config = task_config.pop('environment')
+        env_config['llm_loader'] = llm_loader
         env_config['system'] = system
         env_config['tenant_manager'] = tenant_manager
         env_config["forum_manager"] = forum_manager
@@ -87,7 +100,7 @@ class Executor():
         save_evaluation_dir = os.path.join(save_evaluation_dic,
                                 f"global_score.json") 
         if not os.path.exists(save_evaluation_dir):
-            global_score=Global_Score.initialization(tenant_manager,system,save_dir=save_evaluation_dir)
+            global_score = Global_Score.initialization(tenant_manager,system,save_dir=save_evaluation_dir)
             global_score.rate_score()
             global_score.save_score()
         return cls(environment)
@@ -106,7 +119,9 @@ class Executor():
         self.environment.broadcast()
         
         while not self.environment.is_done():
-            #self.environment.communication(communication_num = 3) #测试用
+            # asyncio.run(self.environment.communication(communication_num = 3))#测试用
+            loop = asyncio.get_event_loop()
+            loop.run_until_complete(self.environment.communication(communication_num = 3))
             #if self.environment.cnt_turn>3:
             self.environment.step()
 

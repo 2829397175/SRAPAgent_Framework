@@ -7,6 +7,9 @@ from LLM_PublicHouseAllocation.manager import TenantManager,HouseManager
 from LLM_PublicHouseAllocation.involvers import System
 from typing import Optional
 import re
+
+from tqdm import tqdm
+
 class Global_Score(BaseModel):
     tenant_manager:Optional[TenantManager]=None
     system:Optional[System]=None
@@ -70,7 +73,7 @@ class Global_Score(BaseModel):
         )
     
     def rate_score(self):
-        for tenant_id,tenant in self.tenant_manager.data.items():
+        for tenant_id,tenant in tqdm(self.tenant_manager.data.items(),desc="Rating the score of houses."):
             self.result[tenant_id]={}
             for house_id,_ in self.system.house_manager.data.items():
                 input={

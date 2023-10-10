@@ -2,7 +2,7 @@
 # from LLM_PublicHouseAllocation.involvers import System,Tool,Search_forum_topk
 from LLM_PublicHouseAllocation.memory import ActionHistoryMemory
 from LLM_PublicHouseAllocation.message import Message
-
+import asyncio
 from LLM_PublicHouseAllocation.prompt.chat_prompt import (ForumPromptTemplate,
                                                           ChoosePromptTemplate,
                                                           PublishPromptTemplate,
@@ -141,7 +141,7 @@ class LangchainTenant(langchainAgent):
 
         :meta private:
         """
-        #input_keys=set(self.llm_chain.input_keys) - {"intermediate_steps"}
+        
         return list(set(self.llm_chain.input_keys)-{"agent_scratchpad"})
     
     
@@ -192,6 +192,15 @@ class LangchainTenant(langchainAgent):
         return LLMChain(
             llm=self.llm, prompt=prompt, verbose=verbose
         )
+        
+        
+    def reset_memory_llm(self,llm):
+        self.memory.reset_llm(llm)
+        
+    def reset_llm(self,
+                  llm):
+        self.llm = llm
+        self.reset_state(mode ="choose") # default setting ，change llm_chain
     
     def reset_state(self,
                      mode = "access_forum",
@@ -546,7 +555,7 @@ You still have {chance_num} chances to choose house.\
                                   ):
         
         # debug
-        return self.communicate(log_round = log_round,
+        return await self.communicate(log_round = log_round,
                                 system = system,
                                 round_index = round_index,
                                 key_social_network = key_social_network)
@@ -609,21 +618,24 @@ You still have {chance_num} chances to choose house.\
         # 进行1轮，先是否进行选房流程的判断，若否则直接返回
         
   
-    def communicate(self,log_round,system,round_index = 0, key_social_network=0):
+    async def communicate(self,log_round,system,round_index = 0, key_social_network=0):
         if len(self.memory.mail)>0:
+            
+            
             return self.group_discuss_back(log_round=log_round,
                                            system=system,
                                            round_index=round_index,
-                                           key_social_network=key_social_network)       
+                                           key_social_network=key_social_network)   
         else:
-            return self.group_discuss(log_round=log_round,
+            
+            return await self.group_discuss(log_round=log_round,
                                       system=system,
                                       round_index=round_index,
                                       key_social_network=key_social_network)
         
     # 一系列房子选择的函数，理想中要整合成pipeline之类的格式(待改)
     
-    def group_discuss_plan(self,
+    async def group_discuss_plan(self,
                            respond_format,
                            log_round,
                            system,
@@ -663,7 +675,8 @@ You still have {chance_num} chances to choose house.\
         
         print("The group discuss plan of:{name}".format(name=self.name)) #debug
         
-        response = self.step(prompt_inputs).get("return_values")
+        response = await self.astep(prompt_inputs)
+        response = response.get("return_values")
         
         key_social_network = log_round.set_social_network(prompt_inputs,
                                      response,
@@ -676,7 +689,7 @@ You still have {chance_num} chances to choose house.\
         return response,key_social_network
     
     # 这里加一个recent chat
-    def group_discuss(self,
+    async def group_discuss(self,
                       log_round,
                       system,
                       round_index = 10,
@@ -689,7 +702,7 @@ You think (Your true opionion about these communities or houses).
 For now, Whether you want to provide information honestly to acquaintances: (Yes or No)
 
 Your current plan to respond is (Your plan to communicate with your friends, competitors, be concise)"""
-        group_discuss_plan, key_social_network = self.group_discuss_plan(respond_format=respond_format,
+        group_discuss_plan, key_social_network = await self.group_discuss_plan(respond_format=respond_format,
                                                      log_round=log_round,
                                                      system=system,
                                                      memory = memory,
@@ -732,7 +745,9 @@ Your current plan to respond is (Your plan to communicate with your friends, com
         print("SENDER:{name}".format(name=self.name)) #debug
         
         for _ in range(self.max_jug_time):
-            response = self.step(prompt_inputs).get("return_values")
+            # response = self.step(prompt_inputs).get("return_values")
+            response = await self.astep(prompt_inputs)
+            response = response.get("return_values")
             key_social_network = log_round.set_social_network(prompt_inputs,
                                      response,
                                      id = self.id,
@@ -792,7 +807,7 @@ Your current plan to respond is (Your plan to communicate with your friends, com
                 if jug_response: # 如果此round response 含有非法内容，rerun; 否则break
                     break
                 
-        return jug_response == True,key_social_network # 存在合法回答，则继续dialogue
+        return jug_response == True # 存在合法回答，则继续dialogue
                     
     # 在调用discuss_back之后，重新更新社交关系
     # context是最新，含有对话细节的message的context
@@ -841,7 +856,7 @@ you're communicating with your acquaintances about house renting.""".format(name
             print("Fail to update relation for {}".format(self.name))
               
                 
-    def group_discuss_back(self, 
+    async def group_discuss_back(self, 
                            log_round,
                            system,
                            round_index = 10,
@@ -878,7 +893,7 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
                                                    comment = acquantice_comment,
                                                    acquantice_type=acquantice_type)
             
-            group_discuss_plan, key_social_network = self.group_discuss_plan(respond_format = respond_format,
+            group_discuss_plan, key_social_network = await self.group_discuss_plan(respond_format = respond_format,
                                                          memory = memory,
                                                          system = system,
                                                          log_round = log_round,
@@ -909,8 +924,8 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
                 
                 print("SENDER:{name}".format(name=self.name)) #debug
                 
-                # response = self.llm_chain(prompt_inputs)
-                response = self.step(prompt_inputs = prompt_inputs).get("return_values")
+                
+                response = await asyncio.gather(self.astep(prompt_inputs = prompt_inputs).get("return_values"))
                 
                 key_social_network = log_round.set_social_network(prompt_inputs,
                                      response,
@@ -959,7 +974,7 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
                                                       key_social_network = key_social_network)
                     
         self.memory.mail.clear()
-        return self_continue_dialogue,key_social_network
+        return self_continue_dialogue
 
     
     def comment(self,description,step_type): # description 可以是community或house_type或house

@@ -35,6 +35,7 @@ class SummarizerMixin(BaseModel):
                             prompt: BasePromptTemplate = SUMMARY_PROMPT):
         
         chain = LLMChain(llm=self.llm, prompt=prompt)
+        chain.apredict
         return chain.predict(summary="", new_lines=passage)
 
     def summarize_chatting(self,
@@ -69,6 +70,9 @@ class ActionHistoryMemory(BaseMemory,SummarizerMixin):
     # 设置各类消息的buffer大小数
     summary_threshold:int = 5 # 每次总结后，再多5条就触发一次总结 -> 记忆库内
     dialogue_threshold:int = 20 # 保证和各个熟人的记忆都在20条内（按照时间戳） -> social_network内
+    
+    def reset_llm(self, llm):
+        self.llm = llm
     
     def __init__(self,**kwargs):
         social_network = kwargs.pop("social_network")
