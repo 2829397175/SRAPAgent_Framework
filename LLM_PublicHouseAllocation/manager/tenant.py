@@ -69,7 +69,7 @@ class TenantManager(BaseManager):
                                                             policy = policy,
                                                             max_choose=max_choose,
                                                             rule=base_config["agent_rule"],
-                                                            work_place=tenant_config.get("work_place",""),
+                                                            work_place = tenant_config.get("work_place",""),
                                                             priority_item = priority_item,
                                                             family_num=tenant_config.get("family_members_num",0),
                                                             choose_rating = choose_rating

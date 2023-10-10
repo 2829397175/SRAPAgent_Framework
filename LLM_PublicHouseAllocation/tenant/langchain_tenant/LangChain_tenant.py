@@ -45,6 +45,7 @@ from langchain.callbacks.manager import (
     Callbacks,
 )
 from LLM_PublicHouseAllocation.tenant.langchain_tenant.utils import load_memory
+
 from LLM_PublicHouseAllocation.tenant.langchain_tenant.Langchain_agent_executor import House_AgentExecutor
 import re
 import random
