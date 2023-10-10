@@ -7,6 +7,7 @@ class App:
         assert os.path.exists(dir_path),"no such file path: {}".format(dir_path)
         with open(dir_path,'r',encoding = 'utf-8') as f:
             self.data_list = json.load(f)
+        self.dir_path=dir_path
         self.saving_path = saving_path
         # for data in self.data_list:
         #     #testflag表示是否被标注过
@@ -63,10 +64,13 @@ class App:
         button_frame = tk.Frame(self.window)
         button_frame.grid(row=row_counter, column=0, pady=10)
         
-        self.approve_button = tk.Button(button_frame, text="Approve (Human Response)", command=self.approve)
+        self.approve_button = tk.Button(button_frame, text="Human Response", command=self.approve)
         self.approve_button.pack(side=tk.LEFT, padx=10)
         
-        self.reject_button = tk.Button(button_frame, text="Reject (Robot Response)", command=self.reject)
+        self.reject_button = tk.Button(button_frame, text="Robot Response", command=self.reject)
+        self.reject_button.pack(side=tk.LEFT, padx=10)
+        
+        self.reject_button = tk.Button(button_frame, text="Back", command=self.back)
         self.reject_button.pack(side=tk.LEFT, padx=10)
         
         self.save_button = tk.Button(button_frame, text="Save Response", command=self.save_response)
@@ -149,21 +153,47 @@ class App:
                 thought_content = ""
                 self.insert_and_resize_textbox2(self.thought_text, thought_content)
         else:
-            messagebox.showinfo("Done", "All data has been checked!")
+            finished_QA_result = []
+            unfinished_QA_result=[]
+            for data in self.data_list:
+                if data["testflag"]!=None and data["turingflag"]!=None:
+                    finished_QA_result.append(data)
+                elif data["testflag"]!=None:
+                    del data["testflag"]
+                    unfinished_QA_result.append(data)
+                elif data["turingflag"]!=None:
+                    del data["turingflag"]
+                    unfinished_QA_result.append(data)
+                else:
+                    unfinished_QA_result.append(data)
+            auc=self.compute_auc(finished_QA_result)
+            messagebox.showinfo("Done", "All data has been checked!The accuracy is "+str(auc)+" !!")
             self.save_and_exit()
 
     def save_and_exit(self):
         # 保存 data_list（在这个例子中我们只是将其打印到控制台）
         
-        QA_result = []
-        # if os.path.exists(self.saving_path):
-        #     with open(self.saving_path,'r',encoding = 'utf-8') as f:
-        #         QA_result = json.load(f)
-        
-        QA_result.extend(self.data_list)
+        finished_QA_result = []
+        if os.path.exists(self.saving_path):
+            with open(self.saving_path,'r',encoding = 'utf-8') as f:
+                finished_QA_result = json.load(f)
+        unfinished_QA_result=[]
+        for data in self.data_list:
+            if data["testflag"]!=None and data["turingflag"]!=None:
+                finished_QA_result.append(data)
+            elif data["testflag"]!=None:
+                del data["testflag"]
+                unfinished_QA_result.append(data)
+            elif data["turingflag"]!=None:
+                del data["turingflag"]
+                unfinished_QA_result.append(data)
+            else:
+                unfinished_QA_result.append(data)
         with open(self.saving_path, 'w', encoding='utf-8') as file:
-            json.dump(QA_result, file, indent=4,separators=(',', ':'),ensure_ascii=False)
-
+            json.dump(finished_QA_result, file, indent=4,separators=(',', ':'),ensure_ascii=False)
+            
+        with open(self.dir_path, 'w', encoding='utf-8') as file:
+            json.dump(unfinished_QA_result, file, indent=4,separators=(',', ':'),ensure_ascii=False)
         # 关闭窗口
         self.window.destroy()
         
@@ -181,6 +211,11 @@ class App:
         self.index += 1
         self.show_data()
         
+    def back(self):
+        del self.data_list[self.index]["testflag"]
+        del self.data_list[self.index]["turingflag"]
+        self.index  -= 1
+        self.show_data()
     def save_response(self):
         # Open a dialog to input the response
         
@@ -197,6 +232,18 @@ class App:
         else:
             messagebox.showerror("Error","Be sure to enter response and thought before saving.")
 
+
+    def compute_auc(self,data_list):
+        sum,correct_num=0,0
+        for data in data_list:
+            if data.get("testflag")==True:
+                humanjudge=data.get("humanjudge")
+                turingresult=data.get("turingflag")
+                if humanjudge!=None and turingresult!=None:
+                    if humanjudge==turingresult:
+                        correct_num+=1
+                    sum+=1
+        return correct_num/sum
 
 # Sample data
 data = [{
@@ -244,6 +291,6 @@ if __name__ == "__main__":
 
     # 图灵测试部分：
     
-    data_dir = "LLM_PublicHouseAllocation/LLM_decision_test/test/saving_QA.json"
+    data_dir = "LLM_PublicHouseAllocation/LLM_decision_test/test/saving_QA2.json"
     saving_dir = "LLM_PublicHouseAllocation/LLM_decision_test/test/finished_saving_QA.json"
     app = App(data_dir,saving_path = saving_dir)
