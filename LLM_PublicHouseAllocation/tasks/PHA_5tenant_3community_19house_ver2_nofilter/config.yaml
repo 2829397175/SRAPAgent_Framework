@@ -10,7 +10,7 @@ environment:
   
   rule:
     order:
-      type: priority
+      type: waitlist
       # type: rent
     updater:
       type: rent
@@ -28,6 +28,7 @@ managers:
     
 
   tenant:
+    choose_rating: False
     policy: 
       type : ver2 # 表示分房政策
       filter_house_labels: ["house_type",

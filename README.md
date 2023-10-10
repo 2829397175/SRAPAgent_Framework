@@ -15,6 +15,17 @@ LangchainTenant框架：
 
 4. self.environment.group() # 这里的log没改好 √
 
+5. waitlist:k deferral （k 设定为tenant.max_choose ） ，
+    在waitlist缺少tenant时，从各个group队列内 按照pri->npri的顺序进行tenant添加
+    各个group队列内的tenant，进行了shuffle（分pri，npri）
+    √
+
+6. log_round 添加rating存储的接口 √
+
+7. log_round 添加计算rating的matrix接口
+    对于每个人，分别存储各个指标
+
+
 
 流程图(outdated)
 ![流程图（已经不一致了）](readme/image.png)

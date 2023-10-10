@@ -37,6 +37,45 @@ choose_template:  &choose_template |-
   Respond:
   {agent_scratchpad}
 
+
+choose_rating_template:  &choose_rating_template |-
+  {role_description}
+
+  This is information you collected from previous conversations with others:
+  {memory}
+
+  You're planning to choose one house. In order to choose a house that satisfies you, you need to give a rating score of each available house.
+  Give a rating score of these house from 1 to 12. A score below 3 indicates that the house is not satisfactory, a score of 3 to 6 indicates that the house can meet basic requirements, a score of 6 to 9 indicates that the house can meet all life and work needs well, and a score above 9 indicates that the house is very perfect.
+
+  Here's one example:
+
+  There are 2 houses available.The infomation of these houses are listed as follows:
+  house_1: good location. nice transportation.
+
+  house_2: high rent. but good environment.
+
+  Rating:
+  house_1: 6
+  house_2: 3
+
+  Reason:
+  house_1 has good location while house_2 has high rent.
+
+  End of example.
+
+  {house_info}
+
+  Give Your response in the following format:
+
+  Rating:
+  (the rating score of houses)
+
+  Reason:
+  (the reason of the rating score for these houses.)
+
+  Now give your rating of [{available_house_index}]
+
+
 # remain to be modified!!
 forum_template:  &forum_template |-
   {role_description}

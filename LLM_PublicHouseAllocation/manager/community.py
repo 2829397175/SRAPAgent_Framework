@@ -70,6 +70,7 @@ class CommunityManager(BaseManager):
             merged_community[key] = com_a[key]
             
         return merged_community
+    
     def add_community_pool(self,cur_pool,add_com):
         if cur_pool=={}:
             for _,c_info in add_com.items():     
@@ -88,7 +89,7 @@ class CommunityManager(BaseManager):
     
     def publish_house(self,cnt_turn):
         
-        if str(cnt_turn) in self.total_community_datas:
+        if str(cnt_turn) in self.total_community_datas.keys():
             self.data=self.add_community_pool(self.data,self.total_community_datas[str(cnt_turn)])
             print(" 发布新房子了!!!!!\n")
     

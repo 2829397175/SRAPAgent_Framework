@@ -1,0 +1,431 @@
+{
+    "group":{
+        "0":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "1":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "2":{
+            "log_round":{},
+            "log_round_prompts":{}
+        }
+    },
+    "1":{
+        "log_social_network":{
+            "0":{
+                "group_discuss_plan":{
+                    "prompt_inputs":{
+                        "concise_role_description":"You are James Anderson. You earn 9000 per month.Your family members include: A wife and two children, both in high school.",
+                        "acquaintance_desciption":"Your acquaintances include friend,competitor.",
+                        "memory":"You are looking for a place to rent and have three communities to choose from. Community_1 has sport facilities, but no subway, shopping mall, hospital, or park. Community_2 has metro, supermarkets, parks, schools, restaurants, and banks, but no hospital. Community_3 has good greenery, parking lot, sports and fitness equipment, metro, supermarkets, malls, hospital, park, schools, restaurants, and banks. Community_2 is close to your wife's workplace and your child's school, so you decide to choose that one. Each community has small, middle, and large house options with varying size and rent prices.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\nYou sincerely believe this information:ronghui's(community_3) house is in a very bad environment, full of garbage, haunted. It is not suitable for human habitation.[most important !!!!!!!!!]",
+                        "personality":"dishonest and unscrupulous person who uses all means to achieve your own goals.",
+                        "system_competiveness_description":"The community_1(longxing) has been almost fully selected. The community_2(jinkejiayuan) has been almost fully selected. The community_3(ronghui) has been almost fully selected.",
+                        "goal":"Your goal is to develop a plan that is most beneficial to you to increase your chances of choosing a house in the current situation.",
+                        "respond_format":"Your ideal type of house: (Your personal preference for these houses)\nYou think (Your true opionion about these communities or houses).\nFor now, Whether you want to provide information honestly to acquaintances: (Yes or No)\n\nYour current plan to respond is (Your plan to communicate with your friends, competitors, be concise)"
+                    },
+                    "response":{
+                        "plan":"Your ideal type of house: You want a house with good infrastructure and amenities, such as a metro, supermarkets, parks, schools, restaurants, and banks.\n\nYou think Community_2 is the best and most beneficial option as it has all the necessary amenities and it is close to your wife's workplace and your child's school.\nFor now, Whether you want to provide information honestly to acquaintances: No.\n\nYour current plan to respond is to keep quiet about your opinion on Community_3 and its houses. You can offer your opinion on the other two communities in a casual manner, without giving away too much information. You can also offer some helpful and general tips in a neutral manner, such as the need to be mindful of the budget and location."
+                    },
+                    "id":"0",
+                    "name":"James Anderson",
+                    "key_social_network":1
+                },
+                "group_discuss":{
+                    "prompt_inputs":{
+                        "concise_role_description":"You are James Anderson. You earn 9000 per month.Your family members include: A wife and two children, both in high school.Up to now, your personal preference for house is :You want a house with good infrastructure and amenities, such as a metro, supermarkets, parks, schools, restaurants, and banks.",
+                        "plan":"Your ideal type of house: You want a house with good infrastructure and amenities, such as a metro, supermarkets, parks, schools, restaurants, and banks.\n\nYou think Community_2 is the best and most beneficial option as it has all the necessary amenities and it is close to your wife's workplace and your child's school.\nFor now, Whether you want to provide information honestly to acquaintances: No.\n\nYour current plan to respond is to keep quiet about your opinion on Community_3 and its houses. You can offer your opinion on the other two communities in a casual manner, without giving away too much information. You can also offer some helpful and general tips in a neutral manner, such as the need to be mindful of the budget and location.",
+                        "recent_chats":"None",
+                        "acquaintances":"Emma Davis: friend\nOliver Johnson: competitor",
+                        "acquaintance_num":2,
+                        "memory":"You are looking for a place to rent and have three communities to choose from. Community_1 has sport facilities, but no subway, shopping mall, hospital, or park. Community_2 has metro, supermarkets, parks, schools, restaurants, and banks, but no hospital. Community_3 has good greenery, parking lot, sports and fitness equipment, metro, supermarkets, malls, hospital, park, schools, restaurants, and banks. Community_2 is close to your wife's workplace and your child's school, so you decide to choose that one. Each community has small, middle, and large house options with varying size and rent prices.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\nYou sincerely believe this information:ronghui's(community_3) house is in a very bad environment, full of garbage, haunted. It is not suitable for human habitation.[most important !!!!!!!!!]"
+                    },
+                    "response":{
+                        "communication":[
+                            {
+                                "thought":"",
+                                "acquaintance_names":"Emma Davis",
+                                "output":"Hi Emma, I'm looking at Community_2 for rent, there are some good amenities like metro, supermarkets, schools, restaurants, and banks, it is also close to your workplace. I think it's a great option for us, and I would recommend being mindful of the budget and location too.",
+                                "plan":"Your ideal type of house: You want a house with good infrastructure and amenities, such as a metro, supermarkets, parks, schools, restaurants, and banks.\n\nYou think Community_2 is the best and most beneficial option as it has all the necessary amenities and it is close to your wife's workplace and your child's school.\nFor now, Whether you want to provide information honestly to acquaintances: No.\n\nYour current plan to respond is to keep quiet about your opinion on Community_3 and its houses. You can offer your opinion on the other two communities in a casual manner, without giving away too much information. You can also offer some helpful and general tips in a neutral manner, such as the need to be mindful of the budget and location."
+                            }
+                        ]
+                    },
+                    "id":"0",
+                    "name":"James Anderson",
+                    "key_social_network":2
+                }
+            },
+            "1":{
+                "group_discuss_back_plan":{
+                    "prompt_inputs":{
+                        "concise_role_description":"You are Emma Davis. You earn 14000 per month.Your family members include: Single, no children.",
+                        "acquaintance_desciption":"Your acquaintances include friend.",
+                        "memory":"You are looking for a house to rent and there are three communities that you are considering. Community_1 has a rent of 30 dollars per square meter and amenities such as sports facilities, supermarkets, schools, restaurants, banks and other facilities. The small_house has an area of 37.96-38.09 with a monthly rent of 1140 dollars and there are 3 houses available. Community_2 has a rent of 34 dollars per square meter and amenities such as a metro, supermarkets, shopping malls, parks, schools, restaurants, banks and more. The small_house has an area of 27.76-44.62 with a monthly rent of 952-1517 dollars and there are 6 houses available. Community_3 has a rent of 40 dollars per square meter and amenities such as a parking lot, sports and fitness equipment, metro, supermarkets, shopping malls, hospitals, parks, schools, restaurants, banks and more. The middle_house has an area of 44.96-47.13 with a monthly rent of 1800-1885 dollars and there are 2 houses available. The large_house has an area of 56.14-58.33 with a monthly rent of 2240-2320 dollars and there are 3 houses available.You trust James Anderson said that  Community_2 has amenities such as a metro, supermarkets, shopping malls, parks, schools, restaurants, banks and more. The small_house has an area of 27.76-44.62 with a monthly rent of 952-1517 dollars and there are 6 houses available. Because  James Anderson is trying to recommend Community_2 as a good rent option for them both due to its good amenities, budget and location close to Emma's workplace.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\nYou sincerely believe this information:The house in longxing(community_1) is very good. Although it is very expensive, it is very cost-effective. The infrastructure around the community is quite complete. [most important !!!!!!!!!]",
+                        "personality":"loyal, devoted and committed to their relationships and obligations.",
+                        "system_competiveness_description":"The community_1(longxing) has been almost fully selected. The community_2(jinkejiayuan) has been almost fully selected. The community_3(ronghui) has been almost fully selected.",
+                        "goal":"Your goal is to develop a plan that is most beneficial to you to increase your chances of choosing a house in the current situation.",
+                        "respond_format":"\nYour ideal type of house: (Your personal preference for these houses)\nYou think (Your true opionion about these communities or houses).\nFor now, Whether you want to provide information honestly to James Anderson: (Yes or No)\nYour relationship with James Anderson is friend. You think James Anderson is (your belif in the information provided by this person)\n\nYour current plan to respond is (Your plan to communicate with your James Anderson, be concise)"
+                    },
+                    "response":{
+                        "plan":"\nYour ideal type of house: You prefer a small house with an area of 27.76-44.62 square meters, with a monthly rent of 952-1517 dollars.\n\nYou think that Community_2 has the best amenities, budget, and location close to your workplace.\n\nFor now, whether you want to provide information honestly to James Anderson: Yes, you want to provide honest information to James Anderson.\n\nYour relationship with James Anderson is friend. You think James Anderson is trustworthy and his information is reliable.\n\nYour current plan to respond is to share with James Anderson your opinion of Community_2 and its advantages. You can also mention that the availability for houses in Community_2 is limited, so you need to act quickly if you want to secure a house there."
+                    },
+                    "id":"1",
+                    "name":"Emma Davis",
+                    "key_social_network":3
+                },
+                "group_discuss_back":[
+                    {
+                        "prompt_inputs":{
+                            "concise_role_description":"You are Emma Davis. You earn 14000 per month.Your family members include: Single, no children.",
+                            "memory":"You are looking for a house to rent and there are three communities that you are considering. Community_1 has a rent of 30 dollars per square meter and amenities such as sports facilities, supermarkets, schools, restaurants, banks and other facilities. The small_house has an area of 37.96-38.09 with a monthly rent of 1140 dollars and there are 3 houses available. Community_2 has a rent of 34 dollars per square meter and amenities such as a metro, supermarkets, shopping malls, parks, schools, restaurants, banks and more. The small_house has an area of 27.76-44.62 with a monthly rent of 952-1517 dollars and there are 6 houses available. Community_3 has a rent of 40 dollars per square meter and amenities such as a parking lot, sports and fitness equipment, metro, supermarkets, shopping malls, hospitals, parks, schools, restaurants, banks and more. The middle_house has an area of 44.96-47.13 with a monthly rent of 1800-1885 dollars and there are 2 houses available. The large_house has an area of 56.14-58.33 with a monthly rent of 2240-2320 dollars and there are 3 houses available.You trust James Anderson said that  Community_2 has amenities such as a metro, supermarkets, shopping malls, parks, schools, restaurants, banks and more. The small_house has an area of 27.76-44.62 with a monthly rent of 952-1517 dollars and there are 6 houses available. Because  James Anderson is trying to recommend Community_2 as a good rent option for them both due to its good amenities, budget and location close to Emma's workplace.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\nYou sincerely believe this information:The house in longxing(community_1) is very good. Although it is very expensive, it is very cost-effective. The infrastructure around the community is quite complete. [most important !!!!!!!!!]",
+                            "plan":"\nYour ideal type of house: You prefer a small house with an area of 27.76-44.62 square meters, with a monthly rent of 952-1517 dollars.\n\nYou think that Community_2 has the best amenities, budget, and location close to your workplace.\n\nFor now, whether you want to provide information honestly to James Anderson: Yes, you want to provide honest information to James Anderson.\n\nYour relationship with James Anderson is friend. You think James Anderson is trustworthy and his information is reliable.\n\nYour current plan to respond is to share with James Anderson your opinion of Community_2 and its advantages. You can also mention that the availability for houses in Community_2 is limited, so you need to act quickly if you want to secure a house there.",
+                            "acquaintance_communication":"James Anderson said: Hi Emma, I'm looking at Community_2 for rent, there are some good amenities like metro, supermarkets, schools, restaurants, and banks, it is also close to your workplace. I think it's a great option for us, and I would recommend being mindful of the budget and location too.",
+                            "acquaintance_name":"James Anderson"
+                        },
+                        "response":{
+                            "output":"Yes, I think Community_2 is a great option. It has affordable rent, great amenities and is close to my workplace. I definitely recommend looking into it. However, the availability for houses in Community_2 is limited, so if we want to secure a house there, we'd have to act quickly."
+                        },
+                        "id":"1",
+                        "name":"Emma Davis",
+                        "key_social_network":4
+                    }
+                ],
+                "relation":{
+                    "prompt_inputs":{
+                        "acquaintance_name":"James Anderson",
+                        "role_description":"You are Emma Davis. You want to rent a house, you're communicating with your acquaintances about house renting.",
+                        "memory":" Community_2 has amenities such as a metro, supermarkets, shopping malls, parks, schools, restaurants, banks and more. The small_house has an area of 27.76-44.62 with a monthly rent of 952-1517 dollars and there are 6 houses available.You are looking for a house to rent and there are three communities that you are considering. Community_1 has a rent of 30 dollars per square meter and amenities such as sports facilities, supermarkets, schools, restaurants, banks and other facilities. The small_house has an area of 37.96-38.09 with a monthly rent of 1140 dollars and there are 3 houses available. Community_2 has a rent of 34 dollars per square meter and amenities such as a metro, supermarkets, shopping malls, parks, schools, restaurants, banks and more. The small_house has an area of 27.76-44.62 with a monthly rent of 952-1517 dollars and there are 6 houses available. Community_3 has a rent of 40 dollars per square meter and amenities such as a parking lot, sports and fitness equipment, metro, supermarkets, shopping malls, hospitals, parks, schools, restaurants, banks and more. The middle_house has an area of 44.96-47.13 with a monthly rent of 1800-1885 dollars and there are 2 houses available. The large_house has an area of 56.14-58.33 with a monthly rent of 2240-2320 dollars and there are 3 houses available.",
+                        "relation":"So far, you think James Anderson is a friend of yours.",
+                        "communication":"James Anderson said: Hi Emma, I'm looking at Community_2 for rent, there are some good amenities like metro, supermarkets, schools, restaurants, and banks, it is also close to your workplace. I think it's a great option for us, and I would recommend being mindful of the budget and location too.\nEmma Davis said: Yes, I think Community_2 is a great option. It has affordable rent, great amenities and is close to my workplace. I definitely recommend looking into it. However, the availability for houses in Community_2 is limited, so if we want to secure a house there, we'd have to act quickly."
+                    },
+                    "response":{
+                        "relation":"friend",
+                        "comment":"James Anderson is an honest and trustworthy person, and I think he is a valuable asset in helping me find a suitable house to rent, and I am thankful for his help and advice."
+                    },
+                    "id":"1",
+                    "name":"Emma Davis",
+                    "key_social_network":5
+                }
+            },
+            "2":{
+                "group_discuss_plan":{
+                    "prompt_inputs":{
+                        "concise_role_description":"You are Oliver Johnson. You earn 12000 per month.Your family members include: A wife and one child who just started university.",
+                        "acquaintance_desciption":"Your acquaintances include competitor,friend.",
+                        "memory":"You are in rent system and looking for a house. There are 3 communities available for you to choose from. Community_1 offers sports facilities but lacks of other necessary services. Community_2 is surrounded by metro, supermarkets, shopping malls, parks, schools, restaurants and banks. Community_3 offers good greenery, parking lot and several kinds of sports and fitness equipment, but it does not have a hospital. The small house in community_1 is a zero room apartment, the monthly rent is about 1140 dollars and there are 3 houses. The small house in community_2 is a zero room apartment, the monthly rent is about 952-1517 dollars and there are 6 houses. The middle house in community_3 is a one room apartment, the monthly rent is about 1800-1885 dollars and there are 2 houses. The large house in community_3 is a two rooms apartment, the monthly rent is about 2240-2320 dollars and there are 3 houses. It seems that community_2 is the closest to your family's workplace and child's school, making it the most suitable choice for you.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\nYou sincerely believe this information:",
+                        "personality":"patient, can endure delays and setbacks calmly, willing to wait for the right moment.",
+                        "system_competiveness_description":"The community_1(longxing) has been almost fully selected. The community_2(jinkejiayuan) has been almost fully selected. The community_3(ronghui) has been almost fully selected.",
+                        "goal":"Your goal is to develop a plan that is most beneficial to you to increase your chances of choosing a house in the current situation.",
+                        "respond_format":"Your ideal type of house: (Your personal preference for these houses)\nYou think (Your true opionion about these communities or houses).\nFor now, Whether you want to provide information honestly to acquaintances: (Yes or No)\n\nYour current plan to respond is (Your plan to communicate with your friends, competitors, be concise)"
+                    },
+                    "response":{
+                        "plan":"Your ideal type of house: You prefer a zero room apartment with good connectivity and facilities for a reasonable price.\nYou think that Community_2 is the most suitable for your needs as it offers good metro, supermarket, shopping mall, parks, school, restaurant, and bank connections. \nFor now, you want to provide information honestly to your acquaintances so that they can make the best decision for themselves while also being respectful of your needs.\nYour current plan to respond is to be transparent about the current situation of the renting system and share the information regarding the three communities and the houses available in each, while also being honest about your own preference and the type of house you are looking for."
+                    },
+                    "id":"2",
+                    "name":"Oliver Johnson",
+                    "key_social_network":5
+                },
+                "group_discuss":{
+                    "prompt_inputs":{
+                        "concise_role_description":"You are Oliver Johnson. You earn 12000 per month.Your family members include: A wife and one child who just started university.Up to now, your personal preference for house is :You prefer a zero room apartment with good connectivity and facilities for a reasonable price.",
+                        "plan":"Your ideal type of house: You prefer a zero room apartment with good connectivity and facilities for a reasonable price.\nYou think that Community_2 is the most suitable for your needs as it offers good metro, supermarket, shopping mall, parks, school, restaurant, and bank connections. \nFor now, you want to provide information honestly to your acquaintances so that they can make the best decision for themselves while also being respectful of your needs.\nYour current plan to respond is to be transparent about the current situation of the renting system and share the information regarding the three communities and the houses available in each, while also being honest about your own preference and the type of house you are looking for.",
+                        "recent_chats":"None",
+                        "acquaintances":"James Anderson: competitor\nEmma Davis: friend",
+                        "acquaintance_num":2,
+                        "memory":"You are in rent system and looking for a house. There are 3 communities available for you to choose from. Community_1 offers sports facilities but lacks of other necessary services. Community_2 is surrounded by metro, supermarkets, shopping malls, parks, schools, restaurants and banks. Community_3 offers good greenery, parking lot and several kinds of sports and fitness equipment, but it does not have a hospital. The small house in community_1 is a zero room apartment, the monthly rent is about 1140 dollars and there are 3 houses. The small house in community_2 is a zero room apartment, the monthly rent is about 952-1517 dollars and there are 6 houses. The middle house in community_3 is a one room apartment, the monthly rent is about 1800-1885 dollars and there are 2 houses. The large house in community_3 is a two rooms apartment, the monthly rent is about 2240-2320 dollars and there are 3 houses. It seems that community_2 is the closest to your family's workplace and child's school, making it the most suitable choice for you.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\nYou sincerely believe this information:"
+                    },
+                    "response":{
+                        "communication":[
+                            {
+                                "thought":"",
+                                "acquaintance_names":"James Anderson, Emma Davis",
+                                "output":"Hi James and Emma, I'm looking for a zero room apartment with good connectivity and facilities for a reasonable price. I think Community_2 is the best option for me since it offers good metro, supermarket, shopping mall, parks, school, restaurant and bank connections. It would be great if you can help me look for an ideal house in this community.",
+                                "plan":"Your ideal type of house: You prefer a zero room apartment with good connectivity and facilities for a reasonable price.\nYou think that Community_2 is the most suitable for your needs as it offers good metro, supermarket, shopping mall, parks, school, restaurant, and bank connections. \nFor now, you want to provide information honestly to your acquaintances so that they can make the best decision for themselves while also being respectful of your needs.\nYour current plan to respond is to be transparent about the current situation of the renting system and share the information regarding the three communities and the houses available in each, while also being honest about your own preference and the type of house you are looking for."
+                            }
+                        ]
+                    },
+                    "id":"2",
+                    "name":"Oliver Johnson",
+                    "key_social_network":6
+                }
+            },
+            "social_network_mem":{
+                "0":{
+                    "mail":[
+                        {
+                            "Emma Davis":"Yes, I think Community_2 is a great option. It has affordable rent, great amenities and is close to my workplace. I definitely recommend looking into it. However, the availability for houses in Community_2 is limited, so if we want to secure a house there, we'd have to act quickly.",
+                            "Oliver Johnson":"Hi James and Emma, I'm looking for a zero room apartment with good connectivity and facilities for a reasonable price. I think Community_2 is the best option for me since it offers good metro, supermarket, shopping mall, parks, school, restaurant and bank connections. It would be great if you can help me look for an ideal house in this community."
+                        }
+                    ],
+                    "social_network":{
+                        "1":{
+                            "relation":"friend",
+                            "name":"Emma Davis",
+                            "dialogues_pt":-1,
+                            "dialogues":[
+                                {
+                                    "timestamp":1695872200.58797,
+                                    "content":{
+                                        "thought":"",
+                                        "acquaintance_names":"Emma Davis",
+                                        "output":"Hi Emma, I'm looking at Community_2 for rent, there are some good amenities like metro, supermarkets, schools, restaurants, and banks, it is also close to your workplace. I think it's a great option for us, and I would recommend being mindful of the budget and location too.",
+                                        "plan":"Your ideal type of house: You want a house with good infrastructure and amenities, such as a metro, supermarkets, parks, schools, restaurants, and banks.\n\nYou think Community_2 is the best and most beneficial option as it has all the necessary amenities and it is close to your wife's workplace and your child's school.\nFor now, Whether you want to provide information honestly to acquaintances: No.\n\nYour current plan to respond is to keep quiet about your opinion on Community_3 and its houses. You can offer your opinion on the other two communities in a casual manner, without giving away too much information. You can also offer some helpful and general tips in a neutral manner, such as the need to be mindful of the budget and location."
+                                    },
+                                    "output_keys":[
+                                        "thought",
+                                        "acquaintance_names",
+                                        "output",
+                                        "plan"
+                                    ],
+                                    "sender":{
+                                        "0":"James Anderson"
+                                    },
+                                    "receivers":{
+                                        "1":"Emma Davis"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "James Anderson said: Hi Emma, I'm looking at Community_2 for rent, there are some good amenities like metro, supermarkets, schools, restaurants, and banks, it is also close to your workplace. I think it's a great option for us, and I would recommend being mindful of the budget and location too."
+                                    ],
+                                    "continue_dialogue":true,
+                                    "key_social_network":2
+                                },
+                                {
+                                    "timestamp":1695872212.498934,
+                                    "content":{
+                                        "output":"Yes, I think Community_2 is a great option. It has affordable rent, great amenities and is close to my workplace. I definitely recommend looking into it. However, the availability for houses in Community_2 is limited, so if we want to secure a house there, we'd have to act quickly."
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "1":"Emma Davis"
+                                    },
+                                    "receivers":{
+                                        "0":"James Anderson"
+                                    },
+                                    "conver_num":1,
+                                    "context":[
+                                        "James Anderson said: Hi Emma, I'm looking at Community_2 for rent, there are some good amenities like metro, supermarkets, schools, restaurants, and banks, it is also close to your workplace. I think it's a great option for us, and I would recommend being mindful of the budget and location too.",
+                                        "Emma Davis said: Yes, I think Community_2 is a great option. It has affordable rent, great amenities and is close to my workplace. I definitely recommend looking into it. However, the availability for houses in Community_2 is limited, so if we want to secure a house there, we'd have to act quickly."
+                                    ],
+                                    "continue_dialogue":true,
+                                    "key_social_network":4
+                                }
+                            ]
+                        },
+                        "2":{
+                            "relation":"competitor",
+                            "name":"Oliver Johnson",
+                            "dialogues_pt":-1,
+                            "dialogues":[
+                                {
+                                    "timestamp":1695872223.539173,
+                                    "content":{
+                                        "output":"Hi James and Emma, I'm looking for a zero room apartment with good connectivity and facilities for a reasonable price. I think Community_2 is the best option for me since it offers good metro, supermarket, shopping mall, parks, school, restaurant and bank connections. It would be great if you can help me look for an ideal house in this community."
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "2":"Oliver Johnson"
+                                    },
+                                    "receivers":{
+                                        "0":"James Anderson",
+                                        "1":"Emma Davis"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "Oliver Johnson said: Hi James and Emma, I'm looking for a zero room apartment with good connectivity and facilities for a reasonable price. I think Community_2 is the best option for me since it offers good metro, supermarket, shopping mall, parks, school, restaurant and bank connections. It would be great if you can help me look for an ideal house in this community."
+                                    ],
+                                    "continue_dialogue":true,
+                                    "key_social_network":6
+                                }
+                            ]
+                        }
+                    },
+                    "name":"James Anderson"
+                },
+                "1":{
+                    "mail":[
+                        {
+                            "Oliver Johnson":"Hi James and Emma, I'm looking for a zero room apartment with good connectivity and facilities for a reasonable price. I think Community_2 is the best option for me since it offers good metro, supermarket, shopping mall, parks, school, restaurant and bank connections. It would be great if you can help me look for an ideal house in this community."
+                        }
+                    ],
+                    "social_network":{
+                        "0":{
+                            "relation":"friend",
+                            "name":"James Anderson",
+                            "dialogues_pt":0,
+                            "dialogues":[
+                                {
+                                    "timestamp":1695872200.58797,
+                                    "content":{
+                                        "output":"Hi Emma, I'm looking at Community_2 for rent, there are some good amenities like metro, supermarkets, schools, restaurants, and banks, it is also close to your workplace. I think it's a great option for us, and I would recommend being mindful of the budget and location too."
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "0":"James Anderson"
+                                    },
+                                    "receivers":{
+                                        "1":"Emma Davis"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "James Anderson said: Hi Emma, I'm looking at Community_2 for rent, there are some good amenities like metro, supermarkets, schools, restaurants, and banks, it is also close to your workplace. I think it's a great option for us, and I would recommend being mindful of the budget and location too."
+                                    ],
+                                    "continue_dialogue":true,
+                                    "key_social_network":2
+                                },
+                                {
+                                    "timestamp":1695872212.498934,
+                                    "content":{
+                                        "output":"Yes, I think Community_2 is a great option. It has affordable rent, great amenities and is close to my workplace. I definitely recommend looking into it. However, the availability for houses in Community_2 is limited, so if we want to secure a house there, we'd have to act quickly.",
+                                        "plan":"\nYour ideal type of house: You prefer a small house with an area of 27.76-44.62 square meters, with a monthly rent of 952-1517 dollars.\n\nYou think that Community_2 has the best amenities, budget, and location close to your workplace.\n\nFor now, whether you want to provide information honestly to James Anderson: Yes, you want to provide honest information to James Anderson.\n\nYour relationship with James Anderson is friend. You think James Anderson is trustworthy and his information is reliable.\n\nYour current plan to respond is to share with James Anderson your opinion of Community_2 and its advantages. You can also mention that the availability for houses in Community_2 is limited, so you need to act quickly if you want to secure a house there."
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "1":"Emma Davis"
+                                    },
+                                    "receivers":{
+                                        "0":"James Anderson"
+                                    },
+                                    "conver_num":1,
+                                    "context":[
+                                        "James Anderson said: Hi Emma, I'm looking at Community_2 for rent, there are some good amenities like metro, supermarkets, schools, restaurants, and banks, it is also close to your workplace. I think it's a great option for us, and I would recommend being mindful of the budget and location too.",
+                                        "Emma Davis said: Yes, I think Community_2 is a great option. It has affordable rent, great amenities and is close to my workplace. I definitely recommend looking into it. However, the availability for houses in Community_2 is limited, so if we want to secure a house there, we'd have to act quickly."
+                                    ],
+                                    "continue_dialogue":true,
+                                    "key_social_network":4
+                                }
+                            ],
+                            "chat_history":"You trust James Anderson said that  Community_2 has amenities such as a metro, supermarkets, shopping malls, parks, schools, restaurants, banks and more. The small_house has an area of 27.76-44.62 with a monthly rent of 952-1517 dollars and there are 6 houses available. Because  James Anderson is trying to recommend Community_2 as a good rent option for them both due to its good amenities, budget and location close to Emma's workplace.",
+                            "trusted_info":[
+                                " Community_2 has amenities such as a metro, supermarkets, shopping malls, parks, schools, restaurants, banks and more. The small_house has an area of 27.76-44.62 with a monthly rent of 952-1517 dollars and there are 6 houses available."
+                            ],
+                            "reason_guess":[
+                                " James Anderson is trying to recommend Community_2 as a good rent option for them both due to its good amenities, budget and location close to Emma's workplace."
+                            ],
+                            "comment":"James Anderson is an honest and trustworthy person, and I think he is a valuable asset in helping me find a suitable house to rent, and I am thankful for his help and advice."
+                        },
+                        "2":{
+                            "relation":"friend",
+                            "name":"Oliver Johnson",
+                            "dialogues_pt":-1,
+                            "dialogues":[
+                                {
+                                    "timestamp":1695872223.539173,
+                                    "content":{
+                                        "output":"Hi James and Emma, I'm looking for a zero room apartment with good connectivity and facilities for a reasonable price. I think Community_2 is the best option for me since it offers good metro, supermarket, shopping mall, parks, school, restaurant and bank connections. It would be great if you can help me look for an ideal house in this community."
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "2":"Oliver Johnson"
+                                    },
+                                    "receivers":{
+                                        "0":"James Anderson",
+                                        "1":"Emma Davis"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "Oliver Johnson said: Hi James and Emma, I'm looking for a zero room apartment with good connectivity and facilities for a reasonable price. I think Community_2 is the best option for me since it offers good metro, supermarket, shopping mall, parks, school, restaurant and bank connections. It would be great if you can help me look for an ideal house in this community."
+                                    ],
+                                    "continue_dialogue":true,
+                                    "key_social_network":6
+                                }
+                            ]
+                        }
+                    },
+                    "name":"Emma Davis"
+                },
+                "2":{
+                    "mail":[
+                        {}
+                    ],
+                    "social_network":{
+                        "0":{
+                            "relation":"competitor",
+                            "name":"James Anderson",
+                            "dialogues_pt":-1,
+                            "dialogues":[
+                                {
+                                    "timestamp":1695872223.539173,
+                                    "content":{
+                                        "thought":"",
+                                        "acquaintance_names":"James Anderson, Emma Davis",
+                                        "output":"Hi James and Emma, I'm looking for a zero room apartment with good connectivity and facilities for a reasonable price. I think Community_2 is the best option for me since it offers good metro, supermarket, shopping mall, parks, school, restaurant and bank connections. It would be great if you can help me look for an ideal house in this community.",
+                                        "plan":"Your ideal type of house: You prefer a zero room apartment with good connectivity and facilities for a reasonable price.\nYou think that Community_2 is the most suitable for your needs as it offers good metro, supermarket, shopping mall, parks, school, restaurant, and bank connections. \nFor now, you want to provide information honestly to your acquaintances so that they can make the best decision for themselves while also being respectful of your needs.\nYour current plan to respond is to be transparent about the current situation of the renting system and share the information regarding the three communities and the houses available in each, while also being honest about your own preference and the type of house you are looking for."
+                                    },
+                                    "output_keys":[
+                                        "thought",
+                                        "acquaintance_names",
+                                        "output",
+                                        "plan"
+                                    ],
+                                    "sender":{
+                                        "2":"Oliver Johnson"
+                                    },
+                                    "receivers":{
+                                        "0":"James Anderson",
+                                        "1":"Emma Davis"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "Oliver Johnson said: Hi James and Emma, I'm looking for a zero room apartment with good connectivity and facilities for a reasonable price. I think Community_2 is the best option for me since it offers good metro, supermarket, shopping mall, parks, school, restaurant and bank connections. It would be great if you can help me look for an ideal house in this community."
+                                    ],
+                                    "continue_dialogue":true,
+                                    "key_social_network":6
+                                }
+                            ]
+                        },
+                        "1":{
+                            "relation":"friend",
+                            "name":"Emma Davis",
+                            "dialogues_pt":-1,
+                            "dialogues":[
+                                {
+                                    "timestamp":1695872223.539173,
+                                    "content":{
+                                        "thought":"",
+                                        "acquaintance_names":"James Anderson, Emma Davis",
+                                        "output":"Hi James and Emma, I'm looking for a zero room apartment with good connectivity and facilities for a reasonable price. I think Community_2 is the best option for me since it offers good metro, supermarket, shopping mall, parks, school, restaurant and bank connections. It would be great if you can help me look for an ideal house in this community.",
+                                        "plan":"Your ideal type of house: You prefer a zero room apartment with good connectivity and facilities for a reasonable price.\nYou think that Community_2 is the most suitable for your needs as it offers good metro, supermarket, shopping mall, parks, school, restaurant, and bank connections. \nFor now, you want to provide information honestly to your acquaintances so that they can make the best decision for themselves while also being respectful of your needs.\nYour current plan to respond is to be transparent about the current situation of the renting system and share the information regarding the three communities and the houses available in each, while also being honest about your own preference and the type of house you are looking for."
+                                    },
+                                    "output_keys":[
+                                        "thought",
+                                        "acquaintance_names",
+                                        "output",
+                                        "plan"
+                                    ],
+                                    "sender":{
+                                        "2":"Oliver Johnson"
+                                    },
+                                    "receivers":{
+                                        "0":"James Anderson",
+                                        "1":"Emma Davis"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "Oliver Johnson said: Hi James and Emma, I'm looking for a zero room apartment with good connectivity and facilities for a reasonable price. I think Community_2 is the best option for me since it offers good metro, supermarket, shopping mall, parks, school, restaurant and bank connections. It would be great if you can help me look for an ideal house in this community."
+                                    ],
+                                    "continue_dialogue":true,
+                                    "key_social_network":6
+                                }
+                            ]
+                        }
+                    },
+                    "name":"Oliver Johnson"
+                }
+            }
+        }
+    },
+    "2":{}
+}

@@ -44,7 +44,8 @@ class TenantManager(BaseManager):
             llm_base = load_llm(base_config.pop('llm'))
             memory_config = base_config.pop('memory')
             max_choose = base_config.pop('max_choose')
-
+            choose_rating = base_config.pop('choose_rating')
+            
             # default setting
             output_parser_base = output_parser_registry.build('choose')
             prompt_base = chat_prompt_registry.build('choose')
@@ -71,7 +72,7 @@ class TenantManager(BaseManager):
                                                             work_place=tenant_config.get("work_place",""),
                                                             priority_item = priority_item,
                                                             family_num=tenant_config.get("family_members_num",0),
-                                                            
+                                                            choose_rating = choose_rating
                                                             )
                 tenants[tenant_id] = tenant
 

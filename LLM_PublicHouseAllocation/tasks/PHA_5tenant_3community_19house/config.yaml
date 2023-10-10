@@ -10,7 +10,8 @@ environment:
   
   rule:
     order:
-      type: priority
+      # type: priority
+      type: waitlist
       # type: rent
     updater:
       type: rent
@@ -28,11 +29,13 @@ managers:
     
 
   tenant:
+    choose_rating: True
     policy: 
       type : ver1 # 表示分房政策
       filter_house_labels: ["house_type",
-                           "house_orientation",
-                           "floor_type"]
+                          #  "house_orientation",
+                          #  "floor_type"
+                           ]
 
     type_tenant: LangchainTenant
     data_dir: "data/tenant.json"

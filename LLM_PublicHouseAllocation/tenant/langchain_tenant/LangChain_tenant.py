@@ -75,6 +75,7 @@ class LangchainTenant(langchainAgent):
     agentrule:AgentRule
     
     policy: BasePolicy
+    choose_rating: bool = False
     
     def __init__(self, rule, **kwargs):
         rule_config = rule
@@ -101,8 +102,8 @@ class LangchainTenant(langchainAgent):
             self.available = False
         else:
             self.choose_times+=1
-            if(self.choose_times>=self.max_choose):
-                self.available = False
+            # if(self.choose_times>=self.max_choose):
+            #     self.available = False
     
     @classmethod
     def _get_default_output_parser(cls, **kwargs: Any) -> AgentOutputParser:
@@ -396,6 +397,7 @@ class LangchainTenant(langchainAgent):
         max_choose:int = 3,
         priority_item:dict={},
         family_num:int=0,
+        choose_rating:bool = False,
     ) -> langchainAgent:
         """Construct an agent from an LLM and tools."""
         llm_chain = LLMChain(
@@ -418,7 +420,8 @@ class LangchainTenant(langchainAgent):
             workplace = work_place,
             priority_item = priority_item,
             family_num=family_num,
-            policy = policy
+            policy = policy,
+            choose_rating = choose_rating
         )
         
     def reset(self):
@@ -1184,12 +1187,13 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
         
         role_description = self.get_role_description()
         
-        choose_type = """My choice is (The index of houses)"""
-       
+        choose_type_template = """My choice is (The index of houses, should be one of [{house_indexes}])"""
+        
+        
         memory = self.memory.memory_tenant("house",name=self.name)
-        for houses_description in houses_description_generator:
+        for houses_description,house_available_index in houses_description_generator:
             # self.logger.info("SYSTEM:\n {}".format(houses_description))
-
+            choose_type = choose_type_template.format(house_indexes = ",".join(house_available_index))
             prompt_inputs={
                 'task':'You need to choose one house.',
                 'thought_type':'Your views on these houses.',
@@ -1258,18 +1262,33 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
         tip = []
         log_round_houses = []
         for round_retry in range(self.max_jug_time):
-            choose_status,choose_id,choose_mem = \
-            self.choose_house_page(log_round_houses=log_round_houses,
+            if self.choose_rating:
+                choose_status,choose_id,choose_mem = \
+                self.choose_house_page_rating(log_round_houses=log_round_houses,
+                                   house_infos=house_infos,
+                                   house_ids=house_ids,
+                                   page_size=20,
+                                   round_retry=round_retry,
+                                   tip=tip)
+            else:
+                
+                choose_status,choose_id,choose_mem = \
+                self.choose_house_page(log_round_houses=log_round_houses,
                                    house_infos=house_infos,
                                    house_ids=house_ids,
                                    page_size=20,
                                    round_retry=round_retry,
                                    tip=tip)
             log_round_houses_dict = {idx:{
-                                       "prompt_inputs":log_round_houses[0],
-                                       "response":log_round_houses[1]
+                                       "prompt_inputs":log_round_house[0],
+                                       "response":log_round_house[1]
                                        } 
-                                     for idx,log_round_houses in enumerate(log_round_houses)}
+                                     for idx,log_round_house in enumerate(log_round_houses)}
+            if (self.choose_rating):
+                rating_rounds = {idx:log_round_house[1].get("rating") for idx, log_round_house in enumerate(log_round_houses) }
+                
+                log_round.set_choose_house_rating_score(rating_rounds)
+                
             log_round.set_choose_history(step_type = "choose_house",
                                          log_round_houses_dict = log_round_houses_dict)
             
@@ -1313,6 +1332,76 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
         
         return False,"None", thought_fail_choose
         
+    
+    def choose_house_page_rating(self,
+                          log_round_houses:List[set],
+                          house_infos, 
+                          house_ids:list, 
+                          page_size:int = 20,
+                          round_retry:int = 0,
+                          tip:list=[]):
+        
+        houses_description_generator = self.agentrule.get_houses_generator(
+                             house_data = house_infos,
+                             house_ids = house_ids,
+                             page_size = page_size, 
+                             round_retry = round_retry
+                             )
+        
+        choose_page_results = []
+        nochoose_memory_cache = []
+        choose_memory_cache = []
+        
+        role_description = self.get_role_description()
+       
+        memory = self.memory.memory_tenant("house",name=self.name)
+        for houses_description,house_available_index in houses_description_generator:
+            # self.logger.info("SYSTEM:\n {}".format(houses_description))
+
+            prompt_inputs={
+                'house_info':houses_description,
+                'memory':memory +"\n" + "".join(tip),
+                'role_description': role_description,
+                'available_house_index' :",".join(house_available_index),
+                }
+            # self.comment(description=houses_description,
+            #              step_type="house")
+            
+            self.reset_state(mode="choose_rating")
+            response = self.step(prompt_inputs).get("return_values") # 这里不更新记忆，仅更新最后一步
+            # self.logger.debug("choose houses, tenant reponse:{}".format(response.get("output","")))
+            # parse community choosing reponse
+            
+            log_round_houses.append((prompt_inputs,response))
+            
+            try:
+                rating = response.get('rating',[])
+                rating.sort(key = lambda num:num[1])
+                
+                choose_page_results.append(rating[-1][0].lower())
+                assert rating[-1][0].lower() in house_available_index
+                response["choose_house"] = rating[-1][0].lower()
+                choose_memory_cache.append(response) 
+            
+            except Exception as e:
+                nochoose_memory_cache.append(response)
+                    
+        
+        if len(choose_page_results) > 1 :
+            # 这里选择和不选择的记忆没有更新，忽略掉。
+            return self.choose_house_page_rating(log_round_houses,
+                                          house_infos,
+                                          choose_page_results,
+                                          page_size=page_size,
+                                         )
+        
+        elif len(choose_page_results) == 1:
+            choose_house=choose_page_results[0]
+            return True, choose_house, choose_memory_cache
+
+        return False,"None", nochoose_memory_cache
+        
+    
     
     
     def choose_orientation(self,system,rule,log_round,community_id = None) -> Tuple[bool,str]:
