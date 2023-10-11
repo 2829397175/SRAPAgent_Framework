@@ -6,7 +6,29 @@ step函数返回每一步的json数据
 LangchainTenant框架：
 
 待改以及需要确定的
-1. memory机制没加（environment的rule 除了order都没用），chat_history是保留的
+1. group discuss plan 和 publish plan 里面的system_competiveness_description以及goal
+    已经修改了，在system内添加了接口，但是仍然在*用fixed数据做实验*。
+
+2. relation 经常出现output format问题，改改（而且基本不改变关系？）√
+
+3. dialogue 里面存在重复，按照时间戳删除部分outdated数据（优先大小的queue）√
+
+4. self.environment.group() # 这里的log没改好 √
+
+5. waitlist:k deferral （k 设定为tenant.max_choose ） ，
+    在waitlist缺少tenant时，从各个group队列内 按照pri->npri的顺序进行tenant添加
+    各个group队列内的tenant，进行了shuffle（分pri，npri）
+    √
+
+6. log_round 添加rating存储的接口 √
+
+7. log_round 添加计算rating的matrix接口
+    对于每个人，分别存储各个指标
+
+8. 对于social network ui； back button 的添加
+
+9. api pool: 在初始化的时候，使用环境内的api key；在实际调用的时候采用llm_loader进行api修改
+
 
 流程图(outdated)
 ![流程图（已经不一致了）](readme/image.png)

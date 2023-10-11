@@ -1,0 +1,73 @@
+name: PHA_5tenant_3community_19house
+
+save_root_dir: "result"
+save_log: True
+
+environment:
+  tool: True
+  env_type: rent
+  max_turns: 3
+  
+  rule:
+    order:
+      # type: priority
+      type: waitlist
+      # type: rent
+    updater:
+      type: rent
+    visibility:
+      type: rent
+    describer:
+      type: base
+
+managers:
+  house:
+    data_dir: "data/house.json"
+    
+  forum:
+    data_dir: "data/forum.json"
+    
+
+  tenant:
+    choose_rating: True
+    policy: 
+      type : ver1 # 表示分房政策
+      filter_house_labels: ["house_type",
+                          #  "house_orientation",
+                          #  "floor_type"
+                           ]
+
+    type_tenant: LangchainTenant
+    data_dir: "data/tenant.json"
+    
+    memory:
+      memory_type: action_history
+      reflection: True # 触发分类reflection
+      dialogue_threshold: 20
+      summary_threshold: 5
+      llm:
+        # llm_type: gpt-3.5-turbo
+        llm_type: gpt-3.5-turbo-16k-0613
+        temperature: 0.8
+        max_tokens: 300
+    llm:
+      llm_type: gpt-3.5-turbo-16k-0613
+      # llm_type: text-davinci-003
+      temperature: 0.8
+      max_tokens: 300
+    max_choose: 2
+    max_jug_time: 2
+    agent_rule:
+      # readhouse_rule: topk
+      readhouse_rule: page_generator
+      #  readforum_rule: topk
+      readforum_rule: randomk
+      readcommunity_rule: available
+      writeforum_rule: append
+
+
+
+  community:
+    publish_order: False
+    data_dir: "data/community.json"
+    

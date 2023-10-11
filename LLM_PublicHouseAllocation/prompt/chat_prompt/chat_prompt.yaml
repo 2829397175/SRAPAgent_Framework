@@ -37,6 +37,45 @@ choose_template:  &choose_template |-
   Respond:
   {agent_scratchpad}
 
+
+choose_rating_template:  &choose_rating_template |-
+  {role_description}
+
+  This is information you collected from previous conversations with others:
+  {memory}
+
+  You're planning to choose one house. In order to choose a house that satisfies you, you need to give a rating score of each available house.
+  Give a rating score of these house from 1 to 12. A score below 3 indicates that the house is not satisfactory, a score of 3 to 6 indicates that the house can meet basic requirements, a score of 6 to 9 indicates that the house can meet all life and work needs well, and a score above 9 indicates that the house is very perfect.
+
+  Here's one example:
+
+  There are 2 houses available.The infomation of these houses are listed as follows:
+  house_1: good location. nice transportation.
+
+  house_2: high rent. but good environment.
+
+  Rating:
+  house_1: 6
+  house_2: 3
+
+  Reason:
+  house_1 has good location while house_2 has high rent.
+
+  End of example.
+
+  {house_info}
+
+  Give Your response in the following format:
+
+  Rating:
+  (the rating score of houses)
+
+  Reason:
+  (the reason of the rating score for these houses.)
+
+  Now give your rating of [{available_house_index}]
+
+
 # remain to be modified!!
 forum_template:  &forum_template |-
   {role_description}
@@ -104,7 +143,7 @@ publish_forum_plan_template: &publish_forum_plan_template |-
   The current situation of the renting system is: {system_competiveness_description}
 
   Your personality is {personality}
-  Your goal is {goal}.
+  {goal}
 
   Respond in this format:
   {respond_format}
@@ -122,7 +161,7 @@ publish_forum_template:  &publish_forum_template |-
   Here is your memory:
   {memory}
 
-  You can publish house information online if you want to.
+  You can publish house information online if you want to. The Info you posted should contain information about community, house and 
 
   The available community index should be one of [{community_ids}].
 
@@ -222,7 +261,7 @@ group_discuss_plan_template: &group_discuss_plan_template |-
   The current situation of the renting system is: {system_competiveness_description}
 
   Your personality is {personality}
-  Your goal is {goal}.
+  {goal}
 
   Respond in this format:
   {respond_format}
@@ -243,6 +282,8 @@ group_discuss_template: &group_discuss_template |-
   Your acquaintances include:
   {acquaintances}
 
+  Your recent chat records with your acquaintances:
+  {recent_chats}
   
   EXAMPLE:
   Your acquaintances include:
@@ -311,7 +352,15 @@ group_discuss_back_template: &group_discuss_back_template |-
   
   
 relation_template: &relation_template |-
-  Your task is to update the following information, based on your previous view of {acquaintance_name} and recent communication.
+  Your relationship with your acquaintances may include:
+  Friend: A person with whom one shares a close and mutually supportive bond of affection and trust.
+  Enemy: A person who is actively opposed or hostile to another, often due to conflicts or animosity.
+  Competitor: Someone who engages in rivalry or competition with another, typically in the same field or for the same goal.
+  Mate: A partner in a romantic or sexual relationship, often implying a deep emotional connection.
+  Colleague: A person with whom one works or collaborates, typically within the same organization or profession.
+  Stranger: An individual who is not known or familiar to someone, often encountered for the first time.
+
+  Your task is to update your relation with {acquaintance_name}, based on your previous view of {acquaintance_name} and recent communication.
 
   {role_description}
 

@@ -7,6 +7,9 @@ from .involvers import System,Tool,LogRound
 from .initialization import (load_environment,
                              load_manager,
                              prepare_task_config)
+from LLM_PublicHouseAllocation.global_score import Global_Score
+from LLM_PublicHouseAllocation.llms import OpenAILoader
+
 
 logging.basicConfig(format='%(asctime)s - %(levelname)s - %(name)s - %(message)s', datefmt='%m/%d/%Y %H:%M:%S', level=logging.INFO)
 
@@ -15,6 +18,7 @@ openai_logger.setLevel(logging.WARNING)
 
 
 # 删掉load agent，因为environment中不止agent参与，不限制参与类型
+
 
 class Executor():
     def __init__(self,
@@ -28,29 +32,77 @@ class Executor():
         Then this method will load the configuration from the yaml file in that directory.
         """
         # Prepare the config of the task
-        task_config = prepare_task_config(task)
-
+        task_config,task_path = prepare_task_config(task)
+        
+        
+        import time
+        import os
+        save_dir = task_config.pop("save_root_dir","")
+        time_stamp = time.time()
+        save_dir = os.path.join(task_path,
+                                f"{save_dir}/{time_stamp}")
+        
+        if not os.path.exists(save_dir):
+            os.makedirs(save_dir)
+        
         manager_configs = task_config.pop('managers')
-        tenant_manager = load_manager(manager_configs.pop('tenant'),'tenant')
+        for _, config in manager_configs.items():
+            if "data_dir" in config.keys():
+                config["data_dir"] = os.path.join(task_path,config["data_dir"])
+        
+        save_log = task_config.pop("save_log",True)
+        
+        tenant_configs = manager_configs.pop('tenant')
+        tenant_llm_configs = tenant_configs["llm"]       
+        communication_llm_configs = tenant_configs["memory"]["llm"]       
+        
+        llm_loader = OpenAILoader(**task_config.pop('llm_loader'),
+                                  tenant_llm_configs=tenant_llm_configs,
+                                  communication_llm_configs=communication_llm_configs)
+        
+        tenant_manager = load_manager({**tenant_configs,
+                                       "save_dir": os.path.join(save_dir,"tenant.json")
+                                       },'tenant')
+        
         #print(tenant_manager)
-        house_manager = load_manager(manager_configs.pop('house'),'house')
-        community_manager = load_manager(manager_configs.pop('community'),'community')
-        forum_manager = load_manager(manager_configs.pop('forum'),'forum')
+        house_manager = load_manager({**manager_configs.pop('house'),
+                                     "save_dir": os.path.join(save_dir,"house.json")
+                                       },'house')
+        community_manager = load_manager({**manager_configs.pop('community'),
+                                         "save_dir": os.path.join(save_dir,"community.json")
+                                       },'community')
+        forum_manager = load_manager({**manager_configs.pop('forum'),
+                                      "save_dir": os.path.join(save_dir,"forum.json")
+                                       },'forum')
+        
         system = System(house_manager=house_manager,
                 community_manager=community_manager)
         env_config = task_config.pop('environment')
+        env_config['llm_loader'] = llm_loader
         env_config['system'] = system
-        env_config['tenant_manager']=tenant_manager
-        env_config["forum_manager"]=forum_manager
-        env_config["log"]=LogRound()
+        env_config['tenant_manager'] = tenant_manager
+        env_config["forum_manager"] = forum_manager
+        env_config["log"] = LogRound(save_dir = os.path.join(save_dir,"tenental_system.json"))
         if env_config.get('tool',False):
             tool = Tool(forum_manager)
             env_config['tool'] = tool
         else:
             env_config['tool'] = None
 
-        environment = load_environment(env_config)
-
+        environment = load_environment({**env_config,
+                                        "save_log":save_log})
+        
+        
+        save_evaluation_dic = os.path.join(task_path,
+                                f"global_evaluation")
+        if not os.path.exists(save_evaluation_dic):
+            os.makedirs(save_evaluation_dic) 
+        save_evaluation_dir = os.path.join(save_evaluation_dic,
+                                f"global_score.json") 
+        if not os.path.exists(save_evaluation_dir):
+            global_score = Global_Score.initialization(tenant_manager,system,save_dir=save_evaluation_dir)
+            global_score.rate_score()
+            global_score.save_score()
         return cls(environment)
 
     def run(self):
@@ -62,12 +114,14 @@ class Executor():
         #     loop = asyncio.get_event_loop()
         #     loop.run_until_complete(self.environment.step())
         self.environment.log.reset()
-        self.environment.group()
+        self.environment.group() 
         self.environment.line_up()
         self.environment.broadcast()
         
-        while self.environment.is_done():
-            # self.environment.communication() #测试用
+        while not self.environment.is_done():
+            # asyncio.run(self.environment.communication(communication_num = 3))#测试用
+            loop = asyncio.get_event_loop()
+            loop.run_until_complete(self.environment.communication(communication_num = 3))
             #if self.environment.cnt_turn>3:
             self.environment.step()
 

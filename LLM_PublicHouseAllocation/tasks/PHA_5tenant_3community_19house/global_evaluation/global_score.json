@@ -1,0 +1,392 @@
+{
+    "0":{
+        "house_1":{
+            "score":5,
+            "reason":"this house has a good location with easy access to public transportation, and it meets the needs of the anderson family. however, it has poor sound insulation, which contributes to a less than ideal community environment."
+        },
+        "house_2":{
+            "score":6,
+            "reason":"the house is in acceptable condition, with basic functions complete and few minor problems, but it may lack some modern facilities or design.            }"
+        },
+        "house_3":{
+            "score":6,
+            "reason":"this house is in an acceptable condition with basic functions complete and few minor problems, however it may lack some modern facilities or design."
+        },
+        "house_4":{
+            "score":6,
+            "reason":"this house is located in a convenient community with access to public transportation, supermarkets, schools, and restaurants. it is within the budget and has a balcony, elevator and basic functions. however, it is located on the seventh floor and there are issues with sound insulation, which are not ideal for a family with school-going children."
+        },
+        "house_5":{
+            "score":6,
+            "reason":"this house is in an acceptable condition, with basic functions complete and few minor problems, but it may lack some modern facilities or design."
+        },
+        "house_6":{
+            "score":8,
+            "reason":"house 6 is in very good condition, with modern facilities, good maintenance, and provides a comfortable and convenient living environment. the community is also surrounded by convenient amenities, making it an ideal location for the anderson family."
+        },
+        "house_7":{
+            "score":7,
+            "reason":"the house is basically maintained, there are many minor problems, which may affect the daily life of the residents, but overall it is still acceptable. furthermore, it is located in a good area with many amenities nearby, such as supermarkets, schools, and restaurants, which offer easy access to transportation.  "
+        },
+        "house_8":{
+            "score":7,
+            "reason":"house 8 is in good condition, features are relatively new, well maintained, and may only need minor improvements or updates. it is well designed to meet the anderson family's needs and is located in a community with many amenities. however, it is smaller than the other house and does not have access to a subway station."
+        },
+        "house_9":{
+            "score":5,
+            "reason":"this house costs about 944.00, is located at floor 7 and has elevator which makes it a good choice for the anderson family’s needs. however, it is small and dimly lit and does not have a balcony which means that the comfortability and living experience of the family may not be the best."
+        },
+        "house_10":{
+            "score":7,
+            "reason":"this house provides all the basic functions, is well maintained and has no major issues, but may lack some modern facilities and designs."
+        },
+        "house_11":{
+            "score":7,
+            "reason":"this house is an excellent balance between size and functionality. the presence of a balcony adds to its charm. it is in good condition, with modern facilities and good maintenance, providing a comfortable and convenient living environment."
+        },
+        "house_12":{
+            "score":7,
+            "reason":"\"the home is in good condition, features are relatively new, well maintained and may only need minor improvements or updates.\"}"
+        },
+        "house_13":{
+            "score":7,
+            "reason":"the house is in good condition, featuring relatively new and well-maintained facilities, and only needing minor improvements or updates."
+        },
+        "house_14":{
+            "score":7,
+            "reason":"this house is in good condition with modern facilities and good maintenance, providing a comfortable and convenient living environment."
+        },
+        "house_15":{
+            "score":7,
+            "reason":" house_15 is located in a convenient location and provides a good greenery. the layout of the house is commendable, coupled with its south-facing orientation. the house is in good condition, features are relatively new, well maintained and may only need minor improvements or updates."
+        },
+        "house_16":{
+            "score":7,
+            "reason":"this house is in good condition, features are relatively new, well maintained, and may only need minor improvements or updates."
+        },
+        "house_17":{
+            "score":7,
+            "reason":"this house is in good condition, has relatively new features, is well maintained and may only need minor improvements or updates. it enjoys a well-thought-out layout and a south-facing orientation, has elevator and a balcony, and is surrounded by many conveniences such as schools, markets, and hospitals."
+        },
+        "house_18":{
+            "score":7,
+            "reason":"house_18 is located in a well maintained community with good greenery, a parking lot, and several recreational areas. it also is south facing and delivers good green views of the community. the house is in good condition, has modern facilities, and is well maintained."
+        },
+        "house_19":{
+            "score":8,
+            "reason":"house_19 offers a favorable south-facing orientation, a small floor area that is well-designed for efficient use, and access to public transportation, providing a comfortable and convenient living environment."
+        }
+    },
+    "1":{
+        "house_1":{
+            "score":5,
+            "reason":"the house suffers from poor sound insulation, contributing to a less than ideal community environment, but it still has the basic function and comforts, which could be suitable for habitation."
+        },
+        "house_2":{
+            "score":6,
+            "reason":"this house is in acceptable condition, with basic functions complete and few minor problems, but it may lack some modern facilities or design."
+        },
+        "house_3":{
+            "score":6,
+            "reason":"this house is located in a convenient area, but suffers from poor sound insulation and has a less than ideal community environment. it has basic functions and needs some repairs and improvements, but overall is generally acceptable."
+        },
+        "house_4":{
+            "score":5,
+            "reason":"the house is basically maintained, there are many minor problems, which may affect the daily life of the residents, but overall it is still acceptable."
+        },
+        "house_5":{
+            "score":6,
+            "reason":"the house is in acceptable condition, with basic functions complete and few minor problems, but it may lack some modern facilities or design."
+        },
+        "house_6":{
+            "score":7,
+            "reason":"the house is in acceptable condition and has all its basic functions complete, with few minor repairs needed. it does not have any modern facilities or design but has good maintenance."
+        },
+        "house_7":{
+            "score":8,
+            "reason":"the house is in good condition, features are relatively new, well maintained and may only need minor improvements or updates."
+        },
+        "house_8":{
+            "score":7,
+            "reason":"house 8 is a nice choice, it's sufficiently sized with an elevator, balcony, and a well-designed layout that accommodates all living needs. the community that it is located in also provides nearby amenities such as supermarkets, restaurants, banks, and schools which makes it very convenient. the rent is also affordable at 30 dollars per square meter. overall, the house is in a good condition and should only need minor improvements or updates."
+        },
+        "house_9":{
+            "score":7,
+            "reason":"this house is in good condition, features are relatively new, well maintained and may only need minor improvements or updates."
+        },
+        "house_10":{
+            "score":7,
+            "reason":"the house is in good condition, features are relatively new, well maintained, and may only need minor improvements or updates."
+        },
+        "house_11":{
+            "score":7,
+            "reason":"this house is reasonably priced, and its location is in an ideal neighborhood with plenty of amenities and green areas. the square fortage is also good, and it has a balcony. the house is in good condition, features are relatively new, well maintained and may only need minor improvements or updates."
+        },
+        "house_12":{
+            "score":7,
+            "reason":"the house is in acceptable condition, with basic functions complete and few minor problems, but it may lack some modern facilities or design."
+        },
+        "house_13":{
+            "score":7,
+            "reason":"the house is in good condition, features are relatively new, well maintained and may only need minor improvements or updates."
+        },
+        "house_14":{
+            "score":7,
+            "reason":"i think this house warrants a score of 7 because it is in good condition, has relatively new features and is well maintained, requiring only minor improvements or updates."
+        },
+        "house_15":{
+            "score":7,
+            "reason":"this house is in good condition, with many features that are relatively new, well maintained, and may only need minor improvements or updates. the community's verdant landscapes add to its charm, and the cost is affordable, making it an excellent choice for emma."
+        },
+        "house_16":{
+            "score":7,
+            "reason":"this house costs about 2280, has a good greenery and sports and fitness equipment in the community, and is located in a relatively convenient area, so overall it is a good option."
+        },
+        "house_17":{
+            "score":7,
+            "reason":"this house costs about 2320 and provides a south-facing orientation with beautiful views of the green spaces around the community. it enjoys a well-thought-out layout and good greenery, a parking lot, and several kinds of sports and fitness equipment in the surrounding community. the house is in good condition, offering modern facilities and good maintenance, providing a comfortable and convenient living environment."
+        },
+        "house_18":{
+            "score":7,
+            "reason":"this house is relatively up-to-date and is well kept, offering emma a good living environment to focus on her work comfortably. although some minor repairs and improvements may be needed, the house is still satisfactory."
+        },
+        "house_19":{
+            "score":7,
+            "reason":"the house is of good condition, with features which are relatively new, well maintained and it may only need minor improvements or updates."
+        }
+    },
+    "2":{
+        "house_1":{
+            "score":5,
+            "reason":"the house is located in a good community with sports, supermarkets, restaurants and banks. however, it suffers from poor sound insulation which may be a problem for the residents’ living experience."
+        },
+        "house_2":{
+            "score":6,
+            "reason":"the house is in acceptable condition, with basic functions complete and few minor problems, but it may lack some modern facilities or design"
+        },
+        "house_3":{
+            "score":6,
+            "reason":"this house is in an acceptable condition with basic functions complete and few minor problems, but it may lack some modern facilities or design."
+        },
+        "house_4":{
+            "score":5,
+            "reason":"the house is basically maintained, there are many minor problems, which may affect the daily life of the residents, but overall it is still acceptable."
+        },
+        "house_5":{
+            "score":5,
+            "reason":"the house is basically maintained, there are many minor problems, which may affect the daily life of the residents, but overall it is still acceptable."
+        },
+        "house_6":{
+            "score":7,
+            "reason":"this house is in good condition, features are relatively new, well maintained and may only need minor improvements or updates. it is located in a nice community which surrounded by many necessary facilities, such as supermarket, school, restaurant, etc."
+        },
+        "house_7":{
+            "score":8,
+            "reason":"this house has a compact living space, modern facilities, good maintenance, and is conveniently located in a lively community with sports facilities and various shops. it also provides a green area and is relatively low in price for a two-person family."
+        },
+        "house_8":{
+            "score":7,
+            "reason":"this house costs about 1140 and is in good condition, with basic functions complete and few minor problems. it is modernly equipped and provides a comfortable and convenient living environment. "
+        },
+        "house_9":{
+            "score":6,
+            "reason":"this house is in acceptable condition, with basic functions complete and few minor problems, but it may lack some modern facilities or design."
+        },
+        "house_10":{
+            "score":7,
+            "reason":"the house is in good condition, features are relatively new, well maintained and may only need minor improvements or updates."
+        },
+        "house_11":{
+            "score":7,
+            "reason":"this house is in good condition, features are relatively new, well maintained and may only need minor improvements or updates.            }"
+        },
+        "house_12":{
+            "score":7,
+            "reason":"this house provides a comfortable living space and features a balcony for extra outdoor space, and is located in a community with plenty of amenities. it is in good condition, with basic functions complete and few minor problems, and so is satisfactory for habitation.             }"
+        },
+        "house_13":{
+            "score":7,
+            "reason":"this house is located in a nice community within close proximity of amenities, such as supermarkets, shopping malls, parks, schools, restaurants, and banks. it is also close to green areas which are suitable for leisure walks. it is in good condition, features are relatively new, well maintained and may only need minor improvements or updates."
+        },
+        "house_14":{
+            "score":7,
+            "reason":"the house is in good condition, has relatively new features, is well maintained and may only need minor improvements or updates."
+        },
+        "house_15":{
+            "score":7,
+            "reason":"the house is in good condition, features are relatively new, well maintained and may only need minor improvements or updates."
+        },
+        "house_16":{
+            "score":8,
+            "reason":"house_16 is a great house located in a lush community greenery ensuring an appealing ambiance. it costs 2280 and has 57.0 square fortage with a balcony and elevator. it is located at floor 9 of an office building of the people's government on the west side of the great hall of the people, dongcheng district, beijing. the community rents out 40 dollars per square meter and has many amenities such as supermarkets, hospitals, parks, schools, restaurants and banks. this house has modern facilities, good maintenance and provides a comfortable and convenient living environment."
+        },
+        "house_17":{
+            "score":8,
+            "reason":"the house is in good condition, features are relatively new, well maintained and may only need minor improvements or updates."
+        },
+        "house_18":{
+            "score":8,
+            "reason":"this house is south-facing and offers good green views of the community, and it is well-maintained with basic functions complete and few minor problems, thus offering a comfortable and convenient living environment."
+        },
+        "house_19":{
+            "score":7,
+            "reason":"this house is in good condition with all the basic requirements fulfilled, and has well-maintained modern facilities, making it provide a comfortable and convenient living environment."
+        }
+    },
+    "3":{
+        "house_1":{
+            "score":6,
+            "reason":"the house is in an acceptable condition, with basic functions complete and few minor problems, but it may lack some modern facilities or design. it is located in a good community that provides sports facilities, supermarkets, schools, restaurants, and banks, but lacks a subway, shopping mall, hospital, and park."
+        },
+        "house_2":{
+            "score":6,
+            "reason":"this house is located in a community with good facilities with good rent rate. it has balcony, elevator and acceptable square footage. however, the house is lacking effective soundproofing and the surroundings lack modern amenities."
+        },
+        "house_3":{
+            "score":7,
+            "reason":"this house is in acceptable condition, with basic functions complete and few minor problems, but it may lack some modern facilities or design."
+        },
+        "house_4":{
+            "score":6,
+            "reason":"the house is in acceptable condition, with basic functions complete and few minor problems, but it may lack some modern facilities or design."
+        },
+        "house_5":{
+            "score":5,
+            "reason":"the house has poor sound insulation and the community environment is not the best. it is located at floor 9 and has an elevator, but it lacks some modern facilities or design. thus, i give it a score of 5."
+        },
+        "house_6":{
+            "score":7,
+            "reason":"this house costs about 1140. it's square fortage is about 37.96. the orientation of the house is n. it is located at floor 8. it has elevator and balcony. it is located in community_1 which provides many facilities such as supermarkets, schools, restaurants and banks. the house appears to have basic functions, is well maintained and may need a few minor repairs/updates but overall provides a good living experience."
+        },
+        "house_7":{
+            "score":7,
+            "reason":"this house costs about 1140 and it has good features with mostly complete basic functions, though it may need some improvements and updates, making it a satisfactory home with great living environment."
+        },
+        "house_8":{
+            "score":7,
+            "reason":"the house is in good condition, features are relatively new, well maintained and may only need minor improvements or updates."
+        },
+        "house_9":{
+            "score":6,
+            "reason":"this house is in acceptable condition, with basic functions complete and few minor issues, but it may lack some modern facilities or design."
+        },
+        "house_10":{
+            "score":7,
+            "reason":"the house is in good condition, features are relatively new, well maintained and may only need minor improvements or updates."
+        },
+        "house_11":{
+            "score":6,
+            "reason":"house 11 is in an acceptable condition, with basic functions complete and few minor problems, but it may lack some modern facilities or design."
+        },
+        "house_12":{
+            "score":7,
+            "reason":"the house is in good condition, features are relatively new, well maintained and may only need minor improvements or updates."
+        },
+        "house_13":{
+            "score":7,
+            "reason":"this house is in good condition, with some minor improvements and updates needed. it also has modern facilities and good maintenance, providing a comfortable and convenient living environment."
+        },
+        "house_14":{
+            "score":6,
+            "reason":"the house is in acceptable condition, with basic functions complete and few minor problems, but it may lack some modern facilities or design."
+        },
+        "house_15":{
+            "score":7,
+            "reason":"house 15 is satisfactory. it has a commendable layout, a south-facing orientation, and the community has good greenery, a parking lot, and several kinds of sports and fitness equipment which all support a safe and child-friendly environment."
+        },
+        "house_16":{
+            "score":8,
+            "reason":"house 16 is in good condition, with modern facilities and good maintenance, providing a comfortable and child-friendly living environment, it also is located in a safe community. all these factors make it a suitable house to rent."
+        },
+        "house_17":{
+            "score":7,
+            "reason":"the house is basically maintained, and has the basic functions like elevator, balcony and good orientation，it only has some minor problems with facilities. it is located in the community_3, which is surrounded by all kinds of places and overall is still acceptable."
+        },
+        "house_18":{
+            "score":7,
+            "reason":"i gave this house a score of 7 because it is in good condition and has many modern facilities, is well maintained and may only need minor improvements or updates, making it an ideal place for sophia's family."
+        },
+        "house_19":{
+            "score":6,
+            "reason":"\"house 19 is located in a good community with plenty of nearby amenities and good greenery. the house enjoys a south-facing orientation and the small floor area is well-designed for efficient use. however, the house is slightly dated and may require some minor repairs and improvements. therefore, i give it a score of 6.\"        }"
+        }
+    },
+    "4":{
+        "house_1":{
+            "score":5,
+            "reason":"this house is rated 5 out of 10, as it is in basic condition, with few minor problems. it's located in a community that offers various amenities, such as supermarkets, schools, restaurants and banks. however, it suffers from poor sound insulation which affects the quality of living."
+        },
+        "house_2":{
+            "score":5,
+            "reason":"the house is basically maintained, there are many minor problems, which may affect the daily life of the residents, but overall it is still acceptable"
+        },
+        "house_3":{
+            "score":7,
+            "reason":"this house costs 1845 and is suitable for the family's needs. it has elevator, balcony, and is located in a convenient area. the facilities are relatively new and well-maintained, so it is rated 7."
+        },
+        "house_4":{
+            "score":5,
+            "reason":"the house_4 is located in community_1. the rent for this community is affordable and there are some amenities around it, such as supermarkets, schools and restaurants. the square fortage of the house is 61.8, and the orientation is ns. however, the sound insulation of the house leaves much to be desired, and the community environment is subpar."
+        },
+        "house_5":{
+            "score":6,
+            "reason":"though the house is located in a community with sport facilities, supermarkets, schools, and restaurants, it is still far from subway, shopping mall, hospital and park, which is not as convenient as it should be. it has a short commute to work and school, which is good, but it has poor sound insulation and is located on the 9th floor. it also has balcony, but the condition of the house is not the best, so i score it 6."
+        },
+        "house_6":{
+            "score":6,
+            "reason":"this house is in an acceptable condition, with basic functions complete and few minor problems, but it may lack some modern facilities or design."
+        },
+        "house_7":{
+            "score":7,
+            "reason":"the house is in good condition, features are relatively new, well maintained and may only need minor improvements or updates. the convenience of the location is also an advantage as it is close to schools and work."
+        },
+        "house_8":{
+            "score":7,
+            "reason":"this house has all the basic functions in acceptable condition, and may only need some minor improvements or updates. it is located in a convenient community with many amenities nearby, including supermarkets, schools, restaurants, and banks, making it a great choice for a family."
+        },
+        "house_9":{
+            "score":7,
+            "reason":"the house is basically maintained, with acceptable basic functions, and few minor problems, providing a comfortable and convenient living environment."
+        },
+        "house_10":{
+            "score":7,
+            "reason":"the house is in good condition, with basic functions complete and few minor problems, and only needs some minor improvements or updates."
+        },
+        "house_11":{
+            "rating":7,
+            "reason":"this house is an excellent balance between size and functionality, which provides a comfortable and convenient living environment. the presence of a balcony adds to its charm and the house is in good condition feature, well maintained and may only need minor improvements or updates."
+        },
+        "house_12":{
+            "score":7,
+            "reason":"this house is rated a 7 since it is in good condition, features are relatively new, well maintained, and would only require minor improvements or updates for a comfortable and convenient living environment."
+        },
+        "house_13":{
+            "score":6,
+            "reason":"\"the basic functions of the house are acceptable, but there are still many inconveniences, such as aging facilities, many minor repairs, and low comfort.\" }"
+        },
+        "house_14":{
+            "score":7,
+            "reason":"the house is located in a desirable community with good amenities, is in good condition and features relatively new fixtures, and with only minor repairs and improvements necessary. this provides for a good living experience with a relatively short commute to work and school."
+        },
+        "house_15":{
+            "score":7,
+            "reason":"the house is located in a great community that is conveniently located and full of amenities like supermarkets, parks, schools and restaurants. it is also in a good condition and has basic facilities, with few minor problems. thus, i give it a 7 out of 10."
+        },
+        "house_16":{
+            "score":7,
+            "reason":"this house is in good condition, features are relatively new, well maintained and may only need minor improvements or updates."
+        },
+        "house_17":{
+            "score":7,
+            "reason":"this house is in good condition, features are relatively new, well maintained and may only need minor improvements or updates."
+        },
+        "house_18":{
+            "score":7,
+            "reason":"this house is in good condition and features relatively new, modern facilities and good maintenance. although there are some minor problems and repairs needed, overall this house provides an acceptable living environment."
+        },
+        "house_19":{
+            "score":7,
+            "reason":"this house is quite satisfactory. it costs 1802 rmb and has a square foratage of 45.05. the orientation is ns with a balcony and elevator. the community it is located in has good greenery and lots of amenities, including metro, supermarket, mall, hospital, park, school, restaurant and bank. the house is still in decent condition despite being a bit outdated"
+        }
+    }
+}

@@ -1,0 +1,23 @@
+{
+    "ronghui":{
+        "3":[
+            "Community_3 is a safe and child-friendly neighborhood with amenities such as a daycare, basketball court, and gym. There are two house sizes available - a one room apartment and a two room apartment. The one room apartment has an area of about 44.96-47.13 with a monthly rent of 1800-1885 dollars and the two room apartment has an area of about 56.14-58.33 with a monthly rent of 2240-2320 dollars."
+        ],
+        "2":[
+            "This community is located near important facilities including metro, supermarkets, malls, hospitals, parks, schools, restaurants and banks. It offers good amenities and is an economical choice. There may be an issue with water pressure on higher floors and it is further away from your workplace."
+        ]
+    },
+    "longxing":{
+        "0":[
+            "Community_1 has good sports facilities, green area, and nearby amenities despite its slightly higher rent. The house, house_5, has the most convenient transportation access and lowest rent, but poor sound insulation and a small kitchen. The larger house type provides enough space for a family of four and greater access to public transport, but there may be an issue with water pressure on higher floors."
+        ],
+        "4":[
+            "Community_1 is close to State-owned enterprise and offers a good balance between budget and amenities. It is located in No. 9 Chaoyang North Road, Chaoyang District, Beijing. The houses in this community are well-built and modern, and have a good flow from room to room. Community_3 offers great amenities but at a higher price. This community is family friendly and provides excellent safety and security. It is located in the Chaoyang District in Beijing with convenience to shopping, restaurants, and entertainment."
+        ]
+    },
+    "jinkejiayuan":{
+        "1":[
+            "This community is located in the convenient area of Beijing's Haidian District, with easy access to public transport. It provides complete amenities and a reasonable rental price, ideal for someone looking for a balance between their budget and comfort. The houses are spacious and feature balconies, providing plenty of natural lighting and a great view of the city."
+        ]
+    }
+}

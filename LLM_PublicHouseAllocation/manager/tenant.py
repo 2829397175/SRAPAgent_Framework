@@ -44,7 +44,8 @@ class TenantManager(BaseManager):
             llm_base = load_llm(base_config.pop('llm'))
             memory_config = base_config.pop('memory')
             max_choose = base_config.pop('max_choose')
-
+            choose_rating = base_config.pop('choose_rating')
+            
             # default setting
             output_parser_base = output_parser_registry.build('choose')
             prompt_base = chat_prompt_registry.build('choose')
@@ -68,10 +69,10 @@ class TenantManager(BaseManager):
                                                             policy = policy,
                                                             max_choose=max_choose,
                                                             rule=base_config["agent_rule"],
-                                                            work_place=tenant_config.get("work_place",""),
+                                                            work_place = tenant_config.get("work_place",""),
                                                             priority_item = priority_item,
                                                             family_num=tenant_config.get("family_members_num",0),
-                                                            
+                                                            choose_rating = choose_rating
                                                             )
                 tenants[tenant_id] = tenant
 
@@ -145,7 +146,7 @@ class TenantManager(BaseManager):
     def save_data(self):
         # assert os.path.exists(self.save_dir), "no such file path: {}".format(self.save_dir)
         with open(self.save_dir, 'w') as file:
-            json.dump(self.record, file, indent=4,separators=(',', ':'),ensure_ascii=False)
+            json.dump(self.data, file, indent=4,separators=(',', ':'),ensure_ascii=False)
 
     def broadcast(self,system):
         
@@ -171,9 +172,9 @@ class TenantManager(BaseManager):
 You are in rent system. The queuing rules of this system is as follows:
 {rule_order}
 """
-        rule_order = rule.order.rule_description
+        rule_description = rule.rule_description()
         #待改，等community_manager接口
-        broadcast_str = broadcast_template.format(rule_order=rule_order) 
+        broadcast_str = broadcast_template.format(rule_order=rule_description) 
         broadcast_message = Message(message_type = "order",
                         content = broadcast_str,
                         sender = {"system":"system"}

@@ -16,3 +16,4 @@ from .group_discuss import (GroupDiscussPlanPromptTemplate,
                             GroupDiscussPromptTemplate,
                             GroupDiscussBackPromptTemplate,
                             RelationPromptTemplate)
+from .rating import ChooseRatingPromptTemplate

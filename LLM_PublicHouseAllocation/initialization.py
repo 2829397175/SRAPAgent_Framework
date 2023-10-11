@@ -32,6 +32,7 @@ def prepare_task_config(task):
     all_task_dir = os.path.join(os.path.dirname(__file__), 'tasks')
     task_path = os.path.join(all_task_dir, task)
     config_path = os.path.join(task_path, 'config.yaml')
+    
     if not os.path.exists(task_path):
         all_tasks = []
         for task in os.listdir(all_task_dir):
@@ -43,7 +44,9 @@ def prepare_task_config(task):
         raise ValueError("You should include the config.yaml file in the task directory")
     task_config = yaml.safe_load(open(config_path))
 
-    return task_config
+    return task_config,task_path
+
+
 
 
 def load_memory(memory_config: Dict):
@@ -62,7 +65,7 @@ def load_llm(llm_config: Dict):
     elif llm_type == 'text-davinci-003':
         return OpenAI(**llm_config)
     elif llm_type == 'gpt-3.5-turbo-16k-0613':
-        return OpenAI(**llm_config)
+        return OpenAI(**llm_config)        
     else:
         #return OpenAI(**llm_config)
         raise NotImplementedError("LLM type {} not implemented".format(llm_type))

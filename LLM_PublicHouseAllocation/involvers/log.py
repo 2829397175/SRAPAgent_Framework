@@ -1,11 +1,111 @@
 from pydantic import BaseModel
 import json
+import time
+import copy
+import os
+
 # Design a basic LogRound class
 class LogRound(BaseModel):
-    log_list:list=[]
-    log_round:dict={}
+    round_id :int = 0 # 标注是哪一轮的  
+    # 所有轮数的log
+    # round_id : {log_round,log_social_network}
+    log: dict = {}
+    
+    # 某一轮内部 选择过程的log (choose过程)
+    log_round:dict = {} 
+    log_round_prompts:dict = {}
+    
+    # social_network_mem: 关于一轮对话结束后每个人的memory变化情况
+    # social_network: 关于一轮对话里，每个人经过的所有trajectory的 prompt和 输出的内容
+    log_social_network:dict={} 
     save_dir:str=""
     
+    def step(self):
+        if self.round_id != 0:
+            self.log[self.round_id][ "log_social_network"] = copy.deepcopy(self.log_social_network)
+            
+        self.round_id += 1
+        self.log[self.round_id] = {} # 下一轮log的 initialize
+    
+    def set_one_tenant_choose_process(self,tenant_id):
+        if self.round_id > 0:
+            if "log_round" not in self.log[self.round_id].keys():
+                self.log[self.round_id]["log_round"] = {}
+            if "log_round_prompts" not in self.log[self.round_id].keys():
+                self.log[self.round_id]["log_round_prompts"] = {}
+            if tenant_id in self.log[self.round_id]["log_round"].keys():
+                self.log[self.round_id]["log_round"][tenant_id].update(copy.deepcopy(self.log_round))
+            else:
+                self.log[self.round_id]["log_round"][tenant_id] = copy.deepcopy(self.log_round)
+            if tenant_id in self.log[self.round_id]["log_round_prompts"].keys():
+                self.log[self.round_id]["log_round_prompts"][tenant_id].update(copy.deepcopy(self.log_round_prompts))
+            else:
+                self.log[self.round_id]["log_round_prompts"][tenant_id] = copy.deepcopy(self.log_round_prompts)
+    
+    
+    def set_group_log(self,tenant_id):
+        if "group" not in self.log.keys():
+            self.log["group"] = {}
+        self.log["group"][tenant_id] = {
+            "log_round" : copy.deepcopy(self.log_round),
+            "log_round_prompts": copy.deepcopy(self.log_round_prompts)
+        }
+    
+    
+    def save_social_network(self,
+                            dir:str):
+        
+        with open(dir, encoding='utf-8', mode='w') as fr:
+            json.dump(self.log_social_network, fr, indent=4, separators=(',', ':'), ensure_ascii=False)
+            
+    def set_social_network_mem(self,social_network_mem:dict):
+        self.log_social_network["social_network_mem"] = social_network_mem
+        
+    def set_social_network(self,
+                           prompt_inputs,
+                           response,
+                           id,
+                           name,
+                           round_index, #轮内第几个发言
+                           step_type,
+                           key_social_network):
+        
+        key_social_network += 1
+        
+        if round_index not in self.log_social_network.keys():
+            self.log_social_network[round_index] = {}
+        
+        if step_type == "group_discuss_back":
+            if "group_discuss_back" not in self.log_social_network[round_index].keys():
+                self.log_social_network[round_index][step_type] = []
+            
+            self.log_social_network[round_index][step_type].append({
+                "prompt_inputs":prompt_inputs,
+                "response":response,
+                "id":id,
+                "name":name,
+                "key_social_network":key_social_network
+            } )
+            
+            
+        else:
+            self.log_social_network[round_index][step_type] = {
+                "prompt_inputs":prompt_inputs,
+                "response":response,
+                "id":id,
+                "name":name,
+                "key_social_network":key_social_network
+            }   
+            
+        
+        return key_social_network
+            
+    def set_choose_history(self,
+                           step_type,
+                           **kwargs):
+        self.log_round_prompts[step_type] = kwargs
+        
+        
     def init_log_round_from_dict(self, kwargs):
         self.log_round = kwargs 
     
@@ -80,26 +180,98 @@ class LogRound(BaseModel):
     def set_choose_house_state(self,choose_house_state):
         self.log_round["choose_house_state"] = choose_house_state
         
+    def set_choose_house_rating_score(self,ratings):
+        self.log_round["choose_house_ratings"] = ratings
+        if len(rating_scores)>0:
+            rating_scores =[rating[1] for rating in ratings]
+            self.log_round["utility"] = sum(rating_scores)/len(rating_scores)
+        else:
+            self.log_round["utility"] = 0
+        
     def set_comment(self,comment):
         self.log_round["produce_comment"] = comment
-        
-    def set_log_list(self):
-        if self.log_round!={}:
-            self.log_list.append(self.log_round)
             
     def set_message(self,messages):
         template="""{sname}->{rname}:{content}"""
         message_str=[]
         for message in messages:
             message_str.append(template.format(sname=list(message.sender.values())[0],rname=list(message.receiver.values())[0],content=str(message)))
-        self.log_round["social_net_message"]=message_str
+        self.log_round["social_net_message"]= copy.deepcopy(message_str)
 
     def save_data(self):
         self.log_round={}
-        # assert os.path.exists(self.save_dir), "no such file path: {}".format(self.save_dir)
-        with open("LLM_PublicHouseAllocation/tasks/PHA_50tenant_3community_19house/result/tenantal_system.json", 'w', encoding='utf-8') as file:
-            json.dump(self.log_list, file, indent=4,separators=(',', ':'),ensure_ascii=False)
-            
+        with open(self.save_dir, 'w', encoding='utf-8') as file:
+            json.dump(self.log, file, indent=4,separators=(',', ':'),ensure_ascii=False)
+
     def reset(self):
         self.log_round={}
-        self.log_list=[]
+        self.log={}
+    
+    
+    def evaluation_matrix(self,
+                          tenant_manager): # 评价系统的公平度，满意度
+        
+        save_dir = os.path.dirname(self.save_dir)
+        
+        """this function must be called at the end of running this system."""
+        utility = {}
+        for log_id,log in self.log.items():
+            log_round = log["log_round"]
+            if log_id == "group":
+                continue
+            for tenant_id, tenant_info in log_round.items():
+                ratings = tenant_info["choose_house_ratings"]
+                rating_houses = {}
+                for rating_round,rating_score in ratings.items():
+                    for rating_pair in rating_score:
+                        if rating_pair[0] not in rating_houses.keys():
+                            rating_houses[rating_pair[0]] = [rating_pair[1]]
+                        else:
+                            rating_houses[rating_pair[0]].append(rating_pair[1])
+                for k,v in rating_houses.items():
+                    v = sum(v)/len(v)
+                    
+                rating_score_vis_u = sum(list(rating_houses.values()))/len(rating_houses)
+                rating_score_choose_u = rating_houses[tenant_info["choose_house_id"]]
+                group_id_t = -1
+                for group_id,tenant_ids in tenant_manager.groups.items():
+                    if tenant_id in tenant_ids:
+                        group_id_t=group_id
+                        break
+                    
+                utility[tenant_id] = {
+                    "vis_u":rating_score_vis_u,
+                    "choose_u":rating_score_choose_u,
+                    "group_id":group_id_t 
+                }
+                
+        import pandas as pd
+        import numpy as np
+        
+        utility_matrix = pd.DataFrame()
+        for tenant_id,utility_one in utility.items():
+            for k,v in utility_one.items():
+                utility_matrix.loc[tenant_id,k] = v
+        utility_matrix.to_csv(os.path.join(save_dir,"utility.csv"))
+        
+        utility_eval_matrix = pd.DataFrame()
+        for score_type in ["vis_u","choose_u"]:
+            
+            
+            utility_grouped = utility_matrix.groupby(by = ["group_id"])
+            for group_id, group_utility in utility_grouped:
+                # 公平度
+                scores = group_utility[score_type]
+                utility_eval_matrix.loc[f"least_misery_{group_id}",score_type] = min(scores)
+                utility_eval_matrix.loc[f"variance_{group_id}",score_type] = 1 - np.var(scores)
+                utility_eval_matrix.loc[f"jain'sfair_{group_id}"] = np.square(np.sum(scores))/(np.sum(np.square(scores)) * utility_matrix.size[0])
+                utility_eval_matrix.loc[f"min_max_ratio_{group_id}]"] = np.min(scores)/np.max(scores)
+                
+                # 满意度
+                utility_eval_matrix.loc[f"sw_{group_id}"] = np.sum(scores)/group_utility.size[0]
+                
+        utility_eval_matrix.to_csv(os.path.join(save_dir,"utility_eval_matrix.csv"))
+            # utility_eval_matrix.loc["jains'fairness",score_type] = 
+
+    
+    

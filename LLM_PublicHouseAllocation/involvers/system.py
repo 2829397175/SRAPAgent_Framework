@@ -11,11 +11,15 @@ class System(BaseModel):
     def reset(self):
         pass
     
-    def set_chosed_house(self,house_id,community_id,house_filter_ids:List):
-        self.community_manager.set_chosed_house(house_id,community_id,house_filter_ids)
-        self.house_manager.set_chosed_house(house_id)
+    def save_data(self):
         self.community_manager.save_data()
         self.house_manager.save_data()
+        
+    def set_chosed_house(self,house_id,community_id,house_filter_ids:dict):
+        house_types = house_filter_ids.get("house_type")
+        self.community_manager.set_chosed_house(house_id,community_id,house_types)
+        self.house_manager.set_chosed_house(house_id)
+        
     
         
     
@@ -33,7 +37,7 @@ class System(BaseModel):
             community_ids = [d["community_id"] for d in filter_community_list if "community_id" in d]
             return community_str,community_ids
         else:
-            community_list=self.community_manager.get_available_community_info()
+            community_list = self.community_manager.get_available_community_info()
             community_str,_=self.community_manager.community_str(community_list,[])
             return community_str
         
@@ -165,13 +169,14 @@ and there will be exposure to sunlight indoors on summer afternoons."""}
     
     
     def get_filtered_houses_ids(self,community_id,house_filter_ids:dict):
-        house_types =  house_filter_ids.pop("house_type")
+        house_types =  house_filter_ids.get("house_type")
         house_ids = self.community_manager.get_filtered_house_ids(
             community_id = community_id,
             house_types = house_types
         )
         house_ids = self.house_manager.get_filtered_house_ids(
-            house_filter_ids = house_filter_ids
+            house_filter_ids = house_filter_ids,
+            house_ids = house_ids
         )
         
         return house_ids
@@ -210,3 +215,52 @@ and there will be exposure to sunlight indoors on summer afternoons."""}
     def get_available_community_ids(self):
         return self.community_manager.get_available_community_ids()
     
+    def get_system_competiveness_description(self):
+        # test:experiment
+#         return """"competitive, the community_1 has been almost \
+# fully selected, the community_2 has a relatively sufficient house, the community_3 has not \
+# been chosen yet."""
+        return self.community_manager.get_system_competiveness_description()
+    def get_score_house_description(self,house_id):
+        community_name=None
+        for cn,house_list in self.house_manager.community_to_house.items():
+            if house_id in house_list:
+                community_name=cn
+                break
+        if not community_name:
+            return None
+        house_description_template="""
+                {index}: 
+                this house costs about {rent_money}. \
+                It's square fortage is about {house_area}. The orientation of the house is {toward}. It is located at floor {floor}. It {elevator} elevator.It {balcony} balcony. \
+                {description}\
+                {index} is located in {community_id}.
+                {community_id}. {community_name} is located at {en_location}. The rent for this community is {value_inch} dollars per square meter.\
+In this community, {community_description}. {nearby_info}.
+        """
+        for _,communities in self.community_manager.total_community_datas.items():
+            for community_id,community_details in communities.items():
+                if community_details["community_name"]==community_name:
+                    house_description=house_description_template.format(index=house_id,
+                                                      rent_money=self.house_manager.data[house_id]["rent_money"],
+                                                      house_area=self.house_manager.data[house_id]["house_area"],
+                                                      toward=self.house_manager.data[house_id]["toward"],
+                                                      floor=self.house_manager.data[house_id]["floor"],
+                                                      elevator=self.house_manager.data[house_id]["elevator"],
+                                                      description=self.house_manager.data[house_id]["description"],
+                                                      balcony=self.house_manager.data[house_id]["balcony"],
+                                                      community_id=community_details["community_id"],
+                                                      community_name=community_details["community_name"],
+                                                      en_location=community_details["en_location"],
+                                                      value_inch=community_details["value_inch"],
+                                                      community_description=community_details["description"],
+                                                      nearby_info=community_details["nearby_info"]
+                                                      )
+                    return   house_description  
+        return None   
+            
+    
+    # fixed , 需要改
+    def get_goal(self): # 给出租房系统中，所有人的整体目标
+        return "Your goal is to develop a plan that is most beneficial to you \
+to increase your chances of choosing a house in the current situation."

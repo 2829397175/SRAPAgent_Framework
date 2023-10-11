@@ -35,6 +35,7 @@ class SummarizerMixin(BaseModel):
                             prompt: BasePromptTemplate = SUMMARY_PROMPT):
         
         chain = LLMChain(llm=self.llm, prompt=prompt)
+        chain.apredict
         return chain.predict(summary="", new_lines=passage)
 
     def summarize_chatting(self,
@@ -59,13 +60,19 @@ class ActionHistoryMemory(BaseMemory,SummarizerMixin):
     multi_message_summary = "" # 设置为buffer，每次做不同信息合成都会用到
     new_message = False # 是否存在新的message加入记忆
     reflection:bool = False # 若设置为true,则触发分类reflection  
-    summary_threshold:int = 5 # 每次总结后，再多5条就触发一次总结
     
     # 想要发出的message信息，在发出后清空，加入messages中
     post_message_buffer: List[Message] = []
     mail:List[Message] = [] # 用于socialnetwork的接收信息
     
     social_network: dict = {} # id:{name:,view:,dialogues：List[Message]}
+    
+    # 设置各类消息的buffer大小数
+    summary_threshold:int = 5 # 每次总结后，再多5条就触发一次总结 -> 记忆库内
+    dialogue_threshold:int = 20 # 保证和各个熟人的记忆都在20条内（按照时间戳） -> social_network内
+    
+    def reset_llm(self, llm):
+        self.llm = llm
     
     def __init__(self,**kwargs):
         social_network = kwargs.pop("social_network")
@@ -120,13 +127,14 @@ class ActionHistoryMemory(BaseMemory,SummarizerMixin):
             for message in messages:
                 sender_id = list(message.sender.keys())[0]
                 if sender_id not in self.social_network.keys():
-                    self.social_network[sender_id] = {"name":list(message.sender.valuess())[0],
+                    self.social_network[sender_id] = {"name":list(message.sender.values())[0],
                                                       "relation":"stranger"}
                     
                 if "dialogues" in self.social_network[sender_id].keys():
                     self.social_network[sender_id]["dialogues"].append(message)
                 else:
-                    self.social_network[sender_id]["dialogues"]=[message]
+                    self.social_network[sender_id]["dialogues"] = [message]
+                    self.social_network[sender_id]["dialogues_pt"] = -1
                         
                 
         else: # 发出的social_net 信息
@@ -135,14 +143,24 @@ class ActionHistoryMemory(BaseMemory,SummarizerMixin):
                     if "dialogues" in self.social_network[receiver_id].keys():
                         self.social_network[receiver_id]["dialogues"].append(message)
                     else:
-                        self.social_network[receiver_id]["dialogues"]=[message]
+                        self.social_network[receiver_id]["dialogues"] = [message]
+                        self.social_network[receiver_id]["dialogues_pt"] = -1
+                        
+        # check dialogue threshold
+        for t_id,t_info in self.social_network.items():
+            dialogues = t_info.get("dialogues",[])
+            if (len(dialogues)>self.dialogue_threshold):
+                dialogues = dialogues.sort(key=lambda x: x.timestamp,reverse=True)
+                t_info["dialogues"] = dialogues[:20]
+                
+        
                         
 
         
     def topk_message_default(self,
                              messages:List[Message],
                              k=5)->List[Message]:
-        messages.sort(key=lambda x: x.sort_rate())
+        messages.sort(key=lambda x: x.sort_rate(),reverse=True)
         return messages[:k] if k<len(messages) else messages
     
     # choose类别的记忆选择："community","house_type","house"
@@ -291,6 +309,21 @@ class ActionHistoryMemory(BaseMemory,SummarizerMixin):
         else: 
             return ""
         
+    def retrieve_recent_chat(self,
+                             tenant_ids: Union[List,str] = "all"):
+        if tenant_ids == "all":
+            tenant_ids = list(self.social_network.keys())
+            
+        recent_chats = []
+        
+        for tenant_id in tenant_ids:
+            if ("dialogues" in self.social_network[tenant_id].keys()):
+                dialogue_sn = self.social_network[tenant_id].get("dialogues")
+                if isinstance(dialogue_sn,Message):
+                    context_sn = dialogue_sn.context
+                    recent_chats.append(context_sn)
+                
+        return "\n".join(recent_chats)
         
     
     # 默认retrive方法
@@ -460,7 +493,8 @@ but the number of houses in the system is limited. You are in a competitive rela
                     for key in infos.keys():
                         if key not in acquaintance_info.keys():
                             acquaintance_info[key]=[infos[key]]
-                        else:
+                        # 这里为什么会有重复内容，重复reflect了吗
+                        elif infos[key] not in acquaintance_info[key]: 
                             acquaintance_info[key].append(infos[key])
                         
                     infos.update({"ac_name":acquaintance_info["name"]})

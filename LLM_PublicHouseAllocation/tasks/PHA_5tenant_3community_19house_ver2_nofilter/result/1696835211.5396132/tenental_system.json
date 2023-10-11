@@ -1,0 +1,299 @@
+{
+    "group":{
+        "0":{
+            "log_round":{
+                "available_house_type":[
+                    "large_house",
+                    "middle_house"
+                ]
+            },
+            "log_round_prompts":{
+                "choose_house_type":{
+                    "prompt_inputs":{
+                        "task":"You need to choose one type of houses.",
+                        "thought_type":"Your views on these house types.",
+                        "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
+                        "house_info":"There are 2 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child. ",
+                        "memory":"You are considering two communities, community_1 and community_2. It seems inconvenient facilities in community_1 make you hesitant to make a choice. After careful consideration, you decide that community_2 has advantages that make it the ideal choice for your family. It is closer to your wife's workplace and your child's school, making it a more suitable choice. Thus, you have decided to choose community_2.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+                        "role_description":"You are James Anderson. You earn 9000 per month.Your family members include: A wife and two children, both in high school.You are 45 years old. Your job is Construction worker. Your company is located in Dongzhimenwai Street, Dongcheng District, Beijing. The Anderson family prefers a home with easy access to public transportation, as they often need to commute for work and school. You expect to rent a house for 1800.0.You still have 2 chances to choose house."
+                    },
+                    "response":{
+                        "output":"My choice is middle_house.",
+                        "thought":"After careful consideration, I think the middle_house is the best option for my family. It is more budget-friendly than the large_house, and it has enough space for my family."
+                    }
+                }
+            }
+        },
+        "1":{
+            "log_round":{
+                "available_house_type":[
+                    "small_house"
+                ]
+            },
+            "log_round_prompts":{
+                "choose_house_type":{
+                    "prompt_inputs":{
+                        "task":"You need to choose one type of houses.",
+                        "thought_type":"Your views on these house types.",
+                        "choose_type":"My choice is (house type, should be one of [small_house])",
+                        "house_info":"There are 1 house types available. The infomation of these house types are listed as follows:\nsmall_house:This type of house is suitable for one person to live alone. ",
+                        "memory":"You were considering two different communities to move to, community_1 and community_2. Community_1 had inconvenient facilities, and so you were hesitant to make a choice. That was until you thought about how community_2 was close to your wife's workplace and your child's school. After considering this, you chose community_2 as your ideal location for your family.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+                        "role_description":"You are Emma Davis. You earn 14000 per month.Your family members include: Single, no children.You are 29 years old. Your job is Software engineer. Your company is located in Alibaba Beijing R&D Center, No. 5 Zhongguancun South Street, Haidian District, Beijing. Emma hopes the apartment is in a quiet friendhood, allowing her to focus on her work. You expect to rent a house for 2500.You still have 2 chances to choose house."
+                    },
+                    "response":{
+                        "output":"My choice is small_house.",
+                        "thought":"Small houses seem like a good option with their affordable rent and decent square footage."
+                    }
+                }
+            }
+        },
+        "2":{
+            "log_round":{
+                "available_house_type":[
+                    "large_house",
+                    "middle_house"
+                ]
+            },
+            "log_round_prompts":{
+                "choose_house_type":{
+                    "prompt_inputs":{
+                        "task":"You need to choose one type of houses.",
+                        "thought_type":"Your views on these house types.",
+                        "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
+                        "house_info":"There are 2 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child. ",
+                        "memory":"The decision was made between two communities - community_1 and community_2. While the facilities of community_1 were deemed inconvenient, community_2 was seen as a better fit due to its closeness to the wife's workplace, as well as the child's school. Thus, community_2 became the chosen option for the family.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+                        "role_description":"You are Oliver Johnson. You earn 12000 per month.Your family members include: A wife and one child who just started university.You are 52 years old. Your job is Public servant. Your company is located in Office Building of the People's Government on the west side of the Great Hall of the People, Dongcheng District, Beijing. Mr. Johnson would like an apartment close to parks or green spaces for leisure walks. You expect to rent a house for 2400.0.You still have 2 chances to choose house."
+                    },
+                    "response":{
+                        "output":"My choice is large_house.",
+                        "thought":"The large_house type seems to be better for my family since I have a wife and a child who just started university. The middle_house type, on the other hand, looks too small, and I'm not sure if it would be comfortable for us."
+                    }
+                }
+            }
+        },
+        "3":{
+            "log_round":{
+                "available_house_type":[
+                    "large_house",
+                    "middle_house"
+                ]
+            },
+            "log_round_prompts":{
+                "choose_house_type":{
+                    "prompt_inputs":{
+                        "task":"You need to choose one type of houses.",
+                        "thought_type":"Your views on these house types.",
+                        "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
+                        "house_info":"There are 2 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child. ",
+                        "memory":"You face the difficult decision of choosing which community to settle in. Community_1 has inconvenient facilities and community_2 is close by to your wife's workplace and your child's school, making it the obvious choice. Thus, you have decided to settle in community_2.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+                        "role_description":"You are Sophia Smith. You earn 7000 per month.Your family members include: A husband and a newborn baby.You are 32 years old. Your job is Restaurant waiter. Your company is located in Restaurants near Guomao Building, Chaoyang District, Beijing. Sophia's family needs an apartment in a safe and child-friendly friendhood with a good daycare nearby. You expect to rent a house for 1400.0.You still have 2 chances to choose house."
+                    },
+                    "response":{
+                        "output":"My choice is middle_house.",
+                        "thought":"The large house seems to be more suitable for my family since we have a newborn baby. However, the middle house is more affordable and easier to maintain."
+                    }
+                }
+            }
+        },
+        "4":{
+            "log_round":{
+                "available_house_type":[
+                    "large_house",
+                    "middle_house"
+                ]
+            },
+            "log_round_prompts":{
+                "choose_house_type":{
+                    "prompt_inputs":{
+                        "task":"You need to choose one type of houses.",
+                        "thought_type":"Your views on these house types.",
+                        "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
+                        "house_info":"There are 2 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child. ",
+                        "memory":"You were initially considering two communities, community_1 and community_2, for your family to move to. After considering the location of community_2, which is close to your wife's workplace and your child's school, you decided that it was the best option and decided to move there. You think community_2 offers more benefits and conveniences than community_1 and is the better choice for your family.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+                        "role_description":"You are William Brown. You earn 15000 per month.Your family members include: A wife and one child in elementary school.You are 38 years old. Your job is State-owned enterprise clerk. Your company is located in No. 9 Chaoyang North Road, Chaoyang District, Beijing. William's family prefers an apartment with a short commute to work and school. You expect to rent a house for 2500.You still have 2 chances to choose house."
+                    },
+                    "response":{
+                        "output":"My choice is large_house.",
+                        "thought":"Large_house will be able to suit our family's needs better than middle_house, and it has the potential to provide more space if our family expands in the future."
+                    }
+                }
+            }
+        }
+    },
+    "1":{
+        "log_round":{
+            "3":{
+                "choose_house_type":"middle_house",
+                "choose_house_type_reason":"The large house seems to be more suitable for my family since we have a newborn baby. However, the middle house is more affordable and easier to maintain.",
+                "tenant_id":"3",
+                "tenant_name":"Sophia Smith",
+                "available_times":2,
+                "forum_conclusion":"",
+                "community_available_description":"There are 0 communities available. The infomation of these communitys are listed as follows:\n\n",
+                "choose_community_id":"None",
+                "choose_community_reason":"Community 1 lacks important amenities like a subway, shopping mall, and hospital. Community 2 has a good amount of green space and is surrounded by useful amenities, but it doesn't have a hospital. Community 3 seems to have all the necessary amenities, including a hospital, but the rent is the highest.Community 1 seems to have good sports facilities and a large green area, but it lacks important amenities like a subway, shopping mall, and hospital. Community 2 has a good amount of green space and is surrounded by useful amenities, but it doesn't have a hospital. Community 3 seems to have all the necessary amenities, including a hospital, but the rent is the highest.",
+                "produce_comment":"I fail to publish any information online.",
+                "choose_house_state":false
+            },
+            "2":{
+                "choose_house_type":"large_house",
+                "choose_house_type_reason":"The large_house type seems to be better for my family since I have a wife and a child who just started university. The middle_house type, on the other hand, looks too small, and I'm not sure if it would be comfortable for us.",
+                "tenant_id":"2",
+                "tenant_name":"Oliver Johnson",
+                "available_times":2,
+                "forum_conclusion":"",
+                "community_available_description":"There are 1 communities available. The infomation of these communitys are listed as follows:\n\ncommunity_1. longxing is located at No. 2, Longping Street, Daxing District, Beijing. The rent for this community is 30 dollars per square meter.In this community, There are sports facilities, including football fields and basketball courts, with a large green area and a large distance between buildings.. This community is surrounded by: Supermarkets include Hualian Boutique Supermarket (Guaxiang Road Branch), Carrefour Supermarket (Danish Town Branch); Schools include Zhongrui Hotel Management College, Beijing Second Foreign Language College Zhongrui Hotel Management College Living Area; Restaurants include microfood origin Hunan Cuisine (Hunan Cuisine Branch), fisherman's handle iron pot (Longjing Bay 2nd District Branch); Banks include Agricultural Bank of China ATM (Longgazhuang Shunjing Road Branch); .This commnunity does not have: subway, shopping mall, hospital, park,.\n\n\tThe large_house in community_1 is a one room apartment, with an area of about 60.92-61.8, the monthly rent  is about 1830 dollars, and there are still 4 houses.",
+                "choose_community_id":"community_1",
+                "choose_community_reason":"Community 1 seems to fit my budget and has good amenities, but it doesn't have a hospital.",
+                "house_available_description":[
+                    "house_1: The house is a large_house with an area of 61.0 square meters and a monthly rent of 1830 yuan.It has a balcony and has an elevator. It's on the 5th floor. Its description is that The house suffers from poor sound insulation, contributing to a less than ideal community environment.",
+                    "house_2: The house is a large_house with an area of 61.2 square meters and a monthly rent of 1836 yuan.It has a balcony and has an elevator. It's on the 7th floor. Its description is that A lack of effective soundproofing and subpar surroundings characterize this property.",
+                    "house_3: The house is a large_house with an area of 61.5 square meters and a monthly rent of 1845 yuan.It has a balcony and has an elevator. It's on the 8th floor. Its description is that While located in a convenient area, this house suffers from poor sound insulation and the community environment could be better.",
+                    "house_5: The house is a large_house with an area of 60.92 square meters and a monthly rent of 1827 yuan.It has a balcony and has an elevator. It's on the 9th floor. Its description is that The house has poor sound insulation and the community environment is not the best."
+                ],
+                "choose_house_id":"house_1",
+                "choose_house_reason":"All of the houses seem to have their pros and cons, but I'm particularly drawn to house_1 because of its convenient location and reasonable rent.",
+                "produce_comment":"longxing:Community_1 is a charming old house with low water pressure on the upper floors, located conveniently close to parks or green spaces for leisure walks. The rent is 2400.0 and the community has good amenities, but no hospital.",
+                "choose_house_state":true
+            }
+        },
+        "log_round_prompts":{
+            "3":{
+                "choose_house_type":{
+                    "prompt_inputs":{
+                        "task":"You need to choose one type of houses.",
+                        "thought_type":"Your views on these house types.",
+                        "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
+                        "house_info":"There are 2 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child. ",
+                        "memory":"You were initially considering two communities, community_1 and community_2, for your family to move to. After considering the location of community_2, which is close to your wife's workplace and your child's school, you decided that it was the best option and decided to move there. You think community_2 offers more benefits and conveniences than community_1 and is the better choice for your family.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+                        "role_description":"You are William Brown. You earn 15000 per month.Your family members include: A wife and one child in elementary school.You are 38 years old. Your job is State-owned enterprise clerk. Your company is located in No. 9 Chaoyang North Road, Chaoyang District, Beijing. William's family prefers an apartment with a short commute to work and school. You expect to rent a house for 2500.You still have 2 chances to choose house."
+                    },
+                    "response":{
+                        "output":"My choice is large_house.",
+                        "thought":"Large_house will be able to suit our family's needs better than middle_house, and it has the potential to provide more space if our family expands in the future."
+                    }
+                },
+                "choose_community":{
+                    "prompt_inputs":{
+                        "task":"You need to choose one type of communities.",
+                        "thought_type":"Your views on these communities.",
+                        "choose_type":"My choice is (The index of community, should be one of [])",
+                        "house_info":"There are 0 communities available. The infomation of these communitys are listed as follows:\n\n",
+                        "memory":"You are in the process of renting a house and have two options to choose from: Community_1 and Community_2. In order to select the house, you need to consider several factors such as the type of house, the amenities provided by the community and the proximity to other important places such as the workplace and school. After going through the list of information for each of the communities, you decide to go with Community_2 as it is closer to your wife's workplace and your child's school.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\nYou sincerely believe this information:\ncommunity_2 is not available now.",
+                        "role_description":"You are Sophia Smith. You earn 7000 per month.Your family members include: A husband and a newborn baby.You are 32 years old. Your job is Restaurant waiter. Your company is located in Restaurants near Guomao Building, Chaoyang District, Beijing. Sophia's family needs an apartment in a safe and child-friendly friendhood with a good daycare nearby. You expect to rent a house for 1400.0.You still have 2 chances to choose house."
+                    },
+                    "response":{
+                        "output":"My choice is Community_2.",
+                        "thought":"Community 1 seems to have good sports facilities and a large green area, but it lacks important amenities like a subway, shopping mall, and hospital. Community 2 has a good amount of green space and is surrounded by useful amenities, but it doesn't have a hospital. Community 3 seems to have all the necessary amenities, including a hospital, but the rent is the highest."
+                    }
+                },
+                "publish_forum_plan":{
+                    "prompt_inputs":{
+                        "concise_role_description":"Your task is to Publish house information or community information online.You are Sophia Smith. You earn 7000 per month.Your family members include: A husband and a newborn baby.You're planning to choose one house.And you're willing to publish house information online. Keep this in mind!",
+                        "memory":"You are looking for a house to rent and considering two different types of houses, a large house and a middle house. Community 1 lacks important amenities like a subway, shopping mall, and hospital, while Community 2 has a good amount of green space and is surrounded by useful amenities, but it doesn't have a hospital. Community 3 seems to have all the necessary amenities, including a hospital, but the rent is the highest. After considering the options, you choose the middle house because it is more affordable and easier to maintain, despite the large house being more suitable for a family with a baby.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\nYou sincerely believe this information:\nYou sincerely believe this information:",
+                        "personality":"impatient, has a low tolerance for delays or waiting, often seeking immediate results.",
+                        "system_competiveness_description":"The community_1(longxing) has been almost fully selected. The community_2(jinkejiayuan) has been almost fully selected.",
+                        "goal":"Your goal is to develop a plan that is most beneficial to you to increase your chances of choosing a house in the current situation.",
+                        "respond_format":"You think (Your true opionion about these communities or houses).\nFor now, Whether you want to publish information honestly online: (Yes or No). \n(The reason why you want or don't want to publish information honestly online)\nYour current plan is (Your plan to publish which kind of info online, be concise)"
+                    },
+                    "response":{
+                        "plan":"You think that Community 3 is the best option for you, due to its proximity to amenities and its reasonable rent.\nHowever, you don't want to publish information honestly online, as it could give an unfair advantage to acquaintances in the same renting system. \nYour current plan is to selectively publish information about the houses/communities, focusing on the positive aspects of each while avoiding the negative aspects. That way, you can ensure that you have the best opportunity to secure a house without compromising the opportunity for your acquaintances."
+                    }
+                },
+                "publish_forum":{
+                    "prompt_inputs":{
+                        "role_description":"Your task is to Publish house information or community information online.You are Sophia Smith. You earn 7000 per month.Your family members include: A husband and a newborn baby.You are 32 years old. Your job is Restaurant waiter. Your company is located in Restaurants near Guomao Building, Chaoyang District, Beijing. Sophia's family needs an apartment in a safe and child-friendly friendhood with a good daycare nearby. You expect to rent a house for 1400.0.You still have 1 chances to choose house.",
+                        "plan":"You think that Community 3 is the best option for you, due to its proximity to amenities and its reasonable rent.\nHowever, you don't want to publish information honestly online, as it could give an unfair advantage to acquaintances in the same renting system. \nYour current plan is to selectively publish information about the houses/communities, focusing on the positive aspects of each while avoiding the negative aspects. That way, you can ensure that you have the best opportunity to secure a house without compromising the opportunity for your acquaintances.",
+                        "memory":"You are looking for a house to rent and considering two different types of houses, a large house and a middle house. Community 1 lacks important amenities like a subway, shopping mall, and hospital, while Community 2 has a good amount of green space and is surrounded by useful amenities, but it doesn't have a hospital. Community 3 seems to have all the necessary amenities, including a hospital, but the rent is the highest. After considering the options, you choose the middle house because it is more affordable and easier to maintain, despite the large house being more suitable for a family with a baby.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\nYou sincerely believe this information:\nRemember to respond ActionInput in format.",
+                        "community_ids":"community_1, community_2"
+                    },
+                    "response":[
+                        {
+                            "info":"Community 3 is close to amenities, has reasonable rent, good amount of green space, and is surrounded by useful amenities, including a hospital. It is suitable for a family with a newborn baby.",
+                            "community":"Community 3",
+                            "thought":"I will focus on the positive aspects of Community 3 and avoid the negative aspects without compromising the opportunity for my acquaintances."
+                        }
+                    ]
+                }
+            },
+            "2":{
+                "choose_house_type":{
+                    "prompt_inputs":{
+                        "task":"You need to choose one type of houses.",
+                        "thought_type":"Your views on these house types.",
+                        "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
+                        "house_info":"There are 2 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child. ",
+                        "memory":"You were initially considering two communities, community_1 and community_2, for your family to move to. After considering the location of community_2, which is close to your wife's workplace and your child's school, you decided that it was the best option and decided to move there. You think community_2 offers more benefits and conveniences than community_1 and is the better choice for your family.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+                        "role_description":"You are William Brown. You earn 15000 per month.Your family members include: A wife and one child in elementary school.You are 38 years old. Your job is State-owned enterprise clerk. Your company is located in No. 9 Chaoyang North Road, Chaoyang District, Beijing. William's family prefers an apartment with a short commute to work and school. You expect to rent a house for 2500.You still have 2 chances to choose house."
+                    },
+                    "response":{
+                        "output":"My choice is large_house.",
+                        "thought":"Large_house will be able to suit our family's needs better than middle_house, and it has the potential to provide more space if our family expands in the future."
+                    }
+                },
+                "choose_community":{
+                    "prompt_inputs":{
+                        "task":"You need to choose one type of communities.",
+                        "thought_type":"Your views on these communities.",
+                        "choose_type":"My choice is (The index of community, should be one of [community_1])",
+                        "house_info":"There are 1 communities available. The infomation of these communitys are listed as follows:\n\ncommunity_1. longxing is located at No. 2, Longping Street, Daxing District, Beijing. The rent for this community is 30 dollars per square meter.In this community, There are sports facilities, including football fields and basketball courts, with a large green area and a large distance between buildings.. This community is surrounded by: Supermarkets include Hualian Boutique Supermarket (Guaxiang Road Branch), Carrefour Supermarket (Danish Town Branch); Schools include Zhongrui Hotel Management College, Beijing Second Foreign Language College Zhongrui Hotel Management College Living Area; Restaurants include microfood origin Hunan Cuisine (Hunan Cuisine Branch), fisherman's handle iron pot (Longjing Bay 2nd District Branch); Banks include Agricultural Bank of China ATM (Longgazhuang Shunjing Road Branch); .This commnunity does not have: subway, shopping mall, hospital, park,.\n\n\tThe large_house in community_1 is a one room apartment, with an area of about 60.92-61.8, the monthly rent  is about 1830 dollars, and there are still 4 houses.",
+                        "memory":"You are in the process of renting a house and you need to make three decisions: choosing the community, type of house and finally the house itself. There are 0 communities available and you have access to their information through a list.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\nYou sincerely believe this information:\n",
+                        "role_description":"You are Oliver Johnson. You earn 12000 per month.Your family members include: A wife and one child who just started university.You are 52 years old. Your job is Public servant. Your company is located in Office Building of the People's Government on the west side of the Great Hall of the People, Dongcheng District, Beijing. Mr. Johnson would like an apartment close to parks or green spaces for leisure walks. You expect to rent a house for 2400.0.You still have 2 chances to choose house."
+                    },
+                    "response":{
+                        "output":"My choice is community_1.",
+                        "thought":"Community 1 seems to fit my budget and has good amenities, but it doesn't have a hospital."
+                    }
+                },
+                "publish_forum_plan":{
+                    "prompt_inputs":{
+                        "concise_role_description":"Your task is to Publish house information or community information online.You are Oliver Johnson. You earn 12000 per month.Your family members include: A wife and one child who just started university.You're planning to choose one house.And you're willing to publish house information online. Keep this in mind!",
+                        "memory":"You have selected Community_1 and House_1 as your ideal rental. It is an old house with low water pressure on the upper floors but it has a charm that you find attractive. You find House_1 ideal due to its convenient location and reasonable rent, while Community_1 has good amenities but is lacking a hospital. You have gone through the steps of selecting a house for your family, such as community, type of house, and the actual house, and you have come to a decision after considering all the factors for both Community_1 and Community_2. Ultimately, you have chosen Community_1 and House_1 for its fitting budget and ideal location.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\nYou sincerely believe this information:\nYou sincerely believe this information:",
+                        "personality":"patient, can endure delays and setbacks calmly, willing to wait for the right moment.",
+                        "system_competiveness_description":"The community_1(longxing) has been almost fully selected. The community_2(jinkejiayuan) has been almost fully selected.",
+                        "goal":"Your goal is to develop a plan that is most beneficial to you to increase your chances of choosing a house in the current situation.",
+                        "respond_format":"You think (Your true opionion about these communities or houses).\nFor now, Whether you want to publish information honestly online: (Yes or No). \n(The reason why you want or don't want to publish information honestly online)\nYour current plan is (Your plan to publish which kind of info online, be concise)"
+                    },
+                    "response":{
+                        "plan":"You think that the house in Community_1 has a charm to it, while Community_2 has more amenities. \nFor now, whether you want to publish information honestly online: No. \nThe reason why you don't want to publish information honestly online is because you are in a competitive relationship with your acquaintances. You don't want to give other renters an advantage by providing them with too much information.\nYour current plan is to provide general information about the house and community, such as location, type of house, and amenities, but not to provide too specific information that could give other renters an unfair advantage."
+                    }
+                },
+                "publish_forum":{
+                    "prompt_inputs":{
+                        "role_description":"Your task is to Publish house information or community information online.You are Oliver Johnson. You earn 12000 per month.Your family members include: A wife and one child who just started university.You are 52 years old. Your job is Public servant. Your company is located in Office Building of the People's Government on the west side of the Great Hall of the People, Dongcheng District, Beijing. Mr. Johnson would like an apartment close to parks or green spaces for leisure walks. You expect to rent a house for 2400.0.You still have 2 chances to choose house.",
+                        "plan":"You think that the house in Community_1 has a charm to it, while Community_2 has more amenities. \nFor now, whether you want to publish information honestly online: No. \nThe reason why you don't want to publish information honestly online is because you are in a competitive relationship with your acquaintances. You don't want to give other renters an advantage by providing them with too much information.\nYour current plan is to provide general information about the house and community, such as location, type of house, and amenities, but not to provide too specific information that could give other renters an unfair advantage.",
+                        "memory":"You have selected Community_1 and House_1 as your ideal rental. It is an old house with low water pressure on the upper floors but it has a charm that you find attractive. You find House_1 ideal due to its convenient location and reasonable rent, while Community_1 has good amenities but is lacking a hospital. You have gone through the steps of selecting a house for your family, such as community, type of house, and the actual house, and you have come to a decision after considering all the factors for both Community_1 and Community_2. Ultimately, you have chosen Community_1 and House_1 for its fitting budget and ideal location.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\nYou sincerely believe this information:\n",
+                        "community_ids":"community_1, community_2"
+                    },
+                    "response":[
+                        {
+                            "info":"Community_1 is a charming old house with low water pressure on the upper floors, located conveniently close to parks or green spaces for leisure walks. The rent is 2400.0 and the community has good amenities, but no hospital.",
+                            "community":"Community_1",
+                            "thought":"I want to provide enough information for people to make a decision, but not so much that I give away too much information."
+                        }
+                    ]
+                },
+                "choose_house":{
+                    "log_round_houses_dict":{
+                        "0":{
+                            "prompt_inputs":{
+                                "task":"You need to choose one house.",
+                                "thought_type":"Your views on these houses.",
+                                "choose_type":"My choice is (The index of houses, should be one of [house_1,house_2,house_3,house_5])",
+                                "house_info":"There are 4 houses available. The infomation of these houses are listed as follows:\nhouse_1: \nthis house costs about 1830. It's square fortage is about 61.0. The orientation of the house is NS. It is located at floor 5. It has elevator. The house suffers from poor sound insulation, contributing to a less than ideal community environment.\n\nhouse_2: \nthis house costs about 1836. It's square fortage is about 61.2. The orientation of the house is NS. It is located at floor 7. It has elevator. A lack of effective soundproofing and subpar surroundings characterize this property.\n\nhouse_3: \nthis house costs about 1845. It's square fortage is about 61.5. The orientation of the house is NS. It is located at floor 8. It has elevator. While located in a convenient area, this house suffers from poor sound insulation and the community environment could be better.\n\nhouse_5: \nthis house costs about 1827. It's square fortage is about 60.92. The orientation of the house is NS. It is located at floor 9. It has elevator. The house has poor sound insulation and the community environment is not the best. ",
+                                "memory":"I was considering two communities, community_1 and community_2, and I was undecided which was the better choice. After careful consideration, I have decided that community_2 is the better choice for me and my family, as it is situated close to my wife's workplace and my child's school. Therefore, I have chosen community_2 as the best option for my family.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+                                "role_description":"You are Oliver Johnson. You earn 12000 per month.Your family members include: A wife and one child who just started university.You are 52 years old. Your job is Public servant. Your company is located in Office Building of the People's Government on the west side of the Great Hall of the People, Dongcheng District, Beijing. Mr. Johnson would like an apartment close to parks or green spaces for leisure walks. You expect to rent a house for 2400.0.You still have 2 chances to choose house."
+                            },
+                            "response":{
+                                "output":"My choice is house_1.",
+                                "thought":"All of the houses seem to have their pros and cons, but I'm particularly drawn to house_1 because of its convenient location and reasonable rent."
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "log_social_network":{}
+    },
+    "2":{}
+}
