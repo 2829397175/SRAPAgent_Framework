@@ -209,69 +209,177 @@ class LogRound(BaseModel):
     
     
     def evaluation_matrix(self,
-                          tenant_manager): # 评价系统的公平度，满意度
+                          tenant_manager,
+                          global_score,
+                          system): # 评价系统的公平度，满意度
         
         save_dir = os.path.dirname(self.save_dir)
         
         """this function must be called at the end of running this system."""
-        utility = {}
+        
+        
+        # 这部分的计算代码：侵入式的utility评价 ，已经抛弃
+        # utility = {}
+        # for log_id,log in self.log.items():
+        #     log_round = log["log_round"]
+        #     if log_id == "group":
+        #         continue
+        #     for tenant_id, tenant_info in log_round.items():
+        #         ratings = tenant_info["choose_house_ratings"]
+        #         rating_houses = {}
+        #         for rating_round,rating_score in ratings.items():
+        #             for rating_pair in rating_score:
+        #                 if rating_pair[0] not in rating_houses.keys():
+        #                     rating_houses[rating_pair[0]] = [rating_pair[1]]
+        #                 else:
+        #                     rating_houses[rating_pair[0]].append(rating_pair[1])
+        #         for k,v in rating_houses.items():
+        #             v = sum(v)/len(v)
+                    
+        #         rating_score_vis_u = sum(list(rating_houses.values()))/len(rating_houses)
+        #         rating_score_choose_u = rating_houses[tenant_info["choose_house_id"]]
+        #         group_id_t = -1
+        #         for group_id,tenant_ids in tenant_manager.groups.items():
+        #             if tenant_id in tenant_ids:
+        #                 group_id_t = group_id
+        #                 break
+                    
+        #         utility[tenant_id] = {
+        #             "vis_u":rating_score_vis_u,
+        #             "choose_u":rating_score_choose_u,
+        #             "group_id":group_id_t 
+        #         } 
+                
+        utility = global_score.get_result()
+        utility_choosed = {}
         for log_id,log in self.log.items():
             log_round = log["log_round"]
             if log_id == "group":
                 continue
             for tenant_id, tenant_info in log_round.items():
-                ratings = tenant_info["choose_house_ratings"]
-                rating_houses = {}
-                for rating_round,rating_score in ratings.items():
-                    for rating_pair in rating_score:
-                        if rating_pair[0] not in rating_houses.keys():
-                            rating_houses[rating_pair[0]] = [rating_pair[1]]
-                        else:
-                            rating_houses[rating_pair[0]].append(rating_pair[1])
-                for k,v in rating_houses.items():
-                    v = sum(v)/len(v)
-                    
-                rating_score_vis_u = sum(list(rating_houses.values()))/len(rating_houses)
-                rating_score_choose_u = rating_houses[tenant_info["choose_house_id"]]
-                group_id_t = -1
-                for group_id,tenant_ids in tenant_manager.groups.items():
-                    if tenant_id in tenant_ids:
-                        group_id_t=group_id
-                        break
-                    
-                utility[tenant_id] = {
-                    "vis_u":rating_score_vis_u,
-                    "choose_u":rating_score_choose_u,
-                    "group_id":group_id_t 
-                }
+                if "choose_house_id" in tenant_info.keys():
+                    rating_score_choose_u = utility[str(tenant_id)][tenant_info["choose_house_id"]]
+                    group_id_t = -1
+                    for group_id,tenant_ids in tenant_manager.groups.items():
+                        if tenant_id in tenant_ids:
+                            group_id_t = group_id
+                            break
+                    assert tenant_id not in utility_choosed.keys(),f"Error!! Tenant {tenant_id} chosing house twice."
+                    tenant = tenant_manager.data[tenant_id]
+                    utility_choosed[tenant_id] = {
+                                "choose_u":rating_score_choose_u,
+                                "group_id":group_id_t,
+                                "priority": all(not value for value in tenant.priority_item.values()),
+                                "choose_house_id":tenant_info["choose_house_id"]
+                            } 
                 
+        
         import pandas as pd
         import numpy as np
         
         utility_matrix = pd.DataFrame()
-        for tenant_id,utility_one in utility.items():
+        for tenant_id,utility_one in utility_choosed.items():
             for k,v in utility_one.items():
                 utility_matrix.loc[tenant_id,k] = v
-        utility_matrix.to_csv(os.path.join(save_dir,"utility.csv"))
+        utility_matrix.to_csv(os.path.join(save_dir,"utility_choosed.csv"))
         
         utility_eval_matrix = pd.DataFrame()
-        for score_type in ["vis_u","choose_u"]:
-            
-            
-            utility_grouped = utility_matrix.groupby(by = ["group_id"])
-            for group_id, group_utility in utility_grouped:
-                # 公平度
-                scores = group_utility[score_type]
-                utility_eval_matrix.loc[f"least_misery_{group_id}",score_type] = min(scores)
-                utility_eval_matrix.loc[f"variance_{group_id}",score_type] = 1 - np.var(scores)
-                utility_eval_matrix.loc[f"jain'sfair_{group_id}"] = np.square(np.sum(scores))/(np.sum(np.square(scores)) * utility_matrix.size[0])
-                utility_eval_matrix.loc[f"min_max_ratio_{group_id}]"] = np.min(scores)/np.max(scores)
-                
-                # 满意度
-                utility_eval_matrix.loc[f"sw_{group_id}"] = np.sum(scores)/group_utility.size[0]
-                
-        utility_eval_matrix.to_csv(os.path.join(save_dir,"utility_eval_matrix.csv"))
-            # utility_eval_matrix.loc["jains'fairness",score_type] = 
 
+        """各个组内的公平性、满意度打分"""
+        utility_grouped = utility_matrix.groupby(by = ["group_id"])
+        
+        for group_id, group_utility in utility_grouped:
+            # 公平度
+            
+            scores = group_utility["choose_u"]
+            utility_eval_matrix.loc[f"least_misery",group_id] = min(scores)
+            utility_eval_matrix.loc[f"variance",group_id] = 1 - np.var(scores)
+            utility_eval_matrix.loc[f"jain'sfair",group_id] = np.square(np.sum(scores))/(np.sum(np.square(scores)) * utility_matrix.size[0])
+            utility_eval_matrix.loc[f"min_max_ratio",group_id] = np.min(scores)/np.max(scores)
+            
+            # 满意度
+            utility_eval_matrix.loc[f"sw",group_id] = np.sum(scores)/group_utility.size[0]
+                
+        """弱势群体的公平度"""
+        # utility_grouped = utility_matrix.groupby(by = ["priority"])
+        # for priority_lable, group_utility in utility_grouped:
+        #     scores = group_utility["choose_u"]
+        utility_p = utility_matrix[utility_matrix["priority"]]
+        utility_np = utility_matrix[not utility_matrix["priority"]]
+        utility_eval_matrix.loc["F(W,G)","utility"] = np.sum(utility_p["choose_u"])/utility_p.size[0] -\
+            np.sum(utility_np["choose_u"])/utility_np.size[0]
+        
+        utility_eval_matrix.loc["SW","utility"] = np.sum(utility_matrix["choose_u"])
+        
+        """计算基尼指数,原本的定义是将收入分配作为输入,
+        这里为了衡量公平性, 将房屋分配的utitlity作为输入"""
+        # Calculate Gini coefficient and Lorenz curve coordinates
+        gini, x, y = self.calculate_gini(utility_matrix["choose_u"])
+        import matplotlib.pyplot as plt
+        # Plot the Lorenz curve
+        plt.figure(figsize=(6, 6))
+        plt.plot(x, y, marker='o', linestyle='-', color='b')
+        plt.plot([0, 1], [0, 1], linestyle='--', color='k')
+        plt.fill_between(x, x, y, color='lightgray')
+        plt.xlabel("Cumulative % of Population")
+        plt.ylabel("Cumulative % of Income/Wealth")
+        plt.title(f"Lorenz Curve (Gini Index: {gini:.2f})")
+        plt.grid(True)
+        plt.show()
+        
+        utility_eval_matrix.loc["GINI_index","utility"] = gini
+        
+        
+        utility_eval_matrix.to_csv(os.path.join(save_dir,"utility_eval_matrix.csv"))
+
+        
+        
+        """一些客观的指标（例如人均住宅面积）"""
+        objective_evaluation = pd.DataFrame()
+        for tenant_id, choosed_info in utility_choosed.items():
+            house_id  = choosed_info["choose_house_id"]
+            utility_matrix.loc[tenant_id,"family_members_num"] = tenant_manager[tenant_id].get("family_members_num")
+            try:
+                house_size = system.house_manager.data.get(house_id).get("house_area")
+                house_size = float(house_size.strip())
+                utility_matrix.loc[tenant_id,"house_size"] = house_size
+
+                
+            except Exception as e:
+                utility_matrix.loc[tenant_id,"house_size"] = None
+        
+        utility_matrix_objective = utility_matrix[utility_matrix["house_size"]!=None]
+        utility_matrix_objective["avg_area"] = utility_matrix_objective["house_size"]/utility_matrix_objective["family_members_num"]
+        
+        utility_matrix_objective_grouped = utility_matrix_objective.groupby(by = ["group_id"]) 
+        
+        for group_id,group_matrix in utility_matrix_objective_grouped:
+            objective_evaluation.loc["mean_house_area",group_id] = np.average(group_matrix["avg_area"])
+            
+        objective_evaluation.to_csv(os.path.join(save_dir,"objective_evaluation_matrix.csv"))
     
-    
+
+        
+        
+    def calculate_gini(self,data):
+        import numpy as np
+        # Sort the data in ascending order
+        data = np.sort(data)
+        
+        # Calculate the cumulative proportion of income/wealth
+        cumulative_income = np.cumsum(data)
+        
+        # Calculate the Lorenz curve coordinates
+        x = np.arange(1, len(data) + 1) / len(data)
+        y = cumulative_income / np.sum(data)
+        
+        # Calculate the area under the Lorenz curve (A)
+        area_under_curve = np.trapz(y, x)
+        
+        # Calculate the area under the line of perfect equality (B)
+        area_perfect_equality = 0.5
+        
+        # Calculate the Gini coefficient
+        gini_coefficient = (area_perfect_equality - area_under_curve) / area_perfect_equality
+        
+        return gini_coefficient, x, y

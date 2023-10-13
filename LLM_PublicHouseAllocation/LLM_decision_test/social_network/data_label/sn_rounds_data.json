@@ -38,9 +38,7 @@
                                 "James Anderson said: Hi Emma, I'm looking at Community_2 for rent, there are some good amenities like metro, supermarkets, schools, restaurants, and banks, it is also close to your workplace. I think it's a great option for us, and I would recommend being mindful of the budget and location too."
                             ],
                             "continue_dialogue":true,
-                            "key_social_network":2,
-                            "testflag":true,
-                            "turingflag":true
+                            "key_social_network":2
                         },
                         {
                             "timestamp":1695872212.498934,
@@ -62,9 +60,7 @@
                                 "Emma Davis said: Yes, I think Community_2 is a great option. It has affordable rent, great amenities and is close to my workplace. I definitely recommend looking into it. However, the availability for houses in Community_2 is limited, so if we want to secure a house there, we'd have to act quickly."
                             ],
                             "continue_dialogue":true,
-                            "key_social_network":4,
-                            "testflag":true,
-                            "turingflag":true
+                            "key_social_network":4
                         }
                     ]
                 },
@@ -93,9 +89,7 @@
                                 "Oliver Johnson said: Hi James and Emma, I'm looking for a zero room apartment with good connectivity and facilities for a reasonable price. I think Community_2 is the best option for me since it offers good metro, supermarket, shopping mall, parks, school, restaurant and bank connections. It would be great if you can help me look for an ideal house in this community."
                             ],
                             "continue_dialogue":true,
-                            "key_social_network":6,
-                            "testflag":true,
-                            "turingflag":false
+                            "key_social_network":6
                         }
                     ]
                 }
@@ -133,9 +127,7 @@
                                 "James Anderson said: Hi Emma, I'm looking at Community_2 for rent, there are some good amenities like metro, supermarkets, schools, restaurants, and banks, it is also close to your workplace. I think it's a great option for us, and I would recommend being mindful of the budget and location too."
                             ],
                             "continue_dialogue":true,
-                            "key_social_network":2,
-                            "testflag":true,
-                            "turingflag":false
+                            "key_social_network":2
                         },
                         {
                             "timestamp":1695872212.498934,
@@ -158,9 +150,7 @@
                                 "Emma Davis said: Yes, I think Community_2 is a great option. It has affordable rent, great amenities and is close to my workplace. I definitely recommend looking into it. However, the availability for houses in Community_2 is limited, so if we want to secure a house there, we'd have to act quickly."
                             ],
                             "continue_dialogue":true,
-                            "key_social_network":4,
-                            "testflag":true,
-                            "turingflag":true
+                            "key_social_network":4
                         }
                     ],
                     "chat_history":"You trust James Anderson said that  Community_2 has amenities such as a metro, supermarkets, shopping malls, parks, schools, restaurants, banks and more. The small_house has an area of 27.76-44.62 with a monthly rent of 952-1517 dollars and there are 6 houses available. Because  James Anderson is trying to recommend Community_2 as a good rent option for them both due to its good amenities, budget and location close to Emma's workplace.",
@@ -197,9 +187,7 @@
                                 "Oliver Johnson said: Hi James and Emma, I'm looking for a zero room apartment with good connectivity and facilities for a reasonable price. I think Community_2 is the best option for me since it offers good metro, supermarket, shopping mall, parks, school, restaurant and bank connections. It would be great if you can help me look for an ideal house in this community."
                             ],
                             "continue_dialogue":true,
-                            "key_social_network":6,
-                            "testflag":true,
-                            "turingflag":true
+                            "key_social_network":6
                         }
                     ]
                 }
@@ -242,9 +230,7 @@
                                 "Oliver Johnson said: Hi James and Emma, I'm looking for a zero room apartment with good connectivity and facilities for a reasonable price. I think Community_2 is the best option for me since it offers good metro, supermarket, shopping mall, parks, school, restaurant and bank connections. It would be great if you can help me look for an ideal house in this community."
                             ],
                             "continue_dialogue":true,
-                            "key_social_network":6,
-                            "testflag":true,
-                            "turingflag":false
+                            "key_social_network":6
                         }
                     ]
                 },
@@ -279,9 +265,7 @@
                                 "Oliver Johnson said: Hi James and Emma, I'm looking for a zero room apartment with good connectivity and facilities for a reasonable price. I think Community_2 is the best option for me since it offers good metro, supermarket, shopping mall, parks, school, restaurant and bank connections. It would be great if you can help me look for an ideal house in this community."
                             ],
                             "continue_dialogue":true,
-                            "key_social_network":6,
-                            "testflag":true,
-                            "turingflag":false
+                            "key_social_network":6
                         }
                     ]
                 }
