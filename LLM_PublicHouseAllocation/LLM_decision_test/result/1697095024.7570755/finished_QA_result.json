@@ -1,0 +1,36 @@
+[
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one house.",
+            "thought_type":"Your views on these houses.",
+            "choose_type":"My choice is (The index of houses)",
+            "house_info":"There are 1 houses available. The infomation of these houses are listed as follows:\nhouse_18: \nthis house costs about 1800. It's square fortage is about 45.0. The orientation of the house is NS. It is located at floor 12. It has elevator. Despite being smaller, this house is south-facing and offers good green views of the community. It is also well-maintained. ",
+            "memory":"After deciding that community_1 had inconvenient facilities, you thought community_2 was more ideal for your family members. Being close to your wife's workplace and your child's school, you were able to make an informed decision and chose community_2.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are James Anderson. You earn 9000 per month.Your family members include: A wife and two children, both in high school.You are 45 years old. Your job is Construction worker. Your company is located in Dongzhimenwai Street, Dongcheng District, Beijing. The Anderson family prefers a home with easy access to public transportation, as they often need to commute for work and school. You expect to rent a house for 1800.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is house_18.",
+            "thought":"This house is small but offers good green views and is well-maintained."
+        },
+        "humanjudge":false,
+        "testflag":true,
+        "turingflag":false
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [small_house])",
+            "house_info":"There are 1 house types available. The infomation of these house types are listed as follows:\nsmall_house:\nThis type house's rent is around 952-1517,and it's square footage is around 27.76-44.62.There remains 6 houses of this type. ",
+            "memory":"The decision to move to a new community was a difficult one. You considered both community_1 and community_2 and weighed the pros and cons of both. Community_1 had limited amenities, while community_2 was located much closer to the workplace of your wife and the school of your child. This made it the logical choice, and you chose to move to community_2.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Emma Davis. You earn 14000 per month.Your family members include: Single, no children.You are 29 years old. Your job is Software engineer. Your company is located in Alibaba Beijing R&D Center, No. 5 Zhongguancun South Street, Haidian District, Beijing. Emma hopes the apartment is in a quiet friendhood, allowing her to focus on her work. You expect to rent a house for 2500.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is small_house.",
+            "thought":"The small house type seems to fit my budget and the square footage is decent."
+        },
+        "humanjudge":true,
+        "testflag":true,
+        "turingflag":true
+    }
+]

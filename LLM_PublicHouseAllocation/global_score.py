@@ -16,6 +16,7 @@ class Global_Score(BaseModel):
     save_dir:str=""
     result:dict={}
     llm: Optional[LLMChain]=None
+    
     @classmethod
     def initialization(
         cls,
@@ -72,6 +73,22 @@ class Global_Score(BaseModel):
             llm=chain
         )
     
+    @classmethod   
+    def load_from_json(cls,
+                       tenant_manager,
+                       system,
+                       json_path):
+        with open(json_path,'r',encoding = 'utf-8') as f:
+            result=json.load(f)
+        return cls(
+            tenant_manager=tenant_manager,
+            system=system,
+            save_dir=json_path,
+            result=result,
+            llm=None
+        )
+        
+    
     def rate_score(self):
         for tenant_id,tenant in tqdm(self.tenant_manager.data.items(),desc="Rating the score of houses."):
             self.result[tenant_id]={}
@@ -108,4 +125,6 @@ class Global_Score(BaseModel):
             json.dump(self.result, file, indent=4,separators=(',', ':'),ensure_ascii=False)
 
 
+    def get_result(self):
+        return self.result
      

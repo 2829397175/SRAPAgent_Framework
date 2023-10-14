@@ -7,7 +7,7 @@ import json
 from LLM_PublicHouseAllocation.manager import TenantManager,ForumManager
 from LLM_PublicHouseAllocation.involvers import System,Tool,Search_forum_topk,LogRound
 from LLM_PublicHouseAllocation.llms import OpenAILoader
-
+from LLM_PublicHouseAllocation.global_score import Global_Score
 
 from . import env_registry as EnvironmentRegistry
 from .base import BaseEnvironment
@@ -40,6 +40,9 @@ class RentEnvironment(BaseEnvironment):
     # 对于api调换的Loader类
     llm_loader:OpenAILoader
     
+    
+    # rating benchmark
+    global_score: Global_Score
     
     class Config:
         arbitrary_types_allowed = True
@@ -95,6 +98,10 @@ class RentEnvironment(BaseEnvironment):
         
         
         async def communication_one(tenant_id,c_num):
+            """
+            the async run parse of tenant(tenant_id) communication.
+            return: the receivers, self(if continue_communication)
+            """
             tenant = self.tenant_manager.data[tenant_id]
             
             if isinstance(tenant, LangchainTenant):
@@ -113,14 +120,28 @@ class RentEnvironment(BaseEnvironment):
                                                             self.key_social_net)
                 
                 receiver_ids = self.update_social_net(tenant=tenant) # 先把receiver放进communication队列
-                for r_id in receiver_ids:
-                    if (r_id) not in tenant_ids:
-                        tenant_ids.append(r_id)
-                if (continue_communication): tenant_ids.append(tenant_id)
+                
+                return [receiver_ids,continue_communication]
             else:
                 raise NotImplementedError("Tenant type {} not implemented".format(tenant.__class__))
         
-        await asyncio.gather(*[communication_one(tenant_id,c_num) for c_num,tenant_id in enumerate(tenant_ids)])
+        c_num = 0
+        while(len(tenant_ids) > 0 and c_num < communication_num):
+            return_ids_list = await asyncio.gather(*[communication_one(tenant_id,c_num) for c_num,tenant_id in enumerate(tenant_ids)])
+            c_num += len(tenant_ids)
+            tenant_ids_temp = copy.deepcopy(tenant_ids)
+            tenant_ids = []
+            
+            for idx,return_ids in enumerate(return_ids_list):
+                receiver_ids = receiver_ids[0]
+                continue_communication = receiver_ids[1]
+                for receiver_id in receiver_ids:
+                    if receiver_id not in tenant_ids:
+                        tenant_ids.append(receiver_id)
+                if continue_communication and tenant_ids_temp[idx] not in tenant_ids:
+                    tenant_ids.append(tenant_ids_temp[idx])
+                        
+        
         
         self.set_tenant_memory_log() ## log
             

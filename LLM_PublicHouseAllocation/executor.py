@@ -88,10 +88,6 @@ class Executor():
             env_config['tool'] = tool
         else:
             env_config['tool'] = None
-
-        environment = load_environment({**env_config,
-                                        "save_log":save_log})
-        
         
         save_evaluation_dic = os.path.join(task_path,
                                 f"global_evaluation")
@@ -103,6 +99,15 @@ class Executor():
             global_score = Global_Score.initialization(tenant_manager,system,save_dir=save_evaluation_dir)
             global_score.rate_score()
             global_score.save_score()
+        else:
+            global_score = Global_Score.load_from_json(tenant_manager,system,json_path=save_evaluation_dir)
+        
+        env_config['global_score'] = global_score
+        
+        environment = load_environment({**env_config,
+                                        "save_log":save_log})
+        
+        
         return cls(environment)
 
     def run(self):
