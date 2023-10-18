@@ -29,7 +29,7 @@ managers:
     
 
   tenant:
-    choose_rating: True
+    choose_rating: False
     policy: 
       type : ver1 # 表示分房政策
       filter_house_labels: ["house_type",

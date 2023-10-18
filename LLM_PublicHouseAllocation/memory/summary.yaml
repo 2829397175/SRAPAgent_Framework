@@ -170,20 +170,43 @@ paragraph_summary:  &paragraph_summary |-
 social_network_summary:  &social_network_summary |-
   You're {name}. You're planning to choose one house.  
 
-  Your task is to use memory to assess the credibility of communication information and summarize the useful information in the conversation.
+  Your task is to use memory to assess the credibility of communication information and summarize the useful information in the conversation based on your previous summary.
 
   {acquaintance_description}
 
   Here's your memory
   {memory}
 
-  Here's your chatting dialogue with {acquaintance_name}.
+  Here's your chatting conversation with {acquaintance_name}.
   {dialogue}
 
   - Respond in this format:
-  Trusted: (Summary of the useful information, which you assessed as trustworthy in the conversation)
+  Trusted: (Summary of the useful information, which you assessed as trustworthy in the conversation with {acquaintance_name})
   Suspicious: (Summary of the untrusted information, which you suspicious as trustworthy in the conversation; If there's no untrusted information, simply return None)
   Reason: (why {acquaintance_name} say these things?Try to find a reasonal intention for {acquaintance_name})
 
+
+  Respond:
+
+forum_assess_summary:  &forum_assess_summary |-
+  You're {name}. You're planning to choose one house.  
+  
+  Your task is to use memory to assess the credibility of the forum information and summarize the useful information in the forum information based on your previous summary.
+
+  Here's your memory
+  {memory}
+
+  Here's the forum information:
+  {forum_info}
+
+  [!Important!]:
+  Keep in mind that you and competitors are vying for renting house. 
+  Both you and your competitors have the ability to share diverse information on the forum.
+  And you get forum information from this platform.
+
+  - Respond in this format:
+  Trusted: (Summary of the useful information, which you assessed as trustworthy in the forum information)
+  Suspicious: (Summary of the untrusted information, which you suspicious as trustworthy in the forum information; If there's no untrusted information, simply return None)
+  Reason: (why other competitors say these things? Try to find a reasonal intention for their intention.)
 
   Respond:

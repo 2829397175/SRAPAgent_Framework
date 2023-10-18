@@ -183,11 +183,7 @@ It only takes {get_shortest_commute_time_str} to commute to my workplace."""
         
     def set_choose_house_rating_score(self,ratings):
         self.log_round["choose_house_ratings"] = ratings
-        if len(rating_scores)>0:
-            rating_scores =[rating[1] for rating in ratings]
-            self.log_round["utility"] = sum(rating_scores)/len(rating_scores)
-        else:
-            self.log_round["utility"] = 0
+       
         
     def set_comment(self,comment):
         self.log_round["produce_comment"] = comment

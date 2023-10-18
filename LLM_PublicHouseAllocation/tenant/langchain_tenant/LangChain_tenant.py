@@ -597,13 +597,13 @@ You still have {chance_num} chances to choose house.\
         #                         rule=rule,
         #                         )
     
-    def group(self,
+    async def group(self,
                 forum_manager, 
                 system,  
                 rule,
                 tool,
                 log_round):
-        return self.policy.group(self,
+        return await self.policy.group(self,
                           forum_manager, 
                             system,  
                             rule,
@@ -707,7 +707,7 @@ You still have {chance_num} chances to choose house.\
                       round_index = 10,
                       key_social_network = 0):
         
-        memory = self.memory.memory_tenant("social_network",name=self.name) + self.infos.get("extra_info")
+        memory = await self.memory.memory_tenant("social_network",name=self.name) + self.infos.get("extra_info")
         
         respond_format = """Your ideal type of house: (Your personal preference for these houses)
 You think (Your true opionion about these communities or houses).
@@ -757,7 +757,7 @@ Your current plan to respond is (Your plan to communicate with your friends, com
         print("SENDER:{name}".format(name=self.name)) #debug
         
         for _ in range(self.max_jug_time):
-            # response = self.step(prompt_inputs).get("return_values")
+
             response = await self.astep(prompt_inputs)
             response = response.get("return_values")
             key_social_network = log_round.set_social_network(prompt_inputs,
@@ -823,7 +823,7 @@ Your current plan to respond is (Your plan to communicate with your friends, com
                     
     # 在调用discuss_back之后，重新更新社交关系
     # context是最新，含有对话细节的message的context
-    def update_acquaintance_relation(self,
+    async def update_acquaintance_relation(self,
                                      context,
                                      acquaintance_id:str,
                                      log_round,
@@ -847,11 +847,11 @@ you're communicating with your acquaintances about house renting.""".format(name
         prompt_inputs = {
             "acquaintance_name":self.memory.social_network[acquaintance_id].get("name"), 
             "role_description":role_description,
-            "memory":self.memory.memory_tenant("relation"),
+            "memory":await self.memory.memory_tenant("relation"),
             "relation":relation,
             "communication":communication,
         }
-        response = self.step(prompt_inputs = prompt_inputs).get("return_values")
+        response = await self.astep(prompt_inputs = prompt_inputs).get("return_values")
         
         key_social_network = log_round.set_social_network(prompt_inputs,
                                      response,
@@ -881,7 +881,7 @@ you're communicating with your acquaintances about house renting.""".format(name
             
         self_continue_dialogue = False
         for message in self.memory.mail:
-            memory = self.memory.memory_tenant("social_network_message_back",name=self.name) + self.infos.get("extra_info")
+            memory = await self.memory.memory_tenant("social_network_message_back",name=self.name) + self.infos.get("extra_info")
             assert isinstance(message,Message)
             acquantice_name = list(message.sender.values())[0]
             acquantice_id = list(message.sender.keys())[0]
@@ -980,7 +980,7 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
                    
 
                         
-                    self.update_acquaintance_relation(context = context,
+                    await self.update_acquaintance_relation(context = context,
                                                       acquaintance_id = sender_id,
                                                       log_round = log_round,
                                                       round_index = round_index,
@@ -1028,7 +1028,7 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
         
     
     # 返回：（是否选择，选择编号）
-    def choose_community(self,system,search_infos,rule,log_round) ->Tuple[bool,str]:
+    async def choose_community(self,system,search_infos,rule,log_round) ->Tuple[bool,str]:
         mem_buffer=[]
         tip=[]
         
@@ -1041,7 +1041,7 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
 
         choose_type = """My choice is (The index of community, should be one of [{community_ids}])"""
         choose_type = choose_type.format(community_ids=",".join(community_ids))
-        memory = self.memory.memory_tenant("community",name=self.name) + self.infos.get("extra_info")
+        memory = await self.memory.memory_tenant("community",name=self.name) + self.infos.get("extra_info")
         prompt_inputs={
                 'task':'You need to choose one type of communities.',
                 'thought_type':'Your views on these communities.',
@@ -1054,7 +1054,8 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
             prompt_inputs["memory"] = memory + "\n" + "".join(tip)
             
             
-            response = self.step(prompt_inputs).get("return_values")
+            response = await self.astep(prompt_inputs)
+            response = response.get("return_values")
             log_round.set_choose_history(prompt_inputs = prompt_inputs,
                                          response = response,
                                          step_type = "choose_community")
@@ -1110,7 +1111,7 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
         
 
         
-    def choose_house_type(self,system,rule,log_round,community_id = None) -> Tuple[bool,str]:
+    async def choose_house_type(self,system,rule,log_round,community_id = None) -> Tuple[bool,str]:
         mem_buffer=[]
         tip=[]
         
@@ -1120,7 +1121,7 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
         choose_type = """My choice is (house type, should be one of [{house_type_indexs}])"""
         choose_type = choose_type.format(house_type_indexs = ",".join(house_type_ids))
 
-        memory = self.memory.memory_tenant("house_type",name=self.name)
+        memory = await self.memory.memory_tenant("house_type",name=self.name)
         prompt_inputs={
             'task':'You need to choose one type of houses.',
             'thought_type':'Your views on these house types.',
@@ -1135,7 +1136,8 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
         
             
             self.reset_state(mode="choose")
-            response = self.step(prompt_inputs).get("return_values")
+            response = await self.astep(prompt_inputs)
+            response = response.get("return_values")
             log_round.set_choose_history(prompt_inputs = prompt_inputs,
                                 response = response,
                                 step_type = "choose_house_type")
@@ -1219,7 +1221,7 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
         choose_type_template = """My choice is (The index of houses, should be one of [{house_indexes}])"""
         
         
-        memory = self.memory.memory_tenant("house",name=self.name)
+        memory = await self.memory.memory_tenant("house",name=self.name)
         for houses_description,house_available_index in houses_description_generator:
             # self.logger.info("SYSTEM:\n {}".format(houses_description))
             choose_type = choose_type_template.format(house_indexes = ",".join(house_available_index))
@@ -1385,7 +1387,7 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
         
         role_description = self.get_role_description()
        
-        memory = self.memory.memory_tenant("house",name=self.name)
+        memory = await self.memory.memory_tenant("house",name=self.name)
         for houses_description,house_available_index in houses_description_generator:
             # self.logger.info("SYSTEM:\n {}".format(houses_description))
 
@@ -1436,7 +1438,7 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
     
     
     
-    def choose_orientation(self,system,rule,log_round,community_id = None) -> Tuple[bool,str]:
+    async def choose_orientation(self,system,rule,log_round,community_id = None) -> Tuple[bool,str]:
         mem_buffer=[]
         tip=[]
         
@@ -1449,7 +1451,7 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
         choose_type = """My choice is (house orientation, should be one of [{house_type_indexs}])"""
         choose_type = choose_type.format(house_type_indexs = ",".join(available_orientations))
 
-        memory = self.memory.memory_tenant("house_orientation",name=self.name)
+        memory = await self.memory.memory_tenant("house_orientation",name=self.name)
         prompt_inputs={
             'task':'You need to choose one type of house orientation.',
             'thought_type':'Your views on these house orientations.',
@@ -1464,7 +1466,8 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
         
             log_round.set_available_house_type(system.get_available_house_type(community_id,self.queue_name))
             self.reset_state(mode="choose")
-            response = self.step(prompt_inputs).get("return_values")
+            response = await self.astep(prompt_inputs)
+            response = response.get("return_values")
             
             log_round.set_choose_history(prompt_inputs = prompt_inputs,
                                 response = response,
@@ -1520,7 +1523,7 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
         return False,"None", thought_fail_choose
     
     
-    def choose_floor(self,system,rule,log_round,community_id = None) -> Tuple[bool,str]:
+    async def choose_floor(self,system,rule,log_round,community_id = None) -> Tuple[bool,str]:
         mem_buffer=[]
         tip=[]
         
@@ -1534,7 +1537,7 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
         choose_type = """My choice is (house floor, should be one of [{floor_types}])"""
         choose_type = choose_type.format(floor_types = ",".join(available_floors))
 
-        memory = self.memory.memory_tenant("floor_type",name=self.name)
+        memory = await self.memory.memory_tenant("floor_type",name=self.name)
         prompt_inputs={
             'task':'You need to choose one type of house orientation.',
             'thought_type':'Your views on these house orientations.',
@@ -1549,7 +1552,8 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
         
             log_round.set_available_house_type(system.get_available_house_type(community_id,self.queue_name))
             self.reset_state(mode="choose")
-            response = self.step(prompt_inputs).get("return_values")
+            response = await self.astep(prompt_inputs)
+            response = response.get("return_values")
             log_round.set_choose_history(prompt_inputs = prompt_inputs,
                     response = response,
                     step_type = "choose_floor")
@@ -1612,7 +1616,7 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
         community_infos = system.get_community_data()
         
         if search_list is None:
-            search_list=system.get_available_community_ids(self.queue_name)
+            search_list = system.get_available_community_ids(self.queue_name)
         if k_c < len(search_list):
             search_list = random.sample(search_list,k_c)
             
@@ -1630,22 +1634,28 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
    
         return_infos_str=log_round.set_forum_conclusion(return_infos)
         
-        # for c_name,searched in return_infos.items():
-        #     for k,v in searched.items():
-        #         if k == "search_info":
-        #             self.
-        
-        for return_info in return_infos_str:
-            self.update_memory(
-                            selfcontent={"output":return_info},
+        for c_name,searched in return_infos.items():
+            for k,v in searched.items():
+                if k == "search_info":
+                    self.update_memory(selfcontent={"output":v},
                             step_type="search",
-                            receivers={self.id:self.name})          
+                            receivers={self.id:self.name})
+                else:
+                    self.update_memory(selfcontent={"output":v},
+                            step_type="community",
+                            receivers={self.id:self.name})
+        
+        # for return_info in return_infos_str:
+        #     self.update_memory(
+        #                     selfcontent={"output":return_info},
+        #                     step_type="search",
+        #                     receivers={self.id:self.name})          
         
 
         return return_infos
     
     
-    def publish_forum_plan(self,respond_format,system,log_round,memory=""):
+    async def publish_forum_plan(self,respond_format,system,log_round,memory=""):
         self.reset_state(mode="publish_forum_plan")
         
         role_description ="""Your task is to Publish house information or community information online.\
@@ -1674,7 +1684,8 @@ And you're willing to publish house information online. Keep this in mind!"""
         
         print("The forum publish plan of:{name}".format(name=self.name)) #debug
         
-        response = self.step(prompt_inputs).get("return_values")
+        response = await self.astep(prompt_inputs)
+        response = response.get("return_values")
         
         log_round.set_choose_history(prompt_inputs = prompt_inputs,
                     response = response,
@@ -1683,17 +1694,17 @@ And you're willing to publish house information online. Keep this in mind!"""
     
     
     # publish info only, using ReAct
-    def publish_forum(self,
+    async def publish_forum(self,
                       forum_manager,
                       system,
                       log_round):
-        publish_memory = self.memory.memory_tenant("publish",name=self.name)+self.infos.get("extra_info")
+        publish_memory = await self.memory.memory_tenant("publish",name=self.name)+self.infos.get("extra_info")
         publish_plan_respond_format = """You think (Your true opionion about these communities or houses).
 For now, Whether you want to publish information honestly online: (Yes or No). 
 (The reason why you want or don't want to publish information honestly online)
 Your current plan is (Your plan to publish which kind of info online, be concise)"""
         
-        publish_plan = self.publish_forum_plan(publish_plan_respond_format,
+        publish_plan = await self.publish_forum_plan(publish_plan_respond_format,
                                                system=system,
                                                log_round=log_round,
                                                memory=publish_memory)
@@ -1726,7 +1737,8 @@ Your current plan is (Your plan to publish which kind of info online, be concise
 
             prompt_inputs["memory"] = publish_memory + "\n" + "".join(tip)
                         
-            response = self.step(prompt_inputs).get("return_values",[])
+            response = await self.astep(prompt_inputs)
+            response = response.get("return_values",[])
             
             log_round.set_choose_history(prompt_inputs = prompt_inputs,
                     response = response,
@@ -1754,7 +1766,7 @@ Your current plan is (Your plan to publish which kind of info online, be concise
                                     community_id=community_id,
                                     info_post=info_post)
                     
-                    
+                    publish["plan"] = publish_plan
                     self.update_memory(selfcontent=publish,
                                     step_type="publish",
                                     receivers={self.id:self.name})

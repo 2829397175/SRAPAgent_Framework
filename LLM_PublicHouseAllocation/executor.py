@@ -118,7 +118,11 @@ class Executor():
         #     loop = asyncio.get_event_loop()
         #     loop.run_until_complete(self.environment.step())
         self.environment.log.reset()
-        self.environment.group() 
+        
+        new_loop = asyncio.new_event_loop()
+        # asyncio.set_event_loop(new_loop)
+        # loop = asyncio.get_event_loop()
+        new_loop.run_until_complete(self.environment.group() )
         self.environment.line_up()
         self.environment.broadcast()
         
@@ -128,8 +132,13 @@ class Executor():
             # loop.run_until_complete(self.environment.communication(communication_num = 3))
             # loop.run_until_complete(self.environment.step())
             # asyncio.run(self.environment.communication(communication_num = 3))
-            self.environment.communication(communication_num = 3)
-            asyncio.run(self.environment.step())
+            # self.environment.communication(communication_num = 3)
+            
+            new_loop = asyncio.new_event_loop()
+            # asyncio.set_event_loop(new_loop)
+            # loop = asyncio.get_event_loop()
+            new_loop.run_until_complete(self.environment.step())
+            # asyncio.run(self.environment.step())
             #if self.environment.cnt_turn>3:
             #self.environment.step()
             

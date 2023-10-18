@@ -74,6 +74,6 @@ class Ver1Policy(BasePolicy):
             return False,"None"
         
         # 更改communitymanager中的remain_num
-        system.set_chosed_house(house_id,community_id,house_filter_ids)
+        system.set_chosed_house(house_id,community_id,tenant.queue_name,house_filter_ids)
 
         return True,house_id.lower()

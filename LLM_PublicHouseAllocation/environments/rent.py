@@ -126,9 +126,11 @@ class RentEnvironment(BaseEnvironment):
                 return_ids_list = await asyncio.gather(*[self.communication_one(tenant_id,c_num) for c_num,tenant_id in enumerate(tenant_ids)])
                 return return_ids_list
             
-            # loop = asyncio.get_event_loop()
-            # return_ids_list = loop.run_until_complete(run_parallel(tenant_ids=tenant_ids))
-            return_ids_list = asyncio.run(run_parallel(tenant_ids=tenant_ids))
+            new_loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(new_loop)
+            loop = asyncio.get_event_loop()
+            return_ids_list = loop.run_until_complete(run_parallel(tenant_ids=tenant_ids))
+            # loop.close()
             c_num += len(tenant_ids)
             tenant_ids_temp = copy.deepcopy(tenant_ids)
             tenant_ids = []
@@ -171,13 +173,14 @@ class RentEnvironment(BaseEnvironment):
         while not all(len(waitlist)==0 for waitlist in tenant_waitlists):
             # change tenant api
             first_tenant = [waitlist[0] for waitlist in tenant_waitlists if waitlist]
+            
             await asyncio.gather(*[self.tenant_step(tenant) for tenant in first_tenant])
 
     
-    def group(self):
+    async def group(self):
         tenant_groups = {}
         for tenant_id,tenant in self.tenant_manager.data.items():
-            group_id = tenant.group(self.forum_manager, self.system, self.rule,self.tool, self.log)
+            group_id = await tenant.group(self.forum_manager, self.system, self.rule,self.tool, self.log)
             self.log.set_group_log(tenant_id)
             if group_id in tenant_groups.keys():
                 tenant_groups[group_id].append(tenant_id)

@@ -239,7 +239,7 @@ The {housetype} in {community_id} is a {living_room} apartment, with an area of 
         
     def jug_community_valid(self,community_id,community_ids,queue_name):
         
-        return community_id in community_ids and self.data.get[queue_name]!=None and community_id in self.data[queue_name].keys() and \
+        return community_id in community_ids and self.data.get(queue_name)!=None and community_id in self.data[queue_name].keys() and \
             self.data[queue_name][community_id].get("available",False)
             
 
@@ -343,7 +343,7 @@ The {housetype} in {community_id} is a {living_room} apartment, with an area of 
         for filter_id in house_types:
             self.data[queue_name][community_id][filter_id]["remain_number"] \
             = self.data[queue_name][community_id][filter_id].get("remain_number",1) - 1
-            if house_id in self.data[community_id][filter_id]['index']:
+            if house_id in self.data[queue_name][community_id][filter_id]['index']:
                 self.data[queue_name][community_id][filter_id]['index'].remove(house_id)
 
     
