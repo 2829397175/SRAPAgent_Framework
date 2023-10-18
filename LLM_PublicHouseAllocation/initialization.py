@@ -59,13 +59,13 @@ def load_memory(memory_config: Dict):
 
 
 def load_llm(llm_config: Dict):
-    llm_type = llm_config.pop('llm_type', 'text-davinci-003')
+    llm_type = llm_config.get('llm_type', 'text-davinci-003')
     if llm_type == 'gpt-3.5-turbo':
-        return ChatOpenAI(**llm_config)
+        return ChatOpenAI(**llm_config,openai_api_key="")
     elif llm_type == 'text-davinci-003':
-        return OpenAI(**llm_config)
+        return OpenAI(**llm_config,openai_api_key="")
     elif llm_type == 'gpt-3.5-turbo-16k-0613':
-        return OpenAI(**llm_config)        
+        return OpenAI(**llm_config,openai_api_key="")        
     else:
         #return OpenAI(**llm_config)
         raise NotImplementedError("LLM type {} not implemented".format(llm_type))
