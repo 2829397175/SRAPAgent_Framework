@@ -1,0 +1,134 @@
+{
+    "0":{
+        "community_1":{
+            "community_id":"community_1",
+            "community_name":"longxing",
+            "location":"北京市大兴区隆平大街2号",
+            "en_location":"No. 2, Longping Street, Daxing District, Beijing",
+            "value_inch":30,
+            "sum_num":1,
+            "sum_remain_num":1,
+            "description":"There are sports facilities, including football fields and basketball courts, with a large green area and a large distance between buildings.",
+            "nearby_info":"This community is surrounded by: Supermarkets include Hualian Boutique Supermarket (Guaxiang Road Branch), Carrefour Supermarket (Danish Town Branch); Schools include Zhongrui Hotel Management College, Beijing Second Foreign Language College Zhongrui Hotel Management College Living Area; Restaurants include microfood origin Hunan Cuisine (Hunan Cuisine Branch), fisherman's handle iron pot (Longjing Bay 2nd District Branch); Banks include Agricultural Bank of China ATM (Longgazhuang Shunjing Road Branch); .This commnunity does not have: subway, shopping mall, hospital, park,",
+            "large_house":{
+                "remain_number":1,
+                "living_room":"one room",
+                "index":[
+                    "house_1"
+                ],
+                "size":"60.92-61.8",
+                "cost":"1830"
+            },
+            "available":true
+        },
+        "community_2":{
+            "community_id":"community_2",
+            "community_name":"jinkejiayuan",
+            "location":"北京市大兴区永旺路1号",
+            "en_location":"No. 1 Yongwang Road, Daxing District, Beijing",
+            "value_inch":34,
+            "sum_num":1,
+            "sum_remain_num":1,
+            "description":"The green area of the community should account for more than 30% of the total land area, and the central urban area should not be less than 25%.",
+            "nearby_info":"This commnunity is surrounded by: Metro includes biomedical base; supermarkets include Sure Beauty Fresh Life Supermarket (Jinke Tianwei Store), Tiangong Courtyard Convenience Store; shopping malls include Yuejie Times Square, Longhu Beijing Daxing Tianjie; parks include Yongxing River Wetland Park; schools include Daxing Experimental Primary School affiliated to Beijing Education College (Merging Campus), Tsinghua University School Primary School; restaurants include Fan Laoman (Tiangong Courtyard Store), Xinlong Sijiu Meat (Tiangong Courtyard Store); banks include Beijing Rural Commercial Bank 24-hour Self-help Bank (Beibei Village Branch), Beijing Daxing Jiuiyin Village Bank (Tiangong Courtyard Branch); .This commnunity does not have: Hospital,",
+            "small_house":{
+                "remain_number":1,
+                "living_room":"zero room",
+                "index":[
+                    "house_10"
+                ],
+                "size":"27.76-44.62",
+                "cost":"952-1517"
+            },
+            "available":true
+        }
+    },
+    "1":{
+        "community_2":{
+            "community_id":"community_2",
+            "community_name":"jinkejiayuan",
+            "location":"北京市大兴区永旺路1号",
+            "en_location":"No. 1 Yongwang Road, Daxing District, Beijing",
+            "value_inch":34,
+            "sum_num":1,
+            "sum_remain_num":1,
+            "description":"The green area of the community should account for more than 30% of the total land area, and the central urban area should not be less than 25%.",
+            "nearby_info":"This commnunity is surrounded by: Metro includes biomedical base; supermarkets include Sure Beauty Fresh Life Supermarket (Jinke Tianwei Store), Tiangong Courtyard Convenience Store; shopping malls include Yuejie Times Square, Longhu Beijing Daxing Tianjie; parks include Yongxing River Wetland Park; schools include Daxing Experimental Primary School affiliated to Beijing Education College (Merging Campus), Tsinghua University School Primary School; restaurants include Fan Laoman (Tiangong Courtyard Store), Xinlong Sijiu Meat (Tiangong Courtyard Store); banks include Beijing Rural Commercial Bank 24-hour Self-help Bank (Beibei Village Branch), Beijing Daxing Jiuiyin Village Bank (Tiangong Courtyard Branch); .This commnunity does not have: Hospital,",
+            "small_house":{
+                "remain_number":1,
+                "living_room":"zero room",
+                "index":[
+                    "house_11"
+                ],
+                "size":"27.76-44.62",
+                "cost":"952-1517"
+            },
+            "available":true
+        },
+        "community_1":{
+            "community_id":"community_1",
+            "community_name":"longxing",
+            "location":"北京市大兴区隆平大街2号",
+            "en_location":"No. 2, Longping Street, Daxing District, Beijing",
+            "value_inch":30,
+            "sum_num":1,
+            "sum_remain_num":1,
+            "description":"There are sports facilities, including football fields and basketball courts, with a large green area and a large distance between buildings.",
+            "nearby_info":"This community is surrounded by: Supermarkets include Hualian Boutique Supermarket (Guaxiang Road Branch), Carrefour Supermarket (Danish Town Branch); Schools include Zhongrui Hotel Management College, Beijing Second Foreign Language College Zhongrui Hotel Management College Living Area; Restaurants include microfood origin Hunan Cuisine (Hunan Cuisine Branch), fisherman's handle iron pot (Longjing Bay 2nd District Branch); Banks include Agricultural Bank of China ATM (Longgazhuang Shunjing Road Branch); .This commnunity does not have: subway, shopping mall, hospital, park,",
+            "large_house":{
+                "remain_number":1,
+                "living_room":"one room",
+                "index":[
+                    "house_2"
+                ],
+                "size":"60.92-61.8",
+                "cost":"1830"
+            },
+            "available":true
+        }
+    },
+    "2":{
+        "community_1":{
+            "community_id":"community_1",
+            "community_name":"longxing",
+            "location":"北京市大兴区隆平大街2号",
+            "en_location":"No. 2, Longping Street, Daxing District, Beijing",
+            "value_inch":30,
+            "sum_num":1,
+            "sum_remain_num":1,
+            "description":"There are sports facilities, including football fields and basketball courts, with a large green area and a large distance between buildings.",
+            "nearby_info":"This community is surrounded by: Supermarkets include Hualian Boutique Supermarket (Guaxiang Road Branch), Carrefour Supermarket (Danish Town Branch); Schools include Zhongrui Hotel Management College, Beijing Second Foreign Language College Zhongrui Hotel Management College Living Area; Restaurants include microfood origin Hunan Cuisine (Hunan Cuisine Branch), fisherman's handle iron pot (Longjing Bay 2nd District Branch); Banks include Agricultural Bank of China ATM (Longgazhuang Shunjing Road Branch); .This commnunity does not have: subway, shopping mall, hospital, park,",
+            "large_house":{
+                "remain_number":1,
+                "living_room":"one room",
+                "index":[
+                    "house_3"
+                ],
+                "size":"60.92-61.8",
+                "cost":"1830"
+            },
+            "available":true
+        },
+        "community_2":{
+            "community_id":"community_2",
+            "community_name":"jinkejiayuan",
+            "location":"北京市大兴区永旺路1号",
+            "en_location":"No. 1 Yongwang Road, Daxing District, Beijing",
+            "value_inch":34,
+            "sum_num":1,
+            "sum_remain_num":1,
+            "description":"The green area of the community should account for more than 30% of the total land area, and the central urban area should not be less than 25%.",
+            "nearby_info":"This commnunity is surrounded by: Metro includes biomedical base; supermarkets include Sure Beauty Fresh Life Supermarket (Jinke Tianwei Store), Tiangong Courtyard Convenience Store; shopping malls include Yuejie Times Square, Longhu Beijing Daxing Tianjie; parks include Yongxing River Wetland Park; schools include Daxing Experimental Primary School affiliated to Beijing Education College (Merging Campus), Tsinghua University School Primary School; restaurants include Fan Laoman (Tiangong Courtyard Store), Xinlong Sijiu Meat (Tiangong Courtyard Store); banks include Beijing Rural Commercial Bank 24-hour Self-help Bank (Beibei Village Branch), Beijing Daxing Jiuiyin Village Bank (Tiangong Courtyard Branch); .This commnunity does not have: Hospital,",
+            "small_house":{
+                "remain_number":1,
+                "living_room":"zero room",
+                "index":[
+                    "house_12"
+                ],
+                "size":"27.76-44.62",
+                "cost":"952-1517"
+            },
+            "available":true
+        }
+    }
+}

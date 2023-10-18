@@ -6,6 +6,9 @@ from LLM_PublicHouseAllocation.tenant.langchain_tenant import LangchainTenant
 import json
 from LLM_PublicHouseAllocation.manager import TenantManager,ForumManager
 from LLM_PublicHouseAllocation.involvers import System,Tool,Search_forum_topk,LogRound
+from LLM_PublicHouseAllocation.llms import APIKeyPool
+from LLM_PublicHouseAllocation.global_score import Global_Score
+
 from . import env_registry as EnvironmentRegistry
 from .base import BaseEnvironment
 import copy
@@ -34,6 +37,13 @@ class RentEnvironment(BaseEnvironment):
     # 对于社交网络信息的主键
     key_social_net = 0
     
+    # 对于api调换的Loader类
+    llm_loader:APIKeyPool
+    
+    
+    # rating benchmark
+    global_score: Global_Score
+    
     class Config:
         arbitrary_types_allowed = True
 
@@ -43,7 +53,7 @@ class RentEnvironment(BaseEnvironment):
 
     def line_up(self):
         self.deque_dict=self.rule.generate_deque(self)
-
+        
     def broadcast(self):
         self.tenant_manager.broadcast(self.system)
         self.tenant_manager.broadcast_rule(self.rule) # 公布排队规则
@@ -59,75 +69,93 @@ class RentEnvironment(BaseEnvironment):
     def is_done(self) -> bool:
         """Check if the environment is done"""
         self.system.community_manager.publish_house(self.cnt_turn)
+        self.rule.order.enter_waitlist(self)
         self.log.step()
         if (self.save_log):
             self.log.save_data() # 每一步的log
-            
-        cur,fur = self.system.community_manager.split(self.system.community_manager.get_available_community_info())
+
         self.cnt_turn += 1
         
         if self.cnt_turn > self.max_turns:
             if(self.save_log): # 整体系统的log，仅在退出时save
                 self.system.save_data()
                 self.forum_manager.save_data()
-                self.log.evaluation_matrix(self.tenant_manager)
+                #self.log.evaluation_matrix(self.tenant_manager)
             return True
         elif  self.rule.are_all_deques_empty(self):
             if(self.save_log):
                 self.system.save_data()
                 self.forum_manager.save_data()
-                self.log.evaluation_matrix(self.tenant_manager)
+                #self.log.evaluation_matrix(self.tenant_manager,self.global_score,self.system)
             return True
         else:
             return False
         
-
-    #test 测试用 要改
-    def communication(self, communication_num = 3):
-        tenant_ids = list(self.tenant_manager.data.keys())
-        
-        c_num = 0
-        while (len(tenant_ids) > 0 and c_num < communication_num):
-            tenant_id = tenant_ids[0]
-            tenant_ids.pop(0)
+    async def communication_one(self,tenant_id,c_num):
+            """
+            the async run parse of tenant(tenant_id) communication.
+            return: the receivers, self(if continue_communication)
+            """
             tenant = self.tenant_manager.data[tenant_id]
+            
             if isinstance(tenant, LangchainTenant):
-                continue_communication, self.key_social_net = asyncio.run(tenant.async_communication(self.forum_manager, 
-                                                                                self.system,
-                                                                                self.rule,
-                                                                                self.log,
-                                                                                c_num,
-                                                                                self.key_social_net))
-                receiver_ids = self.update_social_net(tenant=tenant) # 先把receiver放进communication队列
-                for r_id in receiver_ids:
-                    if (r_id) not in tenant_ids:
-                        tenant_ids.append(r_id)
-                if (continue_communication): tenant_ids.append(tenant_id)
-            else:
-                raise NotImplementedError("Tenant type {} not implemented".format(tenant.__class__))
-            
-            c_num += 1 
-        self.set_tenant_memory_log() ## log
-            
+                tenant=await self.llm_loader.get_key(tenant)
         
-
-    def step(self):
-        tenant_list = self.rule.get_next_agent_idx(self)
-        for tenant in tenant_list:
-            tenant_id = tenant.id
-            if isinstance(tenant, LangchainTenant):
-                choose_state= tenant.choose_process(self.forum_manager, self.system, self.rule,self.tool, self.log)
-            elif isinstance(tenant,BaseMultiPromptTenant):
-                choose_state = tenant.choose(self.forum_manager, self.system, self.log)
-            else:
-                raise NotImplementedError("Tenant type {} not implemented".format(tenant.__class__))
-            if not choose_state: # 不判断是否available
-                self.rule.requeue(self,tenant)
+                continue_communication = await tenant.async_communication(self.forum_manager, 
+                                                            self.system,
+                                                            self.rule,
+                                                            self.log,
+                                                            c_num,
+                                                            self.key_social_net)
                 
-            self.log.set_one_tenant_choose_process(tenant_id)
-            self.update_social_net(tenant=tenant)
+                receiver_ids = self.update_social_net(tenant=tenant) # 先把receiver放进communication队列
+                tenant=await self.llm_loader.release_key(tenant)
+                return [receiver_ids,continue_communication]
+            else:
+                raise NotImplementedError("Tenant type {} not implemented".format(tenant.__class__))
+    #test 测试用 要改
+    async def communication(self, communication_num = 3):
+        tenant_ids = list(self.tenant_manager.data.keys())        
+        c_num = 0
+        while(len(tenant_ids) > 0 and c_num < communication_num):
+            return_ids_list = await asyncio.gather(*[self.communication_one(tenant_id,c_num) for c_num,tenant_id in enumerate(tenant_ids)])
+            c_num += len(tenant_ids)
+            tenant_ids_temp = copy.deepcopy(tenant_ids)
+            tenant_ids = []
+            
+            for idx,return_ids in enumerate(return_ids_list):
+                receiver_ids = receiver_ids[0]
+                continue_communication = receiver_ids[1]
+                for receiver_id in receiver_ids:
+                    if receiver_id not in tenant_ids:
+                        tenant_ids.append(receiver_id)
+                if continue_communication and tenant_ids_temp[idx] not in tenant_ids:
+                    tenant_ids.append(tenant_ids_temp[idx])
+                        
+        self.set_tenant_memory_log() ## log
+    
+    async def tenant_step(self,tenant):
+        tenant=self.llm_loader.get_key(tenant)
+        if isinstance(tenant, LangchainTenant):
+            choose_state= await tenant.choose_process(self.forum_manager, self.system, self.rule,self.tool, self.log)
+        elif isinstance(tenant,BaseMultiPromptTenant):
+            choose_state = tenant.choose(self.forum_manager, self.system, self.log)
+        else:
+            raise NotImplementedError("Tenant type {} not implemented".format(tenant.__class__))
+        tenant=self.llm_loader.release_key(tenant)
+        if not choose_state: # 不判断是否available
+            self.rule.requeue(self,tenant)
+        self.log.set_one_tenant_choose_process(tenant.id)
+        self.update_social_net(tenant=tenant)
+    
 
-        
+    async def step(self):
+        tenant_waitlists = self.rule.get_next_agent_idx(self)
+                    
+        while not all(len(waitlist)==0 for waitlist in tenant_waitlists):
+            # change tenant api
+            first_tenant = [waitlist[0] for waitlist in tenant_waitlists if waitlist]
+            await asyncio.gather(*[self.tenant_step(tenant) for tenant in first_tenant])
 
     
     def group(self):

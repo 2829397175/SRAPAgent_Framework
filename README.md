@@ -23,8 +23,13 @@ LangchainTenant框架：
 6. log_round 添加rating存储的接口 √
 
 7. log_round 添加计算rating的matrix接口
-    对于每个人，分别存储各个指标
+    对于每个人，分别存储各个指标 √
 
+8. 对于social network ui； back button 的添加： 不好加，用的generator
+
+9. api pool: 在初始化的时候，使用环境内的api key；在实际调用的时候采用llm_loader进行api修改 √
+
+10. key social network: 在运行的过程中，对于memory和prompt的对应记录
 
 
 流程图(outdated)

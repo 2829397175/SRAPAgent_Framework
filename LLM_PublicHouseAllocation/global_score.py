@@ -7,12 +7,16 @@ from LLM_PublicHouseAllocation.manager import TenantManager,HouseManager
 from LLM_PublicHouseAllocation.involvers import System
 from typing import Optional
 import re
+
+from tqdm import tqdm
+
 class Global_Score(BaseModel):
     tenant_manager:Optional[TenantManager]=None
     system:Optional[System]=None
     save_dir:str=""
     result:dict={}
     llm: Optional[LLMChain]=None
+    
     @classmethod
     def initialization(
         cls,
@@ -69,8 +73,24 @@ class Global_Score(BaseModel):
             llm=chain
         )
     
+    @classmethod   
+    def load_from_json(cls,
+                       tenant_manager,
+                       system,
+                       json_path):
+        with open(json_path,'r',encoding = 'utf-8') as f:
+            result=json.load(f)
+        return cls(
+            tenant_manager=tenant_manager,
+            system=system,
+            save_dir=json_path,
+            result=result,
+            llm=None
+        )
+        
+    
     def rate_score(self):
-        for tenant_id,tenant in self.tenant_manager.data.items():
+        for tenant_id,tenant in tqdm(self.tenant_manager.data.items(),desc="Rating the score of houses."):
             self.result[tenant_id]={}
             for house_id,_ in self.system.house_manager.data.items():
                 input={
@@ -105,4 +125,6 @@ class Global_Score(BaseModel):
             json.dump(self.result, file, indent=4,separators=(',', ':'),ensure_ascii=False)
 
 
+    def get_result(self):
+        return self.result
      

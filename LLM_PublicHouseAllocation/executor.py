@@ -8,6 +8,9 @@ from .initialization import (load_environment,
                              load_manager,
                              prepare_task_config)
 from LLM_PublicHouseAllocation.global_score import Global_Score
+from LLM_PublicHouseAllocation.llms import APIKeyPool
+
+
 logging.basicConfig(format='%(asctime)s - %(levelname)s - %(name)s - %(message)s', datefmt='%m/%d/%Y %H:%M:%S', level=logging.INFO)
 
 openai_logger = logging.getLogger("openai")
@@ -49,15 +52,23 @@ class Executor():
         
         save_log = task_config.pop("save_log",True)
         
-        tenant_manager = load_manager({**manager_configs.pop('tenant'),
+        tenant_configs = manager_configs.pop('tenant')
+        tenant_llm_configs = tenant_configs["llm"]       
+        communication_llm_configs = tenant_configs["memory"]["llm"]       
+        
+        llm_loader = APIKeyPool()
+        
+        tenant_manager = load_manager({**tenant_configs,
                                        "save_dir": os.path.join(save_dir,"tenant.json")
                                        },'tenant')
+        
         #print(tenant_manager)
         house_manager = load_manager({**manager_configs.pop('house'),
                                      "save_dir": os.path.join(save_dir,"house.json")
                                        },'house')
         community_manager = load_manager({**manager_configs.pop('community'),
-                                         "save_dir": os.path.join(save_dir,"community.json")
+                                         "save_dir": os.path.join(save_dir,"community.json"),
+                                         "distribution_batch_dir":os.path.join(task_path,"data/distribution_batch.json")
                                        },'community')
         forum_manager = load_manager({**manager_configs.pop('forum'),
                                       "save_dir": os.path.join(save_dir,"forum.json")
@@ -66,6 +77,7 @@ class Executor():
         system = System(house_manager=house_manager,
                 community_manager=community_manager)
         env_config = task_config.pop('environment')
+        env_config['llm_loader'] = llm_loader
         env_config['system'] = system
         env_config['tenant_manager'] = tenant_manager
         env_config["forum_manager"] = forum_manager
@@ -75,10 +87,6 @@ class Executor():
             env_config['tool'] = tool
         else:
             env_config['tool'] = None
-
-        environment = load_environment({**env_config,
-                                        "save_log":save_log})
-        
         
         save_evaluation_dic = os.path.join(task_path,
                                 f"global_evaluation")
@@ -87,9 +95,18 @@ class Executor():
         save_evaluation_dir = os.path.join(save_evaluation_dic,
                                 f"global_score.json") 
         if not os.path.exists(save_evaluation_dir):
-            global_score=Global_Score.initialization(tenant_manager,system,save_dir=save_evaluation_dir)
+            global_score = Global_Score.initialization(tenant_manager,system,save_dir=save_evaluation_dir)
             global_score.rate_score()
             global_score.save_score()
+        else:
+            global_score = Global_Score.load_from_json(tenant_manager,system,json_path=save_evaluation_dir)
+        
+        env_config['global_score'] = global_score
+        
+        environment = load_environment({**env_config,
+                                        "save_log":save_log})
+        
+        
         return cls(environment)
 
     def run(self):
@@ -106,9 +123,15 @@ class Executor():
         self.environment.broadcast()
         
         while not self.environment.is_done():
-            #self.environment.communication(communication_num = 3) #测试用
+            # asyncio.run(self.environment.communication(communication_num = 3))#测试用
+            #loop = asyncio.get_event_loop()
+            # loop.run_until_complete(self.environment.communication(communication_num = 3))
+            # loop.run_until_complete(self.environment.step())
+            asyncio.run(self.environment.communication(communication_num = 3))
+            asyncio.run(self.environment.step())
             #if self.environment.cnt_turn>3:
-            self.environment.step()
+            #self.environment.step()
+            
 
     def reset(self):
         self.environment.reset()
@@ -117,3 +140,9 @@ class Executor():
     #     """Run the environment for one step and return the return message."""
     #     return_message = asyncio.run(self.environment.step())
     #     return return_message
+    
+    def test(self):
+        for _,tenant in self.environment.tenant_manager.data.items():
+            tenant2=self.environment.llm_loader.get_key(tenant)
+            tenant2
+       

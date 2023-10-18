@@ -3,12 +3,33 @@ from tkinter import messagebox, simpledialog
 import os
 import json
 class App:
-    def __init__(self, dir_path, saving_path):
-        assert os.path.exists(dir_path),"no such file path: {}".format(dir_path)
-        with open(dir_path,'r',encoding = 'utf-8') as f:
-            self.data_list = json.load(f)
-        self.dir_path=dir_path
-        self.saving_path = saving_path
+    def __init__(self, 
+                 dir_path = None, 
+                 saving_path = None):
+        if dir_path ==None:
+            dir_path = f"./data"
+            assert os.path.exists(dir_path),f"The data directory :{dir_path} doesn't exist!!"
+            data_files = os.listdir(dir_path)
+            self.data_list = []
+            for data_file in data_files:
+                data_path = os.path.join(dir_path,data_file)
+                with open(data_path,'r',encoding = 'utf-8') as f:
+                   self.data_list.extend(json.load(f))
+            self.dir_path=dir_path 
+        else:
+            assert os.path.exists(dir_path),"no such file path: {}".format(dir_path)
+            with open(dir_path,'r',encoding = 'utf-8') as f:
+                self.data_list = json.load(f)
+            self.dir_path=os.path.dirname(dir_path)
+            
+        if saving_path == None:
+            import time
+            self.saving_path = f"./result"
+            if not os.path.exists(self.saving_path):
+                os.makedirs(self.saving_path)
+            
+        else:
+            self.saving_path = saving_path
         # for data in self.data_list:
         #     #testflag表示是否被标注过
         #     data["testflag"]=False
@@ -18,11 +39,16 @@ class App:
         #     data["turingflag"]=False
         # #self.data_list=dir_path
         self.index = 0
-        self.create_window()
-        
-    def create_window(self):
         self.window = tk.Tk()
         self.window.title("Check Consistency")
+        
+        self.create_prompt_frame()
+        
+        
+
+        
+        
+    def create_prompt_frame(self):
         
         self.prompt_frames = []
         row_counter = 0
@@ -70,8 +96,8 @@ class App:
         self.reject_button = tk.Button(button_frame, text="Robot Response", command=self.reject)
         self.reject_button.pack(side=tk.LEFT, padx=10)
         
-        self.reject_button = tk.Button(button_frame, text="Back", command=self.back)
-        self.reject_button.pack(side=tk.LEFT, padx=10)
+        self.back_button = tk.Button(button_frame, text="Back", command=self.back)
+        self.back_button.pack(side=tk.LEFT, padx=10)
         
         self.save_button = tk.Button(button_frame, text="Save Response", command=self.save_response)
         self.save_button.pack(side=tk.LEFT, padx=10)
@@ -177,26 +203,32 @@ class App:
         # 保存 data_list（在这个例子中我们只是将其打印到控制台）
         
         finished_QA_result = []
-        if os.path.exists(self.saving_path):
-            with open(self.saving_path,'r',encoding = 'utf-8') as f:
-                finished_QA_result = json.load(f)
+        # if os.path.exists(self.saving_path):
+        #     with open(self.saving_path,'r',encoding = 'utf-8') as f:
+        #         finished_QA_result = json.load(f)
         unfinished_QA_result=[]
         for data in self.data_list:
-            if data["testflag"]!=None and data["turingflag"]!=None:
+            if data.get("testflag",None)!=None and data.get("turingflag",None)!=None:
                 finished_QA_result.append(data)
-            elif data["testflag"]!=None:
+            elif data.get("testflag",None)!=None:
                 del data["testflag"]
                 unfinished_QA_result.append(data)
-            elif data["turingflag"]!=None:
+            elif data.get("turingflag",None)!=None:
                 del data["turingflag"]
                 unfinished_QA_result.append(data)
             else:
                 unfinished_QA_result.append(data)
-        with open(self.saving_path, 'w', encoding='utf-8') as file:
+        import time
+        saving_path_dir = os.path.join(self.saving_path,f"{time.time()}")
+        os.makedirs(saving_path_dir)
+        finished_json_dir = os.path.join(saving_path_dir,"finished_QA_result.json")
+        with open(finished_json_dir, 'w', encoding='utf-8') as file:
             json.dump(finished_QA_result, file, indent=4,separators=(',', ':'),ensure_ascii=False)
             
-        with open(self.dir_path, 'w', encoding='utf-8') as file:
-            json.dump(unfinished_QA_result, file, indent=4,separators=(',', ':'),ensure_ascii=False)
+        if (len(unfinished_QA_result)>0):
+            unfinished_json_dir = os.path.join(saving_path_dir,"unfinished_QA_result.json")
+            with open(unfinished_json_dir, 'w', encoding='utf-8') as file:
+                json.dump(unfinished_QA_result, file, indent=4,separators=(',', ':'),ensure_ascii=False)
         # 关闭窗口
         self.window.destroy()
         
@@ -215,10 +247,11 @@ class App:
         self.show_data()
         
     def back(self):
-        del self.data_list[self.index]["testflag"]
-        del self.data_list[self.index]["turingflag"]
+        # del self.data_list[self.index]["testflag"]
+        # del self.data_list[self.index]["turingflag"]
         self.index  -= 1
         self.show_data()
+        
     def save_response(self):
         # Open a dialog to input the response
         
@@ -294,6 +327,7 @@ if __name__ == "__main__":
 
     # 图灵测试部分：
     
-    data_dir = "LLM_PublicHouseAllocation/LLM_decision_test/test/saving_QA2.json"
-    saving_dir = "LLM_PublicHouseAllocation/LLM_decision_test/test/finished_saving_QA.json"
-    app = App(data_dir,saving_path = saving_dir)
+    # data_dir = "LLM_PublicHouseAllocation/LLM_decision_test/test/saving_QA2.json"
+    # saving_dir = "LLM_PublicHouseAllocation/LLM_decision_test/test/finished_saving_QA.json"
+    # app = App(data_dir,saving_path = saving_dir)
+    app = App()
