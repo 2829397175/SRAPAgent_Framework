@@ -41,7 +41,8 @@ class TenantManager(BaseManager):
         
         tenants = {}
         if base_config.get("type_tenant") == "LangchainTenant":
-            llm_base = load_llm(base_config.pop('llm'))
+            #llm_base = load_llm(base_config.pop('llm'))
+            llm_base=None
             memory_config = base_config.pop('memory')
             max_choose = base_config.pop('max_choose')
             choose_rating = base_config.pop('choose_rating')

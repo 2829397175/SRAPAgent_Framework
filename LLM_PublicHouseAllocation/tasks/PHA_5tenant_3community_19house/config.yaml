@@ -11,7 +11,7 @@ environment:
   rule:
     order:
       # type: priority
-      type: waitlist
+      type: kwaitlist
       # type: rent
     updater:
       type: rent

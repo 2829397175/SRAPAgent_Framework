@@ -11,6 +11,7 @@ class CommunityManager(BaseManager):
         manage infos of different community.
     """
     total_community_datas:dict={}
+    distribution_batch_data:dict={}
     @classmethod
     def load_data(cls,
                   data_dir,
@@ -19,29 +20,46 @@ class CommunityManager(BaseManager):
         assert os.path.exists(data_dir),"no such file path: {}".format(data_dir)
         with open(data_dir,'r',encoding = 'utf-8') as f:
             total_community_datas = json.load(f)
-            
-        # publish_order = kwargs.pop("publish_order",False)
-        # id_ = 0
-        # community_datas=total_community_datas["0"]
-        # for community_name, community_info in community_datas.items():
-        #     if publish_order:
-        #         community_info["available"] = False
-        #         if (id_ == 0):
-        #             community_info["available"] = True
-        #             id_+=1
-        #     else:
-        #         community_info["available"] = True
+        with open(kwargs["distribution_batch_dir"],'r',encoding = 'utf-8') as f:
+            distribution_batch_data = json.load(f)
 
         return cls(
             total_community_datas=total_community_datas,
             data = {},
+            distribution_batch_data=distribution_batch_data,
             data_type= "community_data",
             save_dir= kwargs["save_dir"]
             )
+        
+    def get_house_info(self,house_id):
+        for community in self.total_community_datas.values():
+            for house_type in ['large_house','middle_house', 'small_house']:
+                if house_type in community and house_id in community[house_type]['index']:
+                    house_info = community.copy()
+                    house_info[house_type] = community[house_type].copy()
+                    house_info[house_type]['index'] = [house_id]
+                    house_info[house_type]['remain_number'] = 1
+                    house_info['sum_num'] = 1
+                    house_info['sum_remain_num'] = 1
+                    house_info['available']=True
+                    #删除其他房型的内容
+                    house_type_list=['large_house','middle_house', 'small_house']
+                    house_type_list.remove(house_type)
+                    
+                    for other_type in house_type_list:
+                        if other_type in house_info:
+                            del house_info[other_type]
+                    return house_info
+        return None
+        
     def merge_community_info(self,com_a, com_b):
+        if com_a=={}:
+            return com_b
+        if com_b=={}:
+            return com_a
         # 创建一个新的空字典用于存储合并后的信息
         merged_community = {}
-
+    
         # 合并sum_num和sum_remain_num
         merged_community["sum_num"] = com_a["sum_num"] + com_b["sum_num"]
         merged_community["sum_remain_num"] = com_a["sum_remain_num"] + com_b["sum_remain_num"]
@@ -70,35 +88,28 @@ class CommunityManager(BaseManager):
             merged_community[key] = com_a[key]
             
         return merged_community
-    
-    def add_community_pool(self,cur_pool,add_com):
-        if cur_pool=={}:
-            for _,c_info in add_com.items():     
-                c_info["available"]=True
-            return add_com
-        elif add_com=={}:
-            return cur_pool
-        for community_id,community_info in add_com.items():
-            if community_id in cur_pool:
-                cur_pool[community_id]=self.merge_community_info(cur_pool[community_id],community_info)
-                cur_pool[community_id]["available"]=True
-            else:
-                cur_pool[community_id]=community_info
-                cur_pool[community_id]["available"]=True
-        return cur_pool
+    #为队列添加房子
+    def add_community_pool(self,add_pool):
+        for queue_name,house_pool in add_pool.items():
+            if queue_name not in self.data:
+                self.data[queue_name]={}
+            for house_id in house_pool:
+                house_info=self.get_house_info(house_id)
+                if house_info["community_id"] not in self.data[queue_name]:
+                    self.data[queue_name][house_info["community_id"]]={}
+                self.data[queue_name][house_info["community_id"]]=self.merge_community_info(self.data[queue_name][house_info["community_id"]],house_info)
     
     def publish_house(self,cnt_turn):
-        
-        if str(cnt_turn) in self.total_community_datas.keys():
-            self.data=self.add_community_pool(self.data,self.total_community_datas[str(cnt_turn)])
+        if str(cnt_turn) in self.distribution_batch_data.keys():
+            self.add_community_pool(self.distribution_batch_data[str(cnt_turn)])
             print(" 发布新房子了!!!!!\n")
+    #查看每个池子的大小
+    def get_pool_num(self):
+        pool_num_dict={}
+        for pool_name,pool in self.data.items():
+            pool_num_dict[pool_name]=len(pool)
+        return pool_num_dict
     
-    # def publish_community(self, k=1):
-    #     for community_id, community in self.data.items():
-    #         if community["available"] == False and community["sum_remain_num"] >0 and k>0:
-    #             community["available"]= True
-    #             k-=1
-    #             print(community["community_name"]+"  发布新房子了!!!!!\n")
     
     def community_str(self,curcommunity_list,furcommunity_list):
         len_curcommunity= len(curcommunity_list)
@@ -181,8 +192,14 @@ The {housetype} in {community_id} is a {living_room} apartment, with an area of 
     
 
 
-    def get_house_type(self, community_id,house_types):
-        community_infos = self.data[community_id]
+    def get_house_type(self, community_id,house_types,queue_name):
+        community_whole_info = self.data.get(queue_name)
+        if community_whole_info== None:
+            return ""
+        community_infos=community_whole_info.get(community_id)
+        if community_infos== None:
+            return ""
+        
         #house_types = self.get_available_house_type(community_id)
         house_type_infos = {}
         for house_type in house_types:
@@ -191,9 +208,9 @@ The {housetype} in {community_id} is a {living_room} apartment, with an area of 
 
         len_house_type = len(house_type_infos)
         template = """{index}:
-This type house's rent is around {mean_cost},\
-and it's square footage is around {mean_size}.\
-There remains {remain_num} houses of this type."""
+            This type house's rent is around {mean_cost},\
+            and it's square footage is around {mean_size}.\
+            There remains {remain_num} houses of this type."""
 
         house_types_str = [
             template.format(index=house_type_idx,
@@ -209,27 +226,31 @@ There remains {remain_num} houses of this type."""
 
         return str_house_type_description
     
-    def jug_community_housetype_valid(self,community_id,housetype,house_type_ids):
-        community_infos = self.data.get(community_id)
-
-        if community_infos!=None and community_infos["available"] and housetype in community_infos and community_infos[housetype]["remain_number"] > 0 and housetype in house_type_ids:
+    def jug_community_housetype_valid(self,community_id,housetype,house_type_ids,queue_name):
+        community_infos = self.data.get(queue_name)
+        if community_infos==None:
+            return False
+        community_info = community_infos.get(community_id)
+        
+        if community_info!=None and community_info["available"] and housetype in community_info and community_info[housetype]["remain_number"] > 0 and housetype in house_type_ids:
             return True
         else:
             return False
         
-    def jug_community_valid(self,community_id,community_ids):
-        return community_id in community_ids and community_id in self.data.keys() and \
-            self.data[community_id].get("available",False)
+    def jug_community_valid(self,community_id,community_ids,queue_name):
+        
+        return community_id in community_ids and self.data.get[queue_name]!=None and community_id in self.data[queue_name].keys() and \
+            self.data[queue_name][community_id].get("available",False)
             
 
     
-    def get_filtered_house_ids(self, community_id, house_types: Union[list,str] ):
+    def get_filtered_house_ids(self, community_id,queue_name, house_types: Union[list,str] ):
         """
         filter from house_type (large/small/middle)
         """
         if not isinstance(house_types,list):
             house_types = [house_types]
-        community_infos = self.data[community_id]
+        community_infos = self.data[queue_name][community_id]
         house_indexs = [community_infos[filter_key].get('index', []) for filter_key in house_types]
 
         house_indexs_concat = []
@@ -238,18 +259,27 @@ There remains {remain_num} houses of this type."""
         return house_indexs_concat
 
 
-    def get_available_house_type(self,community_id):
+    def get_available_house_type(self,community_id,queue_name):
         house_types=[]
-        community_info = self.data.get(community_id,{})
+        queue_community_info = self.data.get(queue_name,{})
+        community_info=queue_community_info.get(community_id,{})
         if community_info.get("sum_remain_num",0)>  0 :
             for housetype,housetype_att in list(community_info.items()):
                 if isinstance(housetype_att, dict) and 'remain_number' in housetype_att and housetype_att['remain_number'] > 0:
                         house_types.append(housetype)
         return house_types
 
-    def get_available_community_info(self):
-        community_infos=deepcopy(self.data)
+    def get_available_community_info(self,queue_name=None):
+        if queue_name==None:
+            community_list=[]
+            for _ ,community_info in self.total_community_datas.items():
+               community_list.append(community_info)
+            return community_list 
+        if self.data.get(queue_name)==None:
+            return []
+        community_infos=deepcopy(self.data[queue_name])
         community_list=[]
+        
         for community_id, community_info in list(community_infos.items()):
             if  community_info["sum_remain_num"] >  0 :
                 for housetype,housetype_att in list(community_info.items()):
@@ -271,8 +301,13 @@ There remains {remain_num} houses of this type."""
                 future_infos.append(community_info)
         return current_infos, future_infos
 
-    def correct_update_remain_num(self, community_id, house_id):
-        community_info = self.data[community_id]
+    def correct_update_remain_num(self, community_id, queue_name,house_id):
+        if self.data.get(queue_name)==None:
+            return False
+        if self.data[queue_name].get(community_id)==None:
+            return False
+        community_info = self.data[queue_name][community_id]
+        
         if community_info["available"] == True and community_info["sum_remain_num"] >= 1:
             for key, value in list(community_info.items()):
                 if isinstance(value, dict) and house_id in value["index"] and value["remain_number"] > 0:
@@ -301,26 +336,26 @@ There remains {remain_num} houses of this type."""
         with open(self.save_dir, 'w', encoding='utf-8') as file:
             json.dump(self.data, file, indent=4,separators=(',', ':'),ensure_ascii=False)
 
-    def set_chosed_house(self,house_id,community_id,house_types:Union[list,str]):
+    def set_chosed_house(self,house_id,community_id,queue_name,house_types:Union[list,str]):
         if not isinstance(house_types,list):
             house_types = [house_types]
-        self.data[community_id]["sum_remain_num"]=self.data[community_id].get("sum_remain_num",1) - 1
+        self.data[queue_name][community_id]["sum_remain_num"]=self.data[queue_name][community_id].get("sum_remain_num",1) - 1
         for filter_id in house_types:
-            self.data[community_id][filter_id]["remain_number"] \
-            = self.data[community_id][filter_id].get("remain_number",1) - 1
+            self.data[queue_name][community_id][filter_id]["remain_number"] \
+            = self.data[queue_name][community_id][filter_id].get("remain_number",1) - 1
             if house_id in self.data[community_id][filter_id]['index']:
-                self.data[community_id][filter_id]['index'].remove(house_id)
+                self.data[queue_name][community_id][filter_id]['index'].remove(house_id)
 
     
-    def get_available_community_ids(self) -> List[str]:
-        community_data = self.data
-        community_ids = self.data.keys()
+    def get_available_community_ids(self,queue_name) -> List[str]:
+        community_data = self.data[queue_name]
+        community_ids = self.data[queue_name].keys()
         available_ids=list(filter(lambda community_id:community_id in community_data.keys() \
             and community_data[community_id].get("available",False), community_ids))
 
         return available_ids
     
-    def get_system_competiveness_description(self) -> str:
+    def get_system_competiveness_description(self,queue_name) -> str:
         description_general={
             "large_portion":"The {c_name} has been almost fully selected.",
             "small_portion": "A small portion of properties in {c_name} have been selected.",
@@ -330,17 +365,19 @@ There remains {remain_num} houses of this type."""
         available_c_ids = self.get_available_community_ids()
         system_competiveness_description = []
         for c_id in available_c_ids:
-            chosen_portion = self.data[c_id].get("sum_remain_num",0)/self.data[c_id].get("sum_num",1)
+            chosen_portion = self.data[queue_name][c_id].get("sum_remain_num",0)/self.data[queue_name][c_id].get("sum_num",1)
             if (chosen_portion ==0):
                 system_competiveness_description.append(description_general["none"].format(
-                    c_name = f"{c_id}({self.data[c_id].get('community_name')})"
+                    c_name = f"{c_id}({self.data[queue_name][c_id].get('community_name')})"
                     ))
             elif (chosen_portion >0.5):
                 system_competiveness_description.append(description_general["large_portion"].format(
-                    c_name = f"{c_id}({self.data[c_id].get('community_name')})"
+                    c_name = f"{c_id}({self.data[queue_name][c_id].get('community_name')})"
                     ))
             else:
                 system_competiveness_description.append(description_general["small_portion"].format(
-                    c_name = f"{c_id}({self.data[c_id].get('community_name')})"
+                    c_name = f"{c_id}({self.data[queue_name][c_id].get('community_name')})"
                     ))
         return " ".join(system_competiveness_description)
+    
+    
