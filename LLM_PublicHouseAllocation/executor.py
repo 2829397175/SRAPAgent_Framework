@@ -127,7 +127,8 @@ class Executor():
             #loop = asyncio.get_event_loop()
             # loop.run_until_complete(self.environment.communication(communication_num = 3))
             # loop.run_until_complete(self.environment.step())
-            asyncio.run(self.environment.communication(communication_num = 3))
+            # asyncio.run(self.environment.communication(communication_num = 3))
+            self.environment.communication(communication_num = 3)
             asyncio.run(self.environment.step())
             #if self.environment.cnt_turn>3:
             #self.environment.step()
@@ -141,8 +142,8 @@ class Executor():
     #     return_message = asyncio.run(self.environment.step())
     #     return return_message
     
-    def test(self):
-        for _,tenant in self.environment.tenant_manager.data.items():
-            tenant2=self.environment.llm_loader.get_key(tenant)
-            tenant2
+    # def test(self):
+    #     for _,tenant in self.environment.tenant_manager.data.items():
+    #         tenant2=self.environment.llm_loader.get_key(tenant)
+    #         tenant2
        

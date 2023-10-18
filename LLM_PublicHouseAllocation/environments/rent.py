@@ -99,7 +99,9 @@ class RentEnvironment(BaseEnvironment):
             tenant = self.tenant_manager.data[tenant_id]
             
             if isinstance(tenant, LangchainTenant):
-                tenant=await self.llm_loader.get_key(tenant)
+                m_llm,llm = self.llm_loader.get_llm(tenant)
+                tenant.reset_memory_llm(m_llm)
+                tenant.reset_llm(llm)
         
                 continue_communication = await tenant.async_communication(self.forum_manager, 
                                                             self.system,
@@ -109,23 +111,31 @@ class RentEnvironment(BaseEnvironment):
                                                             self.key_social_net)
                 
                 receiver_ids = self.update_social_net(tenant=tenant) # 先把receiver放进communication队列
-                tenant=await self.llm_loader.release_key(tenant)
+                self.llm_loader.release_llm(tenant)
+                
                 return [receiver_ids,continue_communication]
             else:
                 raise NotImplementedError("Tenant type {} not implemented".format(tenant.__class__))
+            
     #test 测试用 要改
-    async def communication(self, communication_num = 3):
+    def communication(self, communication_num = 3):
         tenant_ids = list(self.tenant_manager.data.keys())        
         c_num = 0
         while(len(tenant_ids) > 0 and c_num < communication_num):
-            return_ids_list = await asyncio.gather(*[self.communication_one(tenant_id,c_num) for c_num,tenant_id in enumerate(tenant_ids)])
+            async def run_parallel(tenant_ids):
+                return_ids_list = await asyncio.gather(*[self.communication_one(tenant_id,c_num) for c_num,tenant_id in enumerate(tenant_ids)])
+                return return_ids_list
+            
+            # loop = asyncio.get_event_loop()
+            # return_ids_list = loop.run_until_complete(run_parallel(tenant_ids=tenant_ids))
+            return_ids_list = asyncio.run(run_parallel(tenant_ids=tenant_ids))
             c_num += len(tenant_ids)
             tenant_ids_temp = copy.deepcopy(tenant_ids)
             tenant_ids = []
             
             for idx,return_ids in enumerate(return_ids_list):
-                receiver_ids = receiver_ids[0]
-                continue_communication = receiver_ids[1]
+                receiver_ids = return_ids[0]
+                continue_communication = return_ids[1]
                 for receiver_id in receiver_ids:
                     if receiver_id not in tenant_ids:
                         tenant_ids.append(receiver_id)
@@ -135,14 +145,20 @@ class RentEnvironment(BaseEnvironment):
         self.set_tenant_memory_log() ## log
     
     async def tenant_step(self,tenant):
-        tenant=self.llm_loader.get_key(tenant)
+        m_llm,llm = self.llm_loader.get_llm(tenant)
+        tenant.reset_memory_llm(m_llm)
+        tenant.reset_llm(llm)
+        
+        
         if isinstance(tenant, LangchainTenant):
             choose_state= await tenant.choose_process(self.forum_manager, self.system, self.rule,self.tool, self.log)
         elif isinstance(tenant,BaseMultiPromptTenant):
             choose_state = tenant.choose(self.forum_manager, self.system, self.log)
         else:
             raise NotImplementedError("Tenant type {} not implemented".format(tenant.__class__))
-        tenant=self.llm_loader.release_key(tenant)
+        
+        self.llm_loader.release_llm(tenant)
+        
         if not choose_state: # 不判断是否available
             self.rule.requeue(self,tenant)
         self.log.set_one_tenant_choose_process(tenant.id)

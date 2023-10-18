@@ -41,8 +41,9 @@ class TenantManager(BaseManager):
         
         tenants = {}
         if base_config.get("type_tenant") == "LangchainTenant":
-            #llm_base = load_llm(base_config.pop('llm'))
-            llm_base=None
+            tenant_llm_config = base_config.pop('llm')
+            llm_base = load_llm(**tenant_llm_config)
+
             memory_config = base_config.pop('memory')
             max_choose = base_config.pop('max_choose')
             choose_rating = base_config.pop('choose_rating')
@@ -73,7 +74,9 @@ class TenantManager(BaseManager):
                                                             work_place = tenant_config.get("work_place",""),
                                                             priority_item = priority_item,
                                                             family_num=tenant_config.get("family_members_num",0),
-                                                            choose_rating = choose_rating
+                                                            choose_rating = choose_rating,
+                                                            llm_config={"self":tenant_llm_config,
+                                                                        "memory":memory_config.get("llm",tenant_llm_config)}
                                                             )
                 tenants[tenant_id] = tenant
 

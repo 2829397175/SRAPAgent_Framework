@@ -70,13 +70,19 @@ class LangchainTenant(langchainAgent):
     # social_network: dict = {}
     mode : str ="choose" # 控制llm_chain 状态（reset_state中改）
     # 这个是为了更改llm_chain
-    llm:BaseLanguageModel
+    llm: BaseLanguageModel
     priority_item:dict = {}
     
     agentrule:AgentRule
     queue_name:str=""
     policy: BasePolicy
     choose_rating: bool = False
+    
+    
+    llm_config:dict={
+        "self":{},
+        "memory":{}
+    } # 存储llm的参数设置，为了后续改api用
     
     def __init__(self, rule, **kwargs):
         rule_config = rule
@@ -410,12 +416,13 @@ class LangchainTenant(langchainAgent):
         priority_item:dict={},
         family_num:int=0,
         choose_rating:bool = False,
+        llm_config:dict ={}
     ) -> langchainAgent:
         """Construct an agent from an LLM and tools."""
-        # llm_chain = LLMChain(
-        #     llm=llm,
-        #     prompt=prompt,
-        # )
+        llm_chain = LLMChain(
+            llm=llm,
+            prompt=prompt,
+        )
         
         memory = load_memory(memory_config = memory_config)
         return cls(
@@ -423,6 +430,7 @@ class LangchainTenant(langchainAgent):
             output_parser = output_parser,
             allowed_tools = allowed_tools,
             llm = llm,
+            llm_chain = llm_chain,
             id = id,
             name = name,
             rule = rule,
@@ -433,7 +441,8 @@ class LangchainTenant(langchainAgent):
             priority_item = priority_item,
             family_num=family_num,
             policy = policy,
-            choose_rating = choose_rating
+            choose_rating = choose_rating,
+            llm_config = llm_config
         )
         
     def reset(self):
@@ -474,7 +483,7 @@ You still have {chance_num} chances to choose house.\
             )
         return role_description
     
-    def action_plan(self,
+    async def action_plan(self,
                     actions:dict,
                     forum_manager,
                     system,
@@ -509,25 +518,26 @@ You still have {chance_num} chances to choose house.\
 
         self.reset_state(mode="action_plan")
         # response = await self.astep(prompt_inputs)
-        response = self.step(prompt_inputs).get("return_values",{})
+        response = await self.astep(prompt_inputs)
+        response = response.get("return_values",{})
 
         
         action = response.get("output","")
         thought = response.get("thought","")
         if action == "Search":
-            self.search_forum(forum_manager,
+            await self.search_forum(forum_manager,
                                 system,log_round)
             observation="I have searched some info on forum."
         elif action == "Publish":
-            self.publish_forum(forum_manager,
+            await self.publish_forum(forum_manager,
                                 system,
                                 log_round)
             observation="I have published some info on forum."
         elif action == "GroupDiscuss":
-            self.communicate(log=log_round,system=system)
+            await self.communicate(log=log_round,system=system)
             observation="I have discussed with my acquaintances."
         elif action == "Choose":
-            choose_state,choose_house_id = self.policy.choose_pipeline(
+            choose_state,choose_house_id = await self.policy.choose_pipeline(
                     tenant= self,
                     forum_manager=forum_manager,
                     system=system,
@@ -557,7 +567,7 @@ You still have {chance_num} chances to choose house.\
                                   ):
         
         # debug
-        return  self.communicate(log_round = log_round,
+        return  await self.communicate(log_round = log_round,
                                 system = system,
                                 round_index = round_index,
                                 key_social_network = key_social_network)
@@ -611,7 +621,7 @@ You still have {chance_num} chances to choose house.\
             "Choose":"Conduct the house choosing process",
             "Giveup":"do nothing"
             }
-        self.action_plan(actions=actions,
+        await self.action_plan(actions=actions,
                          forum_manager=forum_manager,
                          system=system,
                          log_round=log_round,
@@ -620,17 +630,17 @@ You still have {chance_num} chances to choose house.\
         # 进行1轮，先是否进行选房流程的判断，若否则直接返回
         
   
-    def communicate(self,log_round,system,round_index = 0, key_social_network=0):
+    async def communicate(self,log_round,system,round_index = 0, key_social_network=0):
         if len(self.memory.mail)>0:
             
             
-            return self.group_discuss_back(log_round=log_round,
+            return await self.group_discuss_back(log_round=log_round,
                                            system=system,
                                            round_index=round_index,
                                            key_social_network=key_social_network)   
         else:
             
-            return self.group_discuss(log_round=log_round,
+            return await self.group_discuss(log_round=log_round,
                                       system=system,
                                       round_index=round_index,
                                       key_social_network=key_social_network)
@@ -871,7 +881,7 @@ you're communicating with your acquaintances about house renting.""".format(name
             
         self_continue_dialogue = False
         for message in self.memory.mail:
-            memory = self.memory.memory_tenant("social_network_message_back",name=self.name)+self.infos.get("extra_info")
+            memory = self.memory.memory_tenant("social_network_message_back",name=self.name) + self.infos.get("extra_info")
             assert isinstance(message,Message)
             acquantice_name = list(message.sender.values())[0]
             acquantice_id = list(message.sender.keys())[0]
@@ -927,7 +937,8 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
                 print("SENDER:{name}".format(name=self.name)) #debug
                 
                 
-                response = await asyncio.gather(self.astep(prompt_inputs = prompt_inputs).get("return_values"))
+                response = await self.astep(prompt_inputs = prompt_inputs)
+                response = response.get("return_values")
                 
                 key_social_network = log_round.set_social_network(prompt_inputs,
                                      response,
@@ -1184,7 +1195,7 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
         
         return False,"None", thought_fail_choose
             
-    def choose_house_page(self, 
+    async def choose_house_page(self, 
                           log_round_houses:List[set],
                           house_infos, 
                           house_ids:list, 
@@ -1224,7 +1235,8 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
             #              step_type="house")
             
             self.reset_state(mode="choose")
-            response = self.step(prompt_inputs).get("return_values") # 这里不更新记忆，仅更新最后一步
+            response = await self.astep(prompt_inputs)
+            response = response.get("return_values") # 这里不更新记忆，仅更新最后一步
             # self.logger.debug("choose houses, tenant reponse:{}".format(response.get("output","")))
             # parse community choosing reponse
             
@@ -1264,7 +1276,7 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
         return False,"None", nochoose_memory_cache
 
         
-    def choose_house(self,
+    async def choose_house(self,
                      system,
                      community_id,
                      house_filter_ids:list, 
@@ -1275,7 +1287,7 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
                                                    queue_name=self.queue_name,
                                                    house_filter_ids=house_filter_ids)
         #log_round["house_available_description"] = []
-        house_infos=system.house_ids_to_infos(house_ids)            
+        house_infos = system.house_ids_to_infos(house_ids)            
         log_round.set_available_house_description(house_infos)
         mem_buffer = []
         tip = []
@@ -1283,7 +1295,7 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
         for round_retry in range(self.max_jug_time):
             if self.choose_rating:
                 choose_status,choose_id,choose_mem = \
-                self.choose_house_page_rating(log_round_houses=log_round_houses,
+                await self.choose_house_page_rating(log_round_houses=log_round_houses,
                                    house_infos=house_infos,
                                    house_ids=house_ids,
                                    page_size=20,
@@ -1292,7 +1304,7 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
             else:
                 
                 choose_status,choose_id,choose_mem = \
-                self.choose_house_page(log_round_houses=log_round_houses,
+                await self.choose_house_page(log_round_houses=log_round_houses,
                                    house_infos=house_infos,
                                    house_ids=house_ids,
                                    page_size=20,
@@ -1352,7 +1364,7 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
         return False,"None", thought_fail_choose
         
     
-    def choose_house_page_rating(self,
+    async def choose_house_page_rating(self,
                           log_round_houses:List[set],
                           house_infos, 
                           house_ids:list, 
@@ -1387,7 +1399,8 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
             #              step_type="house")
             
             self.reset_state(mode="choose_rating")
-            response = self.step(prompt_inputs).get("return_values") # 这里不更新记忆，仅更新最后一步
+            response = await self.astep(prompt_inputs)
+            response = response.get("return_values") # 这里不更新记忆，仅更新最后一步
             # self.logger.debug("choose houses, tenant reponse:{}".format(response.get("output","")))
             # parse community choosing reponse
             

@@ -13,6 +13,7 @@ from LLM_PublicHouseAllocation.manager import manager_registry
 from LLM_PublicHouseAllocation.environments import env_registry
 from LLM_PublicHouseAllocation.memory import SummaryMemory,ActionHistoryMemory
 from LLM_PublicHouseAllocation.tenant.agent_rule import AgentRule
+import copy
 
 
 
@@ -58,14 +59,18 @@ def load_memory(memory_config: Dict):
         raise NotImplementedError("Memory type {} not implemented".format(memory_type))
 
 
-def load_llm(llm_config: Dict):
+def load_llm(**llm_config):
+    llm_config_temp = copy.deepcopy(llm_config)
     llm_type = llm_config.get('llm_type', 'text-davinci-003')
     if llm_type == 'gpt-3.5-turbo':
-        return ChatOpenAI(**llm_config,openai_api_key="")
+        return ChatOpenAI(model_name= "gpt-3.5-turbo",
+                          **llm_config)
     elif llm_type == 'text-davinci-003':
-        return OpenAI(**llm_config,openai_api_key="")
+        return OpenAI(model_name="text-davinci-003",
+                      **llm_config)
     elif llm_type == 'gpt-3.5-turbo-16k-0613':
-        return OpenAI(**llm_config,openai_api_key="")        
+        return OpenAI(model_name="gpt-3.5-turbo-16k-0613",
+                      **llm_config)        
     else:
         #return OpenAI(**llm_config)
         raise NotImplementedError("LLM type {} not implemented".format(llm_type))

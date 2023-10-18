@@ -11,7 +11,7 @@ class BasePolicy(BaseModel):
                            "floor_type"]
     
     @abstractmethod
-    def choose_pipeline(self,
+    async def choose_pipeline(self,
                        tenant,
                        forum_manager, 
                         system, 
@@ -21,7 +21,7 @@ class BasePolicy(BaseModel):
         pass # return chooose_state, house_id.lower()
     
     @abstractmethod
-    def group(self,
+    async def group(self,
                 tenant,
                 forum_manager, 
                 system, 

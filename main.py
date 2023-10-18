@@ -20,5 +20,5 @@ args = parser.parse_args()  # 解析参数
 
 
 executor = Executor.from_task(args.task)
-executor.test()
-#executor.run()
+# executor.test()
+executor.run()

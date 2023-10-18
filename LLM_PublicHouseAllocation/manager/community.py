@@ -362,7 +362,7 @@ The {housetype} in {community_id} is a {living_room} apartment, with an area of 
             "none":"The {c_name} has not been chosen yet."
         } # 注：选完了的项目不会出现在description里面
         
-        available_c_ids = self.get_available_community_ids()
+        available_c_ids = self.get_available_community_ids(queue_name)
         system_competiveness_description = []
         for c_id in available_c_ids:
             chosen_portion = self.data[queue_name][c_id].get("sum_remain_num",0)/self.data[queue_name][c_id].get("sum_num",1)
