@@ -115,7 +115,8 @@ class LogRound(BaseModel):
         self.log_round["available_times"] = available_times
         
     def set_forum_conclusion(self,return_infos):
-        template = """{community_index}:{search_info}{get_shortest_commute_time_str}."""
+        template = """{community_index}:{search_info}
+It only takes {get_shortest_commute_time_str} to commute to my workplace."""
         
         return_infos_str = [template.format_map({"community_index":community_index,
                                                 **search_info}) 

@@ -67,6 +67,13 @@ class ActionHistoryMemory(BaseMemory,SummarizerMixin):
     
     social_network: dict = {} # id:{name:,view:,dialogues：List[Message]}
     
+    forum: dict = {"untrusted":{"buffer":[],
+                                "summary":[]},
+                   "trusted":{"buffer":[],
+                              "summary":[]},
+                   "buffer":[]} # untrusted, trusted, buffer
+    
+    
     # 设置各类消息的buffer大小数
     summary_threshold:int = 5 # 每次总结后，再多5条就触发一次总结 -> 记忆库内
     dialogue_threshold:int = 20 # 保证和各个熟人的记忆都在20条内（按照时间戳） -> social_network内
@@ -121,6 +128,9 @@ class ActionHistoryMemory(BaseMemory,SummarizerMixin):
                 buffer_step_pt[type_m] > self.summary_threshold:
                     self.summary_type_memory(type_message = type_m,
                                             receive = receive)
+        
+    def add_forum_message(self,messages: List[Message]):
+        self.forum["buffer"].append(messages)
                     
     def add_social_network_message(self, messages: List[Message],receive = False):
         if receive:
@@ -281,9 +291,9 @@ class ActionHistoryMemory(BaseMemory,SummarizerMixin):
                       "floor_type")
         
         TYPE_MEM={
-            "community":["search","community"],
+            "community":["community"],
             "house":["house"],
-            "search":["search","community"],# 搜索的话，需要关于小区的记忆（在search,community,social_network 中都有）
+            "search":["community"],# 搜索的话，需要关于小区的记忆（在search,community,social_network 中都有）
             **{key:[key] for key in house_attrs}
         } # 注 forum暂时只有小区消息
         
@@ -362,9 +372,10 @@ class ActionHistoryMemory(BaseMemory,SummarizerMixin):
         if social_network:
             
             # 在social_net 不加入信息时，不进行更改（房子的记忆改了也不进行更改）
-            type_messages = ["search","publish","community","house","house_type"]
+            type_messages = ["community","house","house_type"]
             memory_house_info = self.reflect_memory_multi_types(type_messages) 
-            memory_discussion = self.reflect_memory_social_network(memory_house_info,
+            memory_discussion = self.reflect_memory_forum(memory_house_info,name)
+            memory_discussion += self.reflect_memory_social_network(memory_house_info,
                                                                     name) 
 
             memory_return += memory_discussion # 这里 memory_house_info 不会加入记忆，
@@ -401,6 +412,11 @@ class ActionHistoryMemory(BaseMemory,SummarizerMixin):
         self.new_message = False
         return self.multi_message_summary
     
+    
+    def reflect_memory_forum(self,
+                             memory_house_info:str,
+                             name :str = None):
+        pass
     
     def reflect_memory_social_network(self,
                                       memory_house_info :str,
@@ -534,9 +550,11 @@ However you are suspicious of {untrusted_info} Because {reason_guess}"""
     def retrive_all_memory(self,
                             name = None):
 
-        type_messages = ["search","publish","community","house","house_type"]
+        type_messages = ["community","house","house_type"]
         memory_house_info = self.reflect_memory_multi_types(type_messages)        
 
+        
+        memory_discussion = self.reflect_memory_forum(memory_house_info,name)
         
         # 在social_net 不加入信息时，不进行更改（房子的记忆改了也不进行更改）
         memory_discussion = self.reflect_memory_social_network(memory_house_info,name) 

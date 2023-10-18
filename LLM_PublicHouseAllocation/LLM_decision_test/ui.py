@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import messagebox, simpledialog
 import os
 import json
+import re
 class App:
     def __init__(self, 
                  dir_path = None, 
@@ -15,7 +16,7 @@ class App:
                 data_path = os.path.join(dir_path,data_file)
                 with open(data_path,'r',encoding = 'utf-8') as f:
                    self.data_list.extend(json.load(f))
-            self.dir_path=dir_path 
+            self.dir_path = dir_path 
         else:
             assert os.path.exists(dir_path),"no such file path: {}".format(dir_path)
             with open(dir_path,'r',encoding = 'utf-8') as f:
@@ -99,8 +100,8 @@ class App:
         self.back_button = tk.Button(button_frame, text="Back", command=self.back)
         self.back_button.pack(side=tk.LEFT, padx=10)
         
-        self.save_button = tk.Button(button_frame, text="Save Response", command=self.save_response)
-        self.save_button.pack(side=tk.LEFT, padx=10)
+        # self.save_button = tk.Button(button_frame, text="Save Response", command=self.save_response)
+        # self.save_button.pack(side=tk.LEFT, padx=10)
 
         # Configure grid to expand cells dynamically
         for i in range(row_counter):
@@ -223,6 +224,7 @@ class App:
             json.dump(finished_QA_result, file, indent=4,separators=(',', ':'),ensure_ascii=False)
             
         if (len(unfinished_QA_result)>0):
+            # 删除原来的所有data文件，合成未标注的data
             unfinished_json_dir = os.path.join(saving_path_dir,"unfinished_QA_result.json")
             with open(unfinished_json_dir, 'w', encoding='utf-8') as file:
                 json.dump(unfinished_QA_result, file, indent=4,separators=(',', ':'),ensure_ascii=False)
@@ -231,17 +233,48 @@ class App:
         
     # 认为是人类
     def approve(self):
-        self.data_list[self.index]["testflag"]=True
-        self.data_list[self.index]["turingflag"]=True
-        self.index += 1
-        self.show_data()
+        output_content=self.output_text.get("1.0", tk.END).strip()
+        thought_content=self.thought_text.get("1.0", tk.END).strip()
+        if output_content and thought_content:
+            try:
+                current_data = self.data_list[self.index]["prompt_inputs"]
+                output_format_check = re.search("My.*choice.*is(.*)",
+                                                output_content,
+                                                re.I | re.M)
+                choice = output_format_check.groups()[0].strip().strip(".").lower()
+                assert choice in current_data["house_info"]
+            except Exception as e:
+                messagebox.showerror("Error","You should label the data first before Turing test!! Enter the content and press saving button.")
+                return
+            self.data_list[self.index]["testflag"]=True
+            self.data_list[self.index]["turingflag"]=True
+            self.index += 1
+            self.show_data()
+        else:
+            messagebox.showerror("Error","You should label the data first before Turing test!! Enter the content and press saving button.")
         
     # 认为是robot
     def reject(self):
-        self.data_list[self.index]["testflag"]=True
-        self.data_list[self.index]["turingflag"]=False
-        self.index += 1
-        self.show_data()
+        output_content=self.output_text.get("1.0", tk.END).strip()
+        thought_content=self.thought_text.get("1.0", tk.END).strip()
+        if output_content and thought_content:
+            try:
+                current_data = self.data_list[self.index]["prompt_inputs"]
+                output_format_check = re.search("My.*choice.*is(.*)",
+                                                output_content,
+                                                re.I | re.M)
+                choice = output_format_check.groups()[0].strip().strip(".").lower()
+                assert choice in current_data["house_info"]
+            except Exception as e:
+                messagebox.showerror("Error","You should label the data first before Turing test!! Enter the content and press saving button.")
+                return
+            self.data_list[self.index]["testflag"]=True
+            self.data_list[self.index]["turingflag"]=False
+            self.index += 1
+            self.show_data()
+        else:
+            messagebox.showerror("Error","You should label the data first before Turing test!! Enter the content and press saving button.")
+            
         
     def back(self):
         # del self.data_list[self.index]["testflag"]
@@ -255,6 +288,17 @@ class App:
         output_content=self.output_text.get("1.0", tk.END).strip()
         thought_content=self.thought_text.get("1.0", tk.END).strip()
         if output_content and thought_content:
+            # check output format
+            try:
+                current_data = self.data_list[self.index]["prompt_inputs"]
+                output_format_check = re.search("My.*choice.*is(.*)",
+                                                output_content,
+                                                re.I | re.M)
+                choice = output_format_check.groups()[0].strip().strip(".").lower()
+                assert choice in current_data["house_info"]
+            except Exception as e:
+                messagebox.showerror("Error","Be sure to follow the input format instruction!")
+                return
             # Save the response to the current data
             self.data_list[self.index]['response']['output'] = output_content
             self.data_list[self.index]['response']['thought'] = thought_content
@@ -263,7 +307,7 @@ class App:
             self.index+=1
             self.show_data()
         else:
-            messagebox.showerror("Error","Be sure to enter response and thought before saving.")
+            messagebox.showerror("Error","Be sure to enter response and thought before saving!")
 
 
     def compute_auc(self,data_list):

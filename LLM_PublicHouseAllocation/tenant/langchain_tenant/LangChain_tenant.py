@@ -302,6 +302,8 @@ class LangchainTenant(langchainAgent):
             ) 
         if step_type == "social_network":
             self.memory.add_social_network_message([selfmessage])
+        elif step_type == "search":
+            self.memory.add_forum_message([selfmessage])
         else:
             self.memory.add_message(messages=[selfmessage])
         return selfmessage
@@ -1612,6 +1614,12 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
                 
    
         return_infos_str=log_round.set_forum_conclusion(return_infos)
+        
+        # for c_name,searched in return_infos.items():
+        #     for k,v in searched.items():
+        #         if k == "search_info":
+        #             self.
+        
         for return_info in return_infos_str:
             self.update_memory(
                             selfcontent={"output":return_info},

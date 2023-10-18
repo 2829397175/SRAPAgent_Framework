@@ -75,10 +75,10 @@ class App:
         button_frame = tk.Frame(self.window)
         button_frame.grid(row=row_counter, column=0, pady=10)
         
-        self.approve_button = tk.Button(button_frame, text="Approve (Human Response)", command=self.approve)
+        self.approve_button = tk.Button(button_frame, text="Approve (Consistent)", command=self.approve)
         self.approve_button.pack(side=tk.LEFT, padx=10)
         
-        self.reject_button = tk.Button(button_frame, text="Reject (Robot Response)", command=self.reject)
+        self.reject_button = tk.Button(button_frame, text="Reject (Inconsistent)", command=self.reject)
         self.reject_button.pack(side=tk.LEFT, padx=10)
         
         self.back_button = tk.Button(button_frame, text="Back", command=self.back)
@@ -290,11 +290,14 @@ class App:
             self.insert_and_resize_textbox(text_widget, content)
 
     def show_data(self):
+        
         continue_judge = self.dataloader.step()
         if not continue_judge:
             messagebox.showinfo("Done", "All data has been checked!")
             self.save_and_exit()
         context_generator = self.dataloader.get_cur_context_generator()
+        if len(context_generator) ==0:
+            self.show_data()
         self.context_all.extend(context_generator)
         
         general_description = self.dataloader.get_general_description()
@@ -513,23 +516,27 @@ class DataLoader(BaseModel):
         dialogues.sort(key=lambda x: x.get("timestamp"))
         dialogues_return = []
         for dialogue in dialogues:
-            dialogue_mem_key = dialogue.get("key_social_network")
-            mem = self.sn_mems_data[self.index_experiment].get(dialogue_mem_key)
-            dialogues_return.append((dialogue,{dialogue_mem_key:mem}))
+            if (list(dialogue.get("sender",{}).keys())[0] == self.index_tenant):
+                dialogue_mem_key = dialogue.get("key_social_network")
+                mem = self.sn_mems_data[self.index_experiment].get(dialogue_mem_key)
+                # tenant_info, ac_info = self.get_cur_tenant_info(list(dialogue.get("sender",{}).keys())[0])
+                dialogues_return.append((dialogue,{dialogue_mem_key:mem}))
             # 每次yield最早的那句dialogue,以及产生这句dialogue对应的memory
         return dialogues_return
     
     
-    def get_cur_tenant_info(self):
-       
-        tenant_infos = self.tenant_data[self.index_tenant]
+    def get_cur_tenant_info(self,index_tenant = None):
+        if index_tenant is None:
+            index_tenant = self.index_tenant
+            
+        tenant_infos = self.tenant_data[index_tenant]
         role_description_template="""\
 You are {name}. You earn {monthly_income} per month.\
 Your family members include: {family_members}."""
         concise_role_description = role_description_template.format_map({"name":tenant_infos["name"],
                                     **tenant_infos}
                                    )
-        if self.tenant_data[self.index_tenant].get("personal_preference",False):
+        if self.tenant_data[index_tenant].get("personal_preference",False):
             concise_role_description += "Up to now, your personal preference for house is :{}".format(
                 tenant_infos.get("personal_preference")
             )
@@ -557,10 +564,10 @@ Your family members include: {family_members}."""
                   "w", encoding='utf-8') as file:
             json.dump(self.sn_rounds_data, file, indent=4,separators=(',', ':'),ensure_ascii=False)
             
-        sn_mems_data_dir = os.path.join(saving_path_dir,"sn_mems_data.json")
-        with open(sn_mems_data_dir,
-                  "w", encoding='utf-8') as file:
-            json.dump(self.sn_mems_data, file, indent=4,separators=(',', ':'),ensure_ascii=False)
+        # sn_mems_data_dir = os.path.join(saving_path_dir,"sn_mems_data.json")
+        # with open(sn_mems_data_dir,
+        #           "w", encoding='utf-8') as file:
+        #     json.dump(self.sn_mems_data, file, indent=4,separators=(',', ':'),ensure_ascii=False)
 
 
 
