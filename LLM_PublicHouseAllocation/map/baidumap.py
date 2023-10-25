@@ -11,21 +11,22 @@ class Baidumap(BaseModel):
         # Make a request to the Baidu Maps geocoding API
         url = f"http://api.map.baidu.com/geocoding/v3/?address={location}&output=json&ak={self.api_key}"
         response = requests.get(url)
+        try:
+            # Parse the JSON response
+            data = json.loads(response.text)   
+            if data["status"] ==0:        
+                # Extract the latitude and longitude from the response
+                lat = data['result']['location']['lat']
+                lng = data['result']['location']['lng']
 
-        # Parse the JSON response
-        data = json.loads(response.text)
+                # Return the latitude and longitude as a string
+                return f"{lat},{lng}"
+            else:
+                print(f"Error: {data['message']}")
+                return None
 
-        # Check if the request was successful
-        if data['status'] == 0:
-            # Extract the latitude and longitude from the response
-            lat = data['result']['location']['lat']
-            lng = data['result']['location']['lng']
-
-            # Return the latitude and longitude as a string
-            return f"{lat},{lng}"
-
-        else:
-            print(f"Error: {data['message']}")
+        except:
+            print(f"Error: fail to request url")
             return None
 
     def get_shortest_commute_time(self,origin, destination):

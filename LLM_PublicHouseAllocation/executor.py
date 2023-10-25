@@ -9,7 +9,7 @@ from .initialization import (load_environment,
                              prepare_task_config)
 from LLM_PublicHouseAllocation.global_score import Global_Score
 from LLM_PublicHouseAllocation.llms import APIKeyPool
-
+import platform
 
 logging.basicConfig(format='%(asctime)s - %(levelname)s - %(name)s - %(message)s', datefmt='%m/%d/%Y %H:%M:%S', level=logging.INFO)
 
@@ -113,34 +113,22 @@ class Executor():
         """Run the environment from scratch until it is done."""
         # self.environment.reset() # 待改memory模块
         
-        # while not self.environment.is_done():
-        #     # asyncio.run(self.environment.step())
-        #     loop = asyncio.get_event_loop()
-        #     loop.run_until_complete(self.environment.step())
+        if platform.system()=='Windows':
+            asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+            
         self.environment.log.reset()
         
-        new_loop = asyncio.new_event_loop()
-        # asyncio.set_event_loop(new_loop)
-        # loop = asyncio.get_event_loop()
-        new_loop.run_until_complete(self.environment.group() )
+       
+        self.environment.group() # tenant->group(tenants)
         self.environment.line_up()
         self.environment.broadcast()
         
         while not self.environment.is_done():
-            # asyncio.run(self.environment.communication(communication_num = 3))#测试用
-            #loop = asyncio.get_event_loop()
-            # loop.run_until_complete(self.environment.communication(communication_num = 3))
-            # loop.run_until_complete(self.environment.step())
-            # asyncio.run(self.environment.communication(communication_num = 3))
-            # self.environment.communication(communication_num = 3)
             
-            new_loop = asyncio.new_event_loop()
-            # asyncio.set_event_loop(new_loop)
-            # loop = asyncio.get_event_loop()
-            new_loop.run_until_complete(self.environment.step())
-            # asyncio.run(self.environment.step())
-            #if self.environment.cnt_turn>3:
+            self.environment.communication(communication_num = 3)
+           
             #self.environment.step()
+            
             
 
     def reset(self):

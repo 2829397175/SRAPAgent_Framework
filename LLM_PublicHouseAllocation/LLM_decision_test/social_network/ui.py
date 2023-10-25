@@ -221,7 +221,7 @@ class App:
         # self.mem_info_window.title("Memory Info")
         
          # 设定各个表格列的长度：[window内]
-        self.text_heights=[1,1,1,10,10] 
+        self.text_heights=[1,1,1,10,20] 
         self.datas= {
             "general_description":"",
             "concise_role_description":"",
@@ -279,8 +279,29 @@ class App:
     def show_context_info(self):
         for (label, text_widget), key in zip(self.prompt_frames, self.datas.keys()):
             label.config(text=key)
-            content = str(self.datas[key])
-            self.insert_and_resize_textbox(text_widget, content)
+            if (key == "content_info"):
+                text_widget.configure(state=tk.NORMAL)
+                output = self.datas["content_info"].pop("output") 
+                filter_keys = ["thought","acquaintance_names"]
+                text_widget.tag_config('red', foreground='red', font=('Arial', 12, 'bold'))
+
+                text_widget.delete("1.0", tk.END)
+                text_widget.insert(tk.END, " \n\n The psychology of this tenant: \n")
+                for k, v in self.datas[key].items():
+                    if k not in filter_keys:
+                        
+                        text_widget.insert(tk.END, v)
+                         
+            
+                text_widget.insert("1.0", output,'red')
+                
+                text_widget.insert("1.0", "[The output you need to label]:\n",'red')       
+                
+                text_widget.configure(state=tk.DISABLED)
+                    
+            else:
+                content = str(self.datas[key])
+                self.insert_and_resize_textbox(text_widget, content)
             
     def show_mem_info_context_info(self,mems):
         for (label, text_widget), key in zip(self.mem_info_prompt_frames, 
@@ -319,9 +340,14 @@ class App:
             context_info = self.dialogue.get("context")
             content_info = self.dialogue.get("content")
             # self.datas["key_social_network"] = self.dialogue.get("key_social_network")
+            
+            
+            
             self.datas["context_info"] = "\n".join(context_info)
-            self.datas["content_info"] = [f"{k} : {v}" for k,v in content_info.items()]
-            self.datas["content_info"] = "\n".join(self.datas["content_info"])
+            
+            self.datas["content_info"] = content_info
+            # self.datas["content_info"] = [f"{k} : {v}" for k,v in content_info.items()]
+            # self.datas["content_info"] = "\n".join(self.datas["content_info"])
             
             if (len(self.datas.keys())> len(self.prompt_frames)):
                 self.create_frame_window()

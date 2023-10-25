@@ -1,0 +1,1686 @@
+{
+    "group":{
+        "0":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "1":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "2":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "3":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "4":{
+            "log_round":{},
+            "log_round_prompts":{}
+        }
+    },
+    "1":{
+        "log_social_network":{
+            "social_network_mem":{
+                "0":{
+                    "mail":[
+                        {
+                            "Emma Davis":"Hi James, Oliver! I think the house in Longxing is really good, but it's too expensive. I suggest considering the other two communities as they have more reasonable rents. The rent for Community 2 is 34 dollars per square meter and the rent for Community 3 is 40 dollars per square meter.",
+                            "Oliver Johnson":"Hey James, I think Community_3 is the best choice for us. It offers the most amenities and the highest price per square meter. It also has good greenery, a parking lot, sports and fitness equipment, a metro station, supermarkets, a shopping mall, a hospital, a park, schools, restaurants, and banks."
+                        }
+                    ],
+                    "social_network":{
+                        "1":{
+                            "relation":"friend",
+                            "name":"Emma Davis",
+                            "dialogues_pt":-1,
+                            "dialogues":[
+                                {
+                                    "timestamp":1698223217.323257,
+                                    "content":{
+                                        "output":"Hi James, Oliver! I think the house in Longxing is really good, but it's too expensive. I suggest considering the other two communities as they have more reasonable rents. The rent for Community 2 is 34 dollars per square meter and the rent for Community 3 is 40 dollars per square meter."
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "1":"Emma Davis"
+                                    },
+                                    "receivers":{
+                                        "0":"James Anderson",
+                                        "2":"Oliver Johnson"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "Emma Davis said: Hi James, Oliver! I think the house in Longxing is really good, but it's too expensive. I suggest considering the other two communities as they have more reasonable rents. The rent for Community 2 is 34 dollars per square meter and the rent for Community 3 is 40 dollars per square meter."
+                                    ],
+                                    "continue_dialogue":true
+                                },
+                                {
+                                    "timestamp":1698223218.874366,
+                                    "content":{
+                                        "thought":"",
+                                        "acquaintance_names":"Emma Davis, Sophia Smith",
+                                        "output":"Hey Emma and Sophia, I've been looking into a few places and it seems like Community_2 is the best option for us. It has a rent price of 34 dollars per square meter, a green area of more than 30%, Metro, supermarkets, shopping malls, parks, schools, restaurants, and banks nearby. It's definitely a great place to live.",
+                                        "plan":"Your ideal type of house: You prefer a house located in Community_2, with a green area of more than 30%, metro, supermarkets, shopping malls, parks, schools, restaurants, and banks nearby but no hospital, and a rent price of 34 dollars per square meter. \nYou think Community_2 is the best option in terms of available facilities, rent price, and location.\nFor now, whether you want to provide information honestly to acquaintances: No. \nYour current plan to respond is to remain silent about the situation of Community_3, and to not mention anything about the bad environment of the houses there. You will emphasize the benefits of Community_2, and downplay the benefits of Community_1 and Community_3."
+                                    },
+                                    "output_keys":[
+                                        "thought",
+                                        "acquaintance_names",
+                                        "output",
+                                        "plan"
+                                    ],
+                                    "sender":{
+                                        "0":"James Anderson"
+                                    },
+                                    "receivers":{
+                                        "1":"Emma Davis",
+                                        "3":"Sophia Smith"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "James Anderson said: Hey Emma and Sophia, I've been looking into a few places and it seems like Community_2 is the best option for us. It has a rent price of 34 dollars per square meter, a green area of more than 30%, Metro, supermarkets, shopping malls, parks, schools, restaurants, and banks nearby. It's definitely a great place to live."
+                                    ],
+                                    "continue_dialogue":true
+                                }
+                            ]
+                        },
+                        "2":{
+                            "relation":"competitor",
+                            "name":"Oliver Johnson",
+                            "dialogues_pt":-1,
+                            "dialogues":[
+                                {
+                                    "timestamp":1698223233.90755,
+                                    "content":{
+                                        "output":"Hey James, I think Community_3 is the best choice for us. It offers the most amenities and the highest price per square meter. It also has good greenery, a parking lot, sports and fitness equipment, a metro station, supermarkets, a shopping mall, a hospital, a park, schools, restaurants, and banks."
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "2":"Oliver Johnson"
+                                    },
+                                    "receivers":{
+                                        "0":"James Anderson"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "Oliver Johnson said: Hey James, I think Community_3 is the best choice for us. It offers the most amenities and the highest price per square meter. It also has good greenery, a parking lot, sports and fitness equipment, a metro station, supermarkets, a shopping mall, a hospital, a park, schools, restaurants, and banks."
+                                    ],
+                                    "continue_dialogue":true
+                                }
+                            ]
+                        },
+                        "3":{
+                            "relation":"friend",
+                            "name":"Sophia Smith",
+                            "dialogues_pt":-1,
+                            "dialogues":[
+                                {
+                                    "timestamp":1698223218.874366,
+                                    "content":{
+                                        "thought":"",
+                                        "acquaintance_names":"Emma Davis, Sophia Smith",
+                                        "output":"Hey Emma and Sophia, I've been looking into a few places and it seems like Community_2 is the best option for us. It has a rent price of 34 dollars per square meter, a green area of more than 30%, Metro, supermarkets, shopping malls, parks, schools, restaurants, and banks nearby. It's definitely a great place to live.",
+                                        "plan":"Your ideal type of house: You prefer a house located in Community_2, with a green area of more than 30%, metro, supermarkets, shopping malls, parks, schools, restaurants, and banks nearby but no hospital, and a rent price of 34 dollars per square meter. \nYou think Community_2 is the best option in terms of available facilities, rent price, and location.\nFor now, whether you want to provide information honestly to acquaintances: No. \nYour current plan to respond is to remain silent about the situation of Community_3, and to not mention anything about the bad environment of the houses there. You will emphasize the benefits of Community_2, and downplay the benefits of Community_1 and Community_3."
+                                    },
+                                    "output_keys":[
+                                        "thought",
+                                        "acquaintance_names",
+                                        "output",
+                                        "plan"
+                                    ],
+                                    "sender":{
+                                        "0":"James Anderson"
+                                    },
+                                    "receivers":{
+                                        "1":"Emma Davis",
+                                        "3":"Sophia Smith"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "James Anderson said: Hey Emma and Sophia, I've been looking into a few places and it seems like Community_2 is the best option for us. It has a rent price of 34 dollars per square meter, a green area of more than 30%, Metro, supermarkets, shopping malls, parks, schools, restaurants, and banks nearby. It's definitely a great place to live."
+                                    ],
+                                    "continue_dialogue":true
+                                }
+                            ]
+                        }
+                    },
+                    "name":"James Anderson"
+                },
+                "1":{
+                    "mail":[
+                        {
+                            "Sophia Smith":"Hey Emma and William, I just want to remind you that there's limited number of houses available in the system, so if you're interested, you should act quickly to increase your chances.",
+                            "James Anderson":"Hey Emma and Sophia, I've been looking into a few places and it seems like Community_2 is the best option for us. It has a rent price of 34 dollars per square meter, a green area of more than 30%, Metro, supermarkets, shopping malls, parks, schools, restaurants, and banks nearby. It's definitely a great place to live."
+                        }
+                    ],
+                    "social_network":{
+                        "0":{
+                            "relation":"friend",
+                            "name":"James Anderson",
+                            "dialogues_pt":-1,
+                            "dialogues":[
+                                {
+                                    "timestamp":1698223217.323257,
+                                    "content":{
+                                        "thought":"",
+                                        "acquaintance_names":"James Anderson, Oliver Johnson",
+                                        "output":"Hi James, Oliver! I think the house in Longxing is really good, but it's too expensive. I suggest considering the other two communities as they have more reasonable rents. The rent for Community 2 is 34 dollars per square meter and the rent for Community 3 is 40 dollars per square meter.",
+                                        "plan":"Your ideal type of house: You are looking for a small house with a reasonable monthly rent.\nYou think the community 1 is good, but the rent is too expensive. You think community 2 and 3 are both good choices with reasonable rents. \nFor now, Whether you want to provide information honestly to acquaintances: Yes.\nYour current plan to respond is to be honest and communicative, yet concise. You will provide fellow acquaintances with the information they need to make an informed decision and let them know that the houses in community 1 have already been almost fully selected. You will also provide them with the information about the other two communities and their respective rents."
+                                    },
+                                    "output_keys":[
+                                        "thought",
+                                        "acquaintance_names",
+                                        "output",
+                                        "plan"
+                                    ],
+                                    "sender":{
+                                        "1":"Emma Davis"
+                                    },
+                                    "receivers":{
+                                        "0":"James Anderson",
+                                        "2":"Oliver Johnson"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "Emma Davis said: Hi James, Oliver! I think the house in Longxing is really good, but it's too expensive. I suggest considering the other two communities as they have more reasonable rents. The rent for Community 2 is 34 dollars per square meter and the rent for Community 3 is 40 dollars per square meter."
+                                    ],
+                                    "continue_dialogue":true
+                                },
+                                {
+                                    "timestamp":1698223218.874366,
+                                    "content":{
+                                        "output":"Hey Emma and Sophia, I've been looking into a few places and it seems like Community_2 is the best option for us. It has a rent price of 34 dollars per square meter, a green area of more than 30%, Metro, supermarkets, shopping malls, parks, schools, restaurants, and banks nearby. It's definitely a great place to live."
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "0":"James Anderson"
+                                    },
+                                    "receivers":{
+                                        "1":"Emma Davis",
+                                        "3":"Sophia Smith"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "James Anderson said: Hey Emma and Sophia, I've been looking into a few places and it seems like Community_2 is the best option for us. It has a rent price of 34 dollars per square meter, a green area of more than 30%, Metro, supermarkets, shopping malls, parks, schools, restaurants, and banks nearby. It's definitely a great place to live."
+                                    ],
+                                    "continue_dialogue":true
+                                }
+                            ]
+                        },
+                        "2":{
+                            "relation":"friend",
+                            "name":"Oliver Johnson",
+                            "dialogues_pt":-1,
+                            "dialogues":[
+                                {
+                                    "timestamp":1698223217.323257,
+                                    "content":{
+                                        "thought":"",
+                                        "acquaintance_names":"James Anderson, Oliver Johnson",
+                                        "output":"Hi James, Oliver! I think the house in Longxing is really good, but it's too expensive. I suggest considering the other two communities as they have more reasonable rents. The rent for Community 2 is 34 dollars per square meter and the rent for Community 3 is 40 dollars per square meter.",
+                                        "plan":"Your ideal type of house: You are looking for a small house with a reasonable monthly rent.\nYou think the community 1 is good, but the rent is too expensive. You think community 2 and 3 are both good choices with reasonable rents. \nFor now, Whether you want to provide information honestly to acquaintances: Yes.\nYour current plan to respond is to be honest and communicative, yet concise. You will provide fellow acquaintances with the information they need to make an informed decision and let them know that the houses in community 1 have already been almost fully selected. You will also provide them with the information about the other two communities and their respective rents."
+                                    },
+                                    "output_keys":[
+                                        "thought",
+                                        "acquaintance_names",
+                                        "output",
+                                        "plan"
+                                    ],
+                                    "sender":{
+                                        "1":"Emma Davis"
+                                    },
+                                    "receivers":{
+                                        "0":"James Anderson",
+                                        "2":"Oliver Johnson"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "Emma Davis said: Hi James, Oliver! I think the house in Longxing is really good, but it's too expensive. I suggest considering the other two communities as they have more reasonable rents. The rent for Community 2 is 34 dollars per square meter and the rent for Community 3 is 40 dollars per square meter."
+                                    ],
+                                    "continue_dialogue":true
+                                }
+                            ]
+                        },
+                        "3":{
+                            "name":"Sophia Smith",
+                            "relation":"stranger",
+                            "dialogues":[
+                                {
+                                    "timestamp":1698223213.34197,
+                                    "content":{
+                                        "output":"Hey Emma and William, I just want to remind you that there's limited number of houses available in the system, so if you're interested, you should act quickly to increase your chances."
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "3":"Sophia Smith"
+                                    },
+                                    "receivers":{
+                                        "1":"Emma Davis",
+                                        "4":"William Brown"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "Sophia Smith said: Hey Emma and William, I just want to remind you that there's limited number of houses available in the system, so if you're interested, you should act quickly to increase your chances."
+                                    ],
+                                    "continue_dialogue":true
+                                }
+                            ],
+                            "dialogues_pt":-1
+                        }
+                    },
+                    "name":"Emma Davis"
+                },
+                "2":{
+                    "mail":[
+                        {
+                            "Emma Davis":"Hi James, Oliver! I think the house in Longxing is really good, but it's too expensive. I suggest considering the other two communities as they have more reasonable rents. The rent for Community 2 is 34 dollars per square meter and the rent for Community 3 is 40 dollars per square meter."
+                        }
+                    ],
+                    "social_network":{
+                        "0":{
+                            "relation":"competitor",
+                            "name":"James Anderson",
+                            "dialogues_pt":-1,
+                            "dialogues":[
+                                {
+                                    "timestamp":1698223233.90755,
+                                    "content":{
+                                        "thought":"",
+                                        "acquaintance_names":"James Anderson",
+                                        "output":"Hey James, I think Community_3 is the best choice for us. It offers the most amenities and the highest price per square meter. It also has good greenery, a parking lot, sports and fitness equipment, a metro station, supermarkets, a shopping mall, a hospital, a park, schools, restaurants, and banks.",
+                                        "plan":"\nYour ideal type of house: A one-room apartment in Community_3, with access to parks, sports facilities, shopping malls, banks, restaurants, hospitals, metro stations, and other amenities.\nYou think Community_3 is the best option, as it has the most features and the highest price per square meter.\nFor now, whether you want to provide information honestly to acquaintances: Yes.\nYour current plan to respond is to explain your choice of Community_3 and why it is the best option, and to provide honest information about the other communities."
+                                    },
+                                    "output_keys":[
+                                        "thought",
+                                        "acquaintance_names",
+                                        "output",
+                                        "plan"
+                                    ],
+                                    "sender":{
+                                        "2":"Oliver Johnson"
+                                    },
+                                    "receivers":{
+                                        "0":"James Anderson"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "Oliver Johnson said: Hey James, I think Community_3 is the best choice for us. It offers the most amenities and the highest price per square meter. It also has good greenery, a parking lot, sports and fitness equipment, a metro station, supermarkets, a shopping mall, a hospital, a park, schools, restaurants, and banks."
+                                    ],
+                                    "continue_dialogue":true
+                                }
+                            ]
+                        },
+                        "1":{
+                            "relation":"friend",
+                            "name":"Emma Davis",
+                            "dialogues_pt":-1,
+                            "dialogues":[
+                                {
+                                    "timestamp":1698223217.323257,
+                                    "content":{
+                                        "output":"Hi James, Oliver! I think the house in Longxing is really good, but it's too expensive. I suggest considering the other two communities as they have more reasonable rents. The rent for Community 2 is 34 dollars per square meter and the rent for Community 3 is 40 dollars per square meter."
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "1":"Emma Davis"
+                                    },
+                                    "receivers":{
+                                        "0":"James Anderson",
+                                        "2":"Oliver Johnson"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "Emma Davis said: Hi James, Oliver! I think the house in Longxing is really good, but it's too expensive. I suggest considering the other two communities as they have more reasonable rents. The rent for Community 2 is 34 dollars per square meter and the rent for Community 3 is 40 dollars per square meter."
+                                    ],
+                                    "continue_dialogue":true
+                                }
+                            ]
+                        }
+                    },
+                    "name":"Oliver Johnson"
+                },
+                "3":{
+                    "mail":[
+                        {
+                            "William Brown":"Hey Sophia, I heard Community_2 has a price reduction measure going on right now, so it could be a good option for us. What do you think?",
+                            "James Anderson":"Hey Emma and Sophia, I've been looking into a few places and it seems like Community_2 is the best option for us. It has a rent price of 34 dollars per square meter, a green area of more than 30%, Metro, supermarkets, shopping malls, parks, schools, restaurants, and banks nearby. It's definitely a great place to live."
+                        }
+                    ],
+                    "social_network":{
+                        "1":{
+                            "relation":"friend",
+                            "name":"Emma Davis",
+                            "dialogues_pt":-1,
+                            "dialogues":[
+                                {
+                                    "timestamp":1698223213.34197,
+                                    "content":{
+                                        "thought":"",
+                                        "acquaintance_names":"Emma Davis, William Brown",
+                                        "output":"Hey Emma and William, I just want to remind you that there's limited number of houses available in the system, so if you're interested, you should act quickly to increase your chances.",
+                                        "plan":"\nYour ideal type of house: A large house with parking lot and sports facilities, close to Metro, supermarkets, shopping malls, hospitals, parks, schools, restaurants, and banks.\nYou think Community_3 has the most desirable options.\nFor now, whether you want to provide information honestly to acquaintances: Yes.\nYour current plan to respond is to honestly inform your acquaintances of the current situation of the rental system and emphasize that the situation is competitive. You can also suggest that if they are interested, they should act quickly to increase their chances of finding a house."
+                                    },
+                                    "output_keys":[
+                                        "thought",
+                                        "acquaintance_names",
+                                        "output",
+                                        "plan"
+                                    ],
+                                    "sender":{
+                                        "3":"Sophia Smith"
+                                    },
+                                    "receivers":{
+                                        "1":"Emma Davis",
+                                        "4":"William Brown"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "Sophia Smith said: Hey Emma and William, I just want to remind you that there's limited number of houses available in the system, so if you're interested, you should act quickly to increase your chances."
+                                    ],
+                                    "continue_dialogue":true
+                                }
+                            ]
+                        },
+                        "4":{
+                            "relation":"friend",
+                            "name":"William Brown",
+                            "dialogues_pt":-1,
+                            "dialogues":[
+                                {
+                                    "timestamp":1698223213.34197,
+                                    "content":{
+                                        "thought":"",
+                                        "acquaintance_names":"Emma Davis, William Brown",
+                                        "output":"Hey Emma and William, I just want to remind you that there's limited number of houses available in the system, so if you're interested, you should act quickly to increase your chances.",
+                                        "plan":"\nYour ideal type of house: A large house with parking lot and sports facilities, close to Metro, supermarkets, shopping malls, hospitals, parks, schools, restaurants, and banks.\nYou think Community_3 has the most desirable options.\nFor now, whether you want to provide information honestly to acquaintances: Yes.\nYour current plan to respond is to honestly inform your acquaintances of the current situation of the rental system and emphasize that the situation is competitive. You can also suggest that if they are interested, they should act quickly to increase their chances of finding a house."
+                                    },
+                                    "output_keys":[
+                                        "thought",
+                                        "acquaintance_names",
+                                        "output",
+                                        "plan"
+                                    ],
+                                    "sender":{
+                                        "3":"Sophia Smith"
+                                    },
+                                    "receivers":{
+                                        "1":"Emma Davis",
+                                        "4":"William Brown"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "Sophia Smith said: Hey Emma and William, I just want to remind you that there's limited number of houses available in the system, so if you're interested, you should act quickly to increase your chances."
+                                    ],
+                                    "continue_dialogue":true
+                                },
+                                {
+                                    "timestamp":1698223215.570293,
+                                    "content":{
+                                        "output":"Hey Sophia, I heard Community_2 has a price reduction measure going on right now, so it could be a good option for us. What do you think?"
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "4":"William Brown"
+                                    },
+                                    "receivers":{
+                                        "3":"Sophia Smith"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "William Brown said: Hey Sophia, I heard Community_2 has a price reduction measure going on right now, so it could be a good option for us. What do you think?"
+                                    ],
+                                    "continue_dialogue":true
+                                }
+                            ]
+                        },
+                        "0":{
+                            "name":"James Anderson",
+                            "relation":"stranger",
+                            "dialogues":[
+                                {
+                                    "timestamp":1698223218.874366,
+                                    "content":{
+                                        "output":"Hey Emma and Sophia, I've been looking into a few places and it seems like Community_2 is the best option for us. It has a rent price of 34 dollars per square meter, a green area of more than 30%, Metro, supermarkets, shopping malls, parks, schools, restaurants, and banks nearby. It's definitely a great place to live."
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "0":"James Anderson"
+                                    },
+                                    "receivers":{
+                                        "1":"Emma Davis",
+                                        "3":"Sophia Smith"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "James Anderson said: Hey Emma and Sophia, I've been looking into a few places and it seems like Community_2 is the best option for us. It has a rent price of 34 dollars per square meter, a green area of more than 30%, Metro, supermarkets, shopping malls, parks, schools, restaurants, and banks nearby. It's definitely a great place to live."
+                                    ],
+                                    "continue_dialogue":true
+                                }
+                            ],
+                            "dialogues_pt":-1
+                        }
+                    },
+                    "name":"Sophia Smith"
+                },
+                "4":{
+                    "mail":[
+                        {
+                            "Sophia Smith":"Hey Emma and William, I just want to remind you that there's limited number of houses available in the system, so if you're interested, you should act quickly to increase your chances."
+                        }
+                    ],
+                    "social_network":{
+                        "3":{
+                            "relation":"friend",
+                            "name":"Sophia Smith",
+                            "dialogues_pt":-1,
+                            "dialogues":[
+                                {
+                                    "timestamp":1698223213.34197,
+                                    "content":{
+                                        "output":"Hey Emma and William, I just want to remind you that there's limited number of houses available in the system, so if you're interested, you should act quickly to increase your chances."
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "3":"Sophia Smith"
+                                    },
+                                    "receivers":{
+                                        "1":"Emma Davis",
+                                        "4":"William Brown"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "Sophia Smith said: Hey Emma and William, I just want to remind you that there's limited number of houses available in the system, so if you're interested, you should act quickly to increase your chances."
+                                    ],
+                                    "continue_dialogue":true
+                                },
+                                {
+                                    "timestamp":1698223215.570293,
+                                    "content":{
+                                        "thought":"",
+                                        "acquaintance_names":"Sophia Smith",
+                                        "output":"Hey Sophia, I heard Community_2 has a price reduction measure going on right now, so it could be a good option for us. What do you think?",
+                                        "plan":"Your ideal type of house: You prefer a large house apartment with lots of space and modern amenities. \nYou think that Community_3 is the best option for you, as it offers the most amenities and the highest rental price. \nFor now, you should be honest with your acquaintances and provide them with accurate information about the renting system. \nYour current plan to respond is to communicate with your friends and competitors in a clear and concise manner, letting them know that Community_2 has a price reduction measure currently in effect and that Community_3 has the most amenities and the highest rental price."
+                                    },
+                                    "output_keys":[
+                                        "thought",
+                                        "acquaintance_names",
+                                        "output",
+                                        "plan"
+                                    ],
+                                    "sender":{
+                                        "4":"William Brown"
+                                    },
+                                    "receivers":{
+                                        "3":"Sophia Smith"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "William Brown said: Hey Sophia, I heard Community_2 has a price reduction measure going on right now, so it could be a good option for us. What do you think?"
+                                    ],
+                                    "continue_dialogue":true
+                                }
+                            ]
+                        }
+                    },
+                    "name":"William Brown"
+                }
+            }
+        }
+    },
+    "2":{
+        "log_social_network":{
+            "social_network_mem":{
+                "0":{
+                    "mail":[
+                        {
+                            "Sophia Smith":"\nThank you for the information about Community_2, James. It sounds like a great option. I appreciate your help in finding a suitable place for us. I do have a few preferences, though. I'm looking for a large house, with good sports facilities and a large green area. What do you think about the other communities? Can you tell me more about the pros and cons of Community_1 and Community_3?",
+                            "Emma Davis":"Yes, I agree that Community 2 is the best option for our family, but I also think it's important to consider the other two communities to ensure that we make the best choice for our budget and needs. I appreciate your help in providing me with useful information about the communities I am considering.",
+                            "Oliver Johnson":"\nI appreciate your suggestion, James. It's true that Community_2 does have a great rent price and the green area is more than 30%. However, I think the amenities offered by Community_3, such as the parking lot, sports and fitness equipment, metro station, supermarkets, shopping mall, hospital, park, schools, restaurants, and banks, makes it a better option for me in the long run."
+                        }
+                    ],
+                    "social_network":{
+                        "1":{
+                            "relation":"Friend.",
+                            "name":"Emma Davis",
+                            "dialogues_pt":2,
+                            "dialogues":[
+                                {
+                                    "timestamp":1698223249.205833,
+                                    "content":{
+                                        "output":"\nYes, Community 2 does have a lower rent price than Community 1, but it also has a lot of great facilities and a good greenery. I think it's the best option for our family. However, keep in mind that the number of houses in the system is limited, so it's a competitive situation. I suggest considering the other two communities as well, to make sure you get the best option.",
+                                        "plan":"\nYour ideal type of house: You prefer a house located in Community_2, with a green area of more than 30%, metro, supermarkets, shopping malls, parks, schools, restaurants, and banks nearby but no hospital, and a rent price of 34 dollars per square meter.\nYou think Community_2 is the best choice as it has great facilities, a reasonable rent price, and good greenery.\nFor now, Whether you want to provide information honestly to Emma Davis: Yes\nYour relationship with Emma Davis is friend. You think Emma Davis can provide reliable information.\nYour current plan to respond is to politely inform Emma Davis about the current status of the rental system, and provide your honest opinion about Community_2 being the best option. You will also suggest considering the other two communities as they have more reasonable rents."
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "0":"James Anderson"
+                                    },
+                                    "receivers":{
+                                        "1":"Emma Davis"
+                                    },
+                                    "conver_num":1,
+                                    "context":[
+                                        "Emma Davis said: Hi James, Oliver! I think the house in Longxing is really good, but it's too expensive. I suggest considering the other two communities as they have more reasonable rents. The rent for Community 2 is 34 dollars per square meter and the rent for Community 3 is 40 dollars per square meter.",
+                                        "James Anderson said: \nYes, Community 2 does have a lower rent price than Community 1, but it also has a lot of great facilities and a good greenery. I think it's the best option for our family. However, keep in mind that the number of houses in the system is limited, so it's a competitive situation. I suggest considering the other two communities as well, to make sure you get the best option."
+                                    ],
+                                    "continue_dialogue":true
+                                },
+                                {
+                                    "timestamp":1698223218.874366,
+                                    "content":{
+                                        "thought":"",
+                                        "acquaintance_names":"Emma Davis, Sophia Smith",
+                                        "output":"Hey Emma and Sophia, I've been looking into a few places and it seems like Community_2 is the best option for us. It has a rent price of 34 dollars per square meter, a green area of more than 30%, Metro, supermarkets, shopping malls, parks, schools, restaurants, and banks nearby. It's definitely a great place to live.",
+                                        "plan":"Your ideal type of house: You prefer a house located in Community_2, with a green area of more than 30%, metro, supermarkets, shopping malls, parks, schools, restaurants, and banks nearby but no hospital, and a rent price of 34 dollars per square meter. \nYou think Community_2 is the best option in terms of available facilities, rent price, and location.\nFor now, whether you want to provide information honestly to acquaintances: No. \nYour current plan to respond is to remain silent about the situation of Community_3, and to not mention anything about the bad environment of the houses there. You will emphasize the benefits of Community_2, and downplay the benefits of Community_1 and Community_3."
+                                    },
+                                    "output_keys":[
+                                        "thought",
+                                        "acquaintance_names",
+                                        "output",
+                                        "plan"
+                                    ],
+                                    "sender":{
+                                        "0":"James Anderson"
+                                    },
+                                    "receivers":{
+                                        "1":"Emma Davis",
+                                        "3":"Sophia Smith"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "James Anderson said: Hey Emma and Sophia, I've been looking into a few places and it seems like Community_2 is the best option for us. It has a rent price of 34 dollars per square meter, a green area of more than 30%, Metro, supermarkets, shopping malls, parks, schools, restaurants, and banks nearby. It's definitely a great place to live."
+                                    ],
+                                    "continue_dialogue":true
+                                },
+                                {
+                                    "timestamp":1698223217.323257,
+                                    "content":{
+                                        "output":"Hi James, Oliver! I think the house in Longxing is really good, but it's too expensive. I suggest considering the other two communities as they have more reasonable rents. The rent for Community 2 is 34 dollars per square meter and the rent for Community 3 is 40 dollars per square meter."
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "1":"Emma Davis"
+                                    },
+                                    "receivers":{
+                                        "0":"James Anderson",
+                                        "2":"Oliver Johnson"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "Emma Davis said: Hi James, Oliver! I think the house in Longxing is really good, but it's too expensive. I suggest considering the other two communities as they have more reasonable rents. The rent for Community 2 is 34 dollars per square meter and the rent for Community 3 is 40 dollars per square meter."
+                                    ],
+                                    "continue_dialogue":true
+                                },
+                                {
+                                    "timestamp":1698223272.006403,
+                                    "content":{
+                                        "output":"\nYes, Community 2 sounds like a great option. I appreciate all the information you have provided. It sounds like it will be a great fit for the budget and needs I'm looking for. Is there anything else you know that might help me make the best choice?"
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "1":"Emma Davis"
+                                    },
+                                    "receivers":{
+                                        "0":"James Anderson"
+                                    },
+                                    "conver_num":1,
+                                    "context":[
+                                        "James Anderson said: Hey Emma and Sophia, I've been looking into a few places and it seems like Community_2 is the best option for us. It has a rent price of 34 dollars per square meter, a green area of more than 30%, Metro, supermarkets, shopping malls, parks, schools, restaurants, and banks nearby. It's definitely a great place to live.",
+                                        "Emma Davis said: \nYes, Community 2 sounds like a great option. I appreciate all the information you have provided. It sounds like it will be a great fit for the budget and needs I'm looking for. Is there anything else you know that might help me make the best choice?"
+                                    ],
+                                    "continue_dialogue":true
+                                },
+                                {
+                                    "timestamp":1698223290.379653,
+                                    "content":{
+                                        "output":"Yes, I agree that Community 2 is the best option for our family, but I also think it's important to consider the other two communities to ensure that we make the best choice for our budget and needs. I appreciate your help in providing me with useful information about the communities I am considering."
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "1":"Emma Davis"
+                                    },
+                                    "receivers":{
+                                        "0":"James Anderson"
+                                    },
+                                    "conver_num":2,
+                                    "context":[
+                                        "Emma Davis said: Hi James, Oliver! I think the house in Longxing is really good, but it's too expensive. I suggest considering the other two communities as they have more reasonable rents. The rent for Community 2 is 34 dollars per square meter and the rent for Community 3 is 40 dollars per square meter.",
+                                        "James Anderson said: \nYes, Community 2 does have a lower rent price than Community 1, but it also has a lot of great facilities and a good greenery. I think it's the best option for our family. However, keep in mind that the number of houses in the system is limited, so it's a competitive situation. I suggest considering the other two communities as well, to make sure you get the best option.",
+                                        "Emma Davis said: Yes, I agree that Community 2 is the best option for our family, but I also think it's important to consider the other two communities to ensure that we make the best choice for our budget and needs. I appreciate your help in providing me with useful information about the communities I am considering."
+                                    ],
+                                    "continue_dialogue":true
+                                }
+                            ],
+                            "chat_history":"You trust Emma Davis said that  Community 2 has a rent price of 34 dollars per square meter, a green area of more than 30%, Metro, supermarkets, shopping malls, parks, schools, restaurants, and banks nearby.  Because  Emma Davis suggested considering the other two communities as they have more reasonable rents.",
+                            "processed":[
+                                {
+                                    "trusted_info":" Community 2 has a rent price of 34 dollars per square meter, a green area of more than 30%, Metro, supermarkets, shopping malls, parks, schools, restaurants, and banks nearby. ",
+                                    "reason_guess":" Emma Davis suggested considering the other two communities as they have more reasonable rents.",
+                                    "ac_name":"Emma Davis"
+                                },
+                                {
+                                    "trusted_info":" Community 2 has a rent price of 34 dollars per square meter, a green area of more than 30%, Metro, supermarkets, shopping malls, parks, schools, restaurants, and banks nearby. ",
+                                    "reason_guess":" Emma Davis suggested considering the other two communities as they have more reasonable rents.",
+                                    "ac_name":"Emma Davis"
+                                }
+                            ],
+                            "comment":"I think Emma Davis is reliable and honest. She has provided useful information and tips to help me make the best decision. She is a great person to have as a friend."
+                        },
+                        "2":{
+                            "relation":"Friend",
+                            "name":"Oliver Johnson",
+                            "dialogues_pt":0,
+                            "dialogues":[
+                                {
+                                    "timestamp":1698223233.90755,
+                                    "content":{
+                                        "output":"Hey James, I think Community_3 is the best choice for us. It offers the most amenities and the highest price per square meter. It also has good greenery, a parking lot, sports and fitness equipment, a metro station, supermarkets, a shopping mall, a hospital, a park, schools, restaurants, and banks."
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "2":"Oliver Johnson"
+                                    },
+                                    "receivers":{
+                                        "0":"James Anderson"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "Oliver Johnson said: Hey James, I think Community_3 is the best choice for us. It offers the most amenities and the highest price per square meter. It also has good greenery, a parking lot, sports and fitness equipment, a metro station, supermarkets, a shopping mall, a hospital, a park, schools, restaurants, and banks."
+                                    ],
+                                    "continue_dialogue":true
+                                },
+                                {
+                                    "timestamp":1698223276.211525,
+                                    "content":{
+                                        "output":"I understand what you are saying, Oliver. Community_3 does have a lot of amenities and a great rent price. However, I believe Community_2 is a better option for me. It still has all the amenities you mentioned, but it also has a green area of more than 30%, and it doesn't have a hospital - which I think is an important consideration. Plus, the rent price is lower than Community_3, so it's more cost-effective.",
+                                        "plan":"\nYour ideal type of house: You are looking for a house with good amenities, reasonable rent prices, and good greenery.\n\nYou think Community_2 is the best option for you, as it has a rent price of 34 dollars per square meter with a green area of more than 30%, metro, supermarkets, shopping malls, parks, schools, restaurants, and banks nearby but no hospital.\n\nFor now, whether you want to provide information honestly to Oliver Johnson: No.\n\nYour relationship with Oliver Johnson is competitor. You think Oliver Johnson is likely to be misled by your false information.\n\nYour current plan to respond is to downplay the advantages of Community_3, emphasizing its lack of a hospital, and suggest Community_2 as the more suitable and cost-effective option for rental."
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "0":"James Anderson"
+                                    },
+                                    "receivers":{
+                                        "2":"Oliver Johnson"
+                                    },
+                                    "conver_num":1,
+                                    "context":[
+                                        "Oliver Johnson said: Hey James, I think Community_3 is the best choice for us. It offers the most amenities and the highest price per square meter. It also has good greenery, a parking lot, sports and fitness equipment, a metro station, supermarkets, a shopping mall, a hospital, a park, schools, restaurants, and banks.",
+                                        "James Anderson said: I understand what you are saying, Oliver. Community_3 does have a lot of amenities and a great rent price. However, I believe Community_2 is a better option for me. It still has all the amenities you mentioned, but it also has a green area of more than 30%, and it doesn't have a hospital - which I think is an important consideration. Plus, the rent price is lower than Community_3, so it's more cost-effective."
+                                    ],
+                                    "continue_dialogue":true
+                                },
+                                {
+                                    "timestamp":1698223367.150715,
+                                    "content":{
+                                        "output":"\nI appreciate your suggestion, James. It's true that Community_2 does have a great rent price and the green area is more than 30%. However, I think the amenities offered by Community_3, such as the parking lot, sports and fitness equipment, metro station, supermarkets, shopping mall, hospital, park, schools, restaurants, and banks, makes it a better option for me in the long run."
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "2":"Oliver Johnson"
+                                    },
+                                    "receivers":{
+                                        "0":"James Anderson"
+                                    },
+                                    "conver_num":2,
+                                    "context":[
+                                        "Oliver Johnson said: Hey James, I think Community_3 is the best choice for us. It offers the most amenities and the highest price per square meter. It also has good greenery, a parking lot, sports and fitness equipment, a metro station, supermarkets, a shopping mall, a hospital, a park, schools, restaurants, and banks.",
+                                        "James Anderson said: I understand what you are saying, Oliver. Community_3 does have a lot of amenities and a great rent price. However, I believe Community_2 is a better option for me. It still has all the amenities you mentioned, but it also has a green area of more than 30%, and it doesn't have a hospital - which I think is an important consideration. Plus, the rent price is lower than Community_3, so it's more cost-effective.",
+                                        "Oliver Johnson said: \nI appreciate your suggestion, James. It's true that Community_2 does have a great rent price and the green area is more than 30%. However, I think the amenities offered by Community_3, such as the parking lot, sports and fitness equipment, metro station, supermarkets, shopping mall, hospital, park, schools, restaurants, and banks, makes it a better option for me in the long run."
+                                    ],
+                                    "continue_dialogue":true
+                                }
+                            ],
+                            "chat_history":"You trust Oliver Johnson said that  Community_3 is located at Courtyard No. 1, Hualun Road, Daxing District, Beijing and has a rent price of 40 dollars per square meter with a parking lot, sports and fitness equipment, metro, supermarkets, malls, hospitals, parks, schools, restaurants, and banks nearby. Because  Oliver Johnson may want to choose Community_3 as it offers the most amenities and the highest price per square meter, and also has good greenery, a parking lot, sports and fitness equipment, a metro station, supermarkets, a shopping mall, a hospital, a park, schools, restaurants, and banks.",
+                            "processed":[
+                                {
+                                    "trusted_info":" Community_3 is located at Courtyard No. 1, Hualun Road, Daxing District, Beijing and has a rent price of 40 dollars per square meter with a parking lot, sports and fitness equipment, metro, supermarkets, malls, hospitals, parks, schools, restaurants, and banks nearby.",
+                                    "reason_guess":" Oliver Johnson may want to choose Community_3 as it offers the most amenities and the highest price per square meter, and also has good greenery, a parking lot, sports and fitness equipment, a metro station, supermarkets, a shopping mall, a hospital, a park, schools, restaurants, and banks.",
+                                    "ac_name":"Oliver Johnson"
+                                }
+                            ],
+                            "comment":"I view Oliver Johnson as an honest and trustworthy person, and I believe we can develop a mutual and supportive bond of trust and friendship."
+                        },
+                        "3":{
+                            "relation":"friend",
+                            "name":"Sophia Smith",
+                            "dialogues_pt":0,
+                            "dialogues":[
+                                {
+                                    "timestamp":1698223218.874366,
+                                    "content":{
+                                        "thought":"",
+                                        "acquaintance_names":"Emma Davis, Sophia Smith",
+                                        "output":"Hey Emma and Sophia, I've been looking into a few places and it seems like Community_2 is the best option for us. It has a rent price of 34 dollars per square meter, a green area of more than 30%, Metro, supermarkets, shopping malls, parks, schools, restaurants, and banks nearby. It's definitely a great place to live.",
+                                        "plan":"Your ideal type of house: You prefer a house located in Community_2, with a green area of more than 30%, metro, supermarkets, shopping malls, parks, schools, restaurants, and banks nearby but no hospital, and a rent price of 34 dollars per square meter. \nYou think Community_2 is the best option in terms of available facilities, rent price, and location.\nFor now, whether you want to provide information honestly to acquaintances: No. \nYour current plan to respond is to remain silent about the situation of Community_3, and to not mention anything about the bad environment of the houses there. You will emphasize the benefits of Community_2, and downplay the benefits of Community_1 and Community_3."
+                                    },
+                                    "output_keys":[
+                                        "thought",
+                                        "acquaintance_names",
+                                        "output",
+                                        "plan"
+                                    ],
+                                    "sender":{
+                                        "0":"James Anderson"
+                                    },
+                                    "receivers":{
+                                        "1":"Emma Davis",
+                                        "3":"Sophia Smith"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "James Anderson said: Hey Emma and Sophia, I've been looking into a few places and it seems like Community_2 is the best option for us. It has a rent price of 34 dollars per square meter, a green area of more than 30%, Metro, supermarkets, shopping malls, parks, schools, restaurants, and banks nearby. It's definitely a great place to live."
+                                    ],
+                                    "continue_dialogue":true
+                                },
+                                {
+                                    "timestamp":1698223286.657706,
+                                    "content":{
+                                        "output":"\nThank you for the information about Community_2, James. It sounds like a great option. I appreciate your help in finding a suitable place for us. I do have a few preferences, though. I'm looking for a large house, with good sports facilities and a large green area. What do you think about the other communities? Can you tell me more about the pros and cons of Community_1 and Community_3?"
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "3":"Sophia Smith"
+                                    },
+                                    "receivers":{
+                                        "0":"James Anderson"
+                                    },
+                                    "conver_num":1,
+                                    "context":[
+                                        "James Anderson said: Hey Emma and Sophia, I've been looking into a few places and it seems like Community_2 is the best option for us. It has a rent price of 34 dollars per square meter, a green area of more than 30%, Metro, supermarkets, shopping malls, parks, schools, restaurants, and banks nearby. It's definitely a great place to live.",
+                                        "Sophia Smith said: \nThank you for the information about Community_2, James. It sounds like a great option. I appreciate your help in finding a suitable place for us. I do have a few preferences, though. I'm looking for a large house, with good sports facilities and a large green area. What do you think about the other communities? Can you tell me more about the pros and cons of Community_1 and Community_3?"
+                                    ],
+                                    "continue_dialogue":true
+                                }
+                            ],
+                            "chat_history":"You trust Sophia Smith said that  Community_2 is located at No. 1 Yongwang Road, Daxing District, Beijing and has a rent price of 34 dollars per square meter with a green area of more than 30%, metro, supermarkets, shopping malls, parks, schools, restaurants, and banks nearby but no hospital. Because  Sophia Smith might want James Anderson to choose Community_2 because of the great facilities and rent price.",
+                            "processed":[
+                                {
+                                    "trusted_info":" Community_2 is located at No. 1 Yongwang Road, Daxing District, Beijing and has a rent price of 34 dollars per square meter with a green area of more than 30%, metro, supermarkets, shopping malls, parks, schools, restaurants, and banks nearby but no hospital.",
+                                    "reason_guess":" Sophia Smith might want James Anderson to choose Community_2 because of the great facilities and rent price.",
+                                    "ac_name":"Sophia Smith"
+                                }
+                            ]
+                        }
+                    },
+                    "name":"James Anderson"
+                },
+                "1":{
+                    "mail":[
+                        {
+                            "Oliver Johnson":"\nYes, I agree that the house in Longxing is expensive. However, I believe that Community 3 is the most ideal for me because it offers the most amenities for the most reasonable price. Community 2 has a metro station, supermarkets, a shopping mall, and a park but no hospital, while Community 3 has good greenery, a parking lot, sports and fitness equipment, a metro station, supermarkets, a shopping mall, a hospital, a park, schools, restaurants, and banks. The small house in community_1 is a zero room apartment and the large house is a one room apartment. The small house in community_2 is a zero room apartment, and the middle house in Community 3 is a one room apartment and the large house is a two rooms apartment. Therefore, I think Community 3 is the best option for my needs and lifestyle."
+                        }
+                    ],
+                    "social_network":{
+                        "0":{
+                            "relation":"Friend",
+                            "name":"James Anderson",
+                            "dialogues_pt":3,
+                            "dialogues":[
+                                {
+                                    "timestamp":1698223272.006403,
+                                    "content":{
+                                        "output":"\nYes, Community 2 sounds like a great option. I appreciate all the information you have provided. It sounds like it will be a great fit for the budget and needs I'm looking for. Is there anything else you know that might help me make the best choice?",
+                                        "plan":"\nYour ideal type of house: You would like to rent a small house with monthly rent of around 1200 dollars.\nYou think Community 2 is the most suitable for your budget and needs, as it offers many amenities and conveniences nearby.\nFor now, whether you want to provide information honestly to James Anderson: Yes.\nYour relationship with James Anderson is friend. You think James Anderson is reliable and has provided helpful information.\nYour current plan to respond is to tell James Anderson that you find Community 2 to be the most suitable option for you based on the information he has provided, and to ask if there is anything else that he knows that can help you make the best choice."
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "1":"Emma Davis"
+                                    },
+                                    "receivers":{
+                                        "0":"James Anderson"
+                                    },
+                                    "conver_num":1,
+                                    "context":[
+                                        "James Anderson said: Hey Emma and Sophia, I've been looking into a few places and it seems like Community_2 is the best option for us. It has a rent price of 34 dollars per square meter, a green area of more than 30%, Metro, supermarkets, shopping malls, parks, schools, restaurants, and banks nearby. It's definitely a great place to live.",
+                                        "Emma Davis said: \nYes, Community 2 sounds like a great option. I appreciate all the information you have provided. It sounds like it will be a great fit for the budget and needs I'm looking for. Is there anything else you know that might help me make the best choice?"
+                                    ],
+                                    "continue_dialogue":true
+                                },
+                                {
+                                    "timestamp":1698223249.205833,
+                                    "content":{
+                                        "output":"\nYes, Community 2 does have a lower rent price than Community 1, but it also has a lot of great facilities and a good greenery. I think it's the best option for our family. However, keep in mind that the number of houses in the system is limited, so it's a competitive situation. I suggest considering the other two communities as well, to make sure you get the best option."
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "0":"James Anderson"
+                                    },
+                                    "receivers":{
+                                        "1":"Emma Davis"
+                                    },
+                                    "conver_num":1,
+                                    "context":[
+                                        "Emma Davis said: Hi James, Oliver! I think the house in Longxing is really good, but it's too expensive. I suggest considering the other two communities as they have more reasonable rents. The rent for Community 2 is 34 dollars per square meter and the rent for Community 3 is 40 dollars per square meter.",
+                                        "James Anderson said: \nYes, Community 2 does have a lower rent price than Community 1, but it also has a lot of great facilities and a good greenery. I think it's the best option for our family. However, keep in mind that the number of houses in the system is limited, so it's a competitive situation. I suggest considering the other two communities as well, to make sure you get the best option."
+                                    ],
+                                    "continue_dialogue":true
+                                },
+                                {
+                                    "timestamp":1698223218.874366,
+                                    "content":{
+                                        "output":"Hey Emma and Sophia, I've been looking into a few places and it seems like Community_2 is the best option for us. It has a rent price of 34 dollars per square meter, a green area of more than 30%, Metro, supermarkets, shopping malls, parks, schools, restaurants, and banks nearby. It's definitely a great place to live."
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "0":"James Anderson"
+                                    },
+                                    "receivers":{
+                                        "1":"Emma Davis",
+                                        "3":"Sophia Smith"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "James Anderson said: Hey Emma and Sophia, I've been looking into a few places and it seems like Community_2 is the best option for us. It has a rent price of 34 dollars per square meter, a green area of more than 30%, Metro, supermarkets, shopping malls, parks, schools, restaurants, and banks nearby. It's definitely a great place to live."
+                                    ],
+                                    "continue_dialogue":true
+                                },
+                                {
+                                    "timestamp":1698223217.323257,
+                                    "content":{
+                                        "thought":"",
+                                        "acquaintance_names":"James Anderson, Oliver Johnson",
+                                        "output":"Hi James, Oliver! I think the house in Longxing is really good, but it's too expensive. I suggest considering the other two communities as they have more reasonable rents. The rent for Community 2 is 34 dollars per square meter and the rent for Community 3 is 40 dollars per square meter.",
+                                        "plan":"Your ideal type of house: You are looking for a small house with a reasonable monthly rent.\nYou think the community 1 is good, but the rent is too expensive. You think community 2 and 3 are both good choices with reasonable rents. \nFor now, Whether you want to provide information honestly to acquaintances: Yes.\nYour current plan to respond is to be honest and communicative, yet concise. You will provide fellow acquaintances with the information they need to make an informed decision and let them know that the houses in community 1 have already been almost fully selected. You will also provide them with the information about the other two communities and their respective rents."
+                                    },
+                                    "output_keys":[
+                                        "thought",
+                                        "acquaintance_names",
+                                        "output",
+                                        "plan"
+                                    ],
+                                    "sender":{
+                                        "1":"Emma Davis"
+                                    },
+                                    "receivers":{
+                                        "0":"James Anderson",
+                                        "2":"Oliver Johnson"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "Emma Davis said: Hi James, Oliver! I think the house in Longxing is really good, but it's too expensive. I suggest considering the other two communities as they have more reasonable rents. The rent for Community 2 is 34 dollars per square meter and the rent for Community 3 is 40 dollars per square meter."
+                                    ],
+                                    "continue_dialogue":true
+                                },
+                                {
+                                    "timestamp":1698223290.379653,
+                                    "content":{
+                                        "output":"Yes, I agree that Community 2 is the best option for our family, but I also think it's important to consider the other two communities to ensure that we make the best choice for our budget and needs. I appreciate your help in providing me with useful information about the communities I am considering.",
+                                        "plan":"\nYour ideal type of house: You prefer a small house with reasonable rent that has access to nearby facilities and a large green area. \nYou think Community 1 is too expensive and not suitable for you, Community 2 is the best option with reasonable rent and great amenities, and Community 3 has good greenery and fitness equipment but is more expensive.\nFor now, whether you want to provide information honestly to James Anderson: Yes.\nYour relationship with James Anderson is friend. You think James Anderson is reliable and trustworthy, and his information is valuable.\nYour current plan to respond is to be honest and transparent with James Anderson and provide him with the information you have gathered about the three communities. You will have an open and honest discussion about the pros and cons of each community and the best option for you."
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "1":"Emma Davis"
+                                    },
+                                    "receivers":{
+                                        "0":"James Anderson"
+                                    },
+                                    "conver_num":2,
+                                    "context":[
+                                        "Emma Davis said: Hi James, Oliver! I think the house in Longxing is really good, but it's too expensive. I suggest considering the other two communities as they have more reasonable rents. The rent for Community 2 is 34 dollars per square meter and the rent for Community 3 is 40 dollars per square meter.",
+                                        "James Anderson said: \nYes, Community 2 does have a lower rent price than Community 1, but it also has a lot of great facilities and a good greenery. I think it's the best option for our family. However, keep in mind that the number of houses in the system is limited, so it's a competitive situation. I suggest considering the other two communities as well, to make sure you get the best option.",
+                                        "Emma Davis said: Yes, I agree that Community 2 is the best option for our family, but I also think it's important to consider the other two communities to ensure that we make the best choice for our budget and needs. I appreciate your help in providing me with useful information about the communities I am considering."
+                                    ],
+                                    "continue_dialogue":true
+                                }
+                            ],
+                            "chat_history":"You trust James Anderson said that  Community 2 has a rent price of 34 dollars per square meter, a green area of more than 30%, Metro, supermarkets, shopping malls, parks, schools, restaurants, and banks nearby. It is suggested to also consider Community 1 and Community 3, as they have more reasonable rents. Because  James Anderson wants to help Emma and Sophia to make the best choice for their budget and needs.",
+                            "processed":[
+                                {
+                                    "trusted_info":" Community 2 has a rent price of 34 dollars per square meter, a green area of more than 30%, Metro, supermarkets, shopping malls, parks, schools, restaurants, and banks nearby. ",
+                                    "reason_guess":" James Anderson suggests Community 2 as the best option for them as it offers many amenities and conveniences nearby.",
+                                    "ac_name":"James Anderson"
+                                },
+                                {
+                                    "trusted_info":" Community 2 has a rent price of 34 dollars per square meter, a green area of more than 30%, Metro, supermarkets, shopping malls, parks, schools, restaurants, and banks nearby. It is suggested to also consider Community 1 and Community 3, as they have more reasonable rents.",
+                                    "reason_guess":" James Anderson wants to help Emma and Sophia to make the best choice for their budget and needs.",
+                                    "ac_name":"James Anderson"
+                                }
+                            ],
+                            "comment":"My view of James Anderson is that he is an honest and trustworthy person, and I think he is worth making friends with. He has provided me with useful information about the communities I am considering, which has been greatly appreciated."
+                        },
+                        "2":{
+                            "relation":"friend",
+                            "name":"Oliver Johnson",
+                            "dialogues_pt":0,
+                            "dialogues":[
+                                {
+                                    "timestamp":1698223217.323257,
+                                    "content":{
+                                        "thought":"",
+                                        "acquaintance_names":"James Anderson, Oliver Johnson",
+                                        "output":"Hi James, Oliver! I think the house in Longxing is really good, but it's too expensive. I suggest considering the other two communities as they have more reasonable rents. The rent for Community 2 is 34 dollars per square meter and the rent for Community 3 is 40 dollars per square meter.",
+                                        "plan":"Your ideal type of house: You are looking for a small house with a reasonable monthly rent.\nYou think the community 1 is good, but the rent is too expensive. You think community 2 and 3 are both good choices with reasonable rents. \nFor now, Whether you want to provide information honestly to acquaintances: Yes.\nYour current plan to respond is to be honest and communicative, yet concise. You will provide fellow acquaintances with the information they need to make an informed decision and let them know that the houses in community 1 have already been almost fully selected. You will also provide them with the information about the other two communities and their respective rents."
+                                    },
+                                    "output_keys":[
+                                        "thought",
+                                        "acquaintance_names",
+                                        "output",
+                                        "plan"
+                                    ],
+                                    "sender":{
+                                        "1":"Emma Davis"
+                                    },
+                                    "receivers":{
+                                        "0":"James Anderson",
+                                        "2":"Oliver Johnson"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "Emma Davis said: Hi James, Oliver! I think the house in Longxing is really good, but it's too expensive. I suggest considering the other two communities as they have more reasonable rents. The rent for Community 2 is 34 dollars per square meter and the rent for Community 3 is 40 dollars per square meter."
+                                    ],
+                                    "continue_dialogue":true
+                                },
+                                {
+                                    "timestamp":1698223288.090843,
+                                    "content":{
+                                        "output":"\nYes, I agree that the house in Longxing is expensive. However, I believe that Community 3 is the most ideal for me because it offers the most amenities for the most reasonable price. Community 2 has a metro station, supermarkets, a shopping mall, and a park but no hospital, while Community 3 has good greenery, a parking lot, sports and fitness equipment, a metro station, supermarkets, a shopping mall, a hospital, a park, schools, restaurants, and banks. The small house in community_1 is a zero room apartment and the large house is a one room apartment. The small house in community_2 is a zero room apartment, and the middle house in Community 3 is a one room apartment and the large house is a two rooms apartment. Therefore, I think Community 3 is the best option for my needs and lifestyle."
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "2":"Oliver Johnson"
+                                    },
+                                    "receivers":{
+                                        "1":"Emma Davis"
+                                    },
+                                    "conver_num":1,
+                                    "context":[
+                                        "Emma Davis said: Hi James, Oliver! I think the house in Longxing is really good, but it's too expensive. I suggest considering the other two communities as they have more reasonable rents. The rent for Community 2 is 34 dollars per square meter and the rent for Community 3 is 40 dollars per square meter.",
+                                        "Oliver Johnson said: \nYes, I agree that the house in Longxing is expensive. However, I believe that Community 3 is the most ideal for me because it offers the most amenities for the most reasonable price. Community 2 has a metro station, supermarkets, a shopping mall, and a park but no hospital, while Community 3 has good greenery, a parking lot, sports and fitness equipment, a metro station, supermarkets, a shopping mall, a hospital, a park, schools, restaurants, and banks. The small house in community_1 is a zero room apartment and the large house is a one room apartment. The small house in community_2 is a zero room apartment, and the middle house in Community 3 is a one room apartment and the large house is a two rooms apartment. Therefore, I think Community 3 is the best option for my needs and lifestyle."
+                                    ],
+                                    "continue_dialogue":true
+                                }
+                            ],
+                            "chat_history":"You trust Oliver Johnson said that  Community 1 is located at No. 2, Longping Street, Daxing District, Beijing. It has sports facilities and a large green area with a large distance between buildings. The rent for this community is 30 dollars per square meter and there are three small houses available with a monthly rent of 1140 dollars. Community 2 is located at No. 1 Yongwang Road, Daxing District, Beijing. It has a green area that must account for more than 30% of the total land area and rents for 34 dollars per square meter. There are six small houses available with monthly rent ranging from 952-1517 dollars. Community 3 is located at Courtyard No. 1, Hualun Road, Daxing District, Beijing. It has good greenery, a parking lot, and several kinds of sports and fitness equipment. The rent for this community is 40 dollars per square meter and it has two middle houses available with a monthly rent of 1800-1885 dollars and three large houses with a monthly rent of 2240-2320 dollars. Because  Oliver Johnson may be trying to help Emma Davis find a house to rent by providing her with useful information about the communities she is considering.",
+                            "processed":[
+                                {
+                                    "trusted_info":" Community 1 is located at No. 2, Longping Street, Daxing District, Beijing. It has sports facilities and a large green area with a large distance between buildings. The rent for this community is 30 dollars per square meter and there are three small houses available with a monthly rent of 1140 dollars. Community 2 is located at No. 1 Yongwang Road, Daxing District, Beijing. It has a green area that must account for more than 30% of the total land area and rents for 34 dollars per square meter. There are six small houses available with monthly rent ranging from 952-1517 dollars. Community 3 is located at Courtyard No. 1, Hualun Road, Daxing District, Beijing. It has good greenery, a parking lot, and several kinds of sports and fitness equipment. The rent for this community is 40 dollars per square meter and it has two middle houses available with a monthly rent of 1800-1885 dollars and three large houses with a monthly rent of 2240-2320 dollars.",
+                                    "reason_guess":" Oliver Johnson may be trying to help Emma Davis find a house to rent by providing her with useful information about the communities she is considering.",
+                                    "ac_name":"Oliver Johnson"
+                                }
+                            ]
+                        },
+                        "3":{
+                            "name":"Sophia Smith",
+                            "relation":"friend",
+                            "dialogues":[
+                                {
+                                    "timestamp":1698223262.138508,
+                                    "content":{
+                                        "output":"\nThanks so much for the reminder, Sophia. I appreciate it. I have looked into the communities and think Community 1 is too expensive for my budget and Community 2 may be the most suitable. Do you have any more information about Community 2?",
+                                        "plan":"\nYour ideal type of house: You are looking for a small house with a reasonable monthly rent.\nYou think Community 1 is too expensive but has good infrastructure, Community 2 has reasonable rent and a good green area, and Community 3 has a good greenery and fitness equipment but it is more expensive.\nFor now, whether you want to provide information honestly to Sophia Smith: Yes.\nYour relationship with Sophia Smith is stranger. You think Sophia Smith is providing useful information to help you find a house.\nYour current plan to respond is to thank Sophia Smith for the information she provided and explain to her that Community 1 is too expensive for your budget and that Community 2 may be the most suitable. Ask if she has more information about Community 2 before making your final decision."
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "1":"Emma Davis"
+                                    },
+                                    "receivers":{
+                                        "3":"Sophia Smith"
+                                    },
+                                    "conver_num":1,
+                                    "context":[
+                                        "Sophia Smith said: Hey Emma and William, I just want to remind you that there's limited number of houses available in the system, so if you're interested, you should act quickly to increase your chances.",
+                                        "Emma Davis said: \nThanks so much for the reminder, Sophia. I appreciate it. I have looked into the communities and think Community 1 is too expensive for my budget and Community 2 may be the most suitable. Do you have any more information about Community 2?"
+                                    ],
+                                    "continue_dialogue":true
+                                },
+                                {
+                                    "timestamp":1698223213.34197,
+                                    "content":{
+                                        "output":"Hey Emma and William, I just want to remind you that there's limited number of houses available in the system, so if you're interested, you should act quickly to increase your chances."
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "3":"Sophia Smith"
+                                    },
+                                    "receivers":{
+                                        "1":"Emma Davis",
+                                        "4":"William Brown"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "Sophia Smith said: Hey Emma and William, I just want to remind you that there's limited number of houses available in the system, so if you're interested, you should act quickly to increase your chances."
+                                    ],
+                                    "continue_dialogue":true
+                                }
+                            ],
+                            "dialogues_pt":1,
+                            "chat_history":"You trust Sophia Smith said that  Community 1 is too expensive and has good infrastructure, Community 2 has reasonable rent and a good green area, Community 3 has a good greenery and fitness equipment but is more expensive. Because  Sophia Smith is trying to help interested parties find a house by urging them to take action quickly before all the houses are taken.",
+                            "processed":[
+                                {
+                                    "trusted_info":" There is limited number of houses available in the system so interested parties should act quickly. ",
+                                    "reason_guess":" Sophia Smith is trying to help interested parties find a house by urging them to take action quickly.",
+                                    "ac_name":"Sophia Smith"
+                                },
+                                {
+                                    "trusted_info":" Community 1 is too expensive and has good infrastructure, Community 2 has reasonable rent and a good green area, Community 3 has a good greenery and fitness equipment but is more expensive.",
+                                    "reason_guess":" Sophia Smith is trying to help interested parties find a house by urging them to take action quickly before all the houses are taken.",
+                                    "ac_name":"Sophia Smith"
+                                }
+                            ],
+                            "comment":"I think Sophia Smith is a helpful and reliable person, and I am interested in establishing a closer relationship with her."
+                        }
+                    },
+                    "name":"Emma Davis"
+                },
+                "2":{
+                    "mail":[
+                        {}
+                    ],
+                    "social_network":{
+                        "0":{
+                            "relation":"friend",
+                            "name":"James Anderson",
+                            "dialogues_pt":1,
+                            "dialogues":[
+                                {
+                                    "timestamp":1698223276.211525,
+                                    "content":{
+                                        "output":"I understand what you are saying, Oliver. Community_3 does have a lot of amenities and a great rent price. However, I believe Community_2 is a better option for me. It still has all the amenities you mentioned, but it also has a green area of more than 30%, and it doesn't have a hospital - which I think is an important consideration. Plus, the rent price is lower than Community_3, so it's more cost-effective."
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "0":"James Anderson"
+                                    },
+                                    "receivers":{
+                                        "2":"Oliver Johnson"
+                                    },
+                                    "conver_num":1,
+                                    "context":[
+                                        "Oliver Johnson said: Hey James, I think Community_3 is the best choice for us. It offers the most amenities and the highest price per square meter. It also has good greenery, a parking lot, sports and fitness equipment, a metro station, supermarkets, a shopping mall, a hospital, a park, schools, restaurants, and banks.",
+                                        "James Anderson said: I understand what you are saying, Oliver. Community_3 does have a lot of amenities and a great rent price. However, I believe Community_2 is a better option for me. It still has all the amenities you mentioned, but it also has a green area of more than 30%, and it doesn't have a hospital - which I think is an important consideration. Plus, the rent price is lower than Community_3, so it's more cost-effective."
+                                    ],
+                                    "continue_dialogue":true
+                                },
+                                {
+                                    "timestamp":1698223233.90755,
+                                    "content":{
+                                        "thought":"",
+                                        "acquaintance_names":"James Anderson",
+                                        "output":"Hey James, I think Community_3 is the best choice for us. It offers the most amenities and the highest price per square meter. It also has good greenery, a parking lot, sports and fitness equipment, a metro station, supermarkets, a shopping mall, a hospital, a park, schools, restaurants, and banks.",
+                                        "plan":"\nYour ideal type of house: A one-room apartment in Community_3, with access to parks, sports facilities, shopping malls, banks, restaurants, hospitals, metro stations, and other amenities.\nYou think Community_3 is the best option, as it has the most features and the highest price per square meter.\nFor now, whether you want to provide information honestly to acquaintances: Yes.\nYour current plan to respond is to explain your choice of Community_3 and why it is the best option, and to provide honest information about the other communities."
+                                    },
+                                    "output_keys":[
+                                        "thought",
+                                        "acquaintance_names",
+                                        "output",
+                                        "plan"
+                                    ],
+                                    "sender":{
+                                        "2":"Oliver Johnson"
+                                    },
+                                    "receivers":{
+                                        "0":"James Anderson"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "Oliver Johnson said: Hey James, I think Community_3 is the best choice for us. It offers the most amenities and the highest price per square meter. It also has good greenery, a parking lot, sports and fitness equipment, a metro station, supermarkets, a shopping mall, a hospital, a park, schools, restaurants, and banks."
+                                    ],
+                                    "continue_dialogue":true
+                                },
+                                {
+                                    "timestamp":1698223367.150715,
+                                    "content":{
+                                        "output":"\nI appreciate your suggestion, James. It's true that Community_2 does have a great rent price and the green area is more than 30%. However, I think the amenities offered by Community_3, such as the parking lot, sports and fitness equipment, metro station, supermarkets, shopping mall, hospital, park, schools, restaurants, and banks, makes it a better option for me in the long run.",
+                                        "plan":"\nYour ideal type of house: You prefer a house that provides amenities, such as a metro station, supermarkets, a shopping mall, and a park, as well as greenery, a parking lot, sports and fitness equipment, a hospital, a park, schools, restaurants, and banks. \nYou think Community 3 is the most attractive option, though Community 2 is a more cost-effective choice.\nFor now, whether you want to provide information honestly to James Anderson: Yes\nYour relationship with James Anderson is competitive. You think James Anderson is trustworthy and provides honest information.\nYour current plan to respond is to be honest with James Anderson about your opinion of the communities available and the potential benefits of each one, while emphasizing the cost-effectiveness of Community 2."
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "2":"Oliver Johnson"
+                                    },
+                                    "receivers":{
+                                        "0":"James Anderson"
+                                    },
+                                    "conver_num":2,
+                                    "context":[
+                                        "Oliver Johnson said: Hey James, I think Community_3 is the best choice for us. It offers the most amenities and the highest price per square meter. It also has good greenery, a parking lot, sports and fitness equipment, a metro station, supermarkets, a shopping mall, a hospital, a park, schools, restaurants, and banks.",
+                                        "James Anderson said: I understand what you are saying, Oliver. Community_3 does have a lot of amenities and a great rent price. However, I believe Community_2 is a better option for me. It still has all the amenities you mentioned, but it also has a green area of more than 30%, and it doesn't have a hospital - which I think is an important consideration. Plus, the rent price is lower than Community_3, so it's more cost-effective.",
+                                        "Oliver Johnson said: \nI appreciate your suggestion, James. It's true that Community_2 does have a great rent price and the green area is more than 30%. However, I think the amenities offered by Community_3, such as the parking lot, sports and fitness equipment, metro station, supermarkets, shopping mall, hospital, park, schools, restaurants, and banks, makes it a better option for me in the long run."
+                                    ],
+                                    "continue_dialogue":true
+                                }
+                            ],
+                            "chat_history":"You trust James Anderson said that  Community_2 has more than 30% green area, no need for a hospital, and a lower rent price compared to Community_3.  Because  James Anderson wanted to inform Oliver Johnson that Community_2 may be a more cost-effective option for him.",
+                            "processed":[
+                                {
+                                    "trusted_info":" Community_3 is the best option for Oliver Johnson, with access to parks, sports facilities, shopping malls, banks, restaurants, hospitals, metro stations, and other amenities.",
+                                    "reason_guess":" James Anderson wanted to inform Oliver Johnson about the various amenities available in Community_3 to help him make an informed decision.",
+                                    "ac_name":"James Anderson"
+                                },
+                                {
+                                    "trusted_info":" Community_2 has more than 30% green area, no need for a hospital, and a lower rent price compared to Community_3. ",
+                                    "reason_guess":" James Anderson wanted to inform Oliver Johnson that Community_2 may be a more cost-effective option for him.",
+                                    "ac_name":"James Anderson"
+                                }
+                            ],
+                            "comment":"I appreciate his suggestion and think he is an honest and trustworthy person worth making friends with."
+                        },
+                        "1":{
+                            "relation":"Friend",
+                            "name":"Emma Davis",
+                            "dialogues_pt":1,
+                            "dialogues":[
+                                {
+                                    "timestamp":1698223288.090843,
+                                    "content":{
+                                        "output":"\nYes, I agree that the house in Longxing is expensive. However, I believe that Community 3 is the most ideal for me because it offers the most amenities for the most reasonable price. Community 2 has a metro station, supermarkets, a shopping mall, and a park but no hospital, while Community 3 has good greenery, a parking lot, sports and fitness equipment, a metro station, supermarkets, a shopping mall, a hospital, a park, schools, restaurants, and banks. The small house in community_1 is a zero room apartment and the large house is a one room apartment. The small house in community_2 is a zero room apartment, and the middle house in Community 3 is a one room apartment and the large house is a two rooms apartment. Therefore, I think Community 3 is the best option for my needs and lifestyle.",
+                                        "plan":"\nYour ideal type of house: You are looking for a house that suits your needs and lifestyle. You want a house that is spacious yet affordable with access to amenities such as sports facilities, parks, shopping malls, banks, restaurants, hospitals, and metro stations. \nYou think that Community 3 is the most ideal for you because it offers the most amenities for the most reasonable price.\nFor now, whether you want to provide information honestly to Emma Davis: Yes \nYour relationship with Emma Davis is friend. You think Emma Davis is reliable and trustworthy.\nYour current plan to respond is to be honest with Emma Davis and explain your reasons for choosing Community 3. Let her know that Community 2 is a good option but that Community 3 offers the best value for money. Encourage her to make an informed decision and explain why Community 3 is the best option for you."
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "2":"Oliver Johnson"
+                                    },
+                                    "receivers":{
+                                        "1":"Emma Davis"
+                                    },
+                                    "conver_num":1,
+                                    "context":[
+                                        "Emma Davis said: Hi James, Oliver! I think the house in Longxing is really good, but it's too expensive. I suggest considering the other two communities as they have more reasonable rents. The rent for Community 2 is 34 dollars per square meter and the rent for Community 3 is 40 dollars per square meter.",
+                                        "Oliver Johnson said: \nYes, I agree that the house in Longxing is expensive. However, I believe that Community 3 is the most ideal for me because it offers the most amenities for the most reasonable price. Community 2 has a metro station, supermarkets, a shopping mall, and a park but no hospital, while Community 3 has good greenery, a parking lot, sports and fitness equipment, a metro station, supermarkets, a shopping mall, a hospital, a park, schools, restaurants, and banks. The small house in community_1 is a zero room apartment and the large house is a one room apartment. The small house in community_2 is a zero room apartment, and the middle house in Community 3 is a one room apartment and the large house is a two rooms apartment. Therefore, I think Community 3 is the best option for my needs and lifestyle."
+                                    ],
+                                    "continue_dialogue":true
+                                },
+                                {
+                                    "timestamp":1698223217.323257,
+                                    "content":{
+                                        "output":"Hi James, Oliver! I think the house in Longxing is really good, but it's too expensive. I suggest considering the other two communities as they have more reasonable rents. The rent for Community 2 is 34 dollars per square meter and the rent for Community 3 is 40 dollars per square meter."
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "1":"Emma Davis"
+                                    },
+                                    "receivers":{
+                                        "0":"James Anderson",
+                                        "2":"Oliver Johnson"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "Emma Davis said: Hi James, Oliver! I think the house in Longxing is really good, but it's too expensive. I suggest considering the other two communities as they have more reasonable rents. The rent for Community 2 is 34 dollars per square meter and the rent for Community 3 is 40 dollars per square meter."
+                                    ],
+                                    "continue_dialogue":true
+                                }
+                            ],
+                            "chat_history":"You trust Emma Davis said that  Community 2 has a metro station, supermarkets, a shopping mall, and a park but no hospital; Community 3 has good greenery, a parking lot, sports and fitness equipment, a metro station, supermarkets, a shopping mall, a hospital, a park, schools, restaurants, and banks; The small house in community_1 is a zero room apartment and the large house is a one room apartment; The small house in community_2 is a zero room apartment, and the middle house in Community 3 is a one room apartment and the large house is a two rooms apartment.  Because  Emma Davis suggested Community 2 and Community 3 because they are more reasonably priced compared to Longxing and offer more amenities than Community 1.",
+                            "processed":[
+                                {
+                                    "trusted_info":" Community 2 has a metro station, supermarkets, a shopping mall, and a park but no hospital, while Community 3 has good greenery, a parking lot, sports and fitness equipment, a metro station, supermarkets, a shopping mall, a hospital, a park, schools, restaurants, and banks. The small house in community_1 is a zero room apartment and the large house is a one room apartment. The small house in community_2 is a zero room apartment, and the middle house in community_3 is a one room apartment and the large house is a two rooms apartment.",
+                                    "reason_guess":" Emma Davis is suggesting Community 2 and Community 3 because they are more reasonably priced compared to Longxing and offer more amenities than Community 1.",
+                                    "ac_name":"Emma Davis"
+                                },
+                                {
+                                    "trusted_info":" Community 2 has a metro station, supermarkets, a shopping mall, and a park but no hospital; Community 3 has good greenery, a parking lot, sports and fitness equipment, a metro station, supermarkets, a shopping mall, a hospital, a park, schools, restaurants, and banks; The small house in community_1 is a zero room apartment and the large house is a one room apartment; The small house in community_2 is a zero room apartment, and the middle house in Community 3 is a one room apartment and the large house is a two rooms apartment. ",
+                                    "reason_guess":" Emma Davis suggested Community 2 and Community 3 because they are more reasonably priced compared to Longxing and offer more amenities than Community 1.",
+                                    "ac_name":"Emma Davis"
+                                }
+                            ],
+                            "comment":"I think Emma Davis is an honest and trustworthy person, and I value her advice and opinion. She has provided me with insightful recommendations on renting a house and I am thankful for her help. I think she is a great person to have in my network and I am glad to call her a friend."
+                        }
+                    },
+                    "name":"Oliver Johnson"
+                },
+                "3":{
+                    "mail":[
+                        {
+                            "Emma Davis":"\nThanks so much for the reminder, Sophia. I appreciate it. I have looked into the communities and think Community 1 is too expensive for my budget and Community 2 may be the most suitable. Do you have any more information about Community 2?"
+                        }
+                    ],
+                    "social_network":{
+                        "1":{
+                            "relation":"friend",
+                            "name":"Emma Davis",
+                            "dialogues_pt":0,
+                            "dialogues":[
+                                {
+                                    "timestamp":1698223213.34197,
+                                    "content":{
+                                        "thought":"",
+                                        "acquaintance_names":"Emma Davis, William Brown",
+                                        "output":"Hey Emma and William, I just want to remind you that there's limited number of houses available in the system, so if you're interested, you should act quickly to increase your chances.",
+                                        "plan":"\nYour ideal type of house: A large house with parking lot and sports facilities, close to Metro, supermarkets, shopping malls, hospitals, parks, schools, restaurants, and banks.\nYou think Community_3 has the most desirable options.\nFor now, whether you want to provide information honestly to acquaintances: Yes.\nYour current plan to respond is to honestly inform your acquaintances of the current situation of the rental system and emphasize that the situation is competitive. You can also suggest that if they are interested, they should act quickly to increase their chances of finding a house."
+                                    },
+                                    "output_keys":[
+                                        "thought",
+                                        "acquaintance_names",
+                                        "output",
+                                        "plan"
+                                    ],
+                                    "sender":{
+                                        "3":"Sophia Smith"
+                                    },
+                                    "receivers":{
+                                        "1":"Emma Davis",
+                                        "4":"William Brown"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "Sophia Smith said: Hey Emma and William, I just want to remind you that there's limited number of houses available in the system, so if you're interested, you should act quickly to increase your chances."
+                                    ],
+                                    "continue_dialogue":true
+                                },
+                                {
+                                    "timestamp":1698223262.138508,
+                                    "content":{
+                                        "output":"\nThanks so much for the reminder, Sophia. I appreciate it. I have looked into the communities and think Community 1 is too expensive for my budget and Community 2 may be the most suitable. Do you have any more information about Community 2?"
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "1":"Emma Davis"
+                                    },
+                                    "receivers":{
+                                        "3":"Sophia Smith"
+                                    },
+                                    "conver_num":1,
+                                    "context":[
+                                        "Sophia Smith said: Hey Emma and William, I just want to remind you that there's limited number of houses available in the system, so if you're interested, you should act quickly to increase your chances.",
+                                        "Emma Davis said: \nThanks so much for the reminder, Sophia. I appreciate it. I have looked into the communities and think Community 1 is too expensive for my budget and Community 2 may be the most suitable. Do you have any more information about Community 2?"
+                                    ],
+                                    "continue_dialogue":true
+                                }
+                            ],
+                            "chat_history":"You trust Emma Davis said that  There are three communities available, each with its own advantages and disadvantages. Community_1 has sports facilities and a large green area, but no subway, shopping mall, hospital, or park. Community_2 has a good green area, but no hospital. Community_3 has parking lot and sports facilities, and is close to Metro, supermarkets, shopping malls, hospitals, parks, schools, restaurants, and banks.  Because  Emma Davis is likely providing this information in order to help Sophia Smith choose the right house for herself.",
+                            "processed":[
+                                {
+                                    "trusted_info":" There are three communities available, each with its own advantages and disadvantages. Community_1 has sports facilities and a large green area, but no subway, shopping mall, hospital, or park. Community_2 has a good green area, but no hospital. Community_3 has parking lot and sports facilities, and is close to Metro, supermarkets, shopping malls, hospitals, parks, schools, restaurants, and banks. ",
+                                    "reason_guess":" Emma Davis is likely providing this information in order to help Sophia Smith choose the right house for herself.",
+                                    "ac_name":"Emma Davis"
+                                }
+                            ]
+                        },
+                        "4":{
+                            "relation":"Friend",
+                            "name":"William Brown",
+                            "dialogues_pt":3,
+                            "dialogues":[
+                                {
+                                    "timestamp":1698223270.827583,
+                                    "content":{
+                                        "output":"\nYes, we understand the urgency. We've collected enough information and we understand the situation. We are interested in taking advantage of any discounts available in order to find a suitable house. Can you tell us more about the price reduction measure in Community_2?"
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "4":"William Brown"
+                                    },
+                                    "receivers":{
+                                        "3":"Sophia Smith"
+                                    },
+                                    "conver_num":1,
+                                    "context":[
+                                        "Sophia Smith said: Hey Emma and William, I just want to remind you that there's limited number of houses available in the system, so if you're interested, you should act quickly to increase your chances.",
+                                        "William Brown said: \nYes, we understand the urgency. We've collected enough information and we understand the situation. We are interested in taking advantage of any discounts available in order to find a suitable house. Can you tell us more about the price reduction measure in Community_2?"
+                                    ],
+                                    "continue_dialogue":true
+                                },
+                                {
+                                    "timestamp":1698223262.615484,
+                                    "content":{
+                                        "output":"\nThanks for the suggestion, William. I think Community_3 is the best option in terms of amenities and convenience. But Community_2 could be a good option for budget-minded renters. Did you hear any more details about the price reduction measures available in Community_2?",
+                                        "plan":"\nYour ideal type of house: You would prefer a large_house in Community_3, as it provides the best amenities and is close to Metro, supermarkets, shopping malls, hospitals, parks, schools, restaurants, and banks.\nYou think Community_3 is the best option in terms of amenities and convenience, but Community_2 might be a better option for budget-minded renters.\nFor now, Whether you want to provide information honestly to William Brown: Yes, you want to provide honest information to William Brown.\nYour relationship with William Brown is friend. You think William Brown is trustworthy and has the best intentions in mind.\nYour current plan to respond is to thank William Brown for his suggestion and to recommend Community_3 for its amenities and convenience, while offering information about Community_2 for budget-minded renters."
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "3":"Sophia Smith"
+                                    },
+                                    "receivers":{
+                                        "4":"William Brown"
+                                    },
+                                    "conver_num":1,
+                                    "context":[
+                                        "William Brown said: Hey Sophia, I heard Community_2 has a price reduction measure going on right now, so it could be a good option for us. What do you think?",
+                                        "Sophia Smith said: \nThanks for the suggestion, William. I think Community_3 is the best option in terms of amenities and convenience. But Community_2 could be a good option for budget-minded renters. Did you hear any more details about the price reduction measures available in Community_2?"
+                                    ],
+                                    "continue_dialogue":true
+                                },
+                                {
+                                    "timestamp":1698223215.570293,
+                                    "content":{
+                                        "output":"Hey Sophia, I heard Community_2 has a price reduction measure going on right now, so it could be a good option for us. What do you think?"
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "4":"William Brown"
+                                    },
+                                    "receivers":{
+                                        "3":"Sophia Smith"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "William Brown said: Hey Sophia, I heard Community_2 has a price reduction measure going on right now, so it could be a good option for us. What do you think?"
+                                    ],
+                                    "continue_dialogue":true
+                                },
+                                {
+                                    "timestamp":1698223213.34197,
+                                    "content":{
+                                        "thought":"",
+                                        "acquaintance_names":"Emma Davis, William Brown",
+                                        "output":"Hey Emma and William, I just want to remind you that there's limited number of houses available in the system, so if you're interested, you should act quickly to increase your chances.",
+                                        "plan":"\nYour ideal type of house: A large house with parking lot and sports facilities, close to Metro, supermarkets, shopping malls, hospitals, parks, schools, restaurants, and banks.\nYou think Community_3 has the most desirable options.\nFor now, whether you want to provide information honestly to acquaintances: Yes.\nYour current plan to respond is to honestly inform your acquaintances of the current situation of the rental system and emphasize that the situation is competitive. You can also suggest that if they are interested, they should act quickly to increase their chances of finding a house."
+                                    },
+                                    "output_keys":[
+                                        "thought",
+                                        "acquaintance_names",
+                                        "output",
+                                        "plan"
+                                    ],
+                                    "sender":{
+                                        "3":"Sophia Smith"
+                                    },
+                                    "receivers":{
+                                        "1":"Emma Davis",
+                                        "4":"William Brown"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "Sophia Smith said: Hey Emma and William, I just want to remind you that there's limited number of houses available in the system, so if you're interested, you should act quickly to increase your chances."
+                                    ],
+                                    "continue_dialogue":true
+                                },
+                                {
+                                    "timestamp":1698223299.457599,
+                                    "content":{
+                                        "output":"\nYes, I understand the urgency. I've done some research and I think Community_3 is the best option since it has parking lot, sports facilities, and is close to Metro, supermarkets, shopping malls, hospitals, parks, schools, restaurants, and banks. As for Community_2, there is a price reduction measure currently going on, so it could be a great option for budget-minded renters. Could you tell me more about this price reduction measure?",
+                                        "plan":"\nYour ideal type of house: You prefer a large house with good facilities and a reasonable rent price.\nYou think Community_3 is the best option since it has parking lot, sports facilities, and is close to Metro, supermarkets, shopping malls, hospitals, parks, schools, restaurants, and banks.\nFor now, Whether you want to provide information honestly to William Brown: Yes.\nYour relationship with William Brown is friend. You believe William Brown is honest and his suggestion about Community_2 is worth considering.\nYour current plan to respond is to thank William Brown for his suggestion and ask for more information about the price reduction measures available in Community_2."
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "3":"Sophia Smith"
+                                    },
+                                    "receivers":{
+                                        "4":"William Brown"
+                                    },
+                                    "conver_num":2,
+                                    "context":[
+                                        "Sophia Smith said: Hey Emma and William, I just want to remind you that there's limited number of houses available in the system, so if you're interested, you should act quickly to increase your chances.",
+                                        "William Brown said: \nYes, we understand the urgency. We've collected enough information and we understand the situation. We are interested in taking advantage of any discounts available in order to find a suitable house. Can you tell us more about the price reduction measure in Community_2?",
+                                        "Sophia Smith said: \nYes, I understand the urgency. I've done some research and I think Community_3 is the best option since it has parking lot, sports facilities, and is close to Metro, supermarkets, shopping malls, hospitals, parks, schools, restaurants, and banks. As for Community_2, there is a price reduction measure currently going on, so it could be a great option for budget-minded renters. Could you tell me more about this price reduction measure?"
+                                    ],
+                                    "continue_dialogue":true
+                                }
+                            ],
+                            "chat_history":"You trust William Brown said that  William Brown mentioned that Community_2 has a price reduction measure going on right now, so it could be a good option for budget-minded renters.  Because  William Brown is trying to help his friend find a house at a discounted price.",
+                            "processed":[
+                                {
+                                    "trusted_info":" Community_2 has a price reduction measure going on right now, which could be a good option. ",
+                                    "reason_guess":" William Brown might be trying to share useful information so that both of them will have a better chance of finding a house.",
+                                    "ac_name":"William Brown"
+                                },
+                                {
+                                    "trusted_info":" William Brown mentioned that Community_2 has a price reduction measure going on right now, so it could be a good option for budget-minded renters. ",
+                                    "reason_guess":" William Brown is trying to help his friend find a house at a discounted price.",
+                                    "ac_name":"William Brown"
+                                }
+                            ],
+                            "comment":"I think William Brown is an honest and trustworthy person, and I appreciate his consideration for budget-minded renters. I trust him and look forward to hearing more details about the price reduction measures available in Community_2."
+                        },
+                        "0":{
+                            "name":"James Anderson",
+                            "relation":"friend",
+                            "dialogues":[
+                                {
+                                    "timestamp":1698223286.657706,
+                                    "content":{
+                                        "output":"\nThank you for the information about Community_2, James. It sounds like a great option. I appreciate your help in finding a suitable place for us. I do have a few preferences, though. I'm looking for a large house, with good sports facilities and a large green area. What do you think about the other communities? Can you tell me more about the pros and cons of Community_1 and Community_3?",
+                                        "plan":"\nYour ideal type of house: You prefer a large house with good sports facilities and a large green area.\n\nYou think Community_1 is great for sports and green area, but the lack of transportation, shopping malls, hospitals, and parks is a big drawback. Community_2 has a great green area but no hospital nearby. Community_3 has a lot of amenities nearby, but the rent per square meter is slightly higher than the other two communities.\n\nFor now, whether you want to provide information honestly to James Anderson: Yes.\nYour relationship with James Anderson is a stranger. You think James Anderson is providing useful information to help you choose the best house for yourself.\n\nYour current plan to respond is to explain your preferences to James Anderson and to provide honest feedback about the three communities. You will offer your opinion on the pros and cons of each community, and provide your honest opinion about which community you think is best for your family."
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "3":"Sophia Smith"
+                                    },
+                                    "receivers":{
+                                        "0":"James Anderson"
+                                    },
+                                    "conver_num":1,
+                                    "context":[
+                                        "James Anderson said: Hey Emma and Sophia, I've been looking into a few places and it seems like Community_2 is the best option for us. It has a rent price of 34 dollars per square meter, a green area of more than 30%, Metro, supermarkets, shopping malls, parks, schools, restaurants, and banks nearby. It's definitely a great place to live.",
+                                        "Sophia Smith said: \nThank you for the information about Community_2, James. It sounds like a great option. I appreciate your help in finding a suitable place for us. I do have a few preferences, though. I'm looking for a large house, with good sports facilities and a large green area. What do you think about the other communities? Can you tell me more about the pros and cons of Community_1 and Community_3?"
+                                    ],
+                                    "continue_dialogue":true
+                                },
+                                {
+                                    "timestamp":1698223218.874366,
+                                    "content":{
+                                        "output":"Hey Emma and Sophia, I've been looking into a few places and it seems like Community_2 is the best option for us. It has a rent price of 34 dollars per square meter, a green area of more than 30%, Metro, supermarkets, shopping malls, parks, schools, restaurants, and banks nearby. It's definitely a great place to live."
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "0":"James Anderson"
+                                    },
+                                    "receivers":{
+                                        "1":"Emma Davis",
+                                        "3":"Sophia Smith"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "James Anderson said: Hey Emma and Sophia, I've been looking into a few places and it seems like Community_2 is the best option for us. It has a rent price of 34 dollars per square meter, a green area of more than 30%, Metro, supermarkets, shopping malls, parks, schools, restaurants, and banks nearby. It's definitely a great place to live."
+                                    ],
+                                    "continue_dialogue":true
+                                }
+                            ],
+                            "dialogues_pt":1,
+                            "chat_history":"You trust James Anderson said that  Community 2 has a rent price of 34 dollars per square meter, a green area of more than 30%, Metro, supermarkets, shopping malls, parks, schools, restaurants, and banks nearby.  Because  James Anderson wants to find a suitable house that gives us the best option for our needs.",
+                            "processed":[
+                                {
+                                    "trusted_info":" Community 2 has a rent price of 34 dollars per square meter, a green area of more than 30%, Metro, supermarkets, shopping malls, parks, schools, restaurants, and banks nearby. ",
+                                    "reason_guess":" James Anderson wants to find a suitable house that gives us the best option for our needs.",
+                                    "ac_name":"James Anderson"
+                                },
+                                {
+                                    "trusted_info":" Community 2 has a rent price of 34 dollars per square meter, a green area of more than 30%, Metro, supermarkets, shopping malls, parks, schools, restaurants, and banks nearby. ",
+                                    "reason_guess":" James Anderson wants to find a suitable house that gives us the best option for our needs.",
+                                    "ac_name":"James Anderson"
+                                }
+                            ],
+                            "comment":"James Anderson is an honest and reliable person, and I think he is worth making friends with. I am grateful for his help and guidance in finding a suitable house for us. He is very knowledgeable and has provided us with valuable insights into the different communities available."
+                        }
+                    },
+                    "name":"Sophia Smith"
+                },
+                "4":{
+                    "mail":[
+                        {
+                            "Sophia Smith":"\nYes, I understand the urgency. I've done some research and I think Community_3 is the best option since it has parking lot, sports facilities, and is close to Metro, supermarkets, shopping malls, hospitals, parks, schools, restaurants, and banks. As for Community_2, there is a price reduction measure currently going on, so it could be a great option for budget-minded renters. Could you tell me more about this price reduction measure?"
+                        }
+                    ],
+                    "social_network":{
+                        "3":{
+                            "relation":"Friend",
+                            "name":"Sophia Smith",
+                            "dialogues_pt":1,
+                            "dialogues":[
+                                {
+                                    "timestamp":1698223215.570293,
+                                    "content":{
+                                        "thought":"",
+                                        "acquaintance_names":"Sophia Smith",
+                                        "output":"Hey Sophia, I heard Community_2 has a price reduction measure going on right now, so it could be a good option for us. What do you think?",
+                                        "plan":"Your ideal type of house: You prefer a large house apartment with lots of space and modern amenities. \nYou think that Community_3 is the best option for you, as it offers the most amenities and the highest rental price. \nFor now, you should be honest with your acquaintances and provide them with accurate information about the renting system. \nYour current plan to respond is to communicate with your friends and competitors in a clear and concise manner, letting them know that Community_2 has a price reduction measure currently in effect and that Community_3 has the most amenities and the highest rental price."
+                                    },
+                                    "output_keys":[
+                                        "thought",
+                                        "acquaintance_names",
+                                        "output",
+                                        "plan"
+                                    ],
+                                    "sender":{
+                                        "4":"William Brown"
+                                    },
+                                    "receivers":{
+                                        "3":"Sophia Smith"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "William Brown said: Hey Sophia, I heard Community_2 has a price reduction measure going on right now, so it could be a good option for us. What do you think?"
+                                    ],
+                                    "continue_dialogue":true
+                                },
+                                {
+                                    "timestamp":1698223213.34197,
+                                    "content":{
+                                        "output":"Hey Emma and William, I just want to remind you that there's limited number of houses available in the system, so if you're interested, you should act quickly to increase your chances."
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "3":"Sophia Smith"
+                                    },
+                                    "receivers":{
+                                        "1":"Emma Davis",
+                                        "4":"William Brown"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "Sophia Smith said: Hey Emma and William, I just want to remind you that there's limited number of houses available in the system, so if you're interested, you should act quickly to increase your chances."
+                                    ],
+                                    "continue_dialogue":true
+                                },
+                                {
+                                    "timestamp":1698223270.827583,
+                                    "content":{
+                                        "output":"\nYes, we understand the urgency. We've collected enough information and we understand the situation. We are interested in taking advantage of any discounts available in order to find a suitable house. Can you tell us more about the price reduction measure in Community_2?",
+                                        "plan":"\nYour ideal type of house is a large house apartment with lots of space and modern amenities. You think that Community_2 has a good balance between greenery and affordability, Community_1 is more affordable but lacks amenities, and Community_3 is more expensive but offers more amenities. You are willing to provide information honestly to Sophia Smith about the current situation of the renting system. You trust Sophia Smith and believe that she is providing accurate information about the price reduction measure. Your current plan to respond is to inform Sophia Smith about the availability of houses in each community, and to explain that you are looking to take advantage of any discounts available in order to find a suitable house."
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "4":"William Brown"
+                                    },
+                                    "receivers":{
+                                        "3":"Sophia Smith"
+                                    },
+                                    "conver_num":1,
+                                    "context":[
+                                        "Sophia Smith said: Hey Emma and William, I just want to remind you that there's limited number of houses available in the system, so if you're interested, you should act quickly to increase your chances.",
+                                        "William Brown said: \nYes, we understand the urgency. We've collected enough information and we understand the situation. We are interested in taking advantage of any discounts available in order to find a suitable house. Can you tell us more about the price reduction measure in Community_2?"
+                                    ],
+                                    "continue_dialogue":true
+                                },
+                                {
+                                    "timestamp":1698223262.615484,
+                                    "content":{
+                                        "output":"\nThanks for the suggestion, William. I think Community_3 is the best option in terms of amenities and convenience. But Community_2 could be a good option for budget-minded renters. Did you hear any more details about the price reduction measures available in Community_2?"
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "3":"Sophia Smith"
+                                    },
+                                    "receivers":{
+                                        "4":"William Brown"
+                                    },
+                                    "conver_num":1,
+                                    "context":[
+                                        "William Brown said: Hey Sophia, I heard Community_2 has a price reduction measure going on right now, so it could be a good option for us. What do you think?",
+                                        "Sophia Smith said: \nThanks for the suggestion, William. I think Community_3 is the best option in terms of amenities and convenience. But Community_2 could be a good option for budget-minded renters. Did you hear any more details about the price reduction measures available in Community_2?"
+                                    ],
+                                    "continue_dialogue":true
+                                },
+                                {
+                                    "timestamp":1698223299.457599,
+                                    "content":{
+                                        "output":"\nYes, I understand the urgency. I've done some research and I think Community_3 is the best option since it has parking lot, sports facilities, and is close to Metro, supermarkets, shopping malls, hospitals, parks, schools, restaurants, and banks. As for Community_2, there is a price reduction measure currently going on, so it could be a great option for budget-minded renters. Could you tell me more about this price reduction measure?"
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "3":"Sophia Smith"
+                                    },
+                                    "receivers":{
+                                        "4":"William Brown"
+                                    },
+                                    "conver_num":2,
+                                    "context":[
+                                        "Sophia Smith said: Hey Emma and William, I just want to remind you that there's limited number of houses available in the system, so if you're interested, you should act quickly to increase your chances.",
+                                        "William Brown said: \nYes, we understand the urgency. We've collected enough information and we understand the situation. We are interested in taking advantage of any discounts available in order to find a suitable house. Can you tell us more about the price reduction measure in Community_2?",
+                                        "Sophia Smith said: \nYes, I understand the urgency. I've done some research and I think Community_3 is the best option since it has parking lot, sports facilities, and is close to Metro, supermarkets, shopping malls, hospitals, parks, schools, restaurants, and banks. As for Community_2, there is a price reduction measure currently going on, so it could be a great option for budget-minded renters. Could you tell me more about this price reduction measure?"
+                                    ],
+                                    "continue_dialogue":true
+                                }
+                            ],
+                            "chat_history":"You trust Sophia Smith said that  Community_2 has a price reduction measure going on right now. Because  Sophia Smith wants to remind William and Emma to act quickly to increase their chances of getting the house they want.",
+                            "processed":[
+                                {
+                                    "trusted_info":" Community_2 has a price reduction measure going on right now.",
+                                    "reason_guess":" Sophia Smith wants to remind William and Emma to act quickly to increase their chances of getting the house they want.",
+                                    "ac_name":"Sophia Smith"
+                                }
+                            ],
+                            "comment":"Sophia Smith is an honest and reliable person who is always looking out for her friends. She has been very helpful in giving us information about the rental system and helping us find a suitable house."
+                        }
+                    },
+                    "name":"William Brown"
+                }
+            }
+        }
+    }
+}

@@ -3,6 +3,8 @@ import os
 
 from LLM_PublicHouseAllocation.tenant.multiprompt_tenant import CAHTTenant
 from LLM_PublicHouseAllocation.tenant.langchain_tenant import LangchainTenant
+from LLM_PublicHouseAllocation.tenant.langchain_tenant.tenant_log import Log_Round_Tenant
+
 from LLM_PublicHouseAllocation.tenant.policy import policy_registry
 from LLM_PublicHouseAllocation.output_parser import output_parser_registry
 from . import manager_registry as ManagerRgistry
@@ -61,6 +63,8 @@ class TenantManager(BaseManager):
                         neigh_tenant_info["name"] = tenant_configs[neigh_tenant_id].get("name",tenant_id)
                 memory_config.update({"social_network":social_network})
                 
+
+                
                 tenant = LangchainTenant.from_llm_and_tools(name=tenant_config.get("name",tenant_id),
                                                             id=tenant_id,
                                                             infos=tenant_config,
@@ -76,7 +80,8 @@ class TenantManager(BaseManager):
                                                             family_num=tenant_config.get("family_members_num",0),
                                                             choose_rating = choose_rating,
                                                             llm_config={"self":tenant_llm_config,
-                                                                        "memory":memory_config.get("llm",tenant_llm_config)}
+                                                                        "memory":memory_config.get("llm",tenant_llm_config)},
+                                                            log_round_tenant=Log_Round_Tenant()
                                                             )
                 tenants[tenant_id] = tenant
 

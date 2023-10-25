@@ -17,7 +17,7 @@ class BasePolicy(BaseModel):
                         system, 
                         tool, 
                         rule,
-                        log_round):
+                        log_round_tenant):
         pass # return chooose_state, house_id.lower()
     
     @abstractmethod
@@ -27,5 +27,5 @@ class BasePolicy(BaseModel):
                 system, 
                 tool, 
                 rule,
-                log_round):
+                log_round_tenant):
         pass # return group_id (community_id/house_type) or None (无法解析的group_id)

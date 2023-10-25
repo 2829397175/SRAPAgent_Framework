@@ -1,0 +1,218 @@
+
+项目名称
+隆兴园
+金科嘉苑
+金融街·融汇
+
+
+项目位置
+隆兴园：北京市大兴区隆平大街2号
+金科嘉苑：北京市大兴区永旺路1号
+金融街·融汇：北京市大兴区华伦路1号院
+
+
+剩余房源套数
+隆兴园：8
+金科嘉苑：6
+金融街·融汇：5
+
+
+
+套型
+隆兴园：大套型（套数：5，居室：一居，建筑面积：60.92-61.8，租金：1830），小套型（套数：3，居室：零居，建筑面积：37.96-38.09，平均租金：1140）
+金科嘉苑：小套型（套数：6，居室：零居，建筑面积：27.76-44.62，租金：952-1517）
+金融街·融汇：大套型（套数：3，居室：二居，建筑面积：56.14-58.33，租金：2240-2320），中套型（套数：2，居室：一居，建筑面积：44.96-47.13，租金：1800-1885）
+
+
+租金标准(元/建筑平方米·月)
+隆兴园：30
+金科嘉苑：34
+金融街·融汇：40
+
+
+帮我按照上述信息是三个公租房小区的信息，生成按下面格式要求json格式的文件
+[
+{ 
+  "community_id":1,
+  "community_name":"隆兴园",
+  "location":"北京市大兴区隆平大街2号",
+  "value_inch":30,
+  "sum_remain_num":8,
+  "large_house":{
+  "remain_number":5,
+  "living_room":"one room",
+  "index":["house_1","house_2","house_3","house_4","house_5"]，
+  "size":"60.92-61.8"，
+  "cost":"1830"
+},
+  "small_house":{
+   "living_room":"zero room",
+  "remain_number":3,
+  "index":["house_6","house_7","house_8"]，
+  "size":"37.96-38.09",
+   "cost":"1140"
+}
+]
+其中community_id表示小区的编号；community_name表示小区名字，要求使用中文；location表示小区位置，要是使用中文；value_inch表示每平米租金，sum_remain_num表示该小区剩余房子数；large_house表示户型是大套型，large_house中的remain_number表示该套型剩余的房子数量，living_room表示该套型的居室数量，index表示该套型所对应的房间编号，同种套型数字要顺序表示；size表示该套型的面积大小，"cost"表示该套型的租金范围；small_house描述小套型，middle_house描述中套型，别的剩下的参数和大套型的含义相似
+
+
+
+
+
+
+你根据上面list中每个community中的各个套型的信息，我再给你一些小区房子的额外的具体信息：
+隆兴园：最高10层，所有房子都有电梯，有阳台；每个房子潜在信息的要求：房子隔音效果差，小区环境不好
+金科嘉苑：最高20层，所有房子都有电梯，面积小于35的房子没有阳台，其余的有阳台；每个房子潜在信息的要求：面积小于35的房子，描述为阴暗潮湿、等等描述房子没有阳台和窗户，面积小的缺点理由，其他的都是夸奖小区好的（你来随便描述）
+金融街·融汇：最高15层，所有房子都有电梯，有阳台；每个房子潜在信息的要求：房子户型好，坐北朝南，小区绿化好，环境好
+
+你根据这两部分信息帮我生成下面这种数据：
+{"隆兴园":
+{
+  "house_1": { 
+  	"house_area":"61"
+  	"rent_money": 1830,
+  	"balcony": "not has",
+  	"floor": 5,
+  	"elevator": "has",
+  	"potential_information_house": "The sound insulation effect of the house is poor, and the community environment is not good"
+   }
+}
+}
+"隆兴园"表示小区名称，小区名称里面"house_1"表示第一个房子，其中的属性按照上面小区的那个json文件里面给到的信息来生成，首先house_area表示房子面积，必须按照刚刚size所给定的范围来生成；"rent_money"表示租金，是由上面给到的每平米租金value_inch乘以house_area得到的数字，要求必须去掉小数，保留整数；"balcony"（表示有无阳台，回答"has"或者"not has"）和"elevator"（表示有电梯，回答"has"或者"not has"），
+这两个字段你按照我给你的关于小区房子的额外具体信息来生成 ;"floor"字段表示小区的楼层数，你按照我给你的关于小区房子的额外具体信息中对最高层数的描述来生成；"potential_information_house":表示房子的隐藏信息，你按照我给你的关于小区房子的额外具体信息中的潜在信息要求来给每个房子生成不同的信息，要求英文
+  
+
+
+
+你帮我生成参与房屋分配的家庭的json格式的信息，包括name（任意生成英文名），age（表示年龄，要求在25到70之间随机选择），family_members(表示家庭成员有几个孩子，有无配偶,用一句话描述），profession（表示职业，可以为建筑工人，程序员，自由职业，公务员，国企科员、饭店服务员等等任意职业），work_place（表示工作地点，要求必须按照职业合理的在北京市市中心的任意写字楼或者工作场地工作，要求位置必须真实，并且使用中文来生成）,
+monthly_income(表示家庭月收入要求在4000-15000之间），monthly_rent_budget（表示家庭可以接受的最大租金，要求在2000-5000之间，且必须小于二分之一的家庭月收入），special_request（表示家庭的一些特殊需求，可以是交通出行是否条件便利等等，只要是正常租房人所考虑的需求都可以，你随机生成，要求使用英文），你需要按照下面我给的例子来进行返回：
+ [
+{
+        "name": "John", 
+        "age":34,
+        "family_members":" your wife, your child, who is about to start elementary school",
+        "profession":"programmer",
+        "work_place":"中关村微软大厦",
+        "monthly_income":20000,
+        "monthly_rent_budget":3000,
+        "Degree_of_demand_for_housing":"high",
+        "special_request ":" John hopes that the place where he lives can walk to the company, and there are schools and supermarkets nearby."
+ }
+]
+
+
+
+
+
+The following is a description of the role you need to play:
+{role_description}
+
+You are currently participating in a public rental housing allocation activity  and you have {choose_num} opportunities to choose.If you only have one opportunity to choose and do not make a choice this time, you will not have the opportunity to choose new community and house type information in the future. It is now your turn in the queue to choose a house.
+
+The following is the information regarding the available communities  and house types that you can select from at this time:
+{house_info}
+
+Additionally, here is the information regarding the potential new communities and house types that may become available in the future:
+{house_future_info}
+
+You need to consider whether to choose a community and house type based on your own character description, the information of the communities  and house types that can be selected this time, and the information of the communities  and house types that can be selected in the future.
+If you choose, you can only choose the only community and house type from the communities and house types you can choose this time.
+
+- If you made up your choice, respond in this format:
+   Action: Choose
+   Result: My choice is the apartment type ({large, medium and small}) of the community (id).
+  
+   - If you chose none of them, respond in this format:
+   Action: Not Choose
+   Result: I choose none of these houses.
+
+
+
+
+
+
+
+
+
+The following is a description of the role you need to play:
+{role_description}
+
+You are currently participating in a public rental housing allocation activity .Below are the collected comments on the {community_name}community:
+{forum_comments}
+You need to make a summary based on your role description and the comments given about this community.
+
+
+
+
+
+
+
+
+
+
+The following is a description of the role you need to play:
+{role_description}
+
+You are currently participating in a public rental housing allocation activity.
+
+The following is the information regarding the available house that you can select from at this time:
+{house_info}
+
+- If you made up your choice, respond in this format:
+   Action: Choose
+   Result: My choice is  house (id).
+  
+- If you chose none of them, respond in this format:
+   Action: Not Choose
+   Result: I choose none of these houses.
+
+
+
+
+
+
+The following is a description of the role you need to play:
+{role_description}
+
+You are currently participating in a public rental housing allocation activity.
+
+The following is the information regarding the available house that you can select from at this time:
+{house_info}
+
+- If you made up your choice, respond in this format:
+   Action: Choose
+   Result: My choice is  house (id).
+  
+- If you chose none of them, respond in this format:
+   Action: Not Choose
+   Result: I choose none of these houses.
+
+
+
+
+
+
+
+The following is a description of the role you need to play:
+{role_description}
+
+You are currently participating in a public rental housing allocation activity.
+
+You are now assigned to a house.
+The situation of the community environment: {community_description}
+The situation of the actual house: {house_description}
+What I discovered after actually moving into this house: {potential_information_house}
+
+Now you can make an evaluation and comment  of this house based on the situation of the community environment,the situation of the actual house and what I discovered after actually moving into this house.
+
+
+
+
+
+
+
+
+
+
+
+

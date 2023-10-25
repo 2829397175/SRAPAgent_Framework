@@ -61,7 +61,7 @@ def load_memory(memory_config: Dict):
 
 def load_llm(**llm_config):
     llm_config_temp = copy.deepcopy(llm_config)
-    llm_type = llm_config.get('llm_type', 'text-davinci-003')
+    llm_type = llm_config.pop('llm_type', 'text-davinci-003')
     if llm_type == 'gpt-3.5-turbo':
         return ChatOpenAI(model_name= "gpt-3.5-turbo",
                           **llm_config)
@@ -69,7 +69,7 @@ def load_llm(**llm_config):
         return OpenAI(model_name="text-davinci-003",
                       **llm_config)
     elif llm_type == 'gpt-3.5-turbo-16k-0613':
-        return OpenAI(model_name="gpt-3.5-turbo-16k-0613",
+        return ChatOpenAI(model_name="gpt-3.5-turbo-16k-0613",
                       **llm_config)        
     else:
         #return OpenAI(**llm_config)
