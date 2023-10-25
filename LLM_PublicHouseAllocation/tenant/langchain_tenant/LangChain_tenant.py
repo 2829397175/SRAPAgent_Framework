@@ -731,7 +731,7 @@ Your current plan to respond is (Your plan to communicate with your friends, com
                 "recent_chats":recent_chats,
                 "acquaintances":social_network_str,
                 "acquaintance_num":len(self.memory.social_network),
-                "memory": memory,
+                "memory":memory,
                 }
         
         print("SENDER:{name}".format(name=self.name)) #debug

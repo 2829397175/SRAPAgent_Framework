@@ -35,15 +35,8 @@ class GroupDiscussParser(AgentOutputParser):
     def parse(self, llm_output: str) -> Union[AgentAction, AgentFinish]:
         
         llm_output +="\n"
-        # Parse out thought
-        regexs=[r"Thought\s*\d*\s*:(.*?)\n"]
-        
-        for regex in regexs:
-            match_thought = re.findall(regex, llm_output, re.DOTALL)
-            if match_thought:
-                break
-        
-        regex = r"Acquaintance.*?:(.*?)\nOutput.*?:(.*?)\n"
+       
+        regex = r"Thought\s*\d*\s*:(.*?)\nAcquaintance.*?:(.*?)\nOutput.*?:(.*?)\n"
         
         
         matchs = re.findall(regex, llm_output, re.DOTALL)
@@ -51,17 +44,15 @@ class GroupDiscussParser(AgentOutputParser):
         
         try:
             return_values={"communication":[]} # 返回一个和各个熟人的交流结果
-            idx_thought = 0 
           
             for idx,match in enumerate(matchs):
-                thought = match_thought[idx_thought][0] if idx_thought < len(match_thought) else ""  
                 communication={
-                        "thought":thought.strip(),
-                        "acquaintance_names":match[0].strip(),
-                        "output":match[1].strip(),
+                        "thought":match[0].strip(),
+                        "acquaintance_names":match[1].strip(),
+                        "output":match[2].strip(),
                     }
                 return_values["communication"].append(communication)
-                idx_thought = idx_thought+1 if (idx_thought+1)< len(match_thought) else idx_thought
+               
                     
             return AgentFinish(return_values={"return_values":return_values},
                                     log=llm_output)
