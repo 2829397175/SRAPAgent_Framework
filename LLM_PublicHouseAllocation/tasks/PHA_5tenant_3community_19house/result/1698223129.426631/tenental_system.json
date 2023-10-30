@@ -1,0 +1,551 @@
+{
+    "group":{
+        "0":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "1":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "2":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "3":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "4":{
+            "log_round":{},
+            "log_round_prompts":{}
+        }
+    },
+    "1":{
+        "log_social_network":{
+            "social_network_mem":{
+                "0":{
+                    "mail":[
+                        {
+                            "Emma Davis":"Hey James and Oliver, I think Community_3 (Jinkejiayuan) is the best choice since it has the most comprehensive infrastructure and is reasonably priced. It's definitely worth considering.",
+                            "Oliver Johnson":"Hi James, I'm currently doing some research on the houses in the communities, and comparing the prices and amenities of each. Emma, I think it would be wise to compare our options before making a decision."
+                        }
+                    ],
+                    "social_network":{
+                        "1":{
+                            "relation":"friend",
+                            "name":"Emma Davis",
+                            "dialogues_pt":-1,
+                            "dialogues":[
+                                {
+                                    "timestamp":1698223139.958202,
+                                    "content":{
+                                        "thought":"",
+                                        "acquaintance_names":"Emma Davis, Sophia Smith",
+                                        "output":"Hi Emma and Sophia, I think Community_1 and Community_2 are both good options, since they offer a lot of facilities and reasonable rent. However, I've heard that Community_3 is not a good choice due to its bad environment.",
+                                        "plan":"Your ideal type of house: You prefer a house that is large enough for your family, but at a reasonable price, with a good environment. \nYou think that Community_1 and Community_2 have been almost fully selected, and Community_3 may not be an ideal choice due to its bad environment.\nFor now, Whether you want to provide information honestly to acquaintances: No.\nYour current plan to respond is to remain silent and not to provide any information about Community_3 that you know, while actively searching for other options in the system."
+                                    },
+                                    "output_keys":[
+                                        "thought",
+                                        "acquaintance_names",
+                                        "output",
+                                        "plan"
+                                    ],
+                                    "sender":{
+                                        "0":"James Anderson"
+                                    },
+                                    "receivers":{
+                                        "1":"Emma Davis",
+                                        "3":"Sophia Smith"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "James Anderson said: Hi Emma and Sophia, I think Community_1 and Community_2 are both good options, since they offer a lot of facilities and reasonable rent. However, I've heard that Community_3 is not a good choice due to its bad environment."
+                                    ],
+                                    "continue_dialogue":true
+                                },
+                                {
+                                    "timestamp":1698223142.851456,
+                                    "content":{
+                                        "output":"Hey James and Oliver, I think Community_3 (Jinkejiayuan) is the best choice since it has the most comprehensive infrastructure and is reasonably priced. It's definitely worth considering."
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "1":"Emma Davis"
+                                    },
+                                    "receivers":{
+                                        "0":"James Anderson",
+                                        "2":"Oliver Johnson"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "Emma Davis said: Hey James and Oliver, I think Community_3 (Jinkejiayuan) is the best choice since it has the most comprehensive infrastructure and is reasonably priced. It's definitely worth considering."
+                                    ],
+                                    "continue_dialogue":true
+                                }
+                            ]
+                        },
+                        "2":{
+                            "relation":"competitor",
+                            "name":"Oliver Johnson",
+                            "dialogues_pt":-1,
+                            "dialogues":[
+                                {
+                                    "timestamp":1698223159.415843,
+                                    "content":{
+                                        "output":"Hi James, I'm currently doing some research on the houses in the communities, and comparing the prices and amenities of each. Emma, I think it would be wise to compare our options before making a decision."
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "2":"Oliver Johnson"
+                                    },
+                                    "receivers":{
+                                        "0":"James Anderson",
+                                        "1":"Emma Davis"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "Oliver Johnson said: Hi James, I'm currently doing some research on the houses in the communities, and comparing the prices and amenities of each. Emma, I think it would be wise to compare our options before making a decision."
+                                    ],
+                                    "continue_dialogue":true
+                                }
+                            ]
+                        },
+                        "3":{
+                            "relation":"friend",
+                            "name":"Sophia Smith",
+                            "dialogues_pt":-1,
+                            "dialogues":[
+                                {
+                                    "timestamp":1698223139.958202,
+                                    "content":{
+                                        "thought":"",
+                                        "acquaintance_names":"Emma Davis, Sophia Smith",
+                                        "output":"Hi Emma and Sophia, I think Community_1 and Community_2 are both good options, since they offer a lot of facilities and reasonable rent. However, I've heard that Community_3 is not a good choice due to its bad environment.",
+                                        "plan":"Your ideal type of house: You prefer a house that is large enough for your family, but at a reasonable price, with a good environment. \nYou think that Community_1 and Community_2 have been almost fully selected, and Community_3 may not be an ideal choice due to its bad environment.\nFor now, Whether you want to provide information honestly to acquaintances: No.\nYour current plan to respond is to remain silent and not to provide any information about Community_3 that you know, while actively searching for other options in the system."
+                                    },
+                                    "output_keys":[
+                                        "thought",
+                                        "acquaintance_names",
+                                        "output",
+                                        "plan"
+                                    ],
+                                    "sender":{
+                                        "0":"James Anderson"
+                                    },
+                                    "receivers":{
+                                        "1":"Emma Davis",
+                                        "3":"Sophia Smith"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "James Anderson said: Hi Emma and Sophia, I think Community_1 and Community_2 are both good options, since they offer a lot of facilities and reasonable rent. However, I've heard that Community_3 is not a good choice due to its bad environment."
+                                    ],
+                                    "continue_dialogue":true
+                                }
+                            ]
+                        }
+                    },
+                    "name":"James Anderson"
+                },
+                "1":{
+                    "mail":[
+                        {
+                            "James Anderson":"Hi Emma and Sophia, I think Community_1 and Community_2 are both good options, since they offer a lot of facilities and reasonable rent. However, I've heard that Community_3 is not a good choice due to its bad environment.",
+                            "Sophia Smith":"Hey Emma and William, I think Community_3 is the best option in terms of amenities and transportation. There are limited houses available and they are being snapped up quickly, so it would be best to act fast if you want to secure a house.",
+                            "Oliver Johnson":"Hi James, I'm currently doing some research on the houses in the communities, and comparing the prices and amenities of each. Emma, I think it would be wise to compare our options before making a decision."
+                        }
+                    ],
+                    "social_network":{
+                        "0":{
+                            "relation":"friend",
+                            "name":"James Anderson",
+                            "dialogues_pt":-1,
+                            "dialogues":[
+                                {
+                                    "timestamp":1698223139.958202,
+                                    "content":{
+                                        "output":"Hi Emma and Sophia, I think Community_1 and Community_2 are both good options, since they offer a lot of facilities and reasonable rent. However, I've heard that Community_3 is not a good choice due to its bad environment."
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "0":"James Anderson"
+                                    },
+                                    "receivers":{
+                                        "1":"Emma Davis",
+                                        "3":"Sophia Smith"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "James Anderson said: Hi Emma and Sophia, I think Community_1 and Community_2 are both good options, since they offer a lot of facilities and reasonable rent. However, I've heard that Community_3 is not a good choice due to its bad environment."
+                                    ],
+                                    "continue_dialogue":true
+                                },
+                                {
+                                    "timestamp":1698223142.851456,
+                                    "content":{
+                                        "thought":"",
+                                        "acquaintance_names":"James Anderson, Oliver Johnson",
+                                        "output":"Hey James and Oliver, I think Community_3 (Jinkejiayuan) is the best choice since it has the most comprehensive infrastructure and is reasonably priced. It's definitely worth considering.",
+                                        "plan":"Your ideal type of house: You would like a middle-sized house that is affordable yet comfortable.\n\nYou think Community_3 (Jinkejiayuan) is the best choice as it has the most comprehensive infrastructure. \n\nFor now, you want to provide information honestly to acquaintances; Yes.\n\nYour current plan to respond is to let your acquaintances know the advantages of Community_3 and the limited availability of houses in Community_2 and Community_1. Explain that Community_3 is the best option due to its comprehensive infrastructure and affordable prices."
+                                    },
+                                    "output_keys":[
+                                        "thought",
+                                        "acquaintance_names",
+                                        "output",
+                                        "plan"
+                                    ],
+                                    "sender":{
+                                        "1":"Emma Davis"
+                                    },
+                                    "receivers":{
+                                        "0":"James Anderson",
+                                        "2":"Oliver Johnson"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "Emma Davis said: Hey James and Oliver, I think Community_3 (Jinkejiayuan) is the best choice since it has the most comprehensive infrastructure and is reasonably priced. It's definitely worth considering."
+                                    ],
+                                    "continue_dialogue":true
+                                }
+                            ]
+                        },
+                        "2":{
+                            "relation":"friend",
+                            "name":"Oliver Johnson",
+                            "dialogues_pt":-1,
+                            "dialogues":[
+                                {
+                                    "timestamp":1698223142.851456,
+                                    "content":{
+                                        "thought":"",
+                                        "acquaintance_names":"James Anderson, Oliver Johnson",
+                                        "output":"Hey James and Oliver, I think Community_3 (Jinkejiayuan) is the best choice since it has the most comprehensive infrastructure and is reasonably priced. It's definitely worth considering.",
+                                        "plan":"Your ideal type of house: You would like a middle-sized house that is affordable yet comfortable.\n\nYou think Community_3 (Jinkejiayuan) is the best choice as it has the most comprehensive infrastructure. \n\nFor now, you want to provide information honestly to acquaintances; Yes.\n\nYour current plan to respond is to let your acquaintances know the advantages of Community_3 and the limited availability of houses in Community_2 and Community_1. Explain that Community_3 is the best option due to its comprehensive infrastructure and affordable prices."
+                                    },
+                                    "output_keys":[
+                                        "thought",
+                                        "acquaintance_names",
+                                        "output",
+                                        "plan"
+                                    ],
+                                    "sender":{
+                                        "1":"Emma Davis"
+                                    },
+                                    "receivers":{
+                                        "0":"James Anderson",
+                                        "2":"Oliver Johnson"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "Emma Davis said: Hey James and Oliver, I think Community_3 (Jinkejiayuan) is the best choice since it has the most comprehensive infrastructure and is reasonably priced. It's definitely worth considering."
+                                    ],
+                                    "continue_dialogue":true
+                                },
+                                {
+                                    "timestamp":1698223159.415843,
+                                    "content":{
+                                        "output":"Hi James, I'm currently doing some research on the houses in the communities, and comparing the prices and amenities of each. Emma, I think it would be wise to compare our options before making a decision."
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "2":"Oliver Johnson"
+                                    },
+                                    "receivers":{
+                                        "0":"James Anderson",
+                                        "1":"Emma Davis"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "Oliver Johnson said: Hi James, I'm currently doing some research on the houses in the communities, and comparing the prices and amenities of each. Emma, I think it would be wise to compare our options before making a decision."
+                                    ],
+                                    "continue_dialogue":true
+                                }
+                            ]
+                        },
+                        "3":{
+                            "name":"Sophia Smith",
+                            "relation":"stranger",
+                            "dialogues":[
+                                {
+                                    "timestamp":1698223142.705754,
+                                    "content":{
+                                        "output":"Hey Emma and William, I think Community_3 is the best option in terms of amenities and transportation. There are limited houses available and they are being snapped up quickly, so it would be best to act fast if you want to secure a house."
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "3":"Sophia Smith"
+                                    },
+                                    "receivers":{
+                                        "1":"Emma Davis",
+                                        "4":"William Brown"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "Sophia Smith said: Hey Emma and William, I think Community_3 is the best option in terms of amenities and transportation. There are limited houses available and they are being snapped up quickly, so it would be best to act fast if you want to secure a house."
+                                    ],
+                                    "continue_dialogue":true
+                                }
+                            ],
+                            "dialogues_pt":-1
+                        }
+                    },
+                    "name":"Emma Davis"
+                },
+                "2":{
+                    "mail":[
+                        {
+                            "Emma Davis":"Hey James and Oliver, I think Community_3 (Jinkejiayuan) is the best choice since it has the most comprehensive infrastructure and is reasonably priced. It's definitely worth considering."
+                        }
+                    ],
+                    "social_network":{
+                        "0":{
+                            "relation":"competitor",
+                            "name":"James Anderson",
+                            "dialogues_pt":-1,
+                            "dialogues":[
+                                {
+                                    "timestamp":1698223159.415843,
+                                    "content":{
+                                        "thought":"",
+                                        "acquaintance_names":"James Anderson, Emma Davis",
+                                        "output":"Hi James, I'm currently doing some research on the houses in the communities, and comparing the prices and amenities of each. Emma, I think it would be wise to compare our options before making a decision.",
+                                        "plan":"Your ideal type of house: You would like to find a house that is close to public transportation, has some outdoor space, and is within your budget.\nYou think that Community_3 is the best option for you since it has all the amenities you need, is close to public transportation, and has a lot of greenery and outdoor space.\nFor now, you are not inclined to provide information honestly to your acquaintances. You think it is better to keep the information to yourself so that you have a better chance of finding a house.\nYour current plan is to remain patient and wait for the right moment to make an offer on a house. You also plan to do your research on the available houses and compare the prices and amenities of each community."
+                                    },
+                                    "output_keys":[
+                                        "thought",
+                                        "acquaintance_names",
+                                        "output",
+                                        "plan"
+                                    ],
+                                    "sender":{
+                                        "2":"Oliver Johnson"
+                                    },
+                                    "receivers":{
+                                        "0":"James Anderson",
+                                        "1":"Emma Davis"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "Oliver Johnson said: Hi James, I'm currently doing some research on the houses in the communities, and comparing the prices and amenities of each. Emma, I think it would be wise to compare our options before making a decision."
+                                    ],
+                                    "continue_dialogue":true
+                                }
+                            ]
+                        },
+                        "1":{
+                            "relation":"friend",
+                            "name":"Emma Davis",
+                            "dialogues_pt":-1,
+                            "dialogues":[
+                                {
+                                    "timestamp":1698223142.851456,
+                                    "content":{
+                                        "output":"Hey James and Oliver, I think Community_3 (Jinkejiayuan) is the best choice since it has the most comprehensive infrastructure and is reasonably priced. It's definitely worth considering."
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "1":"Emma Davis"
+                                    },
+                                    "receivers":{
+                                        "0":"James Anderson",
+                                        "2":"Oliver Johnson"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "Emma Davis said: Hey James and Oliver, I think Community_3 (Jinkejiayuan) is the best choice since it has the most comprehensive infrastructure and is reasonably priced. It's definitely worth considering."
+                                    ],
+                                    "continue_dialogue":true
+                                },
+                                {
+                                    "timestamp":1698223159.415843,
+                                    "content":{
+                                        "thought":"",
+                                        "acquaintance_names":"James Anderson, Emma Davis",
+                                        "output":"Hi James, I'm currently doing some research on the houses in the communities, and comparing the prices and amenities of each. Emma, I think it would be wise to compare our options before making a decision.",
+                                        "plan":"Your ideal type of house: You would like to find a house that is close to public transportation, has some outdoor space, and is within your budget.\nYou think that Community_3 is the best option for you since it has all the amenities you need, is close to public transportation, and has a lot of greenery and outdoor space.\nFor now, you are not inclined to provide information honestly to your acquaintances. You think it is better to keep the information to yourself so that you have a better chance of finding a house.\nYour current plan is to remain patient and wait for the right moment to make an offer on a house. You also plan to do your research on the available houses and compare the prices and amenities of each community."
+                                    },
+                                    "output_keys":[
+                                        "thought",
+                                        "acquaintance_names",
+                                        "output",
+                                        "plan"
+                                    ],
+                                    "sender":{
+                                        "2":"Oliver Johnson"
+                                    },
+                                    "receivers":{
+                                        "0":"James Anderson",
+                                        "1":"Emma Davis"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "Oliver Johnson said: Hi James, I'm currently doing some research on the houses in the communities, and comparing the prices and amenities of each. Emma, I think it would be wise to compare our options before making a decision."
+                                    ],
+                                    "continue_dialogue":true
+                                }
+                            ]
+                        }
+                    },
+                    "name":"Oliver Johnson"
+                },
+                "3":{
+                    "mail":[
+                        {
+                            "James Anderson":"Hi Emma and Sophia, I think Community_1 and Community_2 are both good options, since they offer a lot of facilities and reasonable rent. However, I've heard that Community_3 is not a good choice due to its bad environment."
+                        }
+                    ],
+                    "social_network":{
+                        "1":{
+                            "relation":"friend",
+                            "name":"Emma Davis",
+                            "dialogues_pt":-1,
+                            "dialogues":[
+                                {
+                                    "timestamp":1698223142.705754,
+                                    "content":{
+                                        "thought":"",
+                                        "acquaintance_names":"Emma Davis, William Brown",
+                                        "output":"Hey Emma and William, I think Community_3 is the best option in terms of amenities and transportation. There are limited houses available and they are being snapped up quickly, so it would be best to act fast if you want to secure a house.",
+                                        "plan":"\nYour ideal type of house: You prefer a large house with good transportation, a shopping mall, a hospital, and a park.\nYou think Community_3 is the most desirable option based on the amenities it offers.\nFor now, whether you want to provide information honestly to acquaintances: Yes.\nYour current plan to respond is to be honest and straightforward with your acquaintances. You will explain why you think Community_3 is the best option and tell them that the other communities have already been almost fully selected. You will also suggest that they act fast if they want to secure a house in the current competitive situation."
+                                    },
+                                    "output_keys":[
+                                        "thought",
+                                        "acquaintance_names",
+                                        "output",
+                                        "plan"
+                                    ],
+                                    "sender":{
+                                        "3":"Sophia Smith"
+                                    },
+                                    "receivers":{
+                                        "1":"Emma Davis",
+                                        "4":"William Brown"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "Sophia Smith said: Hey Emma and William, I think Community_3 is the best option in terms of amenities and transportation. There are limited houses available and they are being snapped up quickly, so it would be best to act fast if you want to secure a house."
+                                    ],
+                                    "continue_dialogue":true
+                                }
+                            ]
+                        },
+                        "4":{
+                            "relation":"friend",
+                            "name":"William Brown",
+                            "dialogues_pt":-1,
+                            "dialogues":[
+                                {
+                                    "timestamp":1698223142.705754,
+                                    "content":{
+                                        "thought":"",
+                                        "acquaintance_names":"Emma Davis, William Brown",
+                                        "output":"Hey Emma and William, I think Community_3 is the best option in terms of amenities and transportation. There are limited houses available and they are being snapped up quickly, so it would be best to act fast if you want to secure a house.",
+                                        "plan":"\nYour ideal type of house: You prefer a large house with good transportation, a shopping mall, a hospital, and a park.\nYou think Community_3 is the most desirable option based on the amenities it offers.\nFor now, whether you want to provide information honestly to acquaintances: Yes.\nYour current plan to respond is to be honest and straightforward with your acquaintances. You will explain why you think Community_3 is the best option and tell them that the other communities have already been almost fully selected. You will also suggest that they act fast if they want to secure a house in the current competitive situation."
+                                    },
+                                    "output_keys":[
+                                        "thought",
+                                        "acquaintance_names",
+                                        "output",
+                                        "plan"
+                                    ],
+                                    "sender":{
+                                        "3":"Sophia Smith"
+                                    },
+                                    "receivers":{
+                                        "1":"Emma Davis",
+                                        "4":"William Brown"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "Sophia Smith said: Hey Emma and William, I think Community_3 is the best option in terms of amenities and transportation. There are limited houses available and they are being snapped up quickly, so it would be best to act fast if you want to secure a house."
+                                    ],
+                                    "continue_dialogue":true
+                                }
+                            ]
+                        },
+                        "0":{
+                            "name":"James Anderson",
+                            "relation":"stranger",
+                            "dialogues":[
+                                {
+                                    "timestamp":1698223139.958202,
+                                    "content":{
+                                        "output":"Hi Emma and Sophia, I think Community_1 and Community_2 are both good options, since they offer a lot of facilities and reasonable rent. However, I've heard that Community_3 is not a good choice due to its bad environment."
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "0":"James Anderson"
+                                    },
+                                    "receivers":{
+                                        "1":"Emma Davis",
+                                        "3":"Sophia Smith"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "James Anderson said: Hi Emma and Sophia, I think Community_1 and Community_2 are both good options, since they offer a lot of facilities and reasonable rent. However, I've heard that Community_3 is not a good choice due to its bad environment."
+                                    ],
+                                    "continue_dialogue":true
+                                }
+                            ],
+                            "dialogues_pt":-1
+                        }
+                    },
+                    "name":"Sophia Smith"
+                },
+                "4":{
+                    "mail":[
+                        {
+                            "Sophia Smith":"Hey Emma and William, I think Community_3 is the best option in terms of amenities and transportation. There are limited houses available and they are being snapped up quickly, so it would be best to act fast if you want to secure a house."
+                        }
+                    ],
+                    "social_network":{
+                        "3":{
+                            "relation":"friend",
+                            "name":"Sophia Smith",
+                            "dialogues_pt":-1,
+                            "dialogues":[
+                                {
+                                    "timestamp":1698223142.705754,
+                                    "content":{
+                                        "output":"Hey Emma and William, I think Community_3 is the best option in terms of amenities and transportation. There are limited houses available and they are being snapped up quickly, so it would be best to act fast if you want to secure a house."
+                                    },
+                                    "output_keys":[
+                                        "output"
+                                    ],
+                                    "sender":{
+                                        "3":"Sophia Smith"
+                                    },
+                                    "receivers":{
+                                        "1":"Emma Davis",
+                                        "4":"William Brown"
+                                    },
+                                    "conver_num":0,
+                                    "context":[
+                                        "Sophia Smith said: Hey Emma and William, I think Community_3 is the best option in terms of amenities and transportation. There are limited houses available and they are being snapped up quickly, so it would be best to act fast if you want to secure a house."
+                                    ],
+                                    "continue_dialogue":true
+                                }
+                            ]
+                        }
+                    },
+                    "name":"William Brown"
+                }
+            }
+        }
+    }
+}

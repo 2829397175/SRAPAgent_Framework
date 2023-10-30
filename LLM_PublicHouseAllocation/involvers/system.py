@@ -8,6 +8,11 @@ class System(BaseModel):
     house_manager:HouseManager
     community_manager:CommunityManager
     
+    def __init__(self,**kargs):
+        super().__init__(**kargs)
+        # 为各个house设定house_type 属性
+        self.house_manager.set_house_type(self.community_manager)
+    
     def reset(self):
         pass
     
@@ -24,7 +29,9 @@ class System(BaseModel):
         
     
     def available_house_num(self):
-        return self.house_manager.available_house_num()
+        pool_num_dict = self.community_manager.get_pool_num() 
+        num = sum(pool_num_dict.values())    
+        return num
     
     
     def get_community_abstract(self,queue_name=None,rule=None, tenant=None, house_type = None):
@@ -54,10 +61,10 @@ class System(BaseModel):
         return curstr,furstr
         
         
+    # 这里不做对可见house type的限制
     def get_house_type(self,queue_name,community_id = None,rule=None,tenant=None):
         if community_id == None:
             house_types = ["large_house","middle_house","small_house"]
-            filter_house_types = rule.filter_housetype(tenant,house_types)
             default_house_type_description ={
                 "large_house":"This type of house can accommodate more than three people.",
                 "middle_house":"This type of house is suitable for families of two people,\
@@ -66,18 +73,18 @@ and can also accommodate a younger child.",
             }
             house_type_description = ["{index}:{description}".format(index = index,
                                       description = default_house_type_description[index]) 
-                                      for index in filter_house_types]
+                                      for index in house_types]
             house_types_str = "\n\n".join(house_type_description)
             house_types_describe_prompt = "There are {num_house_types} house types available. The infomation of these house types are listed as follows:\n{house_types} "
-            str_house_type_description = house_types_describe_prompt.format(num_house_types=len(filter_house_types),
+            str_house_type_description = house_types_describe_prompt.format(num_house_types=len(house_types),
                                                                             house_types=house_types_str)
-            return str_house_type_description,filter_house_types
+            return str_house_type_description,house_types
             
         if isinstance(rule,Rule) and isinstance(tenant,LangchainTenant):
             house_types = self.community_manager.get_available_house_type(community_id,queue_name)
-            filter_house_types=rule.filter_housetype(tenant,house_types)
-            return self.community_manager.get_house_type(community_id,filter_house_types,queue_name),\
-                filter_house_types
+
+            return self.community_manager.get_house_type(community_id,house_types,queue_name),\
+                house_types
         else:
             house_types = self.community_manager.get_available_house_type(community_id,queue_name)
             return self.community_manager.get_house_type(community_id,house_types,queue_name),\
@@ -227,6 +234,7 @@ and there will be exposure to sunlight indoors on summer afternoons."""}
 # fully selected, the community_2 has a relatively sufficient house, the community_3 has not \
 # been chosen yet."""
         return self.community_manager.get_system_competiveness_description(queue_name)
+    
     def get_score_house_description(self,house_id):
         community_name=None
         for cn,house_list in self.house_manager.community_to_house.items():
@@ -244,25 +252,25 @@ and there will be exposure to sunlight indoors on summer afternoons."""}
                 {community_id}. {community_name} is located at {en_location}. The rent for this community is {value_inch} dollars per square meter.\
 In this community, {community_description}. {nearby_info}.
         """
-        for _,communities in self.community_manager.total_community_datas.items():
-            for community_id,community_details in communities.items():
-                if community_details["community_name"]==community_name:
-                    house_description=house_description_template.format(index=house_id,
-                                                      rent_money=self.house_manager.data[house_id]["rent_money"],
-                                                      house_area=self.house_manager.data[house_id]["house_area"],
-                                                      toward=self.house_manager.data[house_id]["toward"],
-                                                      floor=self.house_manager.data[house_id]["floor"],
-                                                      elevator=self.house_manager.data[house_id]["elevator"],
-                                                      description=self.house_manager.data[house_id]["description"],
-                                                      balcony=self.house_manager.data[house_id]["balcony"],
-                                                      community_id=community_details["community_id"],
-                                                      community_name=community_details["community_name"],
-                                                      en_location=community_details["en_location"],
-                                                      value_inch=community_details["value_inch"],
-                                                      community_description=community_details["description"],
-                                                      nearby_info=community_details["nearby_info"]
-                                                      )
-                    return   house_description  
+        # for _,communities in self.community_manager.total_community_datas.items():
+        for community_id,community_details in self.community_manager.total_community_datas.items():
+            if community_details["community_name"]==community_name:
+                house_description=house_description_template.format(index=house_id,
+                                                    rent_money=self.house_manager.data[house_id]["rent_money"],
+                                                    house_area=self.house_manager.data[house_id]["house_area"],
+                                                    toward=self.house_manager.data[house_id]["toward"],
+                                                    floor=self.house_manager.data[house_id]["floor"],
+                                                    elevator=self.house_manager.data[house_id]["elevator"],
+                                                    description=self.house_manager.data[house_id]["description"],
+                                                    balcony=self.house_manager.data[house_id]["balcony"],
+                                                    community_id=community_details["community_id"],
+                                                    community_name=community_details["community_name"],
+                                                    en_location=community_details["en_location"],
+                                                    value_inch=community_details["value_inch"],
+                                                    community_description=community_details["description"],
+                                                    nearby_info=community_details["nearby_info"]
+                                                    )
+                return   house_description  
         return None   
             
     

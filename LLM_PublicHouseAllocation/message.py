@@ -20,7 +20,7 @@ class Message(BaseModel):
     conver_num:int = 0 #记录对话次数
     context: List[str] = [] #记录的上下文
     continue_dialogue : bool = True # 记录对话是否继续
-    key_social_network: int = 0 # 记录social_network message的主键值
+    
     
     def update_attr(self,**kwargs):
         for key,value in kwargs.items():

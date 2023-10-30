@@ -12,6 +12,9 @@ class CommunityManager(BaseManager):
     """
     total_community_datas:dict={}
     distribution_batch_data:dict={}
+    
+    
+    
     @classmethod
     def load_data(cls,
                   data_dir,
@@ -20,13 +23,14 @@ class CommunityManager(BaseManager):
         assert os.path.exists(data_dir),"no such file path: {}".format(data_dir)
         with open(data_dir,'r',encoding = 'utf-8') as f:
             total_community_datas = json.load(f)
-        with open(kwargs["distribution_batch_dir"],'r',encoding = 'utf-8') as f:
+            
+        with open(os.path.join(kwargs["distribution_batch_dir"]),'r',encoding = 'utf-8') as f:
             distribution_batch_data = json.load(f)
 
         return cls(
-            total_community_datas=total_community_datas,
+            total_community_datas = total_community_datas,
             data = {},
-            distribution_batch_data=distribution_batch_data,
+            distribution_batch_data = distribution_batch_data,
             data_type= "community_data",
             save_dir= kwargs["save_dir"]
             )
@@ -88,26 +92,93 @@ class CommunityManager(BaseManager):
             merged_community[key] = com_a[key]
             
         return merged_community
+    
     #为队列添加房子
     def add_community_pool(self,add_pool):
         for queue_name,house_pool in add_pool.items():
             if queue_name not in self.data:
-                self.data[queue_name]={}
+                self.data[queue_name] = {}
             for house_id in house_pool:
-                house_info=self.get_house_info(house_id)
+                house_info = self.get_house_info(house_id)
                 if house_info["community_id"] not in self.data[queue_name]:
                     self.data[queue_name][house_info["community_id"]]={}
-                self.data[queue_name][house_info["community_id"]]=self.merge_community_info(self.data[queue_name][house_info["community_id"]],house_info)
+                self.data[queue_name][house_info["community_id"]]=self.merge_community_info(
+                    self.data[queue_name][house_info["community_id"]],house_info)
+    
+    
+    def patch_houses(self,
+                     tenant_groups,
+                     house_manager,
+                     cnt_turn):
+        queue_names = list(tenant_groups.keys())
+        
+        # 平均分组
+        import numpy as np
+        import random
+        def avg_groups(data, num_groups,queue_names):
+            random.shuffle(data)
+            n_per_group = len(data) // num_groups
+            end_p = n_per_group*num_groups
+            if end_p == len(data):
+                end_p = -1
+            groups = np.array(data).reshape(data[:end_p], n_per_group)
+            groups = groups.tolist()
+            if (end_p != -1):
+                groups.append(data[end_p:])
+                
+            queue_group_h_ids = {}
+            for idx,queue_name in enumerate(queue_names):
+                queue_group_h_ids[queue_name] = groups[idx]
+            return queue_group_h_ids
+        
+        def house_type_groups(house_ids,
+                              queue_names): # 默认返回三个group
+            queue_houses = {}
+            random.shuffle(house_ids)
+            for house_id in house_ids:
+                house_type = house_manager.data[house_id]["house_type"]
+                if house_type not in queue_houses:
+                    # assert house_type in queue_names
+                    queue_houses[house_type]=[]
+
+                queue_houses[house_type].append(house_id)
+            return queue_houses
+            
+        
+        # 将每个queue新加的房子， 随机分配到三个queue的队列内
+        if (str(cnt_turn) not in self.distribution_batch_data.keys()):
+            return
+
+        queue_house_ids = self.distribution_batch_data[str(cnt_turn)]
+        assert isinstance(queue_house_ids,list), "error in queue house format!"
+        """random group"""
+        # queue_group_h_ids = avg_groups(queue_house_ids,queue_names)
+        """house type group"""
+        queue_group_h_ids = house_type_groups(queue_house_ids,
+                                                queue_names)
+        """single list"""
+        # if len(queue_names) ==1:
+        #     queue_group_h_ids = {queue_names[0]:queue_house_ids}
+        
+        self.distribution_batch_data[str(cnt_turn)] = {}
+        for queue_name, group_ids in queue_group_h_ids.items():
+            self.distribution_batch_data[str(cnt_turn)][queue_name] = group_ids
+        
     
     def publish_house(self,cnt_turn):
         if str(cnt_turn) in self.distribution_batch_data.keys():
             self.add_community_pool(self.distribution_batch_data[str(cnt_turn)])
-            print(" 发布新房子了!!!!!\n")
+            print("New houses are added!")
+            
     #查看每个池子的大小
     def get_pool_num(self):
         pool_num_dict={}
         for pool_name,pool in self.data.items():
-            pool_num_dict[pool_name]=len(pool)
+            cur_house_num = 0
+            for c_id,c_info in pool.items():
+                cur_house_num += c_info["sum_remain_num"]
+            
+            pool_num_dict[pool_name] = cur_house_num
         return pool_num_dict
     
     
@@ -348,6 +419,11 @@ The {housetype} in {community_id} is a {living_room} apartment, with an area of 
 
     
     def get_available_community_ids(self,queue_name) -> List[str]:
+        if queue_name not in self.data.keys():
+            return []
+        
+        
+        
         community_data = self.data[queue_name]
         community_ids = self.data[queue_name].keys()
         available_ids=list(filter(lambda community_id:community_id in community_data.keys() \

@@ -1,0 +1,140 @@
+tenant_info: &tenant_info |-
+  You will be given an english name, which is the name of a tenant who wants to rent a house.
+  
+  Please generate some personal information for this virtual character in JSON format, 
+
+  Constraints for generating information:
+    age(表示年龄,要求在25到70之间随机选择),
+    family_members(表示家庭成员有几个孩子,有无配偶,用一句话描述),
+    profession(表示职业,可以为建筑工人,程序员,自由职业,公务员,国企科员、饭店服务员等等任意职业),
+    work_place(表示工作地点,要求必须按照职业合理的在北京市市中心的任意写字楼或者工作场地工作,要求位置必须真实,并且使用中文来生成),
+    en_work_place( 表示工作地点的英文版本，经过翻译的工作地点信息）
+    monthly_income(表示家庭月收入要求在4000-15000之间),
+    monthly_rent_budget(表示家庭可以接受的最大租金(要求在900-2500之间,且必须小于二分之一的家庭月收入),
+    special_request(表示家庭的一些特殊需求,可以是交通出行是否条件便利等等,只要是正常租房人所考虑的需求都可以,你随机生成,要求使用英文),
+    housing_personality(表示此人对于想要租的房子的大体要求）
+
+  Now generate tenant info, similar to the following example (参与房屋分配的家庭的json格式的信息) 
+
+  Here's one example:
+
+  The name of the tenants:  James Anderson , Emma,
+
+  Respond in this format:
+    
+    [
+    [
+    "name":"James Anderson",
+    "age":45,
+    "family_members_num":4,
+    "family_members":"A wife and two children, both in high school",
+    "profession":"Construction worker",
+    "work_place":"北京市东城区东直门外大街",
+    "monthly_income":9000,
+    "monthly_rent_budget":1800.0,
+    "special_request":"The Anderson family prefers a home with easy access to public transportation, as they often need to commute for work and school.",
+    "en_work_place":"Dongzhimenwai Street, Dongcheng District, Beijing",
+    "housing_personality":"he likes largehouse."   
+    ],[
+    "name":"Emma Davis",
+    "age":29,
+    "family_members_num":1,
+    "family_members":"Single, no children",
+    "profession":"Software engineer",
+    "work_place":"北京市海淀区中关村南大街5号阿里巴巴北京研发中心",
+    "monthly_income":14000,
+    "monthly_rent_budget":2500,
+    "special_request":"Emma hopes the apartment is in a quiet friendhood, allowing her to focus on her work.",
+    "en_work_place":"Alibaba Beijing R&D Center, No. 5 Zhongguancun South Street, Haidian District, Beijing",        
+    "housing_personality":"prefers safe and stable housing options. They are not in a rush to find a house and are willing to wait for the right opportunity."
+    ]
+    ]
+
+  Be sure to follow the instructions:
+    1. Be diverse in profession, remember to set different professions for these tenants.
+    2. stick to the Constraints!
+
+  The name of the tenant: [{tenant_names}]
+
+  Now respond:
+
+social_info: &social_info |-
+  Please generate a series of virtual characters and their personalities, and write down their social relationships with each other.
+
+  Here's one example:
+  
+  character: John
+    personality: dishonest and unscrupulous person who uses all means to achieve your own goals.
+    social network: 
+      Emma: friend
+      Jake: competitor
+
+  character: Emma
+    personality: Optimistic and fond of helping others
+    social network: 
+      John: friend
+  
+  character: Jake
+    personality: Indifferent and inhumane
+    social network: 
+      John: competitor
+
+  End of example
+
+  Notice that:
+    1. all the virtual characters are adults, They are capable of renting house on their own.
+    2. The available relationship include: friend, co-worker, stranger, competitor, partner
+    3. the personality of these virtual characters should be diverse
+    4. Make Sure that the name of the socical network for each character, should appear in the virtual characters you created!!!
+
+  !!!!! Remember NOT to use these names to create characters:{used_names}!!!!! 
+
+  Use other names instead!!!
+
+  Give your Response in the following format:
+
+  character: (name of the virtual character)
+    personality: (personality of the virtual character)
+    social network: (the acquaintances of this character)
+      (the acquaintance name):(the relationship between acquaintance and character)
+
+  (This character/personality/social network/... structure can be repeated multiple times)
+    
+  Now give your Response:
+
+
+tenant_info_ver2: &tenant_info_ver2 |-
+  你帮我生成参与房屋分配的家庭的json格式的信息,
+  age(表示年龄,要求在25到70之间随机选择),
+  family_members(表示家庭成员有几个孩子,有无配偶,用一句话描述),
+  profession(表示职业,可以为建筑工人,程序员,自由职业,公务员,国企科员、饭店服务员等等任意职业),
+  work_place(表示工作地点,要求必须按照职业合理的在北京市市中心的任意写字楼或者工作场地工作,要求位置必须真实,并且使用中文来生成),
+  monthly_income(表示家庭月收入要求在4000-15000之间),
+  monthly_rent_budget(表示家庭可以接受的最大租金,
+  要求在2000-5000之间,且必须小于二分之一的家庭月收入),
+  special_request(表示家庭的一些特殊需求,可以是交通出行是否条件便利等等,只要是正常租房人所考虑的需求都可以,你随机生成,要求使用英文),
+  
+  你需要按照下面我给的例子来进行返回：
+  
+  {
+    "age":34,
+    "family_members":" your wife, your child, who is about to start elementary school",
+    "profession":"programmer",
+    "work_place":"中关村微软大厦",
+    "monthly_income":20000,
+    "monthly_rent_budget":3000,
+    "Degree_of_demand_for_housing":"high",
+    "special_request ":" John hopes that the place where he lives can walk to the company, and there are schools and supermarkets nearby."
+  }
+  
+
+tenant_names: &tenant_names |-
+  Give me a bunch of english names like: Emma, John, Jake:
+
+  Repond in this format:
+  Emma
+  John
+  Jake
+  ...
+
+  Respond

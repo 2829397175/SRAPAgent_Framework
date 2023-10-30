@@ -9,7 +9,8 @@ from .initialization import (load_environment,
                              prepare_task_config)
 from LLM_PublicHouseAllocation.global_score import Global_Score
 from LLM_PublicHouseAllocation.llms import APIKeyPool
-
+import platform
+import os
 
 logging.basicConfig(format='%(asctime)s - %(levelname)s - %(name)s - %(message)s', datefmt='%m/%d/%Y %H:%M:%S', level=logging.INFO)
 
@@ -34,7 +35,9 @@ class Executor():
         # Prepare the config of the task
         task_config,task_path = prepare_task_config(task)
         
-        
+        if platform.system()=='Windows':
+            asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+
         import time
         import os
         save_dir = task_config.pop("save_root_dir","")
@@ -49,12 +52,13 @@ class Executor():
         for _, config in manager_configs.items():
             if "data_dir" in config.keys():
                 config["data_dir"] = os.path.join(task_path,config["data_dir"])
+            if "distribution_batch_dir" in config.keys():
+                config["distribution_batch_dir"] = os.path.join(task_path,config["distribution_batch_dir"])
         
         save_log = task_config.pop("save_log",True)
         
         tenant_configs = manager_configs.pop('tenant')
-        tenant_llm_configs = tenant_configs["llm"]       
-        communication_llm_configs = tenant_configs["memory"]["llm"]       
+
         
         llm_loader = APIKeyPool()
         
@@ -68,14 +72,13 @@ class Executor():
                                        },'house')
         community_manager = load_manager({**manager_configs.pop('community'),
                                          "save_dir": os.path.join(save_dir,"community.json"),
-                                         "distribution_batch_dir":os.path.join(task_path,"data/distribution_batch.json")
                                        },'community')
         forum_manager = load_manager({**manager_configs.pop('forum'),
                                       "save_dir": os.path.join(save_dir,"forum.json")
                                        },'forum')
         
-        system = System(house_manager=house_manager,
-                community_manager=community_manager)
+        system = System(house_manager = house_manager,
+                community_manager = community_manager)
         env_config = task_config.pop('environment')
         env_config['llm_loader'] = llm_loader
         env_config['system'] = system
@@ -94,12 +97,13 @@ class Executor():
             os.makedirs(save_evaluation_dic) 
         save_evaluation_dir = os.path.join(save_evaluation_dic,
                                 f"global_score.json") 
+        
         if not os.path.exists(save_evaluation_dir):
-            global_score = Global_Score.initialization(tenant_manager,system,save_dir=save_evaluation_dir)
-            global_score.rate_score()
-            global_score.save_score()
+            global_score = Global_Score.initialization(tenant_manager,system,save_dir=save_evaluation_dir,llm_pool=llm_loader)
+            global_score.rate()
+            global_score.save()
         else:
-            global_score = Global_Score.load_from_json(tenant_manager,system,json_path=save_evaluation_dir)
+            global_score = Global_Score.load_from_json(save_evaluation_dir,tenant_manager,system,llm_pool=llm_loader)
         
         env_config['global_score'] = global_score
         
@@ -108,39 +112,37 @@ class Executor():
         
         
         return cls(environment)
+    
+    
+    def load_log(self,result_dir):
+        self.environment.load_log(result_dir)
 
     def run(self):
         """Run the environment from scratch until it is done."""
         # self.environment.reset() # 待改memory模块
-        
-        # while not self.environment.is_done():
-        #     # asyncio.run(self.environment.step())
-        #     loop = asyncio.get_event_loop()
-        #     loop.run_until_complete(self.environment.step())
+                    
         self.environment.log.reset()
         
-        new_loop = asyncio.new_event_loop()
-        # asyncio.set_event_loop(new_loop)
-        # loop = asyncio.get_event_loop()
-        new_loop.run_until_complete(self.environment.group() )
-        self.environment.line_up()
-        self.environment.broadcast()
+        # self.environment.group() # tenant->group(tenants)
+        # self.environment.line_up()
+    
+    
         
         while not self.environment.is_done():
-            # asyncio.run(self.environment.communication(communication_num = 3))#测试用
-            #loop = asyncio.get_event_loop()
-            # loop.run_until_complete(self.environment.communication(communication_num = 3))
-            # loop.run_until_complete(self.environment.step())
-            # asyncio.run(self.environment.communication(communication_num = 3))
-            # self.environment.communication(communication_num = 3)
+            tenant_waitlists = self.environment.rule.get_next_agent_idx(self.environment)
             
-            new_loop = asyncio.new_event_loop()
-            # asyncio.set_event_loop(new_loop)
-            # loop = asyncio.get_event_loop()
-            new_loop.run_until_complete(self.environment.step())
-            # asyncio.run(self.environment.step())
-            #if self.environment.cnt_turn>3:
-            #self.environment.step()
+            """采样waitlist中的tenant交流"""
+            # tenant_ids = []
+            # for queue_name, tenant_waitlist in tenant_waitlists.items():
+            #     tenant_ids.extend(tenant_waitlist) ## 所有waitlist内的tenant进行交流
+            """采样所有系统中的tenant交流"""
+            # tenant_ids = list(self.environment.tenant_manager.data.keys())
+            
+            # self.environment.communication(tenant_ids,
+            #                                communication_num = 10)
+           
+            self.environment.step(tenant_waitlists)
+            
             
 
     def reset(self):

@@ -8,6 +8,10 @@
 # """
 
 import re
+
+import requests
+
+requests.get()
 # regex = r"Thought\s*\d*\s*:(.*?)\nAcquaintance\s*\d*\s*:(.*?)\nOutput\s*\d*\s*:(.*?)\n"
 # match = re.search(regex, text, re.DOTALL)
 

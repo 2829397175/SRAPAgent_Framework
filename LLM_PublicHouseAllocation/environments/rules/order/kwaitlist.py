@@ -25,63 +25,47 @@ class KWaitListOrder(BaseOrder):
     
     rule_description:str=""
     waitlist_ratio = 1.2 
-    def get_next_agent_idx(self, environment) :
+    def get_next_agent_idx(self, environment) ->dict: 
+        # return queue_name:queue
+        
         """Return the index of the next agent to speak"""
-        waitlist_return=[]
+        waitlist_return = {}
         for queue_name, queue_info in environment.deque_dict.items():
-            waitlist_return.append(queue_info["waitlist"])
+            waitlist = copy.deepcopy(queue_info["waitlist"])
+            queue_info["waitlist"] = []
+            waitlist_return[queue_name] = waitlist
         return waitlist_return
 
     def generate_deque(self, environment):
-        waitlist_queue0= []
-        waitlist_queue1= []
-        waitlist_queue2= []
-        queue_0 = []
-        queue_1 = []
-        queue_2 = []
-        for _,tenant in environment.tenant_manager.data.items():
-            if all(not value for value in tenant.priority_item.values()) and tenant.family_num<2:
-                tenant.queue_name='0'
-                queue_0.append(tenant)
-            elif all(not value for value in tenant.priority_item.values()) and tenant.family_num>=2: 
-                tenant.queue_name='1'
-                queue_1.append(tenant)
+        queues = copy.deepcopy(environment.tenant_manager.groups)
+        
+        for queue_name,queue_tenant_ids in queues.items():
+            if queue_name not in environment.deque_dict.keys():
+                environment.deque_dict[queue_name]={
+                    "queue":queue_tenant_ids,
+                    "waitlist":[]
+                }
             else:
-                tenant.queue_name='2'
-                queue_2.append(tenant)
+                for tenant_id in queue_tenant_ids:
+                    if tenant_id not in environment.deque_dict[queue_name]["queue"] \
+                        and tenant_id not in environment.deque_dict[queue_name]["waitlist"]: 
+                        environment.deque_dict[queue_name]["queue"].append(tenant_id)
                 
         
-            # 将这两个队列添加到 environment 的 deque_dict 中
-        random.shuffle(queue_1)
-        random.shuffle(queue_2)
-        random.shuffle(queue_0)
-
-        
-        environment.deque_dict["0"] = {
-            "queue":queue_0,
-            "waitlist":waitlist_queue0
-        }
-        environment.deque_dict["1"] = {
-            "queue":queue_1,
-            "waitlist":waitlist_queue1
-        }
-        environment.deque_dict["2"] = {
-            "queue":queue_2,
-            "waitlist":waitlist_queue2
-        }
-        
         return environment.deque_dict
+        
+        
 
-    def requeue(self, environment,tenant):
+    def requeue(self, environment, tenant):
         """re-queue"""
-        round_choose = tenant.choose_times % (tenant.max_choose)
-        for queue_name, queue_info in environment.deque_dict.items():
+        if tenant.available:
+            round_choose = tenant.choose_times % (tenant.max_choose)            
+            for queue_name, queue_info in environment.deque_dict.items():
                 if queue_name == tenant.queue_name:
-                    if round_choose==0:
-                        queue_info['queue'].append(tenant)
+                    if round_choose == 0:
+                        queue_info['queue'].append(tenant.id)
                     else:
-                        tenant.choose_times+=1
-                        queue_info["waitlist"].append(tenant)
+                        queue_info["waitlist"].append(tenant.id)
                     break
                         
         
@@ -90,10 +74,13 @@ class KWaitListOrder(BaseOrder):
 
     
     def enter_waitlist(self,environment):
-        pool_num_dict=environment.system.community_manager.get_pool_num()
+        # 根据小区的数量改pool的大小
+        pool_num_dict = environment.system.community_manager.get_pool_num() 
         for pool_name,pool_num in pool_num_dict.items():
-            if int(pool_num*self.waitlist_ratio)>len(environment.deque_dict[pool_name]["queue"])+len(environment.deque_dict[pool_name]["waitlist"]):
-                enter_num=len(environment.deque_dict[pool_name]["queue"])
+            if pool_name not in environment.deque_dict.keys():
+                continue
+            
+            if int(pool_num*self.waitlist_ratio)>(len(environment.deque_dict[pool_name]["queue"])+len(environment.deque_dict[pool_name]["waitlist"])):
                 environment.deque_dict[pool_name]["waitlist"].extend(environment.deque_dict[pool_name]["queue"])
                 environment.deque_dict[pool_name]["queue"]=[]
             elif int(pool_num*self.waitlist_ratio)<len(environment.deque_dict[pool_name]["waitlist"]):
@@ -104,8 +91,9 @@ class KWaitListOrder(BaseOrder):
                 del environment.deque_dict[pool_name]["queue"][:enter_num]
                 
     def are_all_deques_empty(self,environment) -> bool:
+        self.enter_waitlist(environment)
         if all(len(queue_info["queue"])<=0 for _,queue_info in environment.deque_dict.items()):
-            return False
-        return True
+            return True
+        return False
 
                   
