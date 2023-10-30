@@ -6,13 +6,6 @@ from .base import BasePolicy
 class Ver1Policy(BasePolicy):
 
     
-    async def group(self, tenant, forum_manager, system, tool, rule, log_round):
-        if all(not value for value in tenant.priority_item.values()) and tenant.family_num<2:
-            return '0'
-        elif all(not value for value in tenant.priority_item.values()) and tenant.family_num>=2: 
-            return '1'
-        else:
-           return '2'
     
     async def choose_pipeline(self,
                        tenant,

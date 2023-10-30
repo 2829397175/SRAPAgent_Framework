@@ -94,6 +94,10 @@ class ActionHistoryMemory(BaseMemory,SummarizerMixin):
         social_network = kwargs.pop("social_network")
         for id,info in social_network.items():
             info["dialogues_pt"] = -1       
+            info["chat_history"] = ""
+            info["comment"] = ""
+            info["processed"] = []
+
         
         super().__init__(social_network = social_network,
                          **kwargs)
@@ -131,10 +135,11 @@ class ActionHistoryMemory(BaseMemory,SummarizerMixin):
                 messages_pt[message.message_type]=[message]
                 buffer_step_pt[message.message_type]=-1
                 
-        self.new_message = True
+
         for type_m in messages_pt.keys():
             if len(messages_pt[type_m]) - \
                 buffer_step_pt[type_m] > self.summary_threshold:
+                    self.new_message = True
                     self.summary_type_memory(type_message = type_m,
                                             receive = receive)
         
@@ -362,7 +367,8 @@ class ActionHistoryMemory(BaseMemory,SummarizerMixin):
             
             messages_left.sort(key=lambda x: x.timestamp,reverse=True)
             # 零散记忆限制数量为10
-            messages_left = messages_left[:5] if len(messages_left)>5 else messages_left
+            messages_left = messages_left[:5] if len(messages_left) >5 else messages_left
+            
             # 零散记忆需要summary吗?暂时没有归到summary的记忆中
             
             messages_str_left = await self.summary_synthesize_memory(messages_left)
@@ -410,7 +416,7 @@ class ActionHistoryMemory(BaseMemory,SummarizerMixin):
                 messages_str.extend(self.messages[type_m][self.buffer_step[type_m]+1:])
                 
         messages_str.sort(key=lambda x: x.timestamp,reverse=True)
-        messages_str = messages_str[:3] if len(messages_str)>3 else messages_str
+        messages_str = messages_str[:5] if len(messages_str)>5 else messages_str
         
         for type_m in type_messages:
             if (type_m in self.summarys.keys()):
@@ -427,8 +433,12 @@ class ActionHistoryMemory(BaseMemory,SummarizerMixin):
                              name :str = None):
         
         
-        if len(self.forum["buffer"])==0:
-            return self.forum["chat_history"]
+        if len(self.forum["buffer"]) < self.summary_threshold and \
+            self.forum["chat_history"] != "":
+            content_return  = self.forum["chat_history"]
+            new_forum_info = self.to_string_default(self.forum["buffer"])    
+            content_return += "Here's the latest information you get from forum:{forum}".format(forum=new_forum_info)
+            return content_return
         
         # 这里assess 从forum中搜索search到的记忆 
         prompt_template = summary_prompt_default.get("forum_assess_summary")
@@ -499,8 +509,10 @@ but the number of houses in the system is limited. You are in a competitive rela
                                                  "acquaintance_name",
                                                  "dialogue"], 
                                     template=prompt_template)
+       
         
-        for acquaintance_id,acquaintance_info in self.social_network.items():
+        for acquaintance_id in self.social_network.keys():
+            acquaintance_info = self.social_network[acquaintance_id]
             chats = []
             if "dialogues" not in acquaintance_info.keys() :
                 continue # 没对话
@@ -560,9 +572,13 @@ but the number of houses in the system is limited. You are in a competitive rela
                 
                 memory_discussion_acquaintance = await self.summarize_chatting(prompt_inputs=prompt_inputs,
                                                                                prompt=prompt)
+                try:
+                    assert isinstance(memory_discussion_acquaintance,str)
+                except:
+                    memory_discussion_acquaintance = ""
                 
-                acquaintance_info["chat_history"] = memory_discussion_acquaintance
-                acquaintance_info["dialogues_pt"] = len(acquaintance_info.get("dialogues"))-1
+                self.social_network[acquaintance_id]["chat_history"] = memory_discussion_acquaintance
+                self.social_network[acquaintance_id]["dialogues_pt"] = len(acquaintance_info.get("dialogues"))-1
                 
                 try:
                     # Parse out the action and action input
@@ -575,9 +591,7 @@ but the number of houses in the system is limited. You are in a competitive rela
                         infos["untrusted_info"] =  match[2]
                         
                     
-                    if "processed" not in acquaintance_info.keys():
-                        acquaintance_info["processed"] = []
-                    acquaintance_info["processed"].append(infos)
+                    self.social_network[acquaintance_id]["processed"].append(infos)
                         
                     infos.update({"ac_name":acquaintance_info["name"]})
                     if "untrusted_info" in infos.keys():
@@ -586,7 +600,7 @@ However you are suspicious of {untrusted_info} Because {reason_guess}"""
                     else:
                         content_template = """You trust {ac_name} said that {trusted_info} Because {reason_guess}"""
                     
-                    acquaintance_info["chat_history"] = content_template.format_map(infos)
+                    self.social_network[acquaintance_id]["chat_history"] = content_template.format_map(infos)
                     memory_discussion += acquaintance_info["chat_history"]
                     
                 except Exception as e:

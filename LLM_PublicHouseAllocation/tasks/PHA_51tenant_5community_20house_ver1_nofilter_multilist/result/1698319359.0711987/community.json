@@ -1,0 +1,51 @@
+{
+    "large_house":{
+        "community_1":{
+            "sum_num":4,
+            "sum_remain_num":4,
+            "large_house":{
+                "remain_number":4,
+                "index":[
+                    "house_8",
+                    "house_2",
+                    "house_4",
+                    "house_6"
+                ],
+                "living_room":"one room",
+                "size":"60.92-61.8",
+                "cost":"1830"
+            },
+            "community_id":"community_1",
+            "community_name":"longxing",
+            "location":"北京市大兴区隆平大街2号",
+            "en_location":"No. 2, Longping Street, Daxing District, Beijing",
+            "value_inch":30,
+            "description":"There are sports facilities, including football fields and basketball courts, with a large green area and a large distance between buildings.",
+            "nearby_info":"This community is surrounded by: Supermarkets include Hualian Boutique Supermarket (Guaxiang Road Branch), Carrefour Supermarket (Danish Town Branch); Schools include Zhongrui Hotel Management College, Beijing Second Foreign Language College Zhongrui Hotel Management College Living Area; Restaurants include microfood origin Hunan Cuisine (Hunan Cuisine Branch), fisherman's handle iron pot (Longjing Bay 2nd District Branch); Banks include Agricultural Bank of China ATM (Longgazhuang Shunjing Road Branch); .This commnunity does not have: subway, shopping mall, hospital, park,",
+            "available":true
+        }
+    },
+    "small_house":{
+        "community_1":{
+            "community_id":"community_1",
+            "community_name":"longxing",
+            "location":"北京市大兴区隆平大街2号",
+            "en_location":"No. 2, Longping Street, Daxing District, Beijing",
+            "value_inch":30,
+            "sum_num":1,
+            "sum_remain_num":1,
+            "description":"There are sports facilities, including football fields and basketball courts, with a large green area and a large distance between buildings.",
+            "nearby_info":"This community is surrounded by: Supermarkets include Hualian Boutique Supermarket (Guaxiang Road Branch), Carrefour Supermarket (Danish Town Branch); Schools include Zhongrui Hotel Management College, Beijing Second Foreign Language College Zhongrui Hotel Management College Living Area; Restaurants include microfood origin Hunan Cuisine (Hunan Cuisine Branch), fisherman's handle iron pot (Longjing Bay 2nd District Branch); Banks include Agricultural Bank of China ATM (Longgazhuang Shunjing Road Branch); .This commnunity does not have: subway, shopping mall, hospital, park,",
+            "small_house":{
+                "remain_number":1,
+                "living_room":"zero room",
+                "index":[
+                    "house_18"
+                ],
+                "size":"37.96-38.09",
+                "cost":"1140"
+            },
+            "available":true
+        }
+    }
+}

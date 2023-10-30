@@ -19,7 +19,7 @@ class Log_Round_Tenant(BaseModel):
         self.log_round_prompts[step_type] = kwargs
         
     def init_log_round_from_dict(self, kwargs):
-        self.log_round = kwargs 
+        self.log_round.update(kwargs)
     
     def set_tenant_information(self,id,name,available_times):
         self.log_round["tenant_id"] = id

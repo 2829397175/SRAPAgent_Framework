@@ -6,16 +6,22 @@ from langchain.llms import OpenAI
 from LLM_PublicHouseAllocation.tenant.langchain_tenant import LangChain_tenant
 
 from LLM_PublicHouseAllocation.initialization import load_llm
-
-class APIKeyPool:
+from pydantic import BaseModel
+class APIKeyPool(BaseModel):
+    
+    available_keys: set = ()
+    in_use_keys: set = ()    
+    
+    
     def __init__(self,llm_config={}):
+        
         with open("LLM_PublicHouseAllocation/llms/api.json",'r',encoding = 'utf-8') as f:
             keys=json.load(f)
-        self.available_keys = set(keys)
-        self.in_use_keys = set()
-        
-        self.condition = asyncio.Condition()
-        self.llm_config = llm_config
+
+        super().__init__(
+            available_keys = set(keys),
+            in_use_keys = ()    
+        )
         
         # 有必要做临界资源处理吗?实际上同时用一个api是被允许的行为.
     
@@ -51,6 +57,19 @@ class APIKeyPool:
         memory_configs = tenant.llm_config["memory"]
         self_llm_configs = tenant.llm_config["memory"] 
         return self.llm(key,**memory_configs),self.llm(key,**self_llm_configs) # memory + self
+    
+    def get_llm_single(self):
+
+        if len(self.available_keys) == 0:
+            self.available_keys = self.in_use_keys
+            self.in_use_keys = set()
+            
+        key = self.available_keys.pop()
+        self.in_use_keys.add(key)
+        return self.llm(key,**{
+            "temperature":0.7,
+            "max_tokens": 300
+        })
 
     def release_llm(self, tenant=None):
         # 临界资源版本 V 操作

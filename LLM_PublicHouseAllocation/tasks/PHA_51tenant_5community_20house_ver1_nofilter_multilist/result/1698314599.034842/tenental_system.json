@@ -1,0 +1,715 @@
+{
+    "group":{
+        "69":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "0":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "1":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "2":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "68":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "66":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "65":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "67":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "64":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "63":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "61":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "62":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "60":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "58":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "59":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "23":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "24":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "57":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "56":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "55":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "54":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "52":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "39":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "33":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "53":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "51":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "50":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "49":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "28":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "27":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "26":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "36":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "38":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "37":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "47":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "32":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "30":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "35":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "48":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "46":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "45":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "43":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "40":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "44":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "41":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "25":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "42":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "12":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "13":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "9":{
+            "log_round":{},
+            "log_round_prompts":{}
+        },
+        "8":{
+            "log_round":{},
+            "log_round_prompts":{}
+        }
+    },
+    "1":{
+        "log_round":{
+            "69":{
+                "tenant_id":"69",
+                "tenant_name":"Landon",
+                "available_times":2,
+                "forum_conclusion":"",
+                "community_available_description":"There are 1 communities available. The infomation of these communitys are listed as follows:\n\ncommunity_1. longxing is located at No. 2, Longping Street, Daxing District, Beijing. The rent for this community is 30 dollars per square meter.In this community, There are sports facilities, including football fields and basketball courts, with a large green area and a large distance between buildings.. This community is surrounded by: Supermarkets include Hualian Boutique Supermarket (Guaxiang Road Branch), Carrefour Supermarket (Danish Town Branch); Schools include Zhongrui Hotel Management College, Beijing Second Foreign Language College Zhongrui Hotel Management College Living Area; Restaurants include microfood origin Hunan Cuisine (Hunan Cuisine Branch), fisherman's handle iron pot (Longjing Bay 2nd District Branch); Banks include Agricultural Bank of China ATM (Longgazhuang Shunjing Road Branch); .This commnunity does not have: subway, shopping mall, hospital, park,.\n\n\tThe large_house in community_1 is a one room apartment, with an area of about 60.92-61.8, the monthly rent  is about 1830 dollars, and there are still 4 houses.",
+                "choose_community_id":"community_1",
+                "choose_community_reason":"Community_1 seems to have good facilities and a large green area, but it lacks important amenities such as a subway, shopping mall, and hospital.",
+                "available_house_type":[
+                    "large_house"
+                ],
+                "choose_house_type":"large_house",
+                "choose_house_type_reason":"I need a large house that has enough room for my toddler and that is within my budget.",
+                "house_available_description":[
+                    "house_8: The house is a large_house with an area of 62.5 square meters and a monthly rent of 1875 yuan.It has a balcony and has an elevator. It's on the 15th floor. Its description is that This unit manifests luxury with its vast bedroom and living area. The kitchen and bathroom resonate with modern designs and features.",
+                    "house_4: The house is a large_house with an area of 61.7 square meters and a monthly rent of 1851 yuan.It has a balcony and has an elevator. It's on the 9th floor. Its description is that The house layout is meticulous, presenting a sizable bedroom and a welcoming living area. The kitchen is well-equipped, and the bathroom design prioritizes convenience.",
+                    "house_6: The house is a large_house with an area of 62.0 square meters and a monthly rent of 1860 yuan.It has a balcony and has an elevator. It's on the 12th floor. Its description is that The living space in this unit is expansive, accompanied by a luxurious bedroom. The kitchen and bathroom designs are both modern and user-friendly.",
+                    "house_2: The house is a large_house with an area of 61.3 square meters and a monthly rent of 1839 yuan.It has a balcony and has an elevator. It's on the 6th floor. Its description is that A well-designed room layout complements the large spacing between floors. The bedroom offers a sense of grandeur, with a lot of space. The bathroom is built in such a way that showering is convenient. A separate large kitchen aids in culinary explorations."
+                ],
+                "choose_house_id":"house_2",
+                "choose_house_reason":"House_2 offers the best value for my money, and it has a nursery room for my toddler.",
+                "produce_comment":"jinkejiayuan:I'm looking for a house in Community_2. The house should have a nursery room and other amenities. The estimated cost for renting the house is around 2500.0. The size of the house should be around 100-200 square meters. The house should also have convenient transportation access. Pictures of the house should be provided if possible."
+            },
+            "1":{
+                "tenant_id":"1",
+                "tenant_name":"Alex",
+                "available_times":2,
+                "forum_conclusion":"",
+                "community_available_description":"There are 1 communities available. The infomation of these communitys are listed as follows:\n\ncommunity_1. longxing is located at No. 2, Longping Street, Daxing District, Beijing. The rent for this community is 30 dollars per square meter.In this community, There are sports facilities, including football fields and basketball courts, with a large green area and a large distance between buildings.. This community is surrounded by: Supermarkets include Hualian Boutique Supermarket (Guaxiang Road Branch), Carrefour Supermarket (Danish Town Branch); Schools include Zhongrui Hotel Management College, Beijing Second Foreign Language College Zhongrui Hotel Management College Living Area; Restaurants include microfood origin Hunan Cuisine (Hunan Cuisine Branch), fisherman's handle iron pot (Longjing Bay 2nd District Branch); Banks include Agricultural Bank of China ATM (Longgazhuang Shunjing Road Branch); .This commnunity does not have: subway, shopping mall, hospital, park,.\n\n\tThe small_house in community_1 is a zero room apartment, with an area of about 37.96-38.09, the monthly rent  is about 1140 dollars, and there are still 1 houses.",
+                "choose_community_id":"community_1",
+                "choose_community_reason":"Community_1 has some great amenities, including sports facilities and a large green area, but it lacks important amenities like a subway, shopping mall and hospital, which could be beneficial for my work and family.",
+                "available_house_type":[
+                    "small_house"
+                ],
+                "choose_house_type":"small_house",
+                "choose_house_type_reason":"The small house seems like a good option for me since it is affordable, has decent square footage, and is in my price range.",
+                "house_available_description":[
+                    "house_18: The house is a small_house with an area of 38.7 square meters and a monthly rent of 1161 yuan.It has a balcony and has an elevator. It's on the 12th floor. Its description is that This compact unit, with its strategic layout, ensures a comfortable living experience. The balcony is a bonus for those who love some outdoor relaxation."
+                ],
+                "choose_house_id":"house_18",
+                "choose_house_reason":"This house_18 seems perfect for me. It's affordable, has good square footage, and provides a balcony and natural lighting.",
+                "produce_comment":"jinkejiayuan:This community is located in People's Bank of China Building, No. 36 Financial Street, Xicheng District, Beijing. It is a quiet community that offers good natural lighting. The average rent for a house is 1500.0. The community is suitable for people looking for a productive work-from-home environment."
+            },
+            "2":{
+                "tenant_id":"2",
+                "tenant_name":"Lily",
+                "available_times":2,
+                "forum_conclusion":"",
+                "community_available_description":"There are 1 communities available. The infomation of these communitys are listed as follows:\n\ncommunity_1. longxing is located at No. 2, Longping Street, Daxing District, Beijing. The rent for this community is 30 dollars per square meter.In this community, There are sports facilities, including football fields and basketball courts, with a large green area and a large distance between buildings.. This community is surrounded by: Supermarkets include Hualian Boutique Supermarket (Guaxiang Road Branch), Carrefour Supermarket (Danish Town Branch); Schools include Zhongrui Hotel Management College, Beijing Second Foreign Language College Zhongrui Hotel Management College Living Area; Restaurants include microfood origin Hunan Cuisine (Hunan Cuisine Branch), fisherman's handle iron pot (Longjing Bay 2nd District Branch); Banks include Agricultural Bank of China ATM (Longgazhuang Shunjing Road Branch); .This commnunity does not have: subway, shopping mall, hospital, park,.\n\n\tThe large_house in community_1 is a one room apartment, with an area of about 60.92-61.8, the monthly rent  is about 1830 dollars, and there are still 3 houses.",
+                "choose_community_id":"community_1",
+                "choose_community_reason":"Community 1 has a good amount of green spaces and is surrounded by basic amenities, but it doesn't have a subway or hospital.",
+                "available_house_type":[
+                    "large_house"
+                ],
+                "choose_house_type":"large_house",
+                "choose_house_type_reason":"The large house seems to be the best option for my family as it is the most spacious and offers the best amenities.",
+                "house_available_description":[
+                    "house_8: The house is a large_house with an area of 62.5 square meters and a monthly rent of 1875 yuan.It has a balcony and has an elevator. It's on the 15th floor. Its description is that This unit manifests luxury with its vast bedroom and living area. The kitchen and bathroom resonate with modern designs and features.",
+                    "house_4: The house is a large_house with an area of 61.7 square meters and a monthly rent of 1851 yuan.It has a balcony and has an elevator. It's on the 9th floor. Its description is that The house layout is meticulous, presenting a sizable bedroom and a welcoming living area. The kitchen is well-equipped, and the bathroom design prioritizes convenience.",
+                    "house_6: The house is a large_house with an area of 62.0 square meters and a monthly rent of 1860 yuan.It has a balcony and has an elevator. It's on the 12th floor. Its description is that The living space in this unit is expansive, accompanied by a luxurious bedroom. The kitchen and bathroom designs are both modern and user-friendly."
+                ],
+                "choose_house_id":"house_4",
+                "choose_house_reason":"House 8 provides a luxurious space, but the rent is the highest. House 4 and House 6 are both at a more reasonable price, but they offer fewer features. I need to carefully consider which house will best fit my family's needs.",
+                "produce_comment":"jinkejiayuan:Pet friendly apartment with two bedrooms, one bathroom, and one balcony available for rent. Located in Xiangjiang Plaza Building, No. 19 South 3rd Ring Middle Road, Fengtai District, Beijing. Price is 1400.0."
+            },
+            "66":{
+                "tenant_id":"66",
+                "tenant_name":"Vivian",
+                "available_times":2,
+                "forum_conclusion":"",
+                "community_available_description":"There are 1 communities available. The infomation of these communitys are listed as follows:\n\ncommunity_1. longxing is located at No. 2, Longping Street, Daxing District, Beijing. The rent for this community is 30 dollars per square meter.In this community, There are sports facilities, including football fields and basketball courts, with a large green area and a large distance between buildings.. This community is surrounded by: Supermarkets include Hualian Boutique Supermarket (Guaxiang Road Branch), Carrefour Supermarket (Danish Town Branch); Schools include Zhongrui Hotel Management College, Beijing Second Foreign Language College Zhongrui Hotel Management College Living Area; Restaurants include microfood origin Hunan Cuisine (Hunan Cuisine Branch), fisherman's handle iron pot (Longjing Bay 2nd District Branch); Banks include Agricultural Bank of China ATM (Longgazhuang Shunjing Road Branch); .This commnunity does not have: subway, shopping mall, hospital, park,.\n\n\tThe large_house in community_1 is a one room apartment, with an area of about 60.92-61.8, the monthly rent  is about 1830 dollars, and there are still 2 houses.",
+                "choose_community_id":"community_1",
+                "choose_community_reason":"Community 1 has no subway, shopping mall or hospital, but it has a large green area and a good cost for renting.",
+                "available_house_type":[
+                    "large_house"
+                ],
+                "choose_house_type":"large_house",
+                "choose_house_type_reason":"This large_house looks like a good option with its square footage and affordable rent, but I am not sure if it fits my budget.",
+                "house_available_description":[
+                    "house_8: The house is a large_house with an area of 62.5 square meters and a monthly rent of 1875 yuan.It has a balcony and has an elevator. It's on the 15th floor. Its description is that This unit manifests luxury with its vast bedroom and living area. The kitchen and bathroom resonate with modern designs and features.",
+                    "house_6: The house is a large_house with an area of 62.0 square meters and a monthly rent of 1860 yuan.It has a balcony and has an elevator. It's on the 12th floor. Its description is that The living space in this unit is expansive, accompanied by a luxurious bedroom. The kitchen and bathroom designs are both modern and user-friendly."
+                ],
+                "choose_house_id":"house_6",
+                "choose_house_reason":"Both of these houses look great, but house_6 is the better fit for my budget and it is closer to the ground floor which is a plus.",
+                "produce_comment":"longxing:I will publish photos, reviews, and ratings of the houses in the area, focusing on the quality of the houses and the features provided."
+            },
+            "64":{
+                "tenant_id":"64",
+                "tenant_name":"Eric",
+                "available_times":2,
+                "forum_conclusion":"longxing:66:I will publish photos, reviews, and ratings of the houses in the area, focusing on the quality of the houses and the features provided.\nIt only takes This community is 90 minutes away from my workplace by subway and bus to commute to my workplace.",
+                "community_available_description":"There are 1 communities available. The infomation of these communitys are listed as follows:\n\ncommunity_1. longxing is located at No. 2, Longping Street, Daxing District, Beijing. The rent for this community is 30 dollars per square meter.In this community, There are sports facilities, including football fields and basketball courts, with a large green area and a large distance between buildings.. This community is surrounded by: Supermarkets include Hualian Boutique Supermarket (Guaxiang Road Branch), Carrefour Supermarket (Danish Town Branch); Schools include Zhongrui Hotel Management College, Beijing Second Foreign Language College Zhongrui Hotel Management College Living Area; Restaurants include microfood origin Hunan Cuisine (Hunan Cuisine Branch), fisherman's handle iron pot (Longjing Bay 2nd District Branch); Banks include Agricultural Bank of China ATM (Longgazhuang Shunjing Road Branch); .This commnunity does not have: subway, shopping mall, hospital, park,.\n\n\tThe large_house in community_1 is a one room apartment, with an area of about 60.92-61.8, the monthly rent  is about 1830 dollars, and there are still 1 houses.",
+                "choose_community_id":"community_1",
+                "choose_community_reason":"Community_1 seems to have good sports facilities, supermarkets, schools, restaurants, and banks, however, it does not have a subway, shopping mall, hospital, or park.",
+                "available_house_type":[
+                    "large_house"
+                ],
+                "choose_house_type":"large_house",
+                "choose_house_type_reason":"The large house type seems to be a good option with its affordable rent and decent square footage.",
+                "house_available_description":[
+                    "house_8: The house is a large_house with an area of 62.5 square meters and a monthly rent of 1875 yuan.It has a balcony and has an elevator. It's on the 15th floor. Its description is that This unit manifests luxury with its vast bedroom and living area. The kitchen and bathroom resonate with modern designs and features."
+                ],
+                "choose_house_id":"house_8",
+                "choose_house_reason":"This house seems to meet my requirements with its modern designs and features, affordable rent, and proximity to important amenities.",
+                "produce_comment":"longxing:This community is located in Xidan North Street, Xicheng District, Beijing. It is close to the elementary and middle school. There are a few available houses for rent, ranging from 2000-3000. The houses come equipped with a study room for the children."
+            }
+        },
+        "log_round_prompts":{
+            "69":{
+                "choose_community":{
+                    "prompt_inputs":{
+                        "task":"You need to choose one type of communities.",
+                        "thought_type":"Your views on these communities.",
+                        "choose_type":"My choice is (The index of community, should be one of [community_1])",
+                        "house_info":"There are 1 communities available. The infomation of these communitys are listed as follows:\n\ncommunity_1. longxing is located at No. 2, Longping Street, Daxing District, Beijing. The rent for this community is 30 dollars per square meter.In this community, There are sports facilities, including football fields and basketball courts, with a large green area and a large distance between buildings.. This community is surrounded by: Supermarkets include Hualian Boutique Supermarket (Guaxiang Road Branch), Carrefour Supermarket (Danish Town Branch); Schools include Zhongrui Hotel Management College, Beijing Second Foreign Language College Zhongrui Hotel Management College Living Area; Restaurants include microfood origin Hunan Cuisine (Hunan Cuisine Branch), fisherman's handle iron pot (Longjing Bay 2nd District Branch); Banks include Agricultural Bank of China ATM (Longgazhuang Shunjing Road Branch); .This commnunity does not have: subway, shopping mall, hospital, park,.\n\n\tThe large_house in community_1 is a one room apartment, with an area of about 60.92-61.8, the monthly rent  is about 1830 dollars, and there are still 4 houses.",
+                        "memory":"You are in rent system and choosing one house needs the following steps: choose community, choose type of house and choose house. There are 5 communities available with different green area, sports facilities, and surrounding amenities such as supermarkets, schools, restaurants, banks, subway, shopping mall, hospital, park. Each community has 3 types of houses: small, middle, and large. Community_1 has convenient facilities with longxing located at No. 2, Longping Street, Daxing District, Beijing. Community_2 is close to my wife's workplace and my child's school and has good greenery with jinkejiayuan located at No. 1 Yongwang Road, Daxing District, Beijing. Community_3 has parking lot, sports and fitness equipment with ronghui located at Courtyard No. 1, Hualun Road, Daxing District, Beijing. Community_4 has modern eco-friendly materials and silver pine trees with wankecheng located at No. 2 Court, Tianhe West Road, Daxing District, Beijing. Community_5 is a contemporary community nestled in the tranquil outskirts of Beijing with sanhejiayuan located at No. 2 and 4 Court, Sanhe North Lane, Daxing District, Beijing. Each type of house has different area and monthly rent. You need to consider all the options before making your decision.You trust these information on forum:  The house is spacious and in an excellent location. It has a balcony and two bathrooms, and the landlords are friendly and courteous. Because  Other competitors may be trying to make the house sound more appealing than it actually is in order to increase their chances of getting it.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+                        "role_description":"You are Landon. You earn 15000 per month.Your family members include: Married with one child, a toddler.You are 33 years old. Your job is Architect. Your company is located in Jianguomenwai Street, Chaoyang District, Beijing. Landon needs a house with a nursery room for his toddler. You expect to rent a house for 2500.0.You still have 2 chances to choose house."
+                    },
+                    "response":{
+                        "output":"My choice is community_1.",
+                        "thought":"Community_1 seems to have good facilities and a large green area, but it lacks important amenities such as a subway, shopping mall, and hospital."
+                    }
+                },
+                "choose_house_type":{
+                    "prompt_inputs":{
+                        "task":"You need to choose one type of houses.",
+                        "thought_type":"Your views on these house types.",
+                        "choose_type":"My choice is (house type, should be one of [large_house])",
+                        "house_info":"There are 1 house types available. The infomation of these house types are listed as follows:\nlarge_house:\n            This type house's rent is around 1830,            and it's square footage is around 60.92-61.8.            There remains 4 houses of this type. ",
+                        "memory":"You are considering two different communities: community_1 and community_2. Community_1 has inconvenient facilities, while community_2 is close to your wife's workplace and your child's school. This makes community_2 the ideal choice for your family, and you have decided to move there.You trust these information on forum:  The house is spacious and in an excellent location. It has a balcony and two bathrooms, and the landlords are friendly and courteous. Because  Other competitors may be trying to make the house sound more appealing than it actually is in order to increase their chances of getting it.Here's the latest information you get from forum:\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+                        "role_description":"You are Landon. You earn 15000 per month.Your family members include: Married with one child, a toddler.You are 33 years old. Your job is Architect. Your company is located in Jianguomenwai Street, Chaoyang District, Beijing. Landon needs a house with a nursery room for his toddler. You expect to rent a house for 2500.0.You still have 2 chances to choose house."
+                    },
+                    "response":{
+                        "output":"My choice is large_house.",
+                        "thought":"I need a large house that has enough room for my toddler and that is within my budget."
+                    }
+                },
+                "choose_house":{
+                    "log_round_houses_dict":{
+                        "0":{
+                            "prompt_inputs":{
+                                "task":"You need to choose one house.",
+                                "thought_type":"Your views on these houses.",
+                                "choose_type":"My choice is (The index of houses, should be one of [house_8,house_4,house_6,house_2])",
+                                "house_info":"There are 4 houses available. The infomation of these houses are listed as follows:\nhouse_8: \nthis house costs about 1875. It's square fortage is about 62.5. The orientation of the house is NS. It is located at floor 15. It has elevator. This unit manifests luxury with its vast bedroom and living area. The kitchen and bathroom resonate with modern designs and features.\n\nhouse_4: \nthis house costs about 1851. It's square fortage is about 61.7. The orientation of the house is NS. It is located at floor 9. It has elevator. The house layout is meticulous, presenting a sizable bedroom and a welcoming living area. The kitchen is well-equipped, and the bathroom design prioritizes convenience.\n\nhouse_6: \nthis house costs about 1860. It's square fortage is about 62.0. The orientation of the house is NS. It is located at floor 12. It has elevator. The living space in this unit is expansive, accompanied by a luxurious bedroom. The kitchen and bathroom designs are both modern and user-friendly.\n\nhouse_2: \nthis house costs about 1839. It's square fortage is about 61.3. The orientation of the house is NS. It is located at floor 6. It has elevator. A well-designed room layout complements the large spacing between floors. The bedroom offers a sense of grandeur, with a lot of space. The bathroom is built in such a way that showering is convenient. A separate large kitchen aids in culinary explorations. ",
+                                "memory":"You have to make a decision on which community to move to. Community_1 has inconvenient facilities but it is close to your family members' workplaces and schools, making Community_2 a more attractive choice. You decide to move to Community_2 due to its convenience and proximity to your loved ones.You trust these information on forum:  The house is spacious and in an excellent location. It has a balcony and two bathrooms, and the landlords are friendly and courteous. Because  Other competitors may be trying to make the house sound more appealing than it actually is in order to increase their chances of getting it.Here's the latest information you get from forum:\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+                                "role_description":"You are Landon. You earn 15000 per month.Your family members include: Married with one child, a toddler.You are 33 years old. Your job is Architect. Your company is located in Jianguomenwai Street, Chaoyang District, Beijing. Landon needs a house with a nursery room for his toddler. You expect to rent a house for 2500.0.You still have 2 chances to choose house."
+                            },
+                            "response":{
+                                "output":"My choice is house_2.",
+                                "thought":"House_2 offers the best value for my money, and it has a nursery room for my toddler."
+                            }
+                        }
+                    }
+                },
+                "publish_forum_plan":{
+                    "prompt_inputs":{
+                        "concise_role_description":"Your task is to Publish house information or community information online.You are Landon. You earn 15000 per month.Your family members include: Married with one child, a toddler.You're planning to choose one house.And you're willing to publish house information online. Keep this in mind!",
+                        "memory":"\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.",
+                        "personality":"Energetic and adventurous, always seeking new experiences",
+                        "system_competiveness_description":"The community_1(longxing) has been almost fully selected.",
+                        "goal":"Your goal is to develop a plan that is most beneficial to you to increase your chances of choosing a house in the current situation.",
+                        "respond_format":"You think (Your true opionion about these communities or houses).\nFor now, Whether you want to publish information honestly online: (Yes or No). \n(The reason why you want or don't want to publish information honestly online)\nYour current plan is (Your plan to publish which kind of info online, be concise)"
+                    },
+                    "response":{
+                        "plan":"You think that community_1(longxing) is almost fully selected and it might be difficult to find a suitable house in that community. \nFor now, you don't want to publish information honestly online because you don't want to reveal your intentions to your acquaintances. \nYour current plan is to search for houses in other nearby communities and publish the information online. You can post the information in a general way, such as the location of the house, the estimated cost, the size, and the amenities provided. You should also include pictures of the house if possible."
+                    }
+                },
+                "publish_forum":{
+                    "prompt_inputs":{
+                        "role_description":"Your task is to Publish house information or community information online.You are Landon. You earn 15000 per month.Your family members include: Married with one child, a toddler.You are 33 years old. Your job is Architect. Your company is located in Jianguomenwai Street, Chaoyang District, Beijing. Landon needs a house with a nursery room for his toddler. You expect to rent a house for 2500.0.You still have 2 chances to choose house.",
+                        "plan":"You think that community_1(longxing) is almost fully selected and it might be difficult to find a suitable house in that community. \nFor now, you don't want to publish information honestly online because you don't want to reveal your intentions to your acquaintances. \nYour current plan is to search for houses in other nearby communities and publish the information online. You can post the information in a general way, such as the location of the house, the estimated cost, the size, and the amenities provided. You should also include pictures of the house if possible.",
+                        "memory":"\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+                        "community_ids":"community_1, community_2, community_3, community_4, community_5"
+                    },
+                    "response":[
+                        {
+                            "info":"I'm looking for a house in Community_2. The house should have a nursery room and other amenities. The estimated cost for renting the house is around 2500.0. The size of the house should be around 100-200 square meters. The house should also have convenient transportation access. Pictures of the house should be provided if possible.",
+                            "community":"Community_2",
+                            "thought":"As a family with a toddler, I need a house with a nursery room and other amenities for our family.",
+                            "plan":{
+                                "plan":"You think that community_1(longxing) is almost fully selected and it might be difficult to find a suitable house in that community. \nFor now, you don't want to publish information honestly online because you don't want to reveal your intentions to your acquaintances. \nYour current plan is to search for houses in other nearby communities and publish the information online. You can post the information in a general way, such as the location of the house, the estimated cost, the size, and the amenities provided. You should also include pictures of the house if possible."
+                            }
+                        }
+                    ]
+                }
+            },
+            "1":{
+                "choose_community":{
+                    "prompt_inputs":{
+                        "task":"You need to choose one type of communities.",
+                        "thought_type":"Your views on these communities.",
+                        "choose_type":"My choice is (The index of community, should be one of [community_1])",
+                        "house_info":"There are 1 communities available. The infomation of these communitys are listed as follows:\n\ncommunity_1. longxing is located at No. 2, Longping Street, Daxing District, Beijing. The rent for this community is 30 dollars per square meter.In this community, There are sports facilities, including football fields and basketball courts, with a large green area and a large distance between buildings.. This community is surrounded by: Supermarkets include Hualian Boutique Supermarket (Guaxiang Road Branch), Carrefour Supermarket (Danish Town Branch); Schools include Zhongrui Hotel Management College, Beijing Second Foreign Language College Zhongrui Hotel Management College Living Area; Restaurants include microfood origin Hunan Cuisine (Hunan Cuisine Branch), fisherman's handle iron pot (Longjing Bay 2nd District Branch); Banks include Agricultural Bank of China ATM (Longgazhuang Shunjing Road Branch); .This commnunity does not have: subway, shopping mall, hospital, park,.\n\n\tThe small_house in community_1 is a zero room apartment, with an area of about 37.96-38.09, the monthly rent  is about 1140 dollars, and there are still 1 houses.",
+                        "memory":"You are in the process of choosing a house to rent, with 5 communities available. Community_1 offers sports facilities, supermarkets, schools, restaurants and banks, but no subway, shopping mall or hospital. Community_2 has a 30% green area and central urban area of 25%, as well as a Metro, supermarkets, shopping malls, parks, schools, restaurants and banks. Community_3 has a parking lot, sports and fitness equipment, Metro, supermarkets, malls, hospitals, parks, schools, restaurants and banks. Community_4 has silver pine trees, landscaped gardens, a community center, an efficient transport network and is connected to the city, as well as Metro, supermarkets, malls, hospitals, parks, schools, restaurants and banks. Community_5 is surrounded by lush greenery and picturesque landscapes, as well as a Metro, supermarkets, shopping malls, hospitals, parks, schools, restaurants and banks. Each community offers various types of apartments, such as small, middle and large, with different prices and availability.You trust these information on forum:   Because  The other competing renters likely want the same house and are informing each other of its benefits and the trustworthiness of the owner.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+                        "role_description":"You are Alex. You earn 6000 per month.Your family members include: Single, no children.You are 28 years old. Your job is Freelancer. Your company is located in People's Bank of China Building, No. 36 Financial Street, Xicheng District, Beijing. Alex needs a quiet and comfortable apartment with good natural lighting for a productive work-from-home environment. You expect to rent a house for 1500.0.You still have 2 chances to choose house."
+                    },
+                    "response":{
+                        "output":"My choice is community_1.",
+                        "thought":"Community_1 has some great amenities, including sports facilities and a large green area, but it lacks important amenities like a subway, shopping mall and hospital, which could be beneficial for my work and family."
+                    }
+                },
+                "choose_house_type":{
+                    "prompt_inputs":{
+                        "task":"You need to choose one type of houses.",
+                        "thought_type":"Your views on these house types.",
+                        "choose_type":"My choice is (house type, should be one of [small_house])",
+                        "house_info":"There are 1 house types available. The infomation of these house types are listed as follows:\nsmall_house:\n            This type house's rent is around 1140,            and it's square footage is around 37.96-38.09.            There remains 1 houses of this type. ",
+                        "memory":"The decision to choose a community was a difficult one. After weighing the options, one community, community_1, presented a number of inconveniences. Ultimately, another community, community_2, came out on top due to its proximity to important locations for the family such as the wife's workplace and the child's school. As a result, the decision was made to choose community_2.You trust these information on forum:   Because  The other competing renters likely want the same house and are informing each other of its benefits and the trustworthiness of the owner.Here's the latest information you get from forum:\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+                        "role_description":"You are Alex. You earn 6000 per month.Your family members include: Single, no children.You are 28 years old. Your job is Freelancer. Your company is located in People's Bank of China Building, No. 36 Financial Street, Xicheng District, Beijing. Alex needs a quiet and comfortable apartment with good natural lighting for a productive work-from-home environment. You expect to rent a house for 1500.0.You still have 2 chances to choose house."
+                    },
+                    "response":{
+                        "output":"My choice is small_house.",
+                        "thought":"The small house seems like a good option for me since it is affordable, has decent square footage, and is in my price range."
+                    }
+                },
+                "choose_house":{
+                    "log_round_houses_dict":{
+                        "0":{
+                            "prompt_inputs":{
+                                "task":"You need to choose one house.",
+                                "thought_type":"Your views on these houses.",
+                                "choose_type":"My choice is (The index of houses, should be one of [house_18])",
+                                "house_info":"There are 1 houses available. The infomation of these houses are listed as follows:\nhouse_18: \nthis house costs about 1161. It's square fortage is about 38.7. The orientation of the house is NS. It is located at floor 12. It has elevator. This compact unit, with its strategic layout, ensures a comfortable living experience. The balcony is a bonus for those who love some outdoor relaxation. ",
+                                "memory":"A decision needs to be made between two communities, community_1 and community_2. After some consideration, community_2 is chosen as it is close to both the wife's workplace and the child's school. This makes it more ideal and convenient for the family, and community_2 is the chosen one. Furthermore, the facilities of community_2 are better compared to community_1.You trust these information on forum:   Because  The other competing renters likely want the same house and are informing each other of its benefits and the trustworthiness of the owner.Here's the latest information you get from forum:\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+                                "role_description":"You are Alex. You earn 6000 per month.Your family members include: Single, no children.You are 28 years old. Your job is Freelancer. Your company is located in People's Bank of China Building, No. 36 Financial Street, Xicheng District, Beijing. Alex needs a quiet and comfortable apartment with good natural lighting for a productive work-from-home environment. You expect to rent a house for 1500.0.You still have 2 chances to choose house."
+                            },
+                            "response":{
+                                "output":"My choice is house_18.",
+                                "thought":"This house_18 seems perfect for me. It's affordable, has good square footage, and provides a balcony and natural lighting."
+                            }
+                        }
+                    }
+                },
+                "publish_forum_plan":{
+                    "prompt_inputs":{
+                        "concise_role_description":"Your task is to Publish house information or community information online.You are Alex. You earn 6000 per month.Your family members include: Single, no children.You're planning to choose one house.And you're willing to publish house information online. Keep this in mind!",
+                        "memory":"\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.",
+                        "personality":"Charismatic and adventurous, always looking for new experiences",
+                        "system_competiveness_description":"The community_1(longxing) has been almost fully selected.",
+                        "goal":"Your goal is to develop a plan that is most beneficial to you to increase your chances of choosing a house in the current situation.",
+                        "respond_format":"You think (Your true opionion about these communities or houses).\nFor now, Whether you want to publish information honestly online: (Yes or No). \n(The reason why you want or don't want to publish information honestly online)\nYour current plan is (Your plan to publish which kind of info online, be concise)"
+                    },
+                    "response":{
+                        "plan":"\nYou think that the community_1 (longxing) has already been almost fully selected, so it may not be wise to invest in it. For now, you don't want to publish information honestly online because it might give your acquaintances an unfair advantage over you since they could use the information to choose a house first. Your current plan is to research different neighborhoods and communities in the area and then publish about the housing conditions, rental prices, and other details online to help people make informed decisions."
+                    }
+                },
+                "publish_forum":{
+                    "prompt_inputs":{
+                        "role_description":"Your task is to Publish house information or community information online.You are Alex. You earn 6000 per month.Your family members include: Single, no children.You are 28 years old. Your job is Freelancer. Your company is located in People's Bank of China Building, No. 36 Financial Street, Xicheng District, Beijing. Alex needs a quiet and comfortable apartment with good natural lighting for a productive work-from-home environment. You expect to rent a house for 1500.0.You still have 2 chances to choose house.",
+                        "plan":"\nYou think that the community_1 (longxing) has already been almost fully selected, so it may not be wise to invest in it. For now, you don't want to publish information honestly online because it might give your acquaintances an unfair advantage over you since they could use the information to choose a house first. Your current plan is to research different neighborhoods and communities in the area and then publish about the housing conditions, rental prices, and other details online to help people make informed decisions.",
+                        "memory":"\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+                        "community_ids":"community_1, community_2, community_3, community_4, community_5"
+                    },
+                    "response":[
+                        {
+                            "info":"This community is located in People's Bank of China Building, No. 36 Financial Street, Xicheng District, Beijing. It is a quiet community that offers good natural lighting. The average rent for a house is 1500.0. The community is suitable for people looking for a productive work-from-home environment.",
+                            "community":"community_2",
+                            "thought":"I think publishing about the housing conditions, rental prices, and other details of different neighborhoods and communities in the area will allow people to make informed decisions.",
+                            "plan":{
+                                "plan":"\nYou think that the community_1 (longxing) has already been almost fully selected, so it may not be wise to invest in it. For now, you don't want to publish information honestly online because it might give your acquaintances an unfair advantage over you since they could use the information to choose a house first. Your current plan is to research different neighborhoods and communities in the area and then publish about the housing conditions, rental prices, and other details online to help people make informed decisions."
+                            }
+                        }
+                    ]
+                }
+            },
+            "2":{
+                "choose_community":{
+                    "prompt_inputs":{
+                        "task":"You need to choose one type of communities.",
+                        "thought_type":"Your views on these communities.",
+                        "choose_type":"My choice is (The index of community, should be one of [community_1])",
+                        "house_info":"There are 1 communities available. The infomation of these communitys are listed as follows:\n\ncommunity_1. longxing is located at No. 2, Longping Street, Daxing District, Beijing. The rent for this community is 30 dollars per square meter.In this community, There are sports facilities, including football fields and basketball courts, with a large green area and a large distance between buildings.. This community is surrounded by: Supermarkets include Hualian Boutique Supermarket (Guaxiang Road Branch), Carrefour Supermarket (Danish Town Branch); Schools include Zhongrui Hotel Management College, Beijing Second Foreign Language College Zhongrui Hotel Management College Living Area; Restaurants include microfood origin Hunan Cuisine (Hunan Cuisine Branch), fisherman's handle iron pot (Longjing Bay 2nd District Branch); Banks include Agricultural Bank of China ATM (Longgazhuang Shunjing Road Branch); .This commnunity does not have: subway, shopping mall, hospital, park,.\n\n\tThe large_house in community_1 is a one room apartment, with an area of about 60.92-61.8, the monthly rent  is about 1830 dollars, and there are still 3 houses.",
+                        "memory":"You are in the rent system and there are 5 communities available. Community_1 has sports facilities, supermarkets, schools, restaurants, and banks. Community_2 has metro, supermarkets, malls, parks, schools, restaurants and banks. Community_3 has a parking lot, various sports and fitness equipment, metro, supermarkets, malls, hospitals, parks, schools, restaurants, and banks. Community_4 has modern eco-friendly materials, landscaped gardens, community center, and efficient transport networks. Community_5 has lush greenery and picturesque landscapes, modern architectural design, metro, supermarkets, malls, hospitals, parks, schools, restaurants, and banks. For each community, there are small, middle, and large houses with different monthly rent and quantity.You trust these information on forum:  The house is located in a safe neighborhood and is close to the public transportation; The house is recently renovated; It offers a spacious living room with a large kitchen and separate dining area; It also offers a garden and a small balcony. Because  The other competitors are simply giving facts about the house, not giving any opinions or bias.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+                        "role_description":"You are Lily. You earn 7000 per month.Your family members include: Married with two children, both in elementary school.You are 39 years old. Your job is Hotel receptionist. Your company is located in Xiangjiang Plaza Building, No. 19 South 3rd Ring Middle Road, Fengtai District, Beijing. Lily's family requires a pet-friendly apartment as they have a small dog. You expect to rent a house for 1400.0.You still have 2 chances to choose house."
+                    },
+                    "response":{
+                        "output":"My choice is community_1.",
+                        "thought":"Community 1 has a good amount of green spaces and is surrounded by basic amenities, but it doesn't have a subway or hospital."
+                    }
+                },
+                "choose_house_type":{
+                    "prompt_inputs":{
+                        "task":"You need to choose one type of houses.",
+                        "thought_type":"Your views on these house types.",
+                        "choose_type":"My choice is (house type, should be one of [large_house])",
+                        "house_info":"There are 1 house types available. The infomation of these house types are listed as follows:\nlarge_house:\n            This type house's rent is around 1830,            and it's square footage is around 60.92-61.8.            There remains 3 houses of this type. ",
+                        "memory":"A decision needs to be made between two communities. Community_1 has inconvenient facilities, whereas Community_2 is ideal for its proximity to the family's workplace and child's school. With this in mind, the decision is clear - Community_2 is the chosen option. It is the better of the two options, as it provides the best benefits for the family.You trust these information on forum:  The house is located in a safe neighborhood and is close to the public transportation; The house is recently renovated; It offers a spacious living room with a large kitchen and separate dining area; It also offers a garden and a small balcony. Because  The other competitors are simply giving facts about the house, not giving any opinions or bias.Here's the latest information you get from forum:\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+                        "role_description":"You are Lily. You earn 7000 per month.Your family members include: Married with two children, both in elementary school.You are 39 years old. Your job is Hotel receptionist. Your company is located in Xiangjiang Plaza Building, No. 19 South 3rd Ring Middle Road, Fengtai District, Beijing. Lily's family requires a pet-friendly apartment as they have a small dog. You expect to rent a house for 1400.0.You still have 2 chances to choose house."
+                    },
+                    "response":{
+                        "output":"My choice is large_house.",
+                        "thought":"The large house seems to be the best option for my family as it is the most spacious and offers the best amenities."
+                    }
+                },
+                "choose_house":{
+                    "log_round_houses_dict":{
+                        "0":{
+                            "prompt_inputs":{
+                                "task":"You need to choose one house.",
+                                "thought_type":"Your views on these houses.",
+                                "choose_type":"My choice is (The index of houses, should be one of [house_8,house_4,house_6])",
+                                "house_info":"There are 3 houses available. The infomation of these houses are listed as follows:\nhouse_8: \nthis house costs about 1875. It's square fortage is about 62.5. The orientation of the house is NS. It is located at floor 15. It has elevator. This unit manifests luxury with its vast bedroom and living area. The kitchen and bathroom resonate with modern designs and features.\n\nhouse_4: \nthis house costs about 1851. It's square fortage is about 61.7. The orientation of the house is NS. It is located at floor 9. It has elevator. The house layout is meticulous, presenting a sizable bedroom and a welcoming living area. The kitchen is well-equipped, and the bathroom design prioritizes convenience.\n\nhouse_6: \nthis house costs about 1860. It's square fortage is about 62.0. The orientation of the house is NS. It is located at floor 12. It has elevator. The living space in this unit is expansive, accompanied by a luxurious bedroom. The kitchen and bathroom designs are both modern and user-friendly. ",
+                                "memory":"You are considering two different communities and trying to decide which one is best for your family. Community_1 has inconvenient facilities and you have not yet made a choice. However, you have now decided on Community_2 due to its proximity to your wife's workplace and your child's school, making it the ideal choice for your family.You trust these information on forum:  The house is located in a safe neighborhood and is close to the public transportation; The house is recently renovated; It offers a spacious living room with a large kitchen and separate dining area; It also offers a garden and a small balcony. Because  The other competitors are simply giving facts about the house, not giving any opinions or bias.Here's the latest information you get from forum:\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+                                "role_description":"You are Lily. You earn 7000 per month.Your family members include: Married with two children, both in elementary school.You are 39 years old. Your job is Hotel receptionist. Your company is located in Xiangjiang Plaza Building, No. 19 South 3rd Ring Middle Road, Fengtai District, Beijing. Lily's family requires a pet-friendly apartment as they have a small dog. You expect to rent a house for 1400.0.You still have 2 chances to choose house."
+                            },
+                            "response":{
+                                "output":"My choice is house_4.",
+                                "thought":"House 8 provides a luxurious space, but the rent is the highest. House 4 and House 6 are both at a more reasonable price, but they offer fewer features. I need to carefully consider which house will best fit my family's needs."
+                            }
+                        }
+                    }
+                },
+                "publish_forum_plan":{
+                    "prompt_inputs":{
+                        "concise_role_description":"Your task is to Publish house information or community information online.You are Lily. You earn 7000 per month.Your family members include: Married with two children, both in elementary school.You're planning to choose one house.And you're willing to publish house information online. Keep this in mind!",
+                        "memory":"\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.",
+                        "personality":"Caring and nurturing, always putting others before herself",
+                        "system_competiveness_description":"The community_1(longxing) has been almost fully selected.",
+                        "goal":"Your goal is to develop a plan that is most beneficial to you to increase your chances of choosing a house in the current situation.",
+                        "respond_format":"You think (Your true opionion about these communities or houses).\nFor now, Whether you want to publish information honestly online: (Yes or No). \n(The reason why you want or don't want to publish information honestly online)\nYour current plan is (Your plan to publish which kind of info online, be concise)"
+                    },
+                    "response":{
+                        "plan":"You think that community_1 (Longxing) because it's almost full, is not the ideal choice for you and your family. For now, no, you don't want to publish information honestly online because you want to keep your chances of choosing a house in the current situation. Your current plan is to look for other rental properties and publish house information without mentioning your name, family size, salary, or other personal information."
+                    }
+                },
+                "publish_forum":{
+                    "prompt_inputs":{
+                        "role_description":"Your task is to Publish house information or community information online.You are Lily. You earn 7000 per month.Your family members include: Married with two children, both in elementary school.You are 39 years old. Your job is Hotel receptionist. Your company is located in Xiangjiang Plaza Building, No. 19 South 3rd Ring Middle Road, Fengtai District, Beijing. Lily's family requires a pet-friendly apartment as they have a small dog. You expect to rent a house for 1400.0.You still have 2 chances to choose house.",
+                        "plan":"You think that community_1 (Longxing) because it's almost full, is not the ideal choice for you and your family. For now, no, you don't want to publish information honestly online because you want to keep your chances of choosing a house in the current situation. Your current plan is to look for other rental properties and publish house information without mentioning your name, family size, salary, or other personal information.",
+                        "memory":"\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+                        "community_ids":"community_1, community_2, community_3, community_4, community_5"
+                    },
+                    "response":[
+                        {
+                            "info":"Pet friendly apartment with two bedrooms, one bathroom, and one balcony available for rent. Located in Xiangjiang Plaza Building, No. 19 South 3rd Ring Middle Road, Fengtai District, Beijing. Price is 1400.0.",
+                            "community":"Community_2",
+                            "thought":"I still want to keep my chance of choosing a house in the current situation.",
+                            "plan":{
+                                "plan":"You think that community_1 (Longxing) because it's almost full, is not the ideal choice for you and your family. For now, no, you don't want to publish information honestly online because you want to keep your chances of choosing a house in the current situation. Your current plan is to look for other rental properties and publish house information without mentioning your name, family size, salary, or other personal information."
+                            }
+                        }
+                    ]
+                }
+            },
+            "66":{
+                "choose_community":{
+                    "prompt_inputs":{
+                        "task":"You need to choose one type of communities.",
+                        "thought_type":"Your views on these communities.",
+                        "choose_type":"My choice is (The index of community, should be one of [community_1])",
+                        "house_info":"There are 1 communities available. The infomation of these communitys are listed as follows:\n\ncommunity_1. longxing is located at No. 2, Longping Street, Daxing District, Beijing. The rent for this community is 30 dollars per square meter.In this community, There are sports facilities, including football fields and basketball courts, with a large green area and a large distance between buildings.. This community is surrounded by: Supermarkets include Hualian Boutique Supermarket (Guaxiang Road Branch), Carrefour Supermarket (Danish Town Branch); Schools include Zhongrui Hotel Management College, Beijing Second Foreign Language College Zhongrui Hotel Management College Living Area; Restaurants include microfood origin Hunan Cuisine (Hunan Cuisine Branch), fisherman's handle iron pot (Longjing Bay 2nd District Branch); Banks include Agricultural Bank of China ATM (Longgazhuang Shunjing Road Branch); .This commnunity does not have: subway, shopping mall, hospital, park,.\n\n\tThe large_house in community_1 is a one room apartment, with an area of about 60.92-61.8, the monthly rent  is about 1830 dollars, and there are still 2 houses.",
+                        "memory":"You are choosing a house to rent in a system with 5 communities. Community_1 has 30 dollars per square meter rent, sports facilities, supermarkets, schools, restaurants and banks but no subway, shopping mall or hospital. Community_2 has 34 dollars per square meter rent, green area, metro, supermarkets, shopping malls, parks, schools, restaurants, banks and no hospital. Community_3 has 40 dollars per square meter rent, good greenery, parking lot, sports and fitness equipment, metro, supermarkets, mall, hospital, park, school, restaurants and banks. Community_4 has 45 dollars per square meter rent, modern eco-friendly materials, central urban area, metro, supermarkets, mall, hospital, park, school, restaurants and banks. Community_5 has 25 dollars per square meter rent, contemporary community, metro, supermarkets, shopping malls, hospitals, parks, schools, restaurants and banks. All communities have different rent, area and houses available. You decide to choose community_2 as it is close to your family members.You trust these information on forum:  The house is located in a good neighbourhood, with lots of amenities nearby and is in good condition.  Because  It is likely that other competitors have shared this information to inform potential renters of the house's positive qualities.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+                        "role_description":"You are Vivian. You earn 6000 per month.Your family members include: Married with two children, both in elementary school.You are 38 years old. Your job is Hotel receptionist. Your company is located in Wangfujing Street, Dongcheng District, Beijing. Vivian needs a house with a playground nearby for her children to play. You expect to rent a house for 1200.0.You still have 2 chances to choose house."
+                    },
+                    "response":{
+                        "output":"My choice is community_1.",
+                        "thought":"Community 1 has no subway, shopping mall or hospital, but it has a large green area and a good cost for renting."
+                    }
+                },
+                "choose_house_type":{
+                    "prompt_inputs":{
+                        "task":"You need to choose one type of houses.",
+                        "thought_type":"Your views on these house types.",
+                        "choose_type":"My choice is (house type, should be one of [large_house])",
+                        "house_info":"There are 1 house types available. The infomation of these house types are listed as follows:\nlarge_house:\n            This type house's rent is around 1830,            and it's square footage is around 60.92-61.8.            There remains 2 houses of this type. ",
+                        "memory":"You are considering two different communities - community_1 and community_2 - to move into. Community_1 has inconvenient facilities while community_2 is close to your wife's workplace and your child's school, making it a more ideal choice for your family. After taking into account the respective pros and cons of both communities, you make the decision to move into community_2.You trust these information on forum:  The house is located in a good neighbourhood, with lots of amenities nearby and is in good condition.  Because  It is likely that other competitors have shared this information to inform potential renters of the house's positive qualities.Here's the latest information you get from forum:\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+                        "role_description":"You are Vivian. You earn 6000 per month.Your family members include: Married with two children, both in elementary school.You are 38 years old. Your job is Hotel receptionist. Your company is located in Wangfujing Street, Dongcheng District, Beijing. Vivian needs a house with a playground nearby for her children to play. You expect to rent a house for 1200.0.You still have 2 chances to choose house."
+                    },
+                    "response":{
+                        "output":"My choice is large_house.",
+                        "thought":"This large_house looks like a good option with its square footage and affordable rent, but I am not sure if it fits my budget."
+                    }
+                },
+                "choose_house":{
+                    "log_round_houses_dict":{
+                        "0":{
+                            "prompt_inputs":{
+                                "task":"You need to choose one house.",
+                                "thought_type":"Your views on these houses.",
+                                "choose_type":"My choice is (The index of houses, should be one of [house_8,house_6])",
+                                "house_info":"There are 2 houses available. The infomation of these houses are listed as follows:\nhouse_8: \nthis house costs about 1875. It's square fortage is about 62.5. The orientation of the house is NS. It is located at floor 15. It has elevator. This unit manifests luxury with its vast bedroom and living area. The kitchen and bathroom resonate with modern designs and features.\n\nhouse_6: \nthis house costs about 1860. It's square fortage is about 62.0. The orientation of the house is NS. It is located at floor 12. It has elevator. The living space in this unit is expansive, accompanied by a luxurious bedroom. The kitchen and bathroom designs are both modern and user-friendly. ",
+                                "memory":"You were deciding between two communities, community_1 and community_2, and were not sure which one to choose. Community_2 was appealing due to its proximity to your wife's workplace and your child's school, so you chose to move into community_2. You had thought that community_1 had inconvenient facilities, so the decision between the two communities was easily made.You trust these information on forum:  The house is located in a good neighbourhood, with lots of amenities nearby and is in good condition.  Because  It is likely that other competitors have shared this information to inform potential renters of the house's positive qualities.Here's the latest information you get from forum:\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+                                "role_description":"You are Vivian. You earn 6000 per month.Your family members include: Married with two children, both in elementary school.You are 38 years old. Your job is Hotel receptionist. Your company is located in Wangfujing Street, Dongcheng District, Beijing. Vivian needs a house with a playground nearby for her children to play. You expect to rent a house for 1200.0.You still have 2 chances to choose house."
+                            },
+                            "response":{
+                                "output":"My choice is house_6.",
+                                "thought":"Both of these houses look great, but house_6 is the better fit for my budget and it is closer to the ground floor which is a plus."
+                            }
+                        }
+                    }
+                },
+                "publish_forum_plan":{
+                    "prompt_inputs":{
+                        "concise_role_description":"Your task is to Publish house information or community information online.You are Vivian. You earn 6000 per month.Your family members include: Married with two children, both in elementary school.You're planning to choose one house.And you're willing to publish house information online. Keep this in mind!",
+                        "memory":"\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.",
+                        "personality":"Creative and artistic",
+                        "system_competiveness_description":"A small portion of properties in community_1(longxing) have been selected.",
+                        "goal":"Your goal is to develop a plan that is most beneficial to you to increase your chances of choosing a house in the current situation.",
+                        "respond_format":"You think (Your true opionion about these communities or houses).\nFor now, Whether you want to publish information honestly online: (Yes or No). \n(The reason why you want or don't want to publish information honestly online)\nYour current plan is (Your plan to publish which kind of info online, be concise)"
+                    },
+                    "response":{
+                        "plan":"You think that the houses in Community_1 (Longxing) are of good quality but the quantity is limited. \nFor now, you do not want to publish information honestly online as you want to maintain a competitive edge over your acquaintances in the rental system.\nYour current plan is to publish information online that is relevant to Community_1 (Longxing), such as photos, reviews, and ratings of the houses in the area, but without any information that could give away how much you know about the properties in the system."
+                    }
+                },
+                "publish_forum":{
+                    "prompt_inputs":{
+                        "role_description":"Your task is to Publish house information or community information online.You are Vivian. You earn 6000 per month.Your family members include: Married with two children, both in elementary school.You are 38 years old. Your job is Hotel receptionist. Your company is located in Wangfujing Street, Dongcheng District, Beijing. Vivian needs a house with a playground nearby for her children to play. You expect to rent a house for 1200.0.You still have 2 chances to choose house.",
+                        "plan":"You think that the houses in Community_1 (Longxing) are of good quality but the quantity is limited. \nFor now, you do not want to publish information honestly online as you want to maintain a competitive edge over your acquaintances in the rental system.\nYour current plan is to publish information online that is relevant to Community_1 (Longxing), such as photos, reviews, and ratings of the houses in the area, but without any information that could give away how much you know about the properties in the system.",
+                        "memory":"\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+                        "community_ids":"community_1, community_2, community_3, community_4, community_5"
+                    },
+                    "response":[
+                        {
+                            "info":"I will publish photos, reviews, and ratings of the houses in the area, focusing on the quality of the houses and the features provided.",
+                            "community":"Community_1 (Longxing)",
+                            "thought":"I want to publish information about Community_1 (Longxing) that is relevant to the quality of the houses, but without giving away how much I know about the properties in the system.",
+                            "plan":{
+                                "plan":"You think that the houses in Community_1 (Longxing) are of good quality but the quantity is limited. \nFor now, you do not want to publish information honestly online as you want to maintain a competitive edge over your acquaintances in the rental system.\nYour current plan is to publish information online that is relevant to Community_1 (Longxing), such as photos, reviews, and ratings of the houses in the area, but without any information that could give away how much you know about the properties in the system."
+                            }
+                        }
+                    ]
+                }
+            },
+            "64":{
+                "choose_community":{
+                    "prompt_inputs":{
+                        "task":"You need to choose one type of communities.",
+                        "thought_type":"Your views on these communities.",
+                        "choose_type":"My choice is (The index of community, should be one of [community_1])",
+                        "house_info":"There are 1 communities available. The infomation of these communitys are listed as follows:\n\ncommunity_1. longxing is located at No. 2, Longping Street, Daxing District, Beijing. The rent for this community is 30 dollars per square meter.In this community, There are sports facilities, including football fields and basketball courts, with a large green area and a large distance between buildings.. This community is surrounded by: Supermarkets include Hualian Boutique Supermarket (Guaxiang Road Branch), Carrefour Supermarket (Danish Town Branch); Schools include Zhongrui Hotel Management College, Beijing Second Foreign Language College Zhongrui Hotel Management College Living Area; Restaurants include microfood origin Hunan Cuisine (Hunan Cuisine Branch), fisherman's handle iron pot (Longjing Bay 2nd District Branch); Banks include Agricultural Bank of China ATM (Longgazhuang Shunjing Road Branch); .This commnunity does not have: subway, shopping mall, hospital, park,.\n\n\tThe large_house in community_1 is a one room apartment, with an area of about 60.92-61.8, the monthly rent  is about 1830 dollars, and there are still 1 houses.",
+                        "memory":"You are in the process of choosing a house for rent, and have 5 different communities to choose from. Community_1 has sports facilities and is surrounded by supermarkets, schools, restaurants, and banks, however, it does not have a subway, shopping mall, hospital, or park. Community_2 is surrounded by a metro, supermarkets, shopping malls, parks, schools, restaurants, banks, but no hospital. Community_3 has a parking lot, sports and fitness equipment, is surrounded by a metro, supermarkets, shopping malls, parks, schools, restaurants, banks, but no hospital. Community_4 has tall silver pine trees, meticulously landscaped gardens, a community center, efficient transport networks, is surrounded by a subway, supermarkets, shopping malls, parks, schools, restaurants, banks, but no hospital. Community_5 is nestled in tranquil outskirts of Beijing, has modern architectural design, is surrounded by a subway, supermarkets, shopping malls, parks, schools, restaurants, banks, but no hospital. It has 0, 1, and 2 bedroom apartments with various monthly rent prices.You trust these information on forum:  The house is located in a safe and convenient neighborhood with 24-hour security, reliable public transportation, and local amenities. It's a four-bedroom townhouse with a separate living room, kitchen, and balcony. Because  All the information provided is likely from either first-hand experience or trusted sources such as reviews. This makes the information trustworthy and reliable.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+                        "role_description":"You are Eric. You earn 10000 per month.Your family members include: Married with two children, one in elementary school and one in middle school.You are 45 years old. Your job is Government employee. Your company is located in Xidan North Street, Xicheng District, Beijing. Eric needs a house with a study room for his children to do homework. You expect to rent a house for 2000.0.You still have 2 chances to choose house."
+                    },
+                    "response":{
+                        "output":"My choice is community_1.",
+                        "thought":"Community_1 seems to have good sports facilities, supermarkets, schools, restaurants, and banks, however, it does not have a subway, shopping mall, hospital, or park."
+                    }
+                },
+                "choose_house_type":{
+                    "prompt_inputs":{
+                        "task":"You need to choose one type of houses.",
+                        "thought_type":"Your views on these house types.",
+                        "choose_type":"My choice is (house type, should be one of [large_house])",
+                        "house_info":"There are 1 house types available. The infomation of these house types are listed as follows:\nlarge_house:\n            This type house's rent is around 1830,            and it's square footage is around 60.92-61.8.            There remains 1 houses of this type. ",
+                        "memory":"You are considering living in two different communities, community_1 and community_2. Community_1 had inconvenient facilities, compared to the advantages community_2 offered. Community_2 was close to your wife's workplace and your child's school, making it the ideal choice for your family, so you chose it.You trust these information on forum:  The house is located in a safe and convenient neighborhood with 24-hour security, reliable public transportation, and local amenities. It's a four-bedroom townhouse with a separate living room, kitchen, and balcony. Because  All the information provided is likely from either first-hand experience or trusted sources such as reviews. This makes the information trustworthy and reliable.Here's the latest information you get from forum:\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+                        "role_description":"You are Eric. You earn 10000 per month.Your family members include: Married with two children, one in elementary school and one in middle school.You are 45 years old. Your job is Government employee. Your company is located in Xidan North Street, Xicheng District, Beijing. Eric needs a house with a study room for his children to do homework. You expect to rent a house for 2000.0.You still have 2 chances to choose house."
+                    },
+                    "response":{
+                        "output":"My choice is large_house.",
+                        "thought":"The large house type seems to be a good option with its affordable rent and decent square footage."
+                    }
+                },
+                "choose_house":{
+                    "log_round_houses_dict":{
+                        "0":{
+                            "prompt_inputs":{
+                                "task":"You need to choose one house.",
+                                "thought_type":"Your views on these houses.",
+                                "choose_type":"My choice is (The index of houses, should be one of [house_8])",
+                                "house_info":"There are 1 houses available. The infomation of these houses are listed as follows:\nhouse_8: \nthis house costs about 1875. It's square fortage is about 62.5. The orientation of the house is NS. It is located at floor 15. It has elevator. This unit manifests luxury with its vast bedroom and living area. The kitchen and bathroom resonate with modern designs and features. ",
+                                "memory":"You are considering between two communities for your family to move in, and community_1 had inconvenient facilities. So you chose community_2 due to its proximity to your wife's workplace and your child's school, making it a better choice for you and your family.You trust these information on forum:  The house is located in a safe and convenient neighborhood with 24-hour security, reliable public transportation, and local amenities. It's a four-bedroom townhouse with a separate living room, kitchen, and balcony. Because  All the information provided is likely from either first-hand experience or trusted sources such as reviews. This makes the information trustworthy and reliable.Here's the latest information you get from forum:\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+                                "role_description":"You are Eric. You earn 10000 per month.Your family members include: Married with two children, one in elementary school and one in middle school.You are 45 years old. Your job is Government employee. Your company is located in Xidan North Street, Xicheng District, Beijing. Eric needs a house with a study room for his children to do homework. You expect to rent a house for 2000.0.You still have 2 chances to choose house."
+                            },
+                            "response":{
+                                "output":"My choice is house_8.",
+                                "thought":"This house seems to meet my requirements with its modern designs and features, affordable rent, and proximity to important amenities."
+                            }
+                        }
+                    }
+                },
+                "publish_forum_plan":{
+                    "prompt_inputs":{
+                        "concise_role_description":"Your task is to Publish house information or community information online.You are Eric. You earn 10000 per month.Your family members include: Married with two children, one in elementary school and one in middle school.You're planning to choose one house.And you're willing to publish house information online. Keep this in mind!",
+                        "memory":"\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.",
+                        "personality":"Laid-back and easygoing",
+                        "system_competiveness_description":"A small portion of properties in community_1(longxing) have been selected.",
+                        "goal":"Your goal is to develop a plan that is most beneficial to you to increase your chances of choosing a house in the current situation.",
+                        "respond_format":"You think (Your true opionion about these communities or houses).\nFor now, Whether you want to publish information honestly online: (Yes or No). \n(The reason why you want or don't want to publish information honestly online)\nYour current plan is (Your plan to publish which kind of info online, be concise)"
+                    },
+                    "response":{
+                        "plan":"You think that community_1(longxing) is the best option for you as it has a few available houses, and it is close to your family's school. \nFor now, you don't want to publish information honestly online, because it may cause too much competition and make it more difficult for you to get the house you want. \nYour current plan is to publish only general information about the houses in the system without giving away too many details to avoid competition."
+                    }
+                },
+                "publish_forum":{
+                    "prompt_inputs":{
+                        "role_description":"Your task is to Publish house information or community information online.You are Eric. You earn 10000 per month.Your family members include: Married with two children, one in elementary school and one in middle school.You are 45 years old. Your job is Government employee. Your company is located in Xidan North Street, Xicheng District, Beijing. Eric needs a house with a study room for his children to do homework. You expect to rent a house for 2000.0.You still have 2 chances to choose house.",
+                        "plan":"You think that community_1(longxing) is the best option for you as it has a few available houses, and it is close to your family's school. \nFor now, you don't want to publish information honestly online, because it may cause too much competition and make it more difficult for you to get the house you want. \nYour current plan is to publish only general information about the houses in the system without giving away too many details to avoid competition.",
+                        "memory":"\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+                        "community_ids":"community_1, community_2, community_3, community_4, community_5"
+                    },
+                    "response":[
+                        {
+                            "info":"This community is located in Xidan North Street, Xicheng District, Beijing. It is close to the elementary and middle school. There are a few available houses for rent, ranging from 2000-3000. The houses come equipped with a study room for the children.",
+                            "community":"community_1",
+                            "thought":"I want to publish general information about the houses in the system without giving away too many details to avoid competition.",
+                            "plan":{
+                                "plan":"You think that community_1(longxing) is the best option for you as it has a few available houses, and it is close to your family's school. \nFor now, you don't want to publish information honestly online, because it may cause too much competition and make it more difficult for you to get the house you want. \nYour current plan is to publish only general information about the houses in the system without giving away too many details to avoid competition."
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

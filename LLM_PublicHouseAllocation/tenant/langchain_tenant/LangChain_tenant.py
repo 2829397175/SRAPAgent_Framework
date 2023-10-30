@@ -98,7 +98,10 @@ class LangchainTenant(langchainAgent):
                          read_community_config,
                          write_forum_config)
         infos = kwargs.pop("infos")
-        infos["extra_info"] = "\nYou sincerely believe this information:{}".format(infos["extra_info"])
+        if "extra_info" in infos.keys():
+            infos["extra_info"] = "\nYou sincerely believe this information:{}".format(infos.get("extra_info"))
+        else:
+            infos["extra_info"] = ""
         # memory = ActionHistoryMemory(llm=kwargs.get("llm",OpenAI()))
         super().__init__(agentrule=rule, 
                          infos = infos,
@@ -751,12 +754,11 @@ Your current plan to respond is (Your plan to communicate with your friends, com
                 for response_round in response["communication"]:
                     receiver_list = response_round.get("acquaintance_names")
                     receiver_list = receiver_list.split(",")
-                    # receiver_ids = []
-                    
+
                     for receiver in receiver_list:
                         for friend_id,friend_info in self.memory.social_network.items():
                             if (receiver.strip().lower() in friend_info["name"].lower()):
-                                # response_round["acquaintance_id"] = friend_id  
+
                                 receivers[friend_id] = friend_info["name"]
                                 
                     if len(receivers) == len(receiver_list): # 所有receiver均合法

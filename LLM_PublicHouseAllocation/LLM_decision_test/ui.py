@@ -81,8 +81,11 @@ class App:
             text_widget.pack(side=tk.RIGHT, expand=True, fill=tk.BOTH)
 
             if key == "output":
+                text_widget.tag_config('red', foreground='red', font=('Arial', 12, 'bold'))
                 self.output_text = text_widget
+
             elif key == "thought":
+                text_widget.tag_config('red', foreground='red', font=('Arial', 12, 'bold'))
                 self.thought_text = text_widget
             self.prompt_frames.append((label, text_widget))
             row_counter += 1
@@ -91,17 +94,17 @@ class App:
         button_frame = tk.Frame(self.window)
         button_frame.grid(row=row_counter, column=0, pady=10)
         
-        self.approve_button = tk.Button(button_frame, text="Human Response", command=self.approve)
-        self.approve_button.pack(side=tk.LEFT, padx=10)
+        # self.approve_button = tk.Button(button_frame, text="Human Response", command=self.approve)
+        # self.approve_button.pack(side=tk.LEFT, padx=10)
         
-        self.reject_button = tk.Button(button_frame, text="Robot Response", command=self.reject)
-        self.reject_button.pack(side=tk.LEFT, padx=10)
+        # self.reject_button = tk.Button(button_frame, text="Robot Response", command=self.reject)
+        # self.reject_button.pack(side=tk.LEFT, padx=10)
         
         self.back_button = tk.Button(button_frame, text="Back", command=self.back)
         self.back_button.pack(side=tk.LEFT, padx=10)
         
-        # self.save_button = tk.Button(button_frame, text="Save Response", command=self.save_response)
-        # self.save_button.pack(side=tk.LEFT, padx=10)
+        self.save_button = tk.Button(button_frame, text="Save Response", command=self.save_response)
+        self.save_button.pack(side=tk.LEFT, padx=10)
 
         # Configure grid to expand cells dynamically
         for i in range(row_counter):
@@ -113,13 +116,19 @@ class App:
         self.window.mainloop()
         
 
-    def insert_and_resize_textbox(self,text_widget, content):
+    def insert_and_resize_textbox(self,
+                                  text_widget, 
+                                  content,
+                                  format = "default"):
         """
         Insert content into the provided text widget and resize its height based on content's lines.
         """
         text_widget.configure(state=tk.NORMAL)
         text_widget.delete("1.0", tk.END)
-        text_widget.insert(tk.END, content)
+        if format != "default":
+            text_widget.insert(tk.END, content,format)
+        else:
+            text_widget.insert(tk.END, content)
         
         lines = content.split("\n")
         line_count = len(lines) + 1  # adding an additional line for padding
@@ -168,17 +177,19 @@ class App:
                 self.insert_and_resize_textbox(text_widget, content)
 
             # Display response
-            if current_data['response']!={}:
-                output_content = str(current_data['response']['output'])
-                self.insert_and_resize_textbox(self.output_text, output_content)
-                thought_content = str(current_data['response']['thought'])
-                self.insert_and_resize_textbox(self.thought_text, thought_content)
-            else:
-                # 这里response 清空了
+            if current_data['response']=={} or "response" not in current_data.keys():
                 output_content = ""
                 self.insert_and_resize_textbox2(self.output_text, output_content)
                 thought_content = ""
                 self.insert_and_resize_textbox2(self.thought_text, thought_content)
+            
+            else:
+                # 这里response 清空了
+                output_content = str(current_data['response']['output'])
+                self.insert_and_resize_textbox(self.output_text, output_content,"red")
+                thought_content = str(current_data['response']['thought'])
+                self.insert_and_resize_textbox(self.thought_text, thought_content,"red")
+                
         else:
             finished_QA_result = []
             unfinished_QA_result=[]
@@ -300,14 +311,17 @@ class App:
                 choice = output_format_check.groups()[0].strip().strip(".").lower()
                 assert choice in current_data["house_info"]
             except Exception as e:
-                messagebox.showerror("Error","Be sure to follow the input format instruction!")
-                return
+                if "I didn't make a choice" in output_content:
+                    pass
+                else:
+                    messagebox.showerror("Error","Be sure to follow the input format instruction!")
+                    return
             # Save the response to the current data
             self.data_list[self.index]['response']['output'] = output_content
             self.data_list[self.index]['response']['thought'] = thought_content
             #humanjudge表示是否是人类的答案
             self.data_list[self.index]["humanjudge"]=True
-            self.index+=1
+            self.index += 1
             self.show_data()
         else:
             messagebox.showerror("Error","Be sure to enter response and thought before saving!")

@@ -221,9 +221,9 @@ class App:
         # self.mem_info_window.title("Memory Info")
         
          # 设定各个表格列的长度：[window内]
-        self.text_heights=[1,1,1,10,20] 
+        self.text_heights=[1,1,10,20] 
         self.datas= {
-            "general_description":"",
+            # "general_description":"",
             "concise_role_description":"",
             "acquaintance_desciption":"",
             # "key_social_network":"",
@@ -281,24 +281,31 @@ class App:
             label.config(text=key)
             if (key == "content_info"):
                 text_widget.configure(state=tk.NORMAL)
-                output = self.datas["content_info"].pop("output") 
-                filter_keys = ["thought","acquaintance_names"]
+
+                filter_keys = ["acquaintance_names","output"]
                 text_widget.tag_config('red', foreground='red', font=('Arial', 12, 'bold'))
 
                 text_widget.delete("1.0", tk.END)
-                text_widget.insert(tk.END, " \n\n The psychology of this tenant: \n")
+                text_widget.insert(tk.END, " \n\nThe psychology of this tenant: \n")
                 for k, v in self.datas[key].items():
                     if k not in filter_keys:
                         
-                        text_widget.insert(tk.END, v)
-                         
-            
-                text_widget.insert("1.0", output,'red')
-                
-                text_widget.insert("1.0", "[The output you need to label]:\n",'red')       
+                        text_widget.insert(tk.END, v)   
                 
                 text_widget.configure(state=tk.DISABLED)
-                    
+            elif key == "context_info":
+                contexts  = self.datas[key]
+                context_label = contexts.pop()
+                text_widget.configure(state=tk.NORMAL)
+                text_widget.tag_config('red', foreground='red', font=('Arial', 12, 'bold'))
+                text_widget.delete("1.0", tk.END)
+                for context in contexts:
+                    text_widget.insert(tk.END, context)
+                
+                text_widget.insert("1.0", context_label,'red')
+                text_widget.insert("1.0", "[The output you need to label]:\n",'red')       
+                text_widget.configure(state=tk.DISABLED)
+                
             else:
                 content = str(self.datas[key])
                 self.insert_and_resize_textbox(text_widget, content)
@@ -321,8 +328,8 @@ class App:
             self.show_data()
         self.context_all.extend(context_generator)
         
-        general_description = self.dataloader.get_general_description()
-        self.datas["general_description"] = general_description
+        # general_description = self.dataloader.get_general_description()
+        # self.datas["general_description"] = general_description
         tenant_info, ac_info = self.dataloader.get_cur_tenant_info()
         self.datas["concise_role_description"] = tenant_info
         self.datas["acquaintance_desciption"] = ac_info        
@@ -343,7 +350,7 @@ class App:
             
             
             
-            self.datas["context_info"] = "\n".join(context_info)
+            self.datas["context_info"] = context_info
             
             self.datas["content_info"] = content_info
             # self.datas["content_info"] = [f"{k} : {v}" for k,v in content_info.items()]

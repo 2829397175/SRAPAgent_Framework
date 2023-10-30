@@ -36,10 +36,10 @@ class RentEnvironment(BaseEnvironment):
     
 
     
+    
     # 对于api调换的Loader类
     llm_loader:APIKeyPool
-    
-    
+
     # rating benchmark
     global_score: Global_Score
     
@@ -53,10 +53,17 @@ class RentEnvironment(BaseEnvironment):
     def line_up(self):
         self.deque_dict=self.rule.generate_deque(self)
         
-    def broadcast(self):
-        self.tenant_manager.broadcast(self.system)
-        self.tenant_manager.broadcast_rule(self.rule) # 公布排队规则
-
+    def load_log(self,result_dir):
+        self.log = LogRound.load_from_json(os.path.join(result_dir,
+                                             "tenental_system.json"))
+        self.log.evaluation_matrix(self.global_score,self.system)
+        
+    def patch_houses(self):
+        
+        self.system.community_manager.patch_houses(self.tenant_manager.groups,
+                                                   self.system.house_manager,
+                                                   self.cnt_turn)
+        
     def reset(self) -> None:
         """Reset the environment"""
         self.deque_dict.clear()
@@ -67,7 +74,20 @@ class RentEnvironment(BaseEnvironment):
 
     def is_done(self) -> bool:
         """Check if the environment is done"""
+        
+        add_tenant_ids = self.tenant_manager.add_tenants(self.cnt_turn,
+                                        self.system,
+                                        self.rule)
+        
+        tenant_groups = self.group(add_tenant_ids) # tenant->group(tenants)
+        
+        self.group_update(tenant_groups)
+        
+        self.line_up()
+        self.patch_houses() # houses -> group(houses) 
+        
         self.system.community_manager.publish_house(self.cnt_turn)
+        
         # self.rule.order.enter_waitlist(self)
         if (self.save_log):
             self.log.save_data() # 每一步的log
@@ -75,18 +95,27 @@ class RentEnvironment(BaseEnvironment):
         self.cnt_turn += 1
         self.log.step(round_id = self.cnt_turn)
         
-        if self.cnt_turn > self.max_turns:
+        if self.cnt_turn > self.max_turns or\
+            self.rule.are_all_deques_empty(self) or \
+            self.system.available_house_num() <= 0:
             if(self.save_log): # 整体系统的log，仅在退出时save
+                self.log.evaluation_matrix(self.global_score,
+                            self.system)
+
                 self.system.save_data()
                 self.forum_manager.save_data()
+
                 #self.log.evaluation_matrix(self.tenant_manager)
             return True
-        elif  self.rule.are_all_deques_empty(self):
+        elif self.rule.are_all_deques_empty(self):
             if(self.save_log):
+                self.log.evaluation_matrix(self.global_score,
+                                           self.system)
                 self.system.save_data()
                 self.forum_manager.save_data()
                 #self.log.evaluation_matrix(self.tenant_manager,self.global_score,self.system)
             return True
+        
         else:
             return False
         
@@ -115,15 +144,22 @@ class RentEnvironment(BaseEnvironment):
                 raise NotImplementedError("Tenant type {} not implemented".format(tenant.__class__))
             
     #test 测试用 要改
-    def communication(self, communication_num = 3):
-        tenant_ids = list(self.tenant_manager.data.keys())        
+    def communication(self, 
+                      tenant_ids,
+                      communication_num = 3):
+             
+        
         c_num = 0
         while(len(tenant_ids) > 0 and c_num < communication_num):
             async def run_parallel(tenant_ids):
                 return_ids_list = await asyncio.gather(*[self.communication_one(tenant_id,c_num) for c_num,tenant_id in enumerate(tenant_ids)])
                 return return_ids_list
             
-           
+            remain_num = communication_num - c_num
+            if remain_num < len(tenant_ids):
+                import random
+                tenant_ids = random.sample(tenant_ids,remain_num)
+                
             return_ids_list = asyncio.run(run_parallel(tenant_ids=tenant_ids)) # 需要进行讨论的tenant
             c_num += len(tenant_ids)
             tenant_ids_temp = copy.deepcopy(tenant_ids)
@@ -140,9 +176,27 @@ class RentEnvironment(BaseEnvironment):
                         
         self.set_tenant_memory_log() ## log
     
+    
+    def clear_tenant(self,tenant:LangchainTenant):
+        for group_id,groups in self.tenant_manager.groups.items():
+            if tenant.id in groups:
+                groups.remove(tenant.id)
+                break
+        for queue_name,queues in self.deque_dict.items():
+            for queue_k,queue_v in queues.items():
+                if tenant.id in queue_v:
+                    queue_v.remove(tenant.id)
+                    break
+        del self.tenant_manager.data[tenant.id]
+        
+        
+        
+    
     async def tenant_step(self,
                           tenant):
-        m_llm,llm = self.llm_loader.get_llm(tenant)
+        # if not tenant.available:
+        #     return 
+        m_llm, llm = self.llm_loader.get_llm(tenant)
         tenant.reset_memory_llm(m_llm)
         tenant.reset_llm(llm)
         
@@ -155,21 +209,38 @@ class RentEnvironment(BaseEnvironment):
             raise NotImplementedError("Tenant type {} not implemented".format(tenant.__class__))
         
         self.llm_loader.release_llm(tenant)
+
+        self.log.set_one_tenant_choose_process(tenant.id, tenant.log_round_tenant)
+        self.update_social_net(tenant=tenant)
         
         if not choose_state: # 不判断是否available
             self.rule.requeue(self,tenant)
-        self.log.set_one_tenant_choose_process(tenant.id, tenant.log_round_tenant)
-        self.update_social_net(tenant=tenant)
+        else: # 清空tenant 所在的队列
+            self.clear_tenant(tenant)
+            
+            
+
 
     
     
-    def step(self):
-        tenant_waitlists = self.rule.get_next_agent_idx(self)
-                    
-        while not all(len(waitlist)==0 for waitlist in tenant_waitlists):
+    def step(self,tenant_waitlists):
+        """step process for tenant: choose house
+
+        Args:
+            tenant_waitlists (dict): queue_name:list[tenant_ids]
+        """
+        
+        pool_num_dict = self.system.community_manager.get_pool_num() 
+        
+        while not all(len(waitlist)==0 for waitlist in tenant_waitlists.values()):
             # change tenant api
             first_tenant_ids = []
-            for waitlist in tenant_waitlists:
+            for queue_name, waitlist in tenant_waitlists.items():
+                if pool_num_dict.get(queue_name,0)==0:
+                    for tenant_id in waitlist:
+                        self.rule.requeue(self,self.tenant_manager[tenant_id])
+                    continue # 如果当前queue_name 队列中，没有可以选择的房子，直接requeue
+                
                 if len(waitlist) > 0:
                     first_tenant_ids.append(waitlist.pop(0))
             
@@ -182,8 +253,16 @@ class RentEnvironment(BaseEnvironment):
                 
                 
     
-    def group(self):
-        
+    def group(self,tenant_ids :list = []): # 需要group的tenant_ids
+        """group tenants: set tenant_manager.groups
+
+        Args:
+            priority (bool, optional): True: the tenants who has priority item, 
+            will be put front in the queue. Defaults to False.
+
+        Returns:
+            None
+        """
         tenant_groups = {}
         
         async def tenant_group_id(tenant_ids,
@@ -198,11 +277,12 @@ class RentEnvironment(BaseEnvironment):
                 tenant_id in tenant_ids])
 
             for tenant_id in tenant_ids:
-                log.set_group_log(tenant_id,\
-                    tenant_manager[tenant_id].log_round_tenant)
+                log.set_group_log(tenant_manager[tenant_id],\
+                    tenant_manager[tenant_id].log_round_tenant,
+                    )
             return group_ids
         
-        tenant_ids = list(self.tenant_manager.data.keys())
+   
       
         return_group_ids = asyncio.run(tenant_group_id(tenant_ids,
                                                         self.tenant_manager,
@@ -220,8 +300,54 @@ class RentEnvironment(BaseEnvironment):
                 
             self.tenant_manager[tenant_ids[idx]].queue_name = return_group_id  
             
-        self.tenant_manager.groups = tenant_groups
-       
+
+        return tenant_groups # group_id:[queue of tenant ids]
+                  
+        
+    
+    def group_update(self,
+                     tenant_groups):
+        
+        # update init group
+        groups = {}
+        
+        for group_id, queues in self.deque_dict.items():
+            groups[group_id] = [*queues["waitlist"],*queues["queue"]]
+        
+        
+        if self.tenant_manager.policy.group_policy.priority: 
+            # 如果分组的时候，需要考虑优先级
+            # 首先將tenant 按照 弱势 -> 一般进行排列
+            for key in tenant_groups.keys():
+                p_tenants = []
+                normal_tenants = []
+                for tenant_id in tenant_groups[key]:
+                    tenant = self.tenant_manager[tenant_id]
+                    if all(not value for value in tenant.priority_item.values()):
+                        normal_tenants.append(tenant_id)
+                    else:
+                        p_tenants.append(tenant_id)
+                        
+                tenant_groups[key] = [*p_tenants,*normal_tenants]
+                
+            if "default" in tenant_groups.keys():
+                import random    
+                for default_tenant_id in tenant_groups.get("default",[]):
+                    random_group_id = random.sample(list(tenant_groups.keys()),1)[0]
+                    tenant = self.tenant_manager[tenant_id]
+                    if all(not value for value in tenant.priority_item.values()):
+                        tenant_groups[random_group_id].append(default_tenant_id)
+                    else:
+                        tenant_groups[random_group_id].insert(0,default_tenant_id)
+                del tenant_groups["default"]
+                
+                
+        for key,tenant_ids in tenant_groups.items():
+            self.tenant_manager.groups[key]=[*groups.get(key,[]),
+                                             *tenant_ids]
+        
+        
+        
     
     def update_social_net(self,tenant):
         assert isinstance(tenant,LangchainTenant)

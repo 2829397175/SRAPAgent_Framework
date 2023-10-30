@@ -7,7 +7,8 @@ from LLM_PublicHouseAllocation.manager import TenantManager,HouseManager
 from LLM_PublicHouseAllocation.involvers import System
 from typing import Optional
 import re
-
+import asyncio
+from LLM_PublicHouseAllocation.llms import APIKeyPool
 from tqdm import tqdm
 
 class Global_Score(BaseModel):
@@ -15,16 +16,42 @@ class Global_Score(BaseModel):
     system:Optional[System]=None
     save_dir:str=""
     result:dict={}
-    llm: Optional[LLMChain]=None
+    llm_pool:Optional[APIKeyPool]=None
     
     @classmethod
     def initialization(
         cls,
         tenant_manager:TenantManager,
         system:System,
-        save_dir:str
+        save_dir:str,
+        llm_pool:APIKeyPool
     ):
-        llm = OpenAI(temperature=1)
+
+        return cls(
+            tenant_manager=tenant_manager,
+            system=system,
+            save_dir=save_dir,
+            result={},
+            llm_pool =llm_pool
+        )
+    
+    @classmethod   
+    def load_from_json(cls,
+                       json_path,
+                       tenant_manager =None,
+                       system=None,
+                       llm_pool =None):
+        with open(json_path,'r',encoding = 'utf-8') as f:
+            result=json.load(f)
+        return cls(
+            tenant_manager=tenant_manager,
+            system=system,
+            save_dir=json_path,
+            result=result,
+            llm_pool=llm_pool
+        )
+        
+    def chain(self,llm):
         template="""
             {role_description}\
             {house_info}
@@ -63,43 +90,42 @@ class Global_Score(BaseModel):
             input_variables=input_variables,  
             template=template,  
         )
-        chain = LLMChain(llm=llm, prompt=prompt)
-
-        return cls(
-            tenant_manager=tenant_manager,
-            system=system,
-            save_dir=save_dir,
-            result={},
-            llm=chain
-        )
-    
-    @classmethod   
-    def load_from_json(cls,
-                       tenant_manager,
-                       system,
-                       json_path):
-        with open(json_path,'r',encoding = 'utf-8') as f:
-            result=json.load(f)
-        return cls(
-            tenant_manager=tenant_manager,
-            system=system,
-            save_dir=json_path,
-            result=result,
-            llm=None
+        
+        return LLMChain(
+            llm=llm, prompt=prompt
         )
         
+        
+        
+    def rate(self):
+        tenant_ids = list(self.tenant_manager.data.keys())
+        group_size = 10
+        group_id =0
+        while(group_id*group_size<len(tenant_ids)):
+            stop_id = group_size*(group_id+1)
+            stop_id = -1 if len(tenant_ids) ==stop_id else stop_id
+            asyncio.run(self.rate_score(tenant_ids[int(group_id*group_size):stop_id]))            
+            group_id+=1
+
     
-    def rate_score(self):
-        for tenant_id,tenant in tqdm(self.tenant_manager.data.items(),desc="Rating the score of houses."):
+    
+    async def rate_score(self,tenant_ids):
+        
+        async def rate_one_tenant(tenant_id):
+            tenant = self.tenant_manager[tenant_id]
+            
+            llm = self.llm_pool.get_llm_single()
+            llm_chain = self.chain(llm)
             self.result[tenant_id]={}
-            for house_id,_ in self.system.house_manager.data.items():
+            
+            for house_id in self.system.house_manager.data.keys():
                 input={
                     "role_description":tenant.get_role_description(),
                     "house_info":self.system.get_score_house_description(house_id),
                     "example":""
                 }
-                response=self.llm.run(input)
-                response=response.replace("\n","").strip().lower()
+                response = await llm_chain.arun(input)
+                response = response.replace("\n","").strip().lower()
                 score_match = re.search(r'score:\s*(\d+)', response)
                 reason_match = re.search(r'reason:\s*(.+)', response)
                 if score_match and reason_match:
@@ -119,8 +145,16 @@ class Global_Score(BaseModel):
                     except json.JSONDecodeError as e:
                         print(f"Invalid JSON: {e}")   
                         self.result[tenant_id].update({house_id:{"Score": 0, "Reason": ""}})
+                        
             
-    def save_score(self):
+            print(f"tenant {tenant.id} finished rating.")            
+            
+        await asyncio.gather(*[rate_one_tenant(tenant_id) for tenant_id in tqdm(tenant_ids,desc="Rating the score of houses.")])
+            
+            
+        
+            
+    def save(self):
         with open(self.save_dir, 'w', encoding='utf-8') as file:
             json.dump(self.result, file, indent=4,separators=(',', ':'),ensure_ascii=False)
 

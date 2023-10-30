@@ -31,6 +31,9 @@ managers:
   tenant:
     choose_rating: False
     policy: 
+      group_policy:
+        type: multi_list
+        
       type : ver1 # 表示分房政策
       filter_house_labels: ["house_type",
                           #  "house_orientation",
@@ -68,6 +71,7 @@ managers:
 
 
   community:
+    distribution_batch_dir: "data/distribution_batch.json"
     publish_order: False
     data_dir: "data/community.json"
     

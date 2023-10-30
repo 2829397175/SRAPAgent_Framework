@@ -1,14 +1,23 @@
 from . import policy_registry
-from pydantic import BaseModel
 from abc import abstractmethod
+from .group_policy import BaseGroupPolicy
+from pydantic import BaseModel
 
 @policy_registry.register("base")
 class BasePolicy(BaseModel):
-    
-    filter_house_labels = [
-                            "house_type",
+    filter_house_labels :list = ["house_type",
                            "house_orientation",
                            "floor_type"]
+    
+    group_policy:BaseGroupPolicy
+    
+    # def __init__(self, **kwargs):
+    #     self.filter_house_labels = ["house_type",
+    #                        "house_orientation",
+    #                        "floor_type"]
+        
+    #     for k,v in kwargs.items():
+    #         self.__setattr__(k,v)
     
     @abstractmethod
     async def choose_pipeline(self,
@@ -20,12 +29,17 @@ class BasePolicy(BaseModel):
                         log_round_tenant):
         pass # return chooose_state, house_id.lower()
     
-    @abstractmethod
-    async def group(self,
-                tenant,
-                forum_manager, 
-                system, 
-                tool, 
-                rule,
-                log_round_tenant):
-        pass # return group_id (community_id/house_type) or None (无法解析的group_id)
+    async def group(self, 
+                    tenant,
+                    forum_manager, 
+                    system, 
+                    tool, 
+                    rule,
+                    log_round_tenant):
+        return await self.group_policy.group(
+                    tenant,
+                    forum_manager, 
+                    system, 
+                    tool, 
+                    rule,
+                    log_round_tenant)

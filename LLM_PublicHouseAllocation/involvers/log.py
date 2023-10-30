@@ -14,6 +14,19 @@ class LogRound(BaseModel):
     
     save_dir:str=""
     
+    
+    @classmethod
+    def load_from_json(cls,
+                       json_path):
+        with open(json_path,'r',encoding = 'utf-8') as f:
+            log=json.load(f)
+        round_id = list(log.keys())[-1]
+        round_id = int(round_id)
+        
+        return cls(log = log,
+                   round_id = round_id,
+                   save_dir = json_path)
+    
     def step(self, round_id):
         self.round_id = round_id
         self.log[self.round_id] = {} # 下一轮log的 initialize
@@ -37,22 +50,18 @@ class LogRound(BaseModel):
             log_tenant.reset()
     
     def set_group_log(self,
-                      tenant_id,
+                      tenant,
                       log_tenant):
         if "group" not in self.log.keys():
             self.log["group"] = {}
-        self.log["group"][tenant_id] = {
+        self.log["group"][tenant.id] = {
             "log_round" : copy.deepcopy(log_tenant.log_round),
-            "log_round_prompts": copy.deepcopy(log_tenant.log_round_prompts)
+            "log_round_prompts": copy.deepcopy(log_tenant.log_round_prompts),
+            "queue_name":tenant.queue_name
         }
         log_tenant.reset()
     
     
-    def save_social_network(self,
-                            dir:str):
-        
-        with open(dir, encoding='utf-8', mode='w') as fr:
-            json.dump(self.log_social_network, fr, indent=4, separators=(',', ':'), ensure_ascii=False)
             
     def set_social_network_mem(self,
                                social_network_mem:dict):
@@ -71,12 +80,11 @@ class LogRound(BaseModel):
     
     
     def evaluation_matrix(self,
-                          tenant_manager,
                           global_score,
                           system): # 评价系统的公平度，满意度
         
         save_dir = os.path.dirname(self.save_dir)
-        
+        tenant_manager = global_score.tenant_manager
         """this function must be called at the end of running this system."""
         
         
@@ -115,25 +123,23 @@ class LogRound(BaseModel):
         utility = global_score.get_result()
         utility_choosed = {}
         for log_id,log in self.log.items():
-            log_round = log["log_round"]
+
             if log_id == "group":
                 continue
+            log_round = log["log_round"]
             for tenant_id, tenant_info in log_round.items():
                 if "choose_house_id" in tenant_info.keys():
-                    rating_score_choose_u = utility[str(tenant_id)][tenant_info["choose_house_id"]]
-                    group_id_t = -1
-                    for group_id,tenant_ids in tenant_manager.groups.items():
-                        if tenant_id in tenant_ids:
-                            group_id_t = group_id
-                            break
-                    assert tenant_id not in utility_choosed.keys(),f"Error!! Tenant {tenant_id} chosing house twice."
-                    tenant = tenant_manager.data[tenant_id]
-                    utility_choosed[tenant_id] = {
-                                "choose_u":rating_score_choose_u,
-                                "group_id":group_id_t,
-                                "priority": all(not value for value in tenant.priority_item.values()),
-                                "choose_house_id":tenant_info["choose_house_id"]
-                            } 
+                    if tenant_info["choose_house_id"] !="None":
+                        rating_score_choose_u = utility[str(tenant_id)][tenant_info["choose_house_id"]]
+                        group_id_t = self.log["group"][tenant_id]["queue_name"]
+                        assert tenant_id not in utility_choosed.keys(),f"Error!! Tenant {tenant_id} chosing house twice."
+                        tenant = tenant_manager.total_tenant_datas[tenant_id]
+                        utility_choosed[tenant_id] = {
+                                    "choose_u":rating_score_choose_u["score"],
+                                    "group_id":group_id_t,
+                                    "priority": not all(not value for value in tenant.priority_item.values()),
+                                    "choose_house_id":tenant_info["choose_house_id"]
+                                } 
                 
         
         import pandas as pd
@@ -143,7 +149,7 @@ class LogRound(BaseModel):
         for tenant_id,utility_one in utility_choosed.items():
             for k,v in utility_one.items():
                 utility_matrix.loc[tenant_id,k] = v
-        utility_matrix.to_csv(os.path.join(save_dir,"utility_choosed.csv"))
+
         
         utility_eval_matrix = pd.DataFrame()
 
@@ -155,21 +161,21 @@ class LogRound(BaseModel):
             
             scores = group_utility["choose_u"]
             utility_eval_matrix.loc[f"least_misery",group_id] = min(scores)
-            utility_eval_matrix.loc[f"variance",group_id] = 1 - np.var(scores)
-            utility_eval_matrix.loc[f"jain'sfair",group_id] = np.square(np.sum(scores))/(np.sum(np.square(scores)) * utility_matrix.size[0])
+            utility_eval_matrix.loc[f"variance",group_id] = np.var(scores)
+            utility_eval_matrix.loc[f"jain'sfair",group_id] = np.square(np.sum(scores))/(np.sum(np.square(scores)) * utility_matrix.shape[0])
             utility_eval_matrix.loc[f"min_max_ratio",group_id] = np.min(scores)/np.max(scores)
             
             # 满意度
-            utility_eval_matrix.loc[f"sw",group_id] = np.sum(scores)/group_utility.size[0]
+            utility_eval_matrix.loc[f"sw",group_id] = np.sum(scores)/group_utility.shape[0]
                 
         """弱势群体的公平度"""
         # utility_grouped = utility_matrix.groupby(by = ["priority"])
         # for priority_lable, group_utility in utility_grouped:
         #     scores = group_utility["choose_u"]
         utility_p = utility_matrix[utility_matrix["priority"]]
-        utility_np = utility_matrix[not utility_matrix["priority"]]
-        utility_eval_matrix.loc["F(W,G)","utility"] = np.sum(utility_p["choose_u"])/utility_p.size[0] -\
-            np.sum(utility_np["choose_u"])/utility_np.size[0]
+        utility_np = utility_matrix[utility_matrix["priority"]!= True]
+        utility_eval_matrix.loc["F(W,G)","utility"] = np.sum(utility_p["choose_u"])/utility_p.shape[0] -\
+            np.sum(utility_np["choose_u"])/utility_np.shape[0]
         
         utility_eval_matrix.loc["SW","utility"] = np.sum(utility_matrix["choose_u"])
         
@@ -187,7 +193,7 @@ class LogRound(BaseModel):
         plt.ylabel("Cumulative % of Income/Wealth")
         plt.title(f"Lorenz Curve (Gini Index: {gini:.2f})")
         plt.grid(True)
-        plt.show()
+        plt.savefig(os.path.join(save_dir,"GINI_index.png"))
         
         utility_eval_matrix.loc["GINI_index","utility"] = gini
         
@@ -200,7 +206,7 @@ class LogRound(BaseModel):
         objective_evaluation = pd.DataFrame()
         for tenant_id, choosed_info in utility_choosed.items():
             house_id  = choosed_info["choose_house_id"]
-            utility_matrix.loc[tenant_id,"family_members_num"] = tenant_manager[tenant_id].get("family_members_num")
+            utility_matrix.loc[tenant_id,"family_members_num"] = tenant_manager.total_tenant_datas[tenant_id].family_num
             try:
                 house_size = system.house_manager.data.get(house_id).get("house_area")
                 house_size = float(house_size.strip())
@@ -219,7 +225,7 @@ class LogRound(BaseModel):
             objective_evaluation.loc["mean_house_area",group_id] = np.average(group_matrix["avg_area"])
             
         objective_evaluation.to_csv(os.path.join(save_dir,"objective_evaluation_matrix.csv"))
-    
+        utility_matrix_objective.to_csv(os.path.join(save_dir,"utility_matrix_objective.csv"))
 
         
         
