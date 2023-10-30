@@ -8,7 +8,7 @@ class App:
                  dir_path = None, 
                  saving_path = None):
         if dir_path ==None:
-            dir_path = f"./data"
+            dir_path = f"LLM_PublicHouseAllocation/LLM_decision_test/data"
             assert os.path.exists(dir_path),f"The data directory :{dir_path} doesn't exist!!"
             data_files = os.listdir(dir_path)
             self.data_list = []
@@ -25,7 +25,7 @@ class App:
             
         if saving_path == None:
             import time
-            self.saving_path = f"./result"
+            self.saving_path = f"LLM_PublicHouseAllocation/LLM_decision_test/result"
             if not os.path.exists(self.saving_path):
                 os.makedirs(self.saving_path)
             
@@ -371,7 +371,7 @@ if __name__ == "__main__":
 
     # 图灵测试部分：
     
-    # data_dir = "LLM_PublicHouseAllocation/LLM_decision_test/test/saving_QA2.json"
-    # saving_dir = "LLM_PublicHouseAllocation/LLM_decision_test/test/finished_saving_QA.json"
-    # app = App(data_dir,saving_path = saving_dir)
-    app = App()
+    data_dir = "LLM_PublicHouseAllocation/LLM_decision_test/data_label/qa_clear_data/community_qa.json"
+    saving_dir = "LLM_PublicHouseAllocation/LLM_decision_test/data_label/result_labeled/community_qa.json"
+    app = App(data_dir,saving_path = saving_dir)
+    #app = App()

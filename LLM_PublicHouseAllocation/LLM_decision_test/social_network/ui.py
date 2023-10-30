@@ -10,17 +10,17 @@ class App:
                  saving_dir = None,
                  ):
         if saving_dir == None:
-            saving_dir = "./result"
+            saving_dir = "LLM_PublicHouseAllocation/LLM_decision_test/social_network/result"
             if not os.path.exists(saving_dir):
                 os.makedirs(saving_dir)
                 
         if data_dir == None:
-            data_dir = "./data"
+            data_dir = "LLM_PublicHouseAllocation/LLM_decision_test/social_network/data"
             assert os.path.exists(data_dir),f"The data directory :{data_dir} doesn't exist!!"
                 
         self.dataloader = DataLoader(saving_dir=saving_dir,
         data_dir = data_dir,
-        tenant_path = "./tenant.json"
+        tenant_path = "LLM_PublicHouseAllocation/LLM_decision_test/social_network/tenant.json"
         )
         
         self.datas:dict = {} # 这一轮的constant data (仅仅存一轮实验的)

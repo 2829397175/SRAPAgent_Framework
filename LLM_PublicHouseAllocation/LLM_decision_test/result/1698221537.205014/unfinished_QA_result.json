@@ -1,5 +1,16 @@
 [
-
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one house.",
+            "thought_type":"Your views on these houses.",
+            "choose_type":"My choice is (The index of houses)",
+            "house_info":"There are 1 houses available. The infomation of these houses are listed as follows:\nhouse_18: \nthis house costs about 1800. It's square fortage is about 45.0. The orientation of the house is NS. It is located at floor 12. It has elevator. Despite being smaller, this house is south-facing and offers good green views of the community. It is also well-maintained. ",
+            "memory":"After deciding that community_1 had inconvenient facilities, you thought community_2 was more ideal for your family members. Being close to your wife's workplace and your child's school, you were able to make an informed decision and chose community_2.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are James Anderson. You earn 9000 per month.Your family members include: A wife and two children, both in high school.You are 45 years old. Your job is Construction worker. Your company is located in Dongzhimenwai Street, Dongcheng District, Beijing. The Anderson family prefers a home with easy access to public transportation, as they often need to commute for work and school. You expect to rent a house for 1800.0.You still have 2 chances to choose house."
+        },
+        "response":{},
+        "humanjudge":true
+    },
     {
         "prompt_inputs":{
             "task":"You need to choose one type of houses.",
@@ -387,36 +398,6 @@
         "response":{
             "output":"My choice is community_3.",
             "thought":"Community_1 has good sports facilities and a large green area, but it lacks important amenities like a subway, shopping mall, and hospital. Community_3 has all the necessary amenities, including a hospital, but the rent is the highest."
-        },
-        "humanjudge":false
-    },
-    {
-        "prompt_inputs":{
-            "task":"You need to choose one type of communities.",
-            "thought_type":"Your views on these communities.",
-            "choose_type":"My choice is (The index of community, should be one of [community_1,community_3])",
-            "house_info":"There are 2 communities available. The infomation of these communitys are listed as follows:\n\ncommunity_1. longxing is located at No. 2, Longping Street, Daxing District, Beijing. The rent for this community is 30 dollars per square meter.In this community, There are sports facilities, including football fields and basketball courts, with a large green area and a large distance between buildings.. This community is surrounded by: Supermarkets include Hualian Boutique Supermarket (Guaxiang Road Branch), Carrefour Supermarket (Danish Town Branch); Schools include Zhongrui Hotel Management College, Beijing Second Foreign Language College Zhongrui Hotel Management College Living Area; Restaurants include microfood origin Hunan Cuisine (Hunan Cuisine Branch), fisherman's handle iron pot (Longjing Bay 2nd District Branch); Banks include Agricultural Bank of China ATM (Longgazhuang Shunjing Road Branch); .This commnunity does not have: subway, shopping mall, hospital, park,.\n\n\tThe large_house in community_1 is a one room apartment, with an area of about 60.92-61.8, the monthly rent  is about 1830 dollars, and there are still 5 houses.\n\ncommunity_3. ronghui is located at Courtyard No. 1, Hualun Road, Daxing District, Beijing. The rent for this community is 40 dollars per square meter.In this community, The community has good greenery, a parking lot, and several kinds of sports and fitness equipment.. This commnunity is surrounded by: Metro includes Huangcun Railway Station, Huangcun West Street; Supermarket includes Wumi Supermarket (Jianxing Store), Ma Jie Department Store Flagship Store (Daxing Daxing Dazhong Fengli Store); Mall includes Daxing Dazheng Chunli, Daxing Xingcheng Commercial Building; Hospital includes Beijing Daxing Town Dazheng Dongli Community Health Service Station, Beijing Daxing Jingnan Traditional Chinese Medicine Hospital; Park includes Daxing Street Park, Daxing Agricultural Machinery Park; School includes Beijing Daxing District First Middle School, Beijing Daxing District Fifth Elementary School; Restaurants include Half-Demon Green Pepper Grilled Fish (Daxing Hotel Branch), Meizhou Dongpo Restaurant (Daxing Huangcun Branch); Bank includes Industrial and Commercial Bank of China ATM (Beijing Daxing Branch), Postal Savings Bank of China (Daxing Branch); .This commnunity: not have\n.\n\n\tThe large_house in community_3 is a two rooms apartment, with an area of about 56.14-58.33, the monthly rent  is about 2240-2320 dollars, and there are still 2 houses.",
-            "memory":"You are in rent system and there are 3 communities available for consideration. Community_1 is located in Longping Street, Daxing District, Beijing with a rent of 30 dollars per square meter, and it provides some facilities such as sports courts, supermarkets, schools, restaurants, and banks. Community_2 located in Jinkejiayuan, Chaoyang District, Beijing offers an abundance of amenities including a subway, mall and hospital, with a rent of 34 dollars per square meter. Community_3 located in Hualun Road, Daxing District, Beijing has a rent of 40 dollars per square meter and offers facilities such as metro, supermarkets, mall, hospital, park, school, restaurants, and banks. After careful comparing the three communities, you decided to choose Community_2.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\nYou sincerely believe this information:\n",
-            "role_description":"You are Oliver Johnson. You earn 12000 per month.Your family members include: A wife and one child who just started university.You are 52 years old. Your job is Public servant. Your company is located in Office Building of the People's Government on the west side of the Great Hall of the People, Dongcheng District, Beijing. Mr. Johnson would like an apartment close to parks or green spaces for leisure walks. You expect to rent a house for 2400.0.You still have 2 chances to choose house."
-        },
-        "response":{
-            "output":"My choice is community_3.",
-            "thought":"After careful consideration, I have decided that community_3 is more suitable for my family's needs. It has more amenities, while the rent is only slightly higher than community_1."
-        },
-        "humanjudge":false
-    },
-    {
-        "prompt_inputs":{
-            "task":"You need to choose one type of houses.",
-            "thought_type":"Your views on these house types.",
-            "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
-            "house_info":"There are 2 house types available. The infomation of these house types are listed as follows:\nlarge_house:\nThis type house's rent is around 2240-2320,and it's square footage is around 56.14-58.33.There remains 3 houses of this type.\n\nmiddle_house:\nThis type house's rent is around 1800-1885,and it's square footage is around 44.96-47.13.There remains 2 houses of this type. ",
-            "memory":"You had been evaluating two different communities, community_1 and community_2. Community_1 had some inconvenient facilities, so you decided to take a closer look at community_2. You soon realized that community_2 would be a better fit for your family, as it is close to your wife's workplace and to your child's school. The convenience of the location swayed your decision and you chose to move to community_2.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
-            "role_description":"You are Sophia Smith. You earn 7000 per month.Your family members include: A husband and a newborn baby.You are 32 years old. Your job is Restaurant waiter. Your company is located in Restaurants near Guomao Building, Chaoyang District, Beijing. Sophia's family needs an apartment in a safe and child-friendly friendhood with a good daycare nearby. You expect to rent a house for 1400.0.You still have 2 chances to choose house."
-        },
-        "response":{
-            "output":"My choice is middle_house.",
-            "thought":"The middle_house is more affordable and would be a better fit for my budget. However, it's smaller than the large_house."
         },
         "humanjudge":false
     },
