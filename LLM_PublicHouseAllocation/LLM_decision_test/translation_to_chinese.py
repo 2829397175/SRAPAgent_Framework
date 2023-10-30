@@ -14,7 +14,7 @@ class Translate(BaseModel):
     save_path:str="LLM_PublicHouseAllocation/LLM_decision_test/data/Chinese_unfinished_QA_result.json"
     tenant_path:str="LLM_PublicHouseAllocation/LLM_decision_test/social_network/tenant.json"
     datas:list=[]
-    llm:OpenAI=OpenAI(model="text-davinci-003",verbose=False,temperature=1)
+    llm:OpenAI=OpenAI(model="text-davinci-003",verbose=False,temperature=1,api_base=api_base,api_type=api_type)
     def read_data(self):
         assert os.path.exists(self.data_path),"no such file path: {}".format(self.data_path)
         with open(self.data_path,'r',encoding = 'utf-8') as f:
@@ -22,7 +22,6 @@ class Translate(BaseModel):
     
 
     def translate_to_chinese(self,english_text):
-    
         template="""
             {english_text}
             
@@ -72,6 +71,7 @@ class Translate(BaseModel):
                         concise_role_description += "Up to now, your personal preference for house is :{}".format(
                             tenant_infos.get("personal_preference")
                         )
+                concise_role_description=self.translate_to_chinese(concise_role_description)
                 tenant_infos['concise_role_description']=concise_role_description    
             if "social_network_str" not in tenant_infos:
                 social_network = ["{name}: {relation}".format(
@@ -82,7 +82,7 @@ class Translate(BaseModel):
                     in tenant_infos.get("social_network",{}).items()] 
     
                 social_network_str = "\n".join(social_network)
-        
+                social_network_str=self.translate_to_chinese(social_network_str)
                 tenant_infos['social_network_str']=social_network_str
                 
         with open(self.tenant_path,"w", encoding='utf-8') as file:
@@ -96,4 +96,4 @@ class Translate(BaseModel):
 if __name__ == "__main__":
     translator=Translate()
     #translator.run()
-    translator.translate_sn_tenant_information
+    
