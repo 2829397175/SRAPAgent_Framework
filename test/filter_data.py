@@ -118,7 +118,7 @@ def distribution_batch(run_turns,cur_num):
     for group,grouped_houses in zip(range(run_turns),grouped_house_ids):
         distribution_batch[group] =  grouped_houses
         
-    with open(f"test\generate_data/distribution_batch_{cur_num}.json",'w',encoding = 'utf-8') as f:
+    with open(f"test\generate_data/distribution_batch_{cur_num}_{run_turns}.json",'w',encoding = 'utf-8') as f:
         json.dump(distribution_batch, f, indent=4,separators=(',', ':'),ensure_ascii=False)
     
     
@@ -134,7 +134,9 @@ def distribution_batch_tenant(run_turns,cur_num):
         end_p = n_per_group*num_groups
         if end_p == len(data):
             end_p = -1
-        groups = np.array(data[:end_p]).reshape(num_groups,n_per_group)
+            groups = np.array(data).reshape(num_groups,n_per_group)
+        else:
+            groups = np.array(data[:end_p]).reshape(num_groups,n_per_group)
         groups = groups.tolist()
         if (end_p != -1):
             groups.append(data[end_p:])
@@ -146,7 +148,7 @@ def distribution_batch_tenant(run_turns,cur_num):
     for group,grouped_tenants in zip(range(run_turns),grouped_tenant_ids):
         distribution_batch[group] =  grouped_tenants
         
-    with open(f"test\generate_data/distribution_batch_tenant_{cur_num}.json",'w',encoding = 'utf-8') as f:
+    with open(f"test\generate_data/distribution_batch_tenant_{cur_num}_{run_turns}.json",'w',encoding = 'utf-8') as f:
         json.dump(distribution_batch, f, indent=4,separators=(',', ':'),ensure_ascii=False)
     
 
@@ -156,4 +158,4 @@ if __name__ =="__main__":
     # filter_tenant()
     # filter_house()
     # distribution_batch(5,28)
-    distribution_batch_tenant(7,51)
+    distribution_batch_tenant(1,51)

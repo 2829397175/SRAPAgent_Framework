@@ -123,9 +123,11 @@ class LogRound(BaseModel):
         utility = global_score.get_result()
         utility_choosed = {}
         for log_id,log in self.log.items():
-
             if log_id == "group":
                 continue
+            if log == {}:
+                continue 
+            
             log_round = log["log_round"]
             for tenant_id, tenant_info in log_round.items():
                 if "choose_house_id" in tenant_info.keys():

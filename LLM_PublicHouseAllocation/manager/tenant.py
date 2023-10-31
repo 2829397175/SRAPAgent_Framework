@@ -174,6 +174,8 @@ class TenantManager(BaseManager):
             return self.add_tenant_pool(self.distribution_batch_data[str(cnt_turn)],
                                  system,
                                  rule)
+        else:
+            return []
            
 
         

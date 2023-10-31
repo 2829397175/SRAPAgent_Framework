@@ -57,10 +57,11 @@ class RentEnvironment(BaseEnvironment):
         self.log = LogRound.load_from_json(os.path.join(result_dir,
                                              "tenental_system.json"))
         self.log.evaluation_matrix(self.global_score,self.system)
+        print("finished matrix calculation!")
         
     def patch_houses(self):
         
-        self.system.community_manager.patch_houses(self.tenant_manager.groups,
+        self.system.community_manager.patch_houses(self.tenant_manager,
                                                    self.system.house_manager,
                                                    self.cnt_turn)
         
@@ -78,12 +79,12 @@ class RentEnvironment(BaseEnvironment):
         add_tenant_ids = self.tenant_manager.add_tenants(self.cnt_turn,
                                         self.system,
                                         self.rule)
+        if add_tenant_ids != []:
+            tenant_groups = self.group(add_tenant_ids) # tenant->group(tenants)
+            
+            self.group_update(tenant_groups)
         
-        tenant_groups = self.group(add_tenant_ids) # tenant->group(tenants)
-        
-        self.group_update(tenant_groups)
-        
-        self.line_up()
+            self.line_up()
         self.patch_houses() # houses -> group(houses) 
         
         self.system.community_manager.publish_house(self.cnt_turn)
@@ -187,7 +188,7 @@ class RentEnvironment(BaseEnvironment):
                 if tenant.id in queue_v:
                     queue_v.remove(tenant.id)
                     break
-        del self.tenant_manager.data[tenant.id]
+        # del self.tenant_manager.data[tenant.id]
         
         
         
@@ -298,7 +299,7 @@ class RentEnvironment(BaseEnvironment):
             else:
                 tenant_groups[return_group_id].append(tenant_ids[idx])
                 
-            self.tenant_manager[tenant_ids[idx]].queue_name = return_group_id  
+            # self.tenant_manager[tenant_ids[idx]].queue_name = return_group_id  
             
 
         return tenant_groups # group_id:[queue of tenant ids]
@@ -330,9 +331,13 @@ class RentEnvironment(BaseEnvironment):
                         
                 tenant_groups[key] = [*p_tenants,*normal_tenants]
                 
-            if "default" in tenant_groups.keys():
+            if "default" in tenant_groups.keys() and \
+                self.tenant_manager.policy.group_policy.policy_type in ["house_type"] \
+                and len(tenant_groups) > 1: 
+                # 如果通过house_type进行tenant分组
                 import random    
-                for default_tenant_id in tenant_groups.get("default",[]):
+                default_tenant_ids = tenant_groups.get("default",[])
+                for default_tenant_id in default_tenant_ids:
                     random_group_id = random.sample(list(tenant_groups.keys()),1)[0]
                     tenant = self.tenant_manager[tenant_id]
                     if all(not value for value in tenant.priority_item.values()):

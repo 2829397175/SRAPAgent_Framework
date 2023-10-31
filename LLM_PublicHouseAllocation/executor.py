@@ -97,13 +97,10 @@ class Executor():
             os.makedirs(save_evaluation_dic) 
         save_evaluation_dir = os.path.join(save_evaluation_dic,
                                 f"global_score.json") 
-        
-        if not os.path.exists(save_evaluation_dir):
-            global_score = Global_Score.initialization(tenant_manager,system,save_dir=save_evaluation_dir,llm_pool=llm_loader)
-            global_score.rate()
-            global_score.save()
-        else:
-            global_score = Global_Score.load_from_json(save_evaluation_dir,tenant_manager,system,llm_pool=llm_loader)
+       
+        global_score = Global_Score.initialization(tenant_manager,system,save_dir=save_evaluation_dir,llm_pool=llm_loader)
+        # global_score.rate()
+        # global_score.save()
         
         env_config['global_score'] = global_score
         
@@ -135,11 +132,12 @@ class Executor():
             # tenant_ids = []
             # for queue_name, tenant_waitlist in tenant_waitlists.items():
             #     tenant_ids.extend(tenant_waitlist) ## 所有waitlist内的tenant进行交流
-            """采样所有系统中的tenant交流"""
-            # tenant_ids = list(self.environment.tenant_manager.data.keys())
             
-            # self.environment.communication(tenant_ids,
-            #                                communication_num = 10)
+            """采样所有系统中的tenant交流"""
+            tenant_ids = list(self.environment.tenant_manager.data.keys())
+                        
+            self.environment.communication(tenant_ids,
+                                           communication_num = 10)
            
             self.environment.step(tenant_waitlists)
             

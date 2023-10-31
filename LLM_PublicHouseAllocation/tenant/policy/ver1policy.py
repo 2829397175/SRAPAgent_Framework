@@ -31,7 +31,12 @@ class Ver1Policy(BasePolicy):
         house_filter_ids = {}
         for filter_label in self.filter_house_labels:
             if filter_label == "house_type":
-                choose_state, house_type_id, house_type_reason = await tenant.choose_house_type(system,rule,community_id)
+                if self.group_policy.policy_type in ["multi_list","house_type"]:
+                    choose_state, house_type_id, house_type_reason = True,\
+                        tenant.queue_name, "Choose house type according to the policy"
+                else:
+                    choose_state, house_type_id, house_type_reason = await tenant.choose_house_type(system,rule,community_id)
+                
                 log_round.set_choose_house_type(house_type_id,house_type_reason)
                 house_filter_ids["house_type"] = house_type_id
                 

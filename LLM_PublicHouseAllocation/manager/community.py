@@ -107,9 +107,10 @@ class CommunityManager(BaseManager):
     
     
     def patch_houses(self,
-                     tenant_groups,
+                     tenant_manager,
                      house_manager,
                      cnt_turn):
+        tenant_groups = tenant_manager.groups
         queue_names = list(tenant_groups.keys())
         
         # 平均分组
@@ -121,7 +122,10 @@ class CommunityManager(BaseManager):
             end_p = n_per_group*num_groups
             if end_p == len(data):
                 end_p = -1
-            groups = np.array(data).reshape(data[:end_p], n_per_group)
+                groups = np.array(data).reshape(data, n_per_group)
+            else:
+                groups = np.array(data).reshape(data[:end_p], n_per_group)
+                
             groups = groups.tolist()
             if (end_p != -1):
                 groups.append(data[end_p:])
@@ -151,14 +155,25 @@ class CommunityManager(BaseManager):
 
         queue_house_ids = self.distribution_batch_data[str(cnt_turn)]
         assert isinstance(queue_house_ids,list), "error in queue house format!"
+        
+        if tenant_manager.policy.group_policy.policy_type in \
+            ["single_list"]:
+            """single list"""
+            queue_group_h_ids = {queue_names[0]:queue_house_ids}
+        
+        elif tenant_manager.policy.group_policy.policy_type in \
+            ["multi_list","house_type"]:
+            """house type group"""
+            queue_group_h_ids = house_type_groups(queue_house_ids,
+                                                queue_names)
+        
+        else:
+            raise NotImplementedError("This type of group policy is not supported.")
+        
+        
         """random group"""
         # queue_group_h_ids = avg_groups(queue_house_ids,queue_names)
-        """house type group"""
-        queue_group_h_ids = house_type_groups(queue_house_ids,
-                                                queue_names)
-        """single list"""
-        # if len(queue_names) ==1:
-        #     queue_group_h_ids = {queue_names[0]:queue_house_ids}
+       
         
         self.distribution_batch_data[str(cnt_turn)] = {}
         for queue_name, group_ids in queue_group_h_ids.items():

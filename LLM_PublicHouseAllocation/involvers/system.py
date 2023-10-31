@@ -184,7 +184,7 @@ and there will be exposure to sunlight indoors on summer afternoons."""}
         house_types =  house_filter_ids.get("house_type")
         house_ids = self.community_manager.get_filtered_house_ids(
             community_id = community_id,
-            queue_name=queue_name,
+            queue_name = queue_name,
             house_types = house_types
         )
         house_ids = self.house_manager.get_filtered_house_ids(

@@ -1031,8 +1031,8 @@
             "reason":"this house is in good condition, with features that are relatively new, well maintained and may only need minor improvements or updates. the layout is meticulous, the kitchen is well-equipped, and the bathroom design prioritizes convenience. it also has an elevator and balcony."
         },
         "house_18":{
-            "score":0,
-            "reason":""
+            "score":7,
+            "reason":"this house is satisfactory. it costs 1161 and is located at 12th floor with an elevator, balcony, and strategic layout. it is located in a community with sports facilities, supermarkets, schools, restaurants, and banks. the house is in an acceptable condition, with basic functions complete and few minor problems."
         },
         "house_6":{
             "score":7,
@@ -1583,8 +1583,8 @@
             "reason":"this house is in acceptable condition, with basic functions complete and few minor problems, but it may lack some modern facilities or design."
         },
         "house_83":{
-            "score":0,
-            "reason":""
+            "score":5,
+            "reason":"this house is slightly dissatisfied due to its lack of a balcony and its cramped layout. the facilities are generally acceptable, but may need some improvements or updates."
         },
         "house_87":{
             "score":5,
@@ -5581,8 +5581,8 @@
             "reason":"this house is located in a contemporary community with lush greenery and picturesque landscapes. it has a snug layout, a roomy bedroom, and a user-friendly bathroom design. it is in good condition with modern facilities and good maintenance, providing a comfortable and convenient living environment."
         },
         "house_96":{
-            "score":0,
-            "reason":""
+            "score":7,
+            "reason":"this house is in good condition, features are relatively new, well maintained and may only need minor improvements or updates."
         }
     },
     "9":{

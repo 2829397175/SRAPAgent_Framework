@@ -526,20 +526,20 @@ You still have {chance_num} chances to choose house.\
         response = response.get("return_values",{})
 
         
-        action = response.get("output","")
+        action = response.get("output","").strip()
         thought = response.get("thought","")
-        if action == "Search":
+        if action.lower() == "search":
             return await self.search_forum(forum_manager,
                                 system)
             # observation="I have searched some info on forum."
-        elif action == "Publish":
+        elif action.lower() == "publish":
             return await self.publish_forum(forum_manager,
                                 system)
             # observation="I have published some info on forum."
-        elif action == "GroupDiscuss":
+        elif action.lower() == "groupdiscuss":
             return await self.communicate(system=system)
             # observation="I have discussed with my acquaintances."
-        elif action == "Choose":
+        elif action.lower() == "choose":
             
             choose_state,choose_house_id = await self.policy.choose_pipeline(
                     tenant= self,
@@ -603,12 +603,14 @@ You still have {chance_num} chances to choose house.\
                 system,  
                 rule,
                 tool):
-        return await self.policy.group(self,
+        group_id = await self.policy.group(self,
                           forum_manager, 
                             system,  
                             rule,
                             tool,
                             self.log_round_tenant)
+        self.queue_name = group_id
+        return group_id
     
     async def choose_process(self, 
                forum_manager, 

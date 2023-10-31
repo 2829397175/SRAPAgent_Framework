@@ -18,6 +18,13 @@ class Global_Score(BaseModel):
     result:dict={}
     llm_pool:Optional[APIKeyPool]=None
     
+    
+    def __init__(self,**kargs) -> None:
+        super().__init__(**kargs)
+        self.rate()
+        self.save()
+
+    
     @classmethod
     def initialization(
         cls,
@@ -26,31 +33,19 @@ class Global_Score(BaseModel):
         save_dir:str,
         llm_pool:APIKeyPool
     ):
-
+        import os
+        if os.path.exists(save_dir):
+            with open(save_dir,'r',encoding = 'utf-8') as f:
+                result=json.load(f)
         return cls(
             tenant_manager=tenant_manager,
             system=system,
             save_dir=save_dir,
-            result={},
+            result=result,
             llm_pool =llm_pool
         )
     
-    @classmethod   
-    def load_from_json(cls,
-                       json_path,
-                       tenant_manager =None,
-                       system=None,
-                       llm_pool =None):
-        with open(json_path,'r',encoding = 'utf-8') as f:
-            result=json.load(f)
-        return cls(
-            tenant_manager=tenant_manager,
-            system=system,
-            save_dir=json_path,
-            result=result,
-            llm_pool=llm_pool
-        )
-        
+    
     def chain(self,llm):
         template="""
             {role_description}\
@@ -98,9 +93,9 @@ class Global_Score(BaseModel):
         
         
     def rate(self):
-        tenant_ids = list(self.tenant_manager.data.keys())
+        tenant_ids = list(self.tenant_manager.total_tenant_datas.keys())
         group_size = 10
-        group_id =0
+        group_id = 0
         while(group_id*group_size<len(tenant_ids)):
             stop_id = group_size*(group_id+1)
             stop_id = -1 if len(tenant_ids) ==stop_id else stop_id
@@ -112,11 +107,11 @@ class Global_Score(BaseModel):
     async def rate_score(self,tenant_ids):
         
         async def rate_one_tenant(tenant_id):
-            tenant = self.tenant_manager[tenant_id]
-            
+            tenant = self.tenant_manager.total_tenant_datas[tenant_id]
             llm = self.llm_pool.get_llm_single()
             llm_chain = self.chain(llm)
-            self.result[tenant_id]={}
+            if tenant_id not in self.result.keys():
+                self.result[tenant_id]={}
             
             for house_id in self.system.house_manager.data.keys():
                 input={
@@ -124,28 +119,36 @@ class Global_Score(BaseModel):
                     "house_info":self.system.get_score_house_description(house_id),
                     "example":""
                 }
-                response = await llm_chain.arun(input)
-                response = response.replace("\n","").strip().lower()
-                score_match = re.search(r'score:\s*(\d+)', response)
-                reason_match = re.search(r'reason:\s*(.+)', response)
-                if score_match and reason_match:
-                    # 从匹配对象中提取值
-                    score = score_match.group(1)
-                    reason = reason_match.group(1)
-                    # 创建结果字典
-                    result_dict = {
-                        "score": int(score),
-                        "reason": reason
-                    }
-                    self.result[tenant_id].update({house_id:result_dict})
+                if self.result[tenant_id].get(house_id,{}).get("score",0) ==0:
+                    rated = False
                 else:
-                    try:
-                        result=json.loads(response)
-                        self.result[tenant_id].update({house_id:result})
-                    except json.JSONDecodeError as e:
-                        print(f"Invalid JSON: {e}")   
-                        self.result[tenant_id].update({house_id:{"Score": 0, "Reason": ""}})
-                        
+                    rated = True
+                    
+                while (not rated):
+                    response = await llm_chain.arun(input)
+                    response = response.replace("\n","").strip().lower()
+                    score_match = re.search(r'score:\s*(\d+)', response)
+                    reason_match = re.search(r'reason:\s*(.+)', response)
+                    if score_match and reason_match:
+                        # 从匹配对象中提取值
+                        score = score_match.group(1)
+                        reason = reason_match.group(1)
+                        # 创建结果字典
+                        result_dict = {
+                            "score": int(score),
+                            "reason": reason
+                        }
+                        self.result[tenant_id].update({house_id:result_dict})
+                    else:
+                        try:
+                            result=json.loads(response)
+                            self.result[tenant_id].update({house_id:result})
+                            rated = True
+                            break
+                        except json.JSONDecodeError as e:
+                            print(f"Invalid JSON: {e}")   
+                            # self.result[tenant_id].update({house_id:{"score": 0, "reason": ""}})
+                            
             
             print(f"tenant {tenant.id} finished rating.")            
             
