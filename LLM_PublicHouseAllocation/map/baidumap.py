@@ -1,7 +1,7 @@
 import requests
 import json
 
-from translate import Translator
+#from translate import Translator
 from pydantic import BaseModel, Field
 
 class Baidumap(BaseModel):
@@ -82,10 +82,11 @@ class Baidumap(BaseModel):
                 print(f"No 'results' in data for query {query}. Data: {data}")
                 info_dict[query] = []
         return info_dict
-    def translate_to_english(self,text):
-        translator = Translator(from_lang='zh', to_lang='en')
-        translation = translator.translate(text)
-        return translation
+    
+    # def translate_to_english(self,text):
+    #     translator = Translator(from_lang='zh', to_lang='en')
+    #     translation = translator.translate(text)
+    #     return translation
 
 
 
@@ -101,10 +102,10 @@ class Baidumap(BaseModel):
             if values == []:
                 description += f"{key},"
 
-        description=self.translate_to_english(description)
+        #description=self.translate_to_english(description)
         return description
 
-# baidumap=Baidumap(api_key="weqCXjBTHdMybUxCineQ50ttzLUvd2dl")
-# print(baidumap.generate_description("北京市大兴区华伦路1号院"))
+baidumap=Baidumap(api_key="weqCXjBTHdMybUxCineQ50ttzLUvd2dl")
+print(baidumap.generate_description("北京市大兴区三合北巷2、4号院"))
 # print(baidumap.generate_description("北京市大兴区永旺路1号"))
 # print(baidumap.generate_description("北京市大兴区隆平大街2号"))
