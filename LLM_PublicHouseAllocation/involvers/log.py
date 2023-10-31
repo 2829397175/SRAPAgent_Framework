@@ -77,72 +77,19 @@ class LogRound(BaseModel):
 
     def reset(self):
         self.log={}
-    
-    
-    def evaluation_matrix(self,
-                          global_score,
-                          system): # 评价系统的公平度，满意度
+        
+        
+    def count_utility(self,
+                      utility_choosed,
+                      system,
+                      tenant_manager,
+                      type_utility = "all"):
         
         save_dir = os.path.dirname(self.save_dir)
-        tenant_manager = global_score.tenant_manager
-        """this function must be called at the end of running this system."""
+        save_dir = os.path.join(save_dir,type_utility)
         
-        
-        # 这部分的计算代码：侵入式的utility评价 ，已经抛弃
-        # utility = {}
-        # for log_id,log in self.log.items():
-        #     log_round = log["log_round"]
-        #     if log_id == "group":
-        #         continue
-        #     for tenant_id, tenant_info in log_round.items():
-        #         ratings = tenant_info["choose_house_ratings"]
-        #         rating_houses = {}
-        #         for rating_round,rating_score in ratings.items():
-        #             for rating_pair in rating_score:
-        #                 if rating_pair[0] not in rating_houses.keys():
-        #                     rating_houses[rating_pair[0]] = [rating_pair[1]]
-        #                 else:
-        #                     rating_houses[rating_pair[0]].append(rating_pair[1])
-        #         for k,v in rating_houses.items():
-        #             v = sum(v)/len(v)
-                    
-        #         rating_score_vis_u = sum(list(rating_houses.values()))/len(rating_houses)
-        #         rating_score_choose_u = rating_houses[tenant_info["choose_house_id"]]
-        #         group_id_t = -1
-        #         for group_id,tenant_ids in tenant_manager.groups.items():
-        #             if tenant_id in tenant_ids:
-        #                 group_id_t = group_id
-        #                 break
-                    
-        #         utility[tenant_id] = {
-        #             "vis_u":rating_score_vis_u,
-        #             "choose_u":rating_score_choose_u,
-        #             "group_id":group_id_t 
-        #         } 
-                
-        utility = global_score.get_result()
-        utility_choosed = {}
-        for log_id,log in self.log.items():
-            if log_id == "group":
-                continue
-            if log == {}:
-                continue 
-            
-            log_round = log["log_round"]
-            for tenant_id, tenant_info in log_round.items():
-                if "choose_house_id" in tenant_info.keys():
-                    if tenant_info["choose_house_id"] !="None":
-                        rating_score_choose_u = utility[str(tenant_id)][tenant_info["choose_house_id"]]
-                        group_id_t = self.log["group"][tenant_id]["queue_name"]
-                        assert tenant_id not in utility_choosed.keys(),f"Error!! Tenant {tenant_id} chosing house twice."
-                        tenant = tenant_manager.total_tenant_datas[tenant_id]
-                        utility_choosed[tenant_id] = {
-                                    "choose_u":rating_score_choose_u["score"],
-                                    "group_id":group_id_t,
-                                    "priority": not all(not value for value in tenant.priority_item.values()),
-                                    "choose_house_id":tenant_info["choose_house_id"]
-                                } 
-                
+        if not os.path.exists(save_dir):
+            os.makedirs(save_dir)
         
         import pandas as pd
         import numpy as np
@@ -198,9 +145,6 @@ class LogRound(BaseModel):
         plt.savefig(os.path.join(save_dir,"GINI_index.png"))
         
         utility_eval_matrix.loc["GINI_index","utility"] = gini
-        
-        
-        utility_eval_matrix.to_csv(os.path.join(save_dir,"utility_eval_matrix.csv"))
 
         
         
@@ -226,9 +170,74 @@ class LogRound(BaseModel):
         for group_id,group_matrix in utility_matrix_objective_grouped:
             objective_evaluation.loc["mean_house_area",group_id] = np.average(group_matrix["avg_area"])
             
+            
+        utility_eval_matrix.to_csv(os.path.join(save_dir,"utility_eval_matrix.csv"))
         objective_evaluation.to_csv(os.path.join(save_dir,"objective_evaluation_matrix.csv"))
         utility_matrix_objective.to_csv(os.path.join(save_dir,"utility_matrix_objective.csv"))
+        
+        
+    
+    
+    def evaluation_matrix(self,
+                          global_score,
+                          system): # 评价系统的公平度，满意度
+        
+        tenant_manager = global_score.tenant_manager
+        """this function must be called at the end of running this system."""
+        
+        
+                
+        utility = global_score.get_result()
+        utility_choosed = {}
+        for log_id,log in self.log.items():
+            if log_id == "group":
+                continue
+            if log == {}:
+                continue 
+            
+            log_round = log["log_round"]
+            for tenant_id, tenant_info in log_round.items():
+                if "choose_house_id" in tenant_info.keys():
+                    if tenant_info["choose_house_id"] !="None":
+                        rating_score_choose_u = utility[str(tenant_id)][tenant_info["choose_house_id"]]
+                        group_id_t = self.log["group"][tenant_id]["queue_name"]
+                        assert tenant_id not in utility_choosed.keys(),f"Error!! Tenant {tenant_id} chosing house twice."
+                        tenant = tenant_manager.total_tenant_datas[tenant_id]
+                        utility_choosed[tenant_id] = {
+                                    "choose_u": rating_score_choose_u["score"],
+                                    "group_id": group_id_t,
+                                    "priority": not all(not value for value in tenant.priority_item.values()),
+                                    "choose_house_id": tenant_info["choose_house_id"]
+                                } 
+                
+        self.count_utility(utility_choosed,system,tenant_manager,"choosed")
+        
+        max_turn = list(self.log.keys())[-1]
+        if log_round[max_turn] == {}:
+            max_turn = int(max_turn) -1
+        else: max_turn = int(max_turn)
+        
+        tenants_system = []
+        for turn in range(max_turn):
+            if str(turn) in tenant_manager.distribution_batch_data.keys():
+                tenants_system.extend(tenant_manager.distribution_batch_data[str(turn)])
 
+        # check 
+        for tenant_id in utility_choosed.keys():
+            assert tenant_id in tenants_system,tenant_id
+        
+
+        for tenant_id in tenants_system:
+            if tenant_id not in utility_choosed:
+                tenant = tenant_manager.total_tenant_datas[tenant_id]
+                utility_choosed[tenant_id] = {
+                                    "choose_u": 0,
+                                    "group_id": self.log["group"][tenant_id]["queue_name"],
+                                    "priority": not all(not value for value in tenant.priority_item.values()),
+                                    "choose_house_id": "None"
+                                } 
+        
+        self.count_utility(utility_choosed,system,tenant_manager,"all")
         
         
     def calculate_gini(self,data):

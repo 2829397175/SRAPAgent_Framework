@@ -36,7 +36,9 @@
             }
         },
         "extra_info":"ronghui's(community_3) house is in a very bad environment, full of garbage, haunted. It is not suitable for human habitation.[most important !!!!!!!!!]",
-        "personality":"dishonest and unscrupulous person who uses all means to achieve your own goals."
+        "personality":"dishonest and unscrupulous person who uses all means to achieve your own goals.",
+        "concise_role_description":"你是詹姆斯·安德森。你每月收入9000。你的家庭成员包括：一位妻子和两个上高中的孩子。",
+        "social_network_str":"1: 朋友\n2: 竞争者\n3: 朋友"
     },
     "1":{
         "name":"Emma Davis",
@@ -72,7 +74,9 @@
             }
         },
         "extra_info":"The house in longxing(community_1) is very good. Although it is very expensive, it is very cost-effective. The infrastructure around the community is quite complete. [most important !!!!!!!!!]",
-        "personality":"loyal, devoted and committed to their relationships and obligations."
+        "personality":"loyal, devoted and committed to their relationships and obligations.",
+        "concise_role_description":"我是艾瑪·戴維斯，每個月收入14000元，家庭成員僅有單身，沒有小孩。",
+        "social_network_str":"0: 朋友 \n2: 朋友"
     },
     "2":{
         "name":"Oliver Johnson",
@@ -108,7 +112,9 @@
             }
         },
         "extra_info":"",
-        "personality":"patient, can endure delays and setbacks calmly, willing to wait for the right moment."
+        "personality":"patient, can endure delays and setbacks calmly, willing to wait for the right moment.",
+        "concise_role_description":"你是奥利弗·约翰逊。你每月收入12000。家庭成员包括：一位妻子和刚刚上大学的一个孩子。",
+        "social_network_str":"0: 竞争者\n1: 朋友"
     },
     "3":{
         "name":"Sophia Smith",
@@ -144,7 +150,9 @@
             }
         },
         "extra_info":"",
-        "personality":"impatient, has a low tolerance for delays or waiting, often seeking immediate results."
+        "personality":"impatient, has a low tolerance for delays or waiting, often seeking immediate results.",
+        "concise_role_description":"我是索菲亚·史密斯。我每个月收入7000元。我的家庭成员包括：一位丈夫和一个新生儿。",
+        "social_network_str":"1: 朋友\n4: 朋友"
     },
     "4":{
         "name":"William Brown",
@@ -177,7 +185,9 @@
             }
         },
         "extra_info":"jinkejiayuan(community_2) has a price reduction measure.[most important !!!!!!!!!]",
-        "personality":"open-minded, willing to consider new ideas and perspectives, adaptable to change."
+        "personality":"open-minded, willing to consider new ideas and perspectives, adaptable to change.",
+        "concise_role_description":"您是威廉·布朗。您每月收入15000元。您的家庭成员包括：一位妻子和一个上小学的孩子。",
+        "social_network_str":"3: 朋友"
     },
     "5":{
         "name":"Olivia Martin",
@@ -216,7 +226,9 @@
             "9":{
                 "relation":"friend"
             }
-        }
+        },
+        "concise_role_description":"我是奥利维亚·马丁，每月收入11000元。家庭成员包括一位丈夫和两个孩子，一个在幼儿园，另一个在中学。",
+        "social_network_str":"这是你的翻译。"
     },
     "6":{
         "name":"Michael Thomas",
@@ -241,7 +253,9 @@
             "9":{
                 "relation":"friend"
             }
-        }
+        },
+        "concise_role_description":"你叫迈克尔·托马斯，每月收入1.3万。你的家庭成员有：妻子和一个婴儿。",
+        "social_network_str":"这是你的翻译。"
     },
     "7":{
         "name":"Emily Jackson",
@@ -266,7 +280,9 @@
             "9":{
                 "relation":"friend"
             }
-        }
+        },
+        "concise_role_description":"你是艾米莉·杰克逊，你每月收入8000元。你的家庭成员有：单身，没有小孩。",
+        "social_network_str":"这是你的翻译。"
     },
     "8":{
         "name":"Alexander White",
@@ -291,7 +307,9 @@
             "9":{
                 "relation":"friend"
             }
-        }
+        },
+        "concise_role_description":"你是亚历山大·怀特。你每个月收入14000。你的家庭成员包括：一位妻子和两个在大学上课的孩子。",
+        "social_network_str":"这是你的翻译。"
     },
     "9":{
         "name":"Ava Harris",
@@ -316,7 +334,9 @@
             "8":{
                 "relation":"friend"
             }
-        }
+        },
+        "concise_role_description":"你叫Ava Harris，每个月收入12000。家庭成员包括：单身，没有孩子。",
+        "social_network_str":"这是你的翻译"
     },
     "10":{
         "name":"Daniel Clark",
@@ -341,7 +361,9 @@
             "14":{
                 "relation":"friend"
             }
-        }
+        },
+        "concise_role_description":"你是丹尼尔·克拉克。你每月挣10000。你的家庭成员包括：一位妻子和一个上高中的儿子。",
+        "social_network_str":"这是你的翻译。"
     },
     "11":{
         "name":"Isabella Lewis",
@@ -366,7 +388,9 @@
             "14":{
                 "relation":"friend"
             }
-        }
+        },
+        "concise_role_description":"你叫伊莎贝拉·刘易斯，每月收入9000元。你的家庭成员包括：一位丈夫和一个新生儿。",
+        "social_network_str":"这是你的翻译。"
     },
     "12":{
         "name":"David Walker",
@@ -391,7 +415,9 @@
             "14":{
                 "relation":"friend"
             }
-        }
+        },
+        "concise_role_description":"你是大卫·沃克，每月收入8000元。你的家庭成员包括：一位妻子和两个上小学的孩子。",
+        "social_network_str":"这是你的翻译。"
     },
     "13":{
         "name":"Mia Robinson",
@@ -416,7 +442,9 @@
             "14":{
                 "relation":"friend"
             }
-        }
+        },
+        "concise_role_description":"你是米娅·罗宾逊。你每月收入10000。你的家庭成员包括：一位丈夫和一个正在中学读书的孩子。",
+        "social_network_str":"这是你的翻译。"
     },
     "14":{
         "name":"Andrew Thompson",
@@ -441,7 +469,9 @@
             "13":{
                 "relation":"friend"
             }
-        }
+        },
+        "concise_role_description":"您是安德鲁·汤普森。您每月收入15000。您的家庭成员包括：妻子和一个婴儿。",
+        "social_network_str":"这是你的翻译。"
     },
     "15":{
         "name":"Charlotte Hall",
@@ -466,7 +496,9 @@
             "19":{
                 "relation":"friend"
             }
-        }
+        },
+        "concise_role_description":"我是夏洛特·霍尔。我每个月挣12000元。我的家庭成员包括：一位丈夫和两个孩子，一个在小学，另一个在中学。",
+        "social_network_str":"这是你的翻译。"
     },
     "16":{
         "name":"Benjamin Allen",
@@ -491,7 +523,9 @@
             "19":{
                 "relation":"friend"
             }
-        }
+        },
+        "concise_role_description":"你是本杰明·艾伦，每月收入8000元。你的家庭成员：单身，没有孩子。",
+        "social_network_str":"这是你的翻译。"
     },
     "17":{
         "name":"Amelia Young",
@@ -516,7 +550,9 @@
             "19":{
                 "relation":"friend"
             }
-        }
+        },
+        "concise_role_description":"您是Amelia Young。每个月收入13000。您的家庭成员包括：一位丈夫和一个上幼儿园的孩子。",
+        "social_network_str":"这是你的翻译。"
     },
     "18":{
         "name":"Joseph King",
@@ -541,7 +577,9 @@
             "19":{
                 "relation":"friend"
             }
-        }
+        },
+        "concise_role_description":"你是约瑟夫·金。你每月挣14000。你家庭成员包括：一位妻子和一个上大学的女儿。",
+        "social_network_str":"这是你的翻译。"
     },
     "19":{
         "name":"Lily Wright",
@@ -566,7 +604,9 @@
             "18":{
                 "relation":"friend"
             }
-        }
+        },
+        "concise_role_description":"您是莉莉·莱特。您每月收入9000元。您的家庭成员包括：单身，没有孩子。",
+        "social_network_str":"这是你的翻译。"
     },
     "20":{
         "name":"Thomas Green",
@@ -591,7 +631,9 @@
             "24":{
                 "relation":"friend"
             }
-        }
+        },
+        "concise_role_description":"你是托马斯·格林。你每月收入11000。你的家庭成员包括：一位妻子和一个上大学的孩子。",
+        "social_network_str":"这是你的翻译。"
     },
     "21":{
         "name":"Ella Scott",
@@ -616,7 +658,9 @@
             "24":{
                 "relation":"friend"
             }
-        }
+        },
+        "concise_role_description":"您是艾拉·斯科特。您每月收入15000元。您的家庭成员包括：单身，没有孩子。",
+        "social_network_str":"这是你的翻译。"
     },
     "22":{
         "name":"George Baker",
@@ -641,7 +685,9 @@
             "24":{
                 "relation":"friend"
             }
-        }
+        },
+        "concise_role_description":"你是乔治·贝克尔。你每月收入1.2万。你的家庭成员包括：妻子和一个在工作的孩子。",
+        "social_network_str":"这是你的翻译。"
     },
     "23":{
         "name":"Chloe Nelson",
@@ -666,7 +712,9 @@
             "24":{
                 "relation":"friend"
             }
-        }
+        },
+        "concise_role_description":"您是克洛伊·尼尔森。您每月收入8000元。您的家庭成员包括：一位丈夫和一个孩子。",
+        "social_network_str":"这是你的翻译。"
     },
     "24":{
         "name":"Edward Carter",
@@ -691,7 +739,9 @@
             "23":{
                 "relation":"friend"
             }
-        }
+        },
+        "concise_role_description":"你是爱德华·卡特，你每月挣9000元。你的家庭成员有：一位妻子和一个上小学的孩子。",
+        "social_network_str":"这是你的翻译。"
     },
     "25":{
         "name":"Sophie Mitchell",
@@ -716,7 +766,9 @@
             "29":{
                 "relation":"friend"
             }
-        }
+        },
+        "concise_role_description":"您是苏菲·米歇尔。您每月收入14000。家庭成员包括：一位丈夫和一个上学前的孩子。",
+        "social_network_str":"这是你的翻译。"
     },
     "26":{
         "name":"Matthew Adams",
@@ -741,7 +793,9 @@
             "29":{
                 "relation":"friend"
             }
-        }
+        },
+        "concise_role_description":"你是马修·亚当斯。你每月收入13000。你的家庭成员包括：一个妻子和一个上高中的孩子。",
+        "social_network_str":"这是你的翻译。"
     },
     "27":{
         "name":"Lucy Henderson",
@@ -766,7 +820,9 @@
             "29":{
                 "relation":"friend"
             }
-        }
+        },
+        "concise_role_description":"我是露西·亨德森。我每个月收入11000元。我家庭成员包括：单身，没有孩子。",
+        "social_network_str":"这是你的翻译"
     },
     "28":{
         "name":"Anthony Roberts",
@@ -791,7 +847,9 @@
             "29":{
                 "relation":"friend"
             }
-        }
+        },
+        "concise_role_description":"您是安东尼·罗伯茨。您每月收入9000元。您的家庭成员包括：一位妻子和一个在大学就读的孩子。",
+        "social_network_str":"这是你的翻译。"
     },
     "29":{
         "name":"Emma Reed",
@@ -816,7 +874,9 @@
             "28":{
                 "relation":"friend"
             }
-        }
+        },
+        "concise_role_description":"你是艾玛·里德。你每个月收入8000元。你的家庭成员包括：单身，没有孩子。",
+        "social_network_str":"这是你的翻译。"
     },
     "30":{
         "name":"Liam Rogers",
@@ -841,7 +901,9 @@
             "34":{
                 "relation":"friend"
             }
-        }
+        },
+        "concise_role_description":"我是利亚姆·罗杰斯，每个月收入11000元。我的家庭成员包括：妻子和一个孩子。",
+        "social_network_str":"这是你的翻译。"
     },
     "31":{
         "name":"Ava Simmons",
@@ -866,7 +928,9 @@
             "34":{
                 "relation":"friend"
             }
-        }
+        },
+        "concise_role_description":"你是艾娃·西蒙斯。你每个月挣7000。你的家庭成员包括：一位丈夫和一个新生儿。",
+        "social_network_str":"这是你的翻译。"
     },
     "32":{
         "name":"James Perry",
@@ -891,7 +955,9 @@
             "34":{
                 "relation":"friend"
             }
-        }
+        },
+        "concise_role_description":"我是詹姆斯·佩里，每月收入1.4万元。我的家庭成员包括：妻子和两个孩子，一个就读小学，另一个就读高中。",
+        "social_network_str":"这是你的翻译。"
     },
     "33":{
         "name":"Mia Patterson",
@@ -916,7 +982,9 @@
             "34":{
                 "relation":"friend"
             }
-        }
+        },
+        "concise_role_description":"您是米娅·帕特森。您每月收入1.2万元。您的家庭成员包括：单身，没有孩子。",
+        "social_network_str":"这是你的翻译。"
     },
     "34":{
         "name":"Henry Howard",
@@ -941,7 +1009,9 @@
             "33":{
                 "relation":"friend"
             }
-        }
+        },
+        "concise_role_description":"你是亨利·霍华德。你每个月收入9000。你的家庭成员包括：一位妻子和一个中学生的孩子。",
+        "social_network_str":"这是你的翻译。"
     },
     "35":{
         "name":"Hannah Jenkins",
@@ -966,7 +1036,9 @@
             "39":{
                 "relation":"friend"
             }
-        }
+        },
+        "concise_role_description":"您是汉娜·詹金斯。您每月收入11000。您的家庭成员包括：一位丈夫和一个上幼儿园的孩子。",
+        "social_network_str":"这是你的翻译。"
     },
     "36":{
         "name":"William Wallace",
@@ -991,7 +1063,9 @@
             "39":{
                 "relation":"friend"
             }
-        }
+        },
+        "concise_role_description":"你是威廉·华莱士。你每个月收入15000。你的家庭成员包括：一位妻子和两个在大学读书的孩子。",
+        "social_network_str":"这是你的翻译。"
     },
     "37":{
         "name":"Sophia Austin",
@@ -1016,7 +1090,9 @@
             "39":{
                 "relation":"friend"
             }
-        }
+        },
+        "concise_role_description":"你是Sophia Austin，每月收入8000。你的家庭成员包括：一个丈夫和一个孩子。",
+        "social_network_str":"这是你的翻译。"
     },
     "38":{
         "name":"Michael Foster",
@@ -1041,7 +1117,9 @@
             "39":{
                 "relation":"friend"
             }
-        }
+        },
+        "concise_role_description":"您是迈克尔·福斯特。您每月收入13000。您的家庭成员包括：一位妻子和一个在工作的孩子。",
+        "social_network_str":"这是你的翻译。"
     },
     "39":{
         "name":"Olivia Tucker",
@@ -1066,7 +1144,9 @@
             "38":{
                 "relation":"friend"
             }
-        }
+        },
+        "concise_role_description":"你是奥利维亚·塔克。你每月收入7000。你的家庭成员包括：单身，没有孩子。",
+        "social_network_str":"这是你的翻译。"
     },
     "40":{
         "name":"Elijah Schmidt",
@@ -1091,7 +1171,9 @@
             "44":{
                 "relation":"friend"
             }
-        }
+        },
+        "concise_role_description":"你是以利亚·施密特。你每个月挣14000。你的家庭成员包括：一位妻子和两个孩子，一个在小学，另一个在中学。",
+        "social_network_str":"这是你的翻译。"
     },
     "41":{
         "name":"Ava Ross",
@@ -1116,7 +1198,9 @@
             "44":{
                 "relation":"friend"
             }
-        }
+        },
+        "concise_role_description":"你是艾娃·罗斯，每个月收入1.2万。你的家庭成员包括：一位丈夫和一个上幼儿园的孩子。",
+        "social_network_str":"这里是你的翻译。"
     },
     "42":{
         "name":"Daniel Riley",
@@ -1141,7 +1225,9 @@
             "44":{
                 "relation":"friend"
             }
-        }
+        },
+        "concise_role_description":"你是丹尼尔·莱利，每月收入9000。你的家庭成员包括：一位妻子和一个在上高中的孩子。",
+        "social_network_str":"这是你的翻译。"
     },
     "43":{
         "name":"Madison Palmer",
@@ -1166,7 +1252,9 @@
             "44":{
                 "relation":"friend"
             }
-        }
+        },
+        "concise_role_description":"您是麦迪逊·帕尔默。您每个月收入8000元。您的家庭成员包括：一位丈夫和一个幼儿。",
+        "social_network_str":"这是你的翻译。"
     },
     "44":{
         "name":"Alexander Hughes",
@@ -1191,7 +1279,9 @@
             "43":{
                 "relation":"friend"
             }
-        }
+        },
+        "concise_role_description":"你是亚历山大·休斯。你每个月挣13000。你的家庭成员包括：一个妻子和一个在大学的孩子。",
+        "social_network_str":"这是你的翻译。"
     },
     "45":{
         "name":"Charlotte Gardner",
@@ -1216,7 +1306,9 @@
             "49":{
                 "relation":"friend"
             }
-        }
+        },
+        "concise_role_description":"您是夏洛特·加德纳。您每月收入7000元。您的家庭成员包括：单身，没有孩子。",
+        "social_network_str":"这是你的翻译。"
     },
     "46":{
         "name":"Benjamin Fuller",
@@ -1241,7 +1333,9 @@
             "49":{
                 "relation":"friend"
             }
-        }
+        },
+        "concise_role_description":"你是本杰明·富勒，每月收入1.4万。你的家庭成员包括：一位妻子和两个正在上中学的孩子。",
+        "social_network_str":"这是你的翻译。"
     },
     "47":{
         "name":"Mia Harper",
@@ -1266,7 +1360,9 @@
             "49":{
                 "relation":"friend"
             }
-        }
+        },
+        "concise_role_description":"你是米娅·哈珀。你每个月挣8000元。你的家庭成员包括：一位丈夫和一个新生儿。",
+        "social_network_str":"这是你的翻译。"
     },
     "48":{
         "name":"Lucas Collins",
@@ -1291,7 +1387,9 @@
             "49":{
                 "relation":"friend"
             }
-        }
+        },
+        "concise_role_description":"你是卢卡斯·柯林斯。你每月收入9000。你的家庭成员包括：一位妻子和一个就读小学的孩子。",
+        "social_network_str":"这是你的翻译。"
     },
     "49":{
         "name":"Ella Burke",
@@ -1316,7 +1414,9 @@
             "48":{
                 "relation":"friend"
             }
-        }
+        },
+        "concise_role_description":"你是艾拉·伯克。你每月收入7000。你的家庭成员包括：单身，没有孩子。",
+        "social_network_str":"这是你的翻译。"
     },
     "50":{
         "name":"Jacob Weaver",
@@ -1328,6 +1428,8 @@
         "monthly_rent_budget":2500,
         "special_request":"Jacob's family hopes the apartment is in a neighborhood with a daycare center and a park.",
         "en_work_place":"Wangjing Soho, 48 Wangjing West Road, Chaoyang District, Beijing",
-        "neighbors":{}
+        "neighbors":{},
+        "concise_role_description":"你是雅各布·韦弗。你每月收入13000。你的家庭成员包括：妻子和一个幼儿。",
+        "social_network_str":"这是你的翻译。"
     }
 }

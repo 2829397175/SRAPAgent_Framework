@@ -62,6 +62,8 @@ def batch_read_data():
     current_directory = os.getcwd()
     datafile_directory=os.path.join(current_directory,"LLM_PublicHouseAllocation","LLM_decision_test","data")
     all_files_and_dirs = os.listdir(datafile_directory)
+    if "unfinished_QA_result.json" in all_files_and_dirs:
+        all_files_and_dirs.remove("unfinished_QA_result.json")
     absolute_all_files_path= [os.path.join(datafile_directory, filename) for filename in all_files_and_dirs]
     for path in absolute_all_files_path:
         communityQA,housetypeQA,houseQA=read_data(path)
@@ -73,7 +75,7 @@ def clear_response(json_types,rate = 0.1):
     rate 代表clear response的比例
     """
     for json_type in json_types:
-        json_dir = "LLM_PublicHouseAllocation\LLM_decision_test\{}_qa.json".format(json_type)
+        json_dir = "LLM_PublicHouseAllocation\LLM_decision_test\qa_translated\judge\\finished\{}_qa.json".format(json_type)
         with open(json_dir,'r',encoding = 'utf-8') as f:
             data = json.load(f)
         clear_indexs = np.random.choice(list(range(len(data))),
@@ -81,16 +83,19 @@ def clear_response(json_types,rate = 0.1):
         for c_idx in clear_indexs:
             data[c_idx]["response"]={}
             
-        save_dir = "LLM_PublicHouseAllocation\LLM_decision_test\qa_clear_data\{}_qa.json".format(json_type)
-        with open(save_dir,'w',encoding = 'utf-8') as f:
+        save_path = "LLM_PublicHouseAllocation\LLM_decision_test\qa_clear_data\{}_qa.json".format(json_type)
+        save_dir = os.path.dirname(save_path)
+        if not os.path.exists(save_dir):
+            os.makedirs(save_dir)
+        with open(save_path,'w',encoding = 'utf-8') as f:
             json.dump(data,f, indent=4,separators=(',', ':'),ensure_ascii=False)
         
     
 
 if __name__ == "__main__":
     # make data
-    clear_database()
-    batch_read_data()
+    # clear_database()
+    # batch_read_data()
     
     
     # clear response

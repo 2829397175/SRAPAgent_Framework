@@ -235,7 +235,9 @@ and there will be exposure to sunlight indoors on summer afternoons."""}
 # been chosen yet."""
         return self.community_manager.get_system_competiveness_description(queue_name)
     
-    def get_score_house_description(self,house_id):
+    def get_score_house_description(self,
+                                    house_id,
+                                    tenant):
         community_name=None
         for cn,house_list in self.house_manager.community_to_house.items():
             if house_id in house_list:
@@ -251,6 +253,7 @@ and there will be exposure to sunlight indoors on summer afternoons."""}
                 {index} is located in {community_id}.
                 {community_id}. {community_name} is located at {en_location}. The rent for this community is {value_inch} dollars per square meter.\
 In this community, {community_description}. {nearby_info}.
+                For my family members, the average living area is {average_living_area}.
         """
         # for _,communities in self.community_manager.total_community_datas.items():
         for community_id,community_details in self.community_manager.total_community_datas.items():
@@ -268,7 +271,8 @@ In this community, {community_description}. {nearby_info}.
                                                     en_location=community_details["en_location"],
                                                     value_inch=community_details["value_inch"],
                                                     community_description=community_details["description"],
-                                                    nearby_info=community_details["nearby_info"]
+                                                    nearby_info=community_details["nearby_info"],
+                                                    average_living_area = self.house_manager.data[house_id]["house_area"]/tenant.family_num
                                                     )
                 return   house_description  
         return None   

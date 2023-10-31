@@ -1,7 +1,7 @@
 import openai
 
 apis =[
-    "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",
+    # "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",
     "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"]
 
 

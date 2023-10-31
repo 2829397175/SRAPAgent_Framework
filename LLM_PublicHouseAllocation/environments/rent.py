@@ -85,6 +85,7 @@ class RentEnvironment(BaseEnvironment):
             self.group_update(tenant_groups)
         
             self.line_up()
+            
         self.patch_houses() # houses -> group(houses) 
         
         self.system.community_manager.publish_house(self.cnt_turn)

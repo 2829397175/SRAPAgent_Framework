@@ -122,9 +122,9 @@ class CommunityManager(BaseManager):
             end_p = n_per_group*num_groups
             if end_p == len(data):
                 end_p = -1
-                groups = np.array(data).reshape(data, n_per_group)
+                groups = np.array(data).reshape(num_groups, n_per_group)
             else:
-                groups = np.array(data).reshape(data[:end_p], n_per_group)
+                groups = np.array(data[:end_p]).reshape(num_groups, n_per_group)
                 
             groups = groups.tolist()
             if (end_p != -1):

@@ -10,7 +10,7 @@ import re
 import asyncio
 from LLM_PublicHouseAllocation.llms import APIKeyPool
 from tqdm import tqdm
-
+import random
 class Global_Score(BaseModel):
     tenant_manager:Optional[TenantManager]=None
     system:Optional[System]=None
@@ -50,29 +50,41 @@ class Global_Score(BaseModel):
         template="""
             {role_description}\
             {house_info}
-            {example}
-            Please rate based on the information and properties of the house. 
-            1 point: Very dissatisfied - The condition of the house is extremely poor, with multiple serious problems, such as structural instability, aging or severe damage to facilities, and it is basically unfit for habitation.
+            
+            
+Here's some important background information:
 
-            2 points: Very Unsatisfactory - The home has obvious flaws and issues, such as an old electrical system, leaks, or broken fixtures that require extensive repairs and updates.
+1. The average living area of these houses is around 20 square meters. If the average living area exceeds 20 for you, the house should be relatively spacious, while if it's less than 20, it would be rather cramped.
+2. For this pool of houses: the price range is roughly between 900 and 2600, and the house area is approximately 35-65 square meters. Please keep this distribution in mind and evaluate the value of the house relative to this pool of houses.
+3. Please remember your persona and make evaluations of the houses that align with that persona.
+4. Try to distribute your ratings evenly.
 
-            3 points: Unsatisfactory - The basic functions of the house are acceptable, but there are still many inconveniences, such as aging facilities, many minor repairs, and low comfort.
 
-            4 points: Unsatisfactory - Although the home maintains basic functions, it may lack some comfort or modern facilities, or it may need some repairs and improvements.
+Please rate based on the information and properties of the house. Score the house from 1-10, with a higher score indicating the house better meets your requirements.
+             
+            1 point: The condition of the house is extremely poor, with multiple serious problems, such as structural instability, aging or severe damage to facilities, and it is basically unfit for habitation.
 
-            5 points: Slightly dissatisfied - the house is basically maintained, there are many minor problems, which may affect the daily life of the residents, but overall it is still acceptable.
+            2 points: The home has obvious flaws and issues, such as an old electrical system, leaks, or broken fixtures that require extensive repairs and updates.
 
-            6 points: Passing - The house is in acceptable condition, with basic functions complete and few minor problems, but it may lack some modern facilities or design.
+            3 points: The basic functions of the house are acceptable, but there are still many inconveniences, such as aging facilities, many minor repairs, and low comfort.
 
-            7 points: Satisfactory - The home is in good condition, features are relatively new, well maintained and may only need minor improvements or updates.
+            4 points: Although the home maintains basic functions, it may lack some comfort or modern facilities, or it may need some repairs and improvements.
 
-            8 points: Very satisfied - the house is in very good condition, with modern facilities and good maintenance, providing a comfortable and convenient living environment.
+            5 points: the house is basically maintained, there are many minor problems, which may affect the daily life of the residents, but overall it is still acceptable.
 
-            9 points: Extremely Satisfied - The house is almost perfect, has advanced facilities, elegant design, is well maintained and needs almost no improvements.
+            6 points: The house is in acceptable condition, with basic functions complete and few minor problems, but it may lack some modern facilities or design.
 
-            10 points: Completely satisfied - the house is in immaculate condition, has advanced facilities, is elegantly designed, and is well maintained, providing a living experience that exceeds expectations.
+            7 points: The home is in good condition, features are relatively new, well maintained and may only need minor improvements or updates.
+
+            8 points: The house is in very good condition, with modern facilities and good maintenance, providing a comfortable and convenient living environment.
+
+            9 points: The house is almost perfect, has advanced facilities, elegant design, is well maintained and needs almost no improvements.
+
+            10 points: The house is in immaculate condition, has advanced facilities, is elegantly designed, and is well maintained, providing a living experience that exceeds expectations.
             Please rate this house and explain why. 
-
+            
+            {example}
+            
             -The required results must conform to the following format of output results:
 
             Score: Indicates the scoring result, which must be an integer number. 
@@ -114,10 +126,22 @@ class Global_Score(BaseModel):
                 self.result[tenant_id]={}
             
             for house_id in self.system.house_manager.data.keys():
+                
+                example_template = """
+Here's one example:
+
+Score: {score}
+Reason: {reason}
+
+End of example                
+"""
+                
+                example = random.sample(list(self.result.values()),1)[0] # 随机采样一个样本
+                
                 input={
                     "role_description":tenant.get_role_description(),
-                    "house_info":self.system.get_score_house_description(house_id),
-                    "example":""
+                    "house_info":self.system.get_score_house_description(house_id,tenant),
+                    "example":example_template.format_map(example)
                 }
                 if self.result[tenant_id].get(house_id,{}).get("score",0) ==0:
                     rated = False
@@ -141,7 +165,7 @@ class Global_Score(BaseModel):
                         self.result[tenant_id].update({house_id:result_dict})
                     else:
                         try:
-                            result=json.loads(response)
+                            result = json.loads(response)
                             self.result[tenant_id].update({house_id:result})
                             rated = True
                             break
