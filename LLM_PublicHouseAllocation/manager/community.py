@@ -197,7 +197,35 @@ class CommunityManager(BaseManager):
         return pool_num_dict
     
     
-    def community_str(self,curcommunity_list,furcommunity_list):
+    def community_str(self,
+                      curcommunity_list,
+                      furcommunity_list,
+                      concise = False):
+        if concise:
+            curcommunity_description = []
+            furcommunity_description = []
+            template = """\
+{community_id}. The rent for this community is {value_inch} dollars per square meter."""
+            if len(curcommunity_list) ==0:
+                curstr = ""
+            else:
+                for community_info in curcommunity_list:
+                    curcommunity_description.append(template.format_map(community_info))
+                
+                curcommunitys_describe_prompt = """There are {len_cm} communities available in the system:{cm_info}"""
+                curstr = curcommunitys_describe_prompt.format(len_cm = len(curcommunity_list),
+                                                            cm_info = "\n\n".join(curcommunity_description))
+            if len(furcommunity_list) ==0:
+                furstr = ""
+            else:
+                for furcommunity_info in furcommunity_list:
+                    furcommunity_description.append(template.format_map(furcommunity_info))
+                furcommunitys_describe_prompt = """There are {len_cm} communities to be published:{cm_info}"""
+                furstr = furcommunitys_describe_prompt.format(len_cm = len(furcommunity_list),
+                                                            cm_info = "\n\n".join(furcommunity_description))
+            return curstr,furstr
+            
+            
         len_curcommunity= len(curcommunity_list)
         len_furcommunity = len(furcommunity_list)
         template = """\
@@ -236,20 +264,21 @@ The {housetype} in {community_id} is a {living_room} apartment, with an area of 
             # house_type_describe += "\n"
 
         curcommunitys_describe_prompt = "There are {num_communitys} communities available. The infomation of these communitys are listed as follows:\n\n{communitys}"
-        curstr = curcommunitys_describe_prompt.format(num_communitys=len_curcommunity,
+        if len_curcommunity>=1:
+            curstr = curcommunitys_describe_prompt.format(num_communitys=len_curcommunity,
                                                 communitys="\n\n".join(curcommunity_description))
+        else:curstr =""
+        
         if len(furcommunity_list)==0:
             return curstr,""
+        
         for furcommunity_info in furcommunity_list:
             furcommunity_description.append(template.format(community_id=furcommunity_info["community_id"],
                                                      community_name=furcommunity_info["community_name"],
                                                      en_location=furcommunity_info["en_location"],
                                                      value_inch=furcommunity_info["value_inch"],
                                                      description=furcommunity_info["description"],
-                                                     get_shortest_commute_time_str=furcommunity_info[
-                                                         "get_shortest_commute_time"],
                                                      nearby_info=furcommunity_info["nearby_info"],
-                                                     comment_summary=furcommunity_info["comment_summary"]
                                                      ))
             house_types = ['small_house', 'middle_house', 'large_house']
             house_typs = []
@@ -356,25 +385,35 @@ The {housetype} in {community_id} is a {living_room} apartment, with an area of 
         return house_types
 
     def get_available_community_info(self,queue_name=None):
-        if queue_name==None:
-            community_list=[]
-            for _ ,community_info in self.total_community_datas.items():
-               community_list.append(community_info)
-            return community_list 
+
         if self.data.get(queue_name)==None:
-            return []
+            return [],[]
         community_infos=deepcopy(self.data[queue_name])
         community_list=[]
         
+        community_ids =[]
         for community_id, community_info in list(community_infos.items()):
             if  community_info["sum_remain_num"] >  0 :
                 for housetype,housetype_att in list(community_info.items()):
                     if isinstance(housetype_att, dict) and 'remain_number' in housetype_att and housetype_att['remain_number'] <= 0:
                             del community_info[housetype]
                 community_list.append(community_info)
-        return community_list
+                community_ids.append(community_id)
+        return community_list,community_ids
 
-
+    def get_publish_community_info(self):
+        cur_cm_ids = []
+        for queue in self.data.values():
+            if isinstance(queue,dict):
+                cur_cm_ids.extend(list(queue.keys()))
+        fur_cm_ids = []
+        fur_cm_list = []
+        for comunity_id in self.total_community_datas.keys():
+            if comunity_id not in cur_cm_ids:
+                if self.total_community_datas[comunity_id]["sum_remain_num"] >  0 :
+                    fur_cm_ids.append(comunity_id)
+                    fur_cm_list.append(self.total_community_datas[comunity_id])
+        return fur_cm_list,fur_cm_ids
 
     def split(self,community_list):
         current_infos=[]
@@ -400,17 +439,6 @@ The {housetype} in {community_id} is a {living_room} apartment, with an area of 
                     return True
         return False
 
-    # def update_remain_num(self,community_name,house_id):
-    #     for community_id,community_info in self.data.items():
-    #         if community_info["community_name"]==community_name and community_info["available"]==True :
-    #             community_info["sum_remain_num"]-=1
-    #             if community_info["sum_remain_num"]<=0:
-    #                 community_info["available"] = False
-    #             for key, value in list(community_info.items()):
-    #                 if isinstance(value, dict) and house_id in value["index"] and value["remain_number"] > 0:
-    #                     value["remain_number"]-=1
-    #                     value["index"].remove(house_id)
-    #             return community_info["description"]
 
 
 

@@ -1,0 +1,19 @@
+{
+    "group":{
+        "0":{
+            "log_round":{},
+            "log_round_prompts":{},
+            "queue_name":"default"
+        },
+        "1":{
+            "log_round":{},
+            "log_round_prompts":{},
+            "queue_name":"default"
+        },
+        "2":{
+            "log_round":{},
+            "log_round_prompts":{},
+            "queue_name":"default"
+        }
+    }
+}

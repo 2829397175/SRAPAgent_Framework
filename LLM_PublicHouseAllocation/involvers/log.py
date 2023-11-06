@@ -3,6 +3,8 @@ import json
 import time
 import copy
 import os
+import pandas as pd
+import numpy as np
 
 # Design a basic LogRound class
 class LogRound(BaseModel):
@@ -72,6 +74,9 @@ class LogRound(BaseModel):
         
 
     def save_data(self):
+        if not os.path.exists(os.path.dirname(self.save_dir)):
+            os.makedirs(os.path.dirname(self.save_dir))
+        
         with open(self.save_dir, 'w', encoding='utf-8') as file:
             json.dump(self.log, file, indent=4,separators=(',', ':'),ensure_ascii=False)
 
@@ -80,7 +85,7 @@ class LogRound(BaseModel):
         
         
     def count_utility(self,
-                      utility_choosed,
+                      utility_choosed:pd.DataFrame,
                       system,
                       tenant_manager,
                       type_utility = "all"):
@@ -90,10 +95,7 @@ class LogRound(BaseModel):
         
         if not os.path.exists(save_dir):
             os.makedirs(save_dir)
-        
-        import pandas as pd
-        import numpy as np
-        
+   
         utility_matrix = pd.DataFrame()
         for tenant_id,utility_one in utility_choosed.items():
             for k,v in utility_one.items():
@@ -115,7 +117,17 @@ class LogRound(BaseModel):
             utility_eval_matrix.loc[f"min_max_ratio",group_id] = np.min(scores)/np.max(scores)
             
             # 满意度
-            utility_eval_matrix.loc[f"sw",group_id] = np.sum(scores)/group_utility.shape[0]
+            utility_eval_matrix.loc[f"sw",group_id] = np.sum(scores)
+                
+        """整体的公平性和满意度"""
+        scores = utility_matrix["choose_u"]
+        utility_eval_matrix.loc[f"least_misery","all"] = min(scores)
+        utility_eval_matrix.loc[f"variance","all"] = np.var(scores)
+         
+        # 满意度
+
+        utility_eval_matrix.loc[f"sw","all"] = np.sum(scores)
+
                 
         """弱势群体的公平度"""
         # utility_grouped = utility_matrix.groupby(by = ["priority"])
@@ -123,10 +135,9 @@ class LogRound(BaseModel):
         #     scores = group_utility["choose_u"]
         utility_p = utility_matrix[utility_matrix["priority"]]
         utility_np = utility_matrix[utility_matrix["priority"]!= True]
-        utility_eval_matrix.loc["F(W,G)","utility"] = np.sum(utility_p["choose_u"])/utility_p.shape[0] -\
+        utility_eval_matrix.loc["F(W,G)","all"] = np.sum(utility_p["choose_u"])/utility_p.shape[0] -\
             np.sum(utility_np["choose_u"])/utility_np.shape[0]
         
-        utility_eval_matrix.loc["SW","utility"] = np.sum(utility_matrix["choose_u"])
         
         """计算基尼指数,原本的定义是将收入分配作为输入,
         这里为了衡量公平性, 将房屋分配的utitlity作为输入"""
@@ -144,7 +155,7 @@ class LogRound(BaseModel):
         plt.grid(True)
         plt.savefig(os.path.join(save_dir,"GINI_index.png"))
         
-        utility_eval_matrix.loc["GINI_index","utility"] = gini
+        utility_eval_matrix.loc["GINI_index","all"] = gini
 
         
         
@@ -160,7 +171,7 @@ class LogRound(BaseModel):
 
                 
             except Exception as e:
-                utility_matrix.loc[tenant_id,"house_size"] = None
+                utility_matrix.loc[tenant_id,"house_size"] = 0
         
         utility_matrix_objective = utility_matrix[utility_matrix["house_size"]!=None]
         utility_matrix_objective["avg_area"] = utility_matrix_objective["house_size"]/utility_matrix_objective["family_members_num"]
@@ -169,14 +180,58 @@ class LogRound(BaseModel):
         
         for group_id,group_matrix in utility_matrix_objective_grouped:
             objective_evaluation.loc["mean_house_area",group_id] = np.average(group_matrix["avg_area"])
+        
+        objective_evaluation.loc["mean_house_area","all"] = np.average(utility_matrix_objective["avg_area"])
+        objective_evaluation.loc["var_mean_house_area","all"] = np.var(utility_matrix_objective["avg_area"])
+        
+        # 计算逆序对
+        count_rop = 0
+        for tenant_id_a in utility_choosed.keys():
+            for tenant_id_b in utility_choosed.keys():
+                if (tenant_manager.total_tenant_datas[tenant_id_a].family_num < \
+                tenant_manager.total_tenant_datas[tenant_id_b].family_num ) and \
+                    (utility_matrix.loc[tenant_id_a,"house_size"]>
+                     utility_matrix.loc[tenant_id_b,"house_size"]):
+                    count_rop+=1
+        objective_evaluation.loc["Rop","all"] = count_rop
             
-            
+        # 设置指标的标签
+        index_map ={
+            "Satisfaction":["sw"],
+            "Fairness":["least_misery","variance","jain'sfair","min_max_ratio","F(W,G)","GINI_index"]
+        } 
+        
+        index_ori = utility_eval_matrix.index
+        index_transfered = [index_ori,[]]
+        for index_one in index_ori:
+            for k_type, type_list in index_map.items():
+                if index_one in type_list:
+                    index_transfered[1].append(k_type)
+                    break
+                
+        utility_eval_matrix.index = pd.MultiIndex.from_arrays(
+            index_transfered, names=('type_indicator', 'eval_type'))
+        # utility_eval_matrix.index = index
         utility_eval_matrix.to_csv(os.path.join(save_dir,"utility_eval_matrix.csv"))
         objective_evaluation.to_csv(os.path.join(save_dir,"objective_evaluation_matrix.csv"))
         utility_matrix_objective.to_csv(os.path.join(save_dir,"utility_matrix_objective.csv"))
         
         
+        
+    def group(self,tenant)->str:
+        """return the group of tenant in evaluation"""
+        if tenant.family_num>3:
+            return  "family_num>3"
+        elif tenant.family_num >1: 
+            return "3>=family_num>=2"
+        else:
+            return "family_num=1"
     
+    
+    def plt_tenant_choosing_distribution(self):
+        
+        
+        pass # 误差图片
     
     def evaluation_matrix(self,
                           global_score,
@@ -200,24 +255,28 @@ class LogRound(BaseModel):
                 if "choose_house_id" in tenant_info.keys():
                     if tenant_info["choose_house_id"] !="None":
                         rating_score_choose_u = utility[str(tenant_id)][tenant_info["choose_house_id"]]
-                        group_id_t = self.log["group"][tenant_id]["queue_name"]
-                        assert tenant_id not in utility_choosed.keys(),f"Error!! Tenant {tenant_id} chosing house twice."
+                        # group_id_t = self.log["group"][tenant_id]["queue_name"]
                         tenant = tenant_manager.total_tenant_datas[tenant_id]
+                        group_id_t = self.group(tenant)
+                        assert tenant_id not in utility_choosed.keys(),f"Error!! Tenant {tenant_id} chosing house twice."
+                        enter_turn = tenant_manager.get_tenant_enter_turn(tenant)
+                        
                         utility_choosed[tenant_id] = {
                                     "choose_u": rating_score_choose_u["score"],
                                     "group_id": group_id_t,
                                     "priority": not all(not value for value in tenant.priority_item.values()),
-                                    "choose_house_id": tenant_info["choose_house_id"]
+                                    "choose_house_id": tenant_info["choose_house_id"],
+                                    "wait_turn": int(log_id) - int(enter_turn)
                                 } 
                 
         self.count_utility(utility_choosed,system,tenant_manager,"choosed")
         
         max_turn = list(self.log.keys())[-1]
-        if log_round[max_turn] == {}:
+        if self.log[max_turn] == {}:
             max_turn = int(max_turn) -1
         else: max_turn = int(max_turn)
         
-        tenants_system = []
+        tenants_system = [] # 存储所有进入了系统的tenant的id
         for turn in range(max_turn):
             if str(turn) in tenant_manager.distribution_batch_data.keys():
                 tenants_system.extend(tenant_manager.distribution_batch_data[str(turn)])
@@ -230,11 +289,14 @@ class LogRound(BaseModel):
         for tenant_id in tenants_system:
             if tenant_id not in utility_choosed:
                 tenant = tenant_manager.total_tenant_datas[tenant_id]
+                group_id_t = self.group(tenant)
+                enter_turn = tenant_manager.get_tenant_enter_turn(tenant)
                 utility_choosed[tenant_id] = {
                                     "choose_u": 0,
-                                    "group_id": self.log["group"][tenant_id]["queue_name"],
+                                    "group_id": group_id_t,
                                     "priority": not all(not value for value in tenant.priority_item.values()),
-                                    "choose_house_id": "None"
+                                    "choose_house_id": "None",
+                                    "wait_turn": max_turn - int(enter_turn)
                                 } 
         
         self.count_utility(utility_choosed,system,tenant_manager,"all")

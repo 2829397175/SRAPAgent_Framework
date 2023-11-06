@@ -104,8 +104,9 @@ class Baidumap(BaseModel):
 
         #description=self.translate_to_english(description)
         return description
-
-baidumap=Baidumap(api_key="weqCXjBTHdMybUxCineQ50ttzLUvd2dl")
-print(baidumap.generate_description("北京市大兴区三合北巷2、4号院"))
-# print(baidumap.generate_description("北京市大兴区永旺路1号"))
-# print(baidumap.generate_description("北京市大兴区隆平大街2号"))
+    
+if __name__ =="__main__":
+    baidumap=Baidumap(api_key="weqCXjBTHdMybUxCineQ50ttzLUvd2dl")
+    print(baidumap.generate_description("北京市大兴区三合北巷2、4号院"))
+    # print(baidumap.generate_description("北京市大兴区永旺路1号"))
+    # print(baidumap.generate_description("北京市大兴区隆平大街2号"))

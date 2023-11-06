@@ -34,29 +34,33 @@ class System(BaseModel):
         return num
     
     
-    def get_community_abstract(self,queue_name=None,rule=None, tenant=None, house_type = None):
-        if isinstance(rule,Rule) and isinstance(tenant,LangchainTenant):
-            community_list=self.community_manager.get_available_community_info(queue_name)
-            filter_community_list=rule.filter_community(tenant = tenant,
-                                                        community_list = community_list,
-                                                         house_type = house_type)
-                                                        
-            community_str,_=self.community_manager.community_str(filter_community_list,[])
-            community_ids = [d["community_id"] for d in filter_community_list if "community_id" in d]
-            return community_str,community_ids
-        elif queue_name==None:
-            community_list = self.community_manager.get_available_community_info()
-            community_str,_=self.community_manager.community_str(community_list,[])
-            return community_str
-        else:
-            community_list = self.community_manager.get_available_community_info(queue_name)
-            community_str,_=self.community_manager.community_str(community_list,[])
-            return community_str
+    def get_community_abstract(self,
+                               queue_name=None,
+                               rule=None, 
+                               tenant=None, 
+                               house_type = None,
+                               concise = False):
+
+        curcommunity_list,cur_community_ids = self.community_manager.get_available_community_info(queue_name)
+        furcommunity_list,fur_community_ids = self.community_manager.get_publish_community_info()
+        if not queue_name==None and isinstance(rule,Rule):
+            curcommunity_list = rule.filter_community(tenant = tenant,
+                                                    community_list = curcommunity_list,
+                                                        house_type = house_type)
+                                                    
+        cur_str,furstr=self.community_manager.community_str(curcommunity_list,
+                                                                furcommunity_list,
+                                                                concise = concise)
+        community_str = furstr +"\n\n"+ cur_str
+        # 返回所有的小区信息 加上 可选的小区列表
+        return community_str,cur_community_ids 
+    
+
         
     
     def get_split_community_abstract(self,queue_name):
-        community_list=self.community_manager.get_available_community_info(queue_name)
-        curcommunity_list,furcommunity_list=self.community_manager.split(community_list)
+        community_list,_=self.community_manager.get_available_community_info(queue_name)
+        curcommunity_list,furcommunity_list = self.community_manager.split(community_list)
         curstr,furstr=self.community_manager.community_str(curcommunity_list,furcommunity_list)
         return curstr,furstr
         
@@ -272,7 +276,7 @@ In this community, {community_description}. {nearby_info}.
                                                     value_inch=community_details["value_inch"],
                                                     community_description=community_details["description"],
                                                     nearby_info=community_details["nearby_info"],
-                                                    average_living_area = self.house_manager.data[house_id]["house_area"]/tenant.family_num
+                                                    average_living_area = float(self.house_manager.data[house_id]["house_area"])/tenant.family_num
                                                     )
                 return   house_description  
         return None   

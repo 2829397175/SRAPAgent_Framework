@@ -16,6 +16,17 @@ from LLM_PublicHouseAllocation.tenant.agent_rule import AgentRule
 import copy
 
 
+from LLM_PublicHouseAllocation.memory import SummaryMemory,ActionHistoryMemory
+
+def load_memory(memory_config: Dict,
+                llm):
+    memory_config_temp = copy.deepcopy(memory_config)
+    memory_type = memory_config_temp.pop("memory_type", "action_history")
+    if memory_type == "action_history":
+        return ActionHistoryMemory(llm=llm,**memory_config_temp)
+    else:
+        raise NotImplementedError("Memory type {} not implemented".format(memory_type))
+
 
 def load_environment(env_config: Dict) :
     env_type = env_config.pop('env_type', 'rent')
@@ -50,27 +61,19 @@ def prepare_task_config(task):
 
 
 
-def load_memory(memory_config: Dict):
-    memory_type = memory_config.pop("memory_type", "action_history")
-    if memory_type == "action_history":
-        llm = load_llm(memory_config.pop('llm',{'llm_type': 'text-davinci-003}'}))
-        return ActionHistoryMemory(llm=llm,**memory_config)
-    else:
-        raise NotImplementedError("Memory type {} not implemented".format(memory_type))
-
 
 def load_llm(**llm_config):
     llm_config_temp = copy.deepcopy(llm_config)
-    llm_type = llm_config.pop('llm_type', 'text-davinci-003')
+    llm_type = llm_config_temp.pop('llm_type', 'text-davinci-003')
     if llm_type == 'gpt-3.5-turbo':
         return ChatOpenAI(model_name= "gpt-3.5-turbo",
-                          **llm_config)
+                          **llm_config_temp)
     elif llm_type == 'text-davinci-003':
         return OpenAI(model_name="text-davinci-003",
-                      **llm_config)
+                      **llm_config_temp)
     elif llm_type == 'gpt-3.5-turbo-16k-0613':
         return ChatOpenAI(model_name="gpt-3.5-turbo-16k-0613",
-                      **llm_config)        
+                      **llm_config_temp)        
     else:
         #return OpenAI(**llm_config)
         raise NotImplementedError("LLM type {} not implemented".format(llm_type))

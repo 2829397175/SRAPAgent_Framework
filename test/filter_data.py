@@ -99,14 +99,16 @@ def distribution_batch(run_turns,cur_num):
     house_ids = []
     for c_name in house_json.keys():
         house_ids.extend(list(house_json[c_name].keys()))
-
+    random.shuffle(house_ids)
     
     def avg_groups(data, num_groups):
         n_per_group = len(data) // num_groups
         end_p = n_per_group*num_groups
         if end_p == len(data):
             end_p = -1
-        groups = np.array(data[:end_p]).reshape(num_groups,n_per_group)
+            groups = np.array(data).reshape(num_groups,n_per_group)
+        else:
+            groups = np.array(data[:end_p]).reshape(num_groups,n_per_group)
         groups = groups.tolist()
         if (end_p != -1):
             groups.append(data[end_p:])
@@ -157,5 +159,5 @@ def distribution_batch_tenant(run_turns,cur_num):
 if __name__ =="__main__":
     # filter_tenant()
     # filter_house()
-    # distribution_batch(5,28)
-    distribution_batch_tenant(1,51)
+    distribution_batch(5,100)
+    # distribution_batch_tenant(1,70)

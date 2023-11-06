@@ -98,17 +98,17 @@ class App:
         button_frame = tk.Frame(self.window)
         button_frame.grid(row=row_counter, column=0, pady=10)
         
-        self.approve_button = tk.Button(button_frame, text="Human Response", command=self.approve)
-        self.approve_button.pack(side=tk.LEFT, padx=10)
+        # self.approve_button = tk.Button(button_frame, text="Human Response", command=self.approve)
+        # self.approve_button.pack(side=tk.LEFT, padx=10)
         
-        self.reject_button = tk.Button(button_frame, text="Robot Response", command=self.reject)
-        self.reject_button.pack(side=tk.LEFT, padx=10)
+        # self.reject_button = tk.Button(button_frame, text="Robot Response", command=self.reject)
+        # self.reject_button.pack(side=tk.LEFT, padx=10)
         
         self.back_button = tk.Button(button_frame, text="Back", command=self.back)
         self.back_button.pack(side=tk.LEFT, padx=10)
         
-        # self.save_button = tk.Button(button_frame, text="Save Response", command=self.save_response)
-        # self.save_button.pack(side=tk.LEFT, padx=10)
+        self.save_button = tk.Button(button_frame, text="Save Response", command=self.save_response)
+        self.save_button.pack(side=tk.LEFT, padx=10)
 
         # Configure grid to expand cells dynamically
         for i in range(row_counter):
@@ -228,10 +228,8 @@ class App:
             if data.get("testflag",None)!=None and data.get("turingflag",None)!=None:
                 finished_QA_result.append(data)
             elif data.get("testflag",None)!=None:
-                del data["testflag"]
                 unfinished_QA_result.append(data)
             elif data.get("turingflag",None)!=None:
-                del data["turingflag"]
                 unfinished_QA_result.append(data)
             else:
                 unfinished_QA_result.append(data)

@@ -44,7 +44,6 @@ from langchain.schema import AgentAction,AgentFinish
 from langchain.callbacks.manager import (
     Callbacks,
 )
-from LLM_PublicHouseAllocation.tenant.langchain_tenant.utils import load_memory
 
 from LLM_PublicHouseAllocation.tenant.langchain_tenant.Langchain_agent_executor import House_AgentExecutor
 import re
@@ -344,6 +343,7 @@ class LangchainTenant(langchainAgent):
             tools = tools,
             verbose = True,
             return_intermediate_steps=True,
+            handle_parsing_errors=True
         )
 
         response = None
@@ -406,7 +406,7 @@ class LangchainTenant(langchainAgent):
         id:str,
         name:str,
         infos: dict,
-        memory_config: dict,
+        memory:ActionHistoryMemory,
         llm: BaseLanguageModel,
         prompt: PromptTemplate,
         rule: dict,
@@ -427,7 +427,7 @@ class LangchainTenant(langchainAgent):
             prompt=prompt,
         )
         
-        memory = load_memory(memory_config = memory_config)
+        # memory = load_memory(memory_config = memory_config)
         return cls(
             #llm_chain = llm_chain,
             output_parser = output_parser,
@@ -618,16 +618,30 @@ You still have {chance_num} chances to choose house.\
                rule,
                tool):
         
-        actions = {
-            "Choose":"Conduct the house choosing process",
-            "Giveup":"do nothing"
-            }
-        return await self.action_plan(actions=actions,
-                         forum_manager=forum_manager,
-                         system=system,
-                         rule=rule,
-                         tool=tool) 
+        # actions = {
+        #     "Choose":"Conduct the house choosing process",
+        #     "Giveup":"do nothing"
+        #     }
+        # return await self.action_plan(actions=actions,
+        #                  forum_manager=forum_manager,
+        #                  system=system,
+        #                  rule=rule,
+        #                  tool=tool) 
         # 进行1轮，先是否进行选房流程的判断，若否则直接返回
+        
+        
+        """做实验,省略异步choose"""
+        choose_state,choose_house_id = await self.policy.choose_pipeline(
+                    tenant= self,
+                    forum_manager=forum_manager,
+                    system=system,
+                    rule=rule,
+                    tool=tool,
+                    log_round=self.log_round_tenant
+                    )
+            
+        forum_manager.save_data()
+        return choose_state
         
   
     async def communicate(self,system,round_index = 0):
@@ -1001,14 +1015,13 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
         prompt_inputs={
                 'task':'You need to choose one type of communities.',
                 'thought_type':'Your views on these communities.',
-                'choose_type':choose_type,
-                'house_info':community_description,
+                'choose_type': choose_type,
+                'house_info': community_description,
                 'memory': memory,
                 'role_description':self.get_role_description()        
                 }
         for _ in range(self.max_jug_time):
             prompt_inputs["memory"] = memory + "\n" + "".join(tip)
-            
             
             response = await self.astep(prompt_inputs)
             response = response.get("return_values")

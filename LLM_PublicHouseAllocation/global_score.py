@@ -21,8 +21,8 @@ class Global_Score(BaseModel):
     
     def __init__(self,**kargs) -> None:
         super().__init__(**kargs)
-        self.rate()
-        self.save()
+        # self.rate()
+        # self.save()
 
     
     @classmethod
@@ -36,7 +36,9 @@ class Global_Score(BaseModel):
         import os
         if os.path.exists(save_dir):
             with open(save_dir,'r',encoding = 'utf-8') as f:
-                result=json.load(f)
+                result = json.load(f)
+        else:
+            result = {}
         return cls(
             tenant_manager=tenant_manager,
             system=system,
@@ -130,18 +132,22 @@ Please rate based on the information and properties of the house. Score the hous
                 example_template = """
 Here's one example:
 
-Score: {score}
-Reason: {reason}
+score: {score}
+reason: {reason}
 
 End of example                
 """
-                
-                example = random.sample(list(self.result.values()),1)[0] # 随机采样一个样本
+                try:
+                    example = random.sample(list(self.result.values()),1)[0] # 随机采样一个样本
+                    example = random.sample(list(example.values()),1)[0] # 随机采样一个样本
+                    example_str = example_template.format_map(example)
+                except:
+                    example_str =""
                 
                 input={
                     "role_description":tenant.get_role_description(),
                     "house_info":self.system.get_score_house_description(house_id,tenant),
-                    "example":example_template.format_map(example)
+                    "example":example_str
                 }
                 if self.result[tenant_id].get(house_id,{}).get("score",0) ==0:
                     rated = False

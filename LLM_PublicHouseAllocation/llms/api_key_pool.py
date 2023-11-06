@@ -25,7 +25,10 @@ class APIKeyPool(BaseModel):
         
         # 有必要做临界资源处理吗?实际上同时用一个api是被允许的行为.
     
-    def get_llm(self,tenant):
+    def get_llm(self,
+                tenant=None,
+                self_llm_configs = {},
+                memory_llm_configs = {}):
         """_summary_
 
         Args:
@@ -54,9 +57,13 @@ class APIKeyPool(BaseModel):
             
         key = self.available_keys.pop()
         self.in_use_keys.add(key)
-        memory_configs = tenant.llm_config["memory"]
-        self_llm_configs = tenant.llm_config["memory"] 
-        return self.llm(key,**memory_configs),self.llm(key,**self_llm_configs) # memory + self
+        
+        if tenant is not None:
+            memory_llm_configs = tenant.llm_config["memory"]
+            self_llm_configs = tenant.llm_config["self"] 
+        return self.llm(key,**memory_llm_configs),self.llm(key,**self_llm_configs) # memory + self
+    
+    
     
     def get_llm_single(self):
 
@@ -95,7 +102,7 @@ class APIKeyPool(BaseModel):
             **llm_config,
             ):
         # 这里少了config文件中的设置，需要修改，
-        # 用 load_llm 封装的方法写
+        # 用 sk-UduOWZ3yEtC9mFxy52397cB469884a288f6dC565Fd33377d 封装的方法写
         # return OpenAI(openai_api_key=api,verbose=False,temperature=0.8)
         llm_config["openai_api_key"] = api
         return load_llm(**llm_config)

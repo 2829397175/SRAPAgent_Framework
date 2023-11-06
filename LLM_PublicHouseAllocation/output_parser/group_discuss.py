@@ -57,7 +57,7 @@ class GroupDiscussParser(AgentOutputParser):
             return AgentFinish(return_values={"return_values":return_values},
                                     log=llm_output)
         except Exception as e:
-            raise OutputParseError("Output Format Error")
+            raise OutputParseError(f"Output Format Error({self.__})")
     
     
     

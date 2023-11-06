@@ -1,6 +1,4 @@
 import os
-os.environ["OPENAI_API_KEY"]= "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" 
-api_base = os.environ.get("OPENAI API_BASE""https://api.openai.com/v1")
 import json
 import platform
 import numpy as np
@@ -11,6 +9,17 @@ import json
 from pydantic import BaseModel
 import asyncio
 from tqdm import tqdm
+from langchain.chat_models import ChatOpenAI
+import http.client
+import hashlib
+import urllib
+import random
+import json
+from hashlib import md5
+import requests
+
+import re
+
 
 if platform.system()=='Windows':
     asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
@@ -27,20 +36,47 @@ class Translate(BaseModel):
     data_dir:str ="LLM_PublicHouseAllocation\LLM_decision_test\qa_translated\judge\error"
     save_dir:str = "LLM_PublicHouseAllocation\LLM_decision_test/qa_translated/judge"
     tenant_path:str = "LLM_PublicHouseAllocation\LLM_decision_test/social_network/tenant.json"
-    social_network_dir :str ="LLM_PublicHouseAllocation\LLM_decision_test\social_network\data"
+    # social_network_dir :str ="LLM_PublicHouseAllocation\LLM_decision_test\social_network\data"
+    social_network_dir :str ="LLM_PublicHouseAllocation\LLM_decision_test\social_network\data\labeled_11_3"
+
+
     
     datas:dict = {}
-    llm:OpenAI=OpenAI(model_name = "text-davinci-003",
-                      verbose = False,
-                      temperature = 0.8,
-                      openai_api_base=api_base)
+    count_sn = 0
+    # llm:OpenAI=OpenAI(model_name = "text-davinci-003",
+    #                   verbose = False,
+    #                   temperature = 0.8)
     
+    # apis_a =["sk-H3ENZsWqvSKnlb88A329FeEbCb6745D7A6E25eA71287E95d",
+    # "sk-1TSrETkbF3yOSFeo51E36d199dF04038B6900314Aa475b5e",
+    # "sk-LJQomCIuhDuqTu0EA9C634F05a0646F99f743204BeE9B2B7",
+    # "sk-fc1wKOWUqic07eWN8159EcA20f0c40299a8e2552F34d2e3a",
+    # "sk-Hsyu43W1aJROiSTH3eAe26F219E24992B47b098b00E324A2",
+    # "sk-dCzZFatXAVVSW067D1333fC17b8f4c5e95076f9bA113805c"  ]
+    apis_a=["sk-UduOWZ3yEtC9mFxy52397cB469884a288f6dC565Fd33377d",
+            "sk-amdLfnPdvaGhKQNO729a88A09aAd45C98b31D6Fb2c5a923f",
+            "sk-IBDKadyW7ri8QTRJEdA4F5C9694d40138b5f0d1e43FcE52d"]
     
+    apis_u =[]
+    
+    def get_llm(self):
+        if self.apis_a == []:
+            self.apis_a = self.apis_u
+            self.apis_u = []
+        
+        api = self.apis_a.pop()
+        self.apis_u.append(api)
+        llm = ChatOpenAI(model_name="gpt-3.5-turbo-16k-0613",
+                       verbose = False,
+                       max_tokens = 500,
+                       openai_api_key=api
+                       )  
+        return llm   
     
     def read_data(self):
         assert os.path.exists(self.data_dir),"no such file path: {}".format(self.data_dir)
         
-        files = os.listdir(self.data_dir)
+        files = os.listdir(self.data_dir)# 只对community做处理
         
         for file in files:
             file_path = os.path.join(self.data_dir,file)
@@ -51,43 +87,166 @@ class Translate(BaseModel):
                 self.datas[file_name] = json.load(f)
     
 
-    async def translate_to_chinese(self,english_text):
+    async def atranslate_to_chinese(self,
+                                   english_text,
+                                   rules = ""):
         template="""
-            Transfer the following context into Simplified Chinese:
+            Transfer the following context into Simplified Chinese {rules}:
             {english_text}
             
             Here's your translation:
         """  
-        input_variables=["english_text"]
+        
+
+        input_variables=["english_text",
+                         "rules"]
         prompt = PromptTemplate(  
             input_variables=input_variables,  
             template=template,  
         )
-        chain = LLMChain(llm=self.llm, prompt=prompt)
-        chinese_text = await chain.arun(english_text=english_text)
+        llm = self.get_llm()
+        chain = LLMChain(llm=llm, prompt=prompt)
+        chinese_text = await chain.arun(english_text=english_text,
+                                        rules = rules)
         return chinese_text.strip()
     
+    def translate_baidu(self,english_text,rules):
+        # Set your own appid/appkey.
+        appid = '20231103001868360'
+        appkey = '9gbHiX6Y1hDJ21XPmVtG'
+
+        # For list of language codes, please refer to `https://api.fanyi.baidu.com/doc/21`
+        from_lang = 'en'
+        to_lang =  'zh'
+
+        endpoint = 'http://api.fanyi.baidu.com'
+        path = '/api/trans/vip/translate'
+        url = endpoint + path
+
+        query = english_text
+        
+        # Generate salt and sign
+        def make_md5(s, encoding='utf-8'):
+            return md5(s.encode(encoding)).hexdigest()
+
+        
+        
+        salt = random.randint(32768, 65536)
+        sign = make_md5(appid + query + str(salt) + appkey)
+
+        # Build request
+        headers = {'Content-Type': 'application/x-www-form-urlencoded'}
+        payload = {'appid': appid, 'q': query, 'from': from_lang, 'to': to_lang, 'salt': salt, 'sign': sign}
+
+        # Send request
+        r = requests.post(url, params=payload, headers=headers)
+        result = r.json()
+        try:
+            chinese_text =[]
+            for trans_res in result["trans_result"]:
+                chinese_text.append(trans_res["dst"])
+            return "\n".join(chinese_text)
+        except:
+            raise Exception("Translation error")
+    
+    
+    def translate_to_chinese(self,
+                                   english_text,
+                                   rules = ""):
+        template="""
+            Transfer the following context into Simplified Chinese {rules}:
+            {english_text}
+            
+            
+        """  
+        
+
+        input_variables=["english_text",
+                         "rules"]
+        prompt = PromptTemplate(  
+            input_variables=input_variables,  
+            template=template,  
+        )
+        llm = self.get_llm()
+        chain = LLMChain(llm=llm, prompt=prompt)
+        chinese_text =  chain.run(english_text=english_text,
+                                        rules = rules)
+        return chinese_text.strip()
+    
+    # async def translate_judge(self):
+    #     pbar_size = sum([len(value) for value in self.datas.values()])
+        
+    #     pbar=tqdm(range(pbar_size), ncols=100) 
+    #     for judge_type,judge_data_list in self.datas.items():
+            
+    #         async def translate_one_type(judge_data_list):
+    #             for judge_data in judge_data_list:
+    #                 for judge_key, judge_sub_dict in judge_data.items():
+    #                     for k, v in judge_sub_dict.items():
+    #                         if not isinstance(v,str):
+    #                             continue
+                            
+    #                         if is_chinese(v):
+    #                             continue
+                            
+    #                         content = await self.translate_to_chinese(v)
+    #                         judge_sub_dict[k] = content
+    #                 pbar.update()
+                        
+    #         await asyncio.gather(*[translate_one_type(judge_data_list) for judge_type,judge_data_list \
+    #             in self.datas.items()])
     async def translate_judge(self):
+        rules_template = "(Requirement: 1. English names should not be translated 2. the index of {judge_type} shouldn't be changed, exp.({judge_type_indexs}))"
+        
+        rules_ex ={
+            "community_qa":"community_1,community_2,community_3 ……",
+            "housetype_qa":"small_house,middle_house,large_house",
+            "house_qa":"house_1",
+        }
+        
         pbar_size = sum([len(value) for value in self.datas.values()])
         
         pbar=tqdm(range(pbar_size), ncols=100) 
-        for judge_type,judge_data_list in self.datas.items():
+        # for judge_type,judge_data_list in self.datas.items():
             
-            async def translate_one_type(judge_data_list):
-                for judge_data in judge_data_list:
-                    for judge_key, judge_sub_dict in judge_data.items():
-                        for k, v in judge_sub_dict.items():
-                            if not isinstance(v,str):
-                                continue
-                            
-                            if is_chinese(v):
-                                continue
-                            
-                            content = await self.translate_to_chinese(v)
-                            judge_sub_dict[k] = content
-                    pbar.update()
+        async def translate_one_type(judge_data_list,
+                                judge_type):
+            for judge_data in judge_data_list:
+                for judge_key, judge_sub_dict in judge_data.items():
+                    for k, v in judge_sub_dict.items():
+                        if judge_type == "house_qa" or judge_type == "housetype_qa":
+                            translate_keys =[
+                            "house_info",
+                            # "memory",
+                            "role_description",
+                            "output",
+                            "thought"
+                        ]
+                        elif judge_type == "community_qa":
+                            translate_keys =[
+                            "house_info",
+                            "memory",
+                            "role_description",
+                            "output",
+                            "thought"
+                        ]
+                        if not isinstance(v,str):
+                            continue
                         
-            await asyncio.gather(*[translate_one_type(judge_data_list) for judge_type,judge_data_list \
+                        if is_chinese(v):
+                            continue
+                        if k not in translate_keys:
+                            continue
+                        
+                        if not is_chinese(v):
+                            rules = rules_template.format(judge_type = judge_type,
+                                                            judge_type_indexs = rules_ex.get(judge_type,""))
+                            content = await self.atranslate_to_chinese(v,rules=rules)
+                            #content = self.translate_baidu(v,rules=rules)
+                            judge_sub_dict[k] = content
+                pbar.update()
+                        
+        await asyncio.gather(*[translate_one_type(judge_data_list,judge_type) for judge_type,judge_data_list \
                 in self.datas.items()])
 
                     
@@ -114,19 +273,81 @@ class Translate(BaseModel):
         
         self.read_data()
         
-        try:
-            asyncio.run(self.translate_judge())            
-            self.save_data()
-        except Exception as e:
-            self.save_data(True)
-            print(e)
+        done = False
+        
+        while (not done):
+            try:
+                asyncio.run(self.translate_judge())  
+                # self.translate_judge()          
+                self.save_data()
+                done = True
+            except Exception as e:
+                self.save_data(True)
+                print(e)
+                
+    
         
         
     def run_tranlsate_tenant(self):
         
-        asyncio.run(self.translate_sn_tenant_information())
+        # asyncio.run(self.translate_sn_tenant_information())
+        self.translate_sn_tenant_information()
+        
     
-    async def translate_sn_tenant_information(self):
+    # async def translate_sn_tenant_information(self):
+    #     rules = "(Requirement: English names should not be translated)"
+    #     assert os.path.exists(self.tenant_path),"no such file path: {}".format(self.tenant_path)
+    #     with open(self.tenant_path,'r',encoding = 'utf-8') as f:
+    #         tenant_data = json.load(f)
+            
+    #     pbar_size = len(tenant_data.values())
+        
+    #     pbar = tqdm(range(pbar_size), ncols=100) 
+        
+    #     async def translate_one_tenant(tenant_infos):
+    #         if "concise_role_description" not in tenant_infos:
+    #             role_description_template="""\
+    #             You are {name}. You earn {monthly_income} per month.\
+    #             Your family members include: {family_members}."""
+    #             concise_role_description = role_description_template.format_map({"name":tenant_infos["name"],
+    #                                         **tenant_infos}
+    #                                     )
+    #             if tenant_infos.get("personal_preference",False):
+    #                     concise_role_description += "Up to now, your personal preference for house is :{}".format(
+    #                         tenant_infos.get("personal_preference")
+    #                     )
+                        
+    #             if not is_chinese(concise_role_description):
+                    
+    #                 concise_role_description = await self.translate_to_chinese(concise_role_description,
+    #                                                                            rules=rules)
+    #             tenant_infos['concise_role_description']=concise_role_description    
+    #         if "social_network_str" not in tenant_infos:
+    #             social_network = ["{name}: {relation}".format(
+    #             name = neigh_tenant_info.get("name",neigh_tenant_id),
+    #             relation = neigh_tenant_info.get("relation","friend")
+    #             )
+    #                 for neigh_tenant_id,neigh_tenant_info
+    #                 in tenant_infos.get("social_network",{}).items()] 
+    
+    #             social_network_str = "\n".join(social_network)
+    #             if not is_chinese(social_network_str):
+    #                 social_network_str = await self.translate_to_chinese(social_network_str,
+    #                                                                      rules=rules)
+    #             tenant_infos['social_network_str']=social_network_str
+    #         pbar.update()
+    #     try:
+    #         await asyncio.gather(*[translate_one_tenant(tenant_infos) for tenant_id,tenant_infos in tenant_data.items()])
+    #         with open(self.tenant_path,"w", encoding='utf-8') as file:
+    #             json.dump(tenant_data, file, indent=4,separators=(',', ':'),ensure_ascii=False)
+    #     except Exception as e:
+    #         with open(self.tenant_path,"w", encoding='utf-8') as file:
+    #             json.dump(tenant_data, file, indent=4,separators=(',', ':'),ensure_ascii=False)
+    #         print(e)
+
+
+    def translate_sn_tenant_information(self):
+        rules = "(Requirement: English names should not be translated)"
         assert os.path.exists(self.tenant_path),"no such file path: {}".format(self.tenant_path)
         with open(self.tenant_path,'r',encoding = 'utf-8') as f:
             tenant_data = json.load(f)
@@ -135,7 +356,7 @@ class Translate(BaseModel):
         
         pbar = tqdm(range(pbar_size), ncols=100) 
         
-        async def translate_one_tenant(tenant_infos):
+        def translate_one_tenant(tenant_infos):
             if "concise_role_description" not in tenant_infos:
                 role_description_template="""\
                 You are {name}. You earn {monthly_income} per month.\
@@ -150,8 +371,10 @@ class Translate(BaseModel):
                         
                 if not is_chinese(concise_role_description):
                     
-                    concise_role_description = await self.translate_to_chinese(concise_role_description)
+                    concise_role_description = self.translate_to_chinese(concise_role_description,
+                                                                               rules=rules)
                 tenant_infos['concise_role_description']=concise_role_description    
+
             if "social_network_str" not in tenant_infos:
                 social_network = ["{name}: {relation}".format(
                 name = neigh_tenant_info.get("name",neigh_tenant_id),
@@ -162,11 +385,14 @@ class Translate(BaseModel):
     
                 social_network_str = "\n".join(social_network)
                 if not is_chinese(social_network_str):
-                    social_network_str = await self.translate_to_chinese(social_network_str)
+                    social_network_str = self.translate_to_chinese(social_network_str,
+                                                                         rules=rules)
                 tenant_infos['social_network_str']=social_network_str
             pbar.update()
         try:
-            await asyncio.gather(*[translate_one_tenant(tenant_infos) for tenant_id,tenant_infos in tenant_data.items()])
+            # await asyncio.gather(*[translate_one_tenant(tenant_infos) for tenant_id,tenant_infos in tenant_data.items()])
+            
+            [translate_one_tenant(tenant_infos) for tenant_id,tenant_infos in tenant_data.items()]
             with open(self.tenant_path,"w", encoding='utf-8') as file:
                 json.dump(tenant_data, file, indent=4,separators=(',', ':'),ensure_ascii=False)
         except Exception as e:
@@ -174,36 +400,55 @@ class Translate(BaseModel):
                 json.dump(tenant_data, file, indent=4,separators=(',', ':'),ensure_ascii=False)
             print(e)
   
+  
+    def save_tenenatal_json(self,tenantal_system,save_path):
+        with open(save_path,"w", encoding='utf-8') as file:
+            json.dump(tenantal_system, file, indent=4,separators=(',', ':'),ensure_ascii=False)
+        
+        
     def run_social_network(self):
-        asyncio.run(self.translate_social_network_context())
+        
+        # done = False
+        # while (not done):
+            done = asyncio.run(self.translate_social_network_context())
                         
     async def translate_social_network_context(self):
         social_network_datas = {}
         assert os.path.exists(self.social_network_dir)
-        files = os.listdir(self.social_network_dir)
+        files = os.listdir(self.social_network_dir) # 翻译一个试试
         for file in files:
             file_path = os.path.join(self.social_network_dir,file)
             
-            file_name = os.path.basename(file_path).split(".")[0]
+            file_name = os.path.basename(file_path)
             
             with open(file_path,'r',encoding = 'utf-8') as f:
                 social_network_datas[file_name] = json.load(f)
                 
         pbar_size = len(social_network_datas)
         pbar = tqdm(range(pbar_size), ncols=100) 
+        rules = "(Requirement: English names should not be translated)"
             
-        async def translate_one_experiment(tenantal_system:dict):
+        async def translate_one_experiment(tenantal_system:dict,
+                                           tenantal_name:str
+                                           ):
             keys = list(tenantal_system.keys())
             remove_keys = ["group"]
             for remove_key in remove_keys:
                 if remove_key in keys:
                     keys.remove(remove_key)
-            
-            for key in keys:
-                if tenantal_system[key] =={}:
-                    continue
-                try:
-                    sn_mem = tenantal_system[key]["log_social_network"]["social_network_mem"]
+                    
+            pbar_2 = tqdm(range(len(keys)),desc=f"translating [{tenantal_name}]") 
+            try:
+                for key in keys:
+                    if tenantal_system[key] =={}:
+                        pbar_2.update()
+                        continue
+                    
+                    try:
+                        sn_mem = tenantal_system[key]["log_social_network"]["social_network_mem"]
+                    except:
+                        pbar_2.update()
+                        continue
                     for tenant_id,tenant_sn in sn_mem.items():
                         for ac_id,ac_infos in tenant_sn.get("social_network",{}).items():
                             
@@ -212,47 +457,73 @@ class Translate(BaseModel):
                                 if (list(dialogue.get("sender",{}).keys())[0] == tenant_id):
                                     """transfer context"""
                                     context_transfered = []
-                                    for context_one in dialogue.get("context",[]):
-                                        if not is_chinese(context_one):
-                                            context_one = await self.translate_to_chinese(context_one)
-                                        context_transfered.append(context_one)
+                                    self.count_sn += 1
+                                    # for context_one in dialogue.get("context",[]):
+                                        # if not is_chinese(context_one):
+                                            # context_one = await self.atranslate_to_chinese(context_one,rules=rules)
+                                            
+                                        # context_transfered.append(context_one)
                                     dialogue["context"] = context_transfered
                                     
                                     content = dialogue.get("content",{})
+                                    
                                     for k,v in content.items():
-                                        if isinstance(v,str):
-                                            if not is_chinese(v):
-                                                v = await self.translate_to_chinese(v)
+                                        if k == "plan":
+                                            # if not is_chinese(v):
+                                                # v = await self.atranslate_to_chinese(v,rules=rules)
+                                                
+                                        
+                                        # if k in ["output",
+                                        #         "acquaintance_names"]:
+                                        #     continue
+                                        
+                                        # if isinstance(v,str):
+                                        #     if v.strip() == "":
+                                        #         continue
+                                        #     if not is_chinese(v):
+                                        #         v = await self.translate_to_chinese(v)
                                             content[k] = v
                                             
                                     dialogue["content"] = content
-                                
-                except Exception as e:
-                    print(e)
-                
-            pbar.update()
-        
-        
-        try:
-            await asyncio.gather(*[translate_one_experiment(tenantal_json) for tenantal_json in social_network_datas.values()])
-            for tenantal_name, tenantal_json in social_network_datas.items():
-                save_path = os.path.join(self.social_network_dir,tenantal_name+".json")
-                with open(save_path,"w", encoding='utf-8') as file:
-                    json.dump(tenantal_json, file, indent=4,separators=(',', ':'),ensure_ascii=False)
-
-        except Exception as e:
-            for tenantal_name, tenantal_json in social_network_datas.items():
-                save_path = os.path.join(self.social_network_dir,tenantal_name+".json")
-                with open(save_path,"w", encoding='utf-8') as file:
-                    json.dump(tenantal_json, file, indent=4,separators=(',', ':'),ensure_ascii=False)
-            
-            print(e)
+                                    
                     
+                        
+                    pbar_2.update()
+                    save_path = os.path.join(self.social_network_dir,tenantal_name)
+                    self.save_tenenatal_json(tenantal_system=tenantal_system,
+                                        save_path=save_path)
+                    
+                pbar.update()
+                
+                save_path = os.path.join(self.social_network_dir,tenantal_name)
+                self.save_tenenatal_json(tenantal_system=tenantal_system,
+                                        save_path=save_path)
+                return True
+                
+            except Exception as e:
+                print(e)
+                save_path = os.path.join(self.social_network_dir,tenantal_name)
+                self.save_tenenatal_json(tenantal_system=tenantal_system,
+                        save_path=save_path)
+                # with open(save_path,"w", encoding='utf-8') as file:
+                #     json.dump(tenantal_system, file, indent=4,separators=(',', ':'),ensure_ascii=False)
+                    
+                return False
+
+        
+        
+        return_states = await asyncio.gather(*[translate_one_experiment(tenantal_json,json_name) for json_name,tenantal_json in social_network_datas.items()])
+        for return_state in return_states:
+            if not return_state: return False
+        return True
+
+    
     
 
 if __name__ == "__main__":
     translator = Translate()
-    translator.run_social_network()
-    # translator.run_judge()
+    # translator.run_social_network()
+    # print(translator.count_sn)
+    translator.run_judge()
     # translator.run_tranlsate_tenant()
     

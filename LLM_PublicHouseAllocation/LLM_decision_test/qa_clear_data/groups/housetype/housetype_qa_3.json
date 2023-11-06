@@ -1,111 +1,111 @@
 [
     {
         "prompt_inputs":{
-            "task":"你需要选择一种房屋类型。",
-            "thought_type":"您对这些房屋类型的看法是什么?",
-            "choose_type":"我的选择是（房型，应该是[大型房屋]之一）。",
-            "house_info":"有1种房屋类型可供选择。以下是这些房型的信息：\n大型房屋：\n此类房屋的租金约为2634-2737，面积约为58.54-60.83。此类房屋还剩下2间。",
-            "memory":"你考虑了两个不同的社区，但发现社区1的设施很不方便。然而，社区2离你妻子的工作地点和孩子的学校很近，因此成为你家庭的理想之选。经过考虑之后，你决定选择社区2。你相信论坛上的信息：房子有三个卧室和两个浴室，位于一个安静的社区，交通便利。要谨记：你和你的",
-            "role_description":"Carter，38岁，每月收入6000元，已婚，有两个孩子，都在小学上学，从事酒店服务员工作，公司位于北京朝阳区三里屯太古里。Carter希望有个近有小孩玩耍的操场的房子，希望租金不超过1200元，仍有两个选择。"
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
+            "house_info":"有2种房型可供选择。这些房型的信息如下所示：\nlarge_house:\n这种类型的房子租金约为2240-2320，面积约为56.14-58.33。此类型房屋还剩下3套。\n\nmiddle_house:\n这种类型的房子租金约为1800-1885，面积约为44.96-47.13。此类型房屋还剩下2套。",
+            "memory":"",
+            "role_description":"你是Sophia Smith。你每月赚7000。你的家庭成员包括：一个丈夫和一个新生婴儿。你今年32岁。你的工作是餐厅服务员。你的公司位于北京朝阳区国贸大厦附近的餐厅。Sophia的家庭需要一个位于安全且适合孩子的社区，并附近有一个好的托儿所。你希望租一个价格为1400.0的房子。你还有2次选择房子的机会。"
         },
         "response":{}
     },
     {
         "prompt_inputs":{
-            "task":"你需要选择一种房屋类型。",
-            "thought_type":"你对这些房屋类型的看法。",
-            "choose_type":"我的选择是小型房屋。",
-            "house_info":"这里有1种房型可供选择，以下是关于这种房型的信息：\n小房型：\n此类房型的租金在952-1517之间，面积大概是27.76-44.62。此类房型还剩下4间。",
-            "memory":"你考虑了两个社区，community_1和community_2，供你的家人搬迁。community_1的设施不太方便，你不确定该选择哪一个。考虑到community_2离你妻子的工作地点和孩子的学校很近的事实，你决定这是你家人的理想选择，并且选择了它而不是community_1。你在论坛上信任这些信息：这房子位于安静的社区，可以方便地乘坐公",
-            "role_description":"你是克拉拉，每月收入5000。家庭成员：单身，没有孩子。你今年27岁，职业是老师，公司位于北京市昌平区慧龙观。克拉拉需要一个安静的环境来专注工作，你希望租一套房子1000.0，仍然有一次机会选择房子。"
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [middle_house,small_house])",
+            "house_info":"有2种房屋类型可供选择。这些房屋类型的信息如下所示：\nmiddle_house:\n            这种类型的房屋租金大约为1210，面积约为48.35-49.06。目前还剩下2栋这种类型的房子。\n\nsmall_house:\n            这种类型的房屋租金大约为1106，面积约为44.24-44.51。目前还剩下2栋这种类型的房子。",
+            "memory":"",
+            "role_description":"你是Aria。你每月赚8000元。你的家庭成员包括：单身，没有孩子。你今年29岁。你的工作是自由职业者。你的公司位于北京市东城区南锣鼓巷。Aria想要一间有屋顶露台的房子，以满足她的园艺爱好。你打算租一间房子，租金为1600.0元。你还有1次机会选择房子。"
         },
         "response":{}
     },
     {
         "prompt_inputs":{
-            "task":"你需要选择一种房屋。",
-            "thought_type":"你对这些房屋类型的看法是什么？",
-            "choose_type":"我的选择是小型房屋。",
-            "house_info":"有1种房型可供选择。这些房型的信息如下：\n小房：\n        该类型的房租约为1926.9，面积约为42.82。剩余2套这类房子。",
-            "memory":"决定在两个社区（community_1和community_2）之间做出选择是一个艰难的决定。community_1的设施不太方便，而community_2离你妻子的工作地点和孩子的学校都很近。最终，你选择了community_2作为家庭的最佳选择。你相信论坛上发布的信息：房子的整体状况良好，没有害虫等问题。但你怀疑一些竞争对手声称该房屋",
-            "role_description":"Madelyn，29岁，月收入8000元，家庭成员为单身，无子女，工作身份为自由职业者，公司位于北京市朝阳区三里屯。Madelyn 希望有宽敞的起居室以便用来练习瑜伽，希望租一套房子1600元，还有两个选择。"
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"有3种房屋类型可供选择。这些房屋类型的信息如下所示：\nlarge_house:此类型的房屋可以容纳三个以上的人。\n\nmiddle_house:此类型的房屋适合两人家庭，并且还可以容纳一个年幼的孩子。\n\nsmall_house:此类型的房屋适合一个人独居。",
+            "memory":"",
+            "role_description":"你是Audrey。你每个月赚9000。你的家庭成员包括：单身，没有孩子。你今年29岁。你的工作是平面设计师。你的公司位于北京市海淀区知春路。Audrey需要一个附近有艺术工作室或创意社区的房子来进行设计工作。你期望租一套房子，租金为1600.0。你还有2次选择房子的机会。"
         },
         "response":{}
     },
     {
         "prompt_inputs":{
-            "task":"你需要选择一种房屋类型。",
-            "thought_type":"您对这些房屋类型的看法。",
-            "choose_type":"我的选择是（房屋类型，应该是[小型住宅]之一）",
-            "house_info":"现可租赁1种住房类型，以下是该住房类型的信息：\nsmall_house：\n            该类型的房租约为1106，面积约为44.24-44.51。剩余1套此类型住房。",
-            "memory":"你正在考虑两个社区，社区1和社区2。社区1的设施不便，让你犹豫不决，但社区2距离你妻子的工作地点和孩子的学校都更近。因此，你决定为你和你的家人选择社区2。你相信论坛上的这些信息：这所房子位于一个安静安全的社区；它是一栋有足够空间的两层楼房；它有一",
-            "role_description":"Aubrey，你每个月收入5000元。你的家庭成员为单身，无子女，今年29岁。你的工作是酒店接待员，公司位于北京市东城区王府井大街。Aubrey希望租的房子可以方便出行，你预计租金为1000元，你还有两个选择房子的机会。"
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"有3种房屋类型可供选择。这些房屋类型的信息如下所示：\nlarge_house: 这种房屋类型可容纳三人以上。\n\nmiddle_house: 这种房屋类型适合两人家庭，并且还可以容纳一个年幼的孩子。\n\nsmall_house: 这种房屋类型适合一个人独居。",
+            "memory":"",
+            "role_description":"你是Zoey。你每个月赚8000。你的家庭成员包括：已婚但没有孩子。你今年36岁。你的工作是教师。你的公司位于北京市海淀区中关村街道。Zoey想要一所附近有图书馆或书店的房子以满足她的阅读习惯。你希望租一套1500.0的房子。你还有2次选择房子的机会。"
         },
         "response":{}
     },
     {
         "prompt_inputs":{
-            "task":"你需要选择一种房子。",
-            "thought_type":"您对这些房屋类型的看法是什么？",
-            "choose_type":"我的选择是（房屋类型，应该是[大型房屋]之一）",
-            "house_info":"这里有1种房型可供选择。关于这些房型的信息如下：\n大房型：\n这种房型的租金约为2634-2737，其面积约为58.54-60.83，剩余1套。",
-            "memory":"您正在考虑住在两个不同的社区中，但不确定哪一个最适合您的家庭。社区1的设施不方便，因此您决定考虑社区2，它离您妻子的工作地点和孩子的学校更近。经过权衡利弊，您最终决定社区2是您家庭的最佳选择，决定搬到那里。您信任论坛上的这些信息：房屋的房东据",
-            "role_description":"你是欧罗拉，每月收入11000。你的家庭成员包括：已婚，有一个孩子。你36岁，你的工作是银行职员，你的公司位于中国银行大厦，建国门内大街1号，朝阳区，北京。欧罗拉需要一个附近有健身房的房子来维持她的健身习惯。你希望租一套房子2200.0。你现在还有两次机会选择房"
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
+            "house_info":"有两种房屋类型可供选择。这些房屋类型的信息如下所示：\nlarge_house:\n该类型房屋的租金约为2240-2320，面积约为56.14-58.33。还有3套这种类型的房屋可供选择。\n\nmiddle_house:\n该类型房屋的租金约为1800-1885，面积约为44.96-47.13。还有2套这种类型的房屋可供选择。",
+            "memory":"",
+            "role_description":"您是Sophia Smith。您每月收入7000元。您的家庭成员包括：一个丈夫和一个刚出生的宝宝。您今年32岁。您的职业是餐厅服务员。您的公司位于北京朝阳区国贸大厦附近的餐厅。Sophia的家庭需要一套位于安全和适合儿童居住的社区，附近还要有一个好的托儿所。您期望租一套价格为1400.0的房子。您还有2次选择房子的机会。"
         },
         "response":{}
     },
     {
         "prompt_inputs":{
-            "task":"你需要选择一种房屋类型。",
-            "thought_type":"您对这些房屋类型的看法是什么？",
-            "choose_type":"我的选择是（房型，应该是[middle_house]中的一种）",
-            "house_info":"有1种房型可供选择，其信息如下：\n中房：\n         这种房型的租金约为1210，面积约为48.35-49.06。还剩2间此类房屋。",
-            "memory":"考虑到社区1的便利设施后，你决定定居在社区2，因为它更靠近妻子的工作地点和孩子的学校。这一决定是为了确保家庭成员更接近，更方便地得到伺候。最终，你决定社区2是你家庭最佳的选择。你相信论坛上的这些信息：房子位于一个便利的位置，可以方便地乘坐公共交",
-            "role_description":"Lydia，每月收入12000元。家庭成员为：已婚，有一个孩子，32岁，职业是程序员，公司位于北京朝阳区酒仙桥路10号。Lydia希望附近有公园，让孩子可以玩耍，准备租下2400.0的房子，还有2次选择的机会。"
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
+            "house_info":"有2种房屋类型可供选择。这些房屋类型的信息如下：\nlarge_house:\n这种类型的房屋租金约为2240-2320，面积约为56.14-58.33。目前还有1个此类房屋可供选择。\n\nmiddle_house:\n这种类型的房屋租金约为1800-1885，面积约为44.96-47.13。目前还有1个此类房屋可供选择。",
+            "memory":"",
+            "role_description":"你是William Brown。你每月赚15000元。你的家庭成员包括：一位妻子和一个在小学上学的孩子。你今年38岁。你的工作是国有企业的职员。你的公司位于北京市朝阳区朝阳北路9号。William的家人喜欢离工作和学校近的公寓。你希望租一套房子的价格是2500元。你还有2次机会来选择房子。"
         },
         "response":{}
     },
     {
         "prompt_inputs":{
-            "task":"您需要选择一种房屋。",
-            "thought_type":"您对这些房屋类型有何看法？",
-            "choose_type":"我的选择是(中型房屋)。",
-            "house_info":"有1种房型可供选择。这些房型的信息如下：\nmiddle_house：\n            此类型的房租大约在1800-1885之间，面积为44.96-47.13。剩余2套此类型房屋。",
-            "memory":"你考虑了两个不同的社区给你的家庭；社区1的设施不太方便，而社区2离你妻子的工作地点和孩子的学校很近。经过仔细考虑，你决定去社区2，因为它更适合你家的需求。你已经做了搬到社区2的选择。你相信论坛上的信息：你对  Madelyn 的描述比较怀疑，因为这是最新的信",
-            "role_description":"你是迭戈。你每月收入7000元。你的家庭成员包括：已婚，无子女。你56岁。你的工作是餐馆厨师。你的公司位于北京丰台区南苑路。迭戈更喜欢有后院的房子，可以自己种蔬菜。你预期租一个房子1400.0。你还有两次选择房子的机会。"
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
+            "house_info":"有2种房屋类型可供选择。这些房屋类型的信息如下所示：\nlarge_house: 这种类型的房屋可以容纳三个以上的人。\n\nmiddle_house: 这种类型的房屋适合两口之家，也可以容纳一个年幼的孩子。",
+            "memory":"",
+            "role_description":"你是William Brown。你每个月赚15000元。你的家庭成员包括：一位妻子和一个上小学的孩子。你今年38岁。你的工作是国有企业职员。你的公司位于北京朝阳区朝阳北路9号。William的家人希望租一套离工作和学校都近的公寓。你希望每月租金为2500元。你还有2次选择房子的机会。"
         },
         "response":{}
     },
     {
         "prompt_inputs":{
-            "task":"你需要选择一种房屋。",
-            "thought_type":"您对这些房屋类型的看法是什么？",
-            "choose_type":"我的选择是（房屋类型，应该是[小型房屋]之一）",
-            "house_info":"提供了一种房屋类型。关于这些房屋类型的信息如下：\n小型房屋：\n这种房子的租金大约在952-1517之间，面积大约是27.76-44.62。目前还剩下3栋这种房子。",
-            "memory":"你之前正在两个不同社区之间做出抉择，社区1的设施不太方便，而社区2离你妻子工作的地方和孩子上学的学校很近。最终，你决定社区2更适合你们的家庭，并最终决定搬到那里。你相信来自论坛的信息：房子布局良好，维护得当，位置方便，价格合理。其他竞争者可能会试",
-            "role_description":"Madelyn，您每个月收入8000元。家庭成员是：单身，没有孩子。您今年29岁，职业是自由职业者。公司位于北京朝阳区三里屯。Madelyn喜欢有宽敞客厅的房子，她可以在那里练习瑜伽。您预期租房要1600.0，您还有两次机会选择房子。"
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"有三种房屋类型可供选择。这些房屋类型的信息如下所示：\nlarge_house:这种类型的房屋可以容纳三人以上。\n\nmiddle_house:这种类型的房屋适合两人家庭，并且还可以容纳一个年幼的孩子。\n\nsmall_house:这种类型的房屋适合一个人独居。",
+            "memory":"",
+            "role_description":"你是Lydia。你每个月赚12000元。你的家庭成员包括：已婚，有一个孩子。你今年32岁。你的工作是程序员。你的公司位于北京市朝阳区酒仙桥路10号。Lydia希望有一个附近公园的房子供孩子玩耍。你期望租一套房子的价格是2400.0元。你还有2次选择房子的机会。"
         },
         "response":{}
     },
     {
         "prompt_inputs":{
-            "task":"你需要选择一种房屋。",
-            "thought_type":"您对这些房屋类型的看法是什么？",
-            "choose_type":"我的选择是（房屋类型，应该是[小型房屋]之一）",
-            "house_info":"有1种房型可供选择，其信息如下：\n小型房屋：\n        此房型的租金约为1106，面积大约为44.24-44.51。剩余2套房源。",
-            "memory":"你正在两个社区中做出选择，即社区1和社区2。社区1的设施不方便，因此你决定关注社区2。社区2离你妻子的工作地点和孩子的学校很近，因此对你的家庭来说是最理想的选择，所以你最终选择了社区2。你相信这些论坛上的信息：这栋房子位于一个安静安全的社区，租金也是",
-            "role_description":"你是Hazel，每月收入6000元。家庭成员：单身，无子女，26岁。你的工作是老师，公司位于北京市昌平区回龙观镇。Hazel需要一个附近有公园的房子，用于户外活动。期望租房1200元，目前仍有两次选房机会。"
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
+            "house_info":"有2种房屋类型可供选择。这些房屋类型的信息如下所示：\nlarge_house:这种类型的房屋可以容纳三个以上的人。\n\nmiddle_house:这种类型的房屋适合两口之家，也可以容纳一个幼儿。",
+            "memory":"",
+            "role_description":"你是William Brown。你每月赚15000元。你的家庭成员包括：一位妻子和一个上小学的孩子。你今年38岁。你的工作是国有企业职员。你的公司位于北京市朝阳区朝阳北路9号。William的家人喜欢上班和上学都近的公寓。你希望租一间房子的价格是2500元。你还有2次选择房子的机会。"
         },
         "response":{}
     },
     {
         "prompt_inputs":{
-            "task":"你需要选择一种房屋。",
-            "thought_type":"你对这些房屋类型的看法是什么？",
-            "choose_type":"我的选择是（房屋类型，应该是[大型房屋]之一）",
-            "house_info":"有1种房屋类型可供选择。这些房屋类型的信息如下：\n大型房子：\n            这种房屋的租金大约为1830，面积大约为60.92-61.8。这种房屋还剩下2间。",
-            "memory":"决定选择一个社区是一个重要的决定，需要考虑多个因素。例如，可以考虑一个社区离家庭成员的工作地点和学校有多近。这就是为什么会选择社区2，因为它离妻子的工作地点和孩子的学校都很近，而且比社区1更好。你在论坛上得到的信息：房子有3间卧室，2间浴室，一个大",
-            "role_description":"你是莉莉，每月收入7000元。你的家庭成员包括：已婚，有两个孩子，都在小学。你今年39岁，你的工作是酒店前台。你的公司位于北京市丰台区三环中路南19号祥江大厦。莉莉的家人需要一个宠物友好的公寓，因为他们有一只小狗。你希望租一个房子1400.0元。你还有两次机会选择房子。"
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"有三种房屋类型可供选择。以下是这些房屋类型的信息：\nlarge_house:这种房屋类型可以容纳三人以上。\n\nmiddle_house:这种房屋类型适合两人家庭，也可以容纳一个年幼的孩子。\n\nsmall_house:这种房屋类型适合一个人独自居住。",
+            "memory":"",
+            "role_description":"你是Lily。你每个月赚7000元。你的家庭成员包括：已婚，有两个孩子，都在小学上学。你39岁。你的工作是酒店接待员。你的公司位于北京丰台区南三环中路19号香江广场大厦。Lily的家庭需要一套宠物友好型的公寓，因为他们有一只小狗。你希望租一套房子，价格为1400.0元。你还有2次选择房子的机会。"
         },
         "response":{}
     }

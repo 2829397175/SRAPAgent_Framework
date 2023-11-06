@@ -1,4 +1,4 @@
-('D:\\多智能体项目\\publicHousing\\LLM_PublicHouseAllocation\\LLM_decision_test\\social_network\\build\\ui\\PYZ-00.pyz',
+('d:\\多智能体项目\\publicHousing\\LLM_PublicHouseAllocation\\LLM_decision_test\\social_network\\build\\ui\\PYZ-00.pyz',
  [('_compat_pickle',
    'D:\\miniconda\\envs\\agentverse\\lib\\_compat_pickle.py',
    'PYMODULE'),

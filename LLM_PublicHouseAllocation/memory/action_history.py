@@ -305,18 +305,19 @@ class ActionHistoryMemory(BaseMemory,SummarizerMixin):
                       "floor_type")
         
         TYPE_MEM={
-            "community":["community"],
-            "house":["house"],
-            "search":["community"],# 搜索的话，需要关于小区的记忆（在search,community,social_network 中都有）
-            **{key:[key] for key in house_attrs}
+            "community":{"type_messages":["community"],"social_network":True},
+            "house":{"type_messages":["house"],"social_network":False},
+            "house_type":{"type_messages":["house_type"],"social_network":False},
+            "house_orientation":{"type_messages":["house_orientation"],"social_network":False},
+            "floor_type":{"type_messages":["floor_type"],"social_network":False},
         } # 注 forum暂时只有小区消息
         
         
         if mem_type in TYPE_MEM.keys():# 默认retrive方法
-            type_messages = TYPE_MEM.get(mem_type,[]) 
-            return await self.retrive_basic(type_messages=type_messages,
+            type_messages_config = TYPE_MEM.get(mem_type,[]) 
+            return await self.retrive_basic(**type_messages_config,
                                       name=name,
-                                      social_network=True) # social_network 控制传不传入交流信息
+                                    ) # social_network 控制传不传入交流信息
             
         elif "social_network" in mem_type:# social_network retrive方法
             return await self.retrive_all_memory(name)
@@ -370,13 +371,15 @@ class ActionHistoryMemory(BaseMemory,SummarizerMixin):
             messages_left = messages_left[:5] if len(messages_left) >5 else messages_left
             
             # 零散记忆需要summary吗?暂时没有归到summary的记忆中
-            
-            messages_str_left = await self.summary_synthesize_memory(messages_left)
+            if len(messages_left)>0:
+                # messages_str_left = await self.summary_synthesize_memory(messages_left)
+                messages_str_left = self.to_string(messages_left,add_sender_prefix=False)
+            else:messages_str_left = ""
             
             messages_summary = []
             for type_m in type_messages:
                 if (type_m in self.summarys.keys()):
-                    messages_summary.append(self.summarys.get(type_m))
+                    messages_summary.append(self.summarys.get(type_m,))
             
             memory_str_summary = self.to_string(messages=messages_summary,
                                   add_sender_prefix=False)
@@ -439,6 +442,8 @@ class ActionHistoryMemory(BaseMemory,SummarizerMixin):
             new_forum_info = self.to_string_default(self.forum["buffer"])    
             content_return += "Here's the latest information you get from forum:{forum}".format(forum=new_forum_info)
             return content_return
+        elif memory_house_info == "":
+            return ""
         
         # 这里assess 从forum中搜索search到的记忆 
         prompt_template = summary_prompt_default.get("forum_assess_summary")
@@ -451,12 +456,12 @@ class ActionHistoryMemory(BaseMemory,SummarizerMixin):
         new_forum_info = self.to_string_default(self.forum["buffer"])
         current_summary = self.forum["chat_history"]
         
-        memory_forum = "Here's your previous summary of forum information: {info}".format(info= current_summary)                
+        memory_forum = "Here' your memory:{memory}\nHere's your previous summary of forum information: {info}".format(memory = memory_house_info,info= current_summary)                
         
         prompt_inputs = {
                 "name": name,
                 "memory": memory_forum,
-                "forum_info": new_forum_info
+                "forum_info": new_forum_info,
             }
             
         
@@ -497,6 +502,9 @@ However you are suspicious of {untrusted_info} Because {reason_guess}"""
     async def reflect_memory_social_network(self,
                                       memory_house_info :str,
                                       name :str = None):
+        if memory_house_info == "":
+            return ""
+        
         NOTE ="""Keep this in mind: you and your acquaintances are in the same renting system. \
 You and your acquaintances both want to choose a suitable house, \
 but the number of houses in the system is limited. You are in a competitive relationship with each other."""

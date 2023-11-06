@@ -39,7 +39,7 @@ class ChooseParser(AgentOutputParser):
         
         
         if not match:
-            raise OutputParseError("Output Format Error")
+            raise OutputParseError("Output Format Error(choose)")
         
         # chooses = []
         # for match in matchs:
@@ -67,4 +67,4 @@ class ChooseParser(AgentOutputParser):
                             log=llm_output)
         
         # Return the action and action input
-        raise OutputParseError("Output Format Error")
+        raise OutputParseError("Output Format Error(choose)")

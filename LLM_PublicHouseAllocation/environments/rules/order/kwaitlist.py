@@ -92,7 +92,8 @@ class KWaitListOrder(BaseOrder):
                 
     def are_all_deques_empty(self,environment) -> bool:
         self.enter_waitlist(environment)
-        if all(len(queue_info["queue"])<=0 for _,queue_info in environment.deque_dict.items()):
+        if all(len(queue_info["queue"])<=0 and \
+            len(queue_info["waitlist"])<=0 for _,queue_info in environment.deque_dict.items()):
             return True
         return False
 

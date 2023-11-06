@@ -45,8 +45,6 @@ class Executor():
         save_dir = os.path.join(task_path,
                                 f"{save_dir}/{time_stamp}")
         
-        if not os.path.exists(save_dir):
-            os.makedirs(save_dir)
         
         manager_configs = task_config.pop('managers')
         for _, config in manager_configs.items():
@@ -59,11 +57,12 @@ class Executor():
         
         tenant_configs = manager_configs.pop('tenant')
 
-        
         llm_loader = APIKeyPool()
         
+        
         tenant_manager = load_manager({**tenant_configs,
-                                       "save_dir": os.path.join(save_dir,"tenant.json")
+                                       "save_dir": os.path.join(save_dir,"tenant.json"),
+                                       "llm_loader":llm_loader
                                        },'tenant')
         
         #print(tenant_manager)
@@ -111,8 +110,25 @@ class Executor():
         return cls(environment)
     
     
+
+        
+        
+    
     def load_log(self,result_dir):
         self.environment.load_log(result_dir)
+
+        while not self.environment.is_done():
+            tenant_waitlists = self.environment.rule.get_next_agent_idx(self.environment)
+            
+            """采样waitlist中的tenant交流"""
+            # tenant_ids = []
+            # for queue_name, tenant_waitlist in tenant_waitlists.items():
+            #     tenant_ids.extend(tenant_waitlist) ## 所有waitlist内的tenant进行交流
+            
+            """采样所有系统中的tenant交流"""
+            tenant_ids = list(self.environment.tenant_manager.data.keys())
+            
+            self.environment.step(tenant_waitlists)
 
     def run(self):
         """Run the environment from scratch until it is done."""
@@ -136,8 +152,8 @@ class Executor():
             """采样所有系统中的tenant交流"""
             tenant_ids = list(self.environment.tenant_manager.data.keys())
                         
-            self.environment.communication(tenant_ids,
-                                           communication_num = 10)
+            # self.environment.communication(tenant_ids,
+            #                                communication_num = 10)
            
             self.environment.step(tenant_waitlists)
             

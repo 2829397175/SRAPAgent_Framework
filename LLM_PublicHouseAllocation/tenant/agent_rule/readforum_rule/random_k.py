@@ -16,11 +16,11 @@ class Randomk_ReadForum(Base_ReadForum):
         else:
             content_sample = comments_tenant
         content_sample_str = "".join(content_sample)
-        comments.append("{tenant_name}:{content_sample}".format(
+        comments.append("{tenant_name} said :{content_sample}.".format(
         tenant_name=tenant_name,
         content_sample=content_sample_str)
         )
-        return " ".join(comments)
+        return "\n".join(comments)
     
     def get_community_comment(self,
                               comments_community,
@@ -38,7 +38,7 @@ class Randomk_ReadForum(Base_ReadForum):
             comments.append(self.get_tenant_comment(comments_tenant=comments_tenant,
                                                     tenant_name=tenant_name,
                                                     k_tenant=k_tenant))
-        return " ".join(comments)
+        return "\n".join(comments)
         
     def read_forum(self ,
                    forumdata ,
@@ -48,6 +48,9 @@ class Randomk_ReadForum(Base_ReadForum):
         if community_name not in forumdata or len(list(forumdata[community_name].values()) )==0 :
             return "There are currently no comments on this forum."
         
-        return self.get_community_comment(forumdata[community_name],
+        comments_one_cm = self.get_community_comment(forumdata[community_name],
                                           k_community=k_c,
                                           k_tenant=k_t)
+        template_one_cm ="The following are the information posted by different tenants on the forum:{comments}"
+        
+        return template_one_cm.format(comments = comments_one_cm)
