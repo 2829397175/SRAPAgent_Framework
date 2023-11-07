@@ -33,7 +33,8 @@ class Global_Score(BaseModel):
         tenant_manager:TenantManager,
         system:System,
         save_dir:str,
-        llm_pool:APIKeyPool
+        llm_pool:APIKeyPool,
+        llm_configs:dict
     ):
         import os
         if os.path.exists(save_dir):
@@ -58,11 +59,7 @@ class Global_Score(BaseModel):
 {"reason": "This house is very conveniently located, with supermarkets, restaurants, banks, and schools nearby, and the rent is within my budget. The house is modern and well-maintained, with a spacious kitchen and plenty of living area for my family. The elevator and sports facilities are also great bonuses. ",
 "score": 8}]
         
-        llm_configs={
-            "llm_type":"gpt-3.5-turbo",
-            "temperature": 0.6,
-            "max_tokens": 200
-        }
+        
         return cls(
             tenant_manager=tenant_manager,
             system=system,
@@ -145,13 +142,16 @@ Respond in json format:
     def rate(self):
         tenant_ids = list(self.tenant_manager.total_tenant_datas.keys())
         group_size = 10
-        group_id = 0
+        group_id = 4
         pbar_size = int((len(tenant_ids)-1)/group_size)+1
         pbar=tqdm(range(int(pbar_size)), ncols=100,desc=f"Rating the score of houses: group size {group_size}, groups:{pbar_size}") 
+        pbar.update(group_id)
         while(group_id*group_size<len(tenant_ids)):
             stop_id = group_size*(group_id+1)
-            stop_id = -1 if len(tenant_ids) ==stop_id else stop_id
-            asyncio.run(self.rate_score(tenant_ids[int(group_id*group_size):stop_id],group_id=group_id))            
+            if len(tenant_ids) ==stop_id:
+                asyncio.run(self.rate_score(tenant_ids[int(group_id*group_size):],group_id=group_id))            
+            else:
+                asyncio.run(self.rate_score(tenant_ids[int(group_id*group_size):stop_id],group_id=group_id))            
             group_id+=1
             pbar.update()
 
@@ -199,6 +199,9 @@ End of example
                     
                     try:
                             result = json.loads(response)
+                            if isinstance(result,list):
+                                assert len(result) ==0
+                                result = result[0]
                             if house_id in result.keys():
                                 result = result[house_id]
                             self.result[tenant_id].update({house_id:result})
@@ -246,8 +249,8 @@ End of example
                     
                         
                             # self.result[tenant_id].update({house_id:{"score": 0, "reason": ""}})
-                if (idx%10 ==0):
-                    self.save()         
+                    if (idx%10 ==0):
+                        self.save()         
             
             print(f"tenant {tenant.id} finished rating.")            
             pbar.update()

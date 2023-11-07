@@ -97,9 +97,11 @@ class Executor():
         save_evaluation_dir = os.path.join(save_evaluation_dic,
                                 f"global_score.json") 
        
-        global_score = Global_Score.initialization(tenant_manager,system,save_dir=save_evaluation_dir,llm_pool=llm_loader)
-        # global_score.rate()
-        # global_score.save()
+        global_score = Global_Score.initialization(tenant_manager,system,save_dir=save_evaluation_dir,llm_pool=llm_loader,
+                                                   llm_configs={"llm_type": "gpt-3.5-turbo-16k-0613",
+                                                                "temperature": 0.6,
+                                                                "max_tokens": 200}
+                                                   )
         
         env_config['global_score'] = global_score
         
