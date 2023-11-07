@@ -13,9 +13,10 @@ class APIKeyPool(BaseModel):
     in_use_keys: set = ()    
     
     
-    def __init__(self,llm_config={}):
+    def __init__(self,
+                 llm_data_path = "LLM_PublicHouseAllocation/llms/api.json"):
         
-        with open("LLM_PublicHouseAllocation/llms/api.json",'r',encoding = 'utf-8') as f:
+        with open(llm_data_path,'r',encoding = 'utf-8') as f:
             keys=json.load(f)
 
         super().__init__(
@@ -65,7 +66,7 @@ class APIKeyPool(BaseModel):
     
     
     
-    def get_llm_single(self):
+    def get_llm_single(self,llm_configs):
 
         if len(self.available_keys) == 0:
             self.available_keys = self.in_use_keys
@@ -73,10 +74,7 @@ class APIKeyPool(BaseModel):
             
         key = self.available_keys.pop()
         self.in_use_keys.add(key)
-        return self.llm(key,**{
-            "temperature":0.7,
-            "max_tokens": 300
-        })
+        return self.llm(key,**llm_configs)
 
     def release_llm(self, tenant=None):
         # 临界资源版本 V 操作

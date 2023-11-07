@@ -4,7 +4,7 @@ import random
 # 从tenant 数据集中，挑选部分社交子网
 
 def filter_tenant(num = 50):
-    with open("test\generate_data/tenant.json",'r',encoding = 'utf-8') as f:
+    with open("test\generate_data/tenant_70.json",'r',encoding = 'utf-8') as f:
         tenant_json = json.load(f)
         
     
@@ -54,11 +54,11 @@ def filter_house(num = 30):
     with open("test\generate_data/community.json",'r',encoding = 'utf-8') as f:
         community_json = json.load(f)
         
-    with open("test\generate_data/house.json",'r',encoding = 'utf-8') as f:
+    with open("test\generate_data/house_diverse_100.json",'r',encoding = 'utf-8') as f:
         house_json = json.load(f)
         
     
-    rate = 30/ 100
+    rate = num/ sum([len(house_list) for house_list in house_json.values()])
     
     cur_num = 0
     
@@ -157,7 +157,7 @@ def distribution_batch_tenant(run_turns,cur_num):
                
     
 if __name__ =="__main__":
-    # filter_tenant()
-    # filter_house()
-    distribution_batch(5,100)
-    # distribution_batch_tenant(1,70)
+    filter_tenant(num=5)
+    # filter_house(num=10)
+    # distribution_batch(5,100)
+    # distribution_batch_tenant(3,11)

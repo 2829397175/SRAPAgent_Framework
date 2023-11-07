@@ -73,7 +73,10 @@ def load_llm(**llm_config):
                       **llm_config_temp)
     elif llm_type == 'gpt-3.5-turbo-16k-0613':
         return ChatOpenAI(model_name="gpt-3.5-turbo-16k-0613",
-                      **llm_config_temp)        
+                      **llm_config_temp)  
+    elif llm_type =="gpt-3.5-turbo":
+         return ChatOpenAI(model_name="gpt-3.5-turbo",
+                      **llm_config_temp)  
     else:
         #return OpenAI(**llm_config)
         raise NotImplementedError("LLM type {} not implemented".format(llm_type))

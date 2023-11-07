@@ -1,0 +1,408 @@
+{
+    "69":{
+        "name":"Landon",
+        "age":33,
+        "family_members_num":3,
+        "family_members":"Married with one child, a toddler",
+        "profession":"Architect",
+        "work_place":"北京市朝阳区建国门外大街",
+        "monthly_income":15000,
+        "monthly_rent_budget":2500.0,
+        "special_request":"Landon needs a house with a nursery room for his toddler.",
+        "en_work_place":"Jianguomenwai Street, Chaoyang District, Beijing",
+        "personal_preference":"He is looking for a modern and spacious house with a home office for his architectural work.",
+        "personality":"Energetic and adventurous, always seeking new experiences",
+        "social_network":{
+            "0":{
+                "relation":"friend",
+                "name":"Sarah"
+            }
+        },
+        "priority_item":{
+            "Urban_subsistence_allowance_families":false,
+            "low_income_families":false,
+            "families_with_special_difficulties":false,
+            "families_with_severe_disabilities":false,
+            "families_with_the_elderly_over_60_years_old":false,
+            "families_with_serious_illnesses_or_major_surgeries":false,
+            "preferential_care_recipients_families":false,
+            "model_worker_families_at_or_above_the_provincial_and_ministerial_level":false,
+            "families_with_courageous_acts_of_righteousness":false,
+            "families_of_adult_orphans":false,
+            "families_of_fire_rescue_personnel":false,
+            "families_with_2_or_more_minor_children":false
+        }
+    },
+    "0":{
+        "name":"Sarah",
+        "age":35,
+        "family_members_num":2,
+        "family_members":"Married with one child",
+        "profession":"Public servant",
+        "work_place":"北京市朝阳区建国门外大街32号中环世贸中心",
+        "en_work_place":"China World Trade Center, No. 32 Jianguomenwai Avenue, Chaoyang District, Beijing",
+        "monthly_income":10000,
+        "monthly_rent_budget":2000.0,
+        "special_request":"Sarah and her family would like a house with a small garden where their child can play safely.",
+        "personal_preference":"prefers a cozy and family-friendly home with nearby parks and recreational facilities.",
+        "personality":"Intelligent and analytical, always seeking knowledge",
+        "social_network":{
+            "1":{
+                "relation":"friend",
+                "name":"Alex"
+            },
+            "2":{
+                "relation":"co-worker",
+                "name":"Lily"
+            },
+            "69":{
+                "relation":"co-worker",
+                "name":"Landon"
+            }
+        },
+        "priority_item":{
+            "Urban_subsistence_allowance_families":false,
+            "low_income_families":false,
+            "families_with_special_difficulties":false,
+            "families_with_severe_disabilities":false,
+            "families_with_the_elderly_over_60_years_old":false,
+            "families_with_serious_illnesses_or_major_surgeries":false,
+            "preferential_care_recipients_families":false,
+            "model_worker_families_at_or_above_the_provincial_and_ministerial_level":false,
+            "families_with_courageous_acts_of_righteousness":false,
+            "families_of_adult_orphans":false,
+            "families_of_fire_rescue_personnel":false,
+            "families_with_2_or_more_minor_children":false
+        }
+    },
+    "1":{
+        "name":"Alex",
+        "age":28,
+        "family_members_num":1,
+        "family_members":"Single, no children",
+        "profession":"Freelancer",
+        "work_place":"北京市西城区金融街36号中国人民银行大楼",
+        "en_work_place":"People's Bank of China Building, No. 36 Financial Street, Xicheng District, Beijing",
+        "monthly_income":6000,
+        "monthly_rent_budget":1500.0,
+        "special_request":"Alex needs a quiet and comfortable apartment with good natural lighting for a productive work-from-home environment.",
+        "personal_preference":"prefers a modern and minimalist apartment with convenient access to nearby cafes and co-working spaces.",
+        "personality":"Charismatic and adventurous, always looking for new experiences",
+        "social_network":{
+            "0":{
+                "relation":"friend",
+                "name":"Sarah"
+            },
+            "2":{
+                "relation":"partner",
+                "name":"Lily"
+            }
+        },
+        "priority_item":{
+            "Urban_subsistence_allowance_families":false,
+            "low_income_families":false,
+            "families_with_special_difficulties":false,
+            "families_with_severe_disabilities":false,
+            "families_with_the_elderly_over_60_years_old":false,
+            "families_with_serious_illnesses_or_major_surgeries":false,
+            "preferential_care_recipients_families":false,
+            "model_worker_families_at_or_above_the_provincial_and_ministerial_level":false,
+            "families_with_courageous_acts_of_righteousness":false,
+            "families_of_adult_orphans":false,
+            "families_of_fire_rescue_personnel":false,
+            "families_with_2_or_more_minor_children":false
+        }
+    },
+    "2":{
+        "name":"Lily",
+        "age":39,
+        "family_members_num":3,
+        "family_members":"Married with two children, both in elementary school",
+        "profession":"Hotel receptionist",
+        "work_place":"北京市丰台区南三环中路19号香江广场大厦",
+        "en_work_place":"Xiangjiang Plaza Building, No. 19 South 3rd Ring Middle Road, Fengtai District, Beijing",
+        "monthly_income":7000,
+        "monthly_rent_budget":1400.0,
+        "special_request":"Lily's family requires a pet-friendly apartment as they have a small dog.",
+        "personal_preference":"prefers a spacious and child-friendly apartment with nearby schools and parks.",
+        "personality":"Caring and nurturing, always putting others before herself",
+        "social_network":{
+            "0":{
+                "relation":"co-worker",
+                "name":"Sarah"
+            },
+            "1":{
+                "relation":"partner",
+                "name":"Alex"
+            }
+        },
+        "priority_item":{
+            "Urban_subsistence_allowance_families":false,
+            "low_income_families":false,
+            "families_with_special_difficulties":false,
+            "families_with_severe_disabilities":false,
+            "families_with_the_elderly_over_60_years_old":false,
+            "families_with_serious_illnesses_or_major_surgeries":false,
+            "preferential_care_recipients_families":false,
+            "model_worker_families_at_or_above_the_provincial_and_ministerial_level":false,
+            "families_with_courageous_acts_of_righteousness":false,
+            "families_of_adult_orphans":false,
+            "families_of_fire_rescue_personnel":false,
+            "families_with_2_or_more_minor_children":false
+        }
+    },
+    "68":{
+        "name":"Clara",
+        "age":27,
+        "family_members_num":1,
+        "family_members":"Single, no children",
+        "profession":"Teacher",
+        "work_place":"北京市昌平区回龙观",
+        "monthly_income":5000,
+        "monthly_rent_budget":1000.0,
+        "special_request":"Clara needs a house with a quiet environment for her to focus on her work.",
+        "en_work_place":"Huilongguan, Changping District, Beijing",
+        "personal_preference":"She prefers a house with a cozy reading corner where she can relax with a book.",
+        "personality":"Kind-hearted and empathetic",
+        "social_network":{
+            "66":{
+                "relation":"friend",
+                "name":"Vivian"
+            },
+            "65":{
+                "relation":"co-worker",
+                "name":"Madelyn"
+            }
+        },
+        "priority_item":{
+            "Urban_subsistence_allowance_families":false,
+            "low_income_families":false,
+            "families_with_special_difficulties":false,
+            "families_with_severe_disabilities":false,
+            "families_with_the_elderly_over_60_years_old":false,
+            "families_with_serious_illnesses_or_major_surgeries":false,
+            "preferential_care_recipients_families":false,
+            "model_worker_families_at_or_above_the_provincial_and_ministerial_level":false,
+            "families_with_courageous_acts_of_righteousness":false,
+            "families_of_adult_orphans":false,
+            "families_of_fire_rescue_personnel":false,
+            "families_with_2_or_more_minor_children":false
+        }
+    },
+    "66":{
+        "name":"Vivian",
+        "age":38,
+        "family_members_num":4,
+        "family_members":"Married with two children, both in elementary school",
+        "profession":"Hotel receptionist",
+        "work_place":"北京市东城区王府井大街",
+        "monthly_income":6000,
+        "monthly_rent_budget":1200.0,
+        "special_request":"Vivian needs a house with a playground nearby for her children to play.",
+        "en_work_place":"Wangfujing Street, Dongcheng District, Beijing",
+        "personal_preference":"She prefers a house with a spacious kitchen where she can enjoy cooking for her family.",
+        "personality":"Creative and artistic",
+        "social_network":{
+            "65":{
+                "relation":"co-worker",
+                "name":"Madelyn"
+            },
+            "67":{
+                "relation":"friend",
+                "name":"Diego"
+            }
+        },
+        "priority_item":{
+            "Urban_subsistence_allowance_families":false,
+            "low_income_families":false,
+            "families_with_special_difficulties":false,
+            "families_with_severe_disabilities":false,
+            "families_with_the_elderly_over_60_years_old":false,
+            "families_with_serious_illnesses_or_major_surgeries":false,
+            "preferential_care_recipients_families":false,
+            "model_worker_families_at_or_above_the_provincial_and_ministerial_level":false,
+            "families_with_courageous_acts_of_righteousness":false,
+            "families_of_adult_orphans":false,
+            "families_of_fire_rescue_personnel":false,
+            "families_with_2_or_more_minor_children":false
+        }
+    },
+    "65":{
+        "name":"Madelyn",
+        "age":29,
+        "family_members_num":1,
+        "family_members":"Single, no children",
+        "profession":"Freelancer",
+        "work_place":"北京市朝阳区三里屯",
+        "monthly_income":8000,
+        "monthly_rent_budget":1600.0,
+        "special_request":"Madelyn prefers a house with a spacious living room for her yoga practice.",
+        "en_work_place":"Sanlitun, Chaoyang District, Beijing",
+        "personal_preference":"She is looking for a modern and stylish apartment with convenient access to trendy cafes and shops.",
+        "personality":"Ambitious and determined",
+        "social_network":{
+            "66":{
+                "relation":"co-worker",
+                "name":"Vivian"
+            },
+            "67":{
+                "relation":"friend",
+                "name":"Diego"
+            }
+        },
+        "priority_item":{
+            "Urban_subsistence_allowance_families":false,
+            "low_income_families":false,
+            "families_with_special_difficulties":false,
+            "families_with_severe_disabilities":false,
+            "families_with_the_elderly_over_60_years_old":false,
+            "families_with_serious_illnesses_or_major_surgeries":false,
+            "preferential_care_recipients_families":false,
+            "model_worker_families_at_or_above_the_provincial_and_ministerial_level":false,
+            "families_with_courageous_acts_of_righteousness":false,
+            "families_of_adult_orphans":false,
+            "families_of_fire_rescue_personnel":false,
+            "families_with_2_or_more_minor_children":false
+        }
+    },
+    "67":{
+        "name":"Diego",
+        "age":56,
+        "family_members_num":2,
+        "family_members":"Married, no children",
+        "profession":"Restaurant chef",
+        "work_place":"北京市丰台区南苑路",
+        "monthly_income":7000,
+        "monthly_rent_budget":1400.0,
+        "special_request":"Diego prefers a house with a backyard where he can grow his own vegetables.",
+        "en_work_place":"Nanyuan Road, Fengtai District, Beijing",
+        "personal_preference":"He is looking for a house with a large dining area where he can entertain guests.",
+        "personality":"Easygoing and friendly",
+        "social_network":{
+            "65":{
+                "relation":"friend",
+                "name":"Madelyn"
+            },
+            "66":{
+                "relation":"co-worker",
+                "name":"Vivian"
+            }
+        },
+        "priority_item":{
+            "Urban_subsistence_allowance_families":false,
+            "low_income_families":false,
+            "families_with_special_difficulties":true,
+            "families_with_severe_disabilities":false,
+            "families_with_the_elderly_over_60_years_old":false,
+            "families_with_serious_illnesses_or_major_surgeries":false,
+            "preferential_care_recipients_families":false,
+            "model_worker_families_at_or_above_the_provincial_and_ministerial_level":false,
+            "families_with_courageous_acts_of_righteousness":false,
+            "families_of_adult_orphans":false,
+            "families_of_fire_rescue_personnel":false,
+            "families_with_2_or_more_minor_children":false
+        }
+    },
+    "64":{
+        "name":"Eric",
+        "age":45,
+        "family_members_num":3,
+        "family_members":"Married with two children, one in elementary school and one in middle school",
+        "profession":"Government employee",
+        "work_place":"北京市西城区西单北大街",
+        "monthly_income":10000,
+        "monthly_rent_budget":2000.0,
+        "special_request":"Eric needs a house with a study room for his children to do homework.",
+        "en_work_place":"Xidan North Street, Xicheng District, Beijing",
+        "personal_preference":"He prefers a house with a small garden where his family can enjoy outdoor activities.",
+        "personality":"Laid-back and easygoing",
+        "social_network":{
+            "68":{
+                "relation":"friend",
+                "name":"Clara"
+            }
+        },
+        "priority_item":{
+            "Urban_subsistence_allowance_families":false,
+            "low_income_families":false,
+            "families_with_special_difficulties":false,
+            "families_with_severe_disabilities":false,
+            "families_with_the_elderly_over_60_years_old":false,
+            "families_with_serious_illnesses_or_major_surgeries":false,
+            "preferential_care_recipients_families":false,
+            "model_worker_families_at_or_above_the_provincial_and_ministerial_level":false,
+            "families_with_courageous_acts_of_righteousness":false,
+            "families_of_adult_orphans":false,
+            "families_of_fire_rescue_personnel":false,
+            "families_with_2_or_more_minor_children":false
+        }
+    },
+    "63":{
+        "name":"Lydia",
+        "age":32,
+        "family_members_num":2,
+        "family_members":"Married with one child",
+        "profession":"Programmer",
+        "work_place":"北京市朝阳区酒仙桥路10号",
+        "monthly_income":12000,
+        "monthly_rent_budget":2400.0,
+        "special_request":"Lydia prefers a house with a nearby park for her child to play in.",
+        "en_work_place":"No. 10 Jiuxianqiao Road, Chaoyang District, Beijing",
+        "personal_preference":"She is looking for a cozy and comfortable house with good natural lighting.",
+        "personality":"Intelligent and introverted",
+        "social_network":{
+            "61":{
+                "relation":"stranger",
+                "name":"Aurora"
+            }
+        },
+        "priority_item":{
+            "Urban_subsistence_allowance_families":false,
+            "low_income_families":false,
+            "families_with_special_difficulties":false,
+            "families_with_severe_disabilities":false,
+            "families_with_the_elderly_over_60_years_old":false,
+            "families_with_serious_illnesses_or_major_surgeries":false,
+            "preferential_care_recipients_families":false,
+            "model_worker_families_at_or_above_the_provincial_and_ministerial_level":false,
+            "families_with_courageous_acts_of_righteousness":false,
+            "families_of_adult_orphans":false,
+            "families_of_fire_rescue_personnel":false,
+            "families_with_2_or_more_minor_children":false
+        }
+    },
+    "61":{
+        "name":"Aurora",
+        "age":36,
+        "family_members_num":3,
+        "family_members":"Married with one child",
+        "profession":"Bank clerk",
+        "work_place":"北京市朝阳区建国门内大街1号中国银行大厦",
+        "monthly_income":11000,
+        "monthly_rent_budget":2200.0,
+        "special_request":"Aurora needs a house with a nearby gym for her fitness routine.",
+        "en_work_place":"Bank of China Building, No. 1 Jianguomennei Street, Chaoyang District, Beijing",
+        "personal_preference":"prefers a clean and well-maintained apartment with good security measures.",
+        "personality":"Adventurous and thrill-seeking",
+        "social_network":{
+            "68":{
+                "relation":"partner",
+                "name":"Clara"
+            }
+        },
+        "priority_item":{
+            "Urban_subsistence_allowance_families":false,
+            "low_income_families":false,
+            "families_with_special_difficulties":false,
+            "families_with_severe_disabilities":false,
+            "families_with_the_elderly_over_60_years_old":false,
+            "families_with_serious_illnesses_or_major_surgeries":false,
+            "preferential_care_recipients_families":false,
+            "model_worker_families_at_or_above_the_provincial_and_ministerial_level":false,
+            "families_with_courageous_acts_of_righteousness":false,
+            "families_of_adult_orphans":false,
+            "families_of_fire_rescue_personnel":false,
+            "families_with_2_or_more_minor_children":false
+        }
+    }
+}

@@ -65,6 +65,11 @@ class ChooseParser(AgentOutputParser):
                                             {"output":action_input,
                                                 "thought":thought}},
                             log=llm_output)
+        elif action.lower()=="giveup":
+            return AgentFinish(return_values={"return_values":
+                                            {"output":"I choose none of these options.",
+                                                "thought":thought}},
+                            log=llm_output)
         
         # Return the action and action input
         raise OutputParseError("Output Format Error(choose)")

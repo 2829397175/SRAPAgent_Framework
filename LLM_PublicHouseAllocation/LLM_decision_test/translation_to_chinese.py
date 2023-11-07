@@ -20,6 +20,7 @@ import requests
 
 import re
 
+import time
 
 if platform.system()=='Windows':
     asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
@@ -33,8 +34,10 @@ def is_chinese(strs):
 
 class Translate(BaseModel):
     # data_dir:str = "LLM_PublicHouseAllocation\LLM_decision_test\qa_unclear_data"
-    data_dir:str ="LLM_PublicHouseAllocation\LLM_decision_test\qa_translated\judge\error"
-    save_dir:str = "LLM_PublicHouseAllocation\LLM_decision_test/qa_translated/judge"
+    # data_dir:str ="LLM_PublicHouseAllocation\LLM_decision_test\qa_translated\judge\error"
+    data_dir:str ="LLM_PublicHouseAllocation\LLM_decision_test\data\save"
+    # save_dir:str = "LLM_PublicHouseAllocation\LLM_decision_test/qa_translated/judge"
+    save_dir:str = "LLM_PublicHouseAllocation\LLM_decision_test\data\\translated"
     tenant_path:str = "LLM_PublicHouseAllocation\LLM_decision_test/social_network/tenant.json"
     # social_network_dir :str ="LLM_PublicHouseAllocation\LLM_decision_test\social_network\data"
     social_network_dir :str ="LLM_PublicHouseAllocation\LLM_decision_test\social_network\data\labeled_11_3"
@@ -53,9 +56,9 @@ class Translate(BaseModel):
     # "sk-fc1wKOWUqic07eWN8159EcA20f0c40299a8e2552F34d2e3a",
     # "sk-Hsyu43W1aJROiSTH3eAe26F219E24992B47b098b00E324A2",
     # "sk-dCzZFatXAVVSW067D1333fC17b8f4c5e95076f9bA113805c"  ]
-    apis_a=["sk-UduOWZ3yEtC9mFxy52397cB469884a288f6dC565Fd33377d",
-            "sk-amdLfnPdvaGhKQNO729a88A09aAd45C98b31D6Fb2c5a923f",
-            "sk-IBDKadyW7ri8QTRJEdA4F5C9694d40138b5f0d1e43FcE52d"]
+    apis_a=["sk-n96DTK9y2MV9oS6m1eBc68E6C4Ab419b95F68f91F8A4C6Fc",
+        "sk-UduOWZ3yEtC9mFxy52397cB469884a288f6dC565Fd33377d",
+        "sk-IBDKadyW7ri8QTRJEdA4F5C9694d40138b5f0d1e43FcE52d"]
     
     apis_u =[]
     
@@ -111,6 +114,21 @@ class Translate(BaseModel):
         return chinese_text.strip()
     
     def translate_baidu(self,english_text,rules):
+        limit = 500
+        content = ""
+        len_char = len(english_text)
+        idx = 0
+        
+        while((idx+1)*limit <= len_char):
+            content += self.translate_baidu_6000(english_text[idx*limit:(idx+1)*limit],rules)
+            idx+=1
+
+        if ((idx*limit)<len_char):
+            content += self.translate_baidu_6000(english_text[idx*limit:],rules)
+        return content
+            
+    
+    def translate_baidu_6000(self,english_text,rules):
         # Set your own appid/appkey.
         appid = '20231103001868360'
         appkey = '9gbHiX6Y1hDJ21XPmVtG'
@@ -145,6 +163,7 @@ class Translate(BaseModel):
             chinese_text =[]
             for trans_res in result["trans_result"]:
                 chinese_text.append(trans_res["dst"])
+                time.sleep(1)
             return "\n".join(chinese_text)
         except:
             raise Exception("Translation error")
@@ -248,6 +267,8 @@ class Translate(BaseModel):
                         
         await asyncio.gather(*[translate_one_type(judge_data_list,judge_type) for judge_type,judge_data_list \
                 in self.datas.items()])
+        # [translate_one_type(judge_data_list,judge_type) for judge_type,judge_data_list \
+        #         in self.datas.items()]
 
                     
 
@@ -278,6 +299,7 @@ class Translate(BaseModel):
         while (not done):
             try:
                 asyncio.run(self.translate_judge())  
+                # self.translate_judge()
                 # self.translate_judge()          
                 self.save_data()
                 done = True

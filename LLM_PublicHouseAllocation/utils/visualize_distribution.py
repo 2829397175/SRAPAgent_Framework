@@ -11,7 +11,7 @@ def visualize_tenant(data_path):
     save_path = os.path.join(data_path,"visualize")
     if not os.path.exists(save_path):
         os.makedirs(save_path)
-    with open(os.path.join(data_path,"tenant_51.json"),'r',encoding = 'utf-8') as f:
+    with open(os.path.join(data_path,"tenant.json"),'r',encoding = 'utf-8') as f:
         tenant_json = json.load(f)
         
     show_keys_bar =["family_members_num",
@@ -27,6 +27,47 @@ def visualize_tenant(data_path):
                              save_path,
                              show_key)
         
+def visualize_tenant_rating(global_rating_path,tenant_ids:list=[]):
+    save_path = os.path.join(global_rating_path,"visualize")
+    if not os.path.exists(save_path):
+        os.makedirs(save_path)
+    with open(os.path.join(global_rating_path,"global_score.json"),'r',encoding = 'utf-8') as f:
+        score_json = json.load(f)
+    
+    if tenant_ids ==[]:
+        tenant_ids = score_json.keys()
+    
+    for tenant_id in tenant_ids:
+        show_key = f"tenant {tenant_id} rating"
+        
+        assert tenant_id in score_json.keys()
+        
+        rating_data = [int(value.get("score",0)) for value in score_json[tenant_id].values()]
+        
+        frequency_dict = {}
+        for size in rating_data:
+            
+            frequency_dict[size] = frequency_dict.get(size, 0) + 1
+        
+        family_sizes = list(frequency_dict.keys())
+        frequency = list(frequency_dict.values())
+
+        # plt.xticks(range(min(family_sizes),max(family_sizes)))
+        # plt.xlim(900,2601)
+
+        # 绘制柱状图
+        plt.bar(family_sizes, frequency,width=0.5)
+        
+        # 添加标题和轴标签
+        plt.title(f'{show_key}分布')
+        plt.xlabel(show_key)
+        plt.ylabel('频率')
+
+        # 显示图形
+        # plt.show()
+        plt.savefig(os.path.join(save_path,f"{show_key}.png"))
+        plt.clf()
+    
         
 def visualize_distribution_plot(tenant_data:dict,
                              save_path,
@@ -84,6 +125,7 @@ def visualize_distribution_plot(tenant_data:dict,
     # 显示图形
     # plt.show()
     plt.savefig(os.path.join(save_path,f"{show_key}.png"))
+    plt.clf()
 
 def visualize_distribution_bar(tenant_data:dict,
                              save_path,
@@ -121,13 +163,14 @@ def visualize_distribution_bar(tenant_data:dict,
     # 显示图形
     # plt.show()
     plt.savefig(os.path.join(save_path,f"{show_key}.png"))
+    plt.clf()
     
     
 def visualize_house(data_house):
     save_path = os.path.join(data_path,"visualize")
     if not os.path.exists(save_path):
         os.makedirs(save_path)
-    with open(os.path.join(data_path,"house_28.json"),'r',encoding = 'utf-8') as f:
+    with open(os.path.join(data_path,"house.json"),'r',encoding = 'utf-8') as f:
         house_json = json.load(f)
     
     # show_keys_bar =["house_type",
@@ -139,7 +182,7 @@ def visualize_house(data_house):
     #                          show_key,
     #                          "house")
     show_keys_plot =[
-                    # "rent_money",
+                    "rent_money",
                      "house_area",
                      
                      ]
@@ -152,8 +195,11 @@ def visualize_house(data_house):
     
     
 if __name__ =="__main__":
-    task_path ="LLM_PublicHouseAllocation/tasks/PHA_51tenant_5community_28house_ver1_nofilter_multilist"
+    task_path ="LLM_PublicHouseAllocation\\tasks\\test_task"
     data_path = os.path.join(task_path,"data")
-    # visualize_tenant(data_path)
+    visualize_tenant(data_path)
     
     visualize_house(data_path)
+    # global_rating_path = "LLM_PublicHouseAllocation\\tasks\\test_task\global_evaluation"
+    global_rating_path="LLM_PublicHouseAllocation\\tasks\PHA_51tenant_5community_28house_ver2_nofilter_multilist_priority_7t_5h\global_evaluation"
+    #visualize_tenant_rating(global_rating_path=global_rating_path,tenant_ids=[])

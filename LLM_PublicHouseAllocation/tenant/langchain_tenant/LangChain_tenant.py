@@ -476,13 +476,14 @@ Your company is located in {en_work_place}. \
 {special_request} \
 You expect to rent a house for {monthly_rent_budget}.\
 You still have {chance_num} chances to choose house.\
+    
 """
         role_description = template.format_map({"name":self.name,
                                     "chance_num":self.max_choose-self.choose_times,
                                     **self.infos}
                                    )
         if self.infos.get("personal_preference",False):
-            role_description += "Up to now, your personal preference for house is :{}".format(
+            role_description += "\nUp to now, your personal preference for house is :{}".format(
                 self.infos.get("personal_preference")
             )
         return role_description
@@ -1001,6 +1002,14 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
     async def choose_community(self,system,search_infos,rule) ->Tuple[bool,str]:
         mem_buffer=[]
         tip=[]
+        thought_hint = """Remember to consider the following things before choosing community:
+1. The price, location of this community should be taken into consideration.
+2. Remember to give the reason why the selected community meets your needs in thought(exp. \
+This community meets my request for a walk in the nearby park).
+3. If you have already made a choice of community in your memory, 
+You can choose to abandon all the current residential areas and wait for the ones you want to be released later (choose Giveup Action)\
+Alternatively, provide specific reasons for why you want to abandon the previously selected residential area and change your choice"""
+        
         
         choose_house_type = self.log_round_tenant.log_round.get("choose_house_type", None)
         
@@ -1013,10 +1022,11 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
         choose_type = choose_type.format(community_ids=",".join(community_ids))
         memory = await self.memory.memory_tenant("community",name=self.name) + self.infos.get("extra_info")
         prompt_inputs={
-                'task':'You need to choose one type of communities.',
-                'thought_type':'Your views on these communities.',
+                'task':'choose one type of communities',
+                'thought_type':'Your views on these communities and the reason why you made your choice',
                 'choose_type': choose_type,
                 'house_info': community_description,
+                'thought_hint':thought_hint,
                 'memory': memory,
                 'role_description':self.get_role_description()        
                 }
@@ -1090,11 +1100,19 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
         choose_type = choose_type.format(house_type_indexs = ",".join(house_type_ids))
 
         memory = await self.memory.memory_tenant("house_type",name=self.name)
+        
+        thought_hint = """Remember to consider the following things before choosing house:
+1. The price of this house type should be within your budget.
+2. The per capita living area should be taken into consideration.
+3. Remember to give the reason why the selected house type meets your needs in thought(exp. \
+My family has a large population and needs a larger house to live in)"""
+        
         prompt_inputs={
-            'task':'You need to choose one type of houses.',
+            'task':'choose one type of houses',
             'thought_type':'Your views on these house types.',
             'choose_type':choose_type,
             'house_info':house_type_description,
+            'thought_hint':thought_hint,
             'memory':memory,
             'role_description':self.get_role_description()        
             }        
@@ -1184,6 +1202,12 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
         nochoose_memory_cache = []
         choose_memory_cache = []
         
+        thought_hint = """Remember to consider the following things before choosing house:
+1. The price of this house should be within your budget.
+2. The per capita living area should be taken into consideration.
+3. Remember to give specific reason why the selected house meets your needs in thought (exp. \
+This house meets the requirements of my family for a large study)."""
+
         role_description = self.get_role_description()
         
         choose_type_template = """My choice is (The index of houses, should be one of [{house_indexes}])"""
@@ -1194,10 +1218,11 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
             # self.logger.info("SYSTEM:\n {}".format(houses_description))
             choose_type = choose_type_template.format(house_indexes = ",".join(house_available_index))
             prompt_inputs={
-                'task':'You need to choose one house.',
+                'task':'choose one house',
                 'thought_type':'Your views on these houses.',
                 'choose_type':choose_type,
                 'house_info':houses_description,
+                'thought_hint':thought_hint,
                 'memory':memory +"\n" + "".join(tip),
                 'role_description': role_description       
                 }
@@ -1408,7 +1433,7 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
     async def choose_orientation(self,system,rule,community_id = None) -> Tuple[bool,str]:
         mem_buffer=[]
         tip=[]
-        
+        thought_hint = ""
         available_orientation_description, available_orientations = system.get_house_orientation(queue_name=self.queue_name,
                                                                                                  community_id=community_id,
                                                                                                rule=rule,
@@ -1420,10 +1445,11 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
 
         memory = await self.memory.memory_tenant("house_orientation",name=self.name)
         prompt_inputs={
-            'task':'You need to choose one type of house orientation.',
+            'task':'choose one type of house orientation',
             'thought_type':'Your views on these house orientations.',
             'choose_type':choose_type,
             'house_info':available_orientation_description,
+            'thought_hint':thought_hint,
             'memory':memory,
             'role_description':self.get_role_description()        
             }        
@@ -1493,6 +1519,7 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
     async def choose_floor(self,system,rule,community_id = None) -> Tuple[bool,str]:
         mem_buffer=[]
         tip=[]
+        thought_hint = ""
         
         available_floor_description, available_floors = system.get_house_floor(community_id=community_id,
                                                                                                rule=rule,
@@ -1506,10 +1533,11 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
 
         memory = await self.memory.memory_tenant("floor_type",name=self.name)
         prompt_inputs={
-            'task':'You need to choose one type of house orientation.',
+            'task':'choose one type of house orientation',
             'thought_type':'Your views on these house orientations.',
             'choose_type':choose_type,
             'house_info':available_floor_description,
+            'thought_hint':thought_hint,
             'memory':memory,
             'role_description':self.get_role_description()        
             }        

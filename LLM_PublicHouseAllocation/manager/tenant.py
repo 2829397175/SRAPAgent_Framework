@@ -224,7 +224,7 @@ class TenantManager(BaseManager):
 2.choose type of house 
 3.choose house
 \n{community_info}"""
-        community_info,community_ids = system.get_community_abstract()
+        community_info,community_ids = system.get_community_abstract(concise=True)
         #待改，等community_manager接口
         broadcast_str = broadcast_template.format(community_info=community_info) 
         broadcast_message = Message(message_type = "community",

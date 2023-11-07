@@ -88,7 +88,8 @@ def clear_1(data:list):
                 elif "四" in available_num_str:
                     available_num =4
         else:
-            available_num = re.search("(\d+).*可供选择",v,re.I | re.M)
+            available_num = re.search("(\d+).*",v,re.I | re.M)
+            available_num = available_num.groups()[0]
         if int(available_num) > 1:
             data_return.append(dict_one)
     return data_return
@@ -203,15 +204,40 @@ def clear_house_5():
     with open("qa_unclear_data\\filtered\groups\house\house_qa_5_save_response.json", 'w', encoding='utf-8') as file:
         json.dump(communityQA_data, file, indent=4,separators=(',', ':'),ensure_ascii=False)
 
+def mix_and_shuffle(save_path = "LLM_PublicHouseAllocation\LLM_decision_test\data\save"
+                    ):
+    data_paths =["LLM_PublicHouseAllocation/LLM_decision_test/community_qa.json"
+    ,"LLM_PublicHouseAllocation/LLM_decision_test/housetype_qa.json"
+    ,"LLM_PublicHouseAllocation/LLM_decision_test/house_qa.json"]
+    
+    mixed_json = []
+    for data_path in data_paths:
+        
+        with open(data_path,'r',encoding = 'utf-8') as f:
+            data_ = json.load(f)
+        for data_one in data_:
+            data_one["humanjudge"] = False
+        mixed_json.extend(data_)
+
+    
+    dir_name = os.path.dirname(save_path)
+    if not os.path.exists(dir_name):
+        os.makedirs(dir_name)
+
+    with open(save_path, 'w', encoding='utf-8') as file:
+        json.dump(mixed_json, file, indent=4,separators=(',', ':'),ensure_ascii=False)
+
 if __name__ == "__main__":
     # make data
     # clear_database()
     # batch_read_data()
     
+    # mix judge data (only robot)
+    mix_and_shuffle()
     
     # clear response
     json_types = ["housetype","house","community"]
-    clear_house_5()
+    # clear_house_5()
     # clear_response(json_types,rate= 1)
     # clear_1_json_memory(json_types)
     

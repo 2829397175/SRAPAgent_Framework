@@ -538,27 +538,7 @@ class DataLoader(BaseModel):
             
         tenant_infos = self.tenant_data[index_tenant]
         return tenant_infos.get("concise_role_description",""),tenant_infos.get("social_network_str","")
-#         role_description_template="""\
-# You are {name}. You earn {monthly_income} per month.\
-# Your family members include: {family_members}."""
-#         concise_role_description = role_description_template.format_map({"name":tenant_infos["name"],
-#                                     **tenant_infos}
-#                                    )
-#         if self.tenant_data[index_tenant].get("personal_preference",False):
-#             concise_role_description += "Up to now, your personal preference for house is :{}".format(
-#                 tenant_infos.get("personal_preference")
-#             )
-            
-#         social_network = ["{name}: {relation}".format(
-#                     name = neigh_tenant_info.get("name",neigh_tenant_id),
-#                     relation = neigh_tenant_info.get("relation","friend")
-#                     )
-#                      for neigh_tenant_id,neigh_tenant_info
-#                      in tenant_infos.get("social_network",{}).items()] 
-        
-#         social_network_str = "\n".join(social_network)
-            
-#         return concise_role_description,social_network_str
+
     
     
     def save_data(self):

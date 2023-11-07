@@ -17,6 +17,7 @@ class ChoosePromptTemplate(BaseChatPromptTemplate):
                      "role_description",
                      "house_info",
                      "thought_type",
+                     "thought_hint",
                      "choose_type",
                      "memory",
                      "agent_scratchpad"])

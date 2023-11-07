@@ -25,7 +25,7 @@ class Ver1Policy(BasePolicy):
         
         if not choose_state:
             tenant.update_times(choose_state)
-            # await tenant.publish_forum(forum_manager,system)
+            await tenant.publish_forum(forum_manager,system)
             return False,"None"
         
         house_filter_ids = {}
@@ -54,7 +54,7 @@ class Ver1Policy(BasePolicy):
                 
             if not choose_state:
                 tenant.update_times(choose_state)
-                # await tenant.publish_forum(forum_manager,system)
+                await tenant.publish_forum(forum_manager,system)
                 return False,"None"
         
             
@@ -65,8 +65,8 @@ class Ver1Policy(BasePolicy):
 
         log_round.set_choose_house(house_id,house_choose_reason)
         
-        # await tenant.publish_forum(system=system,
-        #                    forum_manager=forum_manager)
+        await tenant.publish_forum(system=system,
+                           forum_manager=forum_manager)
         # 更改tenant 的选择状态
         tenant.update_times(choose_state)
              

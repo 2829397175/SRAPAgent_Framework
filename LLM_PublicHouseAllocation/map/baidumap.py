@@ -10,8 +10,9 @@ class Baidumap(BaseModel):
     def get_lat_lng(self,location):
         # Make a request to the Baidu Maps geocoding API
         url = f"http://api.map.baidu.com/geocoding/v3/?address={location}&output=json&ak={self.api_key}"
-        response = requests.get(url)
+        
         try:
+            response = requests.get(url)
             # Parse the JSON response
             data = json.loads(response.text)   
             if data["status"] ==0:        

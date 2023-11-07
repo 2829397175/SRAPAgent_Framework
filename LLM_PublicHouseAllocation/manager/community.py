@@ -290,7 +290,8 @@ The {housetype} in {community_id} is a {living_room} apartment, with an area of 
                                                                        size=furcommunity_info[house_type]["size"],
                                                                        cost=furcommunity_info[house_type]["cost"],
                                                                        remain_number=furcommunity_info[house_type][
-                                                                           "remain_number"]
+                                                                           "remain_number"],
+                                                                       community_id = furcommunity_info["community_id"]
                                                                        ))
                     house_typs.append(house_type)
             # house_type_describe_prompt = "There are {num_house_type} room types in this community, including {house_type}. The infomation of room types are listed as follows:\n{room_type}"

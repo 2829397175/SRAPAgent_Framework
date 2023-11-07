@@ -1,0 +1,62 @@
+[
+    {
+        "prompt_inputs":{
+            "task":"choose one type of houses",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
+            "house_info":"有两种户型可供选择。这些户型的信息如下：\n大房子（_H）：\n这种类型的房子的租金约为2240-2320，面积约为56.14-58.33。这种类型的房子还有3栋。\n中间房屋（_H）：\n这种类型的房子的租金约为1800-1885，面积约为44.96-47.13。这种类型的房子还有2栋。",
+            "thought_hint":"Remember to consider the following things before choosing house:\n1. The price of this house type should be within your budget.\n2. The per capita living area should be taken into consideration.\n3. Remember to give the reason why the selected house type meets your needs in thought(exp. My family has a large population and needs a larger house to live in)",
+            "memory":"\n",
+            "role_description":"你就是兰登。你每月收入15000。你的家庭成员包括：已婚，有一个孩子，一个蹒跚学步的孩子。你已经33岁了。你的工作是建筑师。贵公司位于北京市朝阳区建国门外大街。兰登需要一所带托儿所的房子，供他蹒跚学步的孩子使用。你希望以2500.0的价格租一所房子。你还有2次机会选择房子。\n到目前为止，你个人对房子的偏好是：他正在为他的建筑师寻找一栋现代化宽敞的房子，里面有一间家庭办公室文化工作。"
+        },
+        "response":{
+            "output":"我选择大房子。",
+            "thought":"大房子和中房子似乎都在我的预算范围内，但我倾向于大房子的选择。这是因为我家里有一个蹒跚学步的孩子，我们将从额外的空间中受益。此外，作为一名建筑师，拥有一栋更大的房子将为我提供充足的空间，让我可以在家里办公。"
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"choose one type of houses",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
+            "house_info":"有两种户型可供选择。这些户型的信息如下：\n大房子（_H）：\n这种类型的房子的租金约为2240-2320，面积约为56.14-58.33。这种类型的房子还有2栋。\n中间房屋（_H）：\n这种类型的房子的租金约为1800-1885，面积约为44.96-47.13。这种类型的房子还有2栋。",
+            "thought_hint":"Remember to consider the following things before choosing house:\n1. The price of this house type should be within your budget.\n2. The per capita living area should be taken into consideration.\n3. Remember to give the reason why the selected house type meets your needs in thought(exp. My family has a large population and needs a larger house to live in)",
+            "memory":"\n",
+            "role_description":"你就是莉莉。你每月挣7000英镑。你的家庭成员包括：已婚，有两个孩子，都在上小学。你今年39岁了。你的工作是酒店接待员。贵公司位于北京市丰台区南三环中路19号香江广场大厦。莉莉的家人需要一个宠物友好的公寓，因为他们有一只小狗。你希望以1400.0的价格租一所房子。你还有2次机会选择房子。\n到目前为止，你个人对房子的偏好是：p指的是一间宽敞的儿童友好型公寓，附近有学校和公园。"
+        },
+        "response":{
+            "output":"我选择大房子。",
+            "thought":"这两种类型的房子都有负担得起的租金和不错的面积。然而，考虑到我的家庭规模以及我们对宽敞且适合儿童居住的公寓的需求，大户型似乎更合适。它提供了一个更大的生活区，可以舒适地容纳我的家人。此外，拥有两栋这种类型的房子会增加获得一栋房子的机会。"
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"choose one type of houses",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
+            "house_info":"有两种户型可供选择。这些户型的信息如下：\n大房子（_H）：\n这种类型的房子的租金约为2240-2320，面积约为56.14-58.33。这种类型的房子还有1栋。\n中间房屋（_H）：\n这种类型的房子的租金约为1800-1885，面积约为44.96-47.13。这种类型的房子还有2栋。",
+            "thought_hint":"Remember to consider the following things before choosing house:\n1. The price of this house type should be within your budget.\n2. The per capita living area should be taken into consideration.\n3. Remember to give the reason why the selected house type meets your needs in thought(exp. My family has a large population and needs a larger house to live in)",
+            "memory":"\n",
+            "role_description":"你就是薇薇安。你每月挣6000英镑。你的家庭成员包括：已婚，有两个孩子，都在上小学。你今年38岁。你的工作是酒店接待员。贵公司位于北京市东城区王府井大街。薇薇安需要一所附近有操场的房子供她的孩子们玩耍。你希望以1200.0的价格租一所房子。你还有2次机会选择房子。\n到目前为止，你个人对房子的偏好是：她更喜欢有宽敞厨房的房子在那里她可以享受为家人做饭的乐趣。"
+        },
+        "response":{
+            "output":"我的选择是中屋。",
+            "thought":"考虑到我1200.0的预算和现有的户型，中户型似乎更合适。这种类型的租金在我的预算范围内，面积也很合理。由于这种类型的房子只剩下2栋了，所以选择其中一栋似乎是个不错的选择。此外，拥有一个宽敞的厨房对我来说很重要，我相信中等户型的人会满足这种偏好。"
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"choose one type of houses",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,small_house])",
+            "house_info":"有两种户型可供选择。这些户型的信息如下：\n大房子（_H）：\n这种类型的房子的租金约为1830，面积约为60.92-61.8。这种类型的房子还有5栋。\nsmall_house:\n这种类型的房子的租金约为1140，面积约为37.96-38.09。这种类型的房子还有3栋。",
+            "thought_hint":"Remember to consider the following things before choosing house:\n1. The price of this house type should be within your budget.\n2. The per capita living area should be taken into consideration.\n3. Remember to give the reason why the selected house type meets your needs in thought(exp. My family has a large population and needs a larger house to live in)",
+            "memory":"\n",
+            "role_description":"你就是孙。你每月收入10000。你的家庭成员包括：已婚，有两个孩子，一个上小学，一个在中学。你已经45岁了。你的工作是政府雇员。贵公司位于北京市西城区西单北街。孙需要一间带自习室的房子，让他的孩子们做家庭作业。你希望以2000.0的价格租一所房子。你还有2次机会选择房子。\n到目前为止，你个人对房子的偏好是：他更喜欢有有一个小花园，他的家人可以在那里享受户外活动。"
+        },
+        "response":{
+            "output":"我选择的是小房子。",
+            "thought":"考虑到我的预算和拥有一个小花园进行户外活动的偏好，小房子似乎是一个合适的选择。此外，这种房子的租金在我的预算之内。面积也足以满足我家的需要。"
+        }
+    }
+]

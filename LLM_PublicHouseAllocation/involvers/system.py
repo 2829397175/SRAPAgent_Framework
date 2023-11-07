@@ -47,13 +47,14 @@ class System(BaseModel):
             curcommunity_list = rule.filter_community(tenant = tenant,
                                                     community_list = curcommunity_list,
                                                         house_type = house_type)
+            cur_community_ids = [cm_info['community_id'] for cm_info in curcommunity_list]
                                                     
         cur_str,furstr=self.community_manager.community_str(curcommunity_list,
                                                                 furcommunity_list,
                                                                 concise = concise)
         community_str = furstr +"\n\n"+ cur_str
         # 返回所有的小区信息 加上 可选的小区列表
-        return community_str,cur_community_ids 
+        return community_str,cur_community_ids
     
 
         
@@ -251,13 +252,12 @@ and there will be exposure to sunlight indoors on summer afternoons."""}
             return None
         house_description_template="""
                 {index}: 
-                this house costs about {rent_money}. \
-                It's square fortage is about {house_area}. The orientation of the house is {toward}. It is located at floor {floor}. It {elevator} elevator.It {balcony} balcony. \
-                {description}\
-                {index} is located in {community_id}.
-                {community_id}. {community_name} is located at {en_location}. The rent for this community is {value_inch} dollars per square meter.\
+                {index} is located in {community_id}. {community_id}({community_name}) is located at {en_location}. The rent for this community is {value_inch} dollars per square meter.\
 In this community, {community_description}. {nearby_info}.
-                For my family members, the average living area is {average_living_area}.
+                {index} costs about {rent_money}. \
+                {index}'s square fortage is about {house_area}. The orientation of {index} is {toward}. {index} is located at floor {floor}. {index} {elevator} elevator. {index} {balcony} balcony. \
+                {description}\
+                For my family members, the average living area for {index} is {average_living_area:.3f}.
         """
         # for _,communities in self.community_manager.total_community_datas.items():
         for community_id,community_details in self.community_manager.total_community_datas.items():

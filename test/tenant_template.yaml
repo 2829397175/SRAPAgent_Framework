@@ -12,7 +12,7 @@ tenant_info: &tenant_info |-
     monthly_income(表示家庭月收入要求在4000-15000之间),
     monthly_rent_budget(表示家庭可以接受的最大租金(要求在900-2500之间,且必须小于二分之一的家庭月收入),
     special_request(表示家庭的一些特殊需求,可以是交通出行是否条件便利等等,只要是正常租房人所考虑的需求都可以,你随机生成,要求使用英文),
-    housing_personality(表示此人对于想要租的房子的大体要求）
+    personal_preference(表示此人对于想要租的房子的大体要求）
 
   Now generate tenant info, similar to the following example (参与房屋分配的家庭的json格式的信息) 
 
@@ -34,7 +34,7 @@ tenant_info: &tenant_info |-
     "monthly_rent_budget":1800.0,
     "special_request":"The Anderson family prefers a home with easy access to public transportation, as they often need to commute for work and school.",
     "en_work_place":"Dongzhimenwai Street, Dongcheng District, Beijing",
-    "housing_personality":"he likes largehouse."   
+    "personal_preference":"he likes largehouse."   
     ],[
     "name":"Emma Davis",
     "age":29,
@@ -46,7 +46,7 @@ tenant_info: &tenant_info |-
     "monthly_rent_budget":2500,
     "special_request":"Emma hopes the apartment is in a quiet friendhood, allowing her to focus on her work.",
     "en_work_place":"Alibaba Beijing R&D Center, No. 5 Zhongguancun South Street, Haidian District, Beijing",        
-    "housing_personality":"prefers safe and stable housing options. They are not in a rush to find a house and are willing to wait for the right opportunity."
+    "personal_preference":"prefers safe and stable housing options. They are not in a rush to find a house and are willing to wait for the right opportunity."
     ]
     ]
 

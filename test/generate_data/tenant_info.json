@@ -9,7 +9,7 @@
   "monthly_rent_budget": 2000.0,
   "special_request": "Nathan prefers a house with a nearby park or playground for his child to play in.",
   "en_work_place": "No. 10 Jiuxianqiao Road, Chaoyang District, Beijing",
-  "housing_personality": "Nathan wants a house with a spacious backyard for his child to play in."
+  "personal_preference": "Nathan wants a house with a spacious backyard for his child to play in."
 },
 {
   "name": "Elizabeth",
@@ -22,7 +22,7 @@
   "monthly_rent_budget": 1500.0,
   "special_request": "Elizabeth needs a house with a separate home office space for her freelance work.",
   "en_work_place": "Gongren Tiyuchang North Road, Sanlitun Street, Chaoyang District, Beijing",
-  "housing_personality": "Elizabeth prefers a cozy and quiet house with good natural lighting."
+  "personal_preference": "Elizabeth prefers a cozy and quiet house with good natural lighting."
 },
 {
   "name": "Luke",
@@ -35,7 +35,7 @@
   "monthly_rent_budget": 1800.0,
   "special_request": "Luke prefers a house with a gym or fitness center nearby for his regular workouts.",
   "en_work_place": "Xizhimen North Street, Xicheng District, Beijing",
-  "housing_personality": "Luke wants a modern and stylish apartment with convenient access to public transportation."
+  "personal_preference": "Luke wants a modern and stylish apartment with convenient access to public transportation."
 },
 {
   "name": "Claire",
@@ -48,7 +48,7 @@
   "monthly_rent_budget": 1200.0,
   "special_request": "Claire needs a house with a nearby elementary school for her children's education.",
   "en_work_place": "Wangfujing Street, Dongcheng District, Beijing",
-  "housing_personality": "Claire prefers a family-friendly house with a backyard for her children to play in."
+  "personal_preference": "Claire prefers a family-friendly house with a backyard for her children to play in."
 },
 {
   "name": "Connor",
@@ -61,7 +61,7 @@
   "monthly_rent_budget": 2500.0,
   "special_request": "Connor wants a house with a spacious and well-lit home office for his architectural work.",
   "en_work_place": "Jianguomenwai Street, Chaoyang District, Beijing",
-  "housing_personality": "Connor prefers a modern and minimalist house with a rooftop garden."
+  "personal_preference": "Connor prefers a modern and minimalist house with a rooftop garden."
 },
 {
   "name": "Audrey",
@@ -74,7 +74,7 @@
   "monthly_rent_budget": 1600.0,
   "special_request": "Audrey needs a house with a nearby art studio or creative community for her design work.",
   "en_work_place": "Zhichun Road, Haidian District, Beijing",
-  "housing_personality": "Audrey wants a house with an open layout and plenty of natural light for her creative inspiration."
+  "personal_preference": "Audrey wants a house with an open layout and plenty of natural light for her creative inspiration."
 },
 {
   "name": "Jack",
@@ -87,7 +87,7 @@
   "monthly_rent_budget": 2000.0,
   "special_request": "Jack prefers a house with a nearby park or green space for his daily walks.",
   "en_work_place": "Dongsishitiao, Dongcheng District, Beijing",
-  "housing_personality": "Jack wants a traditional and well-maintained house with a peaceful atmosphere."
+  "personal_preference": "Jack wants a traditional and well-maintained house with a peaceful atmosphere."
 },
 {
   "name": "Penelope",
@@ -100,7 +100,7 @@
   "monthly_rent_budget": 1300.0,
   "special_request": "Penelope needs a house with a nearby shopping center for her family's convenience.",
   "en_work_place": "Jianguomenwai Street, Chaoyang District, Beijing",
-  "housing_personality": "Penelope prefers a cozy and well-decorated house with a small garden."
+  "personal_preference": "Penelope prefers a cozy and well-decorated house with a small garden."
 },
 {
   "name": "Zoey",
@@ -113,7 +113,7 @@
   "monthly_rent_budget": 1500.0,
   "special_request": "Zoey wants a house with a nearby library or bookstore for her reading habit.",
   "en_work_place": "Zhongguancun Street, Haidian District, Beijing",
-  "housing_personality": "Zoey prefers a quiet and peaceful house with a study room for her personal reading time."
+  "personal_preference": "Zoey prefers a quiet and peaceful house with a study room for her personal reading time."
 },
 {
   "name": "Isaac",
@@ -126,7 +126,7 @@
   "monthly_rent_budget": 1800.0,
   "special_request": "Isaac needs a house with a nearby gym or fitness center for his regular workouts.",
   "en_work_place": "Gongren Tiyuchang South Road, Sanlitun Street, Chaoyang District, Beijing",
-  "housing_personality": "Isaac wants a spacious and well-equipped house with a modern kitchen for his cooking hobby."
+  "personal_preference": "Isaac wants a spacious and well-equipped house with a modern kitchen for his cooking hobby."
 },
 {
   "name": "Evelyn",
@@ -139,7 +139,7 @@
   "monthly_rent_budget": 2400.0,
   "special_request": "Evelyn prefers a house with a nearby park for her child to play in.",
   "en_work_place": "Baidu Building, No. 10 Wangjing Street, Chaoyang District, Beijing",
-  "housing_personality": "prefers a modern and spacious apartment with good natural lighting."
+  "personal_preference": "prefers a modern and spacious apartment with good natural lighting."
 },
 {
   "name": "Blake",
@@ -152,7 +152,7 @@
   "monthly_rent_budget": 2000.0,
   "special_request": "Blake needs a house with a study room for his children to do their homework.",
   "en_work_place": "National Museum, No. 1 Fuxingmenwai Street, Xicheng District, Beijing",
-  "housing_personality": "prefers a quiet and safe neighborhood with good schools nearby."
+  "personal_preference": "prefers a quiet and safe neighborhood with good schools nearby."
 },
 {
   "name": "Aria",
@@ -165,7 +165,7 @@
   "monthly_rent_budget": 1600.0,
   "special_request": "Aria wants a house with a rooftop terrace for her gardening hobby.",
   "en_work_place": "Nanluoguxiang, Dongcheng District, Beijing",
-  "housing_personality": "prefers a cozy and artistic apartment with unique design features."
+  "personal_preference": "prefers a cozy and artistic apartment with unique design features."
 },
 {
   "name": "Carter",
@@ -178,7 +178,7 @@
   "monthly_rent_budget": 1200.0,
   "special_request": "Carter needs a house with a playground nearby for his children to play.",
   "en_work_place": "Sanlitun Taikoo Li, Chaoyang District, Beijing",
-  "housing_personality": "prefers a family-friendly and affordable apartment with good community facilities."
+  "personal_preference": "prefers a family-friendly and affordable apartment with good community facilities."
 },
 {
   "name": "Brooklyn",
@@ -191,7 +191,7 @@
   "monthly_rent_budget": 2500.0,
   "special_request": "Brooklyn wants a house with a spacious balcony for her plants.",
   "en_work_place": "China World Trade Center Tower 1, No. 1 Jianguomenwai Street, Chaoyang District, Beijing",
-  "housing_personality": "prefers a modern and stylish apartment with a great view."
+  "personal_preference": "prefers a modern and stylish apartment with a great view."
 },
 {
   "name": "Dylan",
@@ -204,7 +204,7 @@
   "monthly_rent_budget": 1400.0,
   "special_request": "Dylan needs a house with a nearby school for his child.",
   "en_work_place": "Zhongguancun Street, Haidian District, Beijing",
-  "housing_personality": "prefers a quiet and family-oriented apartment with good educational resources."
+  "personal_preference": "prefers a quiet and family-oriented apartment with good educational resources."
 },
 {
   "name": "Mike",
@@ -217,7 +217,7 @@
   "monthly_rent_budget": 1800.0,
   "special_request": "Mike wants a house with a spacious kitchen for his cooking hobby.",
   "en_work_place": "Wangfujing Street, Dongcheng District, Beijing",
-  "housing_personality": "prefers a comfortable and well-equipped apartment with a convenient location for dining out."
+  "personal_preference": "prefers a comfortable and well-equipped apartment with a convenient location for dining out."
 },
 {
   "name": "Aurora",
@@ -230,7 +230,7 @@
   "monthly_rent_budget": 2200.0,
   "special_request": "Aurora needs a house with a nearby gym for her fitness routine.",
   "en_work_place": "Bank of China Building, No. 1 Jianguomennei Street, Chaoyang District, Beijing",
-  "housing_personality": "prefers a clean and well-maintained apartment with good security measures."
+  "personal_preference": "prefers a clean and well-maintained apartment with good security measures."
 },
 {
   "name": "Hayden",
@@ -243,7 +243,7 @@
   "monthly_rent_budget": 2600.0,
   "special_request": "Hayden wants a house with a nearby library for his children's study needs.",
   "en_work_place": "Great Hall of the People, No. 1 Xidan Beidajie, Xicheng District, Beijing",
-  "housing_personality": "prefers a spacious and well-ventilated apartment with good educational resources nearby."
+  "personal_preference": "prefers a spacious and well-ventilated apartment with good educational resources nearby."
 },{
   "name": "Lydia",
   "age": 32,
@@ -255,7 +255,7 @@
   "monthly_rent_budget": 2400.0,
   "special_request": "Lydia prefers a house with a nearby park for her child to play in.",
   "en_work_place": "No. 10 Jiuxianqiao Road, Chaoyang District, Beijing",
-  "housing_personality": "She is looking for a cozy and comfortable house with good natural lighting."
+  "personal_preference": "She is looking for a cozy and comfortable house with good natural lighting."
 },
 {
   "name": "Eric",
@@ -268,7 +268,7 @@
   "monthly_rent_budget": 2000.0,
   "special_request": "Eric needs a house with a study room for his children to do homework.",
   "en_work_place": "Xidan North Street, Xicheng District, Beijing",
-  "housing_personality": "He prefers a house with a small garden where his family can enjoy outdoor activities."
+  "personal_preference": "He prefers a house with a small garden where his family can enjoy outdoor activities."
 },
 {
   "name": "Madelyn",
@@ -281,7 +281,7 @@
   "monthly_rent_budget": 1600.0,
   "special_request": "Madelyn prefers a house with a spacious living room for her yoga practice.",
   "en_work_place": "Sanlitun, Chaoyang District, Beijing",
-  "housing_personality": "She is looking for a modern and stylish apartment with convenient access to trendy cafes and shops."
+  "personal_preference": "She is looking for a modern and stylish apartment with convenient access to trendy cafes and shops."
 },
 {
   "name": "Vivian",
@@ -294,7 +294,7 @@
   "monthly_rent_budget": 1200.0,
   "special_request": "Vivian needs a house with a playground nearby for her children to play.",
   "en_work_place": "Wangfujing Street, Dongcheng District, Beijing",
-  "housing_personality": "She prefers a house with a spacious kitchen where she can enjoy cooking for her family."
+  "personal_preference": "She prefers a house with a spacious kitchen where she can enjoy cooking for her family."
 },
 {
   "name": "Diego",
@@ -307,7 +307,7 @@
   "monthly_rent_budget": 1400.0,
   "special_request": "Diego prefers a house with a backyard where he can grow his own vegetables.",
   "en_work_place": "Nanyuan Road, Fengtai District, Beijing",
-  "housing_personality": "He is looking for a house with a large dining area where he can entertain guests."
+  "personal_preference": "He is looking for a house with a large dining area where he can entertain guests."
 },
 {
   "name": "Clara",
@@ -320,7 +320,7 @@
   "monthly_rent_budget": 1000.0,
   "special_request": "Clara needs a house with a quiet environment for her to focus on her work.",
   "en_work_place": "Huilongguan, Changping District, Beijing",
-  "housing_personality": "She prefers a house with a cozy reading corner where she can relax with a book."
+  "personal_preference": "She prefers a house with a cozy reading corner where she can relax with a book."
 },
 {
   "name": "Landon",
@@ -333,6 +333,6 @@
   "monthly_rent_budget": 2500.0,
   "special_request": "Landon needs a house with a nursery room for his toddler.",
   "en_work_place": "Jianguomenwai Street, Chaoyang District, Beijing",
-  "housing_personality": "He is looking for a modern and spacious house with a home office for his architectural work."
+  "personal_preference": "He is looking for a modern and spacious house with a home office for his architectural work."
 }
 ]

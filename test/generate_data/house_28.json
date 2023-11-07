@@ -1,5 +1,16 @@
 {
     "longxing":{
+        "house_13":{
+            "house_type":"small_house",
+            "toward":"EW",
+            "house_area":"38.25",
+            "rent_money":1147,
+            "balcony":"has",
+            "floor":7,
+            "elevator":"has",
+            "description":"This house, though small, is laid out in a manner that optimizes the available space. The presence of a balcony is an added advantage for those who love a breath of fresh air.",
+            "potential_information_house":"Its elevation means it is cooler during the summer months, but elevator maintenance can be an occasional inconvenience."
+        },
         "house_4":{
             "house_type":"large_house",
             "toward":"NS",
@@ -10,6 +21,17 @@
             "elevator":"has",
             "description":"The house layout is meticulous, presenting a sizable bedroom and a welcoming living area. The kitchen is well-equipped, and the bathroom design prioritizes convenience.",
             "potential_information_house":"Though the house layout is admirable, occasional sounds from the above floor can be heard. A soundproofing might be needed."
+        },
+        "house_12":{
+            "house_type":"small_house",
+            "toward":"NS",
+            "house_area":"38.2",
+            "rent_money":1146,
+            "balcony":"no",
+            "floor":6,
+            "elevator":"has",
+            "description":"Compact yet comfortable, this house has a smart design that ensures there's no wasted space. The overall ambiance is cozy and welcoming.",
+            "potential_information_house":"Being on a higher floor, it provides a nice view of the surrounding area, but might take longer in case of elevator downtimes."
         },
         "house_18":{
             "house_type":"small_house",
@@ -22,62 +44,29 @@
             "description":"This compact unit, with its strategic layout, ensures a comfortable living experience. The balcony is a bonus for those who love some outdoor relaxation.",
             "potential_information_house":"Located on the twelfth floor, this house offers a bird's-eye view of the locality. However, the height also means reliance on the elevator, which might have occasional downtimes."
         },
-        "house_6":{
-            "house_type":"large_house",
+        "house_14":{
+            "house_type":"small_house",
             "toward":"NS",
-            "house_area":"62.0",
-            "rent_money":1860,
+            "house_area":"38.3",
+            "rent_money":1149,
             "balcony":"has",
-            "floor":12,
+            "floor":8,
             "elevator":"has",
-            "description":"The living space in this unit is expansive, accompanied by a luxurious bedroom. The kitchen and bathroom designs are both modern and user-friendly.",
-            "potential_information_house":"Being at a higher floor, this unit offers an exceptional view, but might experience stronger wind currents."
-        },
-        "house_2":{
-            "house_type":"large_house",
-            "toward":"NS",
-            "house_area":"61.3",
-            "rent_money":1839,
-            "balcony":"has",
-            "floor":6,
-            "elevator":"has",
-            "description":"A well-designed room layout complements the large spacing between floors. The bedroom offers a sense of grandeur, with a lot of space. The bathroom is built in such a way that showering is convenient. A separate large kitchen aids in culinary explorations.",
-            "potential_information_house":"While the layout is commendable, the wooden flooring has signs of wear. Periodic maintenance might be needed."
-        },
-        "house_8":{
-            "house_type":"large_house",
-            "toward":"NS",
-            "house_area":"62.5",
-            "rent_money":1875,
-            "balcony":"has",
-            "floor":15,
-            "elevator":"has",
-            "description":"This unit manifests luxury with its vast bedroom and living area. The kitchen and bathroom resonate with modern designs and features.",
-            "potential_information_house":"Owing to its altitude, this unit ensures a serene ambiance, away from the city's hustle and bustle."
+            "description":"While compact, this unit maximizes every inch for utility. The dedicated balcony space is a treat for those who appreciate outdoor vibes within their living space.",
+            "potential_information_house":"Its location on the eighth floor ensures great views of the surrounding area. However, higher floors might feel the effects of elevator downtimes more."
         }
     },
     "jinkejiayuan":{
-        "house_23":{
+        "house_33":{
             "house_type":"small_house",
             "toward":"NS",
-            "house_area":"37.8",
-            "rent_money":1285,
+            "house_area":"45.0",
+            "rent_money":1530,
             "balcony":"has",
-            "floor":14,
+            "floor":24,
             "elevator":"has",
-            "description":"Though compact, this unit is enhanced by its balcony and a separate kitchen, making it feel larger than it is.",
-            "potential_information_house":"Offers a perfect blend of city living with homely comforts."
-        },
-        "house_20":{
-            "house_type":"small_house",
-            "toward":"EW",
-            "house_area":"28.9",
-            "rent_money":983,
-            "balcony":"not has",
-            "floor":9,
-            "elevator":"has",
-            "description":"Though lacking a balcony and separate kitchen, the unit's layout is practical, making the most of available space.",
-            "potential_information_house":"An ideal space for minimalists or those who prioritize location over size."
+            "description":"A premium unit offering a blend of space, comfort, and style. From the spacious bedroom to the balcony views, it's an urban dream.",
+            "potential_information_house":"A gem in the heart of the city, promising unparalleled luxury and comfort."
         },
         "house_22":{
             "house_type":"small_house",
@@ -90,16 +79,27 @@
             "description":"A well-lit space with a separate kitchen and a balcony, offering a great balance between size and functionality.",
             "potential_information_house":"A prime pick for those who want both comfort and convenience."
         },
-        "house_31":{
+        "house_19":{
             "house_type":"small_house",
             "toward":"NS",
-            "house_area":"44.7",
-            "rent_money":1520,
-            "balcony":"has",
-            "floor":22,
+            "house_area":"27.76",
+            "rent_money":944,
+            "balcony":"not has",
+            "floor":7,
             "elevator":"has",
-            "description":"Skillfully designed to maximize space and comfort, this house boasts of a distinct kitchen, roomy bedroom, and a balcony for added charm.",
-            "potential_information_house":"An ode to modern living, perfectly suited for city dwellers."
+            "description":"This compact space lacks natural light and doesn't have a distinct kitchen area. The bedroom size is adequate, ensuring a decent living space.",
+            "potential_information_house":"Perfect for those looking to step out on their own and don't mind the absence of a balcony."
+        },
+        "house_26":{
+            "house_type":"small_house",
+            "toward":"EW",
+            "house_area":"43.5",
+            "rent_money":1480,
+            "balcony":"has",
+            "floor":17,
+            "elevator":"has",
+            "description":"The generous balcony complements the well-laid-out interiors, offering a complete living experience.",
+            "potential_information_house":"A haven of comfort in the heart of the city."
         }
     },
     "ronghui":{
@@ -114,39 +114,6 @@
             "description":"Reflecting a refined design, this medium-sized apartment features a spacious living area and a welcoming bedroom. The inter-floor spacing is optimal, assuring a serene living experience. The bathroom is spacious, and the kitchen is practically laid out.",
             "potential_information_house":"A perfect blend of design and functionality, this house is tailored for contemporary urban living. The serene bedroom ensures a restful environment."
         },
-        "house_41":{
-            "house_type":"large_house",
-            "toward":"NS",
-            "house_area":"58.10",
-            "rent_money":2324,
-            "balcony":"has",
-            "floor":14,
-            "elevator":"has",
-            "description":"Featuring a meticulously designed layout, this home offers spacious living areas and a sizable bedroom. The generous inter-floor spacing ensures silence and peace. The bathroom is roomy, and the kitchen, separate and vast, is a delight.",
-            "potential_information_house":"The house combines aesthetics with functionality, ensuring a relaxed living environment. The bedroom ambiance is serene, ensuring restorative sleep."
-        },
-        "house_45":{
-            "house_type":"medium_house",
-            "toward":"EW",
-            "house_area":"45.0",
-            "rent_money":1800,
-            "balcony":"has",
-            "floor":6,
-            "elevator":"has",
-            "description":"Boasting a functional layout, this medium-sized apartment provides a relaxing living area and a sizable bedroom. The spacing between floors promises a quiet atmosphere. The bathroom offers a relaxing experience, and the kitchen is practically designed.",
-            "potential_information_house":"A perfect embodiment of modern aesthetics, this house promises comfort in every nook. The tranquil bedroom setting ensures restful nights."
-        },
-        "house_40":{
-            "house_type":"large_house",
-            "toward":"NS",
-            "house_area":"57.80",
-            "rent_money":2312,
-            "balcony":"has",
-            "floor":13,
-            "elevator":"has",
-            "description":"This property stands out with its spacious living areas and ample bedroom space. The roomy inter-floor height ensures a peaceful living experience. It boasts a capacious bathroom and a separate kitchen.",
-            "potential_information_house":"This house reflects contemporary design principles. It promises a comfortable living experience, with the bedroom offering a calm sanctuary."
-        },
         "house_50":{
             "house_type":"medium_house",
             "toward":"EW",
@@ -158,109 +125,120 @@
             "description":"Exuding charm, this medium-sized apartment boasts a spacious living area and a comfortable bedroom. The spacious inter-floor assures peace and quiet. The bathroom is inviting, and the kitchen is efficiently designed.",
             "potential_information_house":"The house captures the essence of modern design, ensuring a pleasant living experience. The bedroom provides a tranquil sanctuary for rest."
         },
-        "house_43":{
-            "house_type":"large_house",
-            "toward":"NS",
-            "house_area":"58.20",
-            "rent_money":2328,
-            "balcony":"has",
-            "floor":7,
-            "elevator":"has",
-            "description":"This home impresses with its expansive living quarters and a large bedroom. The inter-floor spacing is commendable, ensuring tranquillity. Both the bathroom and the separate kitchen are voluminous.",
-            "potential_information_house":"This house is a testament to modern design, offering comfort at every turn. The bedroom's calm environment ensures uninterrupted sleep."
-        }
-    },
-    "wankecheng":{
-        "house_73":{
-            "house_type":"small_house",
-            "toward":"NS",
-            "house_area":"42.82",
-            "rent_money":1926,
-            "balcony":"has",
-            "floor":6,
-            "elevator":"has",
-            "description":"Boasting a layout ideal for modern minimalists, the bedroom is cozy. The bathroom is designed for brisk showers, ensuring no space is wasted. The kitchen might not be separate but is decently sized for daily cooking tasks.",
-            "potential_information_house":"The age of the house might be noticeable in some corners, hinting at the need for minor touch-ups. However, its strategic positioning in the community makes it desirable."
-        },
-        "house_63":{
-            "house_type":"middle_house",
-            "toward":"NS",
-            "house_area":"48.5",
-            "rent_money":2183,
-            "balcony":"has",
-            "floor":4,
-            "elevator":"has",
-            "description":"This unit offers a balanced layout with a decent-sized bedroom. The inter-floor spacing is satisfactory, reducing noise disturbances. The bathroom is designed for quick showers, and the kitchen, though not very large, is efficient.",
-            "potential_information_house":"The house showcases a modern touch, but there might be some minor issues with the kitchen plumbing."
-        },
-        "house_76":{
-            "house_type":"small_house",
-            "toward":"NS",
-            "house_area":"42.82",
-            "rent_money":1926,
-            "balcony":"has",
-            "floor":9,
-            "elevator":"has",
-            "description":"The house showcases a straightforward layout with a bedroom perfect for restful nights. The bathroom is optimized for quick routines, and the integrated kitchen, while not vast, serves its purpose.",
-            "potential_information_house":"The age of this unit might be evident in certain spots, suggesting potential maintenance. However, its overall appeal lies in its location and community features."
-        },
-        "house_60":{
-            "house_type":"large_house",
-            "toward":"NS",
-            "house_area":"58.95",
-            "rent_money":2653,
+        "house_49":{
+            "house_type":"medium_house",
+            "toward":"EW",
+            "house_area":"45.50",
+            "rent_money":1820,
             "balcony":"has",
             "floor":10,
             "elevator":"has",
-            "description":"This property offers an excellent layout complemented by sizable bedrooms. The inter-floor gap is substantial, minimizing disturbances. The washroom promotes easy showers, and a segregated, expansive kitchen is a boon.",
-            "potential_information_house":"The house, while maintaining its unique allure, may occasionally face water pressure fluctuations."
+            "description":"This medium-sized apartment offers a balanced layout, with a vibrant living space and a cozy bedroom. The inter-floor spacing is commendable, providing a noise-free environment. The bathroom is well-appointed, and the kitchen space is practical.",
+            "potential_information_house":"Blending aesthetic appeal with functionality, this house is a true reflection of contemporary design. The bedroom offers a serene space for relaxation."
         },
-        "house_55":{
+        "house_35":{
             "house_type":"large_house",
             "toward":"NS",
-            "house_area":"59.20",
-            "rent_money":2664,
+            "house_area":"57.0",
+            "rent_money":2280,
             "balcony":"has",
-            "floor":4,
+            "floor":8,
             "elevator":"has",
-            "description":"A well-designed layout accompanied by vast bedrooms. Spacious inter-floor distance ensures minimal noise transfer. The bathroom is optimized for relaxed showers, and the distinct, expansive kitchen is a delight.",
-            "potential_information_house":"While the ambiance of the house is nostalgic, some minor fixes might be needed due to its age."
+            "description":"With a well-thought-out floor plan, this property offers a large bedroom. The roomy inter-floor space guarantees noise insulation, and the commodious bathroom ensures a seamless bathing experience. The distinct kitchen is spacious.",
+            "potential_information_house":"The house stands out due to its modern design. Its efficient layout caters to contemporary lifestyles. The surrounding environment resonates tranquillity."
         },
-        "house_72":{
+        "house_46":{
+            "house_type":"medium_house",
+            "toward":"EW",
+            "house_area":"44.75",
+            "rent_money":1790,
+            "balcony":"has",
+            "floor":7,
+            "elevator":"has",
+            "description":"This apartment reflects meticulous planning, featuring a comfortable living area and a warm bedroom. The ample inter-floor space assures a quiet living experience. The bathroom is finely crafted, and the kitchen space is optimized for utility.",
+            "potential_information_house":"The house resonates with a contemporary vibe, ensuring a delightful living environment. The bedroom's peaceful ambiance is conducive to relaxation."
+        },
+        "house_51":{
+            "house_type":"medium_house",
+            "toward":"EW",
+            "house_area":"46.10",
+            "rent_money":1844,
+            "balcony":"has",
+            "floor":12,
+            "elevator":"has",
+            "description":"Designed with precision, this apartment offers a well-lit living area and a restful bedroom. The generous inter-floor space ensures a peaceful ambiance. The bathroom is tastefully designed, and the kitchen space is optimized.",
+            "potential_information_house":"Merging style with utility, this house is perfect for those valuing modern living. The bedroom ambiance is calm, promoting restful sleep."
+        }
+    },
+    "wankecheng":{
+        "house_64":{
+            "house_type":"middle_house",
+            "toward":"NS",
+            "house_area":"48.75",
+            "rent_money":2194,
+            "balcony":"has",
+            "floor":5,
+            "elevator":"has",
+            "description":"The house benefits from an effective use of space, ensuring all rooms are comfortably sized. The bathroom is ergonomically designed for easy usage, and a separate, modest-sized kitchen is available for culinary needs.",
+            "potential_information_house":"Though the house is beautifully laid out, potential residents might want to check the insulation during peak seasons."
+        },
+        "house_58":{
+            "house_type":"large_house",
+            "toward":"NS",
+            "house_area":"60.45",
+            "rent_money":2720,
+            "balcony":"has",
+            "floor":7,
+            "elevator":"has",
+            "description":"Featuring a meticulous layout with sprawling bedrooms, this house promises comfort. The inter-floor spacing guarantees serenity, and the bath area is practical. Additionally, the kitchen's size is a delight for enthusiasts.",
+            "potential_information_house":"While the house retains its historical magnetism, there could be intermittent issues like water pressure to watch out for."
+        },
+        "house_68":{
+            "house_type":"middle_house",
+            "toward":"NS",
+            "house_area":"48.55",
+            "rent_money":2185,
+            "balcony":"has",
+            "floor":9,
+            "elevator":"has",
+            "description":"The property is characterized by a practical layout with rooms that are well-proportioned. The bedroom promises comfort, and the bathroom is geared for quick showers. The kitchen, though on the smaller side, is practical.",
+            "potential_information_house":"While the layout is commendable, the house might benefit from some fresh paint in certain rooms."
+        },
+        "house_74":{
             "house_type":"small_house",
             "toward":"NS",
             "house_area":"42.82",
             "rent_money":1926,
             "balcony":"has",
+            "floor":7,
+            "elevator":"has",
+            "description":"The property offers a simple yet functional layout. The bedroom provides a serene environment for relaxation. The wash area is ideal for quick showers, and the open kitchen space, while not separate, is well set-up.",
+            "potential_information_house":"The house's old-world charm is palpable, but there might be areas that need a fresh coat of paint or minor repairs. Its view and proximity to community amenities are its standout features."
+        },
+        "house_66":{
+            "house_type":"middle_house",
+            "toward":"NS",
+            "house_area":"48.9",
+            "rent_money":2201,
+            "balcony":"has",
+            "floor":7,
+            "elevator":"has",
+            "description":"This unit comes with a balanced layout, a bedroom of a reasonable size, and a bathroom that promises an unhindered showering experience. The kitchen, though not expansive, is adequately functional.",
+            "potential_information_house":"The house has a warm and welcoming aura, though the kitchen might need some appliance upgrades."
+        },
+        "house_57":{
+            "house_type":"large_house",
+            "toward":"NS",
+            "house_area":"60.10",
+            "rent_money":2705,
+            "balcony":"has",
             "floor":5,
             "elevator":"has",
-            "description":"The house features a layout perfect for singles or couples. The bedroom, though on the smaller side, promises comfort. The wash area, tailored for quick showers, ensures easy movement. The kitchen space is combined but is adequately equipped.",
-            "potential_information_house":"The vintage aura of the house is appealing, but certain areas might hint at wear and tear. Nevertheless, its location and amenities can be compelling for potential renters."
+            "description":"The house presents a stellar layout with commodious bedrooms. Generous inter-floor distance ensures an ambiance of tranquility. The shower area is user-friendly, and the presence of a separate kitchen ensures culinary adventures.",
+            "potential_information_house":"The classic aura of the house is attractive, though some areas might exhibit signs of wear due to its vintage."
         }
     },
     "sanhejiayuan":{
-        "house_89":{
-            "house_type":"middle_house",
-            "toward":"EW",
-            "house_area":"49.04",
-            "rent_money":1226,
-            "balcony":"not has",
-            "floor":27,
-            "elevator":"has",
-            "description":"Thoughtfully designed, this house provides a comfortable living space. Though the inter-floor distance is on the lesser side, the bedroom's ample size is a plus. It might not have a separate kitchen, but the bathroom layout is quite efficient.",
-            "potential_information_house":"The house is positioned to receive ample sunlight during the day, making it feel warmer."
-        },
-        "house_97":{
-            "house_type":"small_house",
-            "toward":"EW",
-            "house_area":"44.5",
-            "rent_money":1113,
-            "balcony":"not has",
-            "floor":22,
-            "elevator":"has",
-            "description":"The house boasts of a functional layout with a spacious kitchen and a comfortable bathroom setup. Ideal for those who prefer compact living without compromising on essentials.",
-            "potential_information_house":"While the overall ambiance is peaceful, residents might occasionally hear noises from adjacent units due to thin walls."
-        },
         "house_94":{
             "house_type":"small_house",
             "toward":"EW",
@@ -272,38 +250,16 @@
             "description":"This house offers a blend of comfort and functionality. The kitchen and dining area flow seamlessly, making it great for solo residents or couples. The bathroom is streamlined for ease of use.",
             "potential_information_house":"Potential tenants might find the living area a bit restrictive, but the bedroom compensates with its spaciousness."
         },
-        "house_88":{
-            "house_type":"middle_house",
+        "house_93":{
+            "house_type":"small_house",
             "toward":"EW",
-            "house_area":"49",
-            "rent_money":1225,
+            "house_area":"44.35",
+            "rent_money":1109,
             "balcony":"not has",
-            "floor":26,
+            "floor":14,
             "elevator":"has",
-            "description":"This house embodies a minimalist design, prioritizing function over extravagance. Floor spacing is a tad tight, but the bedroom feels spacious. The absence of a separate kitchen is made up by a well-designed bathroom.",
-            "potential_information_house":"The insulation isn't top-notch, so it might get a bit chilly during winters."
-        },
-        "house_83":{
-            "house_type":"middle_house",
-            "toward":"EW",
-            "house_area":"48.35",
-            "rent_money":1209,
-            "balcony":"not has",
-            "floor":18,
-            "elevator":"has",
-            "description":"This house boasts a compact yet efficient layout, making the most out of every corner. The floor spacing might be less than ideal, but the bedroom offers ample space. The bathroom ensures easy showers, but there's no separate kitchen. The kitchen space, however, is decent.",
-            "potential_information_house":"The living room windows sometimes let in a draft, but the panoramic views make up for it."
-        },
-        "house_87":{
-            "house_type":"middle_house",
-            "toward":"EW",
-            "house_area":"48.9",
-            "rent_money":1223,
-            "balcony":"not has",
-            "floor":25,
-            "elevator":"has",
-            "description":"Featuring a snug layout, this house is ideal for those seeking a quiet retreat. The floor spacing is slightly narrow, but it's compensated by a roomy bedroom. Though there's no dedicated kitchen, the bathroom boasts a user-friendly design.",
-            "potential_information_house":"Water pressure might be inconsistent during peak hours, but it's usually manageable."
+            "description":"A unit perfect for those who value privacy and simplicity. The kitchen area, though open, is spacious enough for meal preparation. The bathroom design is modern and functional.",
+            "potential_information_house":"While the living area might feel a bit compact, the bedroom is surprisingly airy and well-lit."
         },
         "house_96":{
             "house_type":"small_house",
@@ -315,6 +271,50 @@
             "elevator":"has",
             "description":"The unit resonates with a vibe of simplicity and elegance. The open kitchen concept ensures that the space feels airy, and the bathroom has been designed for comfort.",
             "potential_information_house":"The close proximity of neighboring units might slightly hamper privacy, but the interiors are thoughtfully designed."
+        },
+        "house_85":{
+            "house_type":"middle_house",
+            "toward":"EW",
+            "house_area":"48.7",
+            "rent_money":1218,
+            "balcony":"not has",
+            "floor":23,
+            "elevator":"has",
+            "description":"This residence is a blend of modern design and comfort. The layout might feel a bit tight, especially between floors, but the bedroom is surprisingly airy. The bathroom is crafted for hassle-free showers, though it's paired with a compact kitchen.",
+            "potential_information_house":"Residents might occasionally hear footsteps from the floor above, but it's generally quiet during the night."
+        },
+        "house_81":{
+            "house_type":"large_house",
+            "toward":"EW",
+            "house_area":"60.5",
+            "rent_money":1513,
+            "balcony":"not has",
+            "floor":25,
+            "elevator":"has",
+            "description":"Articulately designed, this house offers a spacious and comfortable living experience. The distance between the floors may be on the smaller side, yet the expansive bedroom space is a redeeming quality. The integrated kitchen area is also quite vast, providing a satisfactory cooking experience.",
+            "potential_information_house":"The lighting fixtures in the house are energy-saving, offering both functionality and aesthetics."
+        },
+        "house_98":{
+            "house_type":"small_house",
+            "toward":"EW",
+            "house_area":"44.5",
+            "rent_money":1113,
+            "balcony":"not has",
+            "floor":24,
+            "elevator":"has",
+            "description":"This house has been designed with attention to detail. The bedroom is adequately sized, and the kitchen provides enough room for basic culinary activities. The bathroom sports a modern look.",
+            "potential_information_house":"While there might be slight disturbances during peak hours due to the bustling community, the house's internal charm makes up for it."
+        },
+        "house_100":{
+            "house_type":"small_house",
+            "toward":"EW",
+            "house_area":"44.51",
+            "rent_money":1114,
+            "balcony":"not has",
+            "floor":28,
+            "elevator":"has",
+            "description":"The last in our list, but by no means the least. This unit is perfect for those who cherish compact living. The kitchen and bathroom are both designed keeping modern needs in mind.",
+            "potential_information_house":"The only potential hiccup could be the lack of expansive open areas, but the house manages to create a warm and welcoming environment nonetheless."
         }
     }
 }

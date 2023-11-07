@@ -112,6 +112,50 @@ def shuffle_for_user(json_types,
         json.dump(mixed_json,f, indent=4,separators=(',', ':'),ensure_ascii=False)
      
 
+def shuffle_for_user_human(json_types,
+                    user_index=0,
+                    users_index =list(range(10)),
+                    data_len_limit = 30,
+                    save_dir ="LLM_PublicHouseAllocation\LLM_decision_test\qa_unclear_data\\filtered\groups",
+                    data_dir ="LLM_PublicHouseAllocation\LLM_decision_test\qa_unclear_data\\filtered\groups"
+                 ):
+    
+    data_types=["save_response"]
+    
+    mixed_json = []
+    assert user_index in users_index
+    users_index.remove(user_index)
+    
+    for json_type in json_types:
+        for other_index in users_index:
+            for data_type in data_types:
+                json_dir = os.path.join(save_dir, json_type,f"{json_type}_qa_{other_index}_{data_type}.json")
+                with open(json_dir,'r',encoding = 'utf-8') as f:
+                    data_ = json.load(f)
+                for data_one in data_:
+                    data_one["humanjudge"] = data_type == "save_response"
+            
+                mixed_json.extend(data_)
+            
+    random.shuffle(mixed_json)
+    mixed_json = random.sample(mixed_json,data_len_limit)
+    
+    save_dir = os.path.join(save_dir,"mixed_human_data")
+    if not os.path.exists(save_dir):
+            os.makedirs(save_dir)
+    else:
+        # shutil.rmtree(save_dir)
+        # os.makedirs(save_dir)
+        pass
+    for data in mixed_json:
+        assert data["response"]!={}
+        
+    save_path = os.path.join(save_dir,f"{user_index}_judge.json")
+    if os.path.exists(save_path):
+        os.unlink(save_path)
+    with open(save_path,'w',encoding = 'utf-8') as f:
+        json.dump(mixed_json,f, indent=4,separators=(',', ':'),ensure_ascii=False)
+     
 
 
 if __name__ =="__main__":
@@ -123,10 +167,12 @@ if __name__ =="__main__":
     #                     data_dir=data_dir,
     #                     save_dir=save_dir)
     
-    shuffle_for_user(json_types,
-                     7,
-                     save_dir=save_dir,
-                     data_dir=data_dir)
+    # 标注版本10人
+    # shuffle_for_user(json_types,
+    #                  3,
+    #                  save_dir=save_dir,
+    #                  data_dir=data_dir)
     
-    
-    
+    # 后续和实验data的混杂版本，仅仅为i号标注者 取人类标注数据
+    shuffle_for_user_human(json_types=json_types,
+                           user_index=0)
