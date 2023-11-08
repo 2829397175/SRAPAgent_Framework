@@ -27,7 +27,9 @@ class Executor():
         self.environment = environment
 
     @classmethod
-    def from_task(cls, task: str):
+    def from_task(cls, 
+                  task: str,
+                  api_path: str):
         """Build an LLM_PublicHousingAllocation from a task name.
         The task name should correspond to a directory in `tasks` directory.
         Then this method will load the configuration from the yaml file in that directory.
@@ -57,7 +59,7 @@ class Executor():
         
         tenant_configs = manager_configs.pop('tenant')
 
-        llm_loader = APIKeyPool()
+        llm_loader = APIKeyPool(api_path)
         
         
         tenant_manager = load_manager({**tenant_configs,
@@ -94,10 +96,18 @@ class Executor():
                                 f"global_evaluation")
         if not os.path.exists(save_evaluation_dic):
             os.makedirs(save_evaluation_dic) 
+        # save_evaluation_dir = os.path.join(save_evaluation_dic,
+        #                         f"global_score.json") 
+        
         save_evaluation_dir = os.path.join(save_evaluation_dic,
-                                f"global_score.json") 
+                                f"global_score_newver.json") 
+        
+        assert os.path.exists(save_evaluation_dir)
        
-        global_score = Global_Score.initialization(tenant_manager,system,save_dir=save_evaluation_dir,llm_pool=llm_loader,
+        global_score = Global_Score.initialization(tenant_manager,
+                                                   system,
+                                                   save_dir=save_evaluation_dir,
+                                                   llm_pool=llm_loader,
                                                    llm_configs={"llm_type": "gpt-3.5-turbo-16k-0613",
                                                                 "temperature": 0.6,
                                                                 "max_tokens": 200}
@@ -119,18 +129,6 @@ class Executor():
     def load_log(self,result_dir):
         self.environment.load_log(result_dir)
 
-        while not self.environment.is_done():
-            tenant_waitlists = self.environment.rule.get_next_agent_idx(self.environment)
-            
-            """采样waitlist中的tenant交流"""
-            # tenant_ids = []
-            # for queue_name, tenant_waitlist in tenant_waitlists.items():
-            #     tenant_ids.extend(tenant_waitlist) ## 所有waitlist内的tenant进行交流
-            
-            """采样所有系统中的tenant交流"""
-            tenant_ids = list(self.environment.tenant_manager.data.keys())
-            
-            self.environment.step(tenant_waitlists)
 
     def run(self):
         """Run the environment from scratch until it is done."""
@@ -147,15 +145,15 @@ class Executor():
             tenant_waitlists = self.environment.rule.get_next_agent_idx(self.environment)
             
             """采样waitlist中的tenant交流"""
-            # tenant_ids = []
-            # for queue_name, tenant_waitlist in tenant_waitlists.items():
-            #     tenant_ids.extend(tenant_waitlist) ## 所有waitlist内的tenant进行交流
+            tenant_ids = []
+            for queue_name, tenant_waitlist in tenant_waitlists.items():
+                tenant_ids.extend(tenant_waitlist) ## 所有waitlist内的tenant进行交流
             
             """采样所有系统中的tenant交流"""
-            tenant_ids = list(self.environment.tenant_manager.data.keys())
+            # tenant_ids = list(self.environment.tenant_manager.data.keys())
                         
-            # self.environment.communication(tenant_ids,
-            #                                communication_num = 10)
+            self.environment.communication(tenant_ids,
+                                           communication_num = 10)
            
             self.environment.step(tenant_waitlists)
             

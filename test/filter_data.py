@@ -157,7 +157,7 @@ def distribution_batch_tenant(run_turns,cur_num):
                
     
 if __name__ =="__main__":
-    filter_tenant(num=5)
-    # filter_house(num=10)
-    # distribution_batch(5,100)
+    # filter_tenant(num=5)
+    # filter_house(num=30)
+    distribution_batch(5,28)
     # distribution_batch_tenant(3,11)

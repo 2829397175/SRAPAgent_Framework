@@ -174,7 +174,7 @@ class ActionHistoryMemory(BaseMemory,SummarizerMixin):
         for t_id,t_info in self.social_network.items():
             dialogues = t_info.get("dialogues",[])
             if (len(dialogues)>self.dialogue_threshold):
-                dialogues = dialogues.sort(key=lambda x: x.timestamp,reverse=True)
+                dialogues.sort(key=lambda x: x.timestamp,reverse=True)
                 t_info["dialogues"] = dialogues[:20]
                 
         

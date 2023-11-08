@@ -73,7 +73,7 @@ managers:
 
 
   community:
-    distribution_batch_dir: "data/distribution_batch_28.json"
+    distribution_batch_dir: "data/distribution_batch_28_6.json"
     publish_order: False
     data_dir: "data/community_28.json"
     

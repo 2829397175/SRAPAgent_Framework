@@ -250,7 +250,9 @@ class LogRound(BaseModel):
             if log == {}:
                 continue 
             
-            log_round = log["log_round"]
+            log_round = log.get("log_round")
+            if log_round is None:
+                continue
             for tenant_id, tenant_info in log_round.items():
                 if "choose_house_id" in tenant_info.keys():
                     if tenant_info["choose_house_id"] !="None":
