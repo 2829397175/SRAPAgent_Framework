@@ -45,6 +45,9 @@ from langchain.callbacks.manager import (
     Callbacks,
 )
 
+from langchain.chat_models import ChatOpenAI
+from langchain.llms import OpenAI
+
 from LLM_PublicHouseAllocation.tenant.langchain_tenant.Langchain_agent_executor import House_AgentExecutor
 import re
 import random
@@ -54,7 +57,8 @@ from LLM_PublicHouseAllocation.tenant.policy import BasePolicy
 
 from LLM_PublicHouseAllocation.tenant.langchain_tenant.tenant_log import Log_Round_Tenant
 
-from openai.error import RateLimitError
+# from LLM_PublicHouseAllocation.llms import APIKeyPool
+from openai.error import RateLimitError,AuthenticationError
 
 class LangchainTenant(langchainAgent):
     id :str
@@ -70,7 +74,10 @@ class LangchainTenant(langchainAgent):
     workplace: str = ""  # 用来记录工作点的中文名
     # social_network: dict = {}
     mode : str ="choose" # 控制llm_chain 状态（reset_state中改）
+    
+    
     # 这个是为了更改llm_chain
+    llm_loader: Any 
     llm: BaseLanguageModel
     priority_item:dict = {}
     
@@ -101,10 +108,12 @@ class LangchainTenant(langchainAgent):
             infos["extra_info"] = "\nYou sincerely believe this information:{}".format(infos.get("extra_info"))
         else:
             infos["extra_info"] = ""
+        llm_loader = kwargs.pop("llm_loader")
         # memory = ActionHistoryMemory(llm=kwargs.get("llm",OpenAI()))
         super().__init__(agentrule=rule, 
                          infos = infos,
                          **kwargs)
+        self.llm_loader = llm_loader
     
     class Config:
         arbitrary_types_allowed = True
@@ -388,11 +397,23 @@ class LangchainTenant(langchainAgent):
         for i in range(self.max_retry):
             try:
                 response = await executor.acall(prompt_inputs)
-                break
+            except AuthenticationError as e:
+                if isinstance(self.llm,OpenAI) or isinstance(self.llm,ChatOpenAI):
+                    api_key = self.llm.openai_api_key
+                    self.llm_loader.invalid(api_key)
+                    memory_llm, llm_base = self.llm_loader.get_llm(self)
+                    self.reset_memory_llm(memory_llm)
+                    self.reset_llm(llm_base)
+                print(e)
+                print("Retrying...")
+                continue
             except OutputParseError as e:
                 print(e)
                 print("Retrying...")
                 continue
+                
+            break
+            
         if response is None:
             # raise ValueError(f"{self.name} failed to generate valid response.")
             return {"output":f"{self.name} failed to generate valid response.",
@@ -411,6 +432,7 @@ class LangchainTenant(langchainAgent):
         infos: dict,
         memory:ActionHistoryMemory,
         llm: BaseLanguageModel,
+        llm_loader,
         prompt: PromptTemplate,
         rule: dict,
         work_place :str,
@@ -436,6 +458,7 @@ class LangchainTenant(langchainAgent):
             output_parser = output_parser,
             allowed_tools = allowed_tools,
             llm = llm,
+            llm_loader = llm_loader,
             llm_chain = llm_chain,
             id = id,
             name = name,
@@ -607,14 +630,16 @@ You still have {chance_num} chances to choose house.\
                 forum_manager, 
                 system,  
                 rule,
-                tool):
+                tool,
+                tenant_ids):
         group_id = await self.policy.group(self,
                                            tenant_manager,
-                          forum_manager, 
-                            system,  
-                            rule,
-                            tool,
-                            self.log_round_tenant)
+                                        forum_manager, 
+                                            system,  
+                                            rule,
+                                            tool,
+                                            self.log_round_tenant,
+                                            tenant_ids)
         self.queue_name = group_id
         return group_id
     

@@ -4,15 +4,19 @@ from .base import BaseGroupPolicy
 @group_registry.register("community")
 class CommunityPolicy(BaseGroupPolicy):
     
-
+    def __init__(self,**kargs) -> None:
+        return super().__init__(type = "community",
+                                **kargs)
     
     async def group(self,
                 tenant,
+                tenant_manager,
                 forum_manager, 
                 system, 
                 tool, 
                 rule,
-                log_round_tenant):
+                log_round_tenant,
+                tenant_ids):
         
         search_infos = tenant.search_forum(forum_manager=forum_manager,
                                          system=system)

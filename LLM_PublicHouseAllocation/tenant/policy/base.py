@@ -36,7 +36,8 @@ class BasePolicy(BaseModel):
                     system, 
                     tool, 
                     rule,
-                    log_round_tenant):
+                    log_round_tenant,
+                    tenant_ids):
         return await self.group_policy.group(
                     tenant,
                     tenant_manager,
@@ -44,4 +45,6 @@ class BasePolicy(BaseModel):
                     system, 
                     tool, 
                     rule,
-                    log_round_tenant)
+                    log_round_tenant,
+                    tenant_ids)
+                    

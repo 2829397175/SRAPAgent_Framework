@@ -87,6 +87,8 @@ class TenantManager(BaseManager):
                 memory_llm, llm_base = llm_loader.get_llm(
                     self_llm_configs = tenant_llm_config,
                     memory_llm_configs = memory_llm_configs)
+                memory_config["memory_llm_configs"] = memory_llm_configs
+                memory_config["llm_loader"] = llm_loader
                 memory = load_memory(memory_config,memory_llm)
                 
                 tenant = LangchainTenant.from_llm_and_tools(name=tenant_config.get("name",tenant_id),
@@ -94,6 +96,7 @@ class TenantManager(BaseManager):
                                                             infos=tenant_config,
                                                             memory = memory,
                                                             llm = llm_base,
+                                                            llm_loader = llm_loader,
                                                             prompt=prompt_base,
                                                             output_parser=output_parser_base,
                                                             policy = policy,

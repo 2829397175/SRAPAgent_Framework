@@ -106,6 +106,7 @@ class RentEnvironment(BaseEnvironment):
 
                 self.system.save_data()
                 self.forum_manager.save_data()
+                self.llm_loader.save_apis()
 
                 #self.log.evaluation_matrix(self.tenant_manager)
             return True
@@ -115,6 +116,7 @@ class RentEnvironment(BaseEnvironment):
                                            self.system)
                 self.system.save_data()
                 self.forum_manager.save_data()
+                self.llm_loader.save_apis()
                 #self.log.evaluation_matrix(self.tenant_manager,self.global_score,self.system)
             return True
         
@@ -275,7 +277,7 @@ class RentEnvironment(BaseEnvironment):
                                   tool,
                                   log):
             
-            group_ids = await asyncio.gather(*[tenant_manager[tenant_id].group(tenant_manager,forum_manager, system, rule, tool) for \
+            group_ids = await asyncio.gather(*[tenant_manager[tenant_id].group(tenant_manager,forum_manager, system, rule, tool, tenant_ids) for \
                 tenant_id in tenant_ids])
 
             for tenant_id in tenant_ids:

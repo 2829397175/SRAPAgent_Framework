@@ -14,9 +14,52 @@ from langchain.prompts.prompt import PromptTemplate
 from langchain.prompts.base import BasePromptTemplate
 from pydantic import BaseModel, root_validator
 import re
+from typing import Any
 
+from openai.error import RateLimitError,AuthenticationError
+from langchain.chat_models import ChatOpenAI
+from langchain.llms import OpenAI
 class SummarizerMixin(BaseModel):
     llm: BaseLanguageModel
+    
+    llm_loader:Any
+    memory_llm_configs:dict = {}
+    max_retry :int = 5
+    
+    def request(self,
+                chain:LLMChain,
+                **kargs):
+        
+        for i in range(self.max_retry):
+            try:
+                response = chain.predict(**kargs)
+            except AuthenticationError as e:
+                    if isinstance(self.llm,OpenAI) or isinstance(self.llm,ChatOpenAI):
+                        api_key = self.llm.openai_api_key
+                        self.llm_loader.invalid(api_key)
+                        llm = self.llm_loader.get_llm_single(self.memory_llm_configs)
+                        self.llm = llm
+                    print(e,"Retrying...")
+                    continue
+            break
+        return response
+    
+    async def arequest(self,
+                       chain:LLMChain,
+                       **kargs):
+        for i in range(self.max_retry):
+            try:
+                response = await chain.apredict(**kargs)
+            except AuthenticationError as e:
+                    if isinstance(self.llm,OpenAI) or isinstance(self.llm,ChatOpenAI):
+                        api_key = self.llm.openai_api_key
+                        self.llm_loader.invalid(api_key)
+                        llm = self.llm_loader.get_llm_single(self.memory_llm_configs)
+                        self.llm = llm
+                    print(e,"Retrying...")
+                    continue
+            break
+        return response
 
     def predict_new_summary(
         self, 
@@ -27,7 +70,7 @@ class SummarizerMixin(BaseModel):
         new_lines = "\n".join([str(message) for message in messages])
 
         chain = LLMChain(llm=self.llm, prompt=prompt)
-        return chain.predict(summary=existing_summary, new_lines=new_lines)
+        return self.request(chain,summary=existing_summary, new_lines=new_lines)
     
     
     async def apredict_new_summary(
@@ -39,7 +82,7 @@ class SummarizerMixin(BaseModel):
         new_lines = "\n".join([str(message) for message in messages])
 
         chain = LLMChain(llm=self.llm, prompt=prompt)
-        return await chain.apredict(summary=existing_summary, new_lines=new_lines)
+        return await self.arequest(chain,summary=existing_summary, new_lines=new_lines)
     
     async def summarize_paragraph(self,
                             passage:str,
@@ -47,14 +90,13 @@ class SummarizerMixin(BaseModel):
                             prompt: BasePromptTemplate = SUMMARY_PROMPT):
         
         chain = LLMChain(llm=self.llm, prompt=prompt)
-
-        return await chain.apredict(summary="", new_lines=passage)
+        return await self.arequest(chain,summary="", new_lines=passage)
 
     async def summarize_chatting(self,
                            prompt_inputs,
                            prompt):
         chain = LLMChain(llm=self.llm, prompt=prompt)
-        return await chain.apredict(**prompt_inputs)
+        return await self.arequest(chain,**prompt_inputs)
 
 
 @memory_registry.register("action_history")
@@ -86,6 +128,8 @@ class ActionHistoryMemory(BaseMemory,SummarizerMixin):
     # 设置各类消息的buffer大小数
     summary_threshold:int = 5 # 每次总结后，再多5条就触发一次总结 -> 记忆库内
     dialogue_threshold:int = 20 # 保证和各个熟人的记忆都在20条内（按照时间戳） -> social_network内
+    
+
     
     def reset_llm(self, llm):
         self.llm = llm

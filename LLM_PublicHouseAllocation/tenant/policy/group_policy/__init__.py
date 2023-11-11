@@ -7,3 +7,4 @@ from .multi_list import MultiListPolicy
 from .community import CommunityPolicy
 from .house_type import HouseTypePolicy
 from .single_list import SingleListPolicy
+from .portion import PortionPolicy

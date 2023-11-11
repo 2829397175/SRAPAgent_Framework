@@ -40,5 +40,4 @@ class ChoosePromptTemplate(BaseChatPromptTemplate):
         formatted = self.template.format(**kwargs)
     
         # return [Message(content=formatted,
-        #                 message_type=message_type)]
-        return [HumanMessage(content=formatted)]
+        #                 message_type=message_type)]        return [HumanMessage(content=formatted)]

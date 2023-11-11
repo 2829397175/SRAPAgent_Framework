@@ -11,6 +11,7 @@ class APIKeyPool(BaseModel):
     
     available_keys: set = ()
     in_use_keys: set = ()    
+    llm_data_path:str = "LLM_PublicHouseAllocation/llms/api.json"
     
     
     def __init__(self,
@@ -21,9 +22,14 @@ class APIKeyPool(BaseModel):
 
         super().__init__(
             available_keys = set(keys),
-            in_use_keys = ()    
+            in_use_keys = ()    ,
+            llm_data_path = llm_data_path
         )
         
+    def save_apis(self):
+        apis = [*self.available_keys,*self.in_use_keys]
+        with open(self.llm_data_path,'w',encoding = 'utf-8') as f:
+            json.dump(apis, f, indent=4,separators=(',', ':'),ensure_ascii=False)
         # 有必要做临界资源处理吗?实际上同时用一个api是被允许的行为.
     
     def get_llm(self,
@@ -56,6 +62,10 @@ class APIKeyPool(BaseModel):
             self.available_keys = self.in_use_keys
             self.in_use_keys = set()
             
+        if len(self.available_keys) == 0:
+            self.save_apis()
+            raise Exception("No valid OPENAI_API_KEY !!!")
+        
         key = self.available_keys.pop()
         self.in_use_keys.add(key)
         
@@ -71,6 +81,10 @@ class APIKeyPool(BaseModel):
         if len(self.available_keys) == 0:
             self.available_keys = self.in_use_keys
             self.in_use_keys = set()
+            
+        if len(self.available_keys) == 0:
+            self.save_apis()
+            raise Exception("No valid OPENAI_API_KEY !!!")
             
         key = self.available_keys.pop()
         self.in_use_keys.add(key)
@@ -94,6 +108,14 @@ class APIKeyPool(BaseModel):
             self.available_keys.add(key)
             
             
+    def invalid(self,
+                api_key):
+        print(f"{api_key} expires!!")
+        if api_key in self.available_keys:
+            self.available_keys.remove(api_key)
+        if api_key in self.in_use_keys:
+            self.in_use_keys.remove(api_key)
+        print(f"{api_key} removed from pool!!")
             
     def llm(self,
             api,

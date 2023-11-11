@@ -151,8 +151,8 @@ class Executor():
             """采样所有系统中的tenant交流"""
             # tenant_ids = list(self.environment.tenant_manager.data.keys())
                         
-            # self.environment.communication(tenant_ids,
-            #                                communication_num = 10)
+            self.environment.communication(tenant_ids,
+                                           communication_num = 10)
            
             self.environment.step(tenant_waitlists)
             

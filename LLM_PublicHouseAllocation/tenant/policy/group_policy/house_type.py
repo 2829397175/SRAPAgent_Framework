@@ -4,15 +4,19 @@ from .base import BaseGroupPolicy
 @group_registry.register("house_type")
 class HouseTypePolicy(BaseGroupPolicy):
     
-    
+    def __init__(self,**kargs) -> None:
+        return super().__init__(type = "house_type",
+                                **kargs)
     
     async def group(self,
                 tenant,
+                tenant_manager,
                 forum_manager, 
                 system, 
                 tool, 
                 rule,
-                log_round_tenant):
+                log_round_tenant,
+                tenant_ids):
         
         choose_state = False
         upper_bound = 3

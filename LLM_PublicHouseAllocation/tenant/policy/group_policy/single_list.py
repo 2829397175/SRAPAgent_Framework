@@ -5,6 +5,10 @@ from .base import BaseGroupPolicy
 class SingleListPolicy(BaseGroupPolicy):
     
     
+    def __init__(self,**kargs) -> None:
+        return super().__init__(type = "single_list",
+                                **kargs)
+    
     async def group(self,
                 tenant,
                 tenant_manager,
@@ -12,7 +16,8 @@ class SingleListPolicy(BaseGroupPolicy):
                 system, 
                 tool, 
                 rule,
-                log_round_tenant):
+                log_round_tenant,
+                tenant_ids):
         
         return "default"
         

@@ -12,7 +12,7 @@ class CommunityManager(BaseManager):
     """
     total_community_datas:dict={}
     distribution_batch_data:dict={}
-    patch_method = "avg"
+    patch_method = "random_avg"
     
     
     @classmethod
@@ -24,7 +24,8 @@ class CommunityManager(BaseManager):
         with open(data_dir,'r',encoding = 'utf-8') as f:
             total_community_datas = json.load(f)
             
-        with open(os.path.join(kwargs["distribution_batch_dir"]),'r',encoding = 'utf-8') as f:
+        distribution_path = kwargs.pop("distribution_batch_dir")
+        with open(distribution_path,'r',encoding = 'utf-8') as f:
             distribution_batch_data = json.load(f)
 
         return cls(
@@ -32,7 +33,7 @@ class CommunityManager(BaseManager):
             data = {},
             distribution_batch_data = distribution_batch_data,
             data_type= "community_data",
-            save_dir= kwargs["save_dir"]
+            **kwargs
             )
         
     def get_house_info(self,house_id):
@@ -149,16 +150,49 @@ class CommunityManager(BaseManager):
             return queue_houses
             
         def portion_groups(house_ids,
-                           queue_names):
+                           queue_names,
+                           portion_attr ="house_area"): # 默认按照房子大小按比例分配
+            
             queue_lens = len(queue_names)
             if queue_lens <=1:
                 return house_ids
             import re
-            regex = f"()<(.*)<"
-            try:
-                attr = re.search(regex, queue_names[0]).group(1)
-            except:
-                raise Exception(f"invalid queue name! :{queue_names[0]}")
+            regex = f"(\d+\.*\d*)<(.*)<(\d+\.*\d*)"
+            
+            portions = []
+            attr =""
+            valid_tenant_postive_attr = ["family_members_num",
+                                 "monthly_income",
+                                 "monthly_rent_budget"] # 指标越大 选 越大的房子（正向指标）
+            for queue_name in queue_names:
+                try:
+                    match = re.search(regex, queue_name)
+                    attr = match.group(2)
+                    portions.append((queue_name,float(match.group(3))))
+                    assert attr in valid_tenant_postive_attr
+                except:
+                    raise Exception(f"invalid queue name! :{queue_name}")
+                
+            index_house_basic_infos = {house_id:house_manager[house_id] for house_id in house_ids}
+            list_sorted_index_house_basic_infos = sorted(index_house_basic_infos.items(),key =lambda x: float(x[1].get(portion_attr,0)))
+            
+            portions.sort(key=lambda x:x[1])
+            
+            queue_houses = {}
+            ptr_l =0
+            n = len(list_sorted_index_house_basic_infos)
+            for idx_group,portion_tuple in enumerate(portions):
+                ptr_r = int(portion_tuple[1]*n)
+                if idx_group == len(portions):
+                    portion_indexs = [ x[0] for x in list_sorted_index_house_basic_infos[ptr_l:]]
+                else:
+                    portion_indexs = [ x[0] for x in list_sorted_index_house_basic_infos[ptr_l:ptr_r]]
+                
+                queue_houses[portion_tuple[0]] = portion_indexs
+                
+                ptr_l = ptr_r
+                
+            return queue_houses
             
             
         
@@ -181,9 +215,9 @@ class CommunityManager(BaseManager):
                                            len(queue_names),
                                                 queue_names)
         elif self.patch_method == "portion":
-            queue_house_ids = avg_groups(
-                
-            )
+            queue_group_h_ids = portion_groups(queue_house_ids,
+                                             queue_names,
+                                             "house_area")
         else:
             raise NotImplementedError("This type of patch method is not supported.")
         
