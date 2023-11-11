@@ -41,19 +41,6 @@ class ChooseParser(AgentOutputParser):
         if not match:
             raise OutputParseError("Output Format Error(choose)")
         
-        # chooses = []
-        # for match in matchs:
-        #     thought = match[0].strip().strip(" ").strip('"')
-        #     action = match[1].strip()
-        #     action_input = match[2].strip().strip(" ").strip('"')
-        #     chooses.append({"output":action_input,
-        #                     "thought":thought})
-            
-        #     if action.lower() == "choose":
-        #         return AgentFinish(return_values={"return_values":
-        #                                         {"chooses":chooses}},
-        #                        log=llm_output)
-        
         
         thought = match.group(1).strip().strip(" ").strip('"')
         action = match.group(2).strip()

@@ -115,7 +115,7 @@
             "potential_information_house":"Marrying design with functionality, this house offers a perfect setting for modern lifestyles. The bedroom provides a serene escape, ensuring restful nights."
         },
         "house_44":{
-            "house_type":"medium_house",
+            "house_type":"middle_house",
             "toward":"EW",
             "house_area":"46.14",
             "rent_money":1846,
@@ -126,7 +126,7 @@
             "potential_information_house":"An optimal blend of style and functionality, this house is designed for contemporary urban living. The serene bedroom ambiance ensures a peaceful retreat."
         },
         "house_46":{
-            "house_type":"medium_house",
+            "house_type":"middle_house",
             "toward":"EW",
             "house_area":"44.75",
             "rent_money":1790,
@@ -137,7 +137,7 @@
             "potential_information_house":"The house resonates with a contemporary vibe, ensuring a delightful living environment. The bedroom's peaceful ambiance is conducive to relaxation."
         },
         "house_52":{
-            "house_type":"medium_house",
+            "house_type":"middle_house",
             "toward":"EW",
             "house_area":"44.30",
             "rent_money":1772,
@@ -148,7 +148,7 @@
             "potential_information_house":"Crafted for modern dwellers, this house exudes elegance in its design. The bedroom's quiet environment ensures a refreshing retreat."
         },
         "house_51":{
-            "house_type":"medium_house",
+            "house_type":"middle_house",
             "toward":"EW",
             "house_area":"46.10",
             "rent_money":1844,

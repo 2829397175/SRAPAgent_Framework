@@ -39,9 +39,20 @@ def load_manager(manager_config: Dict,manager_type) :
     
 
     
-def prepare_task_config(task):
+def prepare_task_config(task,
+                        data):
     """Read the yaml config of the given task in `tasks` directory."""
-    all_task_dir = os.path.join(os.path.dirname(__file__), 'tasks')
+    all_data_dir = os.path.join(os.path.dirname(__file__), 'tasks')
+    data_path = os.path.join(all_data_dir,data)
+    if not os.path.exists(data_path):
+        all_datas = []
+        for data_name in os.listdir(all_data_dir):
+            if os.path.isdir(os.path.join(all_data_dir, task)) \
+                and data_name != "__pycache__":
+                all_datas.append(data_name)
+        raise ValueError(f"Data {data} not found. Available tasks: {all_datas}")
+    
+    all_task_dir = os.path.join(data_path, "configs")
     task_path = os.path.join(all_task_dir, task)
     config_path = os.path.join(task_path, 'config.yaml')
     
@@ -52,11 +63,12 @@ def prepare_task_config(task):
                 and task != "__pycache__":
                 all_tasks.append(task)
         raise ValueError(f"Task {task} not found. Available tasks: {all_tasks}")
+    
     if not os.path.exists(config_path):
         raise ValueError("You should include the config.yaml file in the task directory")
     task_config = yaml.safe_load(open(config_path))
 
-    return task_config,task_path
+    return task_config,task_path,data_path
 
 
 

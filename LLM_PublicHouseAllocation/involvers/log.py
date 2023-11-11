@@ -135,7 +135,8 @@ class LogRound(BaseModel):
         #     scores = group_utility["choose_u"]
         utility_p = utility_matrix[utility_matrix["priority"]]
         utility_np = utility_matrix[utility_matrix["priority"]!= True]
-        utility_eval_matrix.loc["F(W,G)","all"] = np.sum(utility_p["choose_u"])/utility_p.shape[0] -\
+        if utility_p.shape[0]!= 0 and utility_np.shape[0]!=0:
+            utility_eval_matrix.loc["F(W,G)","all"] = np.sum(utility_p["choose_u"])/utility_p.shape[0] -\
             np.sum(utility_np["choose_u"])/utility_np.shape[0]
         
         
@@ -180,9 +181,11 @@ class LogRound(BaseModel):
         
         for group_id,group_matrix in utility_matrix_objective_grouped:
             objective_evaluation.loc["mean_house_area",group_id] = np.average(group_matrix["avg_area"])
-        
+            objective_evaluation.loc["mean_wait_turn",group_id] = np.average(group_matrix["wait_turn"])
+            
         objective_evaluation.loc["mean_house_area","all"] = np.average(utility_matrix_objective["avg_area"])
         objective_evaluation.loc["var_mean_house_area","all"] = np.var(utility_matrix_objective["avg_area"])
+        objective_evaluation.loc["mean_wait_turn","all"] = np.average(utility_matrix_objective["wait_turn"])
         
         # 计算逆序对
         count_rop = 0
@@ -194,7 +197,8 @@ class LogRound(BaseModel):
                      utility_matrix.loc[tenant_id_b,"house_size"]):
                     count_rop+=1
         objective_evaluation.loc["Rop","all"] = count_rop
-            
+        objective_evaluation.index.name = 'type_indicator'
+        
         # 设置指标的标签
         index_map ={
             "Satisfaction":["sw"],

@@ -5,9 +5,6 @@ from .base import BaseGroupPolicy
 class MultiListPolicy(BaseGroupPolicy):
     
     
-    def __init__(self,**kargs) -> None:
-        super().__init__(policy_type="multi_list",
-                         **kargs)
     
     async def group(self,
                 tenant,

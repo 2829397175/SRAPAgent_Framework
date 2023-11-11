@@ -1,0 +1,688 @@
+[
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+            "memory":"The family had been considering two potential communities to move to, community_1 and community_2. Community_1 had less convenient facilities than community_2, which was close to the family members' workplace and child's school. In the end, the family opted for community_2, as it was a better option for their needs.You trust these information on forum:  The house is well-maintained and located in a safe and convenient neighborhood. Because  Other competitors may be trying to dissuade potential renters from considering the house in order to give themselves an advantage.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Landon. You earn 15000 per month.Your family members include: Married with one child, a toddler.You are 33 years old. Your job is Architect. Your company is located in Jianguomenwai Street, Chaoyang District, Beijing. Landon needs a house with a nursery room for his toddler. You expect to rent a house for 2500.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is middle_house.",
+            "thought":"Considering my family's needs, the large house would be too big for us. The small house would be too small as we need a nursery room for our toddler. The middle house seems to be the most suitable option for us, as it can accommodate two people and a younger child."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+            "memory":"You are considering two communities, community_1 and community_2. After considering the convenience of community_2, with its close proximity to your wife's workplace and your child's school, you have decided to choose community_2. You feel that this location is more suitable for your family than community_1.You trust these information on forum:  The house is near shops, schools, and public transportation. It also has a spacious backyard and a balcony.  Because  The competitors are likely sharing this information to make the house appear more attractive to potential buyers.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Sarah. You earn 10000 per month.Your family members include: Married with one child.You are 35 years old. Your job is Public servant. Your company is located in China World Trade Center, No. 32 Jianguomenwai Avenue, Chaoyang District, Beijing. Sarah and her family would like a house with a small garden where their child can play safely. You expect to rent a house for 2000.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is small_house.",
+            "thought":"Based on my family's needs and preferences, the small_house seems like the most suitable option. It is affordable and fits within our budget, and it also provides enough space for the three of us. Additionally, having a small garden where our child can play safely is important to us."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+            "memory":"The speaker is considering two different communities, community_1 and community_2. Community_1 has inconvenient facilities, leading the speaker to consider community_2, which is closer to their wife's workplace and their child's school. This makes community_2 the ideal choice for their family, so they have decided to move there.You trust these information on forum:  The house is close to public transportation, with a spacious living room and good security. However you are suspicious of  The landlord is offering a discounted rent. Because  Competitors may be trying to persuade others to go for a different option, as they will be able to negotiate a better deal on their own.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Alex. You earn 6000 per month.Your family members include: Single, no children.You are 28 years old. Your job is Freelancer. Your company is located in People's Bank of China Building, No. 36 Financial Street, Xicheng District, Beijing. Alex needs a quiet and comfortable apartment with good natural lighting for a productive work-from-home environment. You expect to rent a house for 1500.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is small_house.",
+            "thought":"Considering that I am single and don't have any children, the small_house seems like the most suitable option for me. It is designed for one person to live alone, which fits my current situation. Additionally, it should be affordable within my budget of 1500.0."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+            "memory":"You were considering two different communities, and initially thought that community_1 had inconvenient facilities. However, community_2 is close to your wife's workplace and your child's school, so you decided to choose it instead. This decision was based on the idea that it would be more convenient for your family members.You trust these information on forum:  The house seems to be in a nice neighborhood with good schools nearby and is close to local amenities. Because  Competitors are likely providing helpful information about the house in order to make sure that potential renters are well informed about the living situation.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Lily. You earn 7000 per month.Your family members include: Married with two children, both in elementary school.You are 39 years old. Your job is Hotel receptionist. Your company is located in Xiangjiang Plaza Building, No. 19 South 3rd Ring Middle Road, Fengtai District, Beijing. Lily's family requires a pet-friendly apartment as they have a small dog. You expect to rent a house for 1400.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is large_house.",
+            "thought":"Considering that I am married with two children, a large house would be the best fit for my family as it can accommodate all of us comfortably."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+            "memory":"You were considering two different communities, community_1 and community_2, for your family but had difficulty making a decision. Community_2 has the benefit of being close to both your wife's workplace and your child's school, making it a more convenient option. This ultimately led to you deciding to choose community_2.You trust these information on forum:   However you are suspicious of  Because \nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Clara. You earn 5000 per month.Your family members include: Single, no children.You are 27 years old. Your job is Teacher. Your company is located in Huilongguan, Changping District, Beijing. Clara needs a house with a quiet environment for her to focus on her work. You expect to rent a house for 1000.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is small_house.",
+            "thought":"Based on my current situation as a single person with no children, I think the small_house type would be the most suitable for me. It is designed for one person to live alone, which fits my needs perfectly. Additionally, the small_house type usually has a lower rent compared to the other types, which aligns with my budget of 1000.0."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+            "memory":"You have been considering two different communities to move to. In comparison, you think community_1 has inconvenient facilities and so you have decided to move to community_2 instead, as it is closer to your wife's workplace, your child's school, and other important amenities. You have chosen to move to community_2 as it is a better option for your family.You trust these information on forum:  The landlord is responsive, the location is convenient, and it has a spacious living room.  Because  The landlord wants to rent the house and the other competitors are trying to find out enough details to make an informed decision.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Vivian. You earn 6000 per month.Your family members include: Married with two children, both in elementary school.You are 38 years old. Your job is Hotel receptionist. Your company is located in Wangfujing Street, Dongcheng District, Beijing. Vivian needs a house with a playground nearby for her children to play. You expect to rent a house for 1200.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is large_house.",
+            "thought":"I need a house that can accommodate my family of four, including two young children. The large_house seems like a good option as it can accommodate more than three people. However, I'm not sure if it fits within my budget of 1200.0. The middle_house might be suitable for my family, but it doesn't mention if it can accommodate two children. The small_house is not suitable for my family size."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+            "memory":"You were considering two communities for your family, community_1 and community_2. Community_1 had some inconvenient facilities, but community_2 was close to your wife's workplace and your child's school, so you chose community_2 for your family. You liked the idea of having your family members close to each other, and the convenience of community_2 made it an easy choice. You decided that community_2 was the right fit for you and your family.\nTrusted: The houses have 24/7 security, are located in a safe neighborhood, and all amenities are within walking distance.\nRimspicious: The rent for one house is way lower than the others.\nReason: Other competitors may be trying to make the house look more attractive, in order to make it more appealing to potential renters.\n\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Madelyn. You earn 8000 per month.Your family members include: Single, no children.You are 29 years old. Your job is Freelancer. Your company is located in Sanlitun, Chaoyang District, Beijing. Madelyn prefers a house with a spacious living room for her yoga practice. You expect to rent a house for 1600.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is small_house.",
+            "thought":"Based on my current situation and preferences, I think the small_house would be the best fit for me. It is suitable for one person to live alone, which matches my family size. Additionally, as a freelancer, I don't need a lot of space, but I do value having a spacious living room for my yoga practice. The small_house should be affordable within my budget of 1600.0."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+            "memory":"You were deciding between two communities to move into, community_1 and community_2. Community_1 had inconvenient facilities, so you decided to look into Community_2. After evaluating the distance to your wife's workplace and your child's school, you determined that Community_2 was the better fit for your family. Therefore, you decided to move into Community_2.You trust these information on forum:  The forum information states that the house is spacious and in a good location with easy access to transport and amenities.  Because  The other competitors are trying to promote their own properties and give the impression that their properties are better than the house being considered.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Diego. You earn 7000 per month.Your family members include: Married, no children.You are 56 years old. Your job is Restaurant chef. Your company is located in Nanyuan Road, Fengtai District, Beijing. Diego prefers a house with a backyard where he can grow his own vegetables. You expect to rent a house for 1400.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is middle_house.",
+            "thought":"Considering my family situation, I believe the best fit for us would be a middle house as it can accommodate two people and potentially a younger child. This type of house would provide enough space for us without being too big or too small."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+            "memory":"You were considering two different communities, with community_1 having inconvenient facilities. After careful consideration, you chose community_2, which has the advantage of being close to your wife's workplace and your child's school. You believe this to be the ideal choice for your family members.You trust these information on forum:  The house is a two-bedroom and one-bathroom apartment with a large living room, with access to a shared kitchen and bathroom, and a shared balcony. It is conveniently located near shops, restaurants, and public transportation. Because  Competitors want to rent the house as well, so they are likely trying to provide accurate and useful information about the property in order to influence the decision.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Eric. You earn 10000 per month.Your family members include: Married with two children, one in elementary school and one in middle school.You are 45 years old. Your job is Government employee. Your company is located in Xidan North Street, Xicheng District, Beijing. Eric needs a house with a study room for his children to do homework. You expect to rent a house for 2000.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is middle_house.",
+            "thought":"Based on the information provided, I need a house that can accommodate my family of four and has a study room for my children. The large_house seems like a good option as it can accommodate more than three people, but it might be too spacious for our needs. The middle_house could work, but it doesn't mention a study room. The small_house is not suitable as it is too small for my family."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+            "memory":"You are considering between two communities and after some thought, you decided that community_2 has an advantage due to its proximity to places important to your family, such as your wife's workplace and your child's school. You concluded that community_2 is the better choice for your family.You trust these information on forum:  The house is located in a quiet neighborhood and close to amenities such as supermarkets, shops, and parks. The landlord is willing to negotiate the rent, and has indicated that he is open to different terms. Because  Potential competitors may be trying to paint a better picture of the house to make it more attractive to potential renters.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Lydia. You earn 12000 per month.Your family members include: Married with one child.You are 32 years old. Your job is Programmer. Your company is located in No. 10 Jiuxianqiao Road, Chaoyang District, Beijing. Lydia prefers a house with a nearby park for her child to play in. You expect to rent a house for 2400.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is middle_house.",
+            "thought":"Based on my family size and the fact that I have a child, I think the middle_house type would be the most suitable option. It can accommodate two people and also has room for a younger child."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+            "memory":"You were trying to make a decision about where to live. You considered two different communities, community_1 and community_2. Community_1 had inconvenient facilities that weren't ideal for your family, while community_2 was conveniently located close to both your wife's workplace and your child's school. After considering these factors, you ultimately decided to go with community_2, putting convenience and proximity to family priorities over any other factors.You trust these information on forum:  The house is conveniently located close to the amenities and has a good price tag.  Because  It looks like the other competitors were sharing information about the house in order to make it easier for them to decide whether it's a good option for them.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Aurora. You earn 11000 per month.Your family members include: Married with one child.You are 36 years old. Your job is Bank clerk. Your company is located in Bank of China Building, No. 1 Jianguomennei Street, Chaoyang District, Beijing. Aurora needs a house with a nearby gym for her fitness routine. You expect to rent a house for 2200.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is large_house.",
+            "thought":"Based on the information provided, I am married with one child, so the small_house and middle_house are not suitable options for me. The large_house seems like the most appropriate choice as it can accommodate more than three people and would provide enough space for my family."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+            "memory":"You were considering two different communities for your family, community_1 and community_2. Community_1 had inconvenient facilities, while community_2 was closer to your wife's workplace and your child's school. Therefore, you decided to choose community_2 for its convenience and proximity to your family members' work and school.You trust these information on forum:  The house is located in a safe neighborhood, close to transportation and amenities. It has a large living area with a modern kitchen and plenty of storage space.  Because  The other competitors are providing accurate and reliable information to help you make an informed decision about the house.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Hayden. You earn 13000 per month.Your family members include: Married with two children, both in high school.You are 43 years old. Your job is State-owned enterprise staff. Your company is located in Great Hall of the People, No. 1 Xidan Beidajie, Xicheng District, Beijing. Hayden wants a house with a nearby library for his children's study needs. You expect to rent a house for 2600.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is large_house.",
+            "thought":"Based on my family size and the fact that I have two children in high school, the large_house type seems to be the most suitable option as it can accommodate more than three people. However, the middle_house type could also work as it is suitable for two people and can accommodate a younger child. The small_house type does not meet my family's needs as it is only suitable for one person."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+            "memory":"You were considering two different communities to live in, community_1 and community_2. Community_1 had inconvenient facilities and so you were undecided. However, you eventually chose community_2 due to its proximity to your wife's workplace and your child's school. This made it the ideal choice for your family members.You trust these information on forum:  The house has 3 bedrooms, is located near a metro station, is furnished, and is pet-friendly.  Because  People are likely providing accurate information as they want others to rent the house.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Mike. You earn 9000 per month.Your family members include: Married with no children.You are 55 years old. Your job is Restaurant manager. Your company is located in Wangfujing Street, Dongcheng District, Beijing. Mike wants a house with a spacious kitchen for his cooking hobby. You expect to rent a house for 1800.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is large_house.",
+            "thought":"Based on my family situation and preferences, the large house seems like the best fit for us. It can accommodate more than three people, which is perfect for our family. Additionally, it may have a spacious kitchen that I desire for my cooking hobby. However, I should consider if it fits within my budget of 1800.0."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+            "memory":"You were considering two different communities, community_1 and community_2. There were some inconveniences with the facilities of community_1, so upon further thought, you decided that community_2 would be better suited for your family since it is close to your wife's workplace and your child's school. You made the decision to choose community_2 as your home.You trust these information on forum:  The house is located in a quiet neighborhood with good public transportation options nearby. It has been recently renovated and is well-maintained.  Because  Other competitors are likely trying to find the same house and want to make sure they don't miss an opportunity.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Brooklyn. You earn 15000 per month.Your family members include: Single, no children.You are 27 years old. Your job is Architect. Your company is located in China World Trade Center Tower 1, No. 1 Jianguomenwai Street, Chaoyang District, Beijing. Brooklyn wants a house with a spacious balcony for her plants. You expect to rent a house for 2500.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is small_house.",
+            "thought":"Based on my family situation and the fact that I am single with no children, the small_house seems like the most suitable option for me. It is specifically designed for one person to live alone, and it fits within my budget. Additionally, the small size of the house will be easier for me to maintain and clean."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+            "memory":"The decision to choose a place to live is difficult, and the two options have been narrowed down to community_1 and community_2. Community_1 has inconvenient facilities, and while community_2 is further away, it is close to both the workplace of the speaker's wife and the school of their child. After careful consideration, the speaker decides to choose community_2.\nTrusted: The house is in a great location, close to necessary services, and provides updated amenities.\nRsuspicious: None \nReason: Competitors may be trying to sway potential renters away from the house in order to increase their chances of renting it.\n\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Dylan. You earn 7000 per month.Your family members include: Married with one child.You are 31 years old. Your job is Teacher. Your company is located in Zhongguancun Street, Haidian District, Beijing. Dylan needs a house with a nearby school for his child. You expect to rent a house for 1400.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is middle_house.",
+            "thought":"Considering that I am married with one child, the large_house seems like the most suitable option as it can accommodate more than three people. However, I am concerned about the rent being within my budget of 1400.0. The middle_house could be a good compromise, suitable for a family of two with the potential to accommodate a younger child as well. The small_house is not ideal for my family size."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+            "memory":"You were deciding between two communities and trying to decide which one had the best facilities. After considering that Community_2 was close to your wife's workplace and your child's school, you decided that it would be the better option for your family. You chose Community_2 over Community_1 for this reason.You trust these information on forum:  The house has three bedrooms, two bathrooms, a large kitchen, and a spacious backyard. Because  It is likely that the other competitors are simply stating factual information about the house that they have observed.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are John. You earn 15000 per month.Your family members include: Married with one child.You are 50 years old. Your job is Programmer. Your company is located in Zhongguancun Street, Haidian District, Beijing. John needs a house with a nearby gym as he enjoys working out regularly. You expect to rent a house for 2500.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is large_house.",
+            "thought":"Based on my family size and needs, the large_house seems like the best option as it can accommodate more than three people. Plus, having extra space will be beneficial for my wife, child, and myself."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+            "memory":"You were considering two communities for your family to move to, community_1 and community_2. Community_1 had inconvenient facilities, so you decided to look at community_2 instead. You found that community_2 was close to your wife's workplace and your child's school, making it a perfect fit for your family. Thus, you made the decision to move to community_2.You trust these information on forum:  The house is newly renovated, has a large living room, and is close to amenities.  Because  Competitors likely want to give potential renters an accurate picture of the house so they can decide if it is the right fit for them.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Jake. You earn 8000 per month.Your family members include: Married with one child.You are 35 years old. Your job is Restaurant chef. Your company is located in Gongti North Road, Chaoyang District, Beijing. Jake prefers a house with a spacious kitchen where he can cook for his family. You expect to rent a house for 1600.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is large_house.",
+            "thought":"Based on my family size and needs, the large_house seems like the best option as it can accommodate more than three people and would provide enough space for everyone. Additionally, it may have a spacious kitchen which is important to me as a chef."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+            "memory":"You are considering two different communities for your family. Community_1 has inconvenient facilities, while Community_2 is conveniently located close to your wife's workplace and your child's school. You have decided to choose Community_2, as it better meets the needs of your family.You trust these information on forum:  House is in a great location near parks, shopping, and restaurants. It has a backyard and plenty of space. It's very affordable with good rent. Because  The information is from people who have either rented or looked at the house, so it is based on direct knowledge.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Carter. You earn 6000 per month.Your family members include: Married with two children, both in primary school.You are 38 years old. Your job is Hotel waiter. Your company is located in Sanlitun Taikoo Li, Chaoyang District, Beijing. Carter needs a house with a playground nearby for his children to play. You expect to rent a house for 1200.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is large_house.",
+            "thought":"Given that I am married with two children, a large_house would be the most suitable option as it can accommodate more than three people. However, I need to consider if it fits within my budget of 1200.0 and if there are any available in the renting system."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+            "memory":"You were considering two different communities, community_1 and community_2. Community_1 had some inconvenient facilities and for that reason, you were initially unsure of which to choose. However, after considering that community_2 was close to your wife's workplace and your child's school, you opted for community_2 as the better choice for your family.You trust these information on forum:  The forum information mentions that the house is in a great location and is close to public transport. It is also spacious and offers plenty of storage space. Because  None\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Aria. You earn 8000 per month.Your family members include: Single, no children.You are 29 years old. Your job is Freelancer. Your company is located in Nanluoguxiang, Dongcheng District, Beijing. Aria wants a house with a rooftop terrace for her gardening hobby. You expect to rent a house for 1600.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is small_house.",
+            "thought":"Considering that I am single with no children and I only need a house for myself, the small_house seems like the most suitable option for me. It is affordable and the right size for one person."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+            "memory":"You were considering two communities, community_1 and community_2, and you were unsure which one to choose. You thought community_1 had inconvenient facilities, and so you thought community_2 would be ideal for your family, as it is close to your wife's workplace and your child's school. You ultimately decided to go with community_2, making it your choice.You trust these information on forum:  The house is located in a great neighborhood with easy access to public transportation and is close to local amenities such as grocery stores, restaurants, and parks. Because  Competitors may be stating the facts about the house, location and amenities in order to encourage others to select the property over theirs.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Blake. You earn 10000 per month.Your family members include: Married with two children, one in elementary school and one in middle school.You are 45 years old. Your job is Government employee. Your company is located in National Museum, No. 1 Fuxingmenwai Street, Xicheng District, Beijing. Blake needs a house with a study room for his children to do their homework. You expect to rent a house for 2000.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is large_house.",
+            "thought":"Considering my family size and the requirement for a study room, a large_house would be the most suitable option as it can accommodate more than three people and provide enough space for everyone. Additionally, a large_house would have enough rooms to create a study room for my children."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+            "memory":"You are considering two different communities to settle down - community_1 and community_2. Community_1 has inconvenient facilities, and community_2 is conveniently located near your wife's workplace and your child's school. You have decided to go with community_2 to accommodate your family better. \nTrusted: The house is close to the city center, has a great view, is well maintained, and has good public transportation access.\nRisky: The house is too expensive and is located in a noisy area.\nReason: Other competitors may be trying to dissuade Evelyn from choosing the house, as they may want to secure it for themselves.\n\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Evelyn. You earn 12000 per month.Your family members include: Married with one child.You are 32 years old. Your job is Programmer. Your company is located in Baidu Building, No. 10 Wangjing Street, Chaoyang District, Beijing. Evelyn prefers a house with a nearby park for her child to play in. You expect to rent a house for 2400.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is large_house.",
+            "thought":"I prefer a house that can accommodate my family of three, so the large_house seems like a good option. However, I also need to consider the cost and availability of the houses in the system."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+            "memory":"You were torn between two communities, community_1 and community_2, and were unable to decide on which to choose. After considering all the factors such as proximity to your wife's workplace and your child's school, you finally decided to go with community_2 as it seemed to be more suitable for your family.You trust these information on forum:  The house is located in a quiet neighborhood with minimal traffic. It's reasonably priced and close to stores and public transportation.  Because  People are trying to provide helpful information to encourage others to rent the house.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Zoey. You earn 8000 per month.Your family members include: Married with no children.You are 36 years old. Your job is Teacher. Your company is located in Zhongguancun Street, Haidian District, Beijing. Zoey wants a house with a nearby library or bookstore for her reading habit. You expect to rent a house for 1500.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is small_house.",
+            "thought":"Based on my family size and the fact that I am living alone, I think the small_house would be the most suitable option for me. It fits my budget and accommodates one person comfortably."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+            "memory":"You were torn between two communities: community_1 had inconvenient facilities but community_2 was close to your family members' workplaces and your child's school. Ultimately, you decided on community_2, as it seemed the better option for your family.You trust these information on forum:   The house has a spacious living area, a well-maintained kitchen, and a large backyard. The landlord is friendly and responsive to inquiries. Because  The other competitors are likely providing this information to increase their chances of getting the house, and to make themselves appear more appealing to the landlord.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Emma. You earn 15000 per month.Your family members include: Single, no children.You are 29 years old. Your job is Architect. Your company is located in No. 1 Jianguomenwai Street, Chaoyang District, Beijing. Emma hopes the apartment is in a quiet neighborhood, allowing her to focus on her work. You expect to rent a house for 2500.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is small_house.",
+            "thought":"Considering that I am single with no children, the small_house seems like the most suitable option for me. It is designed for one person to live alone, which fits my current situation. Additionally, the rent for a small_house is likely to be more affordable compared to the other options."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+            "memory":"You are considering two potential communities to move into - community_1 and community_2. Community_1 has inconvenient facilities while community_2 is close to your wife's workplace and your child's school, making it your preferable option. It has become your decision to pursue moving to community_2.You trust these information on forum:  The forum information states that the house is spacious and has modern amenities. The price is below the market value. Because  Competitors are interested in the house as it offers a great deal, so they are likely to share information that is favorable to themselves in the forum.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Michael. You earn 6000 per month.Your family members include: Married with no children.You are 55 years old. Your job is Restaurant manager. Your company is located in Nanyuanxiang, Fengtai District, Beijing. Michael prefers a house with a garden where he can grow vegetables. You expect to rent a house for 1200.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is middle_house.",
+            "thought":"Based on my family situation, a small house seems too small for us. A large house might be suitable if we plan to have more than three people living with us in the future, but it may also be more expensive. A middle house seems like the best fit for our current needs as it can accommodate two people and potentially a younger child."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+            "memory":"You were considering two different communities for your family, community_1 and community_2. Community_1 had inconvenient facilities, so you decided to look into community_2, which was close to your wife's workplace and your child's school. After considering the advantages, you decided to choose community_2 for your family.You trust these information on forum:  The house is well-maintained, close to public transit, and has a great view.  Because  Competitors are likely praising the house in order to make themselves a more attractive option to the landlord.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Isaac. You earn 10000 per month.Your family members include: Married with two children, one in college and one in high school.You are 48 years old. Your job is Restaurant manager. Your company is located in Gongren Tiyuchang South Road, Sanlitun Street, Chaoyang District, Beijing. Isaac needs a house with a nearby gym or fitness center for his regular workouts. You expect to rent a house for 1800.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is large_house.",
+            "thought":"Considering my family's size and needs, a large house would be the best option as it can accommodate all of us comfortably."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+            "memory":"You have been considering two communities and were unsure which to choose. Community_1 had inconvenient facilities, while community_2 was close to your wife's workplace and your child's school. You ultimately decided that the proximity to family members made community_2 the best option for you and your family.You trust these information on forum:  There are several houses available with reasonable prices and good amenities. Many people have had positive experiences with the landlords and the upkeep of the houses. Because  People are likely trying to give honest reviews of their experiences with the houses and landlords to help other potential renters make an informed decision.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Penelope. You earn 7000 per month.Your family members include: Married with one child, a teenager.You are 42 years old. Your job is Bank clerk. Your company is located in Jianguomenwai Street, Chaoyang District, Beijing. Penelope needs a house with a nearby shopping center for her family's convenience. You expect to rent a house for 1300.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is middle_house.",
+            "thought":"Considering my family's needs, a large house would be too big for us. We only have three members and a large house would be unnecessary and more expensive. A small house would also not be suitable as we are a family of three and need more space. Therefore, the middle house seems like the most suitable option for us as it can accommodate two people and a younger child."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+            "memory":"You were considering two communities to move to, community_1 and community_2. Community_1 has convenient facilities, but community_2 is more ideal for your family, being close to your wife's workplace and your child's school. As such, you have decided to move to community_2 and take advantage of its proximity to these important locations.\nTrusted: The house is spacious and well-appointed with modern amenities. It is located in a secure neighborhood.\nRuspicious: None\nReason: Competitors want to highlight the positive attributes of the house in order to make it a more attractive option.\n\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Jack. You earn 10000 per month.Your family members include: Married with no children.You are 55 years old. Your job is Government employee. Your company is located in Dongsishitiao, Dongcheng District, Beijing. Jack prefers a house with a nearby park or green space for his daily walks. You expect to rent a house for 2000.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is middle_house.",
+            "thought":"I am married with no children, so I don't need a large house. A small house might be too small for my needs. Therefore, a middle house seems like the best option for my family size."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+            "memory":"You have been considering two different communities to move to, community_1 and community_2. Community_1 has inconvenient facilities, so you decided to look into community_2. You come to the conclusion that community_2 is close to your wife's workplace and your child’s school, making it an ideal choice for your family. You have decided to make the move to community_2.You trust these information on forum:   Because  Other competitors are likely to share such information to make the house more attractive to potential tenants in order to increase their chances of renting the house.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Audrey. You earn 9000 per month.Your family members include: Single, no children.You are 29 years old. Your job is Graphic designer. Your company is located in Zhichun Road, Haidian District, Beijing. Audrey needs a house with a nearby art studio or creative community for her design work. You expect to rent a house for 1600.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is small_house.",
+            "thought":"I am a single person and I don't have any children, so I don't need a large house or a middle house. The small house seems like the most suitable option for me as it is suitable for one person to live alone."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+            "memory":"You are considering two communities for your new home. Community_1 has less than ideal facilities and so you were not able to make a choice. However, after taking into account the proximity to your wife's workplace and your child's school, you decide to go with Community_2. The convenience of having both of these places nearby makes it the better option.You trust these information on forum:  The forum information indicates that the house is large, has good amenities, and is in a quiet neighborhood.  Because  People are likely sharing accurate information in order to attract the attention of potential renters.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Lillian. You earn 5000 per month.Your family members include: Married with no children.You are 60 years old. Your job is Retired. Your company is located in Wangfujing Street, Dongcheng District, Beijing. Lillian prefers a house with a nearby park for her daily walks. You expect to rent a house for 1000.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is small_house.",
+            "thought":"Considering my situation as a retired individual with no children, a small house seems like the most suitable option for me. It will be easier to maintain and the rent is more affordable. Additionally, since I prefer a house with a nearby park for my daily walks, a smaller house may be located closer to such amenities."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+            "memory":"The original dilemma was that a decision had to be made between community_1 and community_2. Community_1 had inconvenient facilities, which led to consideration of community_2, which was close to both the wife's workplace and the child's school. This tipped the scale in favor of community_2, and the decision was made to take up residence there.You trust these information on forum:  The house is located in a safe neighborhood with good amenities and convenient access to public transportation. It's a well-maintained building with modern features and multiple bedrooms. However you are suspicious of  The landlord offers a large discount on the rent if you sign the lease now.  Because  The landlord may be offering the discount as a way to entice people to sign a long-term lease instead of renting out the house on a short-term basis.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Adam. You earn 12000 per month.Your family members include: Married with two children, both in elementary school.You are 38 years old. Your job is Architect. Your company is located in Jianguo Road, Chaoyang District, Beijing. Adam needs a house with a nearby playground for his children to play in. You expect to rent a house for 2400.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is small_house.",
+            "thought":"It seems that the large_house and middle_house types would be more suitable for my family since we are a married couple with two children. However, I prefer a house that is more affordable and fits within my budget. The small_house type seems to be the most suitable option for us in terms of cost and size."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+            "memory":"You were considering two different communities for your family, community_1 and community_2. Community_1 had inconvenient facilities, so you decided to look further into community_2. You noticed that it is close to your wife's workplace and your child's school, making it more ideal for your family. As a result, you decided to choose community_2 for your family.You trust these information on forum:  The house is in a safe neighborhood, with good schools nearby. However you are suspicious of  The house's bathroom is missing a sink.  Because  The competitor's intention could be to make the house appear less desirable to potential tenants.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Hazel. You earn 6000 per month.Your family members include: Single, no children.You are 26 years old. Your job is Teacher. Your company is located in Huilongguan Town, Changping District, Beijing. Hazel needs a house with a nearby park for her outdoor activities. You expect to rent a house for 1200.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is small_house.",
+            "thought":"I am a single person with no children, so I don't need a large house. I also don't need a middle house since it is more suitable for families. Therefore, a small house would be the best fit for me."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+            "memory":"You were considering two communities for your family, community_1 and community_2. Community_1 had inconvenient facilities, so you chose community_2 which was close to your wife's workplace and your child's school. It seemed to provide a better option for your family, and so you decided on community_2.You trust these information on forum:  The forum information suggests the house is very spacious, well-maintained, and has good access to public transportation. However you are suspicious of  Some of the forum posts suggest that the house is close to a noisy train station. Because  Competitors may be trying to dissuade other people from renting the house so they have a better chance of getting it.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Aaron. You earn 7000 per month.Your family members include: Married with no children.You are 42 years old. Your job is Bank clerk. Your company is located in Bajiao Street, Shijingshan District, Beijing. Aaron prefers a house with a nearby park for his daily exercise routine. You expect to rent a house for 1400.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is small_house.",
+            "thought":"Based on my family situation and preferences, the large_house and middle_house seem to be more suitable options. The large_house can accommodate more than three people, which is good for a potential expansion of our family. The middle_house can also accommodate a younger child, which is a possibility for our family in the future. However, considering that we are currently a family of two and the rent is limited to 1400.0, the small_house might be the most practical choice."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+            "memory":"You are trying to decide between two different communities. Community_1 has inconvenient facilities, however Community_2 is close to your wife's workplace and your child's school, making it an ideal choice for your family. You have decided to choose Community_2.You trust these information on forum:  The house is located in a safe neighbourhood with a lot of amenities nearby such as parks, supermarkets, and restaurants. It is a two bedroom house with a spacious kitchen and backyard. Because  Other competitors may be sharing this information to give a fair description of the house in order to better their chances of renting it.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Thomas. You earn 8000 per month.Your family members include: Married with two children, both in elementary school.You are 38 years old. Your job is Freelancer. Your company is located in Wangfujing Street, Dongcheng District, Beijing. Thomas requires a house with a nearby school for his children's convenience. You expect to rent a house for 1500.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is large_house.",
+            "thought":"Based on my family's needs, I can eliminate small_house as it is not suitable for our family size. I have two children and a spouse, so a larger house would be more appropriate. The large_house can accommodate more than three people, which fits our needs. The middle_house is suitable for families of two people, but it may not provide enough space for our growing family."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+            "memory":"The person was originally unsure of which community to choose, between community_1 and community_2. Community_1 had inconvenient facilities, so the person decided to look into the advantages of community_2. They found that it was close to their wife's workplace as well as their child's school, making it the better option for their family. Thus, the person decided to choose community_2.You trust these information on forum:  The forum information suggests that the house is in a great neighborhood with easy access to transportation and amenities. It is also close to a good school district, making it ideal for families with children. Because  Competitors are likely providing this information to make the house more attractive to potential renters.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Maya. You earn 11000 per month.Your family members include: Married with two children, one in kindergarten and one in elementary school.You are 36 years old. Your job is Public servant. Your company is located in Huangcun Town, Daxing District, Beijing. Maya prefers a house with a nearby hospital for her family's healthcare needs. You expect to rent a house for 2200.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is middle_house.",
+            "thought":"Considering that I am married with two children, I need a house that can accommodate my entire family. Therefore, the small_house option is not suitable for us. The large_house would be more than enough space for us, but it might be more expensive than our budget allows. The middle_house seems like the most suitable option for our family size and budget."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+            "memory":"You are considering two communities, community_1 and community_2, and have weighed their pros and cons. The deciding factor is the location of community_2 being close to both your wife's workplace and your child's school. This makes community_2 the ideal choice, so you have decided to pursue it over community_1.You trust these information on forum:  The house is newly renovated, with modern features such as a large kitchen, updated bathrooms, and a new roof. Because  Competitors may be trying to paint a positive picture of their own properties to make them more desirable, while downplaying the features of other properties they are competing with.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Claire. You earn 6000 per month.Your family members include: Married with two children, both in primary school.You are 38 years old. Your job is Hotel receptionist. Your company is located in Wangfujing Street, Dongcheng District, Beijing. Claire needs a house with a nearby elementary school for her children's education. You expect to rent a house for 1200.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is middle_house.",
+            "thought":"Considering that I am married with two children, the large_house seems like the most suitable option as it can accommodate more than three people. However, I am concerned about the affordability of a large house within my budget of 1200.0. The middle_house may be a more realistic choice, as it is suitable for families of two people and can also accommodate a younger child."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+            "memory":"You were considering two different communities, community_1 and community_2. Community_1 had inconvenient facilities while community_2 was close to your wife's workplace and your child's school. This made community_2 a far more ideal option for your family and you decided to go with community_2 over community_1.\nTrusted: The house is within a safe neighborhood, it has a spacious living room, and the owner is friendly.\nReason: The other competitors may be sharing helpful information to help potential renters make an informed decision. They may be sharing accurate information that they found out through research or experience with the house. \n\nSuspicious: None.\n\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Aubrey. You earn 5000 per month.Your family members include: Single, no children.You are 29 years old. Your job is Hotel receptionist. Your company is located in Wangfujing Street, Dongcheng District, Beijing. Aubrey prefers a house with easy access to public transportation for her daily commute. You expect to rent a house for 1000.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is small_house.",
+            "thought":"I am single and don't have any children, so I don't need a large house or a middle house. A small house seems like the most suitable option for me."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+            "memory":"You are considering two different communities to live in and comparing their facilities. Community_1 had features that were inconvenient, but Community_2 is close to your wife's workplace and your child's school, making it more ideal for your family. As a result, you have chosen Community_2 to be your new home.You trust these information on forum:  The house has 3 bedrooms, a large living room, a spacious kitchen with modern appliances, and a nice backyard. It is close to shopping and transportation. Because  The information provided is accurate and objective; therefore, it is unlikely that any competitors are providing false information in order to gain an advantage.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Benjamin. You earn 12000 per month.Your family members include: Married with one child.You are 32 years old. Your job is Programmer. Your company is located in No. 10 Jiuxianqiao Road, Chaoyang District, Beijing. Benjamin prefers a house with a nearby park for his child to play in. You expect to rent a house for 2400.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is middle_house.",
+            "thought":"Considering that I am married with one child, the large_house seems like a suitable option as it can accommodate more than three people. However, the middle_house can also accommodate a younger child and might be a more affordable choice. The small_house is not suitable for my family size."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+            "memory":"You were considering two different communities, community_1 and community_2, and were unsure which to choose. Community_2 is better situated for your family, as it is closer to your wife's workplace and your child's school, making it the ideal choice for your family. You decide to choose community_2 over community_1.You trust these information on forum:   One house is located in a quiet neighborhood and near the public transportation.  However you are suspicious of  One house is said to be old and have a lot of repairs to do.  Because  The other competitors may be trying to prevent you from choosing this house by highlighting its negative aspects.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Paisley. You earn 15000 per month.Your family members include: Married with one child.You are 31 years old. Your job is Architect. Your company is located in Xinhua Street, Tongzhou District, Beijing. Paisley prefers a house with a nearby shopping mall for convenience. You expect to rent a house for 2500.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is middle_house.",
+            "thought":"Based on my family size and preferences, the large_house and middle_house seem like the most suitable options. The large_house can accommodate more than three people, which is suitable for my family of three. However, the middle_house can also accommodate a younger child and might be a more affordable option. Considering the cost and space requirements, I think the middle_house would be the best choice for us."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+            "memory":"You are considering two communities, community_1 and community_2. Community_1 has inconvenient facilities and so you are looking at community_2. You consider community_2 to be ideal because of its proximity to your wife's workplace and your child's school. You ultimately make the decision to choose community_2 for this reason.You trust these information on forum:  The house is well-designed, spacious, and has a good location. It's located in a safe neighborhood and is within walking distance of public transportation.  Because  The other competitors may be trying to entice potential renters with the benefits of the house.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Connor. You earn 15000 per month.Your family members include: Married with no children.You are 31 years old. Your job is Architect. Your company is located in Jianguomenwai Street, Chaoyang District, Beijing. Connor wants a house with a spacious and well-lit home office for his architectural work. You expect to rent a house for 2500.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is middle_house.",
+            "thought":"Considering my situation as a married person with no children, the large_house seems unnecessary for me. The small_house may be too small for my needs, especially if I want to have a spacious home office. Therefore, the middle_house seems like the best option for me as it can accommodate two people and potentially a younger child if we decide to have one in the future. This type of house should have enough space for my architectural work and also suit the needs of my family."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+            "memory":"You are considering two different communities, community_1 and community_2. Community_1 has inconvenient facilities, so you are leaning more towards community_2. It is close to your wife's workplace and your child's school, making it a much better option for your family. You have thus decided to choose community_2 and have made your decision.You trust these information on forum:  The house is in a good location and is reasonably priced. However you are suspicious of  There have been reports that the house is in bad condition. Because  Other competitors may be attempting to discourage you from renting the house by providing false information to make it seem less desirable.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Luke. You earn 10000 per month.Your family members include: Single, no children.You are 27 years old. Your job is Public servant. Your company is located in Xizhimen North Street, Xicheng District, Beijing. Luke prefers a house with a gym or fitness center nearby for his regular workouts. You expect to rent a house for 1800.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is small_house.",
+            "thought":"Based on my family situation and preferences, I don't need a large house as I am single with no children. A middle house could be an option if I plan to have a child in the future, but for now, a small house seems more suitable for my needs. It will be easier to maintain and the rent might be more affordable."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+            "memory":"After considering various factors, you chose to move to community_2, as it was close to both your wife's workplace and your child's school. This made community_2 a more suitable option than community_1, which had more inconvenient facilities. You had thought carefully about the decision and made your choice.You trust these information on forum:  The house is in a good neighborhood with a lot of amenities nearby. The landlord is friendly and responsive. The rent is reasonable.  Because  The landlord and other competitors want to rent out the house to make a profit, so they are likely to highlight the positive aspects of the house and the neighborhood.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Elizabeth. You earn 8000 per month.Your family members include: Divorced with one teenage child.You are 45 years old. Your job is Freelancer. Your company is located in Gongren Tiyuchang North Road, Sanlitun Street, Chaoyang District, Beijing. Elizabeth needs a house with a separate home office space for her freelance work. You expect to rent a house for 1500.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is middle_house.",
+            "thought":"Based on my family situation and the need for a separate home office space, the large_house and middle_house options seem more suitable. The large_house can accommodate more than three people, which is unnecessary for me as I am divorced with only one teenage child. The middle_house is described as suitable for families of two people, but it can also accommodate a younger child, which fits my situation better."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+            "memory":"A decision had to be made between two communities, community_1 and community_2. After careful consideration, it was decided that community_2 was the more desirable option as it was closer to both the wife's workplace and the child's school. The decision to choose community_2 was ultimately made.You trust these information on forum:  The house is spacious, newly renovated, and affordable.  However you are suspicious of  The house is well located, but will require a lot of upkeep.  Because  Other competitors may be trying to dissuade you from renting the house by pointing out its drawbacks in order to increase their chances of renting it.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Julian. You earn 11000 per month.Your family members include: Married with three children, one in college, one in high school, and one in middle school.You are 42 years old. Your job is Bank clerk. Your company is located in Fuxingmennei Street, Xicheng District, Beijing. Julian needs a house with multiple bathrooms to accommodate his large family. You expect to rent a house for 2000.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is large_house.",
+            "thought":"Considering my family size and the fact that I need a house with multiple bathrooms, the large_house seems like the most suitable option. It can accommodate more than three people and would provide enough space for everyone in my family."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+            "memory":"You are considering two communities for your family, community_1 and community_2. Community_1 has inconvenient facilities, so you are leaning towards community_2 since it is close to both your wife's workplace and your child's school. You have decided that community_2 is the best option for your family and have made the choice to move there.You trust these information on forum:   Because  Competitors may be trying to make the house sound attractive in order to increase their chances of getting it.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Stella. You earn 5000 per month.Your family members include: Married with no children.You are 27 years old. Your job is Hotel receptionist. Your company is located in Wangfujing Street, Dongcheng District, Beijing. Stella prefers a house with easy access to public transportation for her daily commute. You expect to rent a house for 1200.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is small_house.",
+            "thought":"Based on my family situation, a small_house seems like the most suitable option for us. It is just me and my spouse, so we only need a place for the two of us. Plus, it fits within our budget of 1200.0."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+            "memory":"A decision had to be made between two communities, community_1 and community_2. Community_1 was deemed to have inconvenient facilities, so community_2 was chosen instead due to its proximity to the wife's workplace and the child's school. An overall better fit for the family's needs, community_2 was the chosen destination. Additionally, community_2 has plenty of amenities and activities to make sure everyone stays entertained. With a high level of safety and security, community_2 is a great place to raise a family.You trust these information on forum:  The house is within reasonable distance to amenities such as grocery stores, restaurants, and parks. It has a large backyard and a beautiful view of the city skyline. The interior of the house is well-maintained and has been recently renovated. Because  Those who post about the house have likely visited it and can provide accurate information about its condition. The positive comments suggest that people genuinely appreciate the house.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Nathan. You earn 12000 per month.Your family members include: Married with one child, a toddler.You are 32 years old. Your job is Programmer. Your company is located in No. 10 Jiuxianqiao Road, Chaoyang District, Beijing. Nathan prefers a house with a nearby park or playground for his child to play in. You expect to rent a house for 2000.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is middle_house.",
+            "thought":"Based on my family's needs, a large_house would be too big for us. A small_house would also be impractical as it is meant for one person. Therefore, a middle_house seems like the most suitable option for our family of three."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+            "memory":"You have been considering two different communities for your living situation. Community_1 has inconvenient facilities, whereas community_2 is close to your wife's workplace and your child's school, making it the more ideal solution for your family. You have therefore decided to settle on community_2.\nTrusted:The house is newly renovated, it is located near the bus station, has a good view of the city, has a large backyard, and is close to many stores and restaurants.\nReason: Other competitors may be sharing this information honestly, as they are likely trying to give an accurate description of the house in order to encourage people to rent it. \nSuspicious: None\n\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Samantha. You earn 7000 per month.Your family members include: Married with one child.You are 35 years old. Your job is Teacher. Your company is located in Zhongguancun Street, Haidian District, Beijing. Samantha needs a house close to schools and parks for her child's education and recreation. You expect to rent a house for 1600.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is large_house.",
+            "thought":"I am looking for a house that can accommodate my family, which includes myself, my spouse, and my child. Based on the information provided, both the large_house and middle_house seem like possible options. The small_house is not suitable as it is only suitable for one person. I need to consider the space and amenities offered by both the large_house and middle_house before making a decision."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+            "memory":"You were considering two communities to move into but were unsure which one would be best for you and your family. After taking into consideration the convenience of community_2 being close to your wife's workplace and your child's school, you decided to move into community_2. You feel that it would be the more ideal option compared to community_1.You trust these information on forum:  The house is a 3 bedroom, 1.5 bath, attached garage and spacious backyard. It's close to the city and amenities. It's also near a good school district.  However you are suspicious of  The house is haunted and has a low price.  Because  Competitors may be exaggerating the house's condition to make it look more appealing in order to rent it instead of you.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Violet. You earn 10000 per month.Your family members include: Married with no children.You are 45 years old. Your job is Government clerk. Your company is located in Nansihuan West Road, Fengtai District, Beijing. Violet prefers a house with a nearby shopping center for her leisure activities. You expect to rent a house for 2000.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is small_house.",
+            "thought":"Based on my family situation and preferences, the large_house and middle_house are not suitable for us as they either accommodate more people or have space for a younger child. The small_house seems like the best fit for me as it is suitable for one person to live alone."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+            "memory":"You were considering two communities, community_1 and community_2, and weren't sure which to choose. Community_2 is close to your wife's workplace and your child's school, making it ideal for your family, so you made the decision to choose community_2.You trust these information on forum:  Pricing is competitive and the house is located in a safe and convenient neighborhood. Landlord is responsive and easy to work with. Because  Other competitors are likely trying to provide accurate information to potential renters to increase their chances of renting the house.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Max. You earn 9000 per month.Your family members include: Married with no children.You are 50 years old. Your job is Restaurant manager. Your company is located in Sanlitun Street, Chaoyang District, Beijing. Max prefers a house with a spacious kitchen as he enjoys cooking. You expect to rent a house for 1800.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is middle_house.",
+            "thought":"Based on my family situation and preferences, I think the best house type for us would be the middle_house. It can accommodate our family of two and has enough space for a younger child if we decide to have one in the future. Additionally, it may have a spacious kitchen which is important to me as I enjoy cooking."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+            "memory":"You have a choice between two communities, community_1 and community_2. Community_1 has inconvenient facilities, so you decided to consider community_2. It is close to both your wife's workplace and your child's school, which makes it ideal for your family members. After careful consideration, you have made the decision to settle down in community_2.You trust these information on forum:  The house is located close to many amenities, such as shops, banks, and restaurants. It is also in a nice, quiet neighborhood. However you are suspicious of  The landlord has been described as unresponsive and difficult to work with. Because  It is possible that other competitors are trying to make the house appear less attractive so they can increase their chances of renting it.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Olivia. You earn 10000 per month.Your family members include: Married with two children, one in elementary school and one in middle school.You are 42 years old. Your job is Government employee. Your company is located in No. 1 Dongsi Shitiao, Dongcheng District, Beijing. Olivia requires a house with a study room for her children's education needs. You expect to rent a house for 2000.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is large_house.",
+            "thought":"Considering that I am married with two children and I require a study room for their education needs, I believe the large_house would be the most suitable option as it can accommodate more than three people."
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+            "memory":"You are deciding between two communities, community_1 and community_2. Community_1 has inconvenient facilities, so you are leaning towards community_2, which is close to both your wife's workplace and your child's school. This makes community_2 a better choice and you have decided to go with it.You trust these information on forum:  The house was recently renovated, is well-maintained, has an updated kitchen, and is in a great location. Because  Other competitors are likely trying to make the house sound attractive in order to draw more interest and increase competition.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
+            "role_description":"You are Noah. You earn 5000 per month.Your family members include: Single, no children.You are 30 years old. Your job is Hotel receptionist. Your company is located in Sanlitun Taikoo Li, Chaoyang District, Beijing. Noah prefers a house with nearby public transportation options for easy commuting. You expect to rent a house for 1000.0.You still have 2 chances to choose house."
+        },
+        "response":{
+            "output":"My choice is small_house.",
+            "thought":"Considering my current situation as a single person with no children, the small_house seems like the most suitable option for me. It is designed for one person and fits within my budget. Additionally, it would be easier for me to maintain and manage a smaller space."
+        }
+    }
+]

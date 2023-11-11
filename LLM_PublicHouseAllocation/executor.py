@@ -28,14 +28,13 @@ class Executor():
 
     @classmethod
     def from_task(cls, 
-                  task: str,
-                  api_path: str):
+                  args:dict):
         """Build an LLM_PublicHousingAllocation from a task name.
         The task name should correspond to a directory in `tasks` directory.
         Then this method will load the configuration from the yaml file in that directory.
         """
         # Prepare the config of the task
-        task_config,task_path = prepare_task_config(task)
+        task_config,task_path,data_path = prepare_task_config(args.task,args.data)
         
         if platform.system()=='Windows':
             asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
@@ -43,6 +42,7 @@ class Executor():
         import time
         import os
         save_dir = task_config.pop("save_root_dir","")
+        
         time_stamp = time.time()
         save_dir = os.path.join(task_path,
                                 f"{save_dir}/{time_stamp}")
@@ -51,7 +51,7 @@ class Executor():
         manager_configs = task_config.pop('managers')
         for _, config in manager_configs.items():
             if "data_dir" in config.keys():
-                config["data_dir"] = os.path.join(task_path,config["data_dir"])
+                config["data_dir"] = os.path.join(data_path,config["data_dir"])
             if "distribution_batch_dir" in config.keys():
                 config["distribution_batch_dir"] = os.path.join(task_path,config["distribution_batch_dir"])
         
@@ -59,7 +59,7 @@ class Executor():
         
         tenant_configs = manager_configs.pop('tenant')
 
-        llm_loader = APIKeyPool(api_path)
+        llm_loader = APIKeyPool(args.api_path)
         
         
         tenant_manager = load_manager({**tenant_configs,
@@ -92,17 +92,16 @@ class Executor():
         else:
             env_config['tool'] = None
         
-        save_evaluation_dic = os.path.join(task_path,
-                                f"global_evaluation")
+        save_evaluation_dic = os.path.join(data_path,f"global_evaluation")
         if not os.path.exists(save_evaluation_dic):
             os.makedirs(save_evaluation_dic) 
         # save_evaluation_dir = os.path.join(save_evaluation_dic,
         #                         f"global_score.json") 
         
         save_evaluation_dir = os.path.join(save_evaluation_dic,
-                                f"global_score_newver.json") 
+                        f"global_score_newver.json") 
         
-        assert os.path.exists(save_evaluation_dir)
+        # assert os.path.exists(save_evaluation_dir)
        
         global_score = Global_Score.initialization(tenant_manager,
                                                    system,
@@ -152,8 +151,8 @@ class Executor():
             """采样所有系统中的tenant交流"""
             # tenant_ids = list(self.environment.tenant_manager.data.keys())
                         
-            self.environment.communication(tenant_ids,
-                                           communication_num = 10)
+            # self.environment.communication(tenant_ids,
+            #                                communication_num = 10)
            
             self.environment.step(tenant_waitlists)
             

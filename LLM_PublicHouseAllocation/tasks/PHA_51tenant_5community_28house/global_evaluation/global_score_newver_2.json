@@ -1,0 +1,176 @@
+{
+    "8":{
+        "house_10":{
+            "reason":"the house is located in a community with sports facilities and a large green area, which is a good feature. however, the rent for this house is 1141, which is below my budget of 2500. the square footage is about 38.05, which is slightly larger than the average living area for my family. the house has a balcony and an elevator, which are convenient. however, the house does not have a separate bedroom, which may not provide enough privacy for my family. overall, house_10 is an acceptable option but it does not meet all of my requirements for a high-end apartment with luxury amenities and services.",
+            "score":6
+        },
+        "house_4":{
+            "reason":"the house is within my budget and the square footage is larger than the average living area. it is located in a community with sports facilities and a large green area, providing a good living environment. the house layout is meticulous and well-equipped. however, the community does not have convenient amenities nearby, such as a subway, shopping mall, or hospital.",
+            "score":7
+        },
+        "house_13":{
+            "reason":"the house is located in a community with sports facilities and a large green area, which is a positive aspect. however, the rent for this house is higher than my budget of 2500.0. additionally, the living area of the house is slightly smaller than the average for my family, and there are no convenient amenities nearby such as a subway, shopping mall, or hospital. overall, while the house has some desirable features, it does not fully meet my requirements.",
+            "score":4
+        },
+        "house_17":{
+            "reason":"the house is located in a community with sports facilities and a large green area, which is a plus. however, the rent for this house is 1158, which is below my budget of 2500. the square footage is about 38.6, which is slightly smaller than the average living area for my family. the house does not have a balcony, and the orientation is ew. although the house has an elevator, the overall condition and design of the house are not up to my expectations for a high-end apartment. therefore, i gave it a score of 6.",
+            "score":6
+        },
+        "house_3":{
+            "reason":"the house is within my budget and the square footage is larger than the average living area for my family. the community has sports facilities and a large green area, providing a good living environment. the house also has a balcony and an elevator. however, the rent per square meter is slightly higher compared to other houses in the pool. overall, house_3 meets most of my requirements and is a good option for my family.",
+            "score":8
+        },
+        "house_29":{
+            "reason":"the house is located in a high-end community with luxury amenities and services, which aligns with my personal preference. the rent for this house is within my budget. the square footage of the house is above average, providing enough living space for my family. the house has a balcony and an elevator, which adds convenience. the orientation of the house ensures that i can enjoy beautiful views from the balcony. overall, this house meets my requirements for a spacious and luxurious apartment with high-quality finishes.",
+            "score":9
+        },
+        "house_19":{
+            "reason":"the rent for this house is within my budget. however, the living area of the house is smaller than the average for my family, which is not spacious enough. the community does not have a hospital nearby, which is not convenient for my family. although the community has some amenities such as supermarkets and schools, it lacks luxury amenities and services that my family requires. the house is in acceptable condition but lacks high-quality finishes and beautiful views. overall, house_19 does not meet my high-end apartment requirements.",
+            "score":4
+        },
+        "house_30":{
+            "reason":"the house is located in a community with luxury amenities and services, which aligns with my personal preference. the rent for this house is within my budget. the square footage of the house is larger than the average living area, providing a spacious living environment for my family. the house has a balcony and an elevator, which adds convenience. overall, the house meets most of my requirements for a high-end apartment, but there may still be some minor improvements needed.",
+            "score":8
+        },
+        "house_25":{
+            "reason":"the house is within my budget and the square footage is slightly larger than the average living area for my family. the community has many convenient amenities nearby, such as supermarkets, shopping malls, parks, and schools. the house is spacious and has a well-planned layout, providing a comfortable living environment. however, the community does not have a hospital, which could be a potential inconvenience. overall, house_25 meets most of my requirements and is a good option for my family.",
+            "score":7
+        },
+        "house_39":{
+            "reason":"the house is located in a community with good greenery and luxury amenities such as a parking lot and sports and fitness equipment. it is also surrounded by convenient facilities such as supermarkets, malls, hospitals, parks, schools, restaurants, and banks. the square footage of the house is larger than the average living area for my family, and it has an elevator and a balcony. the rent for this house is within my budget. the house has an efficient layout with ample living space and a generously proportioned bedroom. overall, it meets my requirements for a spacious and luxurious apartment with access to luxury amenities and services.",
+            "score":8
+        },
+        "house_44":{
+            "reason":"the house is located in a community with good greenery and various sports and fitness equipment, which aligns with my preference for luxury amenities and services. the square footage of the house is larger than the average living area, which provides a spacious living space for my family. the rent for this house is within my budget. the house has an elevator and a balcony, which are desirable features. overall, the house meets my requirements for a spacious and luxurious apartment with high-quality finishes.",
+            "score":8
+        },
+        "house_46":{
+            "reason":"the house is located in a community with good greenery and luxury amenities, which aligns with my preference for a high-end apartment. the rent for this house is within my budget. the square footage of the house is larger than the average living area for my family, providing a spacious living environment. the house has an elevator and a balcony, which adds to its convenience and comfort. overall, house_46 meets most of my requirements for a luxurious apartment.",
+            "score":9
+        },
+        "house_52":{
+            "reason":"the house_52 is located in a community with good greenery and various sports and fitness equipment, which is a bonus for my high-end apartment requirement. the rent for this community is 40 dollars per square meter, which is within my budget. the square footage of house_52 is about 44.30, which is larger than the average living area of the house. the house has a balcony and an elevator, providing convenience and comfort. the orientation of the house is ew, ensuring good natural lighting. the layout of the apartment is harmonious and offers a lively living space and a soothing bedroom. the bathroom is equipped for relaxation and the kitchen is functional. overall, house_52 meets my requirements for a spacious and luxurious apartment with high-quality finishes.",
+            "score":8
+        },
+        "house_51":{
+            "reason":"the house is located in a community with good greenery and various sports and fitness equipment, providing a luxurious living environment. the rent for this house is within my budget. the square footage of the house is larger than the average living area for my family. the house has an elevator and a balcony, which are desirable features. overall, house_51 meets my requirements for a spacious and luxurious apartment with high-quality finishes.",
+            "score":8
+        },
+        "house_37":{
+            "reason":"the house is located in a community with good greenery and various sports and fitness equipment, which meets my family's preference for luxury amenities and services. the rent for this community is within my budget. the square footage of the house is larger than the average living area for my family, which is spacious enough. the house has an elevator and a balcony, which adds to its convenience. overall, the house meets my requirements for a spacious and luxurious apartment.",
+            "score":8
+        },
+        "house_65":{
+            "reason":"the house is located in a high-end community with luxurious amenities and services, which aligns with my preference. the rent for this house is within my budget. the square footage of the house is larger than the average living area for my family, providing ample space. the house has an elevator and a balcony, which are desirable features. the community has convenient amenities nearby, such as supermarkets, shopping malls, and hospitals. the house is in good condition and offers a comfortable living environment. overall, house_65 meets most of my requirements and is a suitable option for my family.",
+            "score":8
+        },
+        "house_74":{
+            "reason":"the house is within my budget and the square footage is larger than the average living area for my family. the community offers luxury amenities and services, including beautifully landscaped gardens and a community center with various activities. the location is secluded but still connected to the city through efficient transport networks. overall, the house meets my requirements for a spacious and luxurious apartment with high-quality finishes.",
+            "score":9
+        },
+        "house_54":{
+            "reason":"the house is located in a high-end community with luxurious amenities and services. the rent for this house is within my budget. the square footage of the house is larger than the average living area for my family, which provides ample space. the house has a balcony and an elevator, which adds convenience. the community is surrounded by various amenities such as supermarkets, shopping malls, parks, schools, and hospitals. the house is in good condition and has a superior layout with a separate kitchen and sizable bedrooms. overall, this house meets my requirements for a spacious and luxurious apartment with high-quality finishes.",
+            "score":9
+        },
+        "house_57":{
+            "reason":"the house is located in a high-end community with luxurious amenities and services. the rent is within my budget. the square footage of the house is larger than the average living area for my family, providing a spacious living environment. the house has an elevator and a balcony, which are desirable features. the layout of the house is well-designed and the shower area and separate kitchen are user-friendly. overall, the house meets my requirements for a spacious and luxurious apartment.",
+            "score":9
+        },
+        "house_71":{
+            "reason":"the house is located in a high-end community with beautiful landscaping and amenities. it is spacious and has a balcony and an elevator. the rent is within my budget. however, the per capita living area is slightly smaller than the average for my family. overall, it meets most of my requirements for a luxurious apartment.",
+            "score":8
+        },
+        "house_64":{
+            "reason":"the house is located in a high-end community with luxury amenities and services. the rent for house_64 is within my budget. the square footage of house_64 is larger than the average living area for my family. the house has an elevator and a balcony, providing convenience and a nice view. the community is surrounded by various facilities such as supermarkets, shopping malls, parks, schools, and restaurants. the house is in good condition and well-maintained. overall, house_64 meets my requirements for a spacious and luxurious apartment with beautiful views and high-quality finishes.",
+            "score":8
+        },
+        "house_98":{
+            "reason":"the rent of house_98 is within my budget. the square footage of house_98 is 44.5, which is larger than the average living area. the community where house_98 is located has many convenient amenities nearby, such as supermarkets, shopping malls, parks, schools, and restaurants. the house is in good condition and has modern facilities, including an elevator. the community also has a beautiful environment with lush greenery and picturesque landscapes. overall, house_98 meets my requirements for a spacious and luxurious apartment with access to luxury amenities and services.",
+            "score":8
+        },
+        "house_85":{
+            "reason":"the house is located in a contemporary community with a tranquil environment and picturesque landscapes, which aligns with my preference for a beautiful view. the square footage of the house is larger than the average living area for my family, which provides a spacious living space. the house is in good condition with modern design and comfort, although the layout might feel a bit tight. the rent for this house is within my budget. overall, house_85 meets most of my requirements for a high-end apartment with access to luxury amenities and services.",
+            "score":8
+        },
+        "house_83":{
+            "reason":"the house is located in a contemporary community with beautiful views and high-quality finishes, which aligns with my preference for a luxurious apartment. the rent for this house is within my budget. the square footage of the house is larger than the average living area for my family, which provides spacious living space. the house is located on the 18th floor and has an elevator, which is convenient. however, the house does not have a balcony, which is a slight drawback. overall, the house meets most of my requirements and is a good option for me.",
+            "score":8
+        },
+        "house_94":{
+            "reason":"the house is located in a contemporary community with beautiful views and high-quality finishes. it offers a spacious living area that meets the needs of my family. the rent for this house is within my budget. the community is surrounded by various amenities such as supermarkets, shopping malls, parks, schools, and restaurants. the house is in good condition and has an elevator. however, the house does not have a balcony, which is a slight drawback. overall, this house meets most of my requirements and provides a comfortable and convenient living environment.",
+            "score":8
+        },
+        "house_78":{
+            "reason":"the house is located in a contemporary community with beautiful views and a tranquil environment, which aligns with my preference for a high-end apartment. the square footage of the house is 60.3, which is larger than the average living area for my family. the rent for this house is 1508, which is within my budget. although the house does not have a balcony, it has an elevator for convenience. the layout of the house is well-designed and optimized for space. overall, house_78 meets most of my requirements and is a good option for me.",
+            "score":8
+        },
+        "house_77":{
+            "reason":"the house is located in a contemporary community with beautiful views and high-quality finishes. it offers a spacious layout with a large living area, which meets my preference for a spacious apartment. the rent for this house is within my budget. the community is surrounded by convenient amenities such as supermarkets, shopping malls, hospitals, parks, schools, restaurants, and banks. the house is in good condition and has an elevator. however, it does not have a balcony, which is a slight drawback. overall, this house meets most of my requirements and provides a comfortable and convenient living environment.",
+            "score":8
+        },
+        "house_99":{
+            "reason":"the house is located in a contemporary community with beautiful views and a tranquil environment, which aligns with my preference for a high-end apartment. the rent for this house is within my budget. the square footage is larger than the average living area and provides enough space for my family. the house is on a higher floor with an elevator, which is convenient. however, the house does not have a balcony, which is a drawback. overall, the house meets most of my requirements and is a good option for my family.",
+            "score":6
+        }
+    },
+    "69":{
+        "house_10":{
+            "reason":"the rent for house_10 is within my budget. the square footage is about 38.05, which is larger than the average living area for my family. the house has a balcony and an elevator, which are convenient. although the community does not have a subway, shopping mall, hospital, or park, it does have sports facilities and a large green area, which provide a good living environment. the house is a blend of compactness and utility, ensuring that the space is not cluttered. overall, house_10 meets most of my requirements and preferences.",
+            "score":7
+        }
+    },
+    "0":{
+        "house_10":{
+            "reason":"the rent for house_10 is within my budget. the square footage is about 38.05, which is slightly larger than the average living area of the house. the community has sports facilities and a large green area, which is great for my family. however, the community lacks convenient amenities like a subway, shopping mall, and hospital. overall, house_10 meets most of my requirements, but the lack of nearby amenities is a drawback.",
+            "score":6
+        }
+    },
+    "1":{
+        "house_10":{
+            "reason":"the rent for house_10 is within my budget of 1500.0. the square footage is about 38.05, which is slightly larger than the average living area of the houses. the house has a balcony and an elevator, which are desirable features. the community, although lacking amenities like a subway, shopping mall, hospital, and park, does have sports facilities and a large green area, providing a pleasant living environment. considering my preference for a modern and minimalist apartment, the compact and clutter-free layout of the house is suitable for my needs. overall, house_10 meets most of my requirements and is a good option.",
+            "score":6
+        }
+    },
+    "2":{
+        "house_10":{
+            "reason":"the rent for this house is within my budget. the square footage is about 38.05, which is slightly larger than the average living area of the houses. the house is located in a community with sports facilities and a large green area, which is child-friendly. however, the community does not have nearby schools, parks, shopping malls, or hospitals. overall, it meets some of my preferences but lacks some important amenities.",
+            "score":6
+        }
+    },
+    "68":{
+        "house_10":{
+            "reason":"the rent for house_10 is 1141, which is slightly above my budget of 1000. the square footage is about 38.05, which is larger than the average living area of the houses. the house is located in a community with sports facilities and a large green area, which provides a good living environment. however, the community lacks convenient amenities such as a subway, shopping mall, hospital, and park. the house is in acceptable condition, with basic functions complete and few minor problems. overall, house_10 meets most of my requirements but is slightly over my budget and lacks some convenient amenities.",
+            "score":6
+        }
+    },
+    "66":{
+        "house_10":{
+            "reason":"the house is located in a community with sports facilities and a large green area, which is suitable for vivian's children to play. the rent for this house is within vivian's budget. the living area of the house is slightly smaller than the average, but the kitchen is spacious, which meets vivian's preference. the house has an elevator and a balcony. however, the community does not have convenient amenities nearby such as a subway, shopping mall, or hospital. overall, the house meets most of vivian's needs but lacks some convenient amenities.",
+            "score":6
+        }
+    },
+    "65":{
+        "house_10":{
+            "reason":"the rent for this house is within my budget of 1600.0. the square footage of the house is 38.05, which is slightly larger than the average living area of the houses in the pool. the house is located in a community with sports facilities and a large green area, which is a plus. however, the community does not have convenient amenities nearby such as a subway, shopping mall, hospital, or park. overall, house_10 meets most of my criteria but lacks some convenient amenities.",
+            "score":6
+        }
+    },
+    "67":{
+        "house_10":{
+            "reason":"the house is within my budget and the rent is 1141, which is lower than my expected rent of 1400. the square footage of the house is 38.05, which is larger than the average living area of the houses. the house has a balcony and an elevator, which are desirable features. the community has sports facilities, including football fields and basketball courts, and a large green area, which is great for outdoor activities. however, the community does not have convenient amenities nearby, such as a subway, shopping mall, hospital, or park. overall, house_10 meets most of my requirements, but the lack of convenient amenities brings down the score.",
+            "score":6
+        }
+    },
+    "64":{
+        "house_10":{
+            "reason":"the house is located in community_1, which does not have convenient amenities such as subway, shopping mall, hospital, or park nearby. the rent for this house is 1141, which is within my budget. the square footage is about 38.05, which is slightly larger than the average living area of the house. the house has a balcony and an elevator, which are desirable features. however, the house does not have a separate bedroom, and the average living area for my family members is only 12.683, which is below my expectation. overall, house_10 is an okay option, but it is not ideal for my needs.",
+            "score":5
+        }
+    },
+    "63":{
+        "house_10":{
+            "reason":"the house is located in a community with sports facilities and a large green area, which is a plus. the rent for this house is within my budget. however, the living area of the house is slightly smaller than the average for my family, and there is no nearby park for my child to play in. the house is in acceptable condition, but it may lack some modern facilities or design. overall, it is an okay option but not ideal for my needs.",
+            "score":6
+        }
+    }
+}

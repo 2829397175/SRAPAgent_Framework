@@ -4,9 +4,6 @@ from .base import BaseGroupPolicy
 @group_registry.register("community")
 class CommunityPolicy(BaseGroupPolicy):
     
-    def __init__(self,**kargs) -> None:
-        super().__init__(policy_type="community",
-                         **kargs)
 
     
     async def group(self,

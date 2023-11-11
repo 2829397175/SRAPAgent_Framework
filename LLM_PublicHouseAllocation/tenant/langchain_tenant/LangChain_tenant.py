@@ -294,6 +294,9 @@ class LangchainTenant(langchainAgent):
         )
         assert step_type in STEP_TYPES, "invalid type of step"
         
+        if selfcontent is None:
+            return 
+        
         kargs={ "content": selfcontent,
                 "sender":{self.id:self.name},
                 "receivers":receivers,
@@ -303,7 +306,7 @@ class LangchainTenant(langchainAgent):
                 "context":context,
                 "continue_dialogue":continue_dialogue}
         
-     
+        
         selfmessage = Message(
                 **kargs
             ) 
@@ -600,11 +603,13 @@ You still have {chance_num} chances to choose house.\
         #                         )
     
     async def group(self,
+                    tenant_manager,
                 forum_manager, 
                 system,  
                 rule,
                 tool):
         group_id = await self.policy.group(self,
+                                           tenant_manager,
                           forum_manager, 
                             system,  
                             rule,
@@ -1109,7 +1114,7 @@ My family has a large population and needs a larger house to live in)"""
         
         prompt_inputs={
             'task':'choose one type of houses',
-            'thought_type':'Your views on these house types.',
+            'thought_type':'Your views on these house types and the reason why you made your choice.',
             'choose_type':choose_type,
             'house_info':house_type_description,
             'thought_hint':thought_hint,
@@ -1219,7 +1224,7 @@ This house meets the requirements of my family for a large study)."""
             choose_type = choose_type_template.format(house_indexes = ",".join(house_available_index))
             prompt_inputs={
                 'task':'choose one house',
-                'thought_type':'Your views on these houses.',
+                'thought_type':'Your views on these houses and the reason why you made your choice.',
                 'choose_type':choose_type,
                 'house_info':houses_description,
                 'thought_hint':thought_hint,
@@ -1737,6 +1742,13 @@ Your current plan is (Your plan to publish which kind of info online, be concise
                     step_type = "publish_forum")
             
             for publish in response:
+                if publish.pop("publish",False):
+                    publish["plan"] = publish_plan
+                    self.update_memory(selfcontent=publish,
+                                    step_type="publish",
+                                    receivers={self.id:self.name})
+                    break
+                    
                 community_index =  publish.get("community")
                 info_post = publish.get("info")
                 try:

@@ -98,11 +98,11 @@ class App:
         button_frame = tk.Frame(self.window)
         button_frame.grid(row=row_counter, column=0, pady=10)
         
-        # self.approve_button = tk.Button(button_frame, text="Human Response", command=self.approve)
-        # self.approve_button.pack(side=tk.LEFT, padx=10)
+        self.approve_button = tk.Button(button_frame, text="Human Response", command=self.approve)
+        self.approve_button.pack(side=tk.LEFT, padx=10)
         
-        # self.reject_button = tk.Button(button_frame, text="Robot Response", command=self.reject)
-        # self.reject_button.pack(side=tk.LEFT, padx=10)
+        self.reject_button = tk.Button(button_frame, text="Robot Response", command=self.reject)
+        self.reject_button.pack(side=tk.LEFT, padx=10)
         
         self.back_button = tk.Button(button_frame, text="Back", command=self.back)
         self.back_button.pack(side=tk.LEFT, padx=10)
@@ -261,6 +261,8 @@ class App:
             self.data_list[self.index]["testflag"]=True
             self.data_list[self.index]["turingflag"]=True
             self.index += 1
+            if self.index == len(self.data_list)-1:
+                self.save_and_exit()
             self.show_data()
         else:
             messagebox.showerror("Error","You should label the data first before Turing test!! Enter the content and press saving button.")
@@ -278,6 +280,8 @@ class App:
             self.data_list[self.index]["testflag"]=True
             self.data_list[self.index]["turingflag"]=False
             self.index += 1
+            if self.index == len(self.data_list)-1:
+                self.save_and_exit()
             self.show_data()
         else:
             messagebox.showerror("Error","You should label the data first before Turing test!! Enter the content and press saving button.")
@@ -315,6 +319,8 @@ class App:
             #humanjudge表示是否是人类的答案
             self.data_list[self.index]["humanjudge"]=True
             self.index += 1
+            if self.index == len(self.data_list)-1:
+                self.save_and_exit()
             self.show_data()
         else:
             messagebox.showerror("Error","Be sure to enter response and thought before saving!")

@@ -5,11 +5,12 @@ from abc import abstractmethod
 @group_registry.register("base")
 class BaseGroupPolicy(BaseModel):
     
-    policy_type: str = "base"
+    type: str = "base"
     priority:bool = False
     log_fixed = {} # fixed_log for tenants : tenant_id[house_type_id,house_choose_reason]
     async def group(self,
                 tenant,
+                tenant_manager,
                 forum_manager, 
                 system, 
                 tool, 

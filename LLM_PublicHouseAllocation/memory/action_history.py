@@ -409,7 +409,18 @@ class ActionHistoryMemory(BaseMemory,SummarizerMixin):
         if not self.reflection:
             return self.to_string_default(add_sender_prefix=False,
                                         type_message=type_messages)
-        if not self.new_message:
+            
+        if not self.new_message: # 这边的new message 可以明确到哪些是增加的message
+           
+            if self.multi_message_summary == "": # 如果二级summary为空，则会初始化一个
+                # 当一级summary都空的时候，不进行summary
+                messages_str = []
+                for type_m in type_messages:
+                    if (type_m in self.summarys.keys()):
+                        messages_str.append(self.summarys.get(type_m))
+                if len(messages_str) > 0:
+                    self.multi_message_summary = await self.summary_synthesize_memory(messages_str,existing_memory=self.multi_message_summary)
+                    
             return self.multi_message_summary
         
         # memory_house_info 部分
@@ -428,22 +439,24 @@ class ActionHistoryMemory(BaseMemory,SummarizerMixin):
         
         self.multi_message_summary = await self.summary_synthesize_memory(messages_str,existing_memory=self.multi_message_summary)
         self.new_message = False
-        return self.multi_message_summary
+        return self.multi_message_summary # 二级summary
     
     
     async def reflect_memory_forum(self,
                              memory_house_info:str,
                              name :str = None):
         
+        if len(self.forum["buffer"]) < self.summary_threshold:
+            if  self.forum["chat_history"] != "":
+                content_return  = self.forum["chat_history"]
+                new_forum_info = self.to_string_default(self.forum["buffer"])    
+                content_return += "Here's the latest information you get from forum:{forum}".format(forum = new_forum_info)
+                return content_return
+            else:
+                return "Here's the latest information you get from forum:{forum}".format(\
+                    forum = self.to_string_default(self.forum["buffer"]))
+            
         
-        if len(self.forum["buffer"]) < self.summary_threshold and \
-            self.forum["chat_history"] != "":
-            content_return  = self.forum["chat_history"]
-            new_forum_info = self.to_string_default(self.forum["buffer"])    
-            content_return += "Here's the latest information you get from forum:{forum}".format(forum=new_forum_info)
-            return content_return
-        elif memory_house_info == "":
-            return ""
         
         # 这里assess 从forum中搜索search到的记忆 
         prompt_template = summary_prompt_default.get("forum_assess_summary")
@@ -502,8 +515,22 @@ However you are suspicious of {untrusted_info} Because {reason_guess}"""
     async def reflect_memory_social_network(self,
                                       memory_house_info :str,
                                       name :str = None):
-        if memory_house_info == "":
-            return ""
+        
+        def format_infos(infos:dict,
+                         acquaintance_info:dict):
+            content_templates = {
+                        "untrusted_info":" However you are suspicious of {untrusted_info}",
+                        "trusted_info":"You trust {ac_name} said that {trusted_info}",
+                        "reason_guess":"Because {reason_guess}",
+                        "fail_process":"{fail_process}"
+                    }    
+            content_template = "Your summary of chatting history with {ac_name}:"
+            for key in infos.keys():
+                content_template += content_templates[key]
+            
+            infos.update({"ac_name": acquaintance_info["name"]})              
+            memory_discussion_acquaintance = content_template.format_map(infos)
+            return memory_discussion_acquaintance
         
         NOTE ="""Keep this in mind: you and your acquaintances are in the same renting system. \
 You and your acquaintances both want to choose a suitable house, \
@@ -517,103 +544,144 @@ but the number of houses in the system is limited. You are in a competitive rela
                                                  "acquaintance_name",
                                                  "dialogue"], 
                                     template=prompt_template)
-       
         
         for acquaintance_id in self.social_network.keys():
             acquaintance_info = self.social_network[acquaintance_id]
-            chats = []
+           
             if "dialogues" not in acquaintance_info.keys() :
                 continue # 没对话
             
-            if len(acquaintance_info.get("dialogues"))- 1 == acquaintance_info["dialogues_pt"]:
-                memory_discussion += acquaintance_info["chat_history"]
-                continue # 还没新消息进来
+            if len(acquaintance_info.get("dialogues"))- 1 == acquaintance_info["dialogues_pt"]: 
+                memory_discussion += acquaintance_info.get("chat_history","")
+                continue
             
-            dialogues = acquaintance_info.get("dialogues")
-            dialogues.sort(key=lambda x: x.timestamp,reverse=True)
-            dialogues = dialogues[:3] if len(dialogues)>3 else dialogues
-            
-            latest_send_message = None
-            for message in dialogues: # 这里fifo,取最近三个message
-                if message.conver_num >= 0:
-                    chats.append("\n".join(message.context))
-                if name in message.sender.values():
-                    latest_send_message = message
+            else: 
+                
+                infos = {}
+                # 从process好的消息库中取历史内容
+                for processed_info in self.social_network[acquaintance_id].get("processed",[]):
+                    for k, v in processed_info.items():
+                        if k not in infos.keys():
+                            infos[k] =[v]
+                        else:
+                            infos[k].append(v)
+                            
+                new_dialogues = acquaintance_info.get("dialogues",[])
+                new_dialogues = new_dialogues[acquaintance_info["dialogues_pt"]+1:]
+                
+                new_dialogues.sort(key=lambda x: x.timestamp,reverse=True)
+                new_dialogues = new_dialogues[:10] if len(new_dialogues)>10 else new_dialogues
+                
+                latest_send_message = None
+                chats = []
+                for message in new_dialogues: # 这里fifo,取最近十个message
+                    assert isinstance(message,Message)
+                    if name in message.sender.values():
+                        latest_send_message = message
+                    if message.conver_num == 0 and list(message.sender.values())[0] == name: # 自己发的第一句话不管
+                        continue
+                    else:
+                        chats.append("\n".join(message.context))
 
-            
-            if (len(chats)>0):
-                chats_str = "\n".join(chats)
-                acquaintance_description = """Your relationship with {ac_name} is {ac_type}. {comment} """
-            
-                comment = self.social_network[acquaintance_id].get("comment","")
-                if comment != "":
-                    comment = "and your comment on him is: {}".format(comment)
-            
-                acquaintance_description = acquaintance_description.format(ac_name=acquaintance_info["name"],
-                                                                        ac_type=acquaintance_info.get("relation"),
-                                                                        comment=comment)
                 
-                memory_acquaintance = memory_house_info + "Here's your previous summary of {ac_name}: {info}".format(
-                    ac_name = acquaintance_info["name"],
-                    info = acquaintance_info.get("chat_history",""))
                 
-                if latest_send_message is not None: # 如果本人是message的发送者时（消息不是收到的）
-                    memory_latest_word = """\nHere's your latest response to {acquaintance_name}\n{response}"""
-                    assert "plan" in latest_send_message.content.keys()
-                    if "thought" in latest_send_message.content.keys():
-                        response_template ="""Your previous plan to communicate: {plan}.\
- You thought "{thought}". And You said "{output}". """
-                    else:
-                        response_template ="""Your previous plan to communicate: {plan}. And You said "{output}". """
+                if (len(chats)>0):
+                    chats_str = "\n".join(chats)
+                    acquaintance_description = """Your relationship with {ac_name} is {ac_type}. {comment} """
+                
+                    comment = self.social_network[acquaintance_id].get("comment","")
+                    if comment != "":
+                        comment = "and your comment on him is: {}".format(comment)
+                
+                    acquaintance_description = acquaintance_description.format(ac_name=acquaintance_info["name"],
+                                                                            ac_type=acquaintance_info.get("relation"),
+                                                                            comment=comment)
                     
-                    memory_latest_word = memory_latest_word.format(acquaintance_name=acquaintance_info["name"],
-                                                                   response=response_template.format_map(latest_send_message.content))
-                    memory_acquaintance += memory_latest_word
+                    memory_acquaintance = memory_house_info
+                    if acquaintance_info.get("chat_history","") !="":
+                        
+                        memory_acquaintance += "Here's your previous summary of chatting dialogue with {ac_name}: {info}".format(
+                        ac_name = acquaintance_info["name"],
+                        info = acquaintance_info.get("chat_history",""))
                     
-                prompt_inputs = {
-                    "name":name,
-                    "acquaintance_description":acquaintance_description,
-                    "memory":memory_acquaintance,
-                    "acquaintance_name": acquaintance_info["name"],
-                    "dialogue": chats_str
-                }
-                
-                memory_discussion_acquaintance = await self.summarize_chatting(prompt_inputs=prompt_inputs,
-                                                                               prompt=prompt)
-                try:
-                    assert isinstance(memory_discussion_acquaintance,str)
-                except:
-                    memory_discussion_acquaintance = ""
-                
-                self.social_network[acquaintance_id]["chat_history"] = memory_discussion_acquaintance
-                self.social_network[acquaintance_id]["dialogues_pt"] = len(acquaintance_info.get("dialogues"))-1
-                
-                try:
-                    # Parse out the action and action input
-                    memory_discussion_acquaintance += "\n"
-                    regex = r".*?Trusted\.*?:(.*?)\n.*?Suspicious\.*?:(.*?)\n.*?Reason.*?:(.*?)\n"
-                    match = re.search(regex, memory_discussion_acquaintance, re.DOTALL)
+                    if latest_send_message is not None: # 如果本人是message的发送者时（消息不是收到的）
+                        memory_latest_word = """\nHere's your latest response to {acquaintance_name}\n{response}"""
+                        assert "plan" in latest_send_message.content.keys()
+                        if "thought" in latest_send_message.content.keys():
+                            response_template ="""Your previous plan to communicate: {plan}.\
+    You thought "{thought}". And You said "{output}". """
+                        else:
+                            response_template ="""Your previous plan to communicate: {plan}. And You said "{output}". """
+                        
+                        memory_latest_word = memory_latest_word.format(acquaintance_name=acquaintance_info["name"],
+                                                                    response=response_template.format_map(latest_send_message.content))
+                        memory_acquaintance += memory_latest_word
+                        
+                    prompt_inputs = {
+                        "name":name,
+                        "acquaintance_description":acquaintance_description,
+                        "memory":memory_acquaintance,
+                        "acquaintance_name": acquaintance_info["name"],
+                        "dialogue": chats_str
+                    }
                     
-                    infos = {"trusted_info":match[1],"reason_guess":match[3]}
-                    if "none" not in match[2].lower():
-                        infos["untrusted_info"] =  match[2]
+                    memory_discussion_acquaintance = await self.summarize_chatting(prompt_inputs=prompt_inputs,
+                                                                                prompt=prompt)
+                    try:
+                        assert isinstance(memory_discussion_acquaintance,str)
+                    except:
+                        memory_discussion_acquaintance = ""
+                    
+                                
+                    try:
+                        infos_new = {}
+                        # Parse out the action and action input
+                        memory_discussion_acquaintance += "\n"
+
+                        regex_trusted = r".*?Trusted\.*?:(.*?)\n"
+                        match = re.search(regex_trusted, memory_discussion_acquaintance, re.DOTALL)
+                        if match is not None: infos_new.update({"trusted_info":match[1].strip()})
+                        
+                        regex_suspicious = r".*?Suspicious\.*?:(.*?)\n"
+                        match = re.search(regex_suspicious, memory_discussion_acquaintance, re.DOTALL)
+                        
+                        if match is not None: 
+                            unt_info = match[1].strip().strip(".")
+                            if unt_info.lower() != "none":
+                                infos_new.update({"untrusted_info":unt_info})
+                        
+                        regex_reason = r".*?Reason\.*?:(.*?)\n"
+                        match = re.search(regex_reason, memory_discussion_acquaintance, re.DOTALL)
+                        if match is not None: infos_new.update({"reason_guess":match[1].strip()})
+                    
+                    except Exception as e:    
+                        
+                        if infos_new!={}:
+                            self.social_network[acquaintance_id]["processed"].append(infos_new)
+                        else:
+                            self.social_network[acquaintance_id]["processed"].append({"fail_process":memory_discussion_acquaintance})
+                                         
+                    
+                    for k,v in infos_new.items():
+                        if k not in infos.keys():
+                            infos[k] = [v]
+                        else:
+                            infos[k].append(v)
+                    
+                    for k, v in infos.items():
+                        infos[k] = "".join(v)
                         
                     
-                    self.social_network[acquaintance_id]["processed"].append(infos)
-                        
-                    infos.update({"ac_name":acquaintance_info["name"]})
-                    if "untrusted_info" in infos.keys():
-                        content_template = """You trust {ac_name} said that {trusted_info} \
-However you are suspicious of {untrusted_info} Because {reason_guess}"""
-                    else:
-                        content_template = """You trust {ac_name} said that {trusted_info} Because {reason_guess}"""
+                    memory_discussion_acquaintance = format_infos(infos=infos,
+                                                                  acquaintance_info=acquaintance_info)
+                   
                     
-                    self.social_network[acquaintance_id]["chat_history"] = content_template.format_map(infos)
-                    memory_discussion += acquaintance_info["chat_history"]
-                    
-                except Exception as e:
+                
+                    self.social_network[acquaintance_id]["chat_history"] = memory_discussion_acquaintance
+                    self.social_network[acquaintance_id]["dialogues_pt"] = len(acquaintance_info.get("dialogues"))-1
                     memory_discussion += memory_discussion_acquaintance
-                    print("fail to parse social_network memory summary")
+                else:
+                    memory_discussion += acquaintance_info.get("chat_history","")
                 
             
             

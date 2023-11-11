@@ -4,12 +4,10 @@ from .base import BaseGroupPolicy
 @group_registry.register("single_list")
 class SingleListPolicy(BaseGroupPolicy):
     
-    def __init__(self,**kargs) -> None:
-        super().__init__(policy_type="single_list",
-                         **kargs)
     
     async def group(self,
                 tenant,
+                tenant_manager,
                 forum_manager, 
                 system, 
                 tool, 

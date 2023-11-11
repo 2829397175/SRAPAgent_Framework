@@ -6,7 +6,7 @@ save_log: True
 environment:
   tool: True
   env_type: rent
-  max_turns: 35
+  max_turns: 10
   
   rule:
     order:

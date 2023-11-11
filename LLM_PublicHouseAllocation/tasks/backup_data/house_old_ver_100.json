@@ -478,7 +478,7 @@
           "potential_information_house": "This house is a testament to modern design, offering comfort at every turn. The bedroom's calm environment ensures uninterrupted sleep."
         },
        "house_44": {
-          "house_type": "medium_house",
+          "house_type": "middle_house",
           "toward": "EW",
           "house_area": "46.14",
           "rent_money": 1846,
@@ -489,7 +489,7 @@
           "potential_information_house": "An optimal blend of style and functionality, this house is designed for contemporary urban living. The serene bedroom ambiance ensures a peaceful retreat."
        },
        "house_45": {
-          "house_type": "medium_house",
+          "house_type": "middle_house",
           "toward": "EW",
           "house_area": "45.0",
           "rent_money": 1800,
@@ -500,7 +500,7 @@
           "potential_information_house": "A perfect embodiment of modern aesthetics, this house promises comfort in every nook. The tranquil bedroom setting ensures restful nights."
        },
        "house_46": {
-          "house_type": "medium_house",
+          "house_type": "middle_house",
           "toward": "EW",
           "house_area": "44.75",
           "rent_money": 1790,
@@ -511,7 +511,7 @@
           "potential_information_house": "The house resonates with a contemporary vibe, ensuring a delightful living environment. The bedroom's peaceful ambiance is conducive to relaxation."
        },
        "house_47": {
-          "house_type": "medium_house",
+          "house_type": "middle_house",
           "toward": "EW",
           "house_area": "46.0",
           "rent_money": 1840,
@@ -522,7 +522,7 @@
           "potential_information_house": "Infusing style with practicality, this house is tailored for modern lifestyles. The bedroom exudes calmness, ensuring rejuvenating sleep."
        },
        "house_48": {
-          "house_type": "medium_house",
+          "house_type": "middle_house",
           "toward": "EW",
           "house_area": "44.50",
           "rent_money": 1780,
@@ -533,7 +533,7 @@
           "potential_information_house": "A testament to modern living, this house promises a harmonious blend of elegance and functionality. The bedroom environment is soothing, perfect for unwinding."
        },
        "house_49": {
-          "house_type": "medium_house",
+          "house_type": "middle_house",
           "toward": "EW",
           "house_area": "45.50",
           "rent_money": 1820,
@@ -544,7 +544,7 @@
           "potential_information_house": "Blending aesthetic appeal with functionality, this house is a true reflection of contemporary design. The bedroom offers a serene space for relaxation."
        },
        "house_50": {
-          "house_type": "medium_house",
+          "house_type": "middle_house",
           "toward": "EW",
           "house_area": "45.80",
           "rent_money": 1832,
@@ -555,7 +555,7 @@
           "potential_information_house": "The house captures the essence of modern design, ensuring a pleasant living experience. The bedroom provides a tranquil sanctuary for rest."
        },
        "house_51": {
-          "house_type": "medium_house",
+          "house_type": "middle_house",
           "toward": "EW",
           "house_area": "46.10",
           "rent_money": 1844,
@@ -566,7 +566,7 @@
           "potential_information_house": "Merging style with utility, this house is perfect for those valuing modern living. The bedroom ambiance is calm, promoting restful sleep."
        },
        "house_52": {
-          "house_type": "medium_house",
+          "house_type": "middle_house",
           "toward": "EW",
           "house_area": "44.30",
           "rent_money": 1772,
@@ -577,7 +577,7 @@
           "potential_information_house": "Crafted for modern dwellers, this house exudes elegance in its design. The bedroom's quiet environment ensures a refreshing retreat."
        },
        "house_53": {
-          "house_type": "medium_house",
+          "house_type": "middle_house",
           "toward": "EW",
           "house_area": "46.20",
           "rent_money": 1848,

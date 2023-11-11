@@ -12,7 +12,7 @@ class CommunityManager(BaseManager):
     """
     total_community_datas:dict={}
     distribution_batch_data:dict={}
-    
+    patch_method = "avg"
     
     
     @classmethod
@@ -148,6 +148,19 @@ class CommunityManager(BaseManager):
                 queue_houses[house_type].append(house_id)
             return queue_houses
             
+        def portion_groups(house_ids,
+                           queue_names):
+            queue_lens = len(queue_names)
+            if queue_lens <=1:
+                return house_ids
+            import re
+            regex = f"()<(.*)<"
+            try:
+                attr = re.search(regex, queue_names[0]).group(1)
+            except:
+                raise Exception(f"invalid queue name! :{queue_names[0]}")
+            
+            
         
         # 将每个queue新加的房子， 随机分配到三个queue的队列内
         if (str(cnt_turn) not in self.distribution_batch_data.keys()):
@@ -156,19 +169,23 @@ class CommunityManager(BaseManager):
         queue_house_ids = self.distribution_batch_data[str(cnt_turn)]
         assert isinstance(queue_house_ids,list), "error in queue house format!"
         
-        if tenant_manager.policy.group_policy.policy_type in \
-            ["single_list"]:
-            """single list"""
+        if self.patch_method == "single_list":
             queue_group_h_ids = {queue_names[0]:queue_house_ids}
         
-        elif tenant_manager.policy.group_policy.policy_type in \
-            ["multi_list","house_type"]:
-            """house type group"""
+        elif self.patch_method == "house_type":
             queue_group_h_ids = house_type_groups(queue_house_ids,
                                                 queue_names)
-        
+            
+        elif self.patch_method == "random_avg":
+            queue_group_h_ids = avg_groups(queue_house_ids,
+                                           len(queue_names),
+                                                queue_names)
+        elif self.patch_method == "portion":
+            queue_house_ids = avg_groups(
+                
+            )
         else:
-            raise NotImplementedError("This type of group policy is not supported.")
+            raise NotImplementedError("This type of patch method is not supported.")
         
         
         """random group"""

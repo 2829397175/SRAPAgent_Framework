@@ -31,6 +31,7 @@ class BasePolicy(BaseModel):
     
     async def group(self, 
                     tenant,
+                    tenant_manager,
                     forum_manager, 
                     system, 
                     tool, 
@@ -38,6 +39,7 @@ class BasePolicy(BaseModel):
                     log_round_tenant):
         return await self.group_policy.group(
                     tenant,
+                    tenant_manager,
                     forum_manager, 
                     system, 
                     tool, 

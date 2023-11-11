@@ -478,7 +478,7 @@
             "potential_information_house":"A potential buyer must be ready for a complete overhaul to make this property safe and habitable."
         },
         "house_44":{
-            "house_type":"medium_house",
+            "house_type":"middle_house",
             "toward":"EW",
             "house_area":"46.14",
             "rent_money":1846,
@@ -489,7 +489,7 @@
             "potential_information_house":"The current appliances are fully functional, yet an upgrade to more energy-efficient models could enhance the home's appeal."
         },
         "house_45":{
-            "house_type":"medium_house",
+            "house_type":"middle_house",
             "toward":"EW",
             "house_area":"45.0",
             "rent_money":1800,
@@ -500,7 +500,7 @@
             "potential_information_house":"The historical character of the home shines through, though it may benefit from a modern touch and some waterproofing."
         },
         "house_46":{
-            "house_type":"medium_house",
+            "house_type":"middle_house",
             "toward":"EW",
             "house_area":"44.75",
             "rent_money":1790,
@@ -511,7 +511,7 @@
             "potential_information_house":"Lighting fixtures are in prime locations to accentuate the home's modern design, yet some may require new bulbs for optimal illumination."
         },
         "house_47":{
-            "house_type":"medium_house",
+            "house_type":"middle_house",
             "toward":"EW",
             "house_area":"46.0",
             "rent_money":1840,
@@ -522,7 +522,7 @@
             "potential_information_house":"The apartment presents a canvas for improvements and customizations that a DIY enthusiast would appreciate."
         },
         "house_48":{
-            "house_type":"medium_house",
+            "house_type":"middle_house",
             "toward":"EW",
             "house_area":"44.50",
             "rent_money":1780,
@@ -533,7 +533,7 @@
             "potential_information_house":"Signs of wear indicate a lived-in and loved atmosphere, offering a sense of homeyness despite its imperfections."
         },
         "house_49":{
-            "house_type":"medium_house",
+            "house_type":"middle_house",
             "toward":"EW",
             "house_area":"45.50",
             "rent_money":1820,
@@ -544,7 +544,7 @@
             "potential_information_house":"Minor aesthetic blemishes do not detract from the house's overall solid structural integrity and maintained state."
         },
         "house_50":{
-            "house_type":"medium_house",
+            "house_type":"middle_house",
             "toward":"EW",
             "house_area":"45.80",
             "rent_money":1832,
@@ -555,7 +555,7 @@
             "potential_information_house":"While the interior could benefit from a fresh coat of paint, the home offers a comfortable baseline for living and personalization."
         },
         "house_51":{
-            "house_type":"medium_house",
+            "house_type":"middle_house",
             "toward":"EW",
             "house_area":"46.10",
             "rent_money":1844,
@@ -566,7 +566,7 @@
             "potential_information_house":"The current furnishings blend well with the home's aesthetic, though the main living area could be enhanced with contemporary seating."
         },
         "house_52":{
-            "house_type":"medium_house",
+            "house_type":"middle_house",
             "toward":"EW",
             "house_area":"44.30",
             "rent_money":1772,
@@ -577,7 +577,7 @@
             "potential_information_house":"A thorough inspection and potential reinforcement of the structure could restore safety and confidence in the home's integrity."
         },
         "house_53":{
-            "house_type":"medium_house",
+            "house_type":"middle_house",
             "toward":"EW",
             "house_area":"46.20",
             "rent_money":1848,

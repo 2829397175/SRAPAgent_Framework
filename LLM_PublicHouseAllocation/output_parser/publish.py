@@ -103,36 +103,61 @@ class PublishParser(AgentOutputParser):
         # Check if agent should finish
         self.action_times +=1
         llm_output += "\n"
-        # Parse out the action and action input
-        regex = r"\s*\d*\s*Thought\s*\d*\s*:(.*?)\nAction\s*\d*\s*:(.*?)\nCommunity\s*\d*\s*:(.*?)\nInfo\s*\d*\s*:(.*?)\n"
-        matchs = re.findall(regex, llm_output, re.DOTALL|re.IGNORECASE)
-
-        if not matchs:
-            raise OutputParseError("Output Format Error")
-
         
-        publishes = []
-        for match in matchs:
-            thought = match[0].strip(" ").strip('"')
-            action = match[1].strip(" ").strip('"')
-            community_id = match[2].strip(" ").strip('"')
-            info = match[3].strip(" ").strip('"')
-            
-            if action == "Publish":
-                publish = {
-                    "info":info, 
-                    "community":community_id,
+        try:
+        
+            # Parse out the action and action input
+            regex = r"\s*\d*\s*Thought\s*\d*\s*:(.*?)\nAction\s*\d*\s*:(.*?)\nCommunity\s*\d*\s*:(.*?)\nInfo\s*\d*\s*:(.*?)\n"
+            matchs = re.findall(regex, llm_output, re.DOTALL|re.IGNORECASE)
+            publishes = []
+            for match in matchs:
+                thought = match[0].strip(" ").strip('"')
+                action = match[1].strip(" ").strip('"')
+                community_id = match[2].strip(" ").strip('"')
+                info = match[3].strip(" ").strip('"')
+                
+                if action == "Publish":
+                    publish = {
+                        "info":info, 
+                        "community":community_id,
+                        "thought":thought,
+                        "publish":False
+                    }
+                    publishes.append(publish)
+                
+        
+            return AgentFinish(
+                    # Return values is generally always a dictionary with a single `output` key
+                    # It is not recommended to try anything else at the moment :)
+                    return_values={"return_values":publishes},
+                    log=llm_output,
+                )
+        except:
+            try:
+                # Parse out the action and action input
+                regex = r"Thought\s*\d*\s*:(.*?)Action\s*\d*\s*:(.*?)\n"
+                llm_output +="\n"
+                
+                match = re.search(regex, llm_output, re.DOTALL|re.IGNORECASE)
+                
+                thought = match.group(1).strip().strip(" ").strip('"')
+                action = match.group(2).strip()
+                
+                publishes = [{
                     "thought":thought,
-                }
-                publishes.append(publish)
+                    "publish":False
+                }]
+                
+                return  AgentFinish(
+                        # Return values is generally always a dictionary with a single `output` key
+                        # It is not recommended to try anything else at the moment :)
+                        return_values={"return_values":publishes},
+                        log=llm_output,
+                    )
+            except:
+                raise OutputParseError(f"Output Format Error(publish)")
+        
             
-    
-        return AgentFinish(
-                # Return values is generally always a dictionary with a single `output` key
-                # It is not recommended to try anything else at the moment :)
-                return_values={"return_values":publishes},
-                log=llm_output,
-            )
         
 @output_parser_registry.register("publish_forum_plan")
 class PublishPlanParser(AgentOutputParser):

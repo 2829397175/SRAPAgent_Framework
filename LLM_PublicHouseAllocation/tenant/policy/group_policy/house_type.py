@@ -5,9 +5,6 @@ from .base import BaseGroupPolicy
 class HouseTypePolicy(BaseGroupPolicy):
     
     
-    def __init__(self,**kargs) -> None:
-        super().__init__(policy_type="house_type",
-                         **kargs)
     
     async def group(self,
                 tenant,

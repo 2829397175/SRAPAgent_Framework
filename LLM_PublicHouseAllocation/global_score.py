@@ -11,6 +11,9 @@ import asyncio
 from LLM_PublicHouseAllocation.llms import APIKeyPool
 from tqdm import tqdm
 import random
+import numpy as np
+import copy
+
 class Global_Score(BaseModel):
     tenant_manager:Optional[TenantManager]=None
     system:Optional[System]=None
@@ -142,10 +145,10 @@ Respond in json format:
     def rate(self):
         tenant_ids = list(self.tenant_manager.total_tenant_datas.keys())
         group_size = 10
-        group_id = 4
+        group_id = 0
         pbar_size = int((len(tenant_ids)-1)/group_size)+1
         pbar=tqdm(range(int(pbar_size)), ncols=100,desc=f"Rating the score of houses: group size {group_size}, groups:{pbar_size}") 
-        pbar.update(group_id)
+        # pbar.update(group_id)
         while(group_id*group_size<len(tenant_ids)):
             stop_id = group_size*(group_id+1)
             if len(tenant_ids) ==stop_id:
@@ -183,17 +186,17 @@ Here's some examples:
 End of example
 """
                 
-                input={
+                if self.result[tenant_id].get(house_id,{}).get("llm_score",None) != None:
+                    rated = True
+                else:
+                    rated = False
+                    
+                while (not rated):
+                    input={
                     "role_description":tenant.get_role_description(),
                     "house_info":self.system.get_score_house_description(house_id,tenant),
                     "example":examples_str_template.format(examples = "\n".join(examples)) if len(examples)>=1 else ""
-                }
-                if self.result[tenant_id].get(house_id,{}).get("score",None) == None:
-                    rated = False
-                else:
-                    rated = True
-                    
-                while (not rated):
+                    }   
                     response = await llm_chain.arun(input)
                     response = response.replace("\n","").strip().lower()
                     
@@ -211,7 +214,7 @@ End of example
                             if score == None:
                                 score = self.result[tenant_id][house_id].get("rating")
                                 
-                            self.result[tenant_id][house_id]["score"] = int(score)
+                            self.result[tenant_id][house_id]["llm_score"] = int(score)
                             rated = True
                     except json.JSONDecodeError as e:
                         try:
@@ -223,7 +226,7 @@ End of example
                             reason = reason_match.group(1)
                             # 创建结果字典
                             result_dict = {
-                                "score": int(score),
+                                "llm_score": int(score),
                                 "reason": reason.replace("\"","").strip("score")
                             }
                             self.result[tenant_id].update({house_id:result_dict})
@@ -238,7 +241,7 @@ End of example
                                 reason = reason_match.group(1)
                                 # 创建结果字典
                                 result_dict = {
-                                    "score": int(score),
+                                    "llm_score": int(score),
                                     "reason": reason.replace("\"","").strip("score")
                                 }
                                 self.result[tenant_id].update({house_id:result_dict})
@@ -252,13 +255,77 @@ End of example
                     if (idx%10 ==0):
                         self.save()         
             
-            print(f"tenant {tenant.id} finished rating.")            
+            
+                # if self.result[tenant_id].get(house_id,{}).get("objective_score",None) == None:
+                objective_scores = self.objective_eval_house(tenant_id=tenant_id,house_id=house_id)
+                self.result[tenant_id][house_id].update(objective_scores)
+                
+                self.result[tenant_id][house_id]["score"] = (self.result[tenant_id][house_id]["llm_score"]+\
+                                                            self.result[tenant_id][house_id]["objective_score"])
+            print(f"tenant {tenant_id} finished rating.")            
             pbar.update()
             
         await asyncio.gather(*[rate_one_tenant(tenant_id) for tenant_id in tenant_ids])
             
             
+    def objective_eval_house(self,
+                             tenant_id,
+                             house_id):
+        house_info = self.system.house_manager[house_id]
+        tenant = self.tenant_manager.total_tenant_datas[tenant_id]
+
+        tenant_info = tenant.infos
+        ratings = []
         
+        rent_price = float(house_info["rent_money"])
+        budget_price = float(tenant_info["monthly_rent_budget"])
+        if rent_price < budget_price:
+            rating = 10
+        else:
+            rating = 10 - int((rent_price-budget_price)/100)
+        ratings.append(rating)
+            
+        family_num = int(tenant_info["family_members_num"])
+        house_area = float(house_info["house_area"])
+        avg_living_area = house_area/family_num
+        if avg_living_area>20:
+            rating = 10
+        elif avg_living_area>15:
+            rating = 8
+        elif avg_living_area>10:
+            rating = 6
+        else:
+            rating = int(avg_living_area) - 5
+        ratings.append(rating)
+        
+        house_orientation = house_info["toward"]
+        if "S" in house_orientation:
+            rating = 10
+        elif "W" or "E" in house_orientation:
+            rating = 5
+        else:
+            rating = 0
+        ratings.append(rating)
+        
+        if int(house_info["floor"])>6 and \
+            "not" in house_info["elevator"]:
+            rating = 0
+        else:
+            rating = 10
+        ratings.append(rating)
+
+        # return sum(rating)/len(rating)
+        weights =[4,4,1,1]
+        
+        rating_weighted = np.dot(weights,ratings)/sum(weights)
+        assert rating_weighted <=10,'Error'
+        return {
+            "objective_score":rating_weighted,
+            "rent_money_score":ratings[0],
+            "avg_living_score":ratings[1],
+            "orientation_score":ratings[2],
+            "floor_score":ratings[3]}
+
             
     def save(self):
         with open(self.save_dir, 'w', encoding='utf-8') as file:

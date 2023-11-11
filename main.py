@@ -7,8 +7,13 @@ import shutil
 parser = argparse.ArgumentParser(description='housing_system')  # 创建解析器
 parser.add_argument('--task', 
                     type=str, 
-                    default="PHA_5tenant_3community_19house", 
+                    default="ver2_nofilter_multilist_priority_7t_5h", 
                     help='The task of simulation system.')  # 添加参数
+
+parser.add_argument('--data', 
+                    type=str, 
+                    default="PHA_51tenant_5community_28house", 
+                    help='The data setting for the task')  # 添加参数
 
 parser.add_argument("--log",
                     type=str,
@@ -35,7 +40,7 @@ if args.clear_cache:
     if os.path.exists(result_dir):
         shutil.rmtree(result_dir)
     
-executor = Executor.from_task(args.task,args.api_path)
+executor = Executor.from_task(args)
 executor.load_log(args.log)
 
-#executor.run()
+# executor.run()

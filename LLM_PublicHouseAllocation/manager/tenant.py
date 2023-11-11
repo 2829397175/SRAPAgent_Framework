@@ -48,7 +48,10 @@ class TenantManager(BaseManager):
         
         group_policy_kwargs = policy_kwargs.pop("group_policy",{"type":"base",
                                                                 "priority":False})
-        group_policy = group_registry.build(**group_policy_kwargs)
+        if group_policy_kwargs["type"] == "portion":
+            group_policy = group_registry.build(tenant_configs = tenant_configs,**group_policy_kwargs)
+        else:
+            group_policy = group_registry.build(**group_policy_kwargs)
         
 
         policy = policy_registry.build(group_policy=group_policy,

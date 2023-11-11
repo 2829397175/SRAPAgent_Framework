@@ -275,7 +275,7 @@ class RentEnvironment(BaseEnvironment):
                                   tool,
                                   log):
             
-            group_ids = await asyncio.gather(*[tenant_manager[tenant_id].group(forum_manager, system, rule, tool) for \
+            group_ids = await asyncio.gather(*[tenant_manager[tenant_id].group(tenant_manager,forum_manager, system, rule, tool) for \
                 tenant_id in tenant_ids])
 
             for tenant_id in tenant_ids:
@@ -333,7 +333,7 @@ class RentEnvironment(BaseEnvironment):
                 tenant_groups[key] = [*p_tenants,*normal_tenants]
                 
             if "default" in tenant_groups.keys() and \
-                self.tenant_manager.policy.group_policy.policy_type in ["house_type"] \
+                self.tenant_manager.policy.group_policy.type in ["house_type"] \
                 and len(tenant_groups) > 1: 
                 # 如果通过house_type进行tenant分组
                 import random    
