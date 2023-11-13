@@ -196,8 +196,7 @@ def filter_chinese_to_en(type_data,
     with open(save_path,'w',encoding = 'utf-8') as f:
         json.dump(filtered_english_data, f, indent=4,separators=(',', ':'),ensure_ascii=False)  
          
-                
-                
+
                 
 if __name__=="__main__":
     data_types = [

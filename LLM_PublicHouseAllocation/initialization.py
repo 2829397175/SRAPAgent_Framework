@@ -50,7 +50,7 @@ def prepare_task_config(task,
             if os.path.isdir(os.path.join(all_data_dir, task)) \
                 and data_name != "__pycache__":
                 all_datas.append(data_name)
-        raise ValueError(f"Data {data} not found. Available tasks: {all_datas}")
+        raise ValueError(f"Data {data} not found. Available datas: {all_datas}")
     
     all_task_dir = os.path.join(data_path, "configs")
     task_path = os.path.join(all_task_dir, task)

@@ -35,6 +35,8 @@ args = parser.parse_args()  # 解析参数
 if args.clear_cache:
     
     result_dir = os.path.join("LLM_PublicHouseAllocation\\tasks",
+                              args.data,
+                              "configs",
                               args.task,
                               "result")
     if os.path.exists(result_dir):

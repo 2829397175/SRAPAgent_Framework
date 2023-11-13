@@ -16,8 +16,8 @@ class KWaitListOrder(BaseOrder):
     """
     k deferral waitlist order for tenants
     
-    k (tenant.max_choose): the tenant has k times to choose
-    if tenant.choose_times < tenant.max_choose: tenant remain in waitlist
+    k : the tenant has k times to choose in one round
+    if tenant.choose_times < k: tenant remain in waitlist
     
     waitlist_ratio : waitlist shortlisted ratio (default = 0.3 )
     
@@ -25,6 +25,8 @@ class KWaitListOrder(BaseOrder):
     
     rule_description:str=""
     waitlist_ratio = 1.2 
+    k:int = 2
+    
     def get_next_agent_idx(self, environment) ->dict: 
         # return queue_name:queue
         
@@ -59,7 +61,7 @@ class KWaitListOrder(BaseOrder):
     def requeue(self, environment, tenant):
         """re-queue"""
         if tenant.available:
-            round_choose = tenant.choose_times % (tenant.max_choose)            
+            round_choose = tenant.choose_times % self.k         
             for queue_name, queue_info in environment.deque_dict.items():
                 if queue_name == tenant.queue_name:
                     if round_choose == 0:

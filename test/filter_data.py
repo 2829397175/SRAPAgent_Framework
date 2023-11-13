@@ -92,7 +92,7 @@ def filter_house(num = 30):
         json.dump(community_json, f, indent=4,separators=(',', ':'),ensure_ascii=False)
         
         
-def distribution_batch(run_turns,cur_num):
+def distribution_batch(run_turns,cur_num,step_num =1):
     with open(f"test\generate_data/house_{cur_num}.json",'r',encoding = 'utf-8') as f:
         house_json = json.load(f)
     
@@ -111,20 +111,24 @@ def distribution_batch(run_turns,cur_num):
             groups = np.array(data[:end_p]).reshape(num_groups,n_per_group)
         groups = groups.tolist()
         if (end_p != -1):
-            groups.append(data[end_p:])
+            groups[-1].extend(data[end_p:])
         return groups
+    
+    run_turns_range = run_turns*step_num
+    assert run_turns < len(house_ids),"error !!"
     
     grouped_house_ids = avg_groups(house_ids,run_turns)
     run_turns = len(grouped_house_ids)
     distribution_batch ={}
-    for group,grouped_houses in zip(range(run_turns),grouped_house_ids):
+    run_turns_list = range(0,run_turns_range,step_num)
+    for group,grouped_houses in zip(run_turns_list,grouped_house_ids):
         distribution_batch[group] =  grouped_houses
         
-    with open(f"test\generate_data/distribution_batch_{cur_num}_{run_turns}.json",'w',encoding = 'utf-8') as f:
+    with open(f"test\generate_data/distribution_batch_{cur_num}_{run_turns}_{step_num}.json",'w',encoding = 'utf-8') as f:
         json.dump(distribution_batch, f, indent=4,separators=(',', ':'),ensure_ascii=False)
     
     
-def distribution_batch_tenant(run_turns,cur_num):
+def distribution_batch_tenant(run_turns,cur_num,step_num = 1):
     with open(f"test\generate_data/tenant_{cur_num}.json",'r',encoding = 'utf-8') as f:
         tenant_json = json.load(f)
     
@@ -141,16 +145,20 @@ def distribution_batch_tenant(run_turns,cur_num):
             groups = np.array(data[:end_p]).reshape(num_groups,n_per_group)
         groups = groups.tolist()
         if (end_p != -1):
-            groups.append(data[end_p:])
+            groups[-1].extend(data[end_p:])
         return groups
+    
+    run_turns_range = run_turns*step_num
+    assert run_turns < len(tenant_ids),"error !!"
     
     grouped_tenant_ids = avg_groups(tenant_ids,run_turns)
     run_turns = len(grouped_tenant_ids)
     distribution_batch ={}
-    for group,grouped_tenants in zip(range(run_turns),grouped_tenant_ids):
+    run_turns_list = range(0,run_turns_range,step_num)
+    for group,grouped_tenants in zip(run_turns_list,grouped_tenant_ids):
         distribution_batch[group] =  grouped_tenants
         
-    with open(f"test\generate_data/distribution_batch_tenant_{cur_num}_{run_turns}.json",'w',encoding = 'utf-8') as f:
+    with open(f"test\generate_data/distribution_batch_tenant_{cur_num}_{run_turns}_{step_num}.json",'w',encoding = 'utf-8') as f:
         json.dump(distribution_batch, f, indent=4,separators=(',', ':'),ensure_ascii=False)
     
 
@@ -159,5 +167,5 @@ def distribution_batch_tenant(run_turns,cur_num):
 if __name__ =="__main__":
     # filter_tenant(num=5)
     # filter_house(num=30)
-    distribution_batch(5,28)
-    # distribution_batch_tenant(3,11)
+    distribution_batch(2,28,5)
+    distribution_batch_tenant(2,51,5)

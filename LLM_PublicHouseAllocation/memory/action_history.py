@@ -41,7 +41,11 @@ class SummarizerMixin(BaseModel):
                         self.llm = llm
                     print(e,"Retrying...")
                     continue
+            except Exception as e:
+                continue
             break
+        if response is None:
+            return ""
         return response
     
     async def arequest(self,
@@ -58,7 +62,11 @@ class SummarizerMixin(BaseModel):
                         self.llm = llm
                     print(e,"Retrying...")
                     continue
+            except Exception as e:
+                continue
             break
+        if response is None:
+            return ""
         return response
 
     def predict_new_summary(

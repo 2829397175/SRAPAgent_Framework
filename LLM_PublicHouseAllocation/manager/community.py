@@ -129,7 +129,7 @@ class CommunityManager(BaseManager):
                 
             groups = groups.tolist()
             if (end_p != -1):
-                groups.append(data[end_p:])
+                groups[-1].extend(data[end_p:])
                 
             queue_group_h_ids = {}
             for idx,queue_name in enumerate(queue_names):
@@ -217,7 +217,7 @@ class CommunityManager(BaseManager):
         elif self.patch_method == "portion":
             queue_group_h_ids = portion_groups(queue_house_ids,
                                              queue_names,
-                                             "house_area")
+                                            "house_area")
         else:
             raise NotImplementedError("This type of patch method is not supported.")
         

@@ -18,10 +18,11 @@ chcp 65001
 SETLOCAL ENABLEDELAYEDEXPANSION
 
 SET api_path=LLM_PublicHouseAllocation\llms\api.json
-SET task_list="PHA_51tenant_5community_28house_ver1_nofilter_singlelist" "PHA_51tenant_5community_28house_ver2_nofilter_multilist_priority_7t_5h"
+SET data_type= "PHA_51tenant_5community_28house"
+SET task_list= "ver1_nofilter_portion(f_member_num)_priority_8t_6h_p#rent_money" "ver1_nofilter_portion(f_rent_money_budget)_priority_8t_6h_p#rent_money"
 
 FOR %%A IN (%task_list%) DO (
-    python main.py --task %%A --api_path %api_path% --clear_cache >> "%%A.log"
+    python main.py --task %%A --data %data_type% --clear_cache>> "%%A.log"
     echo This is the %%A loop 
 )
 

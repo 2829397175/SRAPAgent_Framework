@@ -122,9 +122,9 @@ class LangchainTenant(langchainAgent):
         if chose:
             self.available = False
         else:
-            self.choose_times+=1
-            # if(self.choose_times>=self.max_choose):
-            #     self.available = False
+            self.choose_times += 1
+            if(self.choose_times>=self.max_choose):
+                self.available = False
     
     @classmethod
     def _get_default_output_parser(cls, **kwargs: Any) -> AgentOutputParser:
@@ -410,6 +410,8 @@ class LangchainTenant(langchainAgent):
             except OutputParseError as e:
                 print(e)
                 print("Retrying...")
+                continue
+            except Exception as e:
                 continue
                 
             break

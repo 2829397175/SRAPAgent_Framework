@@ -63,7 +63,6 @@ class APIKeyPool(BaseModel):
             self.in_use_keys = set()
             
         if len(self.available_keys) == 0:
-            self.save_apis()
             raise Exception("No valid OPENAI_API_KEY !!!")
         
         key = self.available_keys.pop()
@@ -83,7 +82,6 @@ class APIKeyPool(BaseModel):
             self.in_use_keys = set()
             
         if len(self.available_keys) == 0:
-            self.save_apis()
             raise Exception("No valid OPENAI_API_KEY !!!")
             
         key = self.available_keys.pop()
