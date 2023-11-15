@@ -3,6 +3,13 @@ import random
 import os
 import shutil
 
+import json
+def readinfo(data_dir):
+    assert os.path.exists(data_dir),"no such file path: {}".format(data_dir)
+    with open(data_dir,'r',encoding = 'utf-8') as f:
+        data_list = json.load(f)
+    return data_list
+
 def split_save_response(json_types,
                         limit = 100,
                         num_groups = 10,
@@ -120,7 +127,7 @@ def split_choose_one(json_types,
 def get_en_according_to_cn(json_types,
                            save_dir = "LLM_PublicHouseAllocation\LLM_decision_test\\filtered_response_data_simulated\en_ver\group",
                            data_dir = "LLM_PublicHouseAllocation\LLM_decision_test\\filtered_response_data_simulated\en_ver",
-                           cn_dir_gorups ="LLM_PublicHouseAllocation\LLM_decision_test\\filtered_response_data_simulated\cn_ver\group\\all"):
+                           cn_dir_groups ="LLM_PublicHouseAllocation\LLM_decision_test\\filtered_response_data_simulated\cn_ver\group\\all"):
     
     data_all = {}
     for json_type in json_types:
@@ -130,7 +137,7 @@ def get_en_according_to_cn(json_types,
             data = json.load(f)
         data_all[json_type] = data
             
-    files = os.listdir(cn_dir_gorups)
+    files = os.listdir(cn_dir_groups)
     
     if not os.path.exists(save_dir):
         os.makedirs(save_dir)
@@ -140,7 +147,7 @@ def get_en_according_to_cn(json_types,
     
     
     for file in files:
-        file_path = os.path.join(cn_dir_gorups,file)
+        file_path = os.path.join(cn_dir_groups,file)
         group_en_ver = []
         with open(file_path,'r',encoding = 'utf-8') as f:
             data_cn = json.load(f)
@@ -152,6 +159,7 @@ def get_en_according_to_cn(json_types,
         housetype_regex ="选择(.*?)_house"
         filtered_data_cn = []
         for idx,data_choose_one in enumerate(data_cn):
+            
             if "没有" in data_choose_one["human_response"]["output"] or \
                 "不" in data_choose_one["human_response"]["output"]:
                 filtered_data_cn.append(data_choose_one)
@@ -200,6 +208,49 @@ def get_en_according_to_cn(json_types,
                 
         with open(os.path.join(save_dir,"en"+file),'w',encoding = 'utf-8') as f:
             json.dump(group_en_ver,f, indent=4,separators=(',', ':'),ensure_ascii=False)
+        
+        
+def filter_cn_choose_id(cn_dir_groups = "LLM_PublicHouseAllocation\LLM_decision_test\\filtered_response_data_simulated\cn_ver\group\\all",
+                        save_path = "LLM_PublicHouseAllocation\LLM_decision_test\\filtered_response_data_simulated\cn_ver\group\\all\\all_choose_one_3.json"):
+    files = os.listdir(cn_dir_groups)
+    ids = [1,3]
+    all_cn_datas = []
+    for id in ids:
+        file_path = os.path.join(cn_dir_groups,f"all_choose_one_{id}.json")
+        all_cn_datas.extend(readinfo(file_path))
+    
+    
+    import re
+    choice_regex= "(\d+)"
+    housetype_regex ="选择(.*?)_house"
+    filtered_data_cn = []
+    for data_choose_one in all_cn_datas:
+        if "没有" in data_choose_one["robot_response"]["output"] or \
+                "不" in data_choose_one["robot_response"]["output"]:
+                filtered_data_cn.append(data_choose_one)
+                continue
+            
+        if data_choose_one["prompt_inputs"]["thought_type"] == "Your views on these house types.":
+            try:
+                match = re.search(housetype_regex,data_choose_one["robot_response"]["output"])
+                match_id = match.group(1)
+            except:
+                pass
+        else:
+            try:
+                match = re.search(choice_regex,data_choose_one["robot_response"]["output"])
+                match_id = match.group(1)
+            except:
+                pass
+        
+        
+        if match_id in data_choose_one["prompt_inputs"]["choose_type"] and \
+            match_id in data_choose_one["prompt_inputs"]["house_info"]:
+            filtered_data_cn.append(data_choose_one)
+            
+    with open(save_path,'w',encoding = 'utf-8') as f:
+        json.dump(filtered_data_cn,f, indent=4,separators=(',', ':'),ensure_ascii=False)
+
         
 
 def shuffle_for_user(json_types,
@@ -298,12 +349,25 @@ def shuffle_for_user_human(json_types,
         json.dump(mixed_json,f, indent=4,separators=(',', ':'),ensure_ascii=False)
      
 
+def filter_response():
+    en_info = readinfo("LLM_PublicHouseAllocation\LLM_decision_test\\filtered_response_data_simulated\en_ver\group\enall_choose_one_3.json")
+    cn_info = readinfo("LLM_PublicHouseAllocation\LLM_decision_test\\filtered_response_data_simulated\cn_ver\group\\all\\all_choose_one_3.json")
+
+    for idx,choose_one in enumerate(cn_info):
+        choose_one["reasonal"] = en_info[idx]["reasonal"]
+        
+    with open("LLM_PublicHouseAllocation\LLM_decision_test\\filtered_response_data_simulated\cn_ver\group\\all\\all_choose_one_3.json",'w',encoding = 'utf-8') as f:
+        json.dump(cn_info,f, indent=4,separators=(',', ':'),ensure_ascii=False)
+     
 
 if __name__ =="__main__":
     
     json_types = ["community","house","housetype"]
     data_dir = "LLM_PublicHouseAllocation\LLM_decision_test\qa_unclear_data\\filtered"
     save_dir ="LLM_PublicHouseAllocation\LLM_decision_test\qa_unclear_data\\filtered\groups"
+    
+    
+    filter_response()
     # split_save_response(json_types,
     #                     data_dir=data_dir,
     #                     save_dir=save_dir)
@@ -313,7 +377,9 @@ if __name__ =="__main__":
     #                  "LLM_PublicHouseAllocation\LLM_decision_test\\filtered_response_data_simulated\cn_ver"
     #                  )
     
-    get_en_according_to_cn(json_types)
+    # filter choose ids (根据选择结果和choose_type做对应)
+    #get_en_according_to_cn(json_types)
+    # filter_cn_choose_id()
     
     # 标注版本10人
     # shuffle_for_user(json_types,

@@ -418,9 +418,9 @@ class LangchainTenant(langchainAgent):
             
         if response is None:
             # raise ValueError(f"{self.name} failed to generate valid response.")
-            return {"output":f"{self.name} failed to generate valid response.",
+            return {"return_values":{"output":f"{self.name} failed to generate valid response.",
                     "thought":""
-            }
+            }}
         return response
             
 
@@ -483,7 +483,7 @@ class LangchainTenant(langchainAgent):
     def get_concise_role_description(self):
         
         template="""\
-You are {name}. You earn {monthly_income} per month.\
+You are {name}. You expect to rent a house for {monthly_rent_budget}.\
 Your family members include: {family_members}."""
         concise_role_description = template.format_map({"name":self.name,
                                     **self.infos}
@@ -497,12 +497,11 @@ Your family members include: {family_members}."""
     def get_role_description(self):
         
         template="""\
-You are {name}. You earn {monthly_income} per month.\
+You are {name}. You expect to rent a house for {monthly_rent_budget}.\
 Your family members include: {family_members}.\
 You are {age} years old. Your job is {profession}. \
 Your company is located in {en_work_place}. \
 {special_request} \
-You expect to rent a house for {monthly_rent_budget}.\
 You still have {chance_num} chances to choose house.\
     
 """

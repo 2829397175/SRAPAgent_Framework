@@ -12,13 +12,16 @@
         },
         "human_response":{
             "output":"我的选择是community_3。",
-            "thought":"我选community_3的原因是，community_3附近有地铁站，地铁出行很方便，符合我和我的家人对“通勤时间较短”的需求，且这个小区的大房子有两室，可以让我家三口居住。"
+            "thought":"我选community_3的原因是，community_3附近有地铁站，地铁出行很方便，符合我和我的家人对“通勤时间较短”的需求，且这个小区的大房子有两室，可以让我家三口居住。",
+            "frame":0
         },
         "robot_response":{
             "output":"我的选择是community_3。",
-            "thought":"根据我对两个小区的了解，我认为community_3（ronghui）更适合我和我的家人。这个小区的租金比community_1（longxing）贵一些，但是它周围的设施更加完善，包括地铁、购物中心、医院和公园等。这对于我和我的家人来说非常重要，因为我希望能够方便地前往工作和学校，并且有便利的购物和医疗条件。此外，community_3（ronghui）还有绿化好、停车场和体育健身设施，这些都是我们喜欢的特点。综合考虑，我决定选择community_3作为我们的居住小区。"
+            "thought":"根据我对两个小区的了解，我认为community_3（ronghui）更适合我和我的家人。这个小区的租金比community_1（longxing）贵一些，但是它周围的设施更加完善，包括地铁、购物中心、医院和公园等。这对于我和我的家人来说非常重要，因为我希望能够方便地前往工作和学校，并且有便利的购物和医疗条件。此外，community_3（ronghui）还有绿化好、停车场和体育健身设施，这些都是我们喜欢的特点。综合考虑，我决定选择community_3作为我们的居住小区。",
+            "frame":1
         },
-        "idx":"8"
+        "idx":"8",
+        "reasonal":"human_response"
     },
     {
         "prompt_inputs":{
@@ -33,13 +36,16 @@
         },
         "human_response":{
             "output":"没有可选择的community",
-            "thought":"因为community_3和community_1距离单位都比较远，我会倾向于community_2，因为距离是我考虑的主要原因。"
+            "thought":"因为community_3和community_1距离单位都比较远，我会倾向于community_2，因为距离是我考虑的主要原因。",
+            "frame":0
         },
         "robot_response":{
             "output":"我的选择是community_3。",
-            "thought":"根据我对两个小区的了解，我觉得community_3更适合我。首先，community_3周围有地铁、超市、购物中心、医院、公园和学校等各种便利设施，这些都非常适合我和家人的日常生活需求。其次，community_3的租金虽然较高，但我可以接受，因为我每个月的收入是15000元。最后，community_3的大户型公寓有两个房间，面积在56.14-58.33之间，足够我和家人居住。综上所述，我认为community_3是最适合我的选择。"
+            "thought":"根据我对两个小区的了解，我觉得community_3更适合我。首先，community_3周围有地铁、超市、购物中心、医院、公园和学校等各种便利设施，这些都非常适合我和家人的日常生活需求。其次，community_3的租金虽然较高，但我可以接受，因为我每个月的收入是15000元。最后，community_3的大户型公寓有两个房间，面积在56.14-58.33之间，足够我和家人居住。综上所述，我认为community_3是最适合我的选择。",
+            "frame":1
         },
-        "idx":"90"
+        "idx":"90",
+        "reasonal":"human_response"
     },
     {
         "prompt_inputs":{
@@ -54,13 +60,16 @@
         },
         "human_response":{
             "output":"我不选择任何社区。",
-            "thought":"虽然我拥有很多关于其他社区的信息，但是目前没有可用社区，因此我无法选择任何社区。"
+            "thought":"虽然我拥有很多关于其他社区的信息，但是目前没有可用社区，因此我无法选择任何社区。",
+            "frame":0
         },
         "robot_response":{
-            "output":"I choose none of these options.",
-            "thought":"根据之前收集到的信息，目前没有可用的小区供选择。我希望能够找到一个价格适中、位置好的小区，以便方便我工作和生活。但是目前没有合适的选择可供我考虑，我需要等待后续有更好的选择出现。"
+            "output":"我不会选择任何一个。",
+            "thought":"根据之前收集到的信息，目前没有可用的小区供选择。我希望能够找到一个价格适中、位置好的小区，以便方便我工作和生活。但是目前没有合适的选择可供我考虑，我需要等待后续有更好的选择出现。",
+            "frame":1
         },
-        "idx":"50"
+        "idx":"50",
+        "reasonal":"robot_response"
     },
     {
         "prompt_inputs":{
@@ -75,13 +84,16 @@
         },
         "human_response":{
             "output":"我没有选择其中的任何一个。",
-            "thought":"community_3提供有大房子的选项，这符合我一家四口，特别是大学在读的孩子平时不回家，一家人属实生活的需求；另外，community_3社区内有各种运动健身设施，这非常适合我进行定期锻炼。但是遗憾的是，房型的月租显著超出了我可以接受的范畴，所以我没有选择其中的任何一个社区。"
+            "thought":"community_3提供有大房子的选项，这符合我一家四口，特别是大学在读的孩子平时不回家，一家人属实生活的需求；另外，community_3社区内有各种运动健身设施，这非常适合我进行定期锻炼。但是遗憾的是，房型的月租显著超出了我可以接受的范畴，所以我没有选择其中的任何一个社区。",
+            "frame":0
         },
         "robot_response":{
             "output":"我决定选择community_3。",
-            "thought":"根据我对这些小区的了解，community_3是我最理想的选择。这个小区有良好的绿化环境和停车场，还有各种运动和健身设施，非常适合我进行日常锻炼。此外，这个小区周边的配套设施也很齐全，有地铁站、超市、商场、医院等。虽然房租略高，但是我认为这些配套设施和便利性是值得的。这个小区的位置也比较适合我，离我的工作地点不远。综合考虑，我决定选择community_3。"
+            "thought":"根据我对这些小区的了解，community_3是我最理想的选择。这个小区有良好的绿化环境和停车场，还有各种运动和健身设施，非常适合我进行日常锻炼。此外，这个小区周边的配套设施也很齐全，有地铁站、超市、商场、医院等。虽然房租略高，但是我认为这些配套设施和便利性是值得的。这个小区的位置也比较适合我，离我的工作地点不远。综合考虑，我决定选择community_3。",
+            "frame":1
         },
-        "idx":"82"
+        "idx":"82",
+        "reasonal":"human_response"
     },
     {
         "prompt_inputs":{
@@ -96,13 +108,16 @@
         },
         "human_response":{
             "output":"我没有做出任何选择。",
-            "thought":"community_1虽然环境好，但旁边没有小学；community_3虽然拥有小学和中学，但离工作地较远。"
+            "thought":"community_1虽然环境好，但旁边没有小学；community_3虽然拥有小学和中学，但离工作地较远。",
+            "frame":0
         },
         "robot_response":{
             "output":"我想选community_3。",
-            "thought":"根据我对两个小区的评估，我认为community_3是更适合我的选择。虽然它的租金比community_1高，但它拥有更多的便利设施，包括地铁、购物中心、医院和公园。这些设施对我和我的家人来说非常重要。此外，community_3的大房子是两居室，面积也比community_1的大房子要大一些，更适合我们的居住需求。"
+            "thought":"根据我对两个小区的评估，我认为community_3是更适合我的选择。虽然它的租金比community_1高，但它拥有更多的便利设施，包括地铁、购物中心、医院和公园。这些设施对我和我的家人来说非常重要。此外，community_3的大房子是两居室，面积也比community_1的大房子要大一些，更适合我们的居住需求。",
+            "frame":1
         },
-        "idx":"76"
+        "idx":"76",
+        "reasonal":"human_response"
     },
     {
         "prompt_inputs":{
@@ -117,13 +132,16 @@
         },
         "human_response":{
             "output":"我选择community_1",
-            "thought":"因为我是自由职业者，我只需要在家办公就可以，所以我更注重所租的房子周围的环境。针对community_1的small house完全能够满足我的需求，因为我单身并且没有孩子，而且房子的价格合适。"
+            "thought":"因为我是自由职业者，我只需要在家办公就可以，所以我更注重所租的房子周围的环境。针对community_1的small house完全能够满足我的需求，因为我单身并且没有孩子，而且房子的价格合适。",
+            "frame":0
         },
         "robot_response":{
             "output":"我选择 community_1.",
-            "thought":"我认为这个社区的价格相对较低，而且有很多运动设施和绿地，非常适合我工作之余进行休闲和锻炼。虽然没有地铁、购物中心和医院，但是附近有超市、学校和餐馆，生活便利度也还可以。这个社区的房租也符合我的预算。综合考虑下来，我决定选择community_1。"
+            "thought":"我认为这个社区的价格相对较低，而且有很多运动设施和绿地，非常适合我工作之余进行休闲和锻炼。虽然没有地铁、购物中心和医院，但是附近有超市、学校和餐馆，生活便利度也还可以。这个社区的房租也符合我的预算。综合考虑下来，我决定选择community_1。",
+            "frame":1
         },
-        "idx":"11"
+        "idx":"11",
+        "reasonal":"human_response"
     },
     {
         "prompt_inputs":{
@@ -138,13 +156,16 @@
         },
         "human_response":{
             "output":"我没有选择任何一个。",
-            "thought":"我对于房子的预算是1600元，而目前可供选择的房源的租金是1926元已经超出了我的预算不少，并且该房屋没有屋顶，无法满足我的园艺爱好，因此我没有选择任何一个。"
+            "thought":"我对于房子的预算是1600元，而目前可供选择的房源的租金是1926元已经超出了我的预算不少，并且该房屋没有屋顶，无法满足我的园艺爱好，因此我没有选择任何一个。",
+            "frame":1
         },
         "robot_response":{
             "output":"我的选择是house_20。",
-            "thought":"这个房子的价格比我预算的1600低，非常适合我。虽然面积只有28.9平方米，但是我一个人住刚刚好。虽然没有阳台和独立厨房，但是房屋的布局很实用，充分利用了空间。我喜欢这个房子因为它有电梯，位于9楼，方便我的出行。此外，这个房子朝向东西，可以保证充足的自然光线。最重要的是，这个房子的价格在我预算范围内。因此，我决定选择house_20作为我的住房。"
+            "thought":"这个房子的价格比我预算的1600低，非常适合我。虽然面积只有28.9平方米，但是我一个人住刚刚好。虽然没有阳台和独立厨房，但是房屋的布局很实用，充分利用了空间。我喜欢这个房子因为它有电梯，位于9楼，方便我的出行。此外，这个房子朝向东西，可以保证充足的自然光线。最重要的是，这个房子的价格在我预算范围内。因此，我决定选择house_20作为我的住房。",
+            "frame":0
         },
-        "idx":"57"
+        "idx":"57",
+        "reasonal":"human_response"
     },
     {
         "prompt_inputs":{
@@ -159,13 +180,16 @@
         },
         "human_response":{
             "output":"我选择community_1",
-            "thought":"针对我的需求，我有两个孩子，所以我会选择稍微大一点的房子，community_1的房子对我来说性价比更高，并且对孩子上学和我上班来说交通也更为便利。"
+            "thought":"针对我的需求，我有两个孩子，所以我会选择稍微大一点的房子，community_1的房子对我来说性价比更高，并且对孩子上学和我上班来说交通也更为便利。",
+            "frame":0
         },
         "robot_response":{
             "output":"我选择community_1。",
-            "thought":"对于这两个小区，我认为community_1更适合我们的需求。虽然它没有地铁和购物中心，但它有体育设施和大片绿地，适合孩子们进行户外活动。此外，附近有超市、学校和餐馆，生活便利。而且，community_1的租金相对较低，符合我们的预算。虽然community_3有更多的设施，但我担心ronghui社区的环境可能不太好，这对我们的生活质量会有影响。"
+            "thought":"对于这两个小区，我认为community_1更适合我们的需求。虽然它没有地铁和购物中心，但它有体育设施和大片绿地，适合孩子们进行户外活动。此外，附近有超市、学校和餐馆，生活便利。而且，community_1的租金相对较低，符合我们的预算。虽然community_3有更多的设施，但我担心ronghui社区的环境可能不太好，这对我们的生活质量会有影响。",
+            "frame":1
         },
-        "idx":"17"
+        "idx":"17",
+        "reasonal":"robot_response"
     },
     {
         "prompt_inputs":{
@@ -180,13 +204,16 @@
         },
         "human_response":{
             "output":"我的选择是community_3",
-            "thought":"Community_3提供了一个月租在我的预算范围内的中等房子选项，周围有各种设施，并且租金在我可承受范围左右。"
+            "thought":"Community_3提供了一个月租在我的预算范围内的中等房子选项，周围有各种设施，并且租金在我可承受范围左右。",
+            "frame":1
         },
         "robot_response":{
             "output":"我的选择是community_3。",
-            "thought":"综合考虑了三个小区的信息后，我认为community_3是最适合我的选择。首先，该小区的租金在我的预算范围内，而且周围有地铁站、超市、商场、医院、公园和学校等各种便利设施。其次，该小区有很好的绿化环境，停车场和各种运动和健身设施，非常适合我进行健身锻炼。最后，该小区的中等户型公寓有适当的面积，并且还有一个阳台和良好的自然采光。综合考虑，我认为community_3是最满足我的需求的选择。"
+            "thought":"综合考虑了三个小区的信息后，我认为community_3是最适合我的选择。首先，该小区的租金在我的预算范围内，而且周围有地铁站、超市、商场、医院、公园和学校等各种便利设施。其次，该小区有很好的绿化环境，停车场和各种运动和健身设施，非常适合我进行健身锻炼。最后，该小区的中等户型公寓有适当的面积，并且还有一个阳台和良好的自然采光。综合考虑，我认为community_3是最满足我的需求的选择。",
+            "frame":0
         },
-        "idx":"49"
+        "idx":"49",
+        "reasonal":"human_response"
     },
     {
         "prompt_inputs":{
@@ -201,13 +228,16 @@
         },
         "human_response":{
             "output":"我没有选择任何一个。",
-            "thought":"我希望租一套2000.0元的房子，然而community_3月租金约为2240-2320美元，community_4月租金约为2634-2737美元，均高于我的预算，因此我没有选择认可一个。"
+            "thought":"我希望租一套2000.0元的房子，然而community_3月租金约为2240-2320美元，community_4月租金约为2634-2737美元，均高于我的预算，因此我没有选择认可一个。",
+            "frame":0
         },
         "robot_response":{
             "output":"我的选择是community_4。",
-            "thought":"这两个小区都有各自的优点，但是根据我的需求和预算，我决定选择community_4。虽然它的租金相对较高，但它位于北京市大兴区天河西路，是一个现代化的社区，拥有现代化的设施和生态友好的建筑材料。它周围环绕着地铁站、超市、购物中心、医院、公园、学校、餐厅和银行等各种便利设施。此外，社区还有精心设计的花园和舒适的休息区，让居民享受到自然和宁静的环境。考虑到我是一名政府雇员，这个社区距离我工作的地方也比较近，方便我日常通勤。因此，我认为community_4是我最适合的选择。"
+            "thought":"这两个小区都有各自的优点，但是根据我的需求和预算，我决定选择community_4。虽然它的租金相对较高，但它位于北京市大兴区天河西路，是一个现代化的社区，拥有现代化的设施和生态友好的建筑材料。它周围环绕着地铁站、超市、购物中心、医院、公园、学校、餐厅和银行等各种便利设施。此外，社区还有精心设计的花园和舒适的休息区，让居民享受到自然和宁静的环境。考虑到我是一名政府雇员，这个社区距离我工作的地方也比较近，方便我日常通勤。因此，我认为community_4是我最适合的选择。",
+            "frame":1
         },
-        "idx":"69"
+        "idx":"69",
+        "reasonal":"human_response"
     },
     {
         "prompt_inputs":{
@@ -222,34 +252,16 @@
         },
         "human_response":{
             "output":"我没有选择任何一个。",
-            "thought":"small_house在我的预算范围内，但large_house远超我的预算；我有一个妻子，故不太适合住太小的房型。因此所提供的房型都不满足我的要求。若选择large_house，我必须考虑支付超出预算的那一部分租金是否值得。"
+            "thought":"small_house在我的预算范围内，但large_house远超我的预算；我有一个妻子，故不太适合住太小的房型。因此所提供的房型都不满足我的要求。若选择large_house，我必须考虑支付超出预算的那一部分租金是否值得。",
+            "frame":0
         },
         "robot_response":{
             "output":"我决定选择small_house。",
-            "thought":"根据我目前的预算和需求，我认为选择小型房屋是更合适的选择。尽管大型房屋可以提供更多的空间，但价格超出了我的预算范围。而且我是一个没有孩子的夫妻，所以小型房屋的面积对我们来说足够了。此外，小型房屋的租金也比较便宜，更符合我的经济能力。"
+            "thought":"根据我目前的预算和需求，我认为选择小型房屋是更合适的选择。尽管大型房屋可以提供更多的空间，但价格超出了我的预算范围。而且我是一个没有孩子的夫妻，所以小型房屋的面积对我们来说足够了。此外，小型房屋的租金也比较便宜，更符合我的经济能力。",
+            "frame":1
         },
-        "idx":"70"
-    },
-    {
-        "prompt_inputs":{
-            "task":"You need to choose one house.",
-            "thought_type":"请用中文输出你对于这些房屋的评价，以及做出决策的原因",
-            "choose_type":"我选择 (The index of houses)",
-            "house_info":"There are 15 houses available. The infomation of these houses are listed as follows:\nhouse_1: \nthis house costs about 1830. It's square fortage is about 61.0. The orientation of the house is NS. It is located at floor 5. It has elevator. The house suffers from poor sound insulation, contributing to a less than ideal community environment.\n\nhouse_2: \nthis house costs about 1836. It's square fortage is about 61.2. The orientation of the house is NS. It is located at floor 7. It has elevator. A lack of effective soundproofing and subpar surroundings characterize this property.\n\nhouse_3: \nthis house costs about 1845. It's square fortage is about 61.5. The orientation of the house is NS. It is located at floor 8. It has elevator. While located in a convenient area, this house suffers from poor sound insulation and the community environment could be better.\n\nhouse_4: \nthis house costs about 1854. It's square fortage is about 61.8. The orientation of the house is NS. It is located at floor 7. It has elevator. The sound insulation of the house leaves much to be desired, and the community environment is subpar.\n\nhouse_5: \nthis house costs about 1827. It's square fortage is about 60.92. The orientation of the house is NS. It is located at floor 9. It has elevator. The house has poor sound insulation and the community environment is not the best.\n\nhouse_6: \nthis house costs about 1140. It's square fortage is about 37.96. The orientation of the house is N. It is located at floor 8. It has elevator. Despite being a smaller unit, it enjoys a cozy ambiance.\n\nhouse_7: \nthis house costs about 1140. It's square fortage is about 38. The orientation of the house is S. It is located at floor 9. It has elevator. Compact living space which is suitable for a minimalistic lifestyle.\n\nhouse_8: \nthis house costs about 1140. It's square fortage is about 38.09. The orientation of the house is S. It is located at floor 10. It has elevator. It's a smaller unit, but it's well designed to accommodate all living needs.\n\nhouse_9: \nthis house costs about 944. It's square fortage is about 27.76. The orientation of the house is N. It is located at floor 7. It has elevator. This small and dimly lit space is made even more claustrophobic by the absence of a balcony.\n\nhouse_10: \nthis house costs about 1020. It's square fortage is about 30.0. The orientation of the house is N. It is located at floor 10. It has elevator. The lack of a balcony might be a concern for some, but the house is pretty well maintained.\n\nhouse_13: \nthis house costs about 1360. It's square fortage is about 40.0. The orientation of the house is N. It is located at floor 18. It has elevator. Despite being an older property, the house is in excellent condition with a nice view from the balcony.\n\nhouse_15: \nthis house costs about 2240. It's square fortage is about 56.14. The orientation of the house is NS. It is located at floor 7. It has elevator. The layout of this house is commendable, coupled with its south-facing orientation. The community's verdant landscapes add to its charm.\n\nhouse_16: \nthis house costs about 2280. It's square fortage is about 57.0. The orientation of the house is NS. It is located at floor 9. It has elevator. Benefiting from a strategic layout and a favourable southern exposure, this property is nestled amidst lush community greenery, ensuring an appealing ambiance.\n\nhouse_17: \nthis house costs about 2320. It's square fortage is about 58.0. The orientation of the house is NS. It is located at floor 10. It has elevator. The house enjoys a well-thought-out layout and a south-facing orientation. It also enjoys beautiful views of the green spaces around the community.\n\nhouse_19: \nthis house costs about 1802. It's square fortage is about 45.05. The orientation of the house is NS. It is located at floor 15. It has elevator. The house enjoys a favorable south-facing orientation, and the small floor area is well-designed for efficient use. The greenery around the community is a plus. ",
-            "memory":"",
-            "role_description":"You are William Brown. You earn 15000 per month.Your family members include: A wife and one child in elementary school.You are 38 years old. Your job is State-owned enterprise clerk. Your company is located in No. 9 Chaoyang North Road, Chaoyang District, Beijing. William's family prefers an apartment with a short commute to work and school. You expect to rent a house for 2500.You still have 2 chances to choose house.",
-            "thought_hint":"Remember to consider the following things before choosing house:\n1. The price of this house should be within your budget.\n2. The per capita living area should be taken into consideration.\n3. Remember to give specific reason why the selected house meets your needs in thought (exp. This house meets the requirements of my family for a large study).",
-            "agent_scratchpad":""
-        },
-        "human_response":{
-            "output":"我不会选择这些房型",
-            "thought":"因为我有一个上小学的孩子，需要有独立学习的空间，对居住面积和安静的环境有很大需求，这些房型不能满足这些要求。"
-        },
-        "robot_response":{
-            "output":"我选择house_15.",
-            "thought":"根据我的预算和需求，我需要选择一个价格适中且能满足我们家庭需求的房屋。根据之前的信息，我可以排除一些不符合要求的房屋，比如房屋1、2、3、4、5、9和10，它们的价格要么太高，要么面积太小。剩下的房屋中，房屋6、7和8的面积较小，不适合我们的家庭需求。房屋13虽然面积适中，但位于18楼，对于有小孩的我们来说可能不太方便。剩下的房屋15、16和17面积适中，而且都有电梯和南北朝向，适合我们家庭的需求。考虑到房屋15和16都有着良好的社区环境和绿化环境，我决定选择其中一个。"
-        },
-        "idx":"94"
+        "idx":"70",
+        "reasonal":"human_response"
     },
     {
         "prompt_inputs":{
@@ -264,13 +276,16 @@
         },
         "human_response":{
             "output":"我没有选择任何一个。",
-            "thought":"这些房子对我来说有点小，因为我有两个孩子，需要大一点的房子，而且这些房子有点贵，我想看看之后还有没有便宜一些的大一些的房子。"
+            "thought":"这些房子对我来说有点小，因为我有两个孩子，需要大一点的房子，而且这些房子有点贵，我想看看之后还有没有便宜一些的大一些的房子。",
+            "frame":1
         },
         "robot_response":{
             "output":"我想选 house_4.",
-            "thought":"根据房屋的信息，house_4的价格和面积都在我的预算范围内，而且它有一个相对较高的楼层位置，这意味着视野更好。此外，房子的布局也很细致，有一个宽敞的卧室和一个舒适的起居区，厨房设备齐全，浴室设计方便。相比之下，house_6的价格和面积与house_4相近，但楼层较高。虽然house_6的房间豪华宽敞，但考虑到我需要一个适合家人居住的房子，house_4更符合我的需求。"
+            "thought":"根据房屋的信息，house_4的价格和面积都在我的预算范围内，而且它有一个相对较高的楼层位置，这意味着视野更好。此外，房子的布局也很细致，有一个宽敞的卧室和一个舒适的起居区，厨房设备齐全，浴室设计方便。相比之下，house_6的价格和面积与house_4相近，但楼层较高。虽然house_6的房间豪华宽敞，但考虑到我需要一个适合家人居住的房子，house_4更符合我的需求。",
+            "frame":0
         },
-        "idx":"2"
+        "idx":"2",
+        "reasonal":"human_response"
     },
     {
         "prompt_inputs":{
@@ -285,34 +300,16 @@
         },
         "human_response":{
             "output":"我没有选择任何一个。",
-            "thought":"community_1中的房子太小了，不够我一家四口居住，而且这附近没有小学和中学，我的孩子上学很不方便。"
+            "thought":"community_1中的房子太小了，不够我一家四口居住，而且这附近没有小学和中学，我的孩子上学很不方便。",
+            "frame":0
         },
         "robot_response":{
             "output":"我想选community_1。",
-            "thought":"根据之前收集到的信息，我认为community_1是一个不错的选择。虽然它没有地铁、购物中心和医院，但它拥有良好的运动设施和大片的绿地。此外，社区周边有超市、学校、餐馆和银行，这些都是我们生活所需的基本设施。虽然租金稍高，但我认为这个社区的优点更加符合我们家庭的需求。"
+            "thought":"根据之前收集到的信息，我认为community_1是一个不错的选择。虽然它没有地铁、购物中心和医院，但它拥有良好的运动设施和大片的绿地。此外，社区周边有超市、学校、餐馆和银行，这些都是我们生活所需的基本设施。虽然租金稍高，但我认为这个社区的优点更加符合我们家庭的需求。",
+            "frame":1
         },
-        "idx":"7"
-    },
-    {
-        "prompt_inputs":{
-            "task":"You need to choose one house.",
-            "thought_type":"请用中文输出你对于这些房屋的评价，以及做出决策的原因",
-            "choose_type":"我决定选择 (The index of houses)",
-            "house_info":"There are 15 houses available. The infomation of these houses are listed as follows:\nhouse_1: \nthis house costs about 1830. It's square fortage is about 61.0. The orientation of the house is NS. It is located at floor 5. It has elevator. The house suffers from poor sound insulation, contributing to a less than ideal community environment.\n\nhouse_2: \nthis house costs about 1836. It's square fortage is about 61.2. The orientation of the house is NS. It is located at floor 7. It has elevator. A lack of effective soundproofing and subpar surroundings characterize this property.\n\nhouse_3: \nthis house costs about 1845. It's square fortage is about 61.5. The orientation of the house is NS. It is located at floor 8. It has elevator. While located in a convenient area, this house suffers from poor sound insulation and the community environment could be better.\n\nhouse_4: \nthis house costs about 1854. It's square fortage is about 61.8. The orientation of the house is NS. It is located at floor 7. It has elevator. The sound insulation of the house leaves much to be desired, and the community environment is subpar.\n\nhouse_5: \nthis house costs about 1827. It's square fortage is about 60.92. The orientation of the house is NS. It is located at floor 9. It has elevator. The house has poor sound insulation and the community environment is not the best.\n\nhouse_6: \nthis house costs about 1140. It's square fortage is about 37.96. The orientation of the house is N. It is located at floor 8. It has elevator. Despite being a smaller unit, it enjoys a cozy ambiance.\n\nhouse_7: \nthis house costs about 1140. It's square fortage is about 38. The orientation of the house is S. It is located at floor 9. It has elevator. Compact living space which is suitable for a minimalistic lifestyle.\n\nhouse_8: \nthis house costs about 1140. It's square fortage is about 38.09. The orientation of the house is S. It is located at floor 10. It has elevator. It's a smaller unit, but it's well designed to accommodate all living needs.\n\nhouse_9: \nthis house costs about 944. It's square fortage is about 27.76. The orientation of the house is N. It is located at floor 7. It has elevator. This small and dimly lit space is made even more claustrophobic by the absence of a balcony.\n\nhouse_10: \nthis house costs about 1020. It's square fortage is about 30.0. The orientation of the house is N. It is located at floor 10. It has elevator. The lack of a balcony might be a concern for some, but the house is pretty well maintained.\n\nhouse_12: \nthis house costs about 1292. It's square fortage is about 38.0. The orientation of the house is W. It is located at floor 15. It has elevator. The house provides a comfortable living space and features a balcony for extra outdoor space.\n\nhouse_13: \nthis house costs about 1360. It's square fortage is about 40.0. The orientation of the house is N. It is located at floor 18. It has elevator. Despite being an older property, the house is in excellent condition with a nice view from the balcony.\n\nhouse_15: \nthis house costs about 2240. It's square fortage is about 56.14. The orientation of the house is NS. It is located at floor 7. It has elevator. The layout of this house is commendable, coupled with its south-facing orientation. The community's verdant landscapes add to its charm.\n\nhouse_16: \nthis house costs about 2280. It's square fortage is about 57.0. The orientation of the house is NS. It is located at floor 9. It has elevator. Benefiting from a strategic layout and a favourable southern exposure, this property is nestled amidst lush community greenery, ensuring an appealing ambiance.\n\nhouse_19: \nthis house costs about 1802. It's square fortage is about 45.05. The orientation of the house is NS. It is located at floor 15. It has elevator. The house enjoys a favorable south-facing orientation, and the small floor area is well-designed for efficient use. The greenery around the community is a plus. ",
-            "memory":"",
-            "role_description":"You are William Brown. You earn 15000 per month.Your family members include: A wife and one child in elementary school.You are 38 years old. Your job is State-owned enterprise clerk. Your company is located in No. 9 Chaoyang North Road, Chaoyang District, Beijing. William's family prefers an apartment with a short commute to work and school. You expect to rent a house for 2500.You still have 2 chances to choose house.",
-            "thought_hint":"Remember to consider the following things before choosing house:\n1. The price of this house should be within your budget.\n2. The per capita living area should be taken into consideration.\n3. Remember to give specific reason why the selected house meets your needs in thought (exp. This house meets the requirements of my family for a large study).",
-            "agent_scratchpad":""
-        },
-        "human_response":{
-            "output":"我没有选择任何一个。",
-            "thought":"因为，对于小孩，安静的休息环境和舒适的居住环境是很重要的，上面的房屋，要么隔音效果差，要么采光效果不好，所以没有合适的选择。"
-        },
-        "robot_response":{
-            "output":"我决定选择house_15。",
-            "thought":"根据我的预算和需求，我将考虑以下几点来选择房屋：价格要在2500以内，每人的居住面积要合适，房屋的朝向和楼层也需要考虑。从列表中的房屋信息来看，house_1、house_2、house_3、house_4、house_5、house_6、house_7、house_8、house_9、house_10、house_12、house_13、house_15、house_16和house_19都有各自的优缺点。根据我的需求，我将选择具有以下特点的房屋：价格适中，居住面积合适，房屋朝向南，楼层适中，社区环境良好，具有阳台和良好的自然采光。通过筛选，我决定选择房屋house_15。"
-        },
-        "idx":"26"
+        "idx":"7",
+        "reasonal":"human_response"
     },
     {
         "prompt_inputs":{
@@ -327,13 +324,16 @@
         },
         "human_response":{
             "output":"我的选择是house_51。",
-            "thought":"house_51和houe_45都有舒适的生活环境，并且都有较为安解的生活氛围，但是house_51楼层更高，阳光更加充足，这使我晒自己以及小孩的衣服的需求能被更好地满足，并且居住空间也略大。"
+            "thought":"house_51和houe_45都有舒适的生活环境，并且都有较为安解的生活氛围，但是house_51楼层更高，阳光更加充足，这使我晒自己以及小孩的衣服的需求能被更好地满足，并且居住空间也略大。",
+            "frame":0
         },
         "robot_response":{
             "output":"我决定选择house_51。",
-            "thought":"这两个房子的价格都在我的预算范围内，而且都有电梯方便出行。房子45的面积是45.0平方米，房子51的面积是46.10平方米，两者的面积差别不大。房子45位于6楼，房子51位于12楼，房子51的楼层较高可能会有更好的视野。房子45和房子51的朝向都是东西向，都没有严重的阳光问题。从房子的描述来看，它们都有一个宽敞的卧室和一个舒适的生活区域。我和我的家人可以在这些房子中选择一个适合我们的。"
+            "thought":"这两个房子的价格都在我的预算范围内，而且都有电梯方便出行。房子45的面积是45.0平方米，房子51的面积是46.10平方米，两者的面积差别不大。房子45位于6楼，房子51位于12楼，房子51的楼层较高可能会有更好的视野。房子45和房子51的朝向都是东西向，都没有严重的阳光问题。从房子的描述来看，它们都有一个宽敞的卧室和一个舒适的生活区域。我和我的家人可以在这些房子中选择一个适合我们的。",
+            "frame":1
         },
-        "idx":"81"
+        "idx":"81",
+        "reasonal":"robot_response"
     },
     {
         "prompt_inputs":{
@@ -348,13 +348,16 @@
         },
         "human_response":{
             "output":"我会选择middle_house",
-            "thought":"因为middle_house房屋面积满足需求，租金在预算范围内，生活成本比较低。"
+            "thought":"因为middle_house房屋面积满足需求，租金在预算范围内，生活成本比较低。",
+            "frame":0
         },
         "robot_response":{
             "output":"我想选middle_house。",
-            "thought":"根据我的情况，我认为选择中等大小的房子（middle_house）是最合适的选择。首先，我只是一个人，所以小房子对我来说太小了。大房子则是为多人设计的，对于我一个人来说过于浪费。其次，中等大小的房子适合两个人的家庭，我和我的配偶正好符合这个条件。最后，中等大小的房子的价格应该在我预算范围内，而且每人的居住面积也合适。因此，我决定选择中等大小的房子。"
+            "thought":"根据我的情况，我认为选择中等大小的房子（middle_house）是最合适的选择。首先，我只是一个人，所以小房子对我来说太小了。大房子则是为多人设计的，对于我一个人来说过于浪费。其次，中等大小的房子适合两个人的家庭，我和我的配偶正好符合这个条件。最后，中等大小的房子的价格应该在我预算范围内，而且每人的居住面积也合适。因此，我决定选择中等大小的房子。",
+            "frame":1
         },
-        "idx":"101"
+        "idx":"101",
+        "reasonal":"human_response"
     },
     {
         "prompt_inputs":{
@@ -369,13 +372,16 @@
         },
         "human_response":{
             "output":"我没有做出任何选择。",
-            "thought":"我偏好里工作地点近的房子，community_4距离我的工作地点并不近 ，且没有我想要的阳台种植我的植物。论坛里有人说该社区似乎已经被租满。因此我可能会考虑其他社区。"
+            "thought":"我偏好里工作地点近的房子，community_4距离我的工作地点并不近 ，且没有我想要的阳台种植我的植物。论坛里有人说该社区似乎已经被租满。因此我可能会考虑其他社区。",
+            "frame":1
         },
         "robot_response":{
             "output":"我的选择是community_2。",
-            "thought":"我认为community_2是我最好的选择。尽管它没有医院，但它拥有最好的设施和租金价格，而且周围有许多有用的设施，如地铁、购物中心和学校。虽然距离我的工作地点有点远，但是它拥有大量的绿地和良好的社区环境，这非常适合我喜欢种植植物的需求。"
+            "thought":"我认为community_2是我最好的选择。尽管它没有医院，但它拥有最好的设施和租金价格，而且周围有许多有用的设施，如地铁、购物中心和学校。虽然距离我的工作地点有点远，但是它拥有大量的绿地和良好的社区环境，这非常适合我喜欢种植植物的需求。",
+            "frame":0
         },
-        "idx":"79"
+        "idx":"79",
+        "reasonal":"human_response"
     },
     {
         "prompt_inputs":{
@@ -390,13 +396,16 @@
         },
         "human_response":{
             "output":"我没有选择任何一个。",
-            "thought":"这些房子都太贵了，我一个月只有5000收入，无法承受两千左右的住房。"
+            "thought":"这些房子都太贵了，我一个月只有5000收入，无法承受两千左右的住房。",
+            "frame":0
         },
         "robot_response":{
             "output":"我的选择是small_house。",
-            "thought":"根据我的预算和个人需求，我需要选择一个房屋类型。大房子的租金超出了我的预算范围，而且对于我一个人来说，住在这么大的房子里有些浪费。中等房子的租金和面积都在我接受的范围内，但是还剩下的房子只有一个，我不确定是否能够租到。小房子的租金和面积都适合我，而且还剩下一个房子。考虑到我的预算和个人需求，我决定选择小房子。"
+            "thought":"根据我的预算和个人需求，我需要选择一个房屋类型。大房子的租金超出了我的预算范围，而且对于我一个人来说，住在这么大的房子里有些浪费。中等房子的租金和面积都在我接受的范围内，但是还剩下的房子只有一个，我不确定是否能够租到。小房子的租金和面积都适合我，而且还剩下一个房子。考虑到我的预算和个人需求，我决定选择小房子。",
+            "frame":1
         },
-        "idx":"3"
+        "idx":"3",
+        "reasonal":"human_response"
     },
     {
         "prompt_inputs":{
@@ -411,13 +420,16 @@
         },
         "human_response":{
             "output":"我没有选择任何一个。",
-            "thought":"因为上述的租金都超过我的期望租金1800，所以没有合适的选择。"
+            "thought":"因为上述的租金都超过我的期望租金1800，所以没有合适的选择。",
+            "frame":0
         },
         "robot_response":{
             "output":"我的选择是house_40。",
-            "thought":"这两个房屋都在我的预算范围内，而且都有电梯，这对于我来说很重要。房屋40和房屋43的价格和面积都差不多，而且方位也一样。房屋40位于13楼，房屋43位于7楼。房屋40的卧室和浴室更宽敞一些，而房屋43的客厅和厨房更宽敞一些。考虑到我需要一个附近有健身房或健身中心的房屋，我认为房屋40更适合我，因为它的卧室和浴室更大，更适合我的家庭。"
+            "thought":"这两个房屋都在我的预算范围内，而且都有电梯，这对于我来说很重要。房屋40和房屋43的价格和面积都差不多，而且方位也一样。房屋40位于13楼，房屋43位于7楼。房屋40的卧室和浴室更宽敞一些，而房屋43的客厅和厨房更宽敞一些。考虑到我需要一个附近有健身房或健身中心的房屋，我认为房屋40更适合我，因为它的卧室和浴室更大，更适合我的家庭。",
+            "frame":1
         },
-        "idx":"27"
+        "idx":"27",
+        "reasonal":"human_response"
     },
     {
         "prompt_inputs":{
@@ -432,34 +444,16 @@
         },
         "human_response":{
             "output":"我的选择是house_88",
-            "thought":"两套房子的价格、面积、朝是否有电梯都一致，楼层也差不多。对于高楼层（>20），更高一楼并不会有更多的采光，因为已经基本全天白天覆盖了，而作为老师，我可能会更喜欢极简主义、功能优先于奢华的朴实美。所以相比之下我会选择house_88"
+            "thought":"两套房子的价格、面积、朝是否有电梯都一致，楼层也差不多。对于高楼层（>20），更高一楼并不会有更多的采光，因为已经基本全天白天覆盖了，而作为老师，我可能会更喜欢极简主义、功能优先于奢华的朴实美。所以相比之下我会选择house_88",
+            "frame":0
         },
         "robot_response":{
             "output":"我选择house_83。",
-            "thought":"这两个房屋都在我的预算范围内，而且面积也比较接近。然而，house_83的价格稍低一些，而且在18楼，相对较低，可能会有较少的噪音干扰。房屋的布局虽然紧凑，但卧室的空间还是比较宽敞的。虽然没有独立的厨房，但厨房的空间还算可以接受。因此，我决定选择house_83。"
+            "thought":"这两个房屋都在我的预算范围内，而且面积也比较接近。然而，house_83的价格稍低一些，而且在18楼，相对较低，可能会有较少的噪音干扰。房屋的布局虽然紧凑，但卧室的空间还是比较宽敞的。虽然没有独立的厨房，但厨房的空间还算可以接受。因此，我决定选择house_83。",
+            "frame":1
         },
-        "idx":"62"
-    },
-    {
-        "prompt_inputs":{
-            "task":"You need to choose one type of communities.",
-            "thought_type":"请用中文输出你对于这些小区的评价，以及做出决策的原因",
-            "choose_type":"我的选择是 (The index of community, should be one of [community_2])",
-            "house_info":"There are 1 communities available. The infomation of these communitys are listed as follows:\n\ncommunity_2. jinkejiayuan is located at No. 1 Yongwang Road, Daxing District, Beijing. The rent for this community is 34 dollars per square meter.In this community, The green area of the community should account for more than 30% of the total land area, and the central urban area should not be less than 25%.. This commnunity is surrounded by: Metro includes biomedical base; supermarkets include Sure Beauty Fresh Life Supermarket (Jinke Tianwei Store), Tiangong Courtyard Convenience Store; shopping malls include Yuejie Times Square, Longhu Beijing Daxing Tianjie; parks include Yongxing River Wetland Park; schools include Daxing Experimental Primary School affiliated to Beijing Education College (Merging Campus), Tsinghua University School Primary School; restaurants include Fan Laoman (Tiangong Courtyard Store), Xinlong Sijiu Meat (Tiangong Courtyard Store); banks include Beijing Rural Commercial Bank 24-hour Self-help Bank (Beibei Village Branch), Beijing Daxing Jiuiyin Village Bank (Tiangong Courtyard Branch); .This commnunity does not have: Hospital,.\n\n\tThe small_house in community_2 is a zero room apartment, with an area of about 27.76-44.62, the monthly rent  is about 952-1517 dollars, and there are still 2 houses.",
-            "memory":"You are currently in the process of choosing a house to rent and have narrowed it down to five communities: community_1, community_2, community_3, community_4, and community_5. Each community has different amenities and facilities, such as supermarkets, shopping malls, hospitals, parks, schools, restaurants, and banks. The rent prices range from 25-45 dollars per square meter and the small, middle, and large houses range from zero to two rooms. Community_2 is close to your wife's workplace and your child's school, making it the ideal choice for your family.You trust these information on forum:  The house is located in a great neighborhood and is close to public transportation. It has two bedrooms and two bathrooms, with a large kitchen and living room. Because  None.You trust Sarah said that  Sarah is doing research on houses in the area and is looking for the one with the best location for her family. Because  Sarah is looking for a new house for her family and is doing research on the best locations in the area.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\n",
-            "role_description":"You are Alex. You earn 6000 per month.Your family members include: Single, no children.You are 28 years old. Your job is Freelancer. Your company is located in People's Bank of China Building, No. 36 Financial Street, Xicheng District, Beijing. Alex needs a quiet and comfortable apartment with good natural lighting for a productive work-from-home environment. You expect to rent a house for 1500.0.You still have 2 chances to choose house.",
-            "thought_hint":"Remember to consider the following things before choosing community:\n1. The price, location of this community should be taken into consideration.\n2. Remember to give the reason why the selected community meets your needs in thought(exp. This community meets my request for a walk in the nearby park).\n3. If you have already made a choice of community in your memory, \nYou can choose to abandon all the current residential areas and wait for the ones you want to be released later (choose Giveup Action)Alternatively, provide specific reasons for why you want to abandon the previously selected residential area and change your choice",
-            "agent_scratchpad":""
-        },
-        "human_response":{
-            "output":"我选择community_2",
-            "thought":"community_2的绿地面积较大，并且建筑物之间相隔较远，对我来说更符合我在家工作需要安静舒适和采光好的需求，所以我选择community_2。"
-        },
-        "robot_response":{
-            "output":"我的选择是community_2。",
-            "thought":"这些小区中，我最喜欢的是community_2。这个小区的地理位置适合我，靠近我妻子的工作地点和孩子的学校。此外，这个小区周围有许多便利设施，如地铁站、购物中心和超市。虽然这个小区没有医院，但我认为其他的设施和便利条件对我和我的家人来说更重要。此外，这个小区的租金价格也在我预算范围内。"
-        },
-        "idx":"19"
+        "idx":"62",
+        "reasonal":"robot_response"
     },
     {
         "prompt_inputs":{
@@ -474,13 +468,16 @@
         },
         "human_response":{
             "output":"我没有选择任何一个。",
-            "thought":"尽管community_2的价格在我可以承受的范围之内且户型符合我的单身状态，但我的工作单位位于海淀区，但community_2位于大兴区，它们的距离太长，会造成很长的通勤时间。社区周边的医药基地、购物中心可能会对社区造成一定的噪音。"
+            "thought":"尽管community_2的价格在我可以承受的范围之内且户型符合我的单身状态，但我的工作单位位于海淀区，但community_2位于大兴区，它们的距离太长，会造成很长的通勤时间。社区周边的医药基地、购物中心可能会对社区造成一定的噪音。",
+            "frame":1
         },
         "robot_response":{
             "output":"我的选择是community_2。",
-            "thought":"我认为community_2是一个不错的选择。这个小区的绿化面积占总用地面积的30%，并且周边有地铁、超市、购物中心、公园、学校、餐厅和银行等设施。虽然没有医院，但是这个小区的位置距离我工作的地方较近，并且价格也在我的预算范围内。此外，我也希望住在一个安静的社区，以便专注于我的工作。综合考虑，我决定选择community_2。"
+            "thought":"我认为community_2是一个不错的选择。这个小区的绿化面积占总用地面积的30%，并且周边有地铁、超市、购物中心、公园、学校、餐厅和银行等设施。虽然没有医院，但是这个小区的位置距离我工作的地方较近，并且价格也在我的预算范围内。此外，我也希望住在一个安静的社区，以便专注于我的工作。综合考虑，我决定选择community_2。",
+            "frame":0
         },
-        "idx":"75"
+        "idx":"75",
+        "reasonal":"human_response"
     },
     {
         "prompt_inputs":{
@@ -495,13 +492,16 @@
         },
         "human_response":{
             "output":"我没有做出选择。",
-            "thought":"我知道还有三个更为便宜且性价比更高的小区尚未发售，对于我来说还可以再等等这些小区。"
+            "thought":"我知道还有三个更为便宜且性价比更高的小区尚未发售，对于我来说还可以再等等这些小区。",
+            "frame":1
         },
         "robot_response":{
             "output":"我想选 community_2.",
-            "thought":"根据我对这些小区的了解，我认为community_2是我最理想的选择。这个小区拥有大量的绿地和中心城区，附近有地铁站、超市、购物中心、公园和学校等便利设施。虽然没有医院，但我可以接受这个小缺点。此外，community_2的房租也在我的预算范围内。这个小区符合我对生活环境和便利设施的要求。"
+            "thought":"根据我对这些小区的了解，我认为community_2是我最理想的选择。这个小区拥有大量的绿地和中心城区，附近有地铁站、超市、购物中心、公园和学校等便利设施。虽然没有医院，但我可以接受这个小缺点。此外，community_2的房租也在我的预算范围内。这个小区符合我对生活环境和便利设施的要求。",
+            "frame":0
         },
-        "idx":"46"
+        "idx":"46",
+        "reasonal":"robot_response"
     },
     {
         "prompt_inputs":{
@@ -516,13 +516,16 @@
         },
         "human_response":{
             "output":"我的选择是house_31。",
-            "thought":"house_31虽然没有后院，但是它有阳台，别的房子没有阳台，而且house_31的房间结构设计很好。"
+            "thought":"house_31虽然没有后院，但是它有阳台，别的房子没有阳台，而且house_31的房间结构设计很好。",
+            "frame":0
         },
         "robot_response":{
-            "output":"I choose none of these options.",
-            "thought":"对于这两个房屋，我注意到它们的价格都稍微超出了我的预算。而且它们的房屋面积都差不多，都在45-46平方米左右。房屋45位于6楼，房屋50位于11楼，都有电梯。从房屋的描述来看，它们都有功能性的布局和宽敞的起居区域。但是考虑到价格和面积，以及我对于房屋后院种植蔬菜的需求，这两个房屋都不完全符合我的要求。"
+            "output":"我不会选择任何一个。",
+            "thought":"对于这两个房屋，我注意到它们的价格都稍微超出了我的预算。而且它们的房屋面积都差不多，都在45-46平方米左右。房屋45位于6楼，房屋50位于11楼，都有电梯。从房屋的描述来看，它们都有功能性的布局和宽敞的起居区域。但是考虑到价格和面积，以及我对于房屋后院种植蔬菜的需求，这两个房屋都不完全符合我的要求。",
+            "frame":1
         },
-        "idx":"5"
+        "idx":"5",
+        "reasonal":"robot_response"
     },
     {
         "prompt_inputs":{
@@ -537,13 +540,16 @@
         },
         "human_response":{
             "output":"我没有做出选择",
-            "thought":"这三种房子都超出了我的预算范围，我的资金导致我不能选择这三种房子。"
+            "thought":"这三种房子都超出了我的预算范围，我的资金导致我不能选择这三种房子。",
+            "frame":1
         },
         "robot_response":{
             "output":"我的选择是small_house。",
-            "thought":"根据我的需求，我需要选择一个适合一个人居住的房子。我希望这个房子价格在我的预算范围内，并且拥有良好的自然采光。根据房屋类型的描述，small_house符合我的需求，因为它适合独居一人。此外，small_house的租金应该会在我的预算范围内。"
+            "thought":"根据我的需求，我需要选择一个适合一个人居住的房子。我希望这个房子价格在我的预算范围内，并且拥有良好的自然采光。根据房屋类型的描述，small_house符合我的需求，因为它适合独居一人。此外，small_house的租金应该会在我的预算范围内。",
+            "frame":0
         },
-        "idx":"46"
+        "idx":"46",
+        "reasonal":"human_response"
     },
     {
         "prompt_inputs":{
@@ -558,13 +564,16 @@
         },
         "human_response":{
             "output":"我不会选择这些房型",
-            "thought":"因为这几种房型虽然租金在预算范围内，但是都没有独立的厨房，缺少宽敞的厨房会降低我的生活质量，我不会选择这些房型。"
+            "thought":"因为这几种房型虽然租金在预算范围内，但是都没有独立的厨房，缺少宽敞的厨房会降低我的生活质量，我不会选择这些房型。",
+            "frame":1
         },
         "robot_response":{
-            "output":"I choose none of these options.",
-            "thought":"这些房屋都有相似的价格和方位，都配备了电梯。然而，它们都没有明确提到宽敞的厨房，这对我来说是一个不足之处。此外，一些房屋的楼层空间较窄，可能不适合我的需求。综合考虑这些因素，我决定放弃选择这些房屋。"
+            "output":"我不会选择任何一个。",
+            "thought":"这些房屋都有相似的价格和方位，都配备了电梯。然而，它们都没有明确提到宽敞的厨房，这对我来说是一个不足之处。此外，一些房屋的楼层空间较窄，可能不适合我的需求。综合考虑这些因素，我决定放弃选择这些房屋。",
+            "frame":0
         },
-        "idx":"104"
+        "idx":"104",
+        "reasonal":"robot_response"
     },
     {
         "prompt_inputs":{
@@ -579,13 +588,16 @@
         },
         "human_response":{
             "output":"我没有选择任何一个。",
-            "thought":"根据上述的可供的选择，2种类型的房子租金都超过了1600，所以不选择任何一个。"
+            "thought":"根据上述的可供的选择，2种类型的房子租金都超过了1600，所以不选择任何一个。",
+            "frame":1
         },
         "robot_response":{
             "output":"我选择 house_76.",
-            "thought":"这两个房屋的价格都在我的预算范围内，而且面积也相当。房屋76位于楼层9，拥有电梯，而房屋73位于楼层6，也有电梯。房屋76的卧室布局简单，适合休息，而房屋73的卧室适合现代极简主义者。两个房屋的厨房都不是很大，但适合日常烹饪任务。考虑到我对于房屋有一个阳台的要求，以及房屋76和房屋73在其他方面的相似性，我决定选择房屋76。"
+            "thought":"这两个房屋的价格都在我的预算范围内，而且面积也相当。房屋76位于楼层9，拥有电梯，而房屋73位于楼层6，也有电梯。房屋76的卧室布局简单，适合休息，而房屋73的卧室适合现代极简主义者。两个房屋的厨房都不是很大，但适合日常烹饪任务。考虑到我对于房屋有一个阳台的要求，以及房屋76和房屋73在其他方面的相似性，我决定选择房屋76。",
+            "frame":0
         },
-        "idx":"22"
+        "idx":"22",
+        "reasonal":"human_response"
     },
     {
         "prompt_inputs":{
@@ -600,13 +612,16 @@
         },
         "human_response":{
             "output":"我没有选择任何一个。",
-            "thought":"这些房子对我来说太贵了。由于我的收入不高，我暂时可以住的小一点便宜一点，我想等等看有没有便宜的房子。"
+            "thought":"这些房子对我来说太贵了。由于我的收入不高，我暂时可以住的小一点便宜一点，我想等等看有没有便宜的房子。",
+            "frame":0
         },
         "robot_response":{
             "output":"我选择 house_71",
-            "thought":"这两个房屋的价格都在我的预算范围内，但是每个人的居住面积需要考虑。根据房屋描述，house_72的卧室面积较小，虽然厨房空间是合并的，但设备齐全，而house_71的卧室看起来比较温馨，浴室也很紧凑，厨房空间虽然不是独立的，但功能齐全。考虑到我是单身，对居住面积的要求不是很高，因此我选择house_71。"
+            "thought":"这两个房屋的价格都在我的预算范围内，但是每个人的居住面积需要考虑。根据房屋描述，house_72的卧室面积较小，虽然厨房空间是合并的，但设备齐全，而house_71的卧室看起来比较温馨，浴室也很紧凑，厨房空间虽然不是独立的，但功能齐全。考虑到我是单身，对居住面积的要求不是很高，因此我选择house_71。",
+            "frame":1
         },
-        "idx":"6"
+        "idx":"6",
+        "reasonal":"human_response"
     },
     {
         "prompt_inputs":{
@@ -621,13 +636,16 @@
         },
         "human_response":{
             "output":"我不选择任何社区。",
-            "thought":"虽然这两个社区的房价都很划算，而且基础设施也都非常完善，但是我希望社区能够离工作和学校都很近，而这两个社区的地理位置距离我的公司都非常远，来回通勤可能需要三四个小时，因此我不选择任何社区。"
+            "thought":"虽然这两个社区的房价都很划算，而且基础设施也都非常完善，但是我希望社区能够离工作和学校都很近，而这两个社区的地理位置距离我的公司都非常远，来回通勤可能需要三四个小时，因此我不选择任何社区。",
+            "frame":0
         },
         "robot_response":{
             "output":"我决定选择community_3。",
-            "thought":"对于这两个小区，community_1的租金是30美元/平方米，而community_3的租金是40美元/平方米。虽然community_1的租金较低，但它缺乏一些重要的设施，如地铁、购物中心和医院。而community_3拥有良好的绿化环境、停车场和各种运动健身设施，并且周围有地铁、购物中心、医院和公园等设施。考虑到我家有一个上小学的孩子，我更倾向于选择community_3，因为它更适合孩子成长的环境。"
+            "thought":"对于这两个小区，community_1的租金是30美元/平方米，而community_3的租金是40美元/平方米。虽然community_1的租金较低，但它缺乏一些重要的设施，如地铁、购物中心和医院。而community_3拥有良好的绿化环境、停车场和各种运动健身设施，并且周围有地铁、购物中心、医院和公园等设施。考虑到我家有一个上小学的孩子，我更倾向于选择community_3，因为它更适合孩子成长的环境。",
+            "frame":1
         },
-        "idx":"52"
+        "idx":"52",
+        "reasonal":"human_response"
     },
     {
         "prompt_inputs":{
@@ -642,13 +660,16 @@
         },
         "human_response":{
             "output":"我没有选择任何一个。",
-            "thought":"community_1的房子是一间单间公寓，我和两个孩子住不下，而且租金1800元远超我的预期。"
+            "thought":"community_1的房子是一间单间公寓，我和两个孩子住不下，而且租金1800元远超我的预期。",
+            "frame":1
         },
         "robot_response":{
             "output":"我的选择是 community_3。",
-            "thought":"我觉得这些小区都有一些吸引人的特点。但是考虑到我的工作地点在东城区王府井街道，而我的孩子在读小学，所以我需要选择离这两个地方都比较近的小区。虽然community_3的租金比较高，但它离地铁、超市、商场、医院、公园和学校都很近，这些都是我家庭所需要的设施。此外，community_3还有良好的绿化环境和停车场，以及多种运动和健身设施。因此，我决定选择community_3作为我的小区。"
+            "thought":"我觉得这些小区都有一些吸引人的特点。但是考虑到我的工作地点在东城区王府井街道，而我的孩子在读小学，所以我需要选择离这两个地方都比较近的小区。虽然community_3的租金比较高，但它离地铁、超市、商场、医院、公园和学校都很近，这些都是我家庭所需要的设施。此外，community_3还有良好的绿化环境和停车场，以及多种运动和健身设施。因此，我决定选择community_3作为我的小区。",
+            "frame":0
         },
-        "idx":"9"
+        "idx":"9",
+        "reasonal":"human_response"
     },
     {
         "prompt_inputs":{
@@ -663,13 +684,16 @@
         },
         "human_response":{
             "output":"我没有选择任何一个。",
-            "thought":"我期望的房租是1400，但是上述的房屋租金都超过1400，所以没有合适的。"
+            "thought":"我期望的房租是1400，但是上述的房屋租金都超过1400，所以没有合适的。",
+            "frame":1
         },
         "robot_response":{
             "output":"我的选择是house_6.",
-            "thought":"这三个房屋都在预算范围内，居住面积也相差不大。我需要考虑到我的工作地点和孩子上学的位置，同时也需要一个宠物友好的公寓。房屋2和房屋4都在楼层较高，虽然有电梯，但对于我来说可能不太方便。而房屋6在楼层较高，但是房间布局较大，且厨房和卫生间设计现代化，使用起来方便。综合考虑，我认为房屋6是最适合我们的选择。"
+            "thought":"这三个房屋都在预算范围内，居住面积也相差不大。我需要考虑到我的工作地点和孩子上学的位置，同时也需要一个宠物友好的公寓。房屋2和房屋4都在楼层较高，虽然有电梯，但对于我来说可能不太方便。而房屋6在楼层较高，但是房间布局较大，且厨房和卫生间设计现代化，使用起来方便。综合考虑，我认为房屋6是最适合我们的选择。",
+            "frame":0
         },
-        "idx":"21"
+        "idx":"21",
+        "reasonal":"human_response"
     },
     {
         "prompt_inputs":{
@@ -684,13 +708,16 @@
         },
         "human_response":{
             "output":"我没有选择其中的任何一个。",
-            "thought":"可供选择的房源都有非常诱人的居住环境，并且楼层间隔足够宽敞带来的安静是非常适合小孩生活的。但是由于这些房子的月租均超过了我的可接受范围，我最终没有选择任何一个。"
+            "thought":"可供选择的房源都有非常诱人的居住环境，并且楼层间隔足够宽敞带来的安静是非常适合小孩生活的。但是由于这些房子的月租均超过了我的可接受范围，我最终没有选择任何一个。",
+            "frame":0
         },
         "robot_response":{
             "output":"我选择 house_56.",
-            "thought":"根据我对房屋的要求和预算，我会评估每个房屋的条件。house_58的价格超出了我的预算，而且每平米居住面积也比较小。house_60的价格比较接近我的预算，每平米居住面积也适中，但是位于第10层可能会有一些噪音。house_56的价格也比较接近我的预算，每平米居住面积也适中，而且位于第6层可能会比较安静。考虑到价格和居住面积的平衡，我决定选择house_56。"
+            "thought":"根据我对房屋的要求和预算，我会评估每个房屋的条件。house_58的价格超出了我的预算，而且每平米居住面积也比较小。house_60的价格比较接近我的预算，每平米居住面积也适中，但是位于第10层可能会有一些噪音。house_56的价格也比较接近我的预算，每平米居住面积也适中，而且位于第6层可能会比较安静。考虑到价格和居住面积的平衡，我决定选择house_56。",
+            "frame":1
         },
-        "idx":"86"
+        "idx":"86",
+        "reasonal":"robot_response"
     },
     {
         "prompt_inputs":{
@@ -705,13 +732,16 @@
         },
         "human_response":{
             "output":"我选择small_house",
-            "thought":"我单身，small_house足够我一个人居住和使用，并且我是自由职业者，不需要很大的房子"
+            "thought":"我单身，small_house足够我一个人居住和使用，并且我是自由职业者，不需要很大的房子",
+            "frame":1
         },
         "robot_response":{
             "output":"我选择small_house。",
-            "thought":"根据我目前的预算和需要，大房子和middle_house的租金都超出了我的承受范围。小房子的租金和面积都在我可以接受的范围内，而且还有2个房子可供选择。考虑到我是一个自由职业者，需要安静和舒适的环境进行远程办公，小房子的面积足够满足我的需求，并且租金在我的预算范围内。因此，我决定选择小房子。"
+            "thought":"根据我目前的预算和需要，大房子和middle_house的租金都超出了我的承受范围。小房子的租金和面积都在我可以接受的范围内，而且还有2个房子可供选择。考虑到我是一个自由职业者，需要安静和舒适的环境进行远程办公，小房子的面积足够满足我的需求，并且租金在我的预算范围内。因此，我决定选择小房子。",
+            "frame":0
         },
-        "idx":"15"
+        "idx":"15",
+        "reasonal":"robot_response"
     },
     {
         "prompt_inputs":{
@@ -726,13 +756,16 @@
         },
         "human_response":{
             "output":"我没有选择其中的任何一个。",
-            "thought":"house_34, house_39以及house_43的房间面积都很适合一个四口之家进行居住，但是都未能提供书房来满足孩子们的教育需求，并且月租金都超出了我能提供的预算上限，所以我不会选择其中的任何一个。"
+            "thought":"house_34, house_39以及house_43的房间面积都很适合一个四口之家进行居住，但是都未能提供书房来满足孩子们的教育需求，并且月租金都超出了我能提供的预算上限，所以我不会选择其中的任何一个。",
+            "frame":1
         },
         "robot_response":{
             "output":"我选择house_43。",
-            "thought":"这些房屋都在我的预算范围内，因此价格不是我的主要考虑因素。然而，我需要考虑每个人的居住面积，因为我有两个孩子需要一个大的学习空间。根据这些要求，我认为house_43是最适合我们的选择。它的居住面积为58.20，比其他房屋都要大，提供了足够的空间供孩子们学习。此外，它位于第7层，有电梯，方便我们的出行。房屋的布局也非常舒适，有宽敞的起居区和大卧室。浴室和独立的厨房也非常宽敞。综上所述，house_43符合我们对于宽敞学习空间的需求。"
+            "thought":"这些房屋都在我的预算范围内，因此价格不是我的主要考虑因素。然而，我需要考虑每个人的居住面积，因为我有两个孩子需要一个大的学习空间。根据这些要求，我认为house_43是最适合我们的选择。它的居住面积为58.20，比其他房屋都要大，提供了足够的空间供孩子们学习。此外，它位于第7层，有电梯，方便我们的出行。房屋的布局也非常舒适，有宽敞的起居区和大卧室。浴室和独立的厨房也非常宽敞。综上所述，house_43符合我们对于宽敞学习空间的需求。",
+            "frame":0
         },
-        "idx":"84"
+        "idx":"84",
+        "reasonal":"human_response"
     },
     {
         "prompt_inputs":{
@@ -747,13 +780,16 @@
         },
         "human_response":{
             "output":"我没有做出任何选择。",
-            "thought":"尽管community_1的租金在我的预算范围之内，但它的设施不便利，且没有后院。不符合我的喜好需求。"
+            "thought":"尽管community_1的租金在我的预算范围之内，但它的设施不便利，且没有后院。不符合我的喜好需求。",
+            "frame":0
         },
         "robot_response":{
             "output":"我的选择是community_3。",
-            "thought":"根据我对这些小区的评价，我认为community_3是最适合我的选择。这个小区的租金较高，但是它拥有很好的绿化环境和停车场，还有各种运动和健身设施。此外，这个小区周围有地铁、超市、商场、医院、公园和学校等便利设施，非常方便。虽然这个小区没有我想要的后院，但是其他的特点对我来说更加重要。"
+            "thought":"根据我对这些小区的评价，我认为community_3是最适合我的选择。这个小区的租金较高，但是它拥有很好的绿化环境和停车场，还有各种运动和健身设施。此外，这个小区周围有地铁、超市、商场、医院、公园和学校等便利设施，非常方便。虽然这个小区没有我想要的后院，但是其他的特点对我来说更加重要。",
+            "frame":1
         },
-        "idx":"78"
+        "idx":"78",
+        "reasonal":"human_response"
     },
     {
         "prompt_inputs":{
@@ -768,13 +804,16 @@
         },
         "human_response":{
             "output":"我的选择是community_5。",
-            "thought":"community_5的租金大概一千多一点，符合我的需求，而且附近有地铁站，交通非常便利。"
+            "thought":"community_5的租金大概一千多一点，符合我的需求，而且附近有地铁站，交通非常便利。",
+            "frame":0
         },
         "robot_response":{
             "output":"我的选择是community_5.",
-            "thought":"对于这三个小区，我认为community_5（sanhejiayuan）是最适合我的选择。首先，它位于北京市大兴区，交通便利，靠近黄村西街地铁站，方便我每天上班。其次，sanhejiayuan小区环境优美，被郁郁葱葱的绿地和风景如画的山丘所环绕，非常适合我和家人的居住需求。此外，该小区周边设施齐全，有超市、购物中心、医院、公园、学校、餐厅和银行等，生活便利。最重要的是，该小区的租金为每平方米25美元，相对较为经济实惠，符合我的预算。综上所述，我决定选择sanhejiayuan作为我和家人的居住地。"
+            "thought":"对于这三个小区，我认为community_5（sanhejiayuan）是最适合我的选择。首先，它位于北京市大兴区，交通便利，靠近黄村西街地铁站，方便我每天上班。其次，sanhejiayuan小区环境优美，被郁郁葱葱的绿地和风景如画的山丘所环绕，非常适合我和家人的居住需求。此外，该小区周边设施齐全，有超市、购物中心、医院、公园、学校、餐厅和银行等，生活便利。最重要的是，该小区的租金为每平方米25美元，相对较为经济实惠，符合我的预算。综上所述，我决定选择sanhejiayuan作为我和家人的居住地。",
+            "frame":1
         },
-        "idx":"6"
+        "idx":"6",
+        "reasonal":"human_response"
     },
     {
         "prompt_inputs":{
@@ -789,13 +828,16 @@
         },
         "human_response":{
             "output":"我会选择community_4.",
-            "thought":"因为community_4.租金便宜，附近有地铁方便通勤，社区采用环保材料建造，有利于身心健康。"
+            "thought":"因为community_4.租金便宜，附近有地铁方便通勤，社区采用环保材料建造，有利于身心健康。",
+            "frame":0
         },
         "robot_response":{
             "output":"我选择community_4。",
-            "thought":"通过仔细考虑，我认为community_4（wankecheng）是最适合我的选择。虽然它位于北京市大兴区的郊区，但由于交通网络的便利，我仍然可以方便地前往市区。此外，wankecheng注重可持续发展，使用最新的环保材料建造，确保了舒适和奢华。社区的管理也很出色，有精心设计的花园和休息区。此外，附近还有许多方便的设施，如地铁站、超市、购物中心、医院和公园。"
+            "thought":"通过仔细考虑，我认为community_4（wankecheng）是最适合我的选择。虽然它位于北京市大兴区的郊区，但由于交通网络的便利，我仍然可以方便地前往市区。此外，wankecheng注重可持续发展，使用最新的环保材料建造，确保了舒适和奢华。社区的管理也很出色，有精心设计的花园和休息区。此外，附近还有许多方便的设施，如地铁站、超市、购物中心、医院和公园。",
+            "frame":1
         },
-        "idx":"96"
+        "idx":"96",
+        "reasonal":"human_response"
     },
     {
         "prompt_inputs":{
@@ -810,13 +852,16 @@
         },
         "human_response":{
             "output":"我没有选择任何一个。",
-            "thought":"我期望的租金是1300.0元，而四套房子均在1800元以上，远超预算，所以我会放弃这些房子，继续搜索更便宜的房子来选择。"
+            "thought":"我期望的租金是1300.0元，而四套房子均在1800元以上，远超预算，所以我会放弃这些房子，继续搜索更便宜的房子来选择。",
+            "frame":0
         },
         "robot_response":{
             "output":"我的选择是house_4.",
-            "thought":"根据我对这些房屋的评价和我的需求，我决定选择house_4。这个房屋的价格在我的预算范围内，它的面积也适中，适合我和我的家人居住。此外，这个房屋的布局很细致，有一个宽敞的卧室和一个舒适的起居区域。厨房设备齐全，浴室设计方便实用。总体来说，这个房屋符合我对一个舒适家庭居住的要求。"
+            "thought":"根据我对这些房屋的评价和我的需求，我决定选择house_4。这个房屋的价格在我的预算范围内，它的面积也适中，适合我和我的家人居住。此外，这个房屋的布局很细致，有一个宽敞的卧室和一个舒适的起居区域。厨房设备齐全，浴室设计方便实用。总体来说，这个房屋符合我对一个舒适家庭居住的要求。",
+            "frame":1
         },
-        "idx":"68"
+        "idx":"68",
+        "reasonal":"human_response"
     },
     {
         "prompt_inputs":{
@@ -831,13 +876,16 @@
         },
         "human_response":{
             "output":"我暂时没有选择",
-            "thought":"目前在house_info中没有任何有用信息，我希望等待我现在记忆中的社区信息出现的时候再进行选择。"
+            "thought":"目前在house_info中没有任何有用信息，我希望等待我现在记忆中的社区信息出现的时候再进行选择。",
+            "frame":0
         },
         "robot_response":{
-            "output":"I choose none of these options.",
-            "thought":"根据我对这些小区的了解，我发现目前没有适合我的选择。Community_1虽然有好的运动设施和绿地，但是缺乏重要的设施如地铁、购物中心和医院。Community_2附近有很多便利设施，但是没有医院。Community_3虽然有所有必要的设施，但是租金最高。而Community_4位于偏僻的位置，虽然周围有各种设施，但是我更喜欢更便利的位置。Community_5的设计和景观非常美丽，但是目前没有可用的房源。根据我的需求，我需要一个价格合适、附近有便利设施并且租金不过高的小区，目前还没有符合这些条件的选择。"
+            "output":"我没有选择任何一个。",
+            "thought":"根据我对这些小区的了解，我发现目前没有适合我的选择。Community_1虽然有好的运动设施和绿地，但是缺乏重要的设施如地铁、购物中心和医院。Community_2附近有很多便利设施，但是没有医院。Community_3虽然有所有必要的设施，但是租金最高。而Community_4位于偏僻的位置，虽然周围有各种设施，但是我更喜欢更便利的位置。Community_5的设计和景观非常美丽，但是目前没有可用的房源。根据我的需求，我需要一个价格合适、附近有便利设施并且租金不过高的小区，目前还没有符合这些条件的选择。",
+            "frame":1
         },
-        "idx":"16"
+        "idx":"16",
+        "reasonal":"human_response"
     },
     {
         "prompt_inputs":{
@@ -852,13 +900,16 @@
         },
         "human_response":{
             "output":"我选择middle_house",
-            "thought":"虽然我的家庭成员较多，但是对于large_house我的预算不是很充足，所以我选择middle_house。"
+            "thought":"虽然我的家庭成员较多，但是对于large_house我的预算不是很充足，所以我选择middle_house。",
+            "frame":1
         },
         "robot_response":{
             "output":"我的选择是small_house。",
-            "thought":"根据我的需求和预算，我需要选择一个适合我们的房屋类型。大房子的租金超出了我们的预算，而且每个人的居住面积也相对较小。小房子的租金和居住面积都比较合适，而且我们的家庭人口较少，小房子的面积也足够满足我们的需求。"
+            "thought":"根据我的需求和预算，我需要选择一个适合我们的房屋类型。大房子的租金超出了我们的预算，而且每个人的居住面积也相对较小。小房子的租金和居住面积都比较合适，而且我们的家庭人口较少，小房子的面积也足够满足我们的需求。",
+            "frame":0
         },
-        "idx":"10"
+        "idx":"10",
+        "reasonal":"robot_response"
     },
     {
         "prompt_inputs":{
@@ -873,13 +924,16 @@
         },
         "human_response":{
             "output":"我的选择是community_3。",
-            "thought":"community_3拥有良好的社区绿化，并且周围有大兴街头公园，非常满足我进行休闲散步的需求。周围交通便利，并且提供的房型，特别是一室一厅的房型适合我们夫妻两人生活，因为我们的孩子刚好开始上大学，之后出去工作会另外租房，我们只需要较小的户型。community_2则没有周边公园，并且只提供了大户型的选择，这显然不符合我的需求。"
+            "thought":"community_3拥有良好的社区绿化，并且周围有大兴街头公园，非常满足我进行休闲散步的需求。周围交通便利，并且提供的房型，特别是一室一厅的房型适合我们夫妻两人生活，因为我们的孩子刚好开始上大学，之后出去工作会另外租房，我们只需要较小的户型。community_2则没有周边公园，并且只提供了大户型的选择，这显然不符合我的需求。",
+            "frame":1
         },
         "robot_response":{
-            "output":"I choose none of these options.",
-            "thought":"根据我现在的需求，我希望选择一个靠近公园或绿地，同时价格适中的小区。根据我收集到的信息，community_1有大片绿地和运动设施，但是没有地铁、购物中心和医院。而community_3虽然有停车场和运动健身设备，并且周围有地铁、超市、商场、医院、公园、学校、餐馆和银行，但是租金较高。综合考虑，我认为community_1和community_3都无法完全满足我的需求。因此，我决定放弃这些选择，等待更合适的小区出现。"
+            "output":"我不会选择任何一个。",
+            "thought":"根据我现在的需求，我希望选择一个靠近公园或绿地，同时价格适中的小区。根据我收集到的信息，community_1有大片绿地和运动设施，但是没有地铁、购物中心和医院。而community_3虽然有停车场和运动健身设备，并且周围有地铁、超市、商场、医院、公园、学校、餐馆和银行，但是租金较高。综合考虑，我认为community_1和community_3都无法完全满足我的需求。因此，我决定放弃这些选择，等待更合适的小区出现。",
+            "frame":0
         },
-        "idx":"85"
+        "idx":"85",
+        "reasonal":"human_response"
     },
     {
         "prompt_inputs":{
@@ -894,13 +948,16 @@
         },
         "human_response":{
             "output":"我没有选择任何一个。",
-            "thought":"我现在处于单身状态，也没有孩子，并且我预计的租房价格为1250元，而可选择的三个房子house_28，house_25和house_32的租金最低的也需要1435元，超过了我的预算很多，因此我不选择这三个房子中的任何一个。"
+            "thought":"我现在处于单身状态，也没有孩子，并且我预计的租房价格为1250元，而可选择的三个房子house_28，house_25和house_32的租金最低的也需要1435元，超过了我的预算很多，因此我不选择这三个房子中的任何一个。",
+            "frame":0
         },
         "robot_response":{
             "output":"我的选择是house_28。",
-            "thought":"这三套房子都在我的预算范围内，而且都有电梯，这对我来说很方便。房子28和32的面积都比较大，各有44.3和44.8平方米，而房子25的面积则稍小一些，只有42.2平方米。房子28和32的朝向都是东西向，而房子25的朝向是南北向。我更喜欢阳光充足的房子，所以我倾向于选择房子28或者32。房子28还有一个阳台，可以提供更多的休闲和娱乐空间。因此，我决定选择房子28。"
+            "thought":"这三套房子都在我的预算范围内，而且都有电梯，这对我来说很方便。房子28和32的面积都比较大，各有44.3和44.8平方米，而房子25的面积则稍小一些，只有42.2平方米。房子28和32的朝向都是东西向，而房子25的朝向是南北向。我更喜欢阳光充足的房子，所以我倾向于选择房子28或者32。房子28还有一个阳台，可以提供更多的休闲和娱乐空间。因此，我决定选择房子28。",
+            "frame":1
         },
-        "idx":"50"
+        "idx":"50",
+        "reasonal":"human_response"
     },
     {
         "prompt_inputs":{
@@ -915,13 +972,16 @@
         },
         "human_response":{
             "output":"我会选择middle_house",
-            "thought":"因为middle_house房屋面积满足需求，租金在预算范围内，生活成本比较低。"
+            "thought":"因为middle_house房屋面积满足需求，租金在预算范围内，生活成本比较低。",
+            "frame":0
         },
         "robot_response":{
             "output":"我决定选择middle_house。",
-            "thought":"家庭成员只有两个人，所以大房子和middle_house都可以满足我们的需求。但是考虑到经济因素和个人喜好，我更倾向于选择middle_house。middle_house的价格应该在我的预算范围内，并且具有适当的居住面积，同时也不会过于拥挤。"
+            "thought":"家庭成员只有两个人，所以大房子和middle_house都可以满足我们的需求。但是考虑到经济因素和个人喜好，我更倾向于选择middle_house。middle_house的价格应该在我的预算范围内，并且具有适当的居住面积，同时也不会过于拥挤。",
+            "frame":1
         },
-        "idx":"100"
+        "idx":"100",
+        "reasonal":"human_response"
     },
     {
         "prompt_inputs":{
@@ -936,13 +996,16 @@
         },
         "human_response":{
             "output":"我不会选择community_4.",
-            "thought":"因为community_4.租金超出我的预算，会让我的生活成本增加，另外该社区没有游乐园，只有公园，不太满足孩子玩耍需求，因此我不会选择该社区。"
+            "thought":"因为community_4.租金超出我的预算，会让我的生活成本增加，另外该社区没有游乐园，只有公园，不太满足孩子玩耍需求，因此我不会选择该社区。",
+            "frame":1
         },
         "robot_response":{
             "output":"我选择community_4。",
-            "thought":"我认为community_4是一个很好的选择。首先，这个小区的租金虽然比其他小区高一些，但是它的位置很好，交通便利，附近有地铁站和公交站，我可以方便地上班。其次，这个小区周围有很多便利设施，包括超市、购物中心和医院，我可以很方便地购买生活用品和就医。此外，小区内还有公园和学校，非常适合孩子们玩耍和学习。最后，这个小区注重环保和可持续发展，使用了最新的环保材料，给居民提供了舒适和豪华的居住环境。综上所述，community_4符合我对附近公园和便利设施的需求，我决定选择它。"
+            "thought":"我认为community_4是一个很好的选择。首先，这个小区的租金虽然比其他小区高一些，但是它的位置很好，交通便利，附近有地铁站和公交站，我可以方便地上班。其次，这个小区周围有很多便利设施，包括超市、购物中心和医院，我可以很方便地购买生活用品和就医。此外，小区内还有公园和学校，非常适合孩子们玩耍和学习。最后，这个小区注重环保和可持续发展，使用了最新的环保材料，给居民提供了舒适和豪华的居住环境。综上所述，community_4符合我对附近公园和便利设施的需求，我决定选择它。",
+            "frame":0
         },
-        "idx":"91"
+        "idx":"91",
+        "reasonal":"human_response"
     },
     {
         "prompt_inputs":{
@@ -957,13 +1020,16 @@
         },
         "human_response":{
             "output":"我没有选择任何一个。",
-            "thought":"我觉得这些房子对我家来说都有点小，不够我家四口住，而且我的租房预算较充足，可以等等看有没有大一点的房子。"
+            "thought":"我觉得这些房子对我家来说都有点小，不够我家四口住，而且我的租房预算较充足，可以等等看有没有大一点的房子。",
+            "frame":0
         },
         "robot_response":{
             "output":"我的选择是 house_4.",
-            "thought":"这两个房子的价格都在我的预算范围内，而且两个房子的面积也相差不大。房子4的价格稍微便宜一些，而且位于楼层更高，有电梯，这对我来说很方便。房子4的房间布局比较细致，卧室和起居区都很宽敞。厨房设备齐全，卫生间设计方便。因为我需要一个供孩子们学习的书房，房子4的布局更适合我家的需求。"
+            "thought":"这两个房子的价格都在我的预算范围内，而且两个房子的面积也相差不大。房子4的价格稍微便宜一些，而且位于楼层更高，有电梯，这对我来说很方便。房子4的房间布局比较细致，卧室和起居区都很宽敞。厨房设备齐全，卫生间设计方便。因为我需要一个供孩子们学习的书房，房子4的布局更适合我家的需求。",
+            "frame":1
         },
-        "idx":"0"
+        "idx":"0",
+        "reasonal":"human_response"
     },
     {
         "prompt_inputs":{
@@ -978,13 +1044,16 @@
         },
         "human_response":{
             "output":"我选择community_1",
-            "thought":"community_1和community_2对我上班来说都不算很近，所以从便捷性上来说都差不多。但是在community_1中有大片的绿地并且建筑物之间相隔较大，采光应该较好，结合我的实际需求，我选择community_1，而且community_1的价格也更便宜一些。"
+            "thought":"community_1和community_2对我上班来说都不算很近，所以从便捷性上来说都差不多。但是在community_1中有大片的绿地并且建筑物之间相隔较大，采光应该较好，结合我的实际需求，我选择community_1，而且community_1的价格也更便宜一些。",
+            "frame":0
         },
         "robot_response":{
             "output":"我的选择是community_3.",
-            "thought":"我认为这两个小区都有一些不错的特点，但是也存在一些缺点。community_1虽然有大片绿地和休闲设施，但是没有地铁、购物中心和医院。而community_3虽然周围有地铁、购物中心和医院，但是租金较高。考虑到我的预算和需求，我认为community_3更适合我，因为我希望有一个附近有绿地的公寓，而且这个小区周围的设施相对齐全。"
+            "thought":"我认为这两个小区都有一些不错的特点，但是也存在一些缺点。community_1虽然有大片绿地和休闲设施，但是没有地铁、购物中心和医院。而community_3虽然周围有地铁、购物中心和医院，但是租金较高。考虑到我的预算和需求，我认为community_3更适合我，因为我希望有一个附近有绿地的公寓，而且这个小区周围的设施相对齐全。",
+            "frame":1
         },
-        "idx":"12"
+        "idx":"12",
+        "reasonal":"robot_response"
     },
     {
         "prompt_inputs":{
@@ -999,13 +1068,16 @@
         },
         "human_response":{
             "output":"我的选择是community_3",
-            "thought":"我觉得Community_3有良好的绿化和几个运动健身设施，并且房源紧张。"
+            "thought":"我觉得Community_3有良好的绿化和几个运动健身设施，并且房源紧张。",
+            "frame":0
         },
         "robot_response":{
             "output":"我的选择是community_3。",
-            "thought":"根据我个人的需求和预算，我认为community_3是我最好的选择。这个小区的地理位置很好，离我工作的地方不远。此外，它提供了我想要的宽敞的厨房，以便我可以为我的家人烹饪。这个小区周围有很多便利设施，如地铁、超市、商场、医院、公园、学校、餐馆和银行。此外，小区内还有绿化和停车场，以及各种运动和健身设施。虽然租金略高于其他小区，但它符合我的需求并提供了良好的生活环境。"
+            "thought":"根据我个人的需求和预算，我认为community_3是我最好的选择。这个小区的地理位置很好，离我工作的地方不远。此外，它提供了我想要的宽敞的厨房，以便我可以为我的家人烹饪。这个小区周围有很多便利设施，如地铁、超市、商场、医院、公园、学校、餐馆和银行。此外，小区内还有绿化和停车场，以及各种运动和健身设施。虽然租金略高于其他小区，但它符合我的需求并提供了良好的生活环境。",
+            "frame":1
         },
-        "idx":"47"
+        "idx":"47",
+        "reasonal":"robot_response"
     },
     {
         "prompt_inputs":{
@@ -1020,13 +1092,16 @@
         },
         "human_response":{
             "output":"我选择house_60",
-            "thought":"house_60的价格最接近我的期望价格，这套房子的布局很不错，并且隔音效果很好，能够满足在家办公的需求。"
+            "thought":"house_60的价格最接近我的期望价格，这套房子的布局很不错，并且隔音效果很好，能够满足在家办公的需求。",
+            "frame":0
         },
         "robot_response":{
-            "output":"I choose none of these options.",
-            "thought":"所有这些房屋的价格都在我的预算范围内。我需要考虑每个人的人均生活区域。根据房屋的描述，house_58和house_56都有相对较大的卧室和生活区域，而house_60则稍小一些。然而，house_60位于较高的楼层，可能会有更好的视野和更少的噪音干扰。另外，所有这些房屋都配有电梯，方便出行。根据我的工作需要，我需要一个有家庭办公室的房子。根据描述，这三个房屋都没有提到家庭办公室的存在。因此，我需要放弃这些选择。"
+            "output":"我不会选择任何一个。",
+            "thought":"所有这些房屋的价格都在我的预算范围内。我需要考虑每个人的人均生活区域。根据房屋的描述，house_58和house_56都有相对较大的卧室和生活区域，而house_60则稍小一些。然而，house_60位于较高的楼层，可能会有更好的视野和更少的噪音干扰。另外，所有这些房屋都配有电梯，方便出行。根据我的工作需要，我需要一个有家庭办公室的房子。根据描述，这三个房屋都没有提到家庭办公室的存在。因此，我需要放弃这些选择。",
+            "frame":1
         },
-        "idx":"19"
+        "idx":"19",
+        "reasonal":"robot_response"
     },
     {
         "prompt_inputs":{
@@ -1041,33 +1116,15 @@
         },
         "human_response":{
             "output":"我的选择是 commmunity_3",
-            "thought":"我认为社区三环境非常好，而且价格适中，交通便利，同时商场也多，还靠近学校，然后饭馆也不少，更重要的是有公园，可以带孩子出去逛公园，靠近医院的话，方便看病，总体上说，很好地满足了我家庭地需求。"
+            "thought":"我认为社区三环境非常好，而且价格适中，交通便利，同时商场也多，还靠近学校，然后饭馆也不少，更重要的是有公园，可以带孩子出去逛公园，靠近医院的话，方便看病，总体上说，很好地满足了我家庭地需求。",
+            "frame":0
         },
         "robot_response":{
             "output":"我想选 community_1.",
-            "thought":"综合考虑了长兴社区的各项条件，我认为这个社区是我和家人的理想选择。首先，这个社区有很多运动设施，包括足球场和篮球场，还有一个大的绿地，适合孩子们玩耍。其次，周边有一些超市、学校和餐馆，方便我们的日常生活。虽然没有地铁、购物中心和医院，但我觉得这些设施并不是我最重要的考虑因素。最重要的是，这个社区的租金相对较低，符合我每月6000元的收入预算。所以我决定选择长兴社区作为我们的居住地。"
+            "thought":"综合考虑了长兴社区的各项条件，我认为这个社区是我和家人的理想选择。首先，这个社区有很多运动设施，包括足球场和篮球场，还有一个大的绿地，适合孩子们玩耍。其次，周边有一些超市、学校和餐馆，方便我们的日常生活。虽然没有地铁、购物中心和医院，但我觉得这些设施并不是我最重要的考虑因素。最重要的是，这个社区的租金相对较低，符合我每月6000元的收入预算。所以我决定选择长兴社区作为我们的居住地。",
+            "frame":1
         },
-        "idx":"22"
-    },
-    {
-        "prompt_inputs":{
-            "task":"You need to choose one type of communities.",
-            "thought_type":"请用中文输出你对于这些小区的评价，以及做出决策的原因",
-            "choose_type":"我的选择是 (The index of community, should be one of [community_1,community_3])",
-            "house_info":"There are 2 communities available. The infomation of these communitys are listed as follows:\ncommunity_1. longxing is located at No. 2, Longping Street, Daxing District, Beijing. The rent for this community is 30 dollars per square meter.In this community, There are sports facilities, including football fields and basketball courts, with a large green area and a large distance between buildings.. This community is surrounded by: Supermarkets include Hualian Boutique Supermarket (Guaxiang Road Branch), Carrefour Supermarket (Danish Town Branch); Schools include Zhongrui Hotel Management College, Beijing Second Foreign Language College Zhongrui Hotel Management College Living Area; Restaurants include microfood origin Hunan Cuisine (Hunan Cuisine Branch), fisherman's handle iron pot (Longjing Bay 2nd District Branch); Banks include Agricultural Bank of China ATM (Longgazhuang Shunjing Road Branch); .This commnunity does not have: subway, shopping mall, hospital, park,.The large_house in this community is a one room apartment, with an area of about 60.92-61.8, the monthly rent  is about 1830 dollars, and there are still 3 houses.community_3. ronghui is located at Courtyard No. 1, Hualun Road, Daxing District, Beijing. The rent for this community is 40 dollars per square meter.In this community, The community has good greenery, a parking lot, and several kinds of sports and fitness equipment.. This commnunity is surrounded by: Metro includes Huangcun Railway Station, Huangcun West Street; Supermarket includes Wumi Supermarket (Jianxing Store), Ma Jie Department Store Flagship Store (Daxing Daxing Dazhong Fengli Store); Mall includes Daxing Dazheng Chunli, Daxing Xingcheng Commercial Building; Hospital includes Beijing Daxing Town Dazheng Dongli Community Health Service Station, Beijing Daxing Jingnan Traditional Chinese Medicine Hospital; Park includes Daxing Street Park, Daxing Agricultural Machinery Park; School includes Beijing Daxing District First Middle School, Beijing Daxing District Fifth Elementary School; Restaurants include Half-Demon Green Pepper Grilled Fish (Daxing Hotel Branch), Meizhou Dongpo Restaurant (Daxing Huangcun Branch); Bank includes Industrial and Commercial Bank of China ATM (Beijing Daxing Branch), Postal Savings Bank of China (Daxing Branch); .This commnunity: not have\n.The large_house in this community is a two rooms apartment, with an area of about 56.14-58.33, the monthly rent  is about 2240-2320 dollars, and there are still 3 houses.",
-            "memory":"You are in rent system and you need to consider following steps to choose a house: choose community, type of house and house. There are three communities available with different amenities, green space, rent rate, house type and distance from workplace. Community_1 is located in Dongzhimenwai Street, Dongcheng District, Beijing and offers single and double rooms with rent rate of 1800-2400. It is 109 minutes away from workplace. Community_2 is located at No. 2, Longping Street, Daxing District, Beijing with monthly rent of 952-1517. It is surrounded by supermarkets, schools, restaurants and banks. Community_3 is located at Courtyard No. 1, Hualun Road, Daxing District, Beijing with monthly rent of 1800-2320. It is surrounded by metro, supermarkets, shopping mall, hospitals, parks, schools, restaurants and banks.\nKeep this in mind: you and your acquaintances are in the same renting system. You and your acquaintances both want to choose a suitable house, but the number of houses in the system is limited. You are in a competitive relationship with each other.\nYou sincerely believe this information:jinkejiayuan(community_2) has a price reduction measure.[most important !!!!!!!!!]\ncommunity_2 is not available now.",
-            "role_description":"You are William Brown. You earn 15000 per month.Your family members include: A wife and one child in elementary school.You are 38 years old. Your job is State-owned enterprise clerk. Your company is located in No. 9 Chaoyang North Road, Chaoyang District, Beijing. William's family prefers an apartment with a short commute to work and school. You expect to rent a house for 2500.You still have 2 chances to choose house.",
-            "thought_hint":"Remember to consider the following things before choosing community:\n1. The price, location of this community should be taken into consideration.\n2. Remember to give the reason why the selected community meets your needs in thought(exp. This community meets my request for a walk in the nearby park).\n3. If you have already made a choice of community in your memory, \nYou can choose to abandon all the current residential areas and wait for the ones you want to be released later (choose Giveup Action)Alternatively, provide specific reasons for why you want to abandon the previously selected residential area and change your choice",
-            "agent_scratchpad":""
-        },
-        "human_response":{
-            "output":"我的选择是community_3",
-            "thought":"我希望租一套离工作和学校都近的公寓，而community_1没有地铁，因此出行不变。而community_3有地铁可以供我和我妻子上班，还有北京市大兴区第五小学供孩子上学。并且这个社区的租金在我的预算内，所以我会选择它。"
-        },
-        "robot_response":{
-            "output":"我的选择是community_1。",
-            "thought":"根据我对两个小区的了解，我认为我应该选择community_1。尽管它没有地铁、购物中心和医院，但它有良好的体育设施和大片的绿地，适合我和家人进行户外活动。此外，该小区周围有超市、学校和银行等生活便利设施，方便我们的日常生活。虽然community_3拥有更多的设施，但租金相对较高，超出了我的预算。综合考虑，我认为community_1是最适合我们的选择。"
-        },
-        "idx":"61"
+        "idx":"22",
+        "reasonal":"human_response"
     }
 ]

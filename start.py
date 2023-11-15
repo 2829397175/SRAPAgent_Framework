@@ -61,12 +61,11 @@ if __name__ == "__main__":
     #                          task_names))
     
     task_names = [
-        "ver1_nofilter_singlelist_5t_3h",
-        "ver1_nofilter_singlelist_8t_6h",
-        "ver2_nofilter_multilist(1.2_k2)_housetype_priority_5t_3h(step_num(t2_h3))_p#housetype_choose2",
-        "ver2_nofilter_multilist(1.2_k2)_housetype_priority_5t_3h(step_num(t2_h3))_p#portion_housesize_choose2",
-        "ver2_nofilter_multilist(1.2_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3",
-        "ver2_nofilter_multilist(1.5_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2",
+        # "ver1_nofilter_singlelist_8t_6h",
+        # "ver2_nofilter_multilist(1.2_k2)_housetype_priority_5t_3h(step_num(t2_h3))_p#housetype_choose2",
+        # "ver2_nofilter_multilist(1.2_k2)_housetype_priority_5t_3h(step_num(t2_h3))_p#portion_housesize_choose2",
+        # "ver2_nofilter_multilist(1.2_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3",
+        # "ver2_nofilter_multilist(1.5_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2",
         "ver2_nofilter_multilist(1.8_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2"
     ]
     
