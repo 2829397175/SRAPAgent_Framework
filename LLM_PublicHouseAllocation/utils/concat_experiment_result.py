@@ -49,9 +49,9 @@ def concat_experiment_results(ex_paths:list = [],
         ex_name = os.path.basename(ex_root_path)
         task_config = yaml.safe_load(open(config_path))
         
-        tenant_dt_path = task_config["managers"]["tenant"]["distribution_batch_dir"]
+        tenant_dt_path = os.path.join(ex_root_path,task_config["managers"]["tenant"]["distribution_batch_dir"])
         tenant_dt = readinfo(tenant_dt_path)
-        house_dt_path = task_config["managers"]["community"]["distribution_batch_dir"]
+        house_dt_path = os.path.join(ex_root_path,task_config["managers"]["community"]["distribution_batch_dir"])
         house_dt = readinfo(house_dt_path)
         if ex_name not in results.keys():
             results[ex_name] = {}
@@ -85,9 +85,9 @@ def concat_experiment_results(ex_paths:list = [],
                 result_u_type["ex_name"] = ex_name
                 result_u_type.set_index('ex_name',inplace=True,append=True)
                
-                for k,config in configs_cols_append.items():
-                    for config_key,config_value in config.items():
-                        assert  not isinstance(conf)
+                # for k,config in configs_cols_append.items():
+                #     for config_key,config_value in config.items():
+                #         assert not isinstance(config_key)
                 
                 values = result_u_type.values
                 cols = result_u_type.columns
@@ -133,8 +133,8 @@ def concat_experiment_results(ex_paths:list = [],
                                       ),
                                        index=pd.MultiIndex.from_tuples(list(indexs))
                                        )
-            # concated_df.to_csv(os.path.join(u_type_path,
-            #                                 matrix_name+".csv"))
+            concated_df.to_csv(os.path.join(u_type_path,
+                                            matrix_name+".csv"))
             concated_df.to_excel(os.path.join(u_type_path,
             matrix_name+".xlsx"),"sheet_1")
             
@@ -146,7 +146,7 @@ if __name__ == "__main__":
             "LLM_PublicHouseAllocation/tasks/PHA_51tenant_5community_28house/configs/ver2_nofilter_multilist_priority_7t_5h/result/1699435988.0701036"
             ]
     
-    config_root = "LLM_PublicHouseAllocation/tasks\PHA_51tenant_5community_28house\configs"
+    config_root = "LLM_PublicHouseAllocation/tasks/PHA_51tenant_5community_28house/configs"
     paths = []
     configs = os.listdir(config_root)
     for config in configs:

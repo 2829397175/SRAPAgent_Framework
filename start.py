@@ -51,11 +51,13 @@ def test_os_command():
 
 if __name__ == "__main__":
     
-    task_dir ="LLM_PublicHouseAllocation\\tasks"
+    task_dir ="LLM_PublicHouseAllocation/tasks"
     data = "PHA_51tenant_5community_28house"
     config_root = os.path.join(task_dir,data,"configs")
     task_names = os.listdir(config_root)
 
+
+    print(str(list(task_names)))
     # task_names = list(filter(lambda x: 
     #     not os.path.exists(os.path.join(config_root,x,"result")),
     #                          task_names))
