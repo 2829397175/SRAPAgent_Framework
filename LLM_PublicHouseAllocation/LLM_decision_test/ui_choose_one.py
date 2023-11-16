@@ -62,7 +62,7 @@ class App:
         
         
         self.frame_top = tk.Frame(self.window)
-        self.frame_top.grid(row=0, column=0,columnspan=2, sticky="nsew", padx=20, pady=5)
+        self.frame_top.grid(row=0, column=0,columnspan=2, sticky="nsew", padx=5, pady=5)
         
         row_counter_top = 0
         # Dynamic creation of labels and text widgets based on keys of prompt_inputs
@@ -70,15 +70,15 @@ class App:
         for key in self.data_list[0]['prompt_inputs'].keys():
             if key not in ["task","thought_type","choose_type","thought_hint","agent_scratchpad"]:
                 # frame_top_one = tk.Frame(self.frame_top,bg="blue")
-                # frame_top_one.grid(row=row_counter_top, column=0,columnspan=2, sticky="nsew", padx=20, pady=5)
+                # frame_top_one.grid(row=row_counter_top, column=0,columnspan=2, sticky="nsew", padx=5, pady=5)
                 
                 label = tk.Label(self.frame_top, text=key)
                 #label.pack(side=tk.LEFT,expand=True)
-                label.grid(row=row_counter_top,column=0,columnspan=2, sticky="nsew",padx=20, pady=5)
+                label.grid(row=row_counter_top,column=0,columnspan=2, sticky="nsew",padx=5, pady=5)
 
                 text_widget = tk.Text(self.frame_top, wrap=tk.WORD,bg="yellow",height=100, width=160)
                 #text_widget.pack(side=tk.RIGHT, expand=True, fill=tk.BOTH)
-                text_widget.grid(row=row_counter_top+1,column=0,columnspan=2, sticky="nsew",padx=20, pady=5)
+                text_widget.grid(row=row_counter_top+1,column=0,columnspan=2, sticky="nsew",padx=5, pady=5)
 
                 if not self.mode:
                     text_widget.configure(state=tk.DISABLED)  # Make it read-only
@@ -88,30 +88,30 @@ class App:
         
         
         self.frame_bottom = tk.Frame(self.window)
-        self.frame_bottom.grid(row=1, column=0, columnspan=2,sticky="nsew", padx=20, pady=5)
+        self.frame_bottom.grid(row=1, column=0, columnspan=2,sticky="nsew", padx=5, pady=5)
         
         
         
         for idx_col,data_type in enumerate(["Model 1","Model 2"]):
             frame_bottom_one = tk.Frame(self.frame_bottom)
-            frame_bottom_one.grid(row=0, column = idx_col, sticky="nsew", padx=20, pady=5)
+            frame_bottom_one.grid(row=0, column = idx_col, sticky="nsew", padx=5, pady=5)
             
             label = tk.Label(frame_bottom_one, text=data_type)
-            label.grid(row = 0, column = 0, sticky="nsew", padx=20, pady=5)
+            label.grid(row = 0, column = 0, sticky="nsew", padx=5, pady=5)
             
             frames_col = []
             for idx,key in enumerate(['output', 'thought']):
                 frame = tk.Frame(frame_bottom_one)
                 #frame.pack(side=tk.LEFT)
-                frame.grid(row = idx+1, column=0, sticky="nsew", padx=20, pady=5)
+                frame.grid(row = idx+1, column=0, sticky="nsew", padx=5, pady=5)
 
                 label = tk.Label(frame, text=key)
-                label.pack(side=tk.LEFT)
-                # label.grid(row = 0,column=0,sticky="nsew", padx=20, pady=5)
+                # label.pack(side=tk.LEFT)
+                label.grid(row = 0,column=0,sticky="nsew", padx=10, pady=5)
 
-                text_widget = tk.Text(frame, wrap=tk.WORD, height=5, width=50)
-                text_widget.pack(side=tk.RIGHT, expand=True, fill=tk.BOTH)
-                # text_widget.grid(row=1,column=0,sticky="nsew", padx=20, pady=5)
+                text_widget = tk.Text(frame, wrap=tk.WORD, height=100, width=80)
+                # text_widget.pack(side=tk.RIGHT, expand=True, fill=tk.BOTH)
+                text_widget.grid(row=1,column=0,sticky="nsew", padx=5, pady=5)
                 text_widget.tag_config('red', foreground='red', font=('Arial', 12, 'bold'))
                 # self.prompt_frames.append((label, text_widget))
                 frames_col.append((label, text_widget))
@@ -120,26 +120,33 @@ class App:
             
             # buttom frame
             button_frame = tk.Frame(frame_bottom_one)
-            button_frame.grid(row=3,column=0, pady=10)
+            button_frame.grid(row=3,column=0, pady=5)
             
             if idx_col ==0:
                 
                 button = tk.Button(button_frame, 
                                text="This One is more reasonable", 
                                command=self.approve_left)
+                button_2 = tk.Button(button_frame, 
+                               text="Both answar is acceptable", 
+                               command=self.approve_all)
             else:
                 button = tk.Button(button_frame, 
                                text="This One is more reasonable", 
                                command=self.approve_right)
                 
+                button_2 = tk.Button(button_frame, 
+                               text="no answar is acceptable", 
+                               command=self.approve_none)
+                
             button.pack(side=tk.LEFT, padx=10)
+            button_2.pack(side =tk.LEFT,padx=10)
             
             
             
         
-        self.window.grid_rowconfigure(0, weight=20)
-        self.window.grid_rowconfigure(1, weight=4)
-        self.window.grid_rowconfigure(2, weight=1)
+        self.window.grid_rowconfigure(0, weight=50)
+        self.window.grid_rowconfigure(1, weight=50)
         
         self.window.grid_columnconfigure(0, weight=1)
         # self.window.grid_columnconfigure(1, weight=1)
@@ -164,7 +171,7 @@ class App:
         
         lines = content.split("\n")
         line_count = len(lines) + 1  # adding an additional line for padding
-        text_widget.configure(height=line_count)
+        text_widget.configure(height=line_count+3)
         if not self.mode:
             text_widget.configure(state=tk.DISABLED)
         
@@ -179,7 +186,7 @@ class App:
         
         lines = content.split("\n")
         line_count = len(lines) + 1  # adding an additional line for padding
-        text_widget.configure(height=line_count)
+        text_widget.configure(height=line_count+3)
 
     def show_data(self):
         if self.index < len(self.data_list):
@@ -195,12 +202,12 @@ class App:
             # Ensure the number of frames matches the number of display keys
             while len(self.prompt_frames) < len(display_keys):
                 frame = tk.Frame(self.frame_top)
-                frame.grid(row=len(self.prompt_frames), column=0, sticky="nsew", padx=20, pady=5)
+                frame.grid(row=len(self.prompt_frames), column=0, sticky="nsew", padx=5, pady=5)
                 
                 label = tk.Label(frame)
                 label.pack(side=tk.LEFT)
 
-                text_widget = tk.Text(frame, wrap=tk.WORD, height=5, width=50)
+                text_widget = tk.Text(frame, wrap=tk.WORD, height=80, width=50)
                 text_widget.pack(side=tk.RIGHT, expand=True, fill=tk.BOTH)
                 if not self.mode:
                     text_widget.configure(state=tk.DISABLED)  # Make it read-only
@@ -262,6 +269,30 @@ class App:
         # 关闭窗口
         self.window.destroy()
         
+    def approve_all(self):
+       
+        if self.index < len(self.data_list):
+            self.data_list[self.index]["reasonal"] = "both"
+            
+            self.index += 1
+            if self.index == len(self.data_list):
+                self.save_and_exit()
+            self.show_data()
+        else:
+            self.save_and_exit()
+            
+    def approve_none(self):
+       
+        if self.index < len(self.data_list):
+            self.data_list[self.index]["reasonal"] = "none"
+            
+            self.index += 1
+            if self.index == len(self.data_list):
+                self.save_and_exit()
+            self.show_data()
+        else:
+            self.save_and_exit()
+            
     def approve_left(self):
         response_types =["human_response",
                          "robot_response"]
@@ -276,7 +307,7 @@ class App:
                          
             
             self.index += 1
-            if self.index == len(self.data_list)-1:
+            if self.index == len(self.data_list):
                 self.save_and_exit()
             self.show_data()
         else:
@@ -295,7 +326,7 @@ class App:
                     break            
             
             self.index += 1
-            if self.index == len(self.data_list)-1:
+            if self.index == len(self.data_list):
                 self.save_and_exit()
             self.show_data()
         else:

@@ -1,6 +1,8 @@
 tenant_info: &tenant_info |-
   You will be given an english name, which is the name of a tenant who wants to rent a house.
   
+  (添加一些租客的信息)
+
   Please generate some personal information for this virtual character in JSON format, 
 
   Constraints for generating information:

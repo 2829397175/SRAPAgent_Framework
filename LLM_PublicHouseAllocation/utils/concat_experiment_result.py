@@ -31,9 +31,10 @@ def concat_experiment_results(ex_paths:list = [],
     
     config_keys = [["environment","max_turns"],
                    ["environment","rule","order"],
-                   ["managers","tenant","policy"],
+                   ["managers","tenant","policy","type"],
                    ["managers","tenant","policy","group_policy"],
-                   ["managers","tenant","max_choose"]
+                   ["managers","tenant","max_choose"],
+                   ["managers","community","patch_method"],
                    ]
     
     
@@ -73,7 +74,11 @@ def concat_experiment_results(ex_paths:list = [],
                 result = task_config
                 for config_key in config_key_list:
                     result = result.get(config_key)
-                configs_cols_append[config_key_list[-1]] = result
+                if not isinstance(result,dict):
+                    result = {config_key_list[-1]:result}
+                    configs_cols_append[config_key_list[-2]] = result
+                else:
+                    configs_cols_append[config_key_list[-1]] = result
             
             for result_type in result_types:
                 
@@ -84,21 +89,30 @@ def concat_experiment_results(ex_paths:list = [],
                     continue
                 result_u_type["ex_name"] = ex_name
                 result_u_type.set_index('ex_name',inplace=True,append=True)
-               
-                # for k,config in configs_cols_append.items():
-                #     for config_key,config_value in config.items():
-                #         assert not isinstance(config_key)
                 
+                
+
+                
+               
+                cols_first_level = ["indicator_values" for i in range(result_u_type.shape[1])]
+                
+                for k,config in configs_cols_append.items():
+                    for config_key,config_value in config.items():
+                        assert not isinstance(config_value,dict)
+                        if isinstance(config_value,list):
+                            config_value =[config_value for i in range(result_u_type.shape[0])]
+                        result_u_type[f"{k}_{config_key}"] = config_value
+                        cols_first_level.append(k)
+                    
+                assert len(cols_first_level) == len(result_u_type.columns)
+                columns = [cols_first_level,list(result_u_type.columns)]
                 values = result_u_type.values
-                cols = result_u_type.columns
-                indexs = result_u_type.index
+                     
                 #[["indicator_values" for i in range(len(list(cols)))],list(cols)]
                 matrix = pd.DataFrame(values,
-                                      columns=pd.MultiIndex.from_product(
-                                          [["indicator_values"],list(cols)]
-                                      ),
+                                      columns=columns,
                                       index=pd.MultiIndex.from_tuples(
-                                          list(indexs)
+                                          list(result_u_type.index)
                                       )
                                       )
                 u_type_result_dict[result_type] = result_u_type
@@ -127,12 +141,12 @@ def concat_experiment_results(ex_paths:list = [],
             concated_df = pd.concat(matrixs)
             cols = concated_df.columns
             indexs = concated_df.index
-            concated_df = pd.DataFrame(concated_df.values,
-                                       columns=pd.MultiIndex.from_product(
-                                          [["indicator_values"],list(cols)]
-                                      ),
-                                       index=pd.MultiIndex.from_tuples(list(indexs))
-                                       )
+            # concated_df = pd.DataFrame(concated_df.values,
+            #                            columns=pd.MultiIndex.from_product(
+            #                               [["indicator_values"],list(cols)]
+            #                           ),
+            #                            index=pd.MultiIndex.from_tuples(list(indexs))
+            #                            )
             concated_df.to_csv(os.path.join(u_type_path,
                                             matrix_name+".csv"))
             concated_df.to_excel(os.path.join(u_type_path,

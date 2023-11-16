@@ -1,62 +1,61 @@
-,,indicator_values,indicator_values,indicator_values,indicator_values
-,,3>=family_num>=2,family_num=1,family_num>3,all
-mean_house_area,ver2_nofilter_multilist(1.2_k2)_housetype_priority_2t_2h(step_num(t5_h5))_p#housetype_choose2,9.156777777777778,29.933333333333334,12.0975,14.613666666666669
-mean_wait_turn,ver2_nofilter_multilist(1.2_k2)_housetype_priority_2t_2h(step_num(t5_h5))_p#housetype_choose2,2.333333333333333,1.6666666666666667,1.5,2.04
-var_mean_house_area,ver2_nofilter_multilist(1.2_k2)_housetype_priority_2t_2h(step_num(t5_h5))_p#housetype_choose2,,,,268.804834
-Rop,ver2_nofilter_multilist(1.2_k2)_housetype_priority_2t_2h(step_num(t5_h5))_p#housetype_choose2,,,,96.0
-mean_house_area,ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose1,16.09173913043478,21.66,7.999444444444445,15.683452380952382
-mean_wait_turn,ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose1,1.608695652173913,2.9,2.111111111111111,2.023809523809524
-var_mean_house_area,ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose1,,,,192.40755507842027
-Rop,ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose1,,,,206.0
-mean_house_area,ver1_nofilter_multilist(1.2)_multilist_nopriority_8t_6h_p#housetype,8.928222222222223,37.85090909090909,5.958499999999999,14.584150326797385
-mean_wait_turn,ver1_nofilter_multilist(1.2)_multilist_nopriority_8t_6h_p#housetype,4.0,1.818181818181818,4.8,3.686274509803922
-var_mean_house_area,ver1_nofilter_multilist(1.2)_multilist_nopriority_8t_6h_p#housetype,,,,267.5338986244607
-Rop,ver1_nofilter_multilist(1.2)_multilist_nopriority_8t_6h_p#housetype,,,,385.0
-mean_house_area,ver1_nofilter_multilist(1.5)_portion(f_rent_money_budget)_priority_8t_6h_p#portion_rent_money,7.425277777777778,19.482727272727274,10.355,10.600359477124185
-mean_wait_turn,ver1_nofilter_multilist(1.5)_portion(f_rent_money_budget)_priority_8t_6h_p#portion_rent_money,4.733333333333333,4.636363636363637,2.5,4.2745098039215685
-var_mean_house_area,ver1_nofilter_multilist(1.5)_portion(f_rent_money_budget)_priority_8t_6h_p#portion_rent_money,,,,185.09575591652796
-Rop,ver1_nofilter_multilist(1.5)_portion(f_rent_money_budget)_priority_8t_6h_p#portion_rent_money,,,,228.0
-mean_house_area,ver2_nofilter_multilist(1.2_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2,9.9625,22.844545454545457,9.81875,12.71279411764706
-mean_wait_turn,ver2_nofilter_multilist(1.2_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2,2.2666666666666666,3.090909090909091,2.4,2.4705882352941178
-var_mean_house_area,ver2_nofilter_multilist(1.2_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2,,,,199.12678899301545
-Rop,ver2_nofilter_multilist(1.2_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2,,,,266.0
-mean_house_area,ver1_nofilter_multilist(1.2)_portion(f_member_num)_priority_8t_6h_p#portion_rent_money,9.83,25.424545454545456,5.618,12.367647058823527
-mean_wait_turn,ver1_nofilter_multilist(1.2)_portion(f_member_num)_priority_8t_6h_p#portion_rent_money,4.166666666666667,4.2727272727272725,4.8,4.313725490196078
-var_mean_house_area,ver1_nofilter_multilist(1.2)_portion(f_member_num)_priority_8t_6h_p#portion_rent_money,,,,212.00625078175065
-Rop,ver1_nofilter_multilist(1.2)_portion(f_member_num)_priority_8t_6h_p#portion_rent_money,,,,339.0
-mean_house_area,ver2_nofilter_multilist(1.2_k2)_housetype_nopriority_8t_6h(step_num(t1_h1))_p#housetype_choose2,12.653214285714284,25.84909090909091,6.49,14.357755102040816
-mean_wait_turn,ver2_nofilter_multilist(1.2_k2)_housetype_nopriority_8t_6h(step_num(t1_h1))_p#housetype_choose2,2.1785714285714284,1.9090909090909087,2.4,2.163265306122449
-var_mean_house_area,ver2_nofilter_multilist(1.2_k2)_housetype_nopriority_8t_6h(step_num(t1_h1))_p#housetype_choose2,,,,220.8256248640613
-Rop,ver2_nofilter_multilist(1.2_k2)_housetype_nopriority_8t_6h(step_num(t1_h1))_p#housetype_choose2,,,,326.0
-mean_house_area,ver1_nofilter_multilist(1.2)_portion(f_member_num)_priority_8t_6h_p#random_avg,7.820666666666666,19.922727272727272,1.45,9.181764705882353
-mean_wait_turn,ver1_nofilter_multilist(1.2)_portion(f_member_num)_priority_8t_6h_p#random_avg,4.466666666666667,4.636363636363637,6.1,4.823529411764706
-var_mean_house_area,ver1_nofilter_multilist(1.2)_portion(f_member_num)_priority_8t_6h_p#random_avg,,,,203.4897174740484
-Rop,ver1_nofilter_multilist(1.2)_portion(f_member_num)_priority_8t_6h_p#random_avg,,,,322.0
-mean_house_area,ver2_nofilter_multilist(1.8_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2,11.48427536231884,32.462,10.62861111111111,16.295615079365078
-mean_wait_turn,ver2_nofilter_multilist(1.8_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2,2.0,1.5,1.6666666666666667,1.809523809523809
-var_mean_house_area,ver2_nofilter_multilist(1.8_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2,,,,218.9983972572594
-Rop,ver2_nofilter_multilist(1.8_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2,,,,190.0
-mean_house_area,ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2,9.262179487179488,24.614,4.058333333333334,12.173968253968257
-mean_wait_turn,ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2,1.7692307692307692,1.6,2.0,1.761904761904762
-var_mean_house_area,ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2,,,,241.1519062106325
-Rop,ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2,,,,63.0
-mean_house_area,ver1_nofilter_singlelist_1t_6h_p#singlelist,9.697555555555557,30.530000000000005,4.5760000000000005,13.186601307189544
-mean_wait_turn,ver1_nofilter_singlelist_1t_6h_p#singlelist,7.9,6.181818181818182,8.3,7.607843137254902
-var_mean_house_area,ver1_nofilter_singlelist_1t_6h_p#singlelist,,,,236.78357189115297
-Rop,ver1_nofilter_singlelist_1t_6h_p#singlelist,,,,363.0
-mean_house_area,ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3,9.655714285714286,28.366363636363637,11.224,14.176122448979593
-mean_wait_turn,ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3,2.5,2.363636363636364,1.6,2.2857142857142856
-var_mean_house_area,ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3,,,,238.4383575269564
-Rop,ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3,,,,303.0
-mean_house_area,ver2_nofilter_multilist(1.2_k1)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose1,11.918690476190475,25.50909090909091,6.23625,13.809914965986394
-mean_wait_turn,ver2_nofilter_multilist(1.2_k1)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose1,2.1785714285714284,2.272727272727273,2.4,2.2448979591836733
-var_mean_house_area,ver2_nofilter_multilist(1.2_k1)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose1,,,,209.9099991566014
-Rop,ver2_nofilter_multilist(1.2_k1)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose1,,,,277.0
-mean_house_area,ver2_nofilter_multilist(1.5_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2,10.993869047619048,22.797272727272727,7.93425,13.019200680272109
-mean_wait_turn,ver2_nofilter_multilist(1.5_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2,2.107142857142857,2.5454545454545454,2.3,2.2448979591836733
-var_mean_house_area,ver2_nofilter_multilist(1.5_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2,,,,192.9756822550789
-Rop,ver2_nofilter_multilist(1.5_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2,,,,229.0
-mean_house_area,ver2_nofilter_multilist(1.2_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose1,10.193055555555556,22.006363636363638,8.10825,12.332238562091502
-mean_wait_turn,ver2_nofilter_multilist(1.2_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose1,3.6666666666666665,3.727272727272727,3.7,3.686274509803922
-var_mean_house_area,ver2_nofilter_multilist(1.2_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose1,,,,195.43768301988547
-Rop,ver2_nofilter_multilist(1.2_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose1,,,,274.0
+type_indicator,ex_name,3>=family_num>=2,family_num=1,family_num>3,all,distribution_batch_house_distribution_len,distribution_batch_house_distribution_step,distribution_batch_tenant_distribution_len,distribution_batch_tenant_distribution_step,environment_max_turns,order_type,order_waitlist_ratio,order_k,policy_type,group_policy_type,group_policy_priority,tenant_max_choose,community_patch_method,group_policy_portion_settings,group_policy_portion_attribute
+mean_house_area,ver2_nofilter_multilist(1.2_k2)_housetype_priority_2t_2h(step_num(t5_h5))_p#housetype_choose2,9.156777777777778,29.933333333333334,12.0975,14.613666666666669,2,5,2,5,10,kwaitlist,1.2,2.0,ver2,house_type,True,2,house_type,,
+mean_wait_turn,ver2_nofilter_multilist(1.2_k2)_housetype_priority_2t_2h(step_num(t5_h5))_p#housetype_choose2,2.333333333333333,1.6666666666666667,1.5,2.04,2,5,2,5,10,kwaitlist,1.2,2.0,ver2,house_type,True,2,house_type,,
+var_mean_house_area,ver2_nofilter_multilist(1.2_k2)_housetype_priority_2t_2h(step_num(t5_h5))_p#housetype_choose2,,,,268.804834,2,5,2,5,10,kwaitlist,1.2,2.0,ver2,house_type,True,2,house_type,,
+Rop,ver2_nofilter_multilist(1.2_k2)_housetype_priority_2t_2h(step_num(t5_h5))_p#housetype_choose2,,,,96.0,2,5,2,5,10,kwaitlist,1.2,2.0,ver2,house_type,True,2,house_type,,
+mean_house_area,ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose1,16.09173913043478,21.66,7.999444444444445,15.683452380952382,6,1,8,1,10,kwaitlist,1.2,2.0,ver2,house_type,True,1,house_type,,
+mean_wait_turn,ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose1,1.608695652173913,2.9,2.111111111111111,2.023809523809524,6,1,8,1,10,kwaitlist,1.2,2.0,ver2,house_type,True,1,house_type,,
+var_mean_house_area,ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose1,,,,192.40755507842027,6,1,8,1,10,kwaitlist,1.2,2.0,ver2,house_type,True,1,house_type,,
+Rop,ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose1,,,,206.0,6,1,8,1,10,kwaitlist,1.2,2.0,ver2,house_type,True,1,house_type,,
+mean_house_area,ver1_nofilter_multilist(1.2)_multilist_nopriority_8t_6h_p#housetype,8.928222222222223,37.85090909090909,5.958499999999999,14.584150326797385,6,1,8,1,10,kwaitlist,1.2,2.0,ver1,multi_list,False,2,house_type,,
+mean_wait_turn,ver1_nofilter_multilist(1.2)_multilist_nopriority_8t_6h_p#housetype,4.0,1.818181818181818,4.8,3.686274509803922,6,1,8,1,10,kwaitlist,1.2,2.0,ver1,multi_list,False,2,house_type,,
+var_mean_house_area,ver1_nofilter_multilist(1.2)_multilist_nopriority_8t_6h_p#housetype,,,,267.5338986244607,6,1,8,1,10,kwaitlist,1.2,2.0,ver1,multi_list,False,2,house_type,,
+Rop,ver1_nofilter_multilist(1.2)_multilist_nopriority_8t_6h_p#housetype,,,,385.0,6,1,8,1,10,kwaitlist,1.2,2.0,ver1,multi_list,False,2,house_type,,
+mean_house_area,ver1_nofilter_multilist(1.5)_portion(f_rent_money_budget)_priority_8t_6h_p#portion_rent_money,7.425277777777778,19.482727272727274,10.355,10.600359477124185,6,1,8,1,10,kwaitlist,1.5,,ver1,portion,True,2,portion,"[0.2, 0.3, 0.3, 0.2]",monthly_rent_budget
+mean_wait_turn,ver1_nofilter_multilist(1.5)_portion(f_rent_money_budget)_priority_8t_6h_p#portion_rent_money,4.733333333333333,4.636363636363637,2.5,4.2745098039215685,6,1,8,1,10,kwaitlist,1.5,,ver1,portion,True,2,portion,"[0.2, 0.3, 0.3, 0.2]",monthly_rent_budget
+var_mean_house_area,ver1_nofilter_multilist(1.5)_portion(f_rent_money_budget)_priority_8t_6h_p#portion_rent_money,,,,185.09575591652796,6,1,8,1,10,kwaitlist,1.5,,ver1,portion,True,2,portion,"[0.2, 0.3, 0.3, 0.2]",monthly_rent_budget
+Rop,ver1_nofilter_multilist(1.5)_portion(f_rent_money_budget)_priority_8t_6h_p#portion_rent_money,,,,228.0,6,1,8,1,10,kwaitlist,1.5,,ver1,portion,True,2,portion,"[0.2, 0.3, 0.3, 0.2]",monthly_rent_budget
+mean_house_area,ver2_nofilter_multilist(1.2_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2,9.9625,22.844545454545457,9.81875,12.71279411764706,6,1,8,1,10,kwaitlist,1.2,3.0,ver2,house_type,True,2,house_type,,
+mean_wait_turn,ver2_nofilter_multilist(1.2_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2,2.2666666666666666,3.090909090909091,2.4,2.4705882352941178,6,1,8,1,10,kwaitlist,1.2,3.0,ver2,house_type,True,2,house_type,,
+var_mean_house_area,ver2_nofilter_multilist(1.2_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2,,,,199.12678899301545,6,1,8,1,10,kwaitlist,1.2,3.0,ver2,house_type,True,2,house_type,,
+Rop,ver2_nofilter_multilist(1.2_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2,,,,266.0,6,1,8,1,10,kwaitlist,1.2,3.0,ver2,house_type,True,2,house_type,,
+mean_house_area,ver1_nofilter_multilist(1.2)_portion(f_member_num)_priority_8t_6h_p#portion_rent_money,9.83,25.424545454545456,5.618,12.367647058823527,6,1,8,1,10,kwaitlist,1.2,2.0,ver1,portion,True,2,portion,"[0.2, 0.3, 0.3, 0.2]",family_members_num
+mean_wait_turn,ver1_nofilter_multilist(1.2)_portion(f_member_num)_priority_8t_6h_p#portion_rent_money,4.166666666666667,4.2727272727272725,4.8,4.313725490196078,6,1,8,1,10,kwaitlist,1.2,2.0,ver1,portion,True,2,portion,"[0.2, 0.3, 0.3, 0.2]",family_members_num
+var_mean_house_area,ver1_nofilter_multilist(1.2)_portion(f_member_num)_priority_8t_6h_p#portion_rent_money,,,,212.00625078175065,6,1,8,1,10,kwaitlist,1.2,2.0,ver1,portion,True,2,portion,"[0.2, 0.3, 0.3, 0.2]",family_members_num
+Rop,ver1_nofilter_multilist(1.2)_portion(f_member_num)_priority_8t_6h_p#portion_rent_money,,,,339.0,6,1,8,1,10,kwaitlist,1.2,2.0,ver1,portion,True,2,portion,"[0.2, 0.3, 0.3, 0.2]",family_members_num
+mean_house_area,ver2_nofilter_multilist(1.2_k2)_housetype_nopriority_8t_6h(step_num(t1_h1))_p#housetype_choose2,12.653214285714284,25.84909090909091,6.49,14.357755102040816,6,1,8,1,10,kwaitlist,1.2,2.0,ver2,house_type,False,2,house_type,,
+mean_wait_turn,ver2_nofilter_multilist(1.2_k2)_housetype_nopriority_8t_6h(step_num(t1_h1))_p#housetype_choose2,2.1785714285714284,1.9090909090909087,2.4,2.163265306122449,6,1,8,1,10,kwaitlist,1.2,2.0,ver2,house_type,False,2,house_type,,
+var_mean_house_area,ver2_nofilter_multilist(1.2_k2)_housetype_nopriority_8t_6h(step_num(t1_h1))_p#housetype_choose2,,,,220.8256248640613,6,1,8,1,10,kwaitlist,1.2,2.0,ver2,house_type,False,2,house_type,,
+Rop,ver2_nofilter_multilist(1.2_k2)_housetype_nopriority_8t_6h(step_num(t1_h1))_p#housetype_choose2,,,,326.0,6,1,8,1,10,kwaitlist,1.2,2.0,ver2,house_type,False,2,house_type,,
+mean_house_area,ver1_nofilter_multilist(1.2)_portion(f_member_num)_priority_8t_6h_p#random_avg,7.820666666666666,19.922727272727272,1.45,9.181764705882353,6,1,8,1,10,kwaitlist,1.2,2.0,ver1,portion,True,2,random_avg,"[0.2, 0.3, 0.3, 0.2]",family_members_num
+mean_wait_turn,ver1_nofilter_multilist(1.2)_portion(f_member_num)_priority_8t_6h_p#random_avg,4.466666666666667,4.636363636363637,6.1,4.823529411764706,6,1,8,1,10,kwaitlist,1.2,2.0,ver1,portion,True,2,random_avg,"[0.2, 0.3, 0.3, 0.2]",family_members_num
+var_mean_house_area,ver1_nofilter_multilist(1.2)_portion(f_member_num)_priority_8t_6h_p#random_avg,,,,203.4897174740484,6,1,8,1,10,kwaitlist,1.2,2.0,ver1,portion,True,2,random_avg,"[0.2, 0.3, 0.3, 0.2]",family_members_num
+Rop,ver1_nofilter_multilist(1.2)_portion(f_member_num)_priority_8t_6h_p#random_avg,,,,322.0,6,1,8,1,10,kwaitlist,1.2,2.0,ver1,portion,True,2,random_avg,"[0.2, 0.3, 0.3, 0.2]",family_members_num
+mean_house_area,ver2_nofilter_multilist(1.8_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2,11.48427536231884,32.462,10.62861111111111,16.295615079365078,6,1,8,1,10,kwaitlist,1.8,,ver2,house_type,True,2,house_type,,
+mean_wait_turn,ver2_nofilter_multilist(1.8_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2,2.0,1.5,1.6666666666666667,1.809523809523809,6,1,8,1,10,kwaitlist,1.8,,ver2,house_type,True,2,house_type,,
+var_mean_house_area,ver2_nofilter_multilist(1.8_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2,,,,218.9983972572594,6,1,8,1,10,kwaitlist,1.8,,ver2,house_type,True,2,house_type,,
+Rop,ver2_nofilter_multilist(1.8_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2,,,,190.0,6,1,8,1,10,kwaitlist,1.8,,ver2,house_type,True,2,house_type,,
+mean_house_area,ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2,9.262179487179488,24.614,4.058333333333334,12.173968253968257,6,1,8,1,10,kwaitlist,1.2,2.0,ver2,house_type,True,2,house_type,,
+mean_wait_turn,ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2,1.7692307692307692,1.6,2.0,1.761904761904762,6,1,8,1,10,kwaitlist,1.2,2.0,ver2,house_type,True,2,house_type,,
+var_mean_house_area,ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2,,,,241.1519062106325,6,1,8,1,10,kwaitlist,1.2,2.0,ver2,house_type,True,2,house_type,,
+Rop,ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2,,,,63.0,6,1,8,1,10,kwaitlist,1.2,2.0,ver2,house_type,True,2,house_type,,
+mean_house_area,ver1_nofilter_singlelist_1t_6h_p#singlelist,9.697555555555557,30.530000000000005,4.5760000000000005,13.186601307189544,6,1,1,1,10,kwaitlist,1.2,2.0,ver1,single_list,,2,single_list,,
+mean_wait_turn,ver1_nofilter_singlelist_1t_6h_p#singlelist,7.9,6.181818181818182,8.3,7.607843137254902,6,1,1,1,10,kwaitlist,1.2,2.0,ver1,single_list,,2,single_list,,
+var_mean_house_area,ver1_nofilter_singlelist_1t_6h_p#singlelist,,,,236.78357189115297,6,1,1,1,10,kwaitlist,1.2,2.0,ver1,single_list,,2,single_list,,
+Rop,ver1_nofilter_singlelist_1t_6h_p#singlelist,,,,363.0,6,1,1,1,10,kwaitlist,1.2,2.0,ver1,single_list,,2,single_list,,
+mean_house_area,ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3,9.655714285714286,28.366363636363637,11.224,14.176122448979593,6,1,8,1,10,kwaitlist,1.2,2.0,ver2,house_type,True,3,house_type,,
+mean_wait_turn,ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3,2.5,2.363636363636364,1.6,2.2857142857142856,6,1,8,1,10,kwaitlist,1.2,2.0,ver2,house_type,True,3,house_type,,
+var_mean_house_area,ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3,,,,238.4383575269564,6,1,8,1,10,kwaitlist,1.2,2.0,ver2,house_type,True,3,house_type,,
+Rop,ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3,,,,303.0,6,1,8,1,10,kwaitlist,1.2,2.0,ver2,house_type,True,3,house_type,,
+mean_house_area,ver2_nofilter_multilist(1.2_k1)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose1,11.918690476190475,25.50909090909091,6.23625,13.809914965986394,6,1,8,1,10,kwaitlist,1.2,1.0,ver2,house_type,True,1,house_type,,
+mean_wait_turn,ver2_nofilter_multilist(1.2_k1)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose1,2.1785714285714284,2.272727272727273,2.4,2.2448979591836733,6,1,8,1,10,kwaitlist,1.2,1.0,ver2,house_type,True,1,house_type,,
+var_mean_house_area,ver2_nofilter_multilist(1.2_k1)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose1,,,,209.9099991566014,6,1,8,1,10,kwaitlist,1.2,1.0,ver2,house_type,True,1,house_type,,
+Rop,ver2_nofilter_multilist(1.2_k1)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose1,,,,277.0,6,1,8,1,10,kwaitlist,1.2,1.0,ver2,house_type,True,1,house_type,,
+mean_house_area,ver2_nofilter_multilist(1.5_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2,10.993869047619048,22.797272727272727,7.93425,13.019200680272109,6,1,8,1,10,kwaitlist,1.5,,ver2,house_type,True,2,house_type,,
+mean_wait_turn,ver2_nofilter_multilist(1.5_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2,2.107142857142857,2.5454545454545454,2.3,2.2448979591836733,6,1,8,1,10,kwaitlist,1.5,,ver2,house_type,True,2,house_type,,
+var_mean_house_area,ver2_nofilter_multilist(1.5_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2,,,,192.9756822550789,6,1,8,1,10,kwaitlist,1.5,,ver2,house_type,True,2,house_type,,
+Rop,ver2_nofilter_multilist(1.5_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2,,,,229.0,6,1,8,1,10,kwaitlist,1.5,,ver2,house_type,True,2,house_type,,
+mean_house_area,ver2_nofilter_multilist(1.2_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose1,10.193055555555556,22.006363636363638,8.10825,12.332238562091502,6,1,8,1,10,kwaitlist,1.2,3.0,ver2,house_type,True,1,house_type,,
+mean_wait_turn,ver2_nofilter_multilist(1.2_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose1,3.6666666666666665,3.727272727272727,3.7,3.686274509803922,6,1,8,1,10,kwaitlist,1.2,3.0,ver2,house_type,True,1,house_type,,
+var_mean_house_area,ver2_nofilter_multilist(1.2_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose1,,,,195.43768301988547,6,1,8,1,10,kwaitlist,1.2,3.0,ver2,house_type,True,1,house_type,,
+Rop,ver2_nofilter_multilist(1.2_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose1,,,,274.0,6,1,8,1,10,kwaitlist,1.2,3.0,ver2,house_type,True,1,house_type,,

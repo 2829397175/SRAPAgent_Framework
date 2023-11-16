@@ -806,7 +806,7 @@
             "frame":0
         },
         "robot_response":{
-            "output":"I choose none of these options.",
+            "output":"我不会选择这些选项",
             "thought":"从我目前的情况来看，这三个房屋都超出了我的预算。此外，房屋的每人生活面积也不是很大。虽然房屋的布局和房间大小都符合我的需求，但价格对于我来说太高了。因此，我决定放弃这些选择。",
             "frame":1
         },
