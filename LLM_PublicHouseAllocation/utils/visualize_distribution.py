@@ -44,8 +44,8 @@ def visualize_tenant(data_path):
 def visualize_tenant_rating(global_rating_path,
                             tenant_ids:list=[],
                             show_score_key:str ="score",
-                            house_path:str="LLM_PublicHouseAllocation\\tasks\PHA_51tenant_5community_28house\data\house_28.json",
-                            tenant_path:str ="LLM_PublicHouseAllocation\\tasks\PHA_51tenant_5community_28house\data\\tenant_51.json"):
+                            house_path:str="LLM_PublicHouseAllocation/tasks\PHA_51tenant_5community_28house\data\house_28.json",
+                            tenant_path:str ="LLM_PublicHouseAllocation/tasks\PHA_51tenant_5community_28house\datatenant_51.json"):
     save_path = os.path.join(global_rating_path,
                              "visualize",
                              show_score_key)
@@ -292,15 +292,15 @@ def visualize_house(data_house):
     
     
 if __name__ =="__main__":
-    task_path ="LLM_PublicHouseAllocation\\tasks\\test_task"
-    task_path = "LLM_PublicHouseAllocation\\tasks\PHA_51tenant_5community_28house_ver2_nofilter_multilist_priority_7t_5h"
+    task_path ="LLM_PublicHouseAllocation/tasks/test_task"
+    task_path = "LLM_PublicHouseAllocation/tasks\PHA_51tenant_5community_28house_ver2_nofilter_multilist_priority_7t_5h"
     data_path = os.path.join(task_path,"data")
     # visualize_tenant(data_path)
     
     #visualize_house(data_path)
-    # global_rating_path = "LLM_PublicHouseAllocation\\tasks\\test_task\global_evaluation"
-    global_rating_path="LLM_PublicHouseAllocation\\tasks\PHA_51tenant_5community_28house\global_evaluation"
-    #global_rating_path="LLM_PublicHouseAllocation\\tasks\PHA_51tenant_5community_28house_ver2_nofilter_multilist_priority_7t_5h\global_evaluation"
+    # global_rating_path = "LLM_PublicHouseAllocation/tasks/test_task\global_evaluation"
+    global_rating_path="LLM_PublicHouseAllocation/tasks\PHA_51tenant_5community_28house\global_evaluation"
+    #global_rating_path="LLM_PublicHouseAllocation/tasks\PHA_51tenant_5community_28house_ver2_nofilter_multilist_priority_7t_5h\global_evaluation"
     show_score_keys =[
                     #     "score",
                     #   "llm_score",
@@ -319,5 +319,5 @@ if __name__ =="__main__":
         visualize_tenant_rating(global_rating_path=global_rating_path,
                             tenant_ids=[],
                             show_score_key=show_score_key,
-                            house_path = "LLM_PublicHouseAllocation\\tasks\PHA_51tenant_5community_28house\data\house_28.json",
-                            tenant_path ="LLM_PublicHouseAllocation\\tasks\PHA_51tenant_5community_28house\data\\tenant_51.json")
+                            house_path = "LLM_PublicHouseAllocation/tasks\PHA_51tenant_5community_28house\data\house_28.json",
+                            tenant_path ="LLM_PublicHouseAllocation/tasks\PHA_51tenant_5community_28house\data/tenant_51.json")

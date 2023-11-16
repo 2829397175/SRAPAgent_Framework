@@ -2,7 +2,7 @@ import json
 
 import os
 
-with open(f"LLM_PublicHouseAllocation\\tasks\PHA_51tenant_5community_28house\global_evaluation\global_score_newver.json",'r',encoding = 'utf-8') as f:
+with open(f"LLM_PublicHouseAllocation/tasks\PHA_51tenant_5community_28house\global_evaluation\global_score_newver.json",'r',encoding = 'utf-8') as f:
     tenant_json = json.load(f)
     
 for tenant_id,eval_tenant in tenant_json.items():
@@ -12,16 +12,16 @@ for tenant_id,eval_tenant in tenant_json.items():
         assert house_eval["llm_score"]<=10
         # del house_eval["score"]
 
-with open("LLM_PublicHouseAllocation\\tasks\PHA_51tenant_5community_28house\global_evaluation\global_score_newver.json",'w',encoding = 'utf-8') as f:
+with open("LLM_PublicHouseAllocation/tasks\PHA_51tenant_5community_28house\global_evaluation\global_score_newver.json",'w',encoding = 'utf-8') as f:
     json.dump(tenant_json, f, indent=4,separators=(',', ':'),ensure_ascii=False)
         
         
 
-# files = os.listdir("LLM_PublicHouseAllocation\\tasks")
+# files = os.listdir("LLM_PublicHouseAllocation/tasks")
 
 # for file in files:
 #     if "PHA_51tenant_5community_28house" in file:
-#         global_eval_path = os.path.join("LLM_PublicHouseAllocation\\tasks",
+#         global_eval_path = os.path.join("LLM_PublicHouseAllocation/tasks",
 #                                         file,
 #                                         "global_evaluation\global_score_newver.json")
         

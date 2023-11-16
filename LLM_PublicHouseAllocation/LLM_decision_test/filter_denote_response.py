@@ -100,9 +100,9 @@ def translate_baidu_6000(english_text,
 
 
 def filter_en_to_cn(type_data,
-                    english_data_dir ="LLM_PublicHouseAllocation\LLM_decision_test\\filtered_response_data_simulated\en_ver",
+                    english_data_dir ="LLM_PublicHouseAllocation\LLM_decision_test/filtered_response_data_simulated\en_ver",
                     chinese_data_dir ="LLM_PublicHouseAllocation\LLM_decision_test\denote\save_response",
-                    save_dir = "LLM_PublicHouseAllocation\LLM_decision_test\\filtered_response_data_simulated\cn_ver"):
+                    save_dir = "LLM_PublicHouseAllocation\LLM_decision_test/filtered_response_data_simulated\cn_ver"):
     
     data_path = os.path.join(english_data_dir,f"{type_data}.json")
     en_ver_data = readinfo(data_path)
@@ -124,7 +124,7 @@ def filter_en_to_cn(type_data,
 def filter_chinese_to_en(type_data,
                          chinese_data_dir ="LLM_PublicHouseAllocation\LLM_decision_test\denote\save_response",
                          english_data_dir ="LLM_PublicHouseAllocation\LLM_decision_test\english_judge_data",
-                         save_dir = "LLM_PublicHouseAllocation\LLM_decision_test\\filtered_response_data",
+                         save_dir = "LLM_PublicHouseAllocation\LLM_decision_test/filtered_response_data",
                          ):
     files = os.listdir(english_data_dir)
     regex = f"(.*)_qa.*.json"

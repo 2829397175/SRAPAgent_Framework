@@ -560,7 +560,7 @@ if __name__ == "__main__":
     
     # load data
     # data_dir: directory of jsons
-    # data_dir ="LLM_PublicHouseAllocation\LLM_decision_test\social_network\\tenental_system"
+    # data_dir ="LLM_PublicHouseAllocation\LLM_decision_test\social_networktenental_system"
     # saving_dir = "LLM_PublicHouseAllocation\LLM_decision_test\social_network\data_label/QA_test.json"
     app = App()
     

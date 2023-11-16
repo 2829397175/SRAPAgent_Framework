@@ -597,7 +597,8 @@ but the number of houses in the system is limited. You are in a competitive rela
                                                  "dialogue"], 
                                     template=prompt_template)
         
-        for acquaintance_id in self.social_network.keys():
+        
+        for acquaintance_id in list(self.social_network.keys()):
             acquaintance_info = self.social_network[acquaintance_id]
            
             if "dialogues" not in acquaintance_info.keys() :

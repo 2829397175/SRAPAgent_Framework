@@ -125,9 +125,9 @@ def split_choose_one(json_types,
             
             
 def get_en_according_to_cn(json_types,
-                           save_dir = "LLM_PublicHouseAllocation\LLM_decision_test\\filtered_response_data_simulated\en_ver\group",
-                           data_dir = "LLM_PublicHouseAllocation\LLM_decision_test\\filtered_response_data_simulated\en_ver",
-                           cn_dir_groups ="LLM_PublicHouseAllocation\LLM_decision_test\\filtered_response_data_simulated\cn_ver\group\\all"):
+                           save_dir = "LLM_PublicHouseAllocation\LLM_decision_test/filtered_response_data_simulated\en_ver\group",
+                           data_dir = "LLM_PublicHouseAllocation\LLM_decision_test/filtered_response_data_simulated\en_ver",
+                           cn_dir_groups ="LLM_PublicHouseAllocation\LLM_decision_test/filtered_response_data_simulated\cn_ver\group/all"):
     
     data_all = {}
     for json_type in json_types:
@@ -210,8 +210,8 @@ def get_en_according_to_cn(json_types,
             json.dump(group_en_ver,f, indent=4,separators=(',', ':'),ensure_ascii=False)
         
         
-def filter_cn_choose_id(cn_dir_groups = "LLM_PublicHouseAllocation\LLM_decision_test\\filtered_response_data_simulated\cn_ver\group\\all",
-                        save_path = "LLM_PublicHouseAllocation\LLM_decision_test\\filtered_response_data_simulated\cn_ver\group\\all\\all_choose_one_3.json"):
+def filter_cn_choose_id(cn_dir_groups = "LLM_PublicHouseAllocation\LLM_decision_test/filtered_response_data_simulated\cn_ver\group/all",
+                        save_path = "LLM_PublicHouseAllocation\LLM_decision_test/filtered_response_data_simulated\cn_ver\group/all/all_choose_one_3.json"):
     files = os.listdir(cn_dir_groups)
     ids = [1,3]
     all_cn_datas = []
@@ -255,8 +255,8 @@ def filter_cn_choose_id(cn_dir_groups = "LLM_PublicHouseAllocation\LLM_decision_
 
 def shuffle_for_user(json_types,
                     user_index=0,
-                    save_dir ="LLM_PublicHouseAllocation\LLM_decision_test\qa_unclear_data\\filtered\groups",
-                    data_dir ="LLM_PublicHouseAllocation\LLM_decision_test\qa_unclear_data\\filtered\groups"
+                    save_dir ="LLM_PublicHouseAllocation\LLM_decision_test\qa_unclear_data/filtered\groups",
+                    data_dir ="LLM_PublicHouseAllocation\LLM_decision_test\qa_unclear_data/filtered\groups"
                  ):
     user_index_map={
         0:6,
@@ -308,8 +308,8 @@ def shuffle_for_user_human(json_types,
                     user_index=0,
                     users_index =list(range(10)),
                     data_len_limit = 30,
-                    save_dir ="LLM_PublicHouseAllocation\LLM_decision_test\qa_unclear_data\\filtered\groups",
-                    data_dir ="LLM_PublicHouseAllocation\LLM_decision_test\qa_unclear_data\\filtered\groups"
+                    save_dir ="LLM_PublicHouseAllocation\LLM_decision_test\qa_unclear_data/filtered\groups",
+                    data_dir ="LLM_PublicHouseAllocation\LLM_decision_test\qa_unclear_data/filtered\groups"
                  ):
     
     data_types=["save_response"]
@@ -350,21 +350,21 @@ def shuffle_for_user_human(json_types,
      
 
 def filter_response():
-    en_info = readinfo("LLM_PublicHouseAllocation\LLM_decision_test\\filtered_response_data_simulated\en_ver\group\enall_choose_one_3.json")
-    cn_info = readinfo("LLM_PublicHouseAllocation\LLM_decision_test\\filtered_response_data_simulated\cn_ver\group\\all\\all_choose_one_3.json")
+    en_info = readinfo("LLM_PublicHouseAllocation\LLM_decision_test/filtered_response_data_simulated\en_ver\group\enall_choose_one_3.json")
+    cn_info = readinfo("LLM_PublicHouseAllocation\LLM_decision_test/filtered_response_data_simulated\cn_ver\group/all/all_choose_one_3.json")
 
     for idx,choose_one in enumerate(cn_info):
         choose_one["reasonal"] = en_info[idx]["reasonal"]
         
-    with open("LLM_PublicHouseAllocation\LLM_decision_test\\filtered_response_data_simulated\cn_ver\group\\all\\all_choose_one_3.json",'w',encoding = 'utf-8') as f:
+    with open("LLM_PublicHouseAllocation\LLM_decision_test/filtered_response_data_simulated\cn_ver\group/all/all_choose_one_3.json",'w',encoding = 'utf-8') as f:
         json.dump(cn_info,f, indent=4,separators=(',', ':'),ensure_ascii=False)
      
 
 if __name__ =="__main__":
     
     json_types = ["community","house","housetype"]
-    data_dir = "LLM_PublicHouseAllocation\LLM_decision_test\qa_unclear_data\\filtered"
-    save_dir ="LLM_PublicHouseAllocation\LLM_decision_test\qa_unclear_data\\filtered\groups"
+    data_dir = "LLM_PublicHouseAllocation\LLM_decision_test\qa_unclear_data/filtered"
+    save_dir ="LLM_PublicHouseAllocation\LLM_decision_test\qa_unclear_data/filtered\groups"
     
     
     filter_response()
@@ -373,8 +373,8 @@ if __name__ =="__main__":
     #                     save_dir=save_dir)
     
     # split_choose_one(json_types,4,
-    #                  "LLM_PublicHouseAllocation\LLM_decision_test\\filtered_response_data_simulated\cn_ver\group",
-    #                  "LLM_PublicHouseAllocation\LLM_decision_test\\filtered_response_data_simulated\cn_ver"
+    #                  "LLM_PublicHouseAllocation\LLM_decision_test/filtered_response_data_simulated\cn_ver\group",
+    #                  "LLM_PublicHouseAllocation\LLM_decision_test/filtered_response_data_simulated\cn_ver"
     #                  )
     
     # filter choose ids (根据选择结果和choose_type做对应)

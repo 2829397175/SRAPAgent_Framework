@@ -17,7 +17,7 @@ chcp 65001
 
 SETLOCAL ENABLEDELAYEDEXPANSION
 
-SET api_path=LLM_PublicHouseAllocation\llms\api.json
+SET api_path=LLM_PublicHouseAllocation/llms/api.json
 SET data_type= "PHA_51tenant_5community_28house"
 SET task_list= "ver1_nofilter_portion(f_member_num)_priority_8t_6h_p#rent_money" "ver1_nofilter_portion(f_rent_money_budget)_priority_8t_6h_p#rent_money"
 

@@ -114,7 +114,7 @@ def clear_1_json_memory(json_types):
     rate 代表clear response的比例
     """
     for json_type in json_types:
-        json_dir = "LLM_PublicHouseAllocation\LLM_decision_test\old_ver_11_3\qa_translated\judge\\finished\{}_qa.json".format(json_type)
+        json_dir = "LLM_PublicHouseAllocation\LLM_decision_test\old_ver_11_3\qa_translated\judge/finished\{}_qa.json".format(json_type)
         with open(json_dir,'r',encoding = 'utf-8') as f:
             data = json.load(f)
         data = clear_1(data)
@@ -122,7 +122,7 @@ def clear_1_json_memory(json_types):
             for data_one in data:
                 data_one["prompt_inputs"]["memory"] =""
         
-        save_path = "LLM_PublicHouseAllocation\LLM_decision_test\qa_unclear_data\\filtered\{}_qa.json".format(json_type)
+        save_path = "LLM_PublicHouseAllocation\LLM_decision_test\qa_unclear_data/filtered\{}_qa.json".format(json_type)
         save_dir = os.path.dirname(save_path)
         if not os.path.exists(save_dir):
             os.makedirs(save_dir)
@@ -134,7 +134,7 @@ def clear_response(json_types,rate = 0.1):
     rate 代表clear response的比例
     """
     for json_type in json_types:
-        json_dir = "LLM_PublicHouseAllocation\LLM_decision_test\qa_unclear_data\\filtered\{}_qa.json".format(json_type)
+        json_dir = "LLM_PublicHouseAllocation\LLM_decision_test\qa_unclear_data/filtered\{}_qa.json".format(json_type)
         with open(json_dir,'r',encoding = 'utf-8') as f:
             data = json.load(f)
         clear_indexs = np.random.choice(list(range(len(data))),
@@ -159,11 +159,11 @@ def is_chinese(strs):
     
 def concat_translation(json_types=["community","house","housetype"]):
     for json_type in json_types:
-        json_dir = "LLM_PublicHouseAllocation\LLM_decision_test\qa_translated\judge\\finished copy\{}_qa.json".format(json_type)
+        json_dir = "LLM_PublicHouseAllocation\LLM_decision_test\qa_translated\judge/finished copy\{}_qa.json".format(json_type)
         with open(json_dir,'r',encoding = 'utf-8') as f:
             data = json.load(f)
             
-        json_ori_dir =  "LLM_PublicHouseAllocation\LLM_decision_test\qa_translated\judge\\finished_old_ver\{}_qa.json".format(json_type)
+        json_ori_dir =  "LLM_PublicHouseAllocation\LLM_decision_test\qa_translated\judge/finished_old_ver\{}_qa.json".format(json_type)
         with open(json_ori_dir,'r',encoding = 'utf-8') as f:
             ori_data = json.load(f)
             
@@ -180,7 +180,7 @@ def concat_translation(json_types=["community","house","housetype"]):
             json.dump(data,f, indent=4,separators=(',', ':'),ensure_ascii=False)
             
 def clear_house_json():
-    house_json_dir = "LLM_PublicHouseAllocation\LLM_decision_test\qa_translated\judge\\finished\house_qa.json"
+    house_json_dir = "LLM_PublicHouseAllocation\LLM_decision_test\qa_translated\judge/finished\house_qa.json"
     with open(house_json_dir,'r',encoding = 'utf-8') as f:
         data = json.load(f)
     
@@ -195,13 +195,13 @@ def clear_house_json():
 
         
 def clear_house_5():
-    path ="qa_unclear_data\\filtered\groups\house\house_qa_5_judge.json"
+    path ="qa_unclear_data/filtered\groups\house\house_qa_5_judge.json"
     with open(path,'r',encoding = 'utf-8') as f:
         communityQA_data = json.load(f)
     for data in communityQA_data:
         data["response"] ={}
         
-    with open("qa_unclear_data\\filtered\groups\house\house_qa_5_save_response.json", 'w', encoding='utf-8') as file:
+    with open("qa_unclear_data/filtered\groups\house\house_qa_5_save_response.json", 'w', encoding='utf-8') as file:
         json.dump(communityQA_data, file, indent=4,separators=(',', ':'),ensure_ascii=False)
 
 def mix_and_shuffle(save_path = "LLM_PublicHouseAllocation\LLM_decision_test\data\save"

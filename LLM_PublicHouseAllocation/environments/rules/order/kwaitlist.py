@@ -92,7 +92,10 @@ class KWaitListOrder(BaseOrder):
                 environment.deque_dict[pool_name]["waitlist"].extend(environment.deque_dict[pool_name]["queue"][:enter_num])
                 del environment.deque_dict[pool_name]["queue"][:enter_num]
                 
-    def are_all_deques_empty(self,environment) -> bool:
+    def are_all_deques_empty(self,environment) -> bool:     
+        if environment.tenant_manager.available_tenant_num()<=0:
+            return True
+        
         self.enter_waitlist(environment)
         if all(len(queue_info["queue"])<=0 and \
             len(queue_info["waitlist"])<=0 for _,queue_info in environment.deque_dict.items()):

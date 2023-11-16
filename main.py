@@ -27,14 +27,14 @@ parser.add_argument("--clear_cache",
 
 parser.add_argument("--api_path",
                     type=str,
-                    default="LLM_PublicHouseAllocation\llms\\api.json",
+                    default="LLM_PublicHouseAllocation/llms/api.json",
                     help="The default path of apis json.")
 
 args = parser.parse_args()  # 解析参数
 
 if args.clear_cache:
     
-    result_dir = os.path.join("LLM_PublicHouseAllocation\\tasks",
+    result_dir = os.path.join("LLM_PublicHouseAllocation/tasks",
                               args.data,
                               "configs",
                               args.task,
@@ -43,6 +43,6 @@ if args.clear_cache:
         shutil.rmtree(result_dir)
     
 executor = Executor.from_task(args)
-# executor.load_log(args.log)
+executor.load_log(args.log)
 
-executor.run()
+#executor.run()

@@ -211,8 +211,8 @@ def readinfo(data_dir):
         data_list = json.load(f)
     return data_list
 
-async def get_all_robot_response(filter_data_dir="LLM_PublicHouseAllocation\LLM_decision_test\\filtered_response_data",
-                           save_dir ="LLM_PublicHouseAllocation\LLM_decision_test\\filtered_response_data_simulated"):
+async def get_all_robot_response(filter_data_dir="LLM_PublicHouseAllocation\LLM_decision_test/filtered_response_data",
+                           save_dir ="LLM_PublicHouseAllocation\LLM_decision_test/filtered_response_data_simulated"):
     data_types = [
           "community",
           "housetype",

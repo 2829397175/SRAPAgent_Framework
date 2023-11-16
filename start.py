@@ -72,7 +72,7 @@ if __name__ == "__main__":
     ]
     
     
-    log_dir = "LLM_PublicHouseAllocation\\tasks\PHA_51tenant_5community_28house\cache"
+    log_dir = "LLM_PublicHouseAllocation/tasks\PHA_51tenant_5community_28house\cache"
 
     run_tasks(task_names,
               data,

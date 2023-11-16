@@ -52,19 +52,20 @@ async def test_chain(apis):
 def test_api(apis):
 
 
-    for api in apis:
-        openai.api_key = api
-        # openai.api_base =api_base
-        completion = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo-16k-0613",
-        messages=[
-            {"role": "system", "content": "You are a poetic assistant, skilled in explaining complex programming concepts with creative flair."},
-            {"role": "user", "content": "Compose a poem that explains the concept of recursion in programming."}
-        
-        ]
-        )
+    api = "sk-jczYzh63BVpfK0kQA1F99a2a9fAe4b3eBd5a4c97129cDd83"
+    api_base = "https://api.aigcbest.top/v1"
+    openai.api_key = api
+    openai.api_base = api_base
+    completion = openai.ChatCompletion.create(
+    model="gpt-3.5-turbo-16k-0613",
+    messages=[
+        {"role": "system", "content": "You are a poetic assistant, skilled in explaining complex programming concepts with creative flair."},
+        {"role": "user", "content": "Compose a poem that explains the concept of recursion in programming."}
+    
+    ]
+    )
 
-        print(completion.choices[0].message,api)
+    print(completion.choices[0].message,api)
         
 def test_api_2():
     import requests
