@@ -13,7 +13,7 @@ class App:
         self.mode = True # True 表示save_response
         
         if dir_path ==None:
-            dir_path = f"./data"
+            dir_path = f"LLM_PublicHouseAllocation/LLM_decision_test/data"
             assert os.path.exists(dir_path),f"The data directory :{dir_path} doesn't exist!!"
             data_files = os.listdir(dir_path)
             self.data_list = []

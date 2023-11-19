@@ -46,23 +46,23 @@ class Global_Score(BaseModel):
         else:
             result = {}
             
-        examples= [ 
-{"reason": "The living area of the house is under my expectation, the condition of the house is poor and there are many potential risks, and the house is not pet-friendly, so I gave it a score of 2.",
-"score": 2},
-{"reason": "The house is quite expensive relative to the pool of houses, and its per capita living area is below the average for my family. Despite it having a balcony and elevator, it is falling apart and not in a safe condition, so I cannot recommend it.",
- "score": 3},
-{"reason": "The house is more expensive than what I am willing to pay, and it is in a poor condition and needs extensive repairs and updates. The living area is slightly smaller than the average for my family, and the community does not have many convenient amenities nearby.",
-"score": 4},
-{"reason": "This house is rather expensive, costing 2324, which is above my budget of 1500. It does have some desirable features such as sports facilities nearby, supermarkets, restaurants and banks. The square footage is also larger than the average living area of the house and has a balcony. However, the house needs some repairs and updates, and the windows are drafty and basement has a musty smell. Overall, House_2 is an ok option but it is not ideal for my needs.", 
-"score": 5},
-{"reason": "This house costs about 1772, which is within my budget. The square fortage is about 44.30, which is slightly larger than average. The house has balcony and elevator, and is located in a community with sports facilities and a large green area, providing a good living environment. The per capita living area of the house is 22.15, which meets the needs of my family members. The house is in acceptable condition, with basic functions complete and few minor problems, but it may lack some modern facilities or design.",
-"score": 6},
-{"reason": "This house is relatively spacious and is located in a community with many facilities. The rent is also within my budget. However, the sofa in the living room is outdated, and there is no park, subway, shopping mall, or hospital nearby. ",
- "score": 7},
-{"reason": "This house is very conveniently located, with supermarkets, restaurants, banks, and schools nearby, and the rent is within my budget. The house is modern and well-maintained, with a spacious kitchen and plenty of living area for my family. The elevator and sports facilities are also great bonuses. ",
-"score": 8}]
+#         examples= [ 
+# {"reason": "The living area of the house is under my expectation, the condition of the house is poor and there are many potential risks, and the house is not pet-friendly, so I gave it a score of 2.",
+# "score": 2},
+# {"reason": "The house is quite expensive relative to the pool of houses, and its per capita living area is below the average for my family. Despite it having a balcony and elevator, it is falling apart and not in a safe condition, so I cannot recommend it.",
+#  "score": 3},
+# {"reason": "The house is more expensive than what I am willing to pay, and it is in a poor condition and needs extensive repairs and updates. The living area is slightly smaller than the average for my family, and the community does not have many convenient amenities nearby.",
+# "score": 4},
+# {"reason": "This house is rather expensive, costing 2324, which is above my budget of 1500. It does have some desirable features such as sports facilities nearby, supermarkets, restaurants and banks. The square footage is also larger than the average living area of the house and has a balcony. However, the house needs some repairs and updates, and the windows are drafty and basement has a musty smell. Overall, House_2 is an ok option but it is not ideal for my needs.", 
+# "score": 5},
+# {"reason": "This house costs about 1772, which is within my budget. The square fortage is about 44.30, which is slightly larger than average. The house has balcony and elevator, and is located in a community with sports facilities and a large green area, providing a good living environment. The per capita living area of the house is 22.15, which meets the needs of my family members. The house is in acceptable condition, with basic functions complete and few minor problems, but it may lack some modern facilities or design.",
+# "score": 6},
+# {"reason": "This house is relatively spacious and is located in a community with many facilities. The rent is also within my budget. However, the sofa in the living room is outdated, and there is no park, subway, shopping mall, or hospital nearby. ",
+#  "score": 7},
+# {"reason": "This house is very conveniently located, with supermarkets, restaurants, banks, and schools nearby, and the rent is within my budget. The house is modern and well-maintained, with a spacious kitchen and plenty of living area for my family. The elevator and sports facilities are also great bonuses. ",
+# "score": 8}]
         
-        
+        examples=[]
         return cls(
             tenant_manager=tenant_manager,
             system=system,
@@ -74,18 +74,62 @@ class Global_Score(BaseModel):
         )
     
     
+    def object_weight_chain(self,llm):
+        template="""
+        
+            You are currently participating in a public housing allocation event.You are a tenant, willing to rent a house.     
+
+            {role_description}
+            Next, you may need to rate the quality of the house.You will learn about the four properties of the house, including rent, average living area, house orientation, and floors. Now you are required to give the weight of your preference for these four attributes. The sum of the weights of each item is required to be 10, and the weight of each item must be an integer.
+
+            - Respond in this format:
+                                    
+                rent_weight: (The numerical size of the weight (1-10))
+                average_living_area_weight: (The numerical size of the weight (1-10))
+                house_orientation_weight:(The numerical size of the weight (1-10))
+                floors_weight:(The numerical size of the weight (1-10))
+
+            Respond in json format:
+        """
+        input_variables=["role_description"]
+        prompt = PromptTemplate(  
+            input_variables=input_variables,  
+            template=template,  
+        )
+        
+        return LLMChain(
+            llm=llm, prompt=prompt
+        )
     
-    
-    def chain(self,llm):
+    def object_order_weight_chain(self,llm):
+        template="""
+            {role_description}  
+            You are currently participating in a public housing allocation event.You are a tenant, willing to rent a house.     
+
+            Next, you may need to rate the quality of the house.You will learn about the four properties of the house, including rent, average living area, house orientation, and floors.Now You need to sort these four attributes according to your preferences and give a ranking.The number of the ranking must be between 1-4.If you decide which attribute is most important when choosing a house, your ranking score is 1 and the least important is 4.
+            - Respond in this format:
+                                    
+                rent_order_number: (Ranking numbers(1-4))
+                average_living_area_order_number: (Ranking numbers(1-4))
+                house_orientation_order_number:(Ranking numbers (1-4))
+                floors_order_number:(Ranking numbers (1-4))
+
+            Respond in json format:
+        """
+        input_variables=["role_description"]
+        prompt = PromptTemplate(  
+            input_variables=input_variables,  
+            template=template,  
+        )
+        
+        return LLMChain(
+            llm=llm, prompt=prompt
+        )
+    def subject_chain(self,llm):
         template="""
 You are a tenant, willing to rent a house. Your task is to rate score for all houses according to your own needs.
 
-Here's some important background information:
 
-1. The average living area of these houses is around 20 square meters. If the average living area exceeds 20 for you, the house should be relatively spacious, while if it's less than 20, it would be rather cramped.
-2. For this pool of houses: the price range is roughly between 900 and 2600, and the house area is approximately 35-65 square meters. Please keep this distribution in mind and evaluate the value of the house relative to this pool of houses.
-3. Please remember your persona and make evaluations of the houses that align with that persona.
-4. Try to distribute your ratings evenly.
 
 
 Please rate based on the information and properties of the house. Score the house from 1-10, with a higher score indicating the house better meets your requirements.
@@ -118,19 +162,18 @@ Please rate based on the information and properties of the house. Score the hous
             
 The information of the house you need to rate:
             
-House info:{house_info}
+House info:{house_subject_info}
             
 - Respond in this format:
             
 Reason: (Give reasons why you gave this score, remember to consider \
-the price of the house and your budget, the per capita living area of the house, \
 the convenience of the house, the cleanliness of the house, \
 the decoration of the living environment, and so on.)
 Score: (Indicates the scoring result, which must be an integer number.)
 
 Respond in json format:
 """  
-        input_variables=["role_description","house_info","example"]
+        input_variables=["role_description","house_subject_info","example"]
         prompt = PromptTemplate(  
             input_variables=input_variables,  
             template=template,  
@@ -139,7 +182,8 @@ Respond in json format:
         return LLMChain(
             llm=llm, prompt=prompt
         )
-        
+    
+    
         
         
     def rate(self):
@@ -166,25 +210,67 @@ Respond in json format:
         async def rate_one_tenant(tenant_id):
             tenant = self.tenant_manager.total_tenant_datas[tenant_id]
             llm = self.llm_pool.get_llm_single(self.llm_configs)
-            llm_chain = self.chain(llm)
+            subject_llm_chain = self.subject_chain(llm)
+            object_llm_chain =self.object_weight_chain(llm)
+            
+            object_input={
+                        "role_description":tenant.get_role_description()
+                    }   
+            response = await object_llm_chain.arun(object_input)
+            response = response.replace("\n","").strip().lower()
+            
+            try:
+                    result = json.loads(response)
+                    rent_weight=result.get("rent_weight")
+                    if rent_weight==None:
+                        rent_weight=1
+                    average_living_area_weight=result.get("average_living_area_weight")
+                    if average_living_area_weight==None:
+                        average_living_area_weight=1
+                    house_orientation_weight=result.get("house_orientation_weight")
+                    if house_orientation_weight==None:
+                        house_orientation_weight=1
+                    floors_weight=result.get("floors_weight")
+                    if floors_weight==None:
+                        floors_weight=1
+                    weights=[rent_weight,average_living_area_weight,house_orientation_weight,floors_weight]
+            except json.JSONDecodeError as e:
+                try:
+                    rent_match = re.search(r'rent_weight:\s*(\d+)', response)
+                    average_living_area_match = re.search(r'average_living_area_weight:\s*(\d+)', response)
+                    house_orientation_match = re.search(r'house_orientation_weight:\s*(\d+)', response)
+                    floors_match= re.search(r'floors_weight:\s*(.+)', response)
+                    
+                    # 从匹配对象中提取值
+                    rent_weight = rent_match.group(1)
+                    average_living_area_weight = average_living_area_match.group(1)
+                    house_orientation_weight = house_orientation_match.group(1)
+                    floors_weight = floors_match.group(1)
+                    
+                    weights=[rent_weight,average_living_area_weight,house_orientation_weight,floors_weight]
+                    
+                except Exception as e:
+                    print(f"Invalid JSON: {e}")  
+        
+            
             if tenant_id not in self.result.keys():
                 self.result[tenant_id]={}
             
             for idx,house_id in enumerate(self.system.house_manager.data.keys()):
                 
                 example_template = """\
-Reason: {reason}
-Score: {score}
-"""
+                    Reason: {reason}
+                    Score: {score}
+                    """
                 examples = [example_template.format_map(example_args) for example_args in self.examples]
                 
                 examples_str_template ="""\
-Here's some examples:
+                    Here's some examples:
 
-{examples}
+                    {examples}
 
-End of example
-"""
+                    End of example
+                    """
                 
                 if self.result[tenant_id].get(house_id,{}).get("llm_score",None) != None:
                     rated = True
@@ -197,7 +283,7 @@ End of example
                     "house_info":self.system.get_score_house_description(house_id,tenant),
                     "example":examples_str_template.format(examples = "\n".join(examples)) if len(examples)>=1 else ""
                     }   
-                    response = await llm_chain.arun(input)
+                    response = await subject_llm_chain.arun(input)
                     response = response.replace("\n","").strip().lower()
                     
                     try:
@@ -248,16 +334,15 @@ End of example
                                 rated = True
                             except:
                                 print(f"Invalid JSON: {e}")   
-                    
-                    
+                            
                         
                             # self.result[tenant_id].update({house_id:{"score": 0, "reason": ""}})
                     if (idx%10 ==0):
                         self.save()         
-            
+
             
                 # if self.result[tenant_id].get(house_id,{}).get("objective_score",None) == None:
-                objective_scores = self.objective_eval_house(tenant_id=tenant_id,house_id=house_id)
+                objective_scores = self.objective_eval_house(tenant_id=tenant_id,house_id=house_id,weights=weights)
                 self.result[tenant_id][house_id].update(objective_scores)
                 
                 self.result[tenant_id][house_id]["score"] = (self.result[tenant_id][house_id]["llm_score"]+\
@@ -270,7 +355,7 @@ End of example
             
     def objective_eval_house(self,
                              tenant_id,
-                             house_id):
+                             house_id,weights):
         house_info = self.system.house_manager[house_id]
         tenant = self.tenant_manager.total_tenant_datas[tenant_id]
 
@@ -315,7 +400,8 @@ End of example
         ratings.append(rating)
 
         # return sum(rating)/len(rating)
-        weights =[4,4,1,1]
+        # weights  = weights
+        
         
         rating_weighted = np.dot(weights,ratings)/sum(weights)
         assert rating_weighted <=10,'Error'
