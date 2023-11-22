@@ -1,6 +1,6 @@
 from LLM_PublicHouseAllocation.registry import Registry
 
-group_registry = Registry(name="GroupPolicyRegistry")
+group_registry = Registry(name="TenantGroupPolicyRegistry")
 
 from .base import BaseGroupPolicy
 from .multi_list import MultiListPolicy

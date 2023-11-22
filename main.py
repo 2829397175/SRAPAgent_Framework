@@ -43,6 +43,6 @@ if args.clear_cache:
         shutil.rmtree(result_dir)
     
 executor = Executor.from_task(args)
-executor.load_log(args.log)
+# executor.load_log(args.log)
 
-#executor.run()
+executor.run()

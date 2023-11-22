@@ -252,21 +252,32 @@ and there will be exposure to sunlight indoors on summer afternoons."""}
             return None
         house_description_template="""
                 {index}: 
-                {index} is located in {community_id}. {community_id}({community_name}) is located at {en_location}. In this community, {community_description}. {nearby_info}.\
-                {index}:{description}
-
+                {index} is located in {community_id}. {community_id}({community_name}) is located at {en_location}. The rent for this community is {value_inch} dollars per square meter.\
+In this community, {community_description}. {nearby_info}.
+                {index} costs about {rent_money}. \
+                {index}'s square fortage is about {house_area}. The orientation of {index} is {toward}. {index} is located at floor {floor}. {index} {elevator} elevator. {index} {balcony} balcony. \
+                {description}\
+                For my family members, the average living area for {index} is {average_living_area:.3f}.
         """
         # for _,communities in self.community_manager.total_community_datas.items():
         for community_id,community_details in self.community_manager.total_community_datas.items():
             if community_details["community_name"]==community_name:
-                house_description=house_description_template.format(index=house_id,                                       
+                house_description=house_description_template.format(index=house_id,
+                                                    rent_money=self.house_manager.data[house_id]["rent_money"],
+                                                    house_area=self.house_manager.data[house_id]["house_area"],
+                                                    toward=self.house_manager.data[house_id]["toward"],
+                                                    floor=self.house_manager.data[house_id]["floor"],
+                                                    elevator=self.house_manager.data[house_id]["elevator"],                                       
                                                     description=self.house_manager.data[house_id]["description"],
+                                                    balcony=self.house_manager.data[house_id]["balcony"],
                                                     community_id=community_details["community_id"],
                                                     community_name=community_details["community_name"],
                                                     en_location=community_details["en_location"],
+                                                    value_inch=community_details["value_inch"],
                                                     community_description=community_details["description"],
-                                                    nearby_info=community_details["nearby_info"]
-                )
+                                                    nearby_info=community_details["nearby_info"],
+                                                    average_living_area = float(self.house_manager.data[house_id]["house_area"])/tenant.family_num
+                                                    )
                 return   house_description  
         return None   
             

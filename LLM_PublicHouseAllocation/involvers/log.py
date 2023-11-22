@@ -22,9 +22,14 @@ class LogRound(BaseModel):
                        json_path):
         with open(json_path,'r',encoding = 'utf-8') as f:
             log=json.load(f)
-        round_id = list(log.keys())[-1]
-        round_id = int(round_id)
         
+        round_id = list(log.keys())[-1]
+        
+        if round_id !="group":
+            round_id = int(round_id)
+        else:
+            round_id = 0
+            
         return cls(log = log,
                    round_id = round_id,
                    save_dir = json_path)
@@ -111,6 +116,7 @@ class LogRound(BaseModel):
             # 公平度
             
             scores = group_utility["choose_u"]
+            
             utility_eval_matrix.loc[f"least_misery",group_id] = min(scores)
             utility_eval_matrix.loc[f"variance",group_id] = np.var(scores)
             utility_eval_matrix.loc[f"jain'sfair",group_id] = np.square(np.sum(scores))/(np.sum(np.square(scores)) * utility_matrix.shape[0])
@@ -260,7 +266,7 @@ class LogRound(BaseModel):
             for tenant_id, tenant_info in log_round.items():
                 if "choose_house_id" in tenant_info.keys():
                     if tenant_info["choose_house_id"] !="None":
-                        rating_score_choose_u = utility[str(tenant_id)][tenant_info["choose_house_id"]]
+                        rating_score_choose_u = utility[str(tenant_id)]["ratings"][tenant_info["choose_house_id"]]
                         # group_id_t = self.log["group"][tenant_id]["queue_name"]
                         tenant = tenant_manager.total_tenant_datas[tenant_id]
                         group_id_t = self.group(tenant)

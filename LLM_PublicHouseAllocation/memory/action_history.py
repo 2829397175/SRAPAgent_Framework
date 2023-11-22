@@ -33,6 +33,8 @@ class SummarizerMixin(BaseModel):
         for i in range(self.max_retry):
             try:
                 response = chain.predict(**kargs)
+                if response is not None:
+                    break
             except AuthenticationError as e:
                     if isinstance(self.llm,OpenAI) or isinstance(self.llm,ChatOpenAI):
                         api_key = self.llm.openai_api_key
@@ -43,7 +45,7 @@ class SummarizerMixin(BaseModel):
                     continue
             except Exception as e:
                 continue
-            break
+            
         if response is None:
             return ""
         return response
@@ -54,6 +56,8 @@ class SummarizerMixin(BaseModel):
         for i in range(self.max_retry):
             try:
                 response = await chain.apredict(**kargs)
+                if response is not None:
+                    break
             except AuthenticationError as e:
                     if isinstance(self.llm,OpenAI) or isinstance(self.llm,ChatOpenAI):
                         api_key = self.llm.openai_api_key
@@ -64,7 +68,7 @@ class SummarizerMixin(BaseModel):
                     continue
             except Exception as e:
                 continue
-            break
+            
         if response is None:
             return ""
         return response

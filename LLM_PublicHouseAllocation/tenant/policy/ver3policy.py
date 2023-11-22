@@ -8,6 +8,11 @@ import copy
 class Ver3Policy(BasePolicy):
     log_fixed : dict = {} # tenant_id:{house_type_id, house_type_reason}
     
+    def __init__(self,**kargs) -> None:
+        return super().__init__(type = "ver3",
+                                **kargs)
+    
+    
     async def choose_pipeline(self,
                        tenant,
                        forum_manager, 

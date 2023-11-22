@@ -11,6 +11,7 @@ class BasePolicy(BaseModel):
     
     group_policy:BaseGroupPolicy
     
+    type = "base"
     # def __init__(self, **kwargs):
     #     self.filter_house_labels = ["house_type",
     #                        "house_orientation",

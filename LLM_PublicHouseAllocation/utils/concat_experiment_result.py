@@ -87,6 +87,8 @@ def concat_experiment_results(ex_paths:list = [],
                     result_u_type = pd.read_csv(result_u_type_path,index_col=index_cols_map[result_type])
                 except:
                     continue
+                result_u_type
+                
                 result_u_type["ex_name"] = ex_name
                 result_u_type.set_index('ex_name',inplace=True,append=True)
                 
@@ -155,10 +157,10 @@ def concat_experiment_results(ex_paths:list = [],
 
 
 if __name__ == "__main__":
-    paths = [
-            "LLM_PublicHouseAllocation/tasks/PHA_51tenant_5community_28house/configs/ver1_nofilter_singlelist/result/1699431290.0382807",
-            "LLM_PublicHouseAllocation/tasks/PHA_51tenant_5community_28house/configs/ver2_nofilter_multilist_priority_7t_5h/result/1699435988.0701036"
-            ]
+    # paths = [
+    #         "LLM_PublicHouseAllocation/tasks/PHA_51tenant_5community_28house/configs/ver1_nofilter_singlelist/result/1699431290.0382807",
+    #         "LLM_PublicHouseAllocation/tasks/PHA_51tenant_5community_28house/configs/ver2_nofilter_multilist_priority_7t_5h/result/1699435988.0701036"
+    #         ]
     
     config_root = "LLM_PublicHouseAllocation/tasks/PHA_51tenant_5community_28house/configs"
     paths = []
@@ -166,7 +168,12 @@ if __name__ == "__main__":
     for config in configs:
         result_path = os.path.join(config_root,config,"result")
         if os.path.exists(result_path):
-            paths.append(os.path.join(result_path,os.listdir(result_path)[-1]))
+            # paths.append(os.path.join(result_path,os.listdir(result_path)[-1]))
+            result_files = os.listdir(result_path)
+            for result_file in result_files:
+                result_file_path = os.path.join(result_path,result_file,"all")
+                if os.path.exists(result_file_path):
+                    paths.append(os.path.join(result_path,result_file))
         
     
     concat_experiment_results(paths,

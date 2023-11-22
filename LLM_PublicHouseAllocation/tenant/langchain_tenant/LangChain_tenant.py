@@ -393,10 +393,12 @@ class LangchainTenant(langchainAgent):
             return_intermediate_steps=True,
         )
 
-        response = None
+
         for i in range(self.max_retry):
             try:
                 response = await executor.acall(prompt_inputs)
+                if response is not None:
+                    break
             except AuthenticationError as e:
                 if isinstance(self.llm,OpenAI) or isinstance(self.llm,ChatOpenAI):
                     api_key = self.llm.openai_api_key
@@ -414,10 +416,9 @@ class LangchainTenant(langchainAgent):
             except Exception as e:
                 continue
                 
-            break
+            
             
         if response is None:
-            # raise ValueError(f"{self.name} failed to generate valid response.")
             return {"return_values":{"output":f"{self.name} failed to generate valid response.",
                     "thought":""
             }}
@@ -497,16 +498,19 @@ Your family members include: {family_members}."""
     def get_role_description(self):
         
         template="""\
-You are {name}. You expect to rent a house for {monthly_rent_budget}.\
+You are {name}. Your budget for renting a house for {monthly_rent_budget}.\
+Your acceptable price beyond the rental budget is {acceptable_outrange}.\
 Your family members include: {family_members}.\
 You are {age} years old. Your job is {profession}. \
 Your company is located in {en_work_place}. \
 {special_request} \
 You still have {chance_num} chances to choose house.\
     
-"""
+""" 
+        monthly_income = self.infos["monthly_income"] - self.infos["monthly_rent_budget"] 
         role_description = template.format_map({"name":self.name,
                                     "chance_num":self.max_choose-self.choose_times,
+                                    "acceptable_outrange": int(monthly_income/100)*100,
                                     **self.infos}
                                    )
         if self.infos.get("personal_preference",False):
@@ -550,6 +554,7 @@ You still have {chance_num} chances to choose house.\
         self.reset_state(mode="action_plan")
         
         # response = await self.astep(prompt_inputs)
+        
         response = await self.astep(prompt_inputs)
         response = response.get("return_values",{})
 
@@ -1763,9 +1768,13 @@ Your current plan is (Your plan to publish which kind of info online, be concise
             response = await self.astep(prompt_inputs)
             response = response.get("return_values",[])
             
+            if not isinstance(response,list):
+                return
+            
             self.log_round_tenant.set_choose_history(prompt_inputs = prompt_inputs,
                     response = response,
                     step_type = "publish_forum")
+            
             
             for publish in response:
                 if publish.pop("publish",False):

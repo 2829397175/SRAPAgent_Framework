@@ -2,6 +2,8 @@ import os
 import shutil
 import json
 
+import platform
+
 def run_tasks(tasks,
               data,
               log_dir):
@@ -22,6 +24,8 @@ def run_tasks(tasks,
     
     for idx,task in enumerate(tasks):
         log_task_path = os.path.join(log_tasks_dir,f"{task}.log")
+        
+        
         command = command_template.format(task = task,
                                           data = data,
                                           log_path = log_task_path)
@@ -36,18 +40,60 @@ def run_tasks(tasks,
             
    
         with open(complete_path,'w',encoding = 'utf-8') as f:
-            
+            uncomplete_tasks =tasks[idx+1:] if (idx+1)< len(tasks) else []
             json.dump({"success":success_tasks,
                     "failed":failed_tasks,
-                    "uncomplete":tasks[idx:]}, 
+                    "uncomplete":uncomplete_tasks}, 
                     f,
                     indent=4,
                     separators=(',', ':'),ensure_ascii=False)
         
-def test_os_command():
-    command ="python test.py>>temp.txt"
-    return_val = os.system(command) 
-    return_val 
+def run_tasks_logs(data ="PHA_51tenant_5community_28house",
+                   ):
+    config_root = f"LLM_PublicHouseAllocation/tasks/{data}/configs"
+    
+    configs = os.listdir(config_root)
+    
+    
+    command_template = "python main.py --task {task} --data {data} --log {log}"
+    
+    count = {}
+    for config in configs:
+        
+        
+        result_path = os.path.join(config_root,config,"result")
+        config = config.replace("(","\(").replace(")","\)")
+        
+        if os.path.exists(result_path):
+            # paths.append(os.path.join(result_path,os.listdir(result_path)[-1]))
+            result_files = os.listdir(result_path)
+            paths = []
+            for result_file in result_files:
+                if os.path.exists(os.path.join(result_path,result_file,"tenental_system.json")):
+                # result_file_path = os.path.join(result_path,result_file,"all")
+                # if os.path.exists(result_file_path):
+                    paths.append(os.path.join(result_path,result_file))
+            for path in paths:
+                path = path.replace("(","\(").replace(")","\)")
+                command = command_template.format(task = config,
+                                                  data = data,
+                                                  log = path)
+                try:
+                    return_val = os.system(command)
+                except Exception as e:
+                    print(e)
+        count[config]=paths
+                
+                
+    print(count)
+    
+    print(len(count))
+                    
+            
+
+    
+    
+    
 
 if __name__ == "__main__":
     
@@ -57,23 +103,28 @@ if __name__ == "__main__":
     task_names = os.listdir(config_root)
 
 
-    print(str(list(task_names)))
     # task_names = list(filter(lambda x: 
     #     not os.path.exists(os.path.join(config_root,x,"result")),
     #                          task_names))
     
+    
+    
     task_names = [
-        # "ver1_nofilter_singlelist_8t_6h",
-        # "ver2_nofilter_multilist(1.2_k2)_housetype_priority_5t_3h(step_num(t2_h3))_p#housetype_choose2",
-        # "ver2_nofilter_multilist(1.2_k2)_housetype_priority_5t_3h(step_num(t2_h3))_p#portion_housesize_choose2",
-        # "ver2_nofilter_multilist(1.2_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3",
-        # "ver2_nofilter_multilist(1.5_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2",
-        "ver2_nofilter_multilist(1.8_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2"
+        "ver1_nofilter_singlelist_4t_6h\(step_num\(t1_h1\)\)_p#singlelist",
+        "ver1_nofilter_singlelist_2t_6h\(step_num\(t3_h1\)\)_p#singlelist",
+        "ver1_nofilter_singlelist_2t_6h\(step_num\(t1_h1\)\)_p#singlelist",
+        "ver1_nofilter_singlelist_5t_3h\(step_num\(t1_h3\)\)_p#singlelist"
     ]
     
+    task_names = [
+        "ver2_nofilter_multilist\\(1.2_k2\\)_housetype_priority_5t_3h\\(step_num\\(t2_h3\\)\\)_p#housetype_choose2",
+        "ver2_nofilter_multilist\\(1.2_k2\\)_housetype_priority_5t_3h\\(step_num\\(t2_h3\\)\\)_p#portion_housesize_choose2"
+    ]
     
-    log_dir = "LLM_PublicHouseAllocation/tasks\PHA_51tenant_5community_28house\cache"
+    log_dir = "LLM_PublicHouseAllocation/tasks/PHA_51tenant_5community_28house/cache"
 
     run_tasks(task_names,
               data,
               log_dir)
+    
+    # run_tasks_logs()

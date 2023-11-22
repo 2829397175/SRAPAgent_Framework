@@ -77,20 +77,30 @@ class Global_Score(BaseModel):
     def object_weight_chain(self,llm):
         template="""
         
-            You are currently participating in a public housing allocation event.You are a tenant, willing to rent a house.     
+You are currently participating in a public housing allocation event.You are a tenant, willing to rent a house.     
 
-            {role_description}
-            Next, you may need to rate the quality of the house.You will learn about the four properties of the house, including rent, average living area, house orientation, and floors. Now you are required to give the weight of your preference for these four attributes. The sum of the weights of each item is required to be 10, and the weight of each item must be an integer.
+{role_description}
 
-            - Respond in this format:
-                                    
-                rent_weight: (The numerical size of the weight (1-10))
-                average_living_area_weight: (The numerical size of the weight (1-10))
-                house_orientation_weight:(The numerical size of the weight (1-10))
-                floors_weight:(The numerical size of the weight (1-10))
+Next, you may need to rate the quality of the house.You will learn about the four properties of the house, including rent money, average living area, house orientation, and floors. 
 
-            Respond in json format:
-        """
+rent_money refers to the rent of a house, and you need to evaluate the importance of this indicator based on your budget range.
+average_living_area: It refers to the average living area of your family members in a house.
+orientation: Refers to the orientation of the house.
+floor: Refers to the floor on which the house is located.
+
+
+Next, please assign weights to these four indicators. The total weight required for the sum of these four indicators is 10.
+
+- Respond in this format:
+                        
+    rent_money: (The numerical size of the weight (1-10))
+    average_living_area: (The numerical size of the weight (1-10))
+    orientation:(The numerical size of the weight (1-10))
+    floor:(The numerical size of the weight (1-10))
+
+Respond in json format:
+"""
+
         input_variables=["role_description"]
         prompt = PromptTemplate(  
             input_variables=input_variables,  
@@ -103,18 +113,18 @@ class Global_Score(BaseModel):
     
     def object_order_weight_chain(self,llm):
         template="""
-            {role_description}  
-            You are currently participating in a public housing allocation event.You are a tenant, willing to rent a house.     
+{role_description}  
+You are currently participating in a public housing allocation event. You are a tenant, willing to rent a house.     
 
-            Next, you may need to rate the quality of the house.You will learn about the four properties of the house, including rent, average living area, house orientation, and floors.Now You need to sort these four attributes according to your preferences and give a ranking.The number of the ranking must be between 1-4.If you decide which attribute is most important when choosing a house, your ranking score is 1 and the least important is 4.
-            - Respond in this format:
-                                    
-                rent_order_number: (Ranking numbers(1-4))
-                average_living_area_order_number: (Ranking numbers(1-4))
-                house_orientation_order_number:(Ranking numbers (1-4))
-                floors_order_number:(Ranking numbers (1-4))
+Next, you may need to rate the quality of the house.You will learn about the four properties of the house, including rent, average living area, house orientation, and floors.Now You need to sort these four attributes according to your preferences and give a ranking.The number of the ranking must be between 1-4.If you decide which attribute is most important when choosing a house, your ranking score is 1 and the least important is 4.
+- Respond in this format:
+                        
+    rent_order_number: (Ranking numbers(1-4))
+    average_living_area_order_number: (Ranking numbers(1-4))
+    house_orientation_order_number:(Ranking numbers (1-4))
+    floors_order_number:(Ranking numbers (1-4))
 
-            Respond in json format:
+Respond in json format:
         """
         input_variables=["role_description"]
         prompt = PromptTemplate(  
@@ -125,11 +135,10 @@ class Global_Score(BaseModel):
         return LLMChain(
             llm=llm, prompt=prompt
         )
+        
     def subject_chain(self,llm):
         template="""
 You are a tenant, willing to rent a house. Your task is to rate score for all houses according to your own needs.
-
-
 
 
 Please rate based on the information and properties of the house. Score the house from 1-10, with a higher score indicating the house better meets your requirements.
@@ -211,68 +220,90 @@ Respond in json format:
             tenant = self.tenant_manager.total_tenant_datas[tenant_id]
             llm = self.llm_pool.get_llm_single(self.llm_configs)
             subject_llm_chain = self.subject_chain(llm)
-            object_llm_chain =self.object_weight_chain(llm)
             
-            object_input={
-                        "role_description":tenant.get_role_description()
-                    }   
-            response = await object_llm_chain.arun(object_input)
-            response = response.replace("\n","").strip().lower()
-            
-            try:
-                    result = json.loads(response)
-                    rent_weight=result.get("rent_weight")
-                    if rent_weight==None:
-                        rent_weight=1
-                    average_living_area_weight=result.get("average_living_area_weight")
-                    if average_living_area_weight==None:
-                        average_living_area_weight=1
-                    house_orientation_weight=result.get("house_orientation_weight")
-                    if house_orientation_weight==None:
-                        house_orientation_weight=1
-                    floors_weight=result.get("floors_weight")
-                    if floors_weight==None:
-                        floors_weight=1
-                    weights=[rent_weight,average_living_area_weight,house_orientation_weight,floors_weight]
-            except json.JSONDecodeError as e:
-                try:
-                    rent_match = re.search(r'rent_weight:\s*(\d+)', response)
-                    average_living_area_match = re.search(r'average_living_area_weight:\s*(\d+)', response)
-                    house_orientation_match = re.search(r'house_orientation_weight:\s*(\d+)', response)
-                    floors_match= re.search(r'floors_weight:\s*(.+)', response)
-                    
-                    # 从匹配对象中提取值
-                    rent_weight = rent_match.group(1)
-                    average_living_area_weight = average_living_area_match.group(1)
-                    house_orientation_weight = house_orientation_match.group(1)
-                    floors_weight = floors_match.group(1)
-                    
-                    weights=[rent_weight,average_living_area_weight,house_orientation_weight,floors_weight]
-                    
-                except Exception as e:
-                    print(f"Invalid JSON: {e}")  
-        
+            object_llm_chain = self.object_weight_chain(llm)
             
             if tenant_id not in self.result.keys():
                 self.result[tenant_id]={}
             
+            
+            if "weights" not in self.result[tenant_id].keys():
+                rated = False
+            else:
+                rated = True
+            
+            while (not rated):
+                object_input={
+                            "role_description":tenant.get_role_description()
+                        }   
+                response = await object_llm_chain.arun(object_input)
+                response = response.replace("\n","").strip().lower()
+        
+                
+                try:
+                        result = json.loads(response)
+                        rent_weight=result.get("rent_money")
+                        if rent_weight==None:
+                            rent_weight=1
+                        average_living_area_weight=result.get("average_living_area")
+                        if average_living_area_weight==None:
+                            average_living_area_weight=1
+                        house_orientation_weight=result.get("orientation")
+                        if house_orientation_weight==None:
+                            house_orientation_weight=1
+                        floors_weight=result.get("floor")
+                        if floors_weight==None:
+                            floors_weight=1
+                        weights={"rent_money":rent_weight,
+                                 "average_living_area":average_living_area_weight,
+                                 "orientation":house_orientation_weight,
+                                 "floor":floors_weight}
+                        self.result[tenant_id]["weights"] = weights
+                        rated = True
+                except json.JSONDecodeError as e:
+                    try:
+                        rent_match = re.search(r'rent_money:\s*(\d+)', response)
+                        average_living_area_match = re.search(r'average_living_area:\s*(\d+)', response)
+                        house_orientation_match = re.search(r'orientation:\s*(\d+)', response)
+                        floors_match= re.search(r'floor:\s*(.+)', response)
+                        
+                        # 从匹配对象中提取值
+                        rent_weight = rent_match.group(1)
+                        average_living_area_weight = average_living_area_match.group(1)
+                        house_orientation_weight = house_orientation_match.group(1)
+                        floors_weight = floors_match.group(1)
+                        
+                        weights={"rent_money":rent_weight,
+                                 "average_living_area":average_living_area_weight,
+                                 "orientation":house_orientation_weight,
+                                 "floor":floors_weight}
+                        self.result[tenant_id]["weights"] = weights
+                        rated = True
+                        
+                    except Exception as e:
+                        print(f"Invalid JSON: {e}")  
+        
+            
+            if "ratings" not in self.result[tenant_id].keys():
+                self.result[tenant_id]["ratings"] = {}
+            
             for idx,house_id in enumerate(self.system.house_manager.data.keys()):
                 
                 example_template = """\
-                    Reason: {reason}
-                    Score: {score}
-                    """
+Reason: {reason}
+Score: {score}
+"""
                 examples = [example_template.format_map(example_args) for example_args in self.examples]
                 
                 examples_str_template ="""\
-                    Here's some examples:
+Here's some examples:
 
-                    {examples}
+{examples}
 
-                    End of example
-                    """
+End of example
+"""
                 
-                if self.result[tenant_id].get(house_id,{}).get("llm_score",None) != None:
+                if self.result[tenant_id]["ratings"].get(house_id,{}).get("llm_score",None) != None:
                     rated = True
                 else:
                     rated = False
@@ -293,14 +324,14 @@ Respond in json format:
                                 result = result[0]
                             if house_id in result.keys():
                                 result = result[house_id]
-                            self.result[tenant_id].update({house_id:result})
+                            self.result[tenant_id]["ratings"].update({house_id:result})
                             
                             
-                            score = self.result[tenant_id][house_id].get("score")
+                            score = self.result[tenant_id]["ratings"][house_id].get("score")
                             if score == None:
-                                score = self.result[tenant_id][house_id].get("rating")
+                                score = self.result[tenant_id["ratings"]][house_id].get("rating")
                                 
-                            self.result[tenant_id][house_id]["llm_score"] = int(score)
+                            self.result[tenant_id]["ratings"][house_id]["llm_score"] = int(score)
                             rated = True
                     except json.JSONDecodeError as e:
                         try:
@@ -315,7 +346,7 @@ Respond in json format:
                                 "llm_score": int(score),
                                 "reason": reason.replace("\"","").strip("score")
                             }
-                            self.result[tenant_id].update({house_id:result_dict})
+                            self.result[tenant_id]["ratings"].update({house_id:result_dict})
                             rated = True
                         except Exception as e:
                             try:
@@ -330,7 +361,7 @@ Respond in json format:
                                     "llm_score": int(score),
                                     "reason": reason.replace("\"","").strip("score")
                                 }
-                                self.result[tenant_id].update({house_id:result_dict})
+                                self.result[tenant_id]["ratings"].update({house_id:result_dict})
                                 rated = True
                             except:
                                 print(f"Invalid JSON: {e}")   
@@ -341,12 +372,13 @@ Respond in json format:
                         self.save()         
 
             
-                # if self.result[tenant_id].get(house_id,{}).get("objective_score",None) == None:
-                objective_scores = self.objective_eval_house(tenant_id=tenant_id,house_id=house_id,weights=weights)
-                self.result[tenant_id][house_id].update(objective_scores)
+                # if self.result[tenant_id]["ratings"].get(house_id,{}).get("objective_score",None) == None:
+                objective_scores = self.objective_eval_house(tenant_id=tenant_id,house_id=house_id,weights=self.result[tenant_id]["weights"])
+                self.result[tenant_id]["ratings"][house_id].update(objective_scores)
                 
-                self.result[tenant_id][house_id]["score"] = (self.result[tenant_id][house_id]["llm_score"]+\
-                                                            self.result[tenant_id][house_id]["objective_score"])
+                # if self.result[tenant_id]["ratings"].get(house_id,{}).get("score",None) == None:
+                self.result[tenant_id]["ratings"][house_id]["score"] = (self.result[tenant_id]["ratings"][house_id]["llm_score"]+\
+                                                        self.result[tenant_id]["ratings"][house_id]["objective_score"])
             print(f"tenant {tenant_id} finished rating.")            
             pbar.update()
             
@@ -355,7 +387,8 @@ Respond in json format:
             
     def objective_eval_house(self,
                              tenant_id,
-                             house_id,weights):
+                             house_id,
+                             weights):
         house_info = self.system.house_manager[house_id]
         tenant = self.tenant_manager.total_tenant_datas[tenant_id]
 
@@ -398,19 +431,25 @@ Respond in json format:
         else:
             rating = 10
         ratings.append(rating)
-
-        # return sum(rating)/len(rating)
-        # weights  = weights
         
-        
-        rating_weighted = np.dot(weights,ratings)/sum(weights)
-        assert rating_weighted <=10,'Error'
-        return {
-            "objective_score":rating_weighted,
+        ratings_dict = {
             "rent_money_score":ratings[0],
-            "avg_living_score":ratings[1],
+            "average_living_area_score":ratings[1],
             "orientation_score":ratings[2],
             "floor_score":ratings[3]}
+        
+        weights_list = []
+        for k in ratings_dict.keys():
+            k_weight = k.replace("_score","")
+            weights_list.append(weights[k_weight])
+        
+        rating_weighted = np.dot(weights_list,ratings)/sum(weights_list)
+        assert rating_weighted <=10,'Error'
+        
+        ratings_dict.update({
+            "objective_score":rating_weighted
+        })
+        return ratings_dict
 
             
     def save(self):

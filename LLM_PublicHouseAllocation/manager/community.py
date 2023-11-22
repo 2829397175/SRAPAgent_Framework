@@ -153,6 +153,8 @@ class CommunityManager(BaseManager):
                            queue_names,
                            portion_attr ="house_area"): # 默认按照房子大小按比例分配
             
+            
+            
             queue_lens = len(queue_names)
             if queue_lens <=1:
                 return house_ids
@@ -215,9 +217,12 @@ class CommunityManager(BaseManager):
                                            len(queue_names),
                                                 queue_names)
         elif self.patch_method == "portion":
+            # queue_group_h_ids = portion_groups(queue_house_ids,
+            #                                  queue_names,
+            #                                 "house_area")
             queue_group_h_ids = portion_groups(queue_house_ids,
                                              queue_names,
-                                            "house_area")
+                                            "rent_money")
         else:
             raise NotImplementedError("This type of patch method is not supported.")
         

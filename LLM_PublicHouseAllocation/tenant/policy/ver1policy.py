@@ -5,7 +5,9 @@ from .base import BasePolicy
 @policy_registry.register("ver1")
 class Ver1Policy(BasePolicy):
 
-    
+    def __init__(self,**kargs) -> None:
+        return super().__init__(type = "ver1",
+                                **kargs)
     
     async def choose_pipeline(self,
                        tenant,

@@ -7,7 +7,10 @@ from .base import BasePolicy
 @policy_registry.register("ver2")
 class Ver2Policy(BasePolicy):    
     
-    
+    def __init__(self,**kargs) -> None:
+        return super().__init__(type = "ver2",
+                                **kargs)
+        
     async def choose_pipeline(self,
                        tenant,
                        forum_manager, 
