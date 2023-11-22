@@ -54,6 +54,10 @@ def concat_experiment_results(ex_paths:list = [],
         tenant_dt = readinfo(tenant_dt_path)
         house_dt_path = os.path.join(ex_root_path,task_config["managers"]["community"]["distribution_batch_dir"])
         house_dt = readinfo(house_dt_path)
+        
+        tenental_system_path = os.path.join(ex_path,"tenental_system.json")
+        tenental_system = readinfo(tenental_system_path)
+        
         if ex_name not in results.keys():
             results[ex_name] = {}
         for u_type in u_types:
@@ -92,11 +96,11 @@ def concat_experiment_results(ex_paths:list = [],
                 result_u_type["ex_name"] = ex_name
                 result_u_type.set_index('ex_name',inplace=True,append=True)
                 
-                
 
-                
-               
                 cols_first_level = ["indicator_values" for i in range(result_u_type.shape[1])]
+                
+                result_u_type["ex_len"] = list(tenental_system.keys())[-1]
+                cols_first_level.append("experiment")
                 
                 for k,config in configs_cols_append.items():
                     for config_key,config_value in config.items():

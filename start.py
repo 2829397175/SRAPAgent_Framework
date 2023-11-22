@@ -1,6 +1,11 @@
 import os
 import shutil
 import json
+def readinfo(data_dir):
+    assert os.path.exists(data_dir),"no such file path: {}".format(data_dir)
+    with open(data_dir,'r',encoding = 'utf-8') as f:
+        data_list = json.load(f)
+    return data_list
 
 import platform
 
@@ -90,9 +95,38 @@ def run_tasks_logs(data ="PHA_51tenant_5community_28house",
     print(len(count))
                     
             
-
+def test_task_logs(data ="PHA_51tenant_5community_28house",
+                   ):
     
+    config_root = f"LLM_PublicHouseAllocation/tasks/{data}/configs"
     
+    configs = os.listdir(config_root)
+  
+    not_available_results =[]
+    
+    for config in configs:
+        
+        result_path = os.path.join(config_root,config,"result")
+        
+        if os.path.exists(result_path):
+            # paths.append(os.path.join(result_path,os.listdir(result_path)[-1]))
+            result_files = os.listdir(result_path)
+            paths = []
+            ok = False
+            for result_file in result_files:
+                if os.path.exists(os.path.join(result_path,result_file,"tenental_system.json")):
+                    tenental_info = readinfo(os.path.join(result_path,result_file,"tenental_system.json"))
+                    last_round = list(tenental_info.keys())[-1]
+                    try:
+                        if (int(last_round)>=9):
+                            ok = True
+                    except:
+                        pass
+            if (not ok):not_available_results.append([config,list(tenental_info.keys())[-1]])
+                        
+    with open("LLM_PublicHouseAllocation/tasks/PHA_51tenant_5community_28house/cache/not_available_tasks.json",
+              'w',encoding = 'utf-8') as f:
+        json.dump(not_available_results, f, indent=4,separators=(',', ':'),ensure_ascii=False)
     
 
 if __name__ == "__main__":
@@ -123,8 +157,10 @@ if __name__ == "__main__":
     
     log_dir = "LLM_PublicHouseAllocation/tasks/PHA_51tenant_5community_28house/cache"
 
-    run_tasks(task_names,
-              data,
-              log_dir)
+    #run_tasks(task_names,
+            #   data,
+            #   log_dir)
     
     # run_tasks_logs()
+    
+    test_task_logs()

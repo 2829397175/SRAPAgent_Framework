@@ -252,6 +252,18 @@ class CommunityManager(BaseManager):
             pool_num_dict[pool_name] = cur_house_num
         return pool_num_dict
     
+    def get_unreleased_house_num(self,
+                                 cnt_turn):
+        add_turn_future = []
+        for add_turn  in self.distribution_batch_data.keys():
+            if int(add_turn)> int(cnt_turn):
+                add_turn_future.append(add_turn)
+                
+        future_add_houses_num = [len(self.distribution_batch_data.get(str(add_turn),[]))
+                             for add_turn in add_turn_future]    
+        
+        return sum(future_add_houses_num)
+            
     
     def community_str(self,
                       curcommunity_list,

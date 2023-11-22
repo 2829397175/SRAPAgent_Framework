@@ -33,6 +33,10 @@ class System(BaseModel):
         num = sum(pool_num_dict.values())    
         return num
     
+    def unreleased_house_num(self,
+                             cnt_turn):
+        return self.community_manager.get_unreleased_house_num(cnt_turn)
+    
     
     def get_community_abstract(self,
                                queue_name=None,

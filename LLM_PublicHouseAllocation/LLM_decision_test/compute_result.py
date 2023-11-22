@@ -44,6 +44,9 @@ def compute_auc_choose_one(root_dir = "LLM_PublicHouseAllocation/LLM_decision_te
     print(f"all: human{human_all} robot{robot_all} human/robot{human_all/robot_all:.3f}")
     
     
+
+    
+    
 if __name__ == "__main__":
     # data_dir="LLM_PublicHouseAllocation\LLM_decision_test\denote\judge"
     # dfs = os.listdir(data_dir)

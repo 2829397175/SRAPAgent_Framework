@@ -99,7 +99,7 @@ class RentEnvironment(BaseEnvironment):
         
         if self.cnt_turn > self.max_turns or\
             self.rule.are_all_deques_empty(self) or \
-            self.system.available_house_num() <= 0:
+            (self.system.available_house_num() <= 0 and self.system.unreleased_house_num(self.cnt_turn)):
             if(self.save_log): # 整体系统的log，仅在退出时save
                 self.log.evaluation_matrix(self.global_score,
                             self.system)
@@ -110,16 +110,6 @@ class RentEnvironment(BaseEnvironment):
 
                 #self.log.evaluation_matrix(self.tenant_manager)
             return True
-        elif self.rule.are_all_deques_empty(self):
-            if(self.save_log):
-                self.log.evaluation_matrix(self.global_score,
-                                           self.system)
-                self.system.save_data()
-                self.forum_manager.save_data()
-                self.llm_loader.save_apis()
-                #self.log.evaluation_matrix(self.tenant_manager,self.global_score,self.system)
-            return True
-        
         else:
             return False
         
