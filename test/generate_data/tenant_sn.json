@@ -1,0 +1,486 @@
+{
+    "Sarah":{
+        "personality":"Intelligent and analytical, always seeking knowledge",
+        "social_network":{
+            "Alex":"friend",
+            "Lily":"co-worker"
+        }
+    },
+    "Alex":{
+        "personality":"Charismatic and adventurous, always looking for new experiences",
+        "social_network":{
+            "Sarah":"friend",
+            "Lily":"partner"
+        }
+    },
+    "Lily":{
+        "personality":"Caring and nurturing, always putting others before herself",
+        "social_network":{
+            "Sarah":"co-worker",
+            "Alex":"partner"
+        }
+    },
+    "Emily":{
+        "personality":"Creative and artistic, always thinking outside the box",
+        "social_network":{
+            "Erica":"friend",
+            "David":"partner"
+        }
+    },
+    "Erica":{
+        "personality":"Outgoing and sociable, loves meeting new people",
+        "social_network":{
+            "Emily":"friend",
+            "Daniel":"co-worker"
+        }
+    },
+    "David":{
+        "personality":"Reserved and introverted, prefers solitude over socializing",
+        "social_network":{
+            "Emily":"partner"
+        }
+    },
+    "Rachel":{
+        "personality":"Fun-loving and adventurous, always up for a good time",
+        "social_network":{
+            "Lily":"friend",
+            "Alex":"friend"
+        }
+    },
+    "Ben":{
+        "personality":"Practical and logical, always finding efficient solutions to problems",
+        "social_network":{
+            "Michael":"co-worker"
+        }
+    },
+    "Sophia":{
+        "personality":"Intelligent and analytical",
+        "social_network":{
+            "Ethan":"co-worker"
+        }
+    },
+    "Ethan":{
+        "personality":"Ambitious and competitive",
+        "social_network":{
+            "Sophia":"co-worker",
+            "Olivia":"co-worker"
+        }
+    },
+    "Ava":{
+        "personality":"Creative and free-spirited",
+        "social_network":{
+            "Liam":"partner"
+        }
+    },
+    "Liam":{
+        "personality":"Charismatic and adventurous",
+        "social_network":{
+            "Ava":"partner"
+        }
+    },
+    "Olivia":{
+        "personality":"Caring and empathetic",
+        "social_network":{
+            "Noah":"friend",
+            "Ethan":"co-worker"
+        }
+    },
+    "Noah":{
+        "personality":"Laid-back and humorous",
+        "social_network":{
+            "Olivia":"friend"
+        }
+    },
+    "Owen":{
+        "personality":"Mysterious and enigmatic",
+        "social_network":{
+            "Ava":"stranger"
+        }
+    },
+    "Harper":{
+        "personality":"Outgoing and sociable",
+        "social_network":{
+            "Olivia":"friend",
+            "Noah":"friend"
+        }
+    },
+    "Chloe":{
+        "personality":"Shy and introverted",
+        "social_network":{
+            "Mia":"friend"
+        }
+    },
+    "Daniel":{
+        "personality":"Charismatic and charming",
+        "social_network":{
+            "Ethan":"competitor"
+        }
+    },
+    "Isabella":{
+        "personality":"Determined and ambitious",
+        "social_network":{
+            "Liam":"friend",
+            "Owen":"stranger"
+        }
+    },
+    "Jackson":{
+        "personality":"Confident and assertive",
+        "social_network":{
+            "Noah":"friend",
+            "Ethan":"competitor"
+        }
+    },
+    "Amelia":{
+        "personality":"Artistic and imaginative",
+        "social_network":{
+            "Ava":"friend"
+        }
+    },
+    "Henry":{
+        "personality":"Reliable and trustworthy",
+        "social_network":{
+            "Sophia":"friend"
+        }
+    },
+    "Grace":{
+        "personality":"Kind-hearted and generous",
+        "social_network":{
+            "Olivia":"friend"
+        }
+    },
+    "Samantha":{
+        "personality":"Ambitious and determined",
+        "social_network":{
+            "Violet":"co-worker",
+            "Nathan":"friend"
+        }
+    },
+    "Violet":{
+        "personality":"Creative and imaginative",
+        "social_network":{
+            "Samantha":"co-worker",
+            "Nathan":"friend"
+        }
+    },
+    "Nathan":{
+        "personality":"Charismatic and outgoing",
+        "social_network":{
+            "Samantha":"friend",
+            "Violet":"friend",
+            "Hazel":"partner"
+        }
+    },
+    "Hazel":{
+        "personality":"Creative and free-spirited",
+        "social_network":{
+            "Michael":"friend",
+            "Adam":"partner"
+        }
+    },
+    "Adam":{
+        "personality":"Analytical and logical",
+        "social_network":{
+            "Hazel":"partner",
+            "Lillian":"co-worker"
+        }
+    },
+    "Lillian":{
+        "personality":"Perfectionist and detail-oriented",
+        "social_network":{
+            "Adam":"co-worker",
+            "Audrey":"friend"
+        }
+    },
+    "Elijah":{
+        "personality":"Funny and witty",
+        "social_network":{
+            "Lillian":"friend",
+            "Aubrey":"co-worker"
+        }
+    },
+    "Aubrey":{
+        "personality":"Organized and efficient",
+        "social_network":{
+            "Claire":"co-worker",
+            "Benjamin":"friend"
+        }
+    },
+    "Charles":{
+        "personality":"Loyal and dependable",
+        "social_network":{
+            "Aubrey":"friend",
+            "Paisley":"co-worker"
+        }
+    },
+    "Paisley":{
+        "personality":"Assertive and confident",
+        "social_network":{
+            "Benjamin":"co-worker"
+        }
+    },
+    "Aaron":{
+        "personality":"Assertive and goal-oriented",
+        "social_network":{
+            "Audrey":"co-worker",
+            "Thomas":"friend"
+        }
+    },
+    "Maya":{
+        "personality":"Charismatic and persuasive",
+        "social_network":{
+            "Thomas":"co-worker",
+            "Claire":"friend"
+        }
+    },
+    "Thomas":{
+        "personality":"Intellectual and introspective",
+        "social_network":{
+            "Aaron":"friend",
+            "Maya":"co-worker"
+        }
+    },
+    "Stella":{
+        "personality":"Free-spirited and unconventional",
+        "social_network":{
+            "Thomas":"stranger",
+            "Julian":"friend"
+        }
+    },
+    "Julian":{
+        "personality":"Easygoing and laid-back",
+        "social_network":{
+            "Stella":"friend",
+            "Elizabeth":"co-worker"
+        }
+    },
+    "Elizabeth":{
+        "personality":"Perfectionist and meticulous",
+        "social_network":{
+            "Julian":"co-worker",
+            "Luke":"friend"
+        }
+    },
+    "Luke":{
+        "personality":"Analytical and logical",
+        "social_network":{
+            "Elizabeth":"friend",
+            "Claire":"co-worker"
+        }
+    },
+    "Claire":{
+        "personality":"Easygoing and laid-back",
+        "social_network":{
+            "Maya":"friend",
+            "Aubrey":"co-worker"
+        }
+    },
+    "Connor":{
+        "personality":"Artistic and creative",
+        "social_network":{
+            "Claire":"friend",
+            "Audrey":"co-worker"
+        }
+    },
+    "Audrey":{
+        "personality":"Adventurous and outgoing",
+        "social_network":{
+            "Lillian":"friend",
+            "Aaron":"co-worker"
+        }
+    },
+    "Jack":{
+        "personality":"Charming and charismatic",
+        "social_network":{
+            "Audrey":"friend"
+        }
+    },
+    "Benjamin":{
+        "personality":"Compassionate and empathetic",
+        "social_network":{
+            "Aubrey":"friend",
+            "Paisley":"co-worker"
+        }
+    },
+    "Penelope":{
+        "personality":"Mysterious and secretive, keeps to himself and rarely opens up to others",
+        "social_network":{
+            "Evelyn":"stranger"
+        }
+    },
+    "Zoey":{
+        "personality":"Ambitious and determined",
+        "social_network":{
+            "Emma":"co-worker",
+            "Michael":"friend"
+        }
+    },
+    "Michael":{
+        "personality":"Easygoing and friendly",
+        "social_network":{
+            "Zoey":"friend",
+            "Emma":"co-worker"
+        }
+    },
+    "Emma":{
+        "personality":"Optimistic and fond of helping others",
+        "social_network":{
+            "Zoey":"co-worker",
+            "Michael":"friend"
+        }
+    },
+    "Isaac":{
+        "personality":"Meticulous and detail-oriented",
+        "social_network":{
+            "Zoey":"competitor",
+            "Emma":"stranger"
+        }
+    },
+    "Evelyn":{
+        "personality":"Creative and artistic, loves expressing herself through various forms of art",
+        "social_network":{
+            "Zoey":"friend",
+            "Michael":"co-worker"
+        }
+    },
+    "Blake":{
+        "personality":"Reserved and introverted",
+        "social_network":{
+            "Evelyn":"friend",
+            "Isaac":"stranger"
+        }
+    },
+    "Aria":{
+        "personality":"Outgoing and charismatic",
+        "social_network":{
+            "Blake":"friend"
+        }
+    },
+    "Mia":{
+        "personality":"Intelligent and analytical",
+        "social_network":{
+            "Brooklyn":"roommate",
+            "Mark":"colleague"
+        }
+    },
+    "Carter":{
+        "personality":"Charismatic and persuasive",
+        "social_network":{
+            "Alex":"business partner",
+            "Lily":"acquaintance"
+        }
+    },
+    "Max":{
+        "personality":"Mysterious and secretive",
+        "social_network":{
+            "Olivia":"stranger"
+        }
+    },
+    "Brooklyn":{
+        "personality":"Ambitious and determined",
+        "social_network":{
+            "Dylan":"co-worker",
+            "Mike":"competitor"
+        }
+    },
+    "Dylan":{
+        "personality":"Kind-hearted and empathetic",
+        "social_network":{
+            "Brooklyn":"co-worker",
+            "John":"friend"
+        }
+    },
+    "Mike":{
+        "personality":"Arrogant and self-centered",
+        "social_network":{
+            "Brooklyn":"competitor",
+            "Jake":"partner"
+        }
+    },
+    "John":{
+        "personality":"Charismatic and persuasive",
+        "social_network":{
+            "Dylan":"friend",
+            "Brooklyn":"co-worker"
+        }
+    },
+    "Jake":{
+        "personality":"Mysterious and secretive",
+        "social_network":{
+            "Mike":"partner"
+        }
+    },
+    "":{
+        "personality":"Shy and introverted, prefers to observe rather than participate",
+        "social_network":{
+            "Aurora":"stranger",
+            "Landon":"friend"
+        }
+    },
+    "Aurora":{
+        "personality":"Adventurous and thrill-seeking",
+        "social_network":{
+            "Clara":"partner",
+            "Maria":"stranger"
+        }
+    },
+    "Hayden":{
+        "personality":"Creative and artistic",
+        "social_network":{
+            "Clara":"friend",
+            "":"co-worker"
+        }
+    },
+    "Lydia":{
+        "personality":"Intelligent and introverted",
+        "social_network":{
+            "Aurora":"stranger"
+        }
+    },
+    "Eric":{
+        "personality":"Laid-back and easygoing",
+        "social_network":{
+            "Clara":"friend"
+        }
+    },
+    "Madelyn":{
+        "personality":"Ambitious and determined",
+        "social_network":{
+            "Vivian":"co-worker",
+            "Diego":"friend"
+        }
+    },
+    "Vivian":{
+        "personality":"Creative and artistic",
+        "social_network":{
+            "Madelyn":"co-worker",
+            "Diego":"friend"
+        }
+    },
+    "Diego":{
+        "personality":"Easygoing and friendly",
+        "social_network":{
+            "Madelyn":"friend",
+            "Vivian":"co-worker"
+        }
+    },
+    "Clara":{
+        "personality":"Kind-hearted and empathetic",
+        "social_network":{
+            "Vivian":"friend",
+            "Madelyn":"co-worker"
+        }
+    },
+    "Landon":{
+        "personality":"Energetic and adventurous, always seeking new experiences",
+        "social_network":{
+            "":"friend"
+        }
+    },
+    "Maria":{
+        "personality":"Analytical and logical",
+        "social_network":{
+            "Madelyn":"competitor",
+            "Diego":"co-worker"
+        }
+    }
+}

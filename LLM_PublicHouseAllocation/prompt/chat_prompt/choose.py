@@ -17,6 +17,7 @@ class ChoosePromptTemplate(BaseChatPromptTemplate):
                      "role_description",
                      "house_info",
                      "thought_type",
+                     "thought_hint",
                      "choose_type",
                      "memory",
                      "agent_scratchpad"])
@@ -39,5 +40,5 @@ class ChoosePromptTemplate(BaseChatPromptTemplate):
         formatted = self.template.format(**kwargs)
     
         # return [Message(content=formatted,
-        #                 message_type=message_type)]
+        #                 message_type=message_type)]        
         return [HumanMessage(content=formatted)]

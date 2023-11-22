@@ -13,7 +13,19 @@ from LLM_PublicHouseAllocation.manager import manager_registry
 from LLM_PublicHouseAllocation.environments import env_registry
 from LLM_PublicHouseAllocation.memory import SummaryMemory,ActionHistoryMemory
 from LLM_PublicHouseAllocation.tenant.agent_rule import AgentRule
+import copy
 
+
+from LLM_PublicHouseAllocation.memory import SummaryMemory,ActionHistoryMemory
+
+def load_memory(memory_config: Dict,
+                llm):
+    memory_config_temp = copy.deepcopy(memory_config)
+    memory_type = memory_config_temp.pop("memory_type", "action_history")
+    if memory_type == "action_history":
+        return ActionHistoryMemory(llm=llm,**memory_config_temp)
+    else:
+        raise NotImplementedError("Memory type {} not implemented".format(memory_type))
 
 
 def load_environment(env_config: Dict) :
@@ -27,9 +39,20 @@ def load_manager(manager_config: Dict,manager_type) :
     
 
     
-def prepare_task_config(task):
+def prepare_task_config(task,
+                        data):
     """Read the yaml config of the given task in `tasks` directory."""
-    all_task_dir = os.path.join(os.path.dirname(__file__), 'tasks')
+    all_data_dir = os.path.join(os.path.dirname(__file__), 'tasks')
+    data_path = os.path.join(all_data_dir,data)
+    if not os.path.exists(data_path):
+        all_datas = []
+        for data_name in os.listdir(all_data_dir):
+            if os.path.isdir(os.path.join(all_data_dir, task)) \
+                and data_name != "__pycache__":
+                all_datas.append(data_name)
+        raise ValueError(f"Data {data} not found. Available datas: {all_datas}")
+    
+    all_task_dir = os.path.join(data_path, "configs")
     task_path = os.path.join(all_task_dir, task)
     config_path = os.path.join(task_path, 'config.yaml')
     
@@ -40,32 +63,32 @@ def prepare_task_config(task):
                 and task != "__pycache__":
                 all_tasks.append(task)
         raise ValueError(f"Task {task} not found. Available tasks: {all_tasks}")
+    
     if not os.path.exists(config_path):
         raise ValueError("You should include the config.yaml file in the task directory")
     task_config = yaml.safe_load(open(config_path))
 
-    return task_config,task_path
+    return task_config,task_path,data_path
 
 
 
 
-def load_memory(memory_config: Dict):
-    memory_type = memory_config.pop("memory_type", "action_history")
-    if memory_type == "action_history":
-        llm = load_llm(memory_config.pop('llm',{'llm_type': 'text-davinci-003}'}))
-        return ActionHistoryMemory(llm=llm,**memory_config)
-    else:
-        raise NotImplementedError("Memory type {} not implemented".format(memory_type))
 
-
-def load_llm(llm_config: Dict):
-    llm_type = llm_config.pop('llm_type', 'text-davinci-003')
+def load_llm(**llm_config):
+    llm_config_temp = copy.deepcopy(llm_config)
+    llm_type = llm_config_temp.pop('llm_type', 'text-davinci-003')
     if llm_type == 'gpt-3.5-turbo':
-        return ChatOpenAI(**llm_config)
+        return ChatOpenAI(model_name= "gpt-3.5-turbo",
+                          **llm_config_temp)
     elif llm_type == 'text-davinci-003':
-        return OpenAI(**llm_config)
+        return OpenAI(model_name="text-davinci-003",
+                      **llm_config_temp)
     elif llm_type == 'gpt-3.5-turbo-16k-0613':
-        return OpenAI(**llm_config)        
+        return ChatOpenAI(model_name="gpt-3.5-turbo-16k-0613",
+                      **llm_config_temp)  
+    elif llm_type =="gpt-3.5-turbo":
+         return ChatOpenAI(model_name="gpt-3.5-turbo",
+                      **llm_config_temp)  
     else:
         #return OpenAI(**llm_config)
         raise NotImplementedError("LLM type {} not implemented".format(llm_type))

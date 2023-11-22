@@ -5,3 +5,4 @@ from .base import BaseOrder
 from .rent import RentOrder
 from .priority import PriorityOrder
 from .waitlist import WaitListOrder
+from .kwaitlist import KWaitListOrder

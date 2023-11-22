@@ -1,0 +1,2 @@
+api_base = os.environ.get("OPENAI_API_BASE", "https://api.aigcbest.top/v1")
+#api_base = os.environ.get("OPENAI_API_BASE", "https://api.aiguoguo199.com/v1")

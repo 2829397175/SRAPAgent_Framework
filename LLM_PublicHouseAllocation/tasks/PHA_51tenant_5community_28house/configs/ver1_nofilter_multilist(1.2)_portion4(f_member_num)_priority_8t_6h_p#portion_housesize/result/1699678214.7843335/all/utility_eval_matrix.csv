@@ -1,0 +1,8 @@
+type_indicator,eval_type,3>=family_num>=2,family_num=1,family_num>3,all
+least_misery,Fairness,0.0,0.0,0.0,0.0
+variance,Fairness,63.98450000000001,57.627933884297526,54.2784,61.79179546328334
+jain'sfair,Fairness,0.27323917590838087,0.13637615284638624,0.09794085825537062,
+min_max_ratio,Fairness,0.0,0.0,0.0,
+sw,Satisfaction,223.5,109.5,73.60000000000001,406.6
+"F(W,G)",Fairness,,,,-3.9836585365853656
+GINI_index,Fairness,,,,0.5110770328790641

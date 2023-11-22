@@ -13,18 +13,7 @@ from . import OutputParseError, output_parser_registry
 class GroupDiscussPlanParser(AgentOutputParser):
     
     def parse(self, llm_output: str) -> Union[AgentAction, AgentFinish]:
-        # outputs = llm_output.split("\n")
-        # return_values = {}
-        # try:
-        #     true_opinion = outputs[0]
-        #     decision_honesty = outputs[1]
-        #     plan = outputs[2]
-        #     return_values = {"true_opinion":true_opinion,
-        #                      "decision_honesty":decision_honesty,
-        #                      "plan":plan,
-        #                      }
-        # except Exception as e:
-        #     return_values = {}
+        
         return AgentFinish(return_values={"return_values":{"plan":llm_output}},log=llm_output)
     
     
@@ -35,15 +24,8 @@ class GroupDiscussParser(AgentOutputParser):
     def parse(self, llm_output: str) -> Union[AgentAction, AgentFinish]:
         
         llm_output +="\n"
-        # Parse out thought
-        regexs=[r"Thought\s*\d*\s*:(.*?)\n"]
-        
-        for regex in regexs:
-            match_thought = re.findall(regex, llm_output, re.DOTALL)
-            if match_thought:
-                break
-        
-        regex = r"Acquaintance.*?:(.*?)\nOutput.*?:(.*?)\n"
+       
+        regex = r"Thought\s*\d*\s*:(.*?)\nAcquaintance.*?:(.*?)\nOutput.*?:(.*?)\n"
         
         
         matchs = re.findall(regex, llm_output, re.DOTALL)
@@ -51,22 +33,20 @@ class GroupDiscussParser(AgentOutputParser):
         
         try:
             return_values={"communication":[]} # 返回一个和各个熟人的交流结果
-            idx_thought = 0 
           
             for idx,match in enumerate(matchs):
-                thought = match_thought[idx_thought][0] if idx_thought < len(match_thought) else ""  
                 communication={
-                        "thought":thought.strip(),
-                        "acquaintance_names":match[0].strip(),
-                        "output":match[1].strip(),
+                        "thought":match[0].strip(),
+                        "acquaintance_names":match[1].strip(),
+                        "output":match[2].strip(),
                     }
                 return_values["communication"].append(communication)
-                idx_thought = idx_thought+1 if (idx_thought+1)< len(match_thought) else idx_thought
+               
                     
             return AgentFinish(return_values={"return_values":return_values},
                                     log=llm_output)
         except Exception as e:
-            raise OutputParseError("Output Format Error")
+            raise OutputParseError(f"Output Format Error (GroupDiscuss)")
     
     
     
@@ -103,7 +83,7 @@ class GroupDiscussBackParser(AgentOutputParser):
                                                                "output":output}},
                             log=llm_output)
         except Exception as e:
-             raise OutputParseError("Output Format Error")
+             raise OutputParseError("Output Format Error(group discuss back)")
         
         
 @output_parser_registry.register("relation")
@@ -133,7 +113,7 @@ class RelationParser(AgentOutputParser):
                                                             "comment":comment}},
                             log=llm_output)
             except:
-                raise OutputParseError("Output Format Error")
+                raise OutputParseError("Output Format Error (relation)")
         
         
         

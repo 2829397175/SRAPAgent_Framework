@@ -1,0 +1,15 @@
+{
+    "success":[],
+    "failed":[
+        "ver1_nofilter_multilist\\(1.2\\)_portion3\\(f_member_num\\)_priority_8t_6h_p#portion_housesize",
+        "ver1_nofilter_multilist\\(1.2\\)_portion3\\(f_rent_money_budget\\)_priority_8t_6h_p#portion_housesize",
+        "ver1_nofilter_multilist\\(1.2\\)_portion5\\(f_member_num\\)_priority_8t_6h_p#portion_housesize",
+        "ver1_nofilter_multilist\\(1.5\\)_portion3\\(f_member_num\\)_priority_8t_6h_p#portion_housesize",
+        "ver1_nofilter_multilist\\(1.8\\)_portion2\\(f_member_num\\)_priority_8t_6h_p#portion_housesize",
+        "ver1_nofilter_multilist\\(1.8\\)_portion3\\(f_member_num\\)_priority_8t_6h_p#portion_housesize",
+        "ver1_nofilter_multilist\\(1.8\\)_portion4\\(f_member_num\\)_priority_8t_6h_p#portion_housesize"
+    ],
+    "uncomplete":[
+        "ver1_nofilter_multilist\\(1.8\\)_portion4\\(f_member_num\\)_priority_8t_6h_p#portion_housesize"
+    ]
+}

@@ -39,20 +39,7 @@ class ChooseParser(AgentOutputParser):
         
         
         if not match:
-            raise OutputParseError("Output Format Error")
-        
-        # chooses = []
-        # for match in matchs:
-        #     thought = match[0].strip().strip(" ").strip('"')
-        #     action = match[1].strip()
-        #     action_input = match[2].strip().strip(" ").strip('"')
-        #     chooses.append({"output":action_input,
-        #                     "thought":thought})
-            
-        #     if action.lower() == "choose":
-        #         return AgentFinish(return_values={"return_values":
-        #                                         {"chooses":chooses}},
-        #                        log=llm_output)
+            raise OutputParseError("Output Format Error(choose)")
         
         
         thought = match.group(1).strip().strip(" ").strip('"')
@@ -65,6 +52,11 @@ class ChooseParser(AgentOutputParser):
                                             {"output":action_input,
                                                 "thought":thought}},
                             log=llm_output)
+        elif action.lower()=="giveup":
+            return AgentFinish(return_values={"return_values":
+                                            {"output":"I choose none of these options.",
+                                                "thought":thought}},
+                            log=llm_output)
         
         # Return the action and action input
-        raise OutputParseError("Output Format Error")
+        raise OutputParseError("Output Format Error(choose)")

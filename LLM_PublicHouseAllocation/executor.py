@@ -8,8 +8,9 @@ from .initialization import (load_environment,
                              load_manager,
                              prepare_task_config)
 from LLM_PublicHouseAllocation.global_score import Global_Score
-from LLM_PublicHouseAllocation.llms import OpenAILoader
-
+from LLM_PublicHouseAllocation.llms import APIKeyPool
+import platform
+import os
 
 logging.basicConfig(format='%(asctime)s - %(levelname)s - %(name)s - %(message)s', datefmt='%m/%d/%Y %H:%M:%S', level=logging.INFO)
 
@@ -26,42 +27,44 @@ class Executor():
         self.environment = environment
 
     @classmethod
-    def from_task(cls, task: str):
+    def from_task(cls, 
+                  args:dict):
         """Build an LLM_PublicHousingAllocation from a task name.
         The task name should correspond to a directory in `tasks` directory.
         Then this method will load the configuration from the yaml file in that directory.
         """
         # Prepare the config of the task
-        task_config,task_path = prepare_task_config(task)
+        task_config,task_path,data_path = prepare_task_config(args.task,args.data)
         
-        
+        if platform.system()=='Windows':
+            asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+
         import time
         import os
         save_dir = task_config.pop("save_root_dir","")
+        
         time_stamp = time.time()
         save_dir = os.path.join(task_path,
                                 f"{save_dir}/{time_stamp}")
         
-        if not os.path.exists(save_dir):
-            os.makedirs(save_dir)
         
         manager_configs = task_config.pop('managers')
         for _, config in manager_configs.items():
             if "data_dir" in config.keys():
-                config["data_dir"] = os.path.join(task_path,config["data_dir"])
+                config["data_dir"] = os.path.join(data_path,config["data_dir"])
+            if "distribution_batch_dir" in config.keys():
+                config["distribution_batch_dir"] = os.path.join(task_path,config["distribution_batch_dir"])
         
         save_log = task_config.pop("save_log",True)
         
         tenant_configs = manager_configs.pop('tenant')
-        tenant_llm_configs = tenant_configs["llm"]       
-        communication_llm_configs = tenant_configs["memory"]["llm"]       
+
+        llm_loader = APIKeyPool(args.api_path)
         
-        llm_loader = OpenAILoader(**task_config.pop('llm_loader'),
-                                  tenant_llm_configs=tenant_llm_configs,
-                                  communication_llm_configs=communication_llm_configs)
         
         tenant_manager = load_manager({**tenant_configs,
-                                       "save_dir": os.path.join(save_dir,"tenant.json")
+                                       "save_dir": os.path.join(save_dir,"tenant.json"),
+                                       "llm_loader":llm_loader
                                        },'tenant')
         
         #print(tenant_manager)
@@ -69,14 +72,14 @@ class Executor():
                                      "save_dir": os.path.join(save_dir,"house.json")
                                        },'house')
         community_manager = load_manager({**manager_configs.pop('community'),
-                                         "save_dir": os.path.join(save_dir,"community.json")
+                                         "save_dir": os.path.join(save_dir,"community.json"),
                                        },'community')
         forum_manager = load_manager({**manager_configs.pop('forum'),
                                       "save_dir": os.path.join(save_dir,"forum.json")
                                        },'forum')
         
-        system = System(house_manager=house_manager,
-                community_manager=community_manager)
+        system = System(house_manager = house_manager,
+                community_manager = community_manager)
         env_config = task_config.pop('environment')
         env_config['llm_loader'] = llm_loader
         env_config['system'] = system
@@ -88,42 +91,72 @@ class Executor():
             env_config['tool'] = tool
         else:
             env_config['tool'] = None
-
+        
+        save_evaluation_dic = os.path.join(data_path,f"global_evaluation")
+        if not os.path.exists(save_evaluation_dic):
+            os.makedirs(save_evaluation_dic) 
+        # save_evaluation_dir = os.path.join(save_evaluation_dic,
+        #                         f"global_score.json") 
+        
+        save_evaluation_dir = os.path.join(save_evaluation_dic,
+                        f"global_score_newver.json") 
+        
+        # assert os.path.exists(save_evaluation_dir)
+       
+        global_score = Global_Score.initialization(tenant_manager,
+                                                   system,
+                                                   save_dir=save_evaluation_dir,
+                                                   llm_pool=llm_loader,
+                                                   llm_configs={"llm_type": "gpt-3.5-turbo-16k-0613",
+                                                                "temperature": 0.6,
+                                                                "max_tokens": 200}
+                                                   )
+        
+        env_config['global_score'] = global_score
+        
         environment = load_environment({**env_config,
                                         "save_log":save_log})
         
         
-        save_evaluation_dic = os.path.join(task_path,
-                                f"global_evaluation")
-        if not os.path.exists(save_evaluation_dic):
-            os.makedirs(save_evaluation_dic) 
-        save_evaluation_dir = os.path.join(save_evaluation_dic,
-                                f"global_score.json") 
-        if not os.path.exists(save_evaluation_dir):
-            global_score = Global_Score.initialization(tenant_manager,system,save_dir=save_evaluation_dir)
-            global_score.rate_score()
-            global_score.save_score()
         return cls(environment)
+    
+    
+
+        
+        
+    
+    def load_log(self,result_dir):
+        self.environment.load_log(result_dir)
+
 
     def run(self):
         """Run the environment from scratch until it is done."""
         # self.environment.reset() # 待改memory模块
-        
-        # while not self.environment.is_done():
-        #     # asyncio.run(self.environment.step())
-        #     loop = asyncio.get_event_loop()
-        #     loop.run_until_complete(self.environment.step())
+                    
         self.environment.log.reset()
-        self.environment.group() 
-        self.environment.line_up()
-        self.environment.broadcast()
+        
+        # self.environment.group() # tenant->group(tenants)
+        # self.environment.line_up()
+    
+    
         
         while not self.environment.is_done():
-            # asyncio.run(self.environment.communication(communication_num = 3))#测试用
-            loop = asyncio.get_event_loop()
-            loop.run_until_complete(self.environment.communication(communication_num = 3))
-            #if self.environment.cnt_turn>3:
-            self.environment.step()
+            tenant_waitlists = self.environment.rule.get_next_agent_idx(self.environment)
+            
+            """采样waitlist中的tenant交流"""
+            tenant_ids = []
+            for queue_name, tenant_waitlist in tenant_waitlists.items():
+                tenant_ids.extend(tenant_waitlist) ## 所有waitlist内的tenant进行交流
+            
+            """采样所有系统中的tenant交流"""
+            # tenant_ids = list(self.environment.tenant_manager.data.keys())
+                        
+            self.environment.communication(tenant_ids,
+                                           communication_num = 10)
+           
+            self.environment.step(tenant_waitlists)
+            
+            
 
     def reset(self):
         self.environment.reset()
@@ -132,3 +165,9 @@ class Executor():
     #     """Run the environment for one step and return the return message."""
     #     return_message = asyncio.run(self.environment.step())
     #     return return_message
+    
+    # def test(self):
+    #     for _,tenant in self.environment.tenant_manager.data.items():
+    #         tenant2=self.environment.llm_loader.get_key(tenant)
+    #         tenant2
+       

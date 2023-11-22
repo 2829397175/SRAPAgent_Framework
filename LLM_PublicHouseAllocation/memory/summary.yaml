@@ -1,18 +1,7 @@
 community_summary:  &community_summary |-
   Progressively summarize new lines provided, adding onto the previous summary returning a new summary.
 
-  EXAMPLE
-  Current summary:
-  You think community_1 have inconvenient facilities. And you didn't make a choce.
-
-  New lines:
-  Thought: Community_2 is close to my wife's workplace and my child's school.
-  Output: My choice is community_2.
-
-  New summary:
-  You think community_2 is ideal for your family members, better than community_1. And you choose community_2.
-  END OF EXAMPLE
-
+ 
   Current summary:
   {summary}
 
@@ -95,17 +84,7 @@ forum_search_summary:  &forum_search_summary |-
 forum_publish_summary:  &forum_summary |-
   Progressively summarize new lines provided, adding onto the previous summary returning a new summary.
 
-  EXAMPLE
-  Current summary:
-  I have publish these information on forum: middle house is an acceptable option for my needs. 
-
-  New lines:
-  Thought: I need to publish information about community_2, since it's an ideal community to live in.
-  Output: community_2, close to my wife's workplace and my child's school.
-
-  New summary:
-  I have publish these information on forum: middle house meet my needs and community_2 has convenient transportation.
-  END OF EXAMPLE
+  
 
   Current summary:
   {summary}
@@ -118,17 +97,6 @@ forum_publish_summary:  &forum_summary |-
 synthesize_summary:  &synthesize_summary |-
   progessively summarize new lines provided, adding onto the previous summary. Return a new summary within 10 sentences.
 
-  EXAMPLE
-  Current summary:
-  You think community_1 have inconvenient facilities. And you didn't make a choce.
-
-  New lines:
-  Thought: Community_2 is close to my wife's workplace and my child's school.
-  Output: My choice is community_2.
-
-  New summary:
-  You think community_2 is ideal for your family members, better than community_1. And you choose community_2.
-  END OF EXAMPLE
   
   
   
@@ -144,19 +112,6 @@ synthesize_summary:  &synthesize_summary |-
 paragraph_summary:  &paragraph_summary |-
   progessively summarize new lines provided, adding onto the previous summary. Return a new summary within 10 sentences.
 
-  EXAMPLE
-  Current summary:
-  You think community_1 have inconvenient facilities. And you didn't make a choce.
-
-  New lines:
-  Thought: Community_2 is close to my wife's workplace and my child's school.
-  Output: My choice is community_2.
-
-  New summary:
-  You think community_2 is ideal for your family members, better than community_1. And you choose community_2.
-  END OF EXAMPLE
-  
-  
   
   Current summary:
   {summary}
@@ -170,20 +125,46 @@ paragraph_summary:  &paragraph_summary |-
 social_network_summary:  &social_network_summary |-
   You're {name}. You're planning to choose one house.  
 
-  Your task is to use memory to assess the credibility of communication information and summarize the useful information in the conversation.
+  Your task is to use memory to assess the credibility of communication information and summarize the useful information in the conversation based on your previous summary.
 
   {acquaintance_description}
 
   Here's your memory
   {memory}
 
-  Here's your chatting dialogue with {acquaintance_name}.
+  Here's your chatting conversation with {acquaintance_name}.
   {dialogue}
 
   - Respond in this format:
-  Trusted: (Summary of the useful information, which you assessed as trustworthy in the conversation)
+  Trusted: (Summary of the useful information, which you assessed as trustworthy in the conversation with {acquaintance_name})
   Suspicious: (Summary of the untrusted information, which you suspicious as trustworthy in the conversation; If there's no untrusted information, simply return None)
   Reason: (why {acquaintance_name} say these things?Try to find a reasonal intention for {acquaintance_name})
 
+
+  Respond:
+
+forum_assess_summary:  &forum_assess_summary |-
+  You're {name}. You're planning to choose one house.  
+  
+  Your task is to use MEMORY to assess the credibility of the forum information and summarize the useful information in the forum information based on your previous summary.
+
+  MEMORY:
+  {memory}
+
+  End of MEMORY
+
+  Here's the forum information:
+  {forum_info}
+
+  [!Important!]:
+  Keep in mind that you and competitors are vying for renting house. 
+  Both you and your competitors have the ability to share diverse information on the forum.
+  And you get forum information from this platform.
+  Remember to save the sequence number of the information you believe in in the summary content
+
+  - Respond in this format:
+  Trusted: (Summary of the useful information, which you assessed as trustworthy in the forum information)
+  Suspicious: (Summary of the untrusted information, which you suspicious as trustworthy in the forum information; If there's no untrusted information, simply return None)
+  Reason: (why other competitors say these things? Try to find a reasonal intention for their intention.)
 
   Respond:

@@ -8,8 +8,7 @@ from langchain.llms import OpenAI
 from LLM_PublicHouseAllocation.tools import ForumTool,PublishInput,SearchInput
 from LLM_PublicHouseAllocation.manager import ForumManager
 
-OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY","")
-llm = OpenAI(openai_api_key=OPENAI_API_KEY, temperature=0)
+
 
 def search_forum(forummanager:ForumManager,search_infos:str):
     search_infos = search_infos.split(",")

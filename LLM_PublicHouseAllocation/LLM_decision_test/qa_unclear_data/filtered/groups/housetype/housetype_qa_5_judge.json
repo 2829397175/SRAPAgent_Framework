@@ -1,0 +1,142 @@
+[
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
+            "house_info":"有2种房屋类型可供选择。这些房屋类型的信息如下所示：\nlarge_house: 这种类型的房屋可以容纳三人以上。\n\nmiddle_house: 这种类型的房屋适合两人家庭，也可以容纳一个年幼的孩子。",
+            "memory":"",
+            "role_description":"你是William Brown。你每个月赚15000。你的家庭成员包括：一位妻子和一个上小学的孩子。你今年38岁。你的工作是国有企业职员。你的公司位于北京市朝阳区朝阳北路9号。William的家人更喜欢离工作和学校近的公寓。你期望租一个价格为2500的房子。你还有2次选择房子的机会。"
+        },
+        "response":{
+            "output":"我的选择是大型房屋。",
+            "thought":"这间大型房屋似乎是个不错的选择，因为它可以容纳我的三口之家。"
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"有三种房屋类型可供选择。这些房屋类型的信息如下所示：\nlarge_house: 这种类型的房屋可以容纳三个以上的人。\n\nmiddle_house: 这种类型的房屋适合两人家庭，也可以容纳一个年幼的孩子。\n\nsmall_house: 这种类型的房屋适合一个人独居。",
+            "memory":"",
+            "role_description":"你是Evelyn。你每月赚12000。你的家庭成员包括：已婚，有一个孩子。你今年32岁。你的工作是程序员。你的公司位于北京市朝阳区望京街10号百度大厦。Evelyn希望房子附近有公园供孩子玩耍。你希望租一套房子的价格是2400.0。你还有2次选择房子的机会。"
+        },
+        "response":{
+            "output":"我的选择是large_house.",
+            "thought":"我希望能找到一个能容纳我一家三口的房子，所以large_house看起来是一个不错的选择。然而，我还需要考虑系统中房子的成本和可用性。"
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
+            "house_info":"有2种房屋类型可供选择。这些房屋类型的信息如下所示：\nlarge_house：这种房屋类型可以容纳超过三个人。\n\nmiddle_house：这种房屋类型适合两口之家，也可以容纳一个年幼的孩子。",
+            "memory":"",
+            "role_description":"你是William Brown。你每月赚15000元。你的家庭成员包括：一位妻子和一个上小学的孩子。你今年38岁。你的工作是国有企业职员。你的公司位于北京市朝阳区朝阳北路9号。William的家人偏好距离工作和学校近的公寓。你希望租一套2500元的房子。你还有2次选择房子的机会。"
+        },
+        "response":{
+            "output":"我的选择是中阶段的房子。",
+            "thought":"这座大型房屋为不断增长的家庭提供了更多的空间，但是租金对我们的预算来说有点高。中等大小的房子刚好在我们的预算范围之内，也能够满足我们当前的家庭规模。"
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,small_house])",
+            "house_info":"有2种房屋类型可供选择。这些房屋类型的信息如下所示：\nlarge_house:\n这种类型的房屋租金约为2634-2737，面积约为58.54-60.83。目前还有1个此类型的房屋可供选择。\n\nsmall_house:\n这种类型的房屋租金约为1926.9，面积约为42.82。目前还有1个此类型的房屋可供选择。",
+            "memory":"",
+            "role_description":"你是Madelyn。你每个月赚8000元。你的家庭成员包括：单身，没有孩子。你今年29岁。你的工作是自由职业者。你的公司位于北京市朝阳区三里屯。Madelyn喜欢一个有宽敞客厅供她练习瑜伽的房子。你期望租一套1600.0元的房子。你还有1次选择房子的机会。"
+        },
+        "response":{
+            "output":"我选择的是小型房屋。",
+            "thought":"小型房屋的租金符合我的预算，而且对我的家庭来说也有一个很好的大小。"
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
+            "house_info":"有2种房屋类型可供选择。这些房屋类型的信息如下所示：\nlarge_house:\n这种类型的房屋租金约为2240-2320，面积约为56.14-58.33平方米。目前还有3套此类型房屋可供选择。\n\nmiddle_house:\n这种类型的房屋租金约为1800-1885，面积约为44.96-47.13平方米。目前还有1套此类型房屋可供选择。",
+            "memory":"",
+            "role_description":"你是奥利弗·约翰逊。你每月赚12000元。你的家庭成员包括：一位妻子和一名刚开始上大学的孩子。你今年52岁。你的工作是公务员。你的公司位于北京市东城区人民大会堂西侧的政府办公楼。约翰逊先生想要一套靠近公园或绿地的公寓，以便进行休闲散步。你打算租一套房子，每月租金为2400.0元。你还有2次选择房子的机会。"
+        },
+        "response":{
+            "output":"我的选择是中型房屋。",
+            "thought":"我正在尋找一個靠近公園或綠色空間，方便休閒散步，同時滿足我的預算和其他要求的房子。大型房屋比較貴，但是坪數更大；而中間房子更便宜，但是面積更小。"
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
+            "house_info":"有2种房屋类型可供选择。这些房屋类型的信息如下所示：\nlarge_house: 这种类型的房屋可以容纳三个以上的人。\n\nmiddle_house: 这种类型的房屋适合两口之家，也可以容纳一个年幼的孩子。",
+            "memory":"",
+            "role_description":"你是William Brown。你每个月赚15000元。你的家庭成员包括：一位妻子和一个上小学的孩子。你今年38岁。你的工作是国有企业职员。你的公司位于北京朝阳区朝阳北路9号。William的家人希望租一套离工作和学校都近的公寓。你希望每月租金为2500元。你还有2次选择房子的机会。"
+        },
+        "response":{
+            "output":"我的选择是大型房屋。",
+            "thought":"大型房屋可以提供更多的空间和隐私，但是租金会高一些。中型房子更便宜，可以容纳一个小家庭，但可能太小来满足我们的需求。"
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house])",
+            "house_info":"有2种房屋类型可供选择。这些房屋类型的信息如下所示：\nlarge_house:\n这种类型的房屋租金约为2240-2320，面积约为56.14-58.33。还剩下3套这种类型的房屋。\n\nmiddle_house:\n这种类型的房屋租金约为1800-1885，面积约为44.96-47.13。还剩下1套这种类型的房屋。",
+            "memory":"",
+            "role_description":"你是詹姆斯·安德森（James Anderson）。你每月赚9000。你的家庭成员包括：一位妻子和两个孩子，都在高中就读。你今年45岁。你的工作是建筑工人。你的公司位于北京市东城区东直门外大街。安德森家庭喜欢交通便利的住所，因为他们经常需要上下班和上学。你打算租一间每月1800.0的房子。你还有2次选择房屋的机会。"
+        },
+        "response":{
+            "output":"我的选择是中型房屋。",
+            "thought":"大型房屋有更多的空间和设施，但是租金更高。中型房屋租金更实惠，但是比较小。"
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [middle_house,small_house])",
+            "house_info":"有2种房屋类型可供选择。这些房屋类型的信息如下所示：\nmiddle_house:\n这种类型的房屋租金约为1210，面积约为48.35-49.06。目前还有2套这种类型的房屋。\n\nsmall_house:\n这种类型的房屋租金约为1106，面积约为44.24-44.51。目前还有1套这种类型的房屋。",
+            "memory":"",
+            "role_description":"你是Emma。你每月赚15000。你的家庭成员包括：单身，没有孩子。你今年29岁。你的工作是建筑师。你的公司位于北京市朝阳区建国门外大街1号。Emma希望公寓位于安静的社区，让她可以专注于工作。你期望租一套房子的价格是2500.0。你还有1次选择房子的机会。"
+        },
+        "response":{
+            "output":"我的选择是中型房屋。",
+            "thought":"我认为中型房屋可能是最适合我的，因为它符合我的预算，并提供了合适的面积。"
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"有三种房屋类型可供选择。这些房屋类型的信息如下所示：\nlarge_house: 这种类型的房屋可以容纳三人以上。\nmiddle_house: 这种类型的房屋适合两个人的家庭，并且还可以容纳一个年幼的孩子。\nsmall_house: 这种类型的房屋适合一个人独居。",
+            "memory":"",
+            "role_description":"你是Olivia。你每月赚10000。你的家庭成员包括：已婚，有两个孩子，一个在小学，一个在中学。你今年42岁。你的工作是政府雇员。你的公司位于北京市东城区东四十条1号。Olivia需要一所带书房的房子来满足孩子的教育需求。你希望租一所2000.0的房子。你还有两次选择房子的机会。"
+        },
+        "response":{
+            "output":"我的选择是large_house.",
+            "thought":"考虑到我已婚并有两个孩子，他们需要一个学习室来满足教育需求，我认为大型住宅是最适合的选择，因为它可以容纳三个以上的人。"
+        }
+    },
+    {
+        "prompt_inputs":{
+            "task":"You need to choose one type of houses.",
+            "thought_type":"Your views on these house types.",
+            "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+            "house_info":"有三种房屋类型可供选择。以下是这些房屋类型的信息：\nlarge_house:这种房屋类型可以容纳三人以上。\n\nmiddle_house:这种房屋类型适合两人家庭，也可以容纳一个年幼的孩子。\n\nsmall_house:这种房屋类型适合一个人独自居住。",
+            "memory":"",
+            "role_description":"你是Lily。你每个月赚7000元。你的家庭成员包括：已婚，有两个孩子，都在小学上学。你39岁。你的工作是酒店接待员。你的公司位于北京丰台区南三环中路19号香江广场大厦。Lily的家庭需要一套宠物友好型的公寓，因为他们有一只小狗。你希望租一套房子，价格为1400.0元。你还有2次选择房子的机会。"
+        },
+        "response":{
+            "output":"我的选择是large_house.",
+            "thought":"考虑到我已婚并有两个孩子，一座大房子将是我们家庭的最佳选择，因为它可以舒适地容纳我们所有人。"
+        }
+    }
+]

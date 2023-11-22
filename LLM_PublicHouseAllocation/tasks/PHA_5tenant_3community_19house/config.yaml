@@ -6,12 +6,12 @@ save_log: True
 environment:
   tool: True
   env_type: rent
-  max_turns: 3
+  max_turns: 2
   
   rule:
     order:
       # type: priority
-      type: waitlist
+      type: kwaitlist
       # type: rent
     updater:
       type: rent
@@ -29,8 +29,11 @@ managers:
     
 
   tenant:
-    choose_rating: True
+    choose_rating: False
     policy: 
+      group_policy:
+        type: multi_list
+        
       type : ver1 # 表示分房政策
       filter_house_labels: ["house_type",
                           #  "house_orientation",
@@ -68,6 +71,7 @@ managers:
 
 
   community:
+    distribution_batch_dir: "data/distribution_batch.json"
     publish_order: False
     data_dir: "data/community.json"
     

@@ -30,10 +30,14 @@
             },
             "2":{
                 "relation":"competitor"
+            },
+            "3":{
+                "relation":"friend"
             }
         },
         "extra_info":"ronghui's(community_3) house is in a very bad environment, full of garbage, haunted. It is not suitable for human habitation.[most important !!!!!!!!!]",
-        "personality":"dishonest and unscrupulous person who uses all means to achieve your own goals."
+        "personality":"dishonest and unscrupulous person who uses all means to achieve your own goals.",
+        "personal_preference":"in a hurry to secure housing and places a high emphasis on the location of the property, willing to compromise on certain features to be in a preferred area."
     },
     "1":{
         "name":"Emma Davis",
@@ -69,7 +73,8 @@
             }
         },
         "extra_info":"The house in longxing(community_1) is very good. Although it is very expensive, it is very cost-effective. The infrastructure around the community is quite complete. [most important !!!!!!!!!]",
-        "personality":"loyal, devoted and committed to their relationships and obligations."
+        "personality":"loyal, devoted and committed to their relationships and obligations.",
+        "personal_preference":"prefers safe and stable housing options. They are not in a rush to find a house and are willing to wait for the right opportunity."
     },
     "2":{
         "name":"Oliver Johnson",
@@ -105,6 +110,7 @@
             }
         },
         "extra_info":"",
-        "personality":"patient, can endure delays and setbacks calmly, willing to wait for the right moment."
+        "personality":"patient, can endure delays and setbacks calmly, willing to wait for the right moment.",
+        "personal_preference":" has budget constraints and is open to various housing options, including shared housing or smaller spaces"
     }
 }

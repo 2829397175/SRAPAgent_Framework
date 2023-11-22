@@ -22,6 +22,7 @@ class WaitListOrder(BaseOrder):
     waitlist_ratio : waitlist shortlisted ratio (default = 0.3 )
     
     """
+    
     rule_description:str=""
     waitlist_ratio = 0.5 
     def get_next_agent_idx(self, environment) :

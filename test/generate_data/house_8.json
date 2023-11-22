@@ -1,0 +1,100 @@
+{
+    "longxing":{
+        "house_3":{
+            "house_type":"large_house",
+            "toward":"EW",
+            "house_area":"61.5",
+            "rent_money":1845,
+            "balcony":"has",
+            "floor":8,
+            "elevator":"has",
+            "description":"This home boasts a seamless layout, optimizing the available space. The sizable bedroom is a highlight, accompanied by a practical bathroom design and a well-equipped kitchen.",
+            "potential_information_house":"Some of the walls have visible paint chips, hinting at the age of the house. A fresh coat might be needed for aesthetic purposes."
+        }
+    },
+    "jinkejiayuan":{
+        "house_19":{
+            "house_type":"small_house",
+            "toward":"NS",
+            "house_area":"27.76",
+            "rent_money":944,
+            "balcony":"not has",
+            "floor":7,
+            "elevator":"has",
+            "description":"This compact space lacks natural light and doesn't have a distinct kitchen area. The bedroom size is adequate, ensuring a decent living space.",
+            "potential_information_house":"Perfect for those looking to step out on their own and don't mind the absence of a balcony."
+        }
+    },
+    "ronghui":{
+        "house_42":{
+            "house_type":"large_house",
+            "toward":"NS",
+            "house_area":"56.30",
+            "rent_money":2252,
+            "balcony":"has",
+            "floor":15,
+            "elevator":"has",
+            "description":"This property boasts a well-planned layout with ample living space and a generous bedroom. The vast inter-floor space ensures a quiet ambiance. The bathroom is designed for relaxation, and the separate kitchen is spacious.",
+            "potential_information_house":"The house embodies modern architectural principles, promising a luxurious living experience. The bedroom environment is peaceful, making it an ideal retreat."
+        },
+        "house_49":{
+            "house_type":"middle_house",
+            "toward":"EW",
+            "house_area":"45.50",
+            "rent_money":1820,
+            "balcony":"has",
+            "floor":10,
+            "elevator":"has",
+            "description":"This medium-sized apartment offers a balanced layout, with a vibrant living space and a cozy bedroom. The inter-floor spacing is commendable, providing a noise-free environment. The bathroom is well-appointed, and the kitchen space is practical.",
+            "potential_information_house":"Blending aesthetic appeal with functionality, this house is a true reflection of contemporary design. The bedroom offers a serene space for relaxation."
+        }
+    },
+    "wankecheng":{
+        "house_69":{
+            "house_type":"middle_house",
+            "toward":"NS",
+            "house_area":"48.65",
+            "rent_money":2189,
+            "balcony":"has",
+            "floor":10,
+            "elevator":"has",
+            "description":"This unit offers an optimized layout ensuring all spaces, including the bedroom, are comfortable. The bathroom layout facilitates smooth routines, and the kitchen, though snug, remains functional.",
+            "potential_information_house":"The house carries a modern design, but potential tenants might want to check the balcony doors for better sound insulation."
+        },
+        "house_71":{
+            "house_type":"small_house",
+            "toward":"NS",
+            "house_area":"42.82",
+            "rent_money":1926,
+            "balcony":"has",
+            "floor":4,
+            "elevator":"has",
+            "description":"This unit optimizes space with its clever layout. The bedroom might seem snug, but it provides a warm atmosphere. The bathroom is tailored for swift showers and maximizes space. The integrated kitchen space, although not separate, is functional.",
+            "potential_information_house":"While the house exudes a nostalgic vibe, some parts might require refurbishments. But its accessibility and scenic view might outweigh the cons."
+        }
+    },
+    "sanhejiayuan":{
+        "house_91":{
+            "house_type":"small_house",
+            "toward":"EW",
+            "house_area":"44.24",
+            "rent_money":1106,
+            "balcony":"not has",
+            "floor":10,
+            "elevator":"has",
+            "description":"This compact layout is ideal for singles or young couples. The bedroom is decent in size, ensuring comfortable living. The kitchen, although not separate, offers ample space for cooking. The bathroom layout ensures easy and comfortable showers.",
+            "potential_information_house":"The house has old-fashioned wooden fittings that add a touch of nostalgia. However, one might feel the absence of a spacious living area."
+        },
+        "house_82":{
+            "house_type":"large_house",
+            "toward":"EW",
+            "house_area":"60.2",
+            "rent_money":1505,
+            "balcony":"not has",
+            "floor":28,
+            "elevator":"has",
+            "description":"The well-thought-out layout of this house maximizes utility and space. The floor spacing might be a tad constrictive, but it's balanced by a vast bedroom. The house doesn't feature a distinct kitchen, but the current provision is ample.",
+            "potential_information_house":"Previous tenants have appreciated the unobstructed views from the windows, which add to the appeal of the property."
+        }
+    }
+}

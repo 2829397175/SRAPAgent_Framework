@@ -3,14 +3,18 @@ import os
 
 from LLM_PublicHouseAllocation.tenant.multiprompt_tenant import CAHTTenant
 from LLM_PublicHouseAllocation.tenant.langchain_tenant import LangchainTenant
+from LLM_PublicHouseAllocation.tenant.langchain_tenant.tenant_log import Log_Round_Tenant
+
 from LLM_PublicHouseAllocation.tenant.policy import policy_registry
+from LLM_PublicHouseAllocation.tenant.policy.group_policy import group_registry
 from LLM_PublicHouseAllocation.output_parser import output_parser_registry
 from . import manager_registry as ManagerRgistry
 from .base import BaseManager
 from LLM_PublicHouseAllocation.prompt.chat_prompt import chat_prompt_registry
 from LLM_PublicHouseAllocation.message import Message
 from LLM_PublicHouseAllocation.initialization import load_llm,load_prompt,load_memory,load_agentrule
-
+from LLM_PublicHouseAllocation.tenant.policy import BasePolicy
+from LLM_PublicHouseAllocation.llms.api_key_pool import APIKeyPool
 @ManagerRgistry.register("tenant")
 class TenantManager(BaseManager):
     """
@@ -19,8 +23,13 @@ class TenantManager(BaseManager):
     Args:
         tenants: list[Tenant]
     """
+    total_tenant_datas:dict={}
+    distribution_batch_data:dict={} 
     
     groups:dict = {} # group_id:[tenant_id]
+    policy: BasePolicy # 每个tenant共享的政策
+    llm_loader:APIKeyPool
+
 
     @classmethod
     def load_data(
@@ -36,15 +45,28 @@ class TenantManager(BaseManager):
         base_config = kwargs
         
         policy_kwargs = base_config.get("policy")
-        policy_type = policy_kwargs.pop("type","ver1")
-        policy = policy_registry.build(policy_type,**policy_kwargs)
+        
+        group_policy_kwargs = policy_kwargs.pop("group_policy",{"type":"base",
+                                                                "priority":False})
+        if group_policy_kwargs["type"] == "portion":
+            group_policy = group_registry.build(tenant_configs = tenant_configs,**group_policy_kwargs)
+        else:
+            group_policy = group_registry.build(**group_policy_kwargs)
+        
+
+        policy = policy_registry.build(group_policy=group_policy,
+                                       **policy_kwargs)
+        
+        
         
         tenants = {}
         if base_config.get("type_tenant") == "LangchainTenant":
-            llm_base = load_llm(base_config.pop('llm'))
+            
             memory_config = base_config.pop('memory')
+            
             max_choose = base_config.pop('max_choose')
-            choose_rating = base_config.pop('choose_rating')
+            choose_rating = base_config.pop('choose_rating',False)
+            tenant_llm_config = base_config.pop('llm')
             
             # default setting
             output_parser_base = output_parser_registry.build('choose')
@@ -59,11 +81,22 @@ class TenantManager(BaseManager):
                         neigh_tenant_info["name"] = tenant_configs[neigh_tenant_id].get("name",tenant_id)
                 memory_config.update({"social_network":social_network})
                 
+                
+                memory_llm_configs = memory_config.pop("llm",tenant_llm_config)
+                llm_loader = kwargs.get("llm_loader")
+                memory_llm, llm_base = llm_loader.get_llm(
+                    self_llm_configs = tenant_llm_config,
+                    memory_llm_configs = memory_llm_configs)
+                memory_config["memory_llm_configs"] = memory_llm_configs
+                memory_config["llm_loader"] = llm_loader
+                memory = load_memory(memory_config,memory_llm)
+                
                 tenant = LangchainTenant.from_llm_and_tools(name=tenant_config.get("name",tenant_id),
                                                             id=tenant_id,
                                                             infos=tenant_config,
-                                                            memory_config=memory_config,
-                                                            llm=llm_base,
+                                                            memory = memory,
+                                                            llm = llm_base,
+                                                            llm_loader = llm_loader,
                                                             prompt=prompt_base,
                                                             output_parser=output_parser_base,
                                                             policy = policy,
@@ -72,7 +105,10 @@ class TenantManager(BaseManager):
                                                             work_place = tenant_config.get("work_place",""),
                                                             priority_item = priority_item,
                                                             family_num=tenant_config.get("family_members_num",0),
-                                                            choose_rating = choose_rating
+                                                            choose_rating = choose_rating,
+                                                            llm_config={"self":tenant_llm_config,
+                                                                        "memory":memory_llm_configs},
+                                                            log_round_tenant=Log_Round_Tenant()
                                                             )
                 tenants[tenant_id] = tenant
 
@@ -119,11 +155,50 @@ class TenantManager(BaseManager):
                 tenants[id] = tenant_agent
                 id += 1
 
+
+
+        with open(os.path.join(kwargs["distribution_batch_dir"]),'r',encoding = 'utf-8') as f:
+            distribution_batch_data = json.load(f)
+        
+        
         return cls(
-            data=tenants,
+            distribution_batch_data = distribution_batch_data,
+            total_tenant_datas = tenants,
+            data = {},
             data_type="tenants",
-            save_dir=kwargs["save_dir"]
+            save_dir=kwargs["save_dir"],
+            policy = policy,
+            llm_loader = llm_loader
         )
+        
+        
+    def add_tenant_pool(self,
+                        add_tenant_ids,
+                        system,
+                        rule):
+        for tenant_id in add_tenant_ids:
+            self.data[tenant_id] = self.total_tenant_datas[tenant_id]
+            self.broadcast(system,tenant_id)
+            self.broadcast_rule(rule,tenant_id)
+        return add_tenant_ids
+                   
+                   
+    def get_tenant_enter_turn(self,tenant):
+        for turn, batch_tenant_ids in self.distribution_batch_data.items():
+            if tenant.id in batch_tenant_ids:
+                return turn
+        
+        raise Exception(f"This tenant {tenant.id} didn't enter system in the simulation experiment")
+                   
+    def add_tenants(self,cnt_turn,system,rule):
+        if str(cnt_turn) in self.distribution_batch_data.keys():
+            print("New tenants are added!")
+            return self.add_tenant_pool(self.distribution_batch_data[str(cnt_turn)],
+                                 system,
+                                 rule)
+        else:
+            return []
+           
 
         
     def available_tenant_num(self):
@@ -148,25 +223,28 @@ class TenantManager(BaseManager):
         with open(self.save_dir, 'w') as file:
             json.dump(self.data, file, indent=4,separators=(',', ':'),ensure_ascii=False)
 
-    def broadcast(self,system):
+    def broadcast(self,system,tenant_id):
         
         broadcast_template = """You are in rent system. Choosing one house needs the following steps:
 1.choose community 
 2.choose type of house 
 3.choose house
 \n{community_info}"""
-        community_info = system.get_community_abstract()
+        community_info,community_ids = system.get_community_abstract(concise=True)
         #待改，等community_manager接口
         broadcast_str = broadcast_template.format(community_info=community_info) 
         broadcast_message = Message(message_type = "community",
                         content = broadcast_str,
                         sender = {"system":"system"},
                     ) # 暂时视作小区类信息        
-        for tenant in self.data.values():
-            assert isinstance(tenant,LangchainTenant)
-            tenant.memory.add_message([broadcast_message]) # 不发送，在自己的行为队列
+        tenant = self.data[tenant_id]
+        
+        assert isinstance(tenant,LangchainTenant)
+        tenant.memory.add_message([broadcast_message]) # 不发送，在自己的行为队列
             
-    def broadcast_rule(self,rule):
+    def broadcast_rule(self,
+                       rule,
+                       tenant_id):
         
         broadcast_template = """
 You are in rent system. The queuing rules of this system is as follows:
@@ -175,10 +253,10 @@ You are in rent system. The queuing rules of this system is as follows:
         rule_description = rule.rule_description()
         #待改，等community_manager接口
         broadcast_str = broadcast_template.format(rule_order=rule_description) 
-        broadcast_message = Message(message_type = "order",
+        broadcast_message = Message(message_type = "base",
                         content = broadcast_str,
                         sender = {"system":"system"}
                     ) # 暂时视作小区类信息        
-        for tenant in self.data.values():
-            assert isinstance(tenant,LangchainTenant)
-            tenant.memory.add_message([broadcast_message]) # 不发送，在自己的行为队列
+        tenant = self.data[tenant_id]
+        assert isinstance(tenant,LangchainTenant)
+        tenant.memory.add_message([broadcast_message]) # 不发送，在自己的行为队列

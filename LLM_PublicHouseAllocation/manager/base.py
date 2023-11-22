@@ -59,6 +59,15 @@ class BaseManager(BaseModel):
             tuple_idx[k]=v       
             
             
+    def set_house_type(self,community_manager):
+        house_types = ["large_house","middle_house","small_house"]
+        for c_id, community_info in community_manager.total_community_datas.items():
+            for house_type in house_types:
+                if house_type in community_info.keys():
+                    house_type_h_ids = community_info.get(house_type).get("index",[])
+                    for house_id in house_type_h_ids:
+                        self.set_value(house_id,**{"house_type":house_type})
+            
     # load different types of info from file
     @abstractmethod
     def load_data(**kwargs):

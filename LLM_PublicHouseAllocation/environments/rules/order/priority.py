@@ -84,7 +84,7 @@ families with major illnesses or surgeries, severely disabled families, and fami
         return environment.deque_dict
 
     def requeue(self, environment,tenant):
-        if (tenant.choose_times>=tenant.max_choose):
+        if (tenant.choose_times >= tenant.max_choose):
             return
         tenant_id = tenant.id 
         for group_id,tenant_ids in environment.tenant_manager.groups.items():
