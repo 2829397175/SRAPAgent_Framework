@@ -10,21 +10,21 @@
         "description":"There are sports facilities, including football fields and basketball courts, with a large green area and a large distance between buildings.",
         "nearby_info":"This community is surrounded by: Supermarkets include Hualian Boutique Supermarket (Guaxiang Road Branch), Carrefour Supermarket (Danish Town Branch); Schools include Zhongrui Hotel Management College, Beijing Second Foreign Language College Zhongrui Hotel Management College Living Area; Restaurants include microfood origin Hunan Cuisine (Hunan Cuisine Branch), fisherman's handle iron pot (Longjing Bay 2nd District Branch); Banks include Agricultural Bank of China ATM (Longgazhuang Shunjing Road Branch); .This commnunity does not have: subway, shopping mall, hospital, park,",
         "large_house":{
-            "remain_number":2,
+            "remain_number":1,
             "living_room":"one room",
             "index":[
-                "house_3",
-                "house_4"
+                "house_5"
             ],
             "size":"60.92-61.8",
             "cost":"1830"
         },
         "small_house":{
-            "remain_number":3,
+            "remain_number":4,
             "living_room":"zero room",
             "index":[
-                "house_10",
+                "house_11",
                 "house_13",
+                "house_15",
                 "house_17"
             ],
             "size":"37.96-38.09",
@@ -46,8 +46,8 @@
             "living_room":"zero room",
             "index":[
                 "house_19",
-                "house_25",
-                "house_29",
+                "house_22",
+                "house_23",
                 "house_30"
             ],
             "size":"27.76-44.62",
@@ -65,21 +65,21 @@
         "description":"The community has good greenery, a parking lot, and several kinds of sports and fitness equipment.",
         "nearby_info":"This commnunity is surrounded by: Metro includes Huangcun Railway Station, Huangcun West Street; Supermarket includes Wumi Supermarket (Jianxing Store), Ma Jie Department Store Flagship Store (Daxing Daxing Dazhong Fengli Store); Mall includes Daxing Dazheng Chunli, Daxing Xingcheng Commercial Building; Hospital includes Beijing Daxing Town Dazheng Dongli Community Health Service Station, Beijing Daxing Jingnan Traditional Chinese Medicine Hospital; Park includes Daxing Street Park, Daxing Agricultural Machinery Park; School includes Beijing Daxing District First Middle School, Beijing Daxing District Fifth Elementary School; Restaurants include Half-Demon Green Pepper Grilled Fish (Daxing Hotel Branch), Meizhou Dongpo Restaurant (Daxing Huangcun Branch); Bank includes Industrial and Commercial Bank of China ATM (Beijing Daxing Branch), Postal Savings Bank of China (Daxing Branch); .This commnunity: not have\n",
         "large_house":{
-            "remain_number":2,
+            "remain_number":3,
             "living_room":"two rooms",
             "index":[
-                "house_37",
-                "house_39"
+                "house_35",
+                "house_39",
+                "house_43"
             ],
             "size":"56.14-58.33",
             "cost":"2240-2320"
         },
         "middle_house":{
-            "remain_number":4,
+            "remain_number":3,
             "living_room":"one room",
             "index":[
-                "house_44",
-                "house_46",
+                "house_47",
                 "house_51",
                 "house_52"
             ],
@@ -98,31 +98,30 @@
         "description":"wankecheng stands as a testament to modern living in the heart of Beijing's peaceful suburbs. Constructed with the latest eco-friendly materials, this community prioritizes sustainability while ensuring comfort and luxury. The tall silver pine trees, from which the community gets its name, dot the skyline and provide refreshing shade during the summer months. Residents can benefit from the meticulously landscaped gardens, which are interspersed with cozy seating areas and beautiful water features. The community center offers various activities, fostering a sense of camaraderie among neighbors. Despite its secluded location, Silver Pine Heights remains connected to the city through efficient transport networks, making daily commutes and weekend getaways equally convenient.",
         "nearby_info":"This commnunity is surrounded by: The subway includes Huangcun Railway Station and Huangcun West Street; supermarkets include vegetable supermarkets and Wumart Supermarket (Daxing Huangcun store); shopping malls include Daxing Dayue Chunfengli and Daxing Star City Commercial Building; hospitals include Xingzheng Town, Daxing District, Beijing Dongli Community Health Service Station, Jingnan Hospital of Traditional Chinese Medicine, Daxing District, Beijing; Parks include Street Center Park; Schools include Beijing Daxing District No. 1 Middle School, Beijing Daxing District No. 8 Primary School; restaurants include Bantian Yao Green Pepper Grilled Fish (Daxing Hotel Store), Jingmen Laobao San (Guanyin Temple Store); banks include Industrial and Commercial Bank of China (Beijing Daxing Branch), Industrial and Commercial Bank of China ATM (Beijing Daxing Branch).",
         "large_house":{
-            "remain_number":2,
+            "remain_number":0,
             "living_room":"two rooms",
-            "index":[
-                "house_54",
-                "house_57"
-            ],
+            "index":[],
             "size":"58.54-60.83",
             "cost":"2634-2737"
         },
         "middle_house":{
-            "remain_number":2,
+            "remain_number":3,
             "living_room":"one room",
             "index":[
+                "house_62",
                 "house_64",
-                "house_65"
+                "house_69"
             ],
             "size":"48.38-49.07",
             "cost":"2177-2208"
         },
         "small_house":{
-            "remain_number":2,
+            "remain_number":3,
             "living_room":"zero room",
             "index":[
+                "house_70",
                 "house_71",
-                "house_74"
+                "house_72"
             ],
             "size":"42.82",
             "cost":"1926.9"
@@ -142,29 +141,29 @@
             "remain_number":2,
             "living_room":"two rooms",
             "index":[
-                "house_77",
-                "house_78"
+                "house_79",
+                "house_82"
             ],
             "size":"60-60.62",
             "cost":"1500"
         },
         "middle_house":{
-            "remain_number":2,
+            "remain_number":1,
             "living_room":"one room",
             "index":[
-                "house_83",
-                "house_85"
+                "house_88"
             ],
             "size":"48.35-49.06",
             "cost":"1210"
         },
         "small_house":{
-            "remain_number":3,
+            "remain_number":4,
             "living_room":"zero room",
             "index":[
+                "house_91",
+                "house_92",
                 "house_94",
-                "house_98",
-                "house_99"
+                "house_96"
             ],
             "size":"44.24-44.51",
             "cost":"1106"

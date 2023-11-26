@@ -311,7 +311,7 @@ End of example
                 while (not rated):
                     input={
                     "role_description":tenant.get_role_description(),
-                    "house_info":self.system.get_score_house_description(house_id,tenant),
+                    "house_subject_info":self.system.get_score_house_description(house_id,tenant),
                     "example":examples_str_template.format(examples = "\n".join(examples)) if len(examples)>=1 else ""
                     }   
                     response = await subject_llm_chain.arun(input)

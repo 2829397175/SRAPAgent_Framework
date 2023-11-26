@@ -21,9 +21,14 @@ class HouseTypePolicy(BaseGroupPolicy):
         choose_state = False
         upper_bound = 3
         times = 0
+        
+        thought_hint = """Remember to consider the following things before choosing house:
+1. The per capita living area should be taken into consideration.
+2. Remember to give the reason why the selected house type meets your needs in thought(exp. \
+My family has a large population and needs a larger house to live in)"""
         while not choose_state and \
             times < upper_bound:
-            choose_state, house_type_id, house_type_reason = await tenant.choose_house_type(system,rule)
+            choose_state, house_type_id, house_type_reason = await tenant.choose_house_type(system,rule,thought_hint = thought_hint)
             log_round_tenant.set_choose_house_type(house_type_id,house_type_reason)
             self.log_fixed[tenant.id] = {
                 "choose_house_type":house_type_id,

@@ -18,13 +18,19 @@ class App:
             for data_file in data_files:
                 data_path = os.path.join(dir_path,data_file)
                 with open(data_path,'r',encoding = 'utf-8') as f:
-                   self.data_list.extend(json.load(f))
+                    data_list = json.load(f)
+                    if isinstance(data_list,dict):
+                        data_list = list(data_list.values())
+                    self.data_list.extend(data_list)
             self.dir_path = dir_path 
         else:
             assert os.path.exists(dir_path),"no such file path: {}".format(dir_path)
             with open(dir_path,'r',encoding = 'utf-8') as f:
-                self.data_list = json.load(f)
-            self.dir_path=os.path.dirname(dir_path)
+                data_list = json.load(f)
+                if isinstance(data_list,dict):
+                    data_list = list(data_list.values())
+                self.data_list = data_list
+            self.dir_path = os.path.dirname(dir_path)
             
         if saving_path == None:
             import time
@@ -34,17 +40,10 @@ class App:
             
         else:
             self.saving_path = saving_path
-        # for data in self.data_list:
-        #     #testflag表示是否被标注过
-        #     data["testflag"]=False
-        #     #humanjudge表示是否是人类的答案
-        #     data["humanjudge"]=False
-        #     #turingflag表示标注的结果，true表示是人类的答案，false表示是LLM的答案
-        #     data["turingflag"]=False
-        # #self.data_list=dir_path
+     
         self.index = 0
         self.window = tk.Tk()
-        self.window.title("Check Consistency")
+        self.window.title("Save Response")
         
         self.create_prompt_frame()
         
@@ -98,11 +97,11 @@ class App:
         button_frame = tk.Frame(self.window)
         button_frame.grid(row=row_counter, column=0, pady=10)
         
-        self.approve_button = tk.Button(button_frame, text="Human Response", command=self.approve)
-        self.approve_button.pack(side=tk.LEFT, padx=10)
+        # self.approve_button = tk.Button(button_frame, text="Human Response", command=self.approve)
+        # self.approve_button.pack(side=tk.LEFT, padx=10)
         
-        self.reject_button = tk.Button(button_frame, text="Robot Response", command=self.reject)
-        self.reject_button.pack(side=tk.LEFT, padx=10)
+        # self.reject_button = tk.Button(button_frame, text="Robot Response", command=self.reject)
+        # self.reject_button.pack(side=tk.LEFT, padx=10)
         
         self.back_button = tk.Button(button_frame, text="Back", command=self.back)
         self.back_button.pack(side=tk.LEFT, padx=10)
@@ -261,7 +260,7 @@ class App:
             self.data_list[self.index]["testflag"]=True
             self.data_list[self.index]["turingflag"]=True
             self.index += 1
-            if self.index == len(self.data_list)-1:
+            if self.index == len(self.data_list):
                 self.save_and_exit()
             self.show_data()
         else:
@@ -280,7 +279,7 @@ class App:
             self.data_list[self.index]["testflag"]=True
             self.data_list[self.index]["turingflag"]=False
             self.index += 1
-            if self.index == len(self.data_list)-1:
+            if self.index == len(self.data_list):
                 self.save_and_exit()
             self.show_data()
         else:
@@ -314,12 +313,15 @@ class App:
                 messagebox.showerror("Error","喂，不要摸鱼!好好标注QAQ,多写点thought")
                 return
             # Save the response to the current data
+            if "response" not in self.data_list[self.index].keys():
+                self.data_list[self.index]['response'] = {}
+                
             self.data_list[self.index]['response']['output'] = output_content
             self.data_list[self.index]['response']['thought'] = thought_content
             #humanjudge表示是否是人类的答案
             self.data_list[self.index]["humanjudge"]=True
             self.index += 1
-            if self.index == len(self.data_list)-1:
+            if self.index == len(self.data_list):
                 self.save_and_exit()
             self.show_data()
         else:

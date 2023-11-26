@@ -7,7 +7,7 @@ import pandas as pd
 
 import json
 
-plt.rcParams['font.sans-serif'] = ['SimHei']  # 使用黑体来显示中文
+# plt.rcParams['font.sans-serif'] = ['SimHei']  # 使用黑体来显示中文
 plt.rcParams['axes.unicode_minus'] = False    # 用来正常显示负号
 
 def visualize_tenant(data_path):
@@ -115,9 +115,9 @@ def visualize_tenant_rating(global_rating_path,
         plt.bar(family_sizes, frequency,width=0.5)
         
         # 添加标题和轴标签
-        plt.title(f'{show_key}分布')
+        plt.title(f'{show_key}_distribution')
         plt.xlabel(show_key)
-        plt.ylabel('频率')
+        plt.ylabel('frequency')
 
         # 显示图形
         # plt.show()
@@ -143,7 +143,7 @@ def visualize_tenant_rating(global_rating_path,
         plt.xticks(range(0, 52, 5))
         plt.scatter(tenant_ids,score_gap_var)
         # 添加标题和轴标签
-        plt.title(f'{show_score_key}分布')
+        plt.title(f'{show_score_key}distribution')
         plt.xlabel("tenant 编号")
         plt.ylabel(show_score_key)
 
@@ -207,9 +207,9 @@ def visualize_distribution_plot(tenant_data:dict,
     plt.legend()
     
     # 添加标题和轴标签
-    plt.title(f'{show_key}分布')
+    plt.title(f'{show_key}_distribution')
     plt.xlabel(show_key)
-    plt.ylabel('频率')
+    plt.ylabel('frequency')
 
     # 显示图形
     # plt.show()
@@ -237,25 +237,25 @@ def visualize_distribution_bar(tenant_data:dict,
         
         frequency_dict[size] = frequency_dict.get(size, 0) + 1
 
-    family_sizes =[
-        "family_members_num>3",
-        "3>=family_members_num>=2",
-        "family_members_num=1"
-    ]
+    # family_sizes =[
+    #     "family_members_num>3",
+    #     "3>=family_members_num>=2",
+    #     "family_members_num=1"
+    # ]
         
-    # family_sizes = list(frequency_dict.keys())
-    # frequency = list(frequency_dict.values())
-    frequency =[]
-    for family_size in family_sizes:
-        frequency.append(frequency_dict[family_size])
+    family_sizes = list(frequency_dict.keys())
+    frequency = list(frequency_dict.values())
+    # frequency =[]
+    # for family_size in family_sizes:
+    #     frequency.append(frequency_dict[family_size])
 
     # 绘制柱状图
     plt.bar(family_sizes, frequency,width=0.6)
     
     # 添加标题和轴标签
-    plt.title(f'{show_key}分布')
+    plt.title(f'{show_key}_distribution')
     plt.xlabel(show_key)
-    plt.ylabel('频率')
+    plt.ylabel('frequency')
 
     # 显示图形
     # plt.show()
@@ -267,20 +267,20 @@ def visualize_house(data_house):
     save_path = os.path.join(data_path,"visualize")
     if not os.path.exists(save_path):
         os.makedirs(save_path)
-    with open(os.path.join(data_path,"house_28.json"),'r',encoding = 'utf-8') as f:
+    with open(os.path.join(data_path,"house_46.json"),'r',encoding = 'utf-8') as f:
         house_json = json.load(f)
     
-    # show_keys_bar =["house_type",
-    #             ]
-    # for show_key in show_keys_bar:
+    show_keys_bar =["house_type",
+                ]
+    for show_key in show_keys_bar:
         
-    #     visualize_distribution_bar(house_json,
-    #                          save_path,
-    #                          show_key,
-    #                          "house")
+        visualize_distribution_bar(house_json,
+                             save_path,
+                             show_key,
+                             "house")
     show_keys_plot =[
-                    # "rent_money",
-                    #  "house_area",
+                    "rent_money",
+                     "house_area",
                      "house_type"
                      ]
     for show_key in show_keys_plot:
@@ -293,11 +293,11 @@ def visualize_house(data_house):
     
 if __name__ =="__main__":
     task_path ="LLM_PublicHouseAllocation/tasks/test_task"
-    task_path = "LLM_PublicHouseAllocation/tasks\PHA_51tenant_5community_28house_ver2_nofilter_multilist_priority_7t_5h"
+    task_path = "LLM_PublicHouseAllocation/tasks/PHA_51tenant_5community_28house_newver_housedata"
     data_path = os.path.join(task_path,"data")
     # visualize_tenant(data_path)
     
-    #visualize_house(data_path)
+    visualize_house(data_path)
     # global_rating_path = "LLM_PublicHouseAllocation/tasks/test_task\global_evaluation"
     global_rating_path="LLM_PublicHouseAllocation/tasks\PHA_51tenant_5community_28house\global_evaluation"
     #global_rating_path="LLM_PublicHouseAllocation/tasks\PHA_51tenant_5community_28house_ver2_nofilter_multilist_priority_7t_5h\global_evaluation"
@@ -315,9 +315,9 @@ if __name__ =="__main__":
     #     import shutil
     #     shutil.rmtree(os.path.join(global_rating_path,"visualize"))
     
-    for show_score_key in show_score_keys:
-        visualize_tenant_rating(global_rating_path=global_rating_path,
-                            tenant_ids=[],
-                            show_score_key=show_score_key,
-                            house_path = "LLM_PublicHouseAllocation/tasks\PHA_51tenant_5community_28house\data\house_28.json",
-                            tenant_path ="LLM_PublicHouseAllocation/tasks\PHA_51tenant_5community_28house\data/tenant_51.json")
+    # for show_score_key in show_score_keys:
+    #     visualize_tenant_rating(global_rating_path=global_rating_path,
+    #                         tenant_ids=[],
+    #                         show_score_key=show_score_key,
+    #                         house_path = "LLM_PublicHouseAllocation/tasks\PHA_51tenant_5community_28house\data\house_28.json",
+    #                         tenant_path ="LLM_PublicHouseAllocation/tasks\PHA_51tenant_5community_28house\data/tenant_51.json")

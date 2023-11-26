@@ -28,9 +28,10 @@ def run_tasks(tasks,
     complete_path = os.path.join(log_dir,"complete.json")            
     
     for idx,task in enumerate(tasks):
+        
+        
+        task = task.replace("(","\(").replace(")","\)")
         log_task_path = os.path.join(log_tasks_dir,f"{task}.log")
-        
-        
         command = command_template.format(task = task,
                                           data = data,
                                           log_path = log_task_path)
@@ -137,30 +138,28 @@ if __name__ == "__main__":
     task_names = os.listdir(config_root)
 
 
-    # task_names = list(filter(lambda x: 
-    #     not os.path.exists(os.path.join(config_root,x,"result")),
-    #                          task_names))
+    task_names = list(filter(lambda x: 
+        not os.path.exists(os.path.join(config_root,x,"result")),
+                             task_names))
     
     
-    
-    task_names = [
-        "ver1_nofilter_singlelist_4t_6h\(step_num\(t1_h1\)\)_p#singlelist",
-        "ver1_nofilter_singlelist_2t_6h\(step_num\(t3_h1\)\)_p#singlelist",
-        "ver1_nofilter_singlelist_2t_6h\(step_num\(t1_h1\)\)_p#singlelist",
-        "ver1_nofilter_singlelist_5t_3h\(step_num\(t1_h3\)\)_p#singlelist"
+    task_names =[
+        "ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#random_avg",
+        "ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#portion_rentmoney",
+        "ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#portion_housesize",
+        "ver1_nofilter_multilist(1.2)_multilist_priority_8t_6h_p#random_avg",
+        "ver1_nofilter_multilist(1.2)_multilist_priority_8t_6h_p#portion_rentmoney",
+        "ver1_nofilter_multilist(1.2)_multilist_priority_8t_6h_p#portion_housesize",
+        "ver1_nofilter_multilist(1.2)_portion3(f_rent_money_budget)_priority_8t_6h_p#random_avg"
     ]
-    
-    task_names = [
-        "ver2_nofilter_multilist\\(1.2_k2\\)_housetype_priority_5t_3h\\(step_num\\(t2_h3\\)\\)_p#housetype_choose2",
-        "ver2_nofilter_multilist\\(1.2_k2\\)_housetype_priority_5t_3h\\(step_num\\(t2_h3\\)\\)_p#portion_housesize_choose2"
-    ]
+   
     
     log_dir = "LLM_PublicHouseAllocation/tasks/PHA_51tenant_5community_28house/cache"
 
-    #run_tasks(task_names,
-            #   data,
-            #   log_dir)
+    run_tasks(task_names,
+              data,
+              log_dir)
     
     # run_tasks_logs()
     
-    test_task_logs()
+    # test_task_logs()

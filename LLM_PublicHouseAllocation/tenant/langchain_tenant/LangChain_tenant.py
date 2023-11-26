@@ -510,7 +510,7 @@ You still have {chance_num} chances to choose house.\
         monthly_income = self.infos["monthly_income"] - self.infos["monthly_rent_budget"] 
         role_description = template.format_map({"name":self.name,
                                     "chance_num":self.max_choose-self.choose_times,
-                                    "acceptable_outrange": int(monthly_income/100)*100,
+                                    "acceptable_outrange": int(monthly_income/100)*10,
                                     **self.infos}
                                    )
         if self.infos.get("personal_preference",False):
@@ -1044,7 +1044,8 @@ Your current plan to respond is (Your plan to communicate with your {acquantice_
 This community meets my request for a walk in the nearby park).
 3. If you have already made a choice of community in your memory, 
 You can choose to abandon all the current residential areas and wait for the ones you want to be released later (choose Giveup Action)\
-Alternatively, provide specific reasons for why you want to abandon the previously selected residential area and change your choice"""
+Alternatively, provide specific reasons for why you want to abandon the previously selected residential area and change your choice
+4. You can choose to give up if none of these communities meet your requiremtent, but remember to consider your valuable chances to choose house."""
         
         
         choose_house_type = self.log_round_tenant.log_round.get("choose_house_type", None)
@@ -1125,7 +1126,11 @@ Alternatively, provide specific reasons for why you want to abandon the previous
         
 
         
-    async def choose_house_type(self,system,rule,community_id = None) -> Tuple[bool,str]:
+    async def choose_house_type(self,
+                                system,
+                                rule,
+                                community_id = None,
+                                thought_hint :str = None) -> Tuple[bool,str]:
         mem_buffer=[]
         tip=[]
         
@@ -1136,12 +1141,13 @@ Alternatively, provide specific reasons for why you want to abandon the previous
         choose_type = choose_type.format(house_type_indexs = ",".join(house_type_ids))
 
         memory = await self.memory.memory_tenant("house_type",name=self.name)
-        
-        thought_hint = """Remember to consider the following things before choosing house:
+        if thought_hint is None:
+            thought_hint = """Remember to consider the following things before choosing house:
 1. The price of this house type should be within your budget.
 2. The per capita living area should be taken into consideration.
 3. Remember to give the reason why the selected house type meets your needs in thought(exp. \
-My family has a large population and needs a larger house to live in)"""
+My family has a large population and needs a larger house to live in)
+4. You can choose to give up if none of these communities meet your requiremtent, but remember to consider your valuable chances to choose house."""
         
         prompt_inputs={
             'task':'choose one type of houses',
@@ -1242,7 +1248,8 @@ My family has a large population and needs a larger house to live in)"""
 1. The price of this house should be within your budget.
 2. The per capita living area should be taken into consideration.
 3. Remember to give specific reason why the selected house meets your needs in thought (exp. \
-This house meets the requirements of my family for a large study)."""
+This house meets the requirements of my family for a large study).
+4. You can choose to give up if none of these communities meet your requiremtent, but remember to consider your valuable chances to choose house."""
 
         role_description = self.get_role_description()
         
