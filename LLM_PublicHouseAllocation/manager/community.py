@@ -180,8 +180,8 @@ class CommunityManager(BaseManager):
                            portion_attr ="house_area"): # 默认按照房子大小按比例分配
             
             queue_lens = len(queue_names)
-            if queue_lens <=1:
-                return house_ids
+            if queue_lens ==1:
+                return {queue_names[0]:house_ids}
             
             if tenant_manager.policy.group_policy.type != "portion": 
                 # 自选房型 或者 房型标签的方式
@@ -476,7 +476,7 @@ The {housetype} in {community_id} is a {living_room} apartment, with an area of 
         if not isinstance(house_types,list):
             house_types = [house_types]
         community_infos = self.data[queue_name][community_id]
-        house_indexs = [community_infos[filter_key].get('index', []) for filter_key in house_types]
+        house_indexs = [community_infos.get(filter_key,{}).get('index', []) for filter_key in house_types]
 
         house_indexs_concat = []
         for house_index in house_indexs:

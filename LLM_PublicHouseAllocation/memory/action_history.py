@@ -29,7 +29,7 @@ class SummarizerMixin(BaseModel):
     def request(self,
                 chain:LLMChain,
                 **kargs):
-        
+        response = None
         for i in range(self.max_retry):
             try:
                 response = chain.predict(**kargs)
@@ -53,6 +53,9 @@ class SummarizerMixin(BaseModel):
     async def arequest(self,
                        chain:LLMChain,
                        **kargs):
+        
+        response = None
+        
         for i in range(self.max_retry):
             try:
                 response = await chain.apredict(**kargs)

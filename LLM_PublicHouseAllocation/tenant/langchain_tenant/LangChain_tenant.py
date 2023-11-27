@@ -393,7 +393,7 @@ class LangchainTenant(langchainAgent):
             return_intermediate_steps=True,
         )
 
-
+        response = None
         for i in range(self.max_retry):
             try:
                 response = await executor.acall(prompt_inputs)
@@ -1323,7 +1323,9 @@ This house meets the requirements of my family for a large study).
         house_ids = system.get_filtered_houses_ids(community_id=community_id,
                                                    queue_name=self.queue_name,
                                                    house_filter_ids=house_filter_ids)
-
+        if len(house_ids)==0:
+            return False, "None", "There's no available house to choose."
+           
         house_infos = system.house_ids_to_infos(house_ids)            
         self.log_round_tenant.set_available_house_description(house_infos)
         mem_buffer = []
