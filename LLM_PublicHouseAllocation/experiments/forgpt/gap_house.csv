@@ -1,0 +1,6 @@
+Rounds,$|Batch^{House}|$,$|Batch_{gap}^{House}|$,Avg $House^{size}$,Var $House^{size}$,Rop,mean WT,gini coefficient,social welfare,ex_name
+10,1,1,12.37912,195.3527,284,4.019608,0.50712,409.1,ver1_nofilter_singlelist_5t_1h_p#singlelist
+10,3,1,11.57286,182.6802,281,4.098039,0.527791,393.1,ver1_nofilter_singlelist_5t_3h(step_num(t1_h2))_p#singlelist
+10,3,2,12.26475,193.7376,291,4.72549,0.500032,400.9,ver1_nofilter_singlelist_5t_3h(step_num(t1_h2))_p#singlelist
+10,3,3,11.80371,180.7496,251,5,0.501194,404,ver1_nofilter_singlelist_5t_3h(step_num(t1_h3))_p#singlelist
+10,6,1,11.75915,177.7877,229,4.843137,0.499813,418.4,ver1_nofilter_singlelist_5t_6h_p#singlelist

@@ -1,0 +1,5 @@
+Rounds,Ex.setting,Priority,Avg $House^{size}$,Var $House^{size}$,Rop,mean WT,gini coefficient,social welfare,ex_name,
+10,(a),FALSE,14.58415033,267.5338986,385,3.68627451,0.522799875,395.9,-4.145609756,ver1_nofilter_multilist(1.2)_multilist_nopriority_8t_6h_p#housetype
+10,(a),TRUE,15.52408497,274.3311067,428,3.901960784,0.503756951,415.7,-0.523658537,ver1_nofilter_multilist(1.2)_multilist_priority_8t_6h_p#housetype
+7,(b),FALSE,14.3577551,220.8256249,326,2.163265306,0.460567155,424.1,-1.702564103,ver2_nofilter_multilist(1.2_k2)_housetype_nopriority_8t_6h(step_num(t1_h1))_p#housetype_choose2
+8,(b),TRUE,12.71279412,199.126789,266,2.470588235,0.483704453,412.9,-1.43804878,ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2

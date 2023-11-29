@@ -361,30 +361,30 @@ def filter_response():
      
      
 def concat_data():
-    root_dir ="LLM_PublicHouseAllocation/LLM_decision_test/11_26_data/split_data"
+    root_dir ="LLM_PublicHouseAllocation/LLM_decision_test/11_28_data/split_data"
     files = os.listdir(root_dir)
     data_all = []
     for file in files:
         data = readinfo(os.path.join(root_dir,file))
         data_all.extend(list(data.values()))
         
-    with open("LLM_PublicHouseAllocation/LLM_decision_test/11_26_data/undenote.json",'w',encoding = 'utf-8') as f:
+    with open("LLM_PublicHouseAllocation/LLM_decision_test/11_28_data/undenote.json",'w',encoding = 'utf-8') as f:
         json.dump(data_all,f, indent=4,separators=(',', ':'),ensure_ascii=False)
     
     
 def split(num = 50,
           index =0 ):
-    root_dir = "LLM_PublicHouseAllocation/LLM_decision_test/11_26_data/undenote.json"
+    root_dir = "LLM_PublicHouseAllocation/LLM_decision_test/11_28_data/undenote.json"
     json_file = readinfo(root_dir)
     
     if num < len(json_file):
         datas = json_file[:num]
         json_file = json_file[num:]
-        with open("LLM_PublicHouseAllocation/LLM_decision_test/11_26_data/undenote.json",'w',encoding = 'utf-8') as f:
+        with open("LLM_PublicHouseAllocation/LLM_decision_test/11_28_data/undenote.json",'w',encoding = 'utf-8') as f:
             json.dump(json_file,f, indent=4,separators=(',', ':'),ensure_ascii=False)
     else:
         datas = json_file
-    with open(f"LLM_PublicHouseAllocation/LLM_decision_test/11_26_data/denotes_save_response/{index}.json",'w',encoding = 'utf-8') as f:
+    with open(f"LLM_PublicHouseAllocation/LLM_decision_test/11_28_data/denotes_save_response/{index}.json",'w',encoding = 'utf-8') as f:
         json.dump(datas,f, indent=4,separators=(',', ':'),ensure_ascii=False)
 
 if __name__ =="__main__":
@@ -394,7 +394,7 @@ if __name__ =="__main__":
     save_dir ="LLM_PublicHouseAllocation\LLM_decision_test\qa_unclear_data/filtered\groups"
     
     # concat_data()    
-    split(index=3)
+    split(index=1,num=40)
     # filter_response()
     # split_save_response(json_types,
     #                     data_dir=data_dir,

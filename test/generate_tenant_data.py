@@ -251,21 +251,24 @@ def priority_item(tenant_json,dir):
     "families_with_2_or_more_minor_children":False
     }
     
-    random_indexs = np.random.choice(list(tenant_json.keys()),
-                                 int(rate*len(tenant_json))).tolist()
+    low_income_indexs = list(dict(sorted(tenant_json.items(),key = lambda x:x[1]["monthly_income"]) ).keys())
+    low_income_indexs = low_income_indexs[:int(rate*len(low_income_indexs))]#升序
     
     for tenant_id,tenant_info in tenant_json.items():
-        if tenant_id in random_indexs:
-            random_p_k = np.random.choice(list(p_item.keys()),1).tolist()[0]
+        if tenant_id in low_income_indexs:
             p_item_cp = copy.deepcopy(p_item)
-            p_item_cp[random_p_k] = True
+            p_item_cp["low_income_families"] = True
             tenant_info["priority_item"] = p_item_cp
         else:
             tenant_info["priority_item"] = p_item
-        
-    with open(os.path.join(dir,"tenant.json"), 'w', encoding='utf-8') as file:
+            
+    tenant_json = dict(sorted(tenant_json.items(),key = lambda x:x[0]) )#升序
+    with open(os.path.join(dir,"tenant_51.json"), 'w', encoding='utf-8') as file:
         json.dump(tenant_json, file, indent=4,separators=(',', ':'),ensure_ascii=False)
         
+        
+def modify_tenant_attribute(attr_key = "personal_preference"):
+    
 
 if __name__ == "__main__":
     
@@ -384,25 +387,25 @@ if __name__ == "__main__":
     
     """ check tenant_sn with tenant """
         
-    with open("test\generate_data/tenant_sn.json",'r',encoding = 'utf-8') as f:
-        tenant_sn = json.load(f)
+    # with open("test\generate_data/tenant_sn.json",'r',encoding = 'utf-8') as f:
+    #     tenant_sn = json.load(f)
         
-    with open("test\generate_data/tenant_info.json",'r',encoding = 'utf-8') as f:
-        tenant_info = json.load(f)
-    
-    with open("test\generate_data/tenant.json",'r',encoding = 'utf-8') as f:
-        tenant = json.load(f)
-    
-    check(tenant_sn,
-          tenant_json=tenant,
-          dir= "test\generate_data")
-    
-    """ Generate priority item """
+    # with open("test\generate_data/tenant_info.json",'r',encoding = 'utf-8') as f:
+    #     tenant_info = json.load(f)
     
     # with open("test\generate_data/tenant.json",'r',encoding = 'utf-8') as f:
     #     tenant = json.load(f)
+    
+    # check(tenant_sn,
+    #       tenant_json=tenant,
+    #       dir= "test\generate_data")
+    
+    """ Generate priority item """
+    
+    # with open("test/generate_data/tenant_51.json",'r',encoding = 'utf-8') as f:
+    #     tenant = json.load(f)
         
-    # priority_item(tenant,"test\generate_data")
+    # priority_item(tenant,"test/generate_data")
               
               
               

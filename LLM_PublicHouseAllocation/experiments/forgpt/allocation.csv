@@ -1,0 +1,15 @@
+Rounds,Family Grouping,House Allocation,Avg $House^{size}$,Var $House^{size}$,Rop,mean WT,gini coefficient,social welfare,ex_name
+10,Self-selection,Random,6.930588235,207.0356742,249,5.568627451,0.793616879,176.2,ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#random_avg
+9.3333$\pm$0.6667,Self-selection,By $House^{label}$,12.1475$\pm$0.7965,228.8215$\pm$28.3841,313.6667$\pm$32.5900,3.6863$\pm$0.6163,0.483704453,412.9,ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2
+10,Self-selection,By $House^{rent}$,7.570196078,163.6251274,201,5.058823529,0.701659125,247,ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#portion_rentmoney
+10,Self-selection,By $House^{size}$,7.102385621,151.6249341,240,5.411764706,0.739423511,217,ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#portion_housesize
+10,By $R^{label}$,Random,5.647026144,187.7398899,258,5.862745098,0.852010424,126.4,ver1_nofilter_multilist(1.2)_multilist_priority_8t_6h_p#random_avg
+10,By $R^{label}$,By $House^{label}$,15.52408497,274.331,428,3.901960784,0.503756951,415.7,ver1_nofilter_multilist(1.2)_multilist_priority_8t_6h_p#housetype
+10,By $R^{label}$,By $House^{rent}$,5.397973856,146.1275132,181,5.568627451,0.809481635,159.4,ver1_nofilter_multilist(1.2)_multilist_priority_8t_6h_p#portion_rentmoney
+10,By $R^{label}$,By $House^{size}$,5.05869281,123.027976,183,5.647058824,0.817675932,149.4,ver1_nofilter_multilist(1.2)_multilist_priority_8t_6h_p#portion_housesize
+10,By $R^{\text{family size}}$,Random,9.950947712,213.46,336,4.803922,0.659500348,275.8,ver1_nofilter_multilist(1.2)_portion3(f_member_num)_priority_8t_6h_p#random_avg
+10,By $R^{\text{family size}}$,By $House^{rent}$,11.48808824,141.127,280,3.862745,0.507164872,402.7,ver1_nofilter_multilist(1.2)_portion3(f_member_num)_priority_8t_6h_p#portion_rent_money
+10,By $R^{\text{family size}}$,By $House^{size}$,11.02990196,150.982,213,4,0.521931772,397.4,ver1_nofilter_multilist(1.2)_portion3(f_member_num)_priority_8t_6h_p#portion_housesize
+10,By $R^{\text{rent budget}}$,Random,8.690816993,217.1833062,325,5.31372549,0.725780051,230,ver1_nofilter_multilist(1.2)_portion3(f_rent_money_budget)_priority_8t_6h_p#random_avg
+10,By $R^{\text{rent budget}}$,By $House^{rent}$,9.86751634,159.2548448,206,4.137254902,0.579660907,363.6,ver1_nofilter_multilist(1.2)_portion3(f_rent_money_budget)_priority_8t_6h_p#portion_rent_money
+10,By $R^{\text{rent budget}}$,By $House^{size}$,8.419509804,138.4959745,191,4.823529412,0.623658694,318.5,ver1_nofilter_multilist(1.2)_portion3(f_rent_money_budget)_priority_8t_6h_p#portion_housesize

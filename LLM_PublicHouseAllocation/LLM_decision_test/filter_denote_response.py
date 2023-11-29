@@ -301,7 +301,7 @@ def filter_group_denote():
             json.dump(dict1, f, indent=4,separators=(',', ':'),ensure_ascii=False)  
     
     
-def append_index(data_dir = "LLM_PublicHouseAllocation/LLM_decision_test/11_26_data"):
+def append_index(data_dir = "LLM_PublicHouseAllocation/LLM_decision_test/11_28_data/split_data"):
     files = os.listdir(data_dir)
     for file in files:
         json_info = readinfo(os.path.join(data_dir,file))
@@ -310,6 +310,7 @@ def append_index(data_dir = "LLM_PublicHouseAllocation/LLM_decision_test/11_26_d
             for idx,one_info in enumerate(json_info):
                 one_info["idx"] = idx
                 one_info["robot_response"] = one_info["response"] 
+                del one_info["response"] 
                 json_info_dict[idx]=one_info
             json_info = json_info_dict
         elif isinstance(json_info,dict):

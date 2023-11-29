@@ -1,5 +1,6 @@
 import pandas as pd
 import os
+import numpy as np
 import yaml
 import json
 def readinfo(data_dir):
@@ -8,12 +9,13 @@ def readinfo(data_dir):
         data_list = json.load(f)
     return data_list
 
-def concat_experiment_results(ex_paths:list = [],
+def concat_experiment_results(task_path = "LLM_PublicHouseAllocation/tasks",
                               ex_setting = "PHA_51tenant_5community_28house",
-                              save_root = "LLM_PublicHouseAllocation/experiments"
+                              save_root = "LLM_PublicHouseAllocation/experiments",
                               ):
     
     
+    config_root = os.path.join(task_path,ex_setting,"configs")
     
     
     u_types = ["all","choosed"] 
@@ -41,30 +43,35 @@ def concat_experiment_results(ex_paths:list = [],
     
     results = {
         
-    } # type_ex:u_type:{eval matrix}
+    } # ex_name[{u_type:{eval matrix}},]
     
     
-    for ex_path in ex_paths:
-        ex_root_path = os.path.dirname(os.path.dirname(ex_path))
+    for ex_name in os.listdir(config_root):
+        ex_root_path = os.path.join(config_root,ex_name)
         config_path = os.path.join(ex_root_path,"config.yaml")
-        ex_name = os.path.basename(ex_root_path)
         task_config = yaml.safe_load(open(config_path))
         
         tenant_dt_path = os.path.join(ex_root_path,task_config["managers"]["tenant"]["distribution_batch_dir"])
         tenant_dt = readinfo(tenant_dt_path)
         house_dt_path = os.path.join(ex_root_path,task_config["managers"]["community"]["distribution_batch_dir"])
         house_dt = readinfo(house_dt_path)
-        
-        tenental_system_path = os.path.join(ex_path,"tenental_system.json")
-        tenental_system = readinfo(tenental_system_path)
-        
         if ex_name not in results.keys():
-            results[ex_name] = {}
-        for u_type in u_types:
-            result_path = os.path.join(ex_path,u_type)
-            u_type_result_dict = {}
+            results[ex_name] = []
+        
+        ex_paths = []
+        result_path = os.path.join(config_root,ex_name,"result")
+        if os.path.exists(result_path):
+            # paths.append(os.path.join(result_path,os.listdir(result_path)[-1]))
+            result_files = os.listdir(result_path)
+            for result_file in result_files:
+                result_file_path = os.path.join(result_path,result_file,"all")
+                if os.path.exists(result_file_path):
+                    ex_paths.append(os.path.join(result_path,result_file))
+                    
+                
+        
             
-            configs_cols_append = {
+        configs_cols_append = {
                 "distribution_batch":{
                     "house_distribution_len": len(house_dt),
                     "house_distribution_step": 1 if len(house_dt) ==1 else int(list(house_dt.keys())[1])\
@@ -74,57 +81,69 @@ def concat_experiment_results(ex_paths:list = [],
                         -int(list(tenant_dt.keys())[0]),
                 }
             }
-            for config_key_list in config_keys:
-                result = task_config
-                for config_key in config_key_list:
-                    result = result.get(config_key)
-                if not isinstance(result,dict):
-                    result = {config_key_list[-1]:result}
-                    configs_cols_append[config_key_list[-2]] = result
-                else:
-                    configs_cols_append[config_key_list[-1]] = result
+        for config_key_list in config_keys:
+            result = task_config
+            for config_key in config_key_list:
+                result = result.get(config_key)
+            if not isinstance(result,dict):
+                result = {config_key_list[-1]:result}
+                configs_cols_append[config_key_list[-2]] = result
+            else:
+                configs_cols_append[config_key_list[-1]] = result
+                
+        for ex_path in ex_paths:
+            u_type_dict = {}
+            tenental_system_path = os.path.join(ex_path,"tenental_system.json")
+            tenental_system = readinfo(tenental_system_path)
             
-            for result_type in result_types:
+            for u_type in u_types:
+                u_type_dict[u_type] = {}
                 
-                result_u_type_path = os.path.join(result_path,result_type+".csv")
-                try:
-                    result_u_type = pd.read_csv(result_u_type_path,index_col=index_cols_map[result_type])
-                except:
-                    continue
-                result_u_type
-                
-                result_u_type["ex_name"] = ex_name
-                result_u_type.set_index('ex_name',inplace=True,append=True)
-                
+                for result_type in result_types:
 
-                cols_first_level = ["indicator_values" for i in range(result_u_type.shape[1])]
-                
-                result_u_type["ex_len"] = list(tenental_system.keys())[-1]
-                cols_first_level.append("experiment")
-                
-                for k,config in configs_cols_append.items():
-                    for config_key,config_value in config.items():
-                        assert not isinstance(config_value,dict)
-                        if isinstance(config_value,list):
-                            config_value =[config_value for i in range(result_u_type.shape[0])]
-                        result_u_type[f"{k}_{config_key}"] = config_value
-                        cols_first_level.append(k)
+                    result_u_type_path = os.path.join(ex_path,u_type,result_type+".csv")
+                    try:
+                        result_u_type = pd.read_csv(result_u_type_path,index_col=index_cols_map[result_type])
+                    except:
+                        continue
+            
                     
-                assert len(cols_first_level) == len(result_u_type.columns)
-                columns = [cols_first_level,list(result_u_type.columns)]
-                values = result_u_type.values
-                     
-                #[["indicator_values" for i in range(len(list(cols)))],list(cols)]
-                matrix = pd.DataFrame(values,
-                                      columns=columns,
-                                      index=pd.MultiIndex.from_tuples(
-                                          list(result_u_type.index)
-                                      )
-                                      )
-                u_type_result_dict[result_type] = result_u_type
+                    result_u_type["ex_name"] = ex_name
+                    result_u_type.set_index('ex_name',inplace=True,append=True)
+                        
+
+                    cols_first_level = ["indicator_values" for i in range(result_u_type.shape[1])]
+                    
+                    result_u_type["ex_len"] = list(tenental_system.keys())[-1]
+                    cols_first_level.append("experiment")
+                    
+                    for k,config in configs_cols_append.items():
+                        for config_key,config_value in config.items():
+                            assert not isinstance(config_value,dict)
+                            if isinstance(config_value,list):
+                                config_value =[config_value for i in range(result_u_type.shape[0])]
+                            result_u_type[f"{k}_{config_key}"] = config_value
+                            cols_first_level.append(k)
+                        
+                    assert len(cols_first_level) == len(result_u_type.columns)
+                    columns = [cols_first_level,list(result_u_type.columns)]
+                    values = result_u_type.values
+                        
+                    #[["indicator_values" for i in range(len(list(cols)))],list(cols)]
+                    # matrix = pd.DataFrame(values,
+                    #                     columns=columns,
+                    #                     index=pd.MultiIndex.from_tuples(
+                    #                         list(result_u_type.index)
+                    #                     )
+                    #                     )
+                    u_type_dict[u_type][result_type] = result_u_type
+                
+            results[ex_name].append(u_type_dict)
             
-            results[ex_name][u_type] = u_type_result_dict
             
+                
+    
+    
     # concat_df: u_type: type_ex:
     
     for u_type in u_types:
@@ -135,13 +154,13 @@ def concat_experiment_results(ex_paths:list = [],
         
         frames = {}
         for ex_name in results.keys():
+            
+            for ex_results in results[ex_name]:
+                for matrix_name,matrix in ex_results[u_type].items():
+                    if matrix_name not in frames.keys():
+                        frames[matrix_name] = []
 
-           
-            for matrix_name,matrix in results[ex_name][u_type].items():
-                if matrix_name not in frames.keys():
-                    frames[matrix_name] = []
-
-                frames[matrix_name].append(matrix)
+                    frames[matrix_name].append(matrix)
                 
         for matrix_name,matrixs in frames.items():
             concated_df = pd.concat(matrixs)
@@ -159,6 +178,114 @@ def concat_experiment_results(ex_paths:list = [],
             matrix_name+".xlsx"),"sheet_1")
             
 
+def group_multi_experiment_results(ex_setting = "PHA_51tenant_5community_28house",
+                              save_root = "LLM_PublicHouseAllocation/experiments"):
+    save_dir = os.path.join(save_root,ex_setting)
+    u_types = ["all","choosed"] 
+    result_types_indicators ={
+        "objective_evaluation_matrix":["mean_house_area",
+                                       "mean_wait_turn",
+                                       "var_mean_house_area",
+                                       "Rop"
+            ],
+        "utility_eval_matrix":["least_misery","variance","jain'sfair","min_max_ratio",
+                               "sw","F(W,G)","GINI_index"]
+    }
+    cols_agg =["all","3>=family_num>=2","family_num=1","family_num>3","ex_len"]
+    
+    for u_type in u_types:
+        for result_type in result_types_indicators.keys():
+            result_u_type_agg = []
+            result_u_type_path = os.path.join(save_dir,u_type,result_type+'.csv')
+            result = pd.read_csv(result_u_type_path,index_col=0)
+            
+            result_groups = result.groupby("ex_name")
+            
+            
+            for ex_name, ex_result_grouped  in result_groups:
+                result_one_ex = pd.DataFrame()
+                    
+                for col_name in ex_result_grouped.columns:
+                    if col_name =="ex_name":
+                        continue
+                    if col_name in cols_agg:   
+                        for indicator in result_types_indicators[result_type]:
+                            one_indicator_df = ex_result_grouped[ex_result_grouped.index == indicator] 
+                            values = one_indicator_df[col_name].values
+                            if values.shape[0]>1:
+                                err = np.std(values, ddof=1)/np.sqrt(values.shape[0])
+                                result_one_ex.loc[indicator,col_name]="{mean_value:.4f}$\pm${err:.4f}".format(mean_value =np.mean(values),
+                                                                                                          err=err)
+                                result_one_ex["multi_ex"] = True
+                            else:  
+                                for indicator in result_types_indicators[result_type]:
+                                    result_one_ex.loc[indicator,col_name] = ex_result_grouped.loc[indicator,col_name]
+                                result_one_ex["multi_ex"] = False
+                    else:
+                        for indicator in result_types_indicators[result_type]:
+                            # one_indicator_df = ex_result_grouped[ex_result_grouped.index == indicator] 
+                            value = ex_result_grouped.loc[indicator,col_name]
+                            if isinstance(value,pd.Series):
+                                value_last = value.values[-1]
+                                for one_value in value.values[:-1]:
+                                    if value_last is np.nan:
+                                        continue
+                                    else:
+                                        assert value_last == one_value,f"incompatible value for col '{col_name}'"
+                                value = value_last
+                            result_one_ex.loc[indicator,col_name] = value
+                            
+                result_one_ex["ex_name"] = ex_name
+                result_one_ex.set_index('ex_name',inplace=True,append=True)
+                result_one_ex.set_index("multi_ex",inplace=True,append=True)
+                result_u_type_agg.append(
+                    result_one_ex
+                )
+            result_u_type_agg = pd.concat(result_u_type_agg)
+            result_u_type_agg.to_csv(os.path.join(save_dir,u_type,f'agg_{result_type}.csv'))
+            
+
+def writeinfo(data_dir,info):
+    with open(data_dir,'w',encoding = 'utf-8') as f:
+            json.dump(info, f, indent=4,separators=(',', ':'),ensure_ascii=False)
+
+def readinfo(data_dir):
+    assert os.path.exists(data_dir),"no such file path: {}".format(data_dir)
+    with open(data_dir,'r',encoding = 'utf-8') as f:
+        data_list = json.load(f)
+    return data_list
+
+def get_ex_names_single_experiment(ex_setting = "PHA_51tenant_5community_28house",
+                              save_root = "LLM_PublicHouseAllocation/experiments"):
+    u_types = ["all"] 
+    result_types = [
+        "objective_evaluation_matrix",
+    ]
+    used_names = readinfo("LLM_PublicHouseAllocation/experiments/PHA_51tenant_5community_28house/all/ex_used_names.json")
+    
+    for u_type in u_types:
+        for result_type in result_types:
+            agg_result_matrix_path = os.path.join(save_root,
+                                                  ex_setting,
+                                                  u_type,
+                                                  f'agg_{result_type}.csv')
+            
+            agg_result_matrix = pd.read_csv(agg_result_matrix_path)
+            agg_result_matrix_single = agg_result_matrix[agg_result_matrix["multi_ex"]!= True]
+            agg_result_matrix_single = agg_result_matrix_single["ex_name"]
+            agg_result_matrix_single =  np.unique(agg_result_matrix_single).tolist()
+            
+            path_single_test_ex_path = os.path.join(save_root,
+                                                  ex_setting,
+                                                  u_type,
+                                                  f"agg_{result_type}_single.json")
+            names =[]
+            for ex_name in agg_result_matrix_single:
+                if ex_name in used_names:
+                    names.append(ex_name)
+            writeinfo(path_single_test_ex_path,names)
+            
+
 
 if __name__ == "__main__":
     # paths = [
@@ -166,20 +293,9 @@ if __name__ == "__main__":
     #         "LLM_PublicHouseAllocation/tasks/PHA_51tenant_5community_28house/configs/ver2_nofilter_multilist_priority_7t_5h/result/1699435988.0701036"
     #         ]
     
-    config_root = "LLM_PublicHouseAllocation/tasks/PHA_51tenant_5community_28house/configs"
-    paths = []
-    configs = os.listdir(config_root)
-    for config in configs:
-        result_path = os.path.join(config_root,config,"result")
-        if os.path.exists(result_path):
-            # paths.append(os.path.join(result_path,os.listdir(result_path)[-1]))
-            result_files = os.listdir(result_path)
-            for result_file in result_files:
-                result_file_path = os.path.join(result_path,result_file,"all")
-                if os.path.exists(result_file_path):
-                    paths.append(os.path.join(result_path,result_file))
         
     
-    concat_experiment_results(paths,
-                              "PHA_51tenant_5community_28house",
-                              "LLM_PublicHouseAllocation/experiments")
+    concat_experiment_results(ex_setting="PHA_51tenant_5community_28house",
+                              save_root="LLM_PublicHouseAllocation/experiments")
+    group_multi_experiment_results()
+    # get_ex_names_single_experiment()

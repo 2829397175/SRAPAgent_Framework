@@ -1,0 +1,10 @@
+Rounds,k,ratio,Avg $House^{size}$,Var $House^{size}$,Rop,mean WT,gini coefficient,social welfare,ex_name
+10,1,1.2,11.03620915,186.0009609,269,3.980392157,0.556351658,363.7,ver2_nofilter_multilist(1.2_k1)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3
+10,1,1.5,10.15591503,256.2085951,307,4.705882353,0.675020304,270.4,ver2_nofilter_multilist(1.5_k1)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3
+10,1,1.8,10.61601307,221.348741,306,4.68627451,0.632977415,303,ver2_nofilter_multilist(1.8_k1)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3
+7,2,1.2,14.17612245,238.4383575,303,2.285714286,0.47693598,408.8,ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3
+10,2,1.5,10.84215686,218.4122319,290,4.333333333,0.60991034,320.6,ver2_nofilter_multilist(1.5_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3
+10,2,1.8,9.968464052,245.9138719,298,4.862745098,0.666596614,279.9,ver2_nofilter_multilist(1.8_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3
+10,3,1.2,11.96334967,171.2743796,223,3.568627451,0.47933621,430.8,ver2_nofilter_multilist(1.2_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3
+10,3,1.5,12.12869281,280.6071298,374,4.62745098,0.614403181,325.5,ver2_nofilter_multilist(1.5_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3
+10,3,1.8,10.11006536,234.0256894,284,4.764705882,0.652663003,289,ver2_nofilter_multilist(1.8_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3
