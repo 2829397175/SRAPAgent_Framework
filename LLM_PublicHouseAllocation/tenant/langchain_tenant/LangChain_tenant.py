@@ -68,12 +68,18 @@ class LangchainTenant(langchainAgent):
     memory : ActionHistoryMemory
     choose_times:int = 0
     max_choose:int = 3
+    
+    round_choose_times: int = 0 # 记录一轮里面的选择次数 
+    rule_description:str =""
+    
+    
     available:bool = True
     max_jug_time : int = 2 # 错误结果的retry次数
     max_retry:int = 5 #访问api
     workplace: str = ""  # 用来记录工作点的中文名
     # social_network: dict = {}
     mode : str ="choose" # 控制llm_chain 状态（reset_state中改）
+    
     
     
     # 这个是为了更改llm_chain
@@ -123,8 +129,12 @@ class LangchainTenant(langchainAgent):
             self.available = False
         else:
             self.choose_times += 1
+            self.round_choose_times += 1
             if(self.choose_times>=self.max_choose):
                 self.available = False
+    
+    def finish_round(self):
+        self.round_choose_times = 0
     
     @classmethod
     def _get_default_output_parser(cls, **kwargs: Any) -> AgentOutputParser:
@@ -503,14 +513,16 @@ Your acceptable price beyond the rental budget is {acceptable_outrange}.\
 Your family members include: {family_members}.\
 You are {age} years old. Your job is {profession}. \
 Your company is located in {en_work_place}. \
-{special_request} \
+{special_request_poor} \
 You still have {chance_num} chances to choose house.\
-    
-""" 
+"""         
+        
+        
         monthly_income = self.infos["monthly_income"] - self.infos["monthly_rent_budget"] 
-        role_description = template.format_map({"name":self.name,
+        role_description = self.rule_description
+        role_description += template.format_map({"name":self.name,
                                     "chance_num":self.max_choose-self.choose_times,
-                                    "acceptable_outrange": int(monthly_income/100)*10,
+                                    "acceptable_outrange": int(monthly_income/100)*2,
                                     **self.infos}
                                    )
         if self.infos.get("personal_preference",False):
@@ -649,6 +661,17 @@ You still have {chance_num} chances to choose house.\
         self.queue_name = group_id
         return group_id
     
+    def update_rule_description(self,rule):
+        if rule.order.type == "kwaitlist":
+            rule_template = "You have at most {k} times to stay in house-selection queue , \
+you have used {round_choose_time} chances , you still have {unused_time} chances to stay in house-selection queue."
+            unused_time = rule.order.k - self.round_choose_times
+            assert unused_time >0, "error! You have used up your chance, shouldn't be in queue"
+            self.rule_description = rule_template.format(k = rule.order.k,
+                                 round_choose_time = self.round_choose_times,
+                                 unused_time = rule.order.k - self.round_choose_times)
+        
+        
     async def choose_process(self, 
                forum_manager, 
                system, 
@@ -665,7 +688,7 @@ You still have {chance_num} chances to choose house.\
         #                  rule=rule,
         #                  tool=tool) 
         # 进行1轮，先是否进行选房流程的判断，若否则直接返回
-        
+        self.update_rule_description(rule)
         
         """做实验,省略异步choose"""
         choose_state,choose_house_id = await self.policy.choose_pipeline(
@@ -882,8 +905,8 @@ you're communicating with your acquaintances about house renting.""".format(name
         
         
         try:
-            self.memory.social_network[acquaintance_id]["relation"] = response.get("relation")
-            self.memory.social_network[acquaintance_id]["comment"] = response.get("comment")
+            self.memory.social_network[acquaintance_id]["relation"] = response.get("relation", self.memory.social_network[acquaintance_id]["relation"])
+            self.memory.social_network[acquaintance_id]["comment"] = response.get("comment","")
         except Exception as e:
             print("Fail to update relation for {}".format(self.name))
               
@@ -1045,12 +1068,17 @@ This community meets my request for a walk in the nearby park).
 3. If you have already made a choice of community in your memory, 
 You can choose to abandon all the current residential areas and wait for the ones you want to be released later (choose Giveup Action)\
 Alternatively, provide specific reasons for why you want to abandon the previously selected residential area and change your choice
-4. You can choose to give up if none of these communities meet your requiremtent, but remember to consider your valuable chances to choose house."""
+4. You can choose to give up if none of these communities meet your requiremtent, but remember to consider your valuable chances to choose house you have within the queue \
+and the remaining chances you have to select a house."""
         
         
         choose_house_type = self.log_round_tenant.log_round.get("choose_house_type", None)
         
         community_description, community_ids = system.get_community_abstract(self.queue_name,rule, self, choose_house_type)
+        
+        if len(community_ids) ==0:
+            return False,"None", "No available community for choosing."
+        
         self.log_round_tenant.set_available_community_description(community_description)
         self.reset_state(mode="choose")
         
@@ -1136,6 +1164,8 @@ Alternatively, provide specific reasons for why you want to abandon the previous
         
         house_type_description, house_type_ids = system.get_house_type(self.queue_name,community_id,rule,self)
         self.log_round_tenant.set_available_house_type(house_type_ids)
+        if len(house_type_ids) ==0:
+            return False,"None", "No available house type for choosing."
         
         choose_type = """My choice is (house type, should be one of [{house_type_indexs}])"""
         choose_type = choose_type.format(house_type_indexs = ",".join(house_type_ids))
@@ -1147,7 +1177,9 @@ Alternatively, provide specific reasons for why you want to abandon the previous
 2. The per capita living area should be taken into consideration.
 3. Remember to give the reason why the selected house type meets your needs in thought(exp. \
 My family has a large population and needs a larger house to live in)
-4. You can choose to give up if none of these communities meet your requiremtent, but remember to consider your valuable chances to choose house."""
+4. You can choose to give up if none of these house types meet your requiremtent, \
+but remember to consider your valuable chances to choose house you have within the queue \
+and the remaining chances you have to select a house."""
         
         prompt_inputs={
             'task':'choose one type of houses',
@@ -1249,7 +1281,9 @@ My family has a large population and needs a larger house to live in)
 2. The per capita living area should be taken into consideration.
 3. Remember to give specific reason why the selected house meets your needs in thought (exp. \
 This house meets the requirements of my family for a large study).
-4. You can choose to give up if none of these communities meet your requiremtent, but remember to consider your valuable chances to choose house."""
+4. You can choose to give up if none of these houses meet your requiremtent, \
+but remember to consider your valuable chances to choose house you have within the queue \
+and the remaining chances you have to select a house."""
 
         role_description = self.get_role_description()
         
@@ -1478,7 +1512,10 @@ This house meets the requirements of my family for a large study).
     async def choose_orientation(self,system,rule,community_id = None) -> Tuple[bool,str]:
         mem_buffer=[]
         tip=[]
-        thought_hint = ""
+        thought_hint = """Remember to consider the following things before choosing house orientation:
+1. Remember to give specific reason why the selected house orientation meets your needs in thought (exp. \
+This house orientation is favourable for sunlight).
+"""
         available_orientation_description, available_orientations = system.get_house_orientation(queue_name=self.queue_name,
                                                                                                  community_id=community_id,
                                                                                                rule=rule,
@@ -1564,7 +1601,10 @@ This house meets the requirements of my family for a large study).
     async def choose_floor(self,system,rule,community_id = None) -> Tuple[bool,str]:
         mem_buffer=[]
         tip=[]
-        thought_hint = ""
+        thought_hint = """Remember to consider the following things before choosing house floor:
+1. Remember to give specific reason why the selected house floor meets your needs in thought (exp. \
+This high floor is acceptable because there is an elevator in the building. / \
+Although this floor is high, it is inexpensive, and I don't mind taking the stairs.)."""
         
         available_floor_description, available_floors = system.get_house_floor(community_id=community_id,
                                                                                                rule=rule,
@@ -1667,7 +1707,10 @@ This house meets the requirements of my family for a large study).
                 return_infos[community_name] = {
                     "search_info":info,
                     "get_shortest_commute_time_str":\
-                        map.baidumap.get_shortest_commute_time(self.workplace,community_infos[community_id].get("location"))
+                        map.baidumap.get_shortest_commute_time(self.workplace,
+                                                               community_infos[community_id].get("location"),
+                                                               community_id,
+                                                               community_infos[community_id].get("community_name"))
                 }
                 
    

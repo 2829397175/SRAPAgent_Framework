@@ -39,7 +39,8 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"As Sarah, my personal preference is to rent a 40-50 square meter apartment within my budget, preferably with a south-facing orientation, and located near public transportation and amenities such as schools and parks."
     },
     "1":{
         "name":"Alex",
@@ -66,7 +67,7 @@
         },
         "priority_item":{
             "Urban_subsistence_allowance_families":false,
-            "low_income_families":true,
+            "low_income_families":false,
             "families_with_special_difficulties":false,
             "families_with_severe_disabilities":false,
             "families_with_the_elderly_over_60_years_old":false,
@@ -77,7 +78,8 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"My name is Alex, and I prefer to rent a small, affordable house with a maximum area of 60 square meters, within my budget of 1500.0, ideally located near amenities such as public transportation and grocery stores."
     },
     "12":{
         "name":"Olivia",
@@ -115,7 +117,8 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"Olivia prefers a modest-sized, affordable house with a minimum of 30 square meters, located in a convenient area with nearby amenities such as schools and public transportation, within her rental budget of 2000.0, and with an acceptable price beyond the budget of 160."
     },
     "13":{
         "name":"Noah",
@@ -149,7 +152,8 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"As Noah, I prefer to rent a small, affordable house within my budget of 1000.0, with an acceptable price beyond the rental budget of 80, ideally located in a convenient area with nearby amenities, and an area between 30 and 60 square meters."
     },
     "2":{
         "name":"Lily",
@@ -187,7 +191,8 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"As Lily, my personal preference for housing is a 2-bedroom apartment within my budget, ideally located near elementary schools and public transportation, with an area between 30 and 60 square meters."
     },
     "23":{
         "name":"John",
@@ -225,7 +230,8 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"As John, I prefer to rent a small, affordable house with a maximum area of 60 square meters, within my budget of 2500.0, and ideally located near amenities such as schools and parks."
     },
     "24":{
         "name":"Jake",
@@ -259,7 +265,8 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"As Jake, I prefer a cozy and affordable apartment with a minimum of 40 square meters in a convenient location near public transportation and amenities within my budget."
     },
     "25":{
         "name":"Violet",
@@ -297,7 +304,8 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"As Violet, my personal preference is to rent a small, affordable house within my budget, ideally with a convenient location and access to basic amenities."
     },
     "26":{
         "name":"Hazel",
@@ -335,7 +343,8 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"As Hazel, I prefer to rent a small, affordable house within my budget of 1200.0, ideally between 30 and 60 square meters, with a convenient location near amenities and public transportation in Beijing, China."
     },
     "27":{
         "name":"Adam",
@@ -373,7 +382,8 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"As Adam, I prefer to rent a compact house with a minimum area of 30 square meters, within my budget of 2400.0, ideally located near elementary schools and with easy access to public transportation."
     },
     "28":{
         "name":"Lillian",
@@ -411,7 +421,8 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"As Lillian, I prefer to rent a small, affordable house within my budget of 1000.0, ideally between 30 and 60 square meters, with basic amenities nearby and a convenient location in Beijing."
     },
     "30":{
         "name":"Benjamin",
@@ -449,7 +460,8 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"As Benjamin, I prefer to rent a small, affordable house with a minimum area of 30 square meters, located in a convenient neighborhood with nearby amenities such as schools and parks."
     },
     "32":{
         "name":"Aubrey",
@@ -487,7 +499,8 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"As Aubrey, I prefer to rent a small, affordable house with a maximum area of 60 square meters, located in a convenient area with nearby amenities such as public transportation and grocery stores."
     },
     "33":{
         "name":"Michael",
@@ -525,7 +538,8 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"As Michael, I prefer to rent a small, affordable house within my budget of 1200.0, preferably between 30 and 60 square meters, with nearby amenities such as grocery stores and public transportation."
     },
     "35":{
         "name":"Paisley",
@@ -559,7 +573,8 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"As Paisley, I prefer to rent a 30-60 square meter house within my budget of 2500.0, with a preference for a family-friendly neighborhood and convenient access to amenities such as schools and parks."
     },
     "36":{
         "name":"Aaron",
@@ -597,7 +612,8 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"As Aaron, I prefer to rent a small, affordable house within my budget in a convenient location with nearby amenities such as grocery stores and public transportation."
     },
     "37":{
         "name":"Maya",
@@ -635,7 +651,8 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"As Maya, I prefer to rent a small, affordable house with a minimum area of 30 square meters, within my budget of 2200.0, located in a convenient area with nearby amenities such as schools and public transportation, suitable for my family of four."
     },
     "38":{
         "name":"Thomas",
@@ -673,7 +690,8 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"As Thomas, my personal preference is to rent a 40-50 square meter apartment within my budget, preferably with nearby amenities such as schools and parks, and a south-facing orientation for ample natural light."
     },
     "39":{
         "name":"Emma",
@@ -711,7 +729,8 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"As Emma, I prefer to rent a small, affordable house within my budget of 2500.0, ideally between 30 and 60 square meters, with a convenient location near amenities such as public transportation and grocery stores."
     },
     "40":{
         "name":"Stella",
@@ -749,7 +768,8 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"As Stella, I prefer to rent a small, affordable house within my budget of 1200.0, ideally between 30 and 60 square meters, with convenient access to amenities such as public transportation and grocery stores."
     },
     "41":{
         "name":"Samantha",
@@ -787,7 +807,8 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"As Samantha, I prefer to rent a 40-50 square meter apartment within my budget, preferably with nearby amenities such as schools and parks, and a south-facing orientation for ample natural light."
     },
     "42":{
         "name":"Max",
@@ -821,7 +842,8 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"As Max, I prefer to rent a small, affordable house within my budget of 1800.0, ideally between 30 and 60 square meters, with convenient access to amenities such as grocery stores and public transportation."
     },
     "43":{
         "name":"Julian",
@@ -859,7 +881,8 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"As Julian, I prefer to rent a small, affordable house within my budget of 2000.0, ideally between 30 and 60 square meters, with convenient access to amenities such as schools and public transportation in Beijing, China."
     },
     "44":{
         "name":"Nathan",
@@ -901,7 +924,8 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"As Nathan, I prefer to rent a small, affordable, and well-located apartment in Beijing with easy access to amenities and within my budget of 2000."
     },
     "45":{
         "name":"Elizabeth",
@@ -939,7 +963,8 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"As Elizabeth, I prefer to rent a small, affordable, and conveniently located apartment within my budget, ideally with nearby amenities such as schools and public transportation options."
     },
     "46":{
         "name":"Luke",
@@ -977,7 +1002,8 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"As Luke, I prefer to rent a small, affordable apartment within my budget, ideally between 30 and 60 square meters, with convenient access to public transportation and basic amenities nearby."
     },
     "47":{
         "name":"Claire",
@@ -1015,7 +1041,8 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"As Claire, my personal preference for housing is a 40-50 square meter apartment with a rental budget of 1200.0, located in a convenient area with nearby amenities such as schools and public transportation."
     },
     "48":{
         "name":"Connor",
@@ -1053,7 +1080,8 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"As Connor, I prefer to rent a small, affordable house with a maximum area of 60 square meters, within my budget of 2500.0, ideally located near public transportation and basic amenities in Beijing, China."
     },
     "49":{
         "name":"Audrey",
@@ -1091,7 +1119,8 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"As Audrey, I prefer to rent a small, affordable, and well-located apartment within my budget of 1600.0, ideally between 30 and 60 square meters, with nearby amenities such as supermarkets and public transportation."
     },
     "50":{
         "name":"Jack",
@@ -1125,7 +1154,8 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"As Jack, a government employee with a limited budget, my preference is to rent a small, affordable house within the range of 30-60 square meters in a convenient location with nearby amenities such as public transportation and grocery stores."
     },
     "51":{
         "name":"Penelope",
@@ -1159,7 +1189,8 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"As Penelope, my personal preference for housing is a 2-bedroom apartment with a minimum area of 45 square meters, located in a convenient neighborhood with access to amenities such as schools, parks, and public transportation, within my rental budget of 1300.0, and preferably with an east or west orientation for natural light."
     },
     "52":{
         "name":"Zoey",
@@ -1197,7 +1228,8 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"As Zoey, I prefer to rent a small, affordable house within my budget of 1500.0, ideally between 30 and 60 square meters, with a convenient location near amenities and good natural lighting."
     },
     "53":{
         "name":"Isaac",
@@ -1235,7 +1267,8 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"As Isaac, my personal preference for housing would be a 3-bedroom apartment within my budget, ideally located near schools, public transportation, and grocery stores, with a minimum area of 30 square meters and a maximum area of 60 square meters."
     },
     "54":{
         "name":"Evelyn",
@@ -1273,7 +1306,8 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"As Evelyn, I prefer to rent a small, affordable, and well-located apartment within my budget in Beijing, China, with a minimum area of 30 square meters and close proximity to amenities such as schools, parks, and public transportation."
     },
     "55":{
         "name":"Blake",
@@ -1311,7 +1345,8 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"As Blake, I prefer to rent a 40-50 square meter apartment within my budget, preferably with a south-facing orientation, located in a safe neighborhood with nearby schools and public transportation options."
     },
     "56":{
         "name":"Aria",
@@ -1345,7 +1380,8 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"As Aria, I prefer to rent a small, affordable house within my budget, ideally between 30 and 60 square meters, with a convenient location near amenities and a comfortable living environment."
     },
     "57":{
         "name":"Carter",
@@ -1383,7 +1419,8 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"As Carter, I prefer to rent a small, affordable house within my budget of 1200.0, ideally between 30 and 60 square meters, with a convenient location near amenities such as schools and public transportation in Beijing, China."
     },
     "58":{
         "name":"Brooklyn",
@@ -1421,7 +1458,8 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"As Brooklyn, I prefer to rent a small, affordable house within my budget, ideally between 30 and 60 square meters, with a convenient location near amenities and good natural lighting."
     },
     "59":{
         "name":"Dylan",
@@ -1459,7 +1497,8 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"As Dylan, I prefer to rent a 2-bedroom apartment within my budget, with a minimum area of 40 square meters, ideally located near schools and public transportation in Beijing, China."
     },
     "60":{
         "name":"Mike",
@@ -1497,7 +1536,8 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"As Mike, I prefer to rent a small, affordable house within my budget of 1800.0, ideally between 30 and 60 square meters, with convenient access to amenities such as grocery stores and public transportation."
     },
     "61":{
         "name":"Aurora",
@@ -1531,7 +1571,8 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"As Aurora, I prefer to rent a 40-50 square meter apartment within my budget, preferably with a south-facing orientation, located near public transportation and amenities such as schools and parks."
     },
     "62":{
         "name":"Hayden",
@@ -1565,7 +1606,8 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"As Hayden, I prefer to rent a 40-50 square meter apartment within my budget, preferably with a south-facing orientation, located in a safe and convenient neighborhood with good schools and public transportation options nearby."
     },
     "63":{
         "name":"Lydia",
@@ -1599,7 +1641,8 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"As Lydia, I prefer to rent a 30-60 square meter house within my budget of 2400.0, ideally with nearby amenities such as schools and parks, and a south-facing orientation for ample sunlight."
     },
     "64":{
         "name":"Eric",
@@ -1633,7 +1676,8 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"As Eric, I prefer to rent a 40-50 square meter apartment within my budget, preferably with nearby amenities such as schools and public transportation, and an orientation that allows for natural light throughout the day."
     },
     "65":{
         "name":"Madelyn",
@@ -1671,7 +1715,8 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"As Madelyn, I prefer to rent a small, affordable house within my budget of 1600.0, ideally between 30 and 60 square meters, with convenient access to amenities and a location that allows me to easily commute to work as a freelancer in Beijing, China."
     },
     "66":{
         "name":"Vivian",
@@ -1698,7 +1743,7 @@
         },
         "priority_item":{
             "Urban_subsistence_allowance_families":false,
-            "low_income_families":false,
+            "low_income_families":true,
             "families_with_special_difficulties":false,
             "families_with_severe_disabilities":false,
             "families_with_the_elderly_over_60_years_old":false,
@@ -1709,7 +1754,8 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"As Vivian, I prefer a 2-bedroom apartment with a minimum of 40 square meters, within my rental budget, ideally located near elementary schools and public transportation in Beijing, China."
     },
     "67":{
         "name":"Diego",
@@ -1747,7 +1793,8 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"As Diego, I prefer to rent a small, affordable house within my budget, ideally between 30 and 60 square meters, with a convenient location near amenities such as grocery stores and public transportation."
     },
     "68":{
         "name":"Clara",
@@ -1785,7 +1832,8 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"As Clara, I prefer to rent a small, affordable house with a maximum area of 60 square meters, within my budget of 1000.0, and located in a convenient area with nearby amenities such as schools and public transportation."
     },
     "69":{
         "name":"Landon",
@@ -1819,7 +1867,8 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"As Landon, I prefer to rent a 40-50 square meter apartment with a rental budget of 2500.0, located in a family-friendly neighborhood with nearby amenities such as parks and schools, and an orientation that allows for ample natural light."
     },
     "8":{
         "name":"Sophia",
@@ -1853,7 +1902,8 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"As Sophia, I prefer to rent a 30-60 square meter house within my budget of 2500.0, with a preference for a family-friendly neighborhood and convenient access to amenities such as schools, parks, and public transportation."
     },
     "9":{
         "name":"Ethan",
@@ -1891,6 +1941,7 @@
             "families_of_adult_orphans":false,
             "families_of_fire_rescue_personnel":false,
             "families_with_2_or_more_minor_children":false
-        }
+        },
+        "special_request_poor":"As Ethan, I prefer to rent a 30-60 square meter house within my budget of 2600.0, with a preference for a family-friendly neighborhood and nearby amenities such as schools and parks."
     }
 }

@@ -10,6 +10,11 @@ def readinfo(data_dir):
         data_list = json.load(f)
     return data_list
 
+
+def writeinfo(data_dir,info):
+    with open(data_dir,'w',encoding = 'utf-8') as f:
+            json.dump(info, f, indent=4,separators=(',', ':'),ensure_ascii=False)
+
 def split_save_response(json_types,
                         limit = 100,
                         num_groups = 10,
@@ -374,18 +379,65 @@ def concat_data():
     
 def split(num = 50,
           index =0 ):
-    root_dir = "LLM_PublicHouseAllocation/LLM_decision_test/11_28_data/undenote.json"
+    root_dir = "LLM_PublicHouseAllocation/LLM_decision_test/11_26_data/undenote.json"
     json_file = readinfo(root_dir)
     
     if num < len(json_file):
         datas = json_file[:num]
         json_file = json_file[num:]
-        with open("LLM_PublicHouseAllocation/LLM_decision_test/11_28_data/undenote.json",'w',encoding = 'utf-8') as f:
+        with open("LLM_PublicHouseAllocation/LLM_decision_test/11_26_data/undenote.json",'w',encoding = 'utf-8') as f:
             json.dump(json_file,f, indent=4,separators=(',', ':'),ensure_ascii=False)
     else:
         datas = json_file
-    with open(f"LLM_PublicHouseAllocation/LLM_decision_test/11_28_data/denotes_save_response/{index}.json",'w',encoding = 'utf-8') as f:
+        
+    for v in datas:
+        v["data_label"] = 26
+    with open(f"LLM_PublicHouseAllocation/LLM_decision_test/11_26_data/denotes_save_response/{index}.json",'w',encoding = 'utf-8') as f:
         json.dump(datas,f, indent=4,separators=(',', ':'),ensure_ascii=False)
+
+
+def append_data_label():
+    file_root = "LLM_PublicHouseAllocation/LLM_decision_test/11_26_data/denotes_save_response"
+    
+    files = os.listdir(file_root)
+    for file in files:
+        file_path = os.path.join(file_root,file)
+        json_file = readinfo(file_path)
+        for one_data in json_file:
+            one_data["data_label"]= 26
+        with open(file_path,'w',encoding = 'utf-8') as f:
+            json.dump(json_file,f, indent=4,separators=(',', ':'),ensure_ascii=False)
+
+def concat_label_data():
+    src_path = "LLM_PublicHouseAllocation/LLM_decision_test/concat_json.json"
+    dst_path = "LLM_PublicHouseAllocation/LLM_decision_test/11_28_data/denotes_save_response/28_1.json"
+    
+    src_json = readinfo(src_path)
+    dst_json = readinfo(dst_path)
+    
+    append_key = "reasonal_3.5"
+    
+    assert len(src_json) == len(dst_json)
+    
+
+    for idx,dst_one in enumerate(dst_json):
+        one_update = src_json[idx]
+        if "data_label" in one_update.keys():
+            assert one_update["data_label"] == dst_one["data_label"] and \
+            one_update["idx"] == dst_one["idx"]
+        else:
+            assert one_update["idx"] == dst_one["idx"]
+        if append_key in dst_one.keys():
+            if isinstance(dst_one[append_key],str):
+                dst_one[append_key] = [dst_one[append_key]]
+            
+        else:
+            dst_one[append_key] = []
+            
+        dst_one[append_key].append(src_json[idx].get(append_key))
+        
+    writeinfo(dst_path,dst_json)
+    
 
 if __name__ =="__main__":
     
@@ -393,8 +445,9 @@ if __name__ =="__main__":
     data_dir = "LLM_PublicHouseAllocation\LLM_decision_test\qa_unclear_data/filtered"
     save_dir ="LLM_PublicHouseAllocation\LLM_decision_test\qa_unclear_data/filtered\groups"
     
+    
     # concat_data()    
-    split(index=1,num=40)
+    # split(index=6,num=40)
     # filter_response()
     # split_save_response(json_types,
     #                     data_dir=data_dir,
@@ -418,3 +471,7 @@ if __name__ =="__main__":
     # 后续和实验data的混杂版本，仅仅为i号标注者 取人类标注数据
     # shuffle_for_user_human(json_types=json_types,
     #                        user_index=0)
+
+    # append_data_label()
+    
+    concat_label_data()

@@ -26,7 +26,6 @@ class Ver1Policy(BasePolicy):
         log_round.set_choose_community(community_id,community_choose_reason)
         
         if not choose_state:
-            tenant.update_times(choose_state)
             await tenant.publish_forum(forum_manager,system)
             return False,"None"
         
@@ -55,7 +54,6 @@ class Ver1Policy(BasePolicy):
                 assert NotImplementedError
                 
             if not choose_state:
-                tenant.update_times(choose_state)
                 await tenant.publish_forum(forum_manager,system)
                 return False,"None"
         
@@ -69,8 +67,7 @@ class Ver1Policy(BasePolicy):
         
         await tenant.publish_forum(system=system,
                            forum_manager=forum_manager)
-        # 更改tenant 的选择状态
-        tenant.update_times(choose_state)
+
              
         if not choose_state:
             return False,"None"

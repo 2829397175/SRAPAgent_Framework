@@ -30,7 +30,11 @@ class Baidumap(BaseModel):
             print(f"Error: fail to request url")
             return None
 
-    def get_shortest_commute_time(self,origin, destination):
+    def get_shortest_commute_time(self,
+                                  origin, 
+                                  destination,
+                                  community_index:str,
+                                  community_name:str):
         # Convert the origin and destination to latitude and longitude
         origin_lat_lng = self.get_lat_lng(origin)
         destination_lat_lng = self.get_lat_lng(destination)
@@ -48,7 +52,7 @@ class Baidumap(BaseModel):
             shortest_route = min(data['result']['routes'], key=lambda route: route['duration'])
 
             # Return the duration of the shortest route
-            return "This community is "+str(int(shortest_route['duration']/60))+" minutes away from my workplace by subway and bus"
+            return f"{community_index}({community_name}) is"+str(int(shortest_route['duration']/60))+" minutes away from my workplace by subway and bus"
         else:
             print(f"Error: {data['message']}")
             return ""

@@ -202,10 +202,11 @@ def distribution_batch_tenant(run_turns,cur_num,step_num = 1):
         json.dump(distribution_batch, f, indent=4,separators=(',', ':'),ensure_ascii=False)
     
 
+
                
     
 if __name__ =="__main__":
     # filter_tenant(num=5)
     # filter_house(num=30)
-    distribution_batch(5,100,2)
+    distribution_batch(3,39,1)
     # distribution_batch_tenant(5,70,1)

@@ -97,9 +97,9 @@ class RentEnvironment(BaseEnvironment):
         self.cnt_turn += 1
         self.log.step(round_id = self.cnt_turn)
         
-        if self.cnt_turn > self.max_turns or\
+        if self.cnt_turn > self.max_turns or \
             self.rule.are_all_deques_empty(self) or \
-            (self.system.available_house_num() <= 0 and self.system.unreleased_house_num(self.cnt_turn)):
+            (self.system.available_house_num() <= 0 and self.system.unreleased_house_num(self.cnt_turn)<= 0):
             if(self.save_log): # 整体系统的log，仅在退出时save
                 self.log.evaluation_matrix(self.global_score,
                             self.system)
@@ -207,6 +207,7 @@ class RentEnvironment(BaseEnvironment):
         self.log.set_one_tenant_choose_process(tenant.id, tenant.log_round_tenant)
         self.update_social_net(tenant=tenant)
         
+        tenant.update_times(choose_state)
         if not choose_state: # 不判断是否available
             self.rule.requeue(self,tenant)
         else: # 清空tenant 所在的队列

@@ -18,6 +18,11 @@ class RentOrder(BaseOrder):
     random(agents.tenants) (one agent at a time)
     """
     rule_description:str=""
+    
+    def __init__(self,**kargs) -> None:
+        return super().__init__(type = "rent",
+                                **kargs)
+    
     def get_next_agent_idx(self, environment) :
         """Return the index of the next agent to speak"""
         result=[]

@@ -1,80 +1,59 @@
-name: PHA_5tenant_3community_19house_ver2_nofilter
-
-save_root_dir: "result"
-save_log: True
-
 environment:
-  tool: True
   env_type: rent
   max_turns: 10
-  
   rule:
+    describer:
+      type: base
     order:
-      # type: priority
-      # type: rent
+      k: 2
       type: kwaitlist
       waitlist_ratio: 1.2
-      k: 2
     updater:
       type: rent
     visibility:
       type: rent
-    describer:
-      type: base
-
+  tool: true
 managers:
-  house:
-    data_dir: "data/house_28.json"
-    
+  community:
+    data_dir: data/community_28.json
+    distribution_batch_dir: data/distribution_batch_28_3_3.json
+    patch_method: house_type
   forum:
-    data_dir: "data/forum.json"
-    
-
+    data_dir: data/forum.json
+  house:
+    data_dir: data/house_28.json
   tenant:
-    distribution_batch_dir: "data/distribution_batch_tenant_51_5_2.json"
-    choose_rating: False
-    policy: 
-      type : ver2 # 表示分房政策
-      group_policy:
-        type: house_type
-        priority: True
-      filter_house_labels: ["house_type",
-                          #  "house_orientation",
-                          #  "floor_type"
-                           ]
-
-    type_tenant: LangchainTenant
-    data_dir: "data/tenant_51.json"
-    
-    memory:
-      memory_type: action_history
-      reflection: True # 触发分类reflection
-      dialogue_threshold: 30
-      summary_threshold: 10
-      llm:
-        # llm_type: gpt-3.5-turbo
-        llm_type: gpt-3.5-turbo-16k-0613
-        temperature: 0.8
-        max_tokens: 300
+    agent_rule:
+      readcommunity_rule: available
+      readforum_rule: randomk
+      readhouse_rule: page_generator
+      writeforum_rule: append
+    choose_rating: false
+    data_dir: data/tenant_51.json
+    distribution_batch_dir: data/distribution_batch_tenant_51_5_2.json
     llm:
       llm_type: gpt-3.5-turbo-16k-0613
-      # llm_type: text-davinci-003
-      temperature: 0.8
       max_tokens: 300
+      temperature: 0.8
     max_choose: 2
     max_jug_time: 2
-    agent_rule:
-      # readhouse_rule: topk
-      readhouse_rule: page_generator
-      #  readforum_rule: topk
-      readforum_rule: randomk
-      readcommunity_rule: available
-      writeforum_rule: append
-
-
-
-  community:
-    distribution_batch_dir: "data/distribution_batch_28_3_3.json"
-    patch_method: "house_type"
-    data_dir: "data/community_28.json"
-    
+    memory:
+      dialogue_threshold: 30
+      llm:
+        llm_type: gpt-3.5-turbo-16k-0613
+        max_tokens: 300
+        temperature: 0.8
+      memory_type: action_history
+      reflection: true
+      summary_threshold: 10
+    policy:
+      filter_house_labels:
+      - house_type
+      group_policy:
+        priority: true
+        type: house_type
+      type: ver2
+    type_tenant: LangchainTenant
+name: ver2_nofilter_multilist(1.2_k2)_housetype_priority_5t_3h(step_num(t2_h3))_p#housetype_choose2
+save_log: true
+save_root_dir: result

@@ -130,6 +130,18 @@ tenant_info_ver2: &tenant_info_ver2 |-
   }
   
 
+personal_preference: &personal_preference |-
+  {role_description}
+
+  You are a relatively poor office worker in a public rental housing system in Beijing, China. 
+  The area of the house you want to rent is between 30 and 60 square meters.
+  Please specify your general housing preferences based on your personal information and current circumstances. 
+  This may include factors such as the type of accommodation, its orientation, nearby amenities, rental budget, and so on.
+
+  Now give your personal preference in one sentense, please refer to yourself by name in your sentense:
+  
+
+
 tenant_names: &tenant_names |-
   Give me a bunch of english names like: Emma, John, Jake:
 

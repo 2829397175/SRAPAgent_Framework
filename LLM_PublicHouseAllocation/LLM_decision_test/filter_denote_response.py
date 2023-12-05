@@ -201,23 +201,30 @@ def filter_chinese_to_en(type_data,
         json.dump(filtered_english_data, f, indent=4,separators=(',', ':'),ensure_ascii=False)  
          
 
-def filter_same_answer(finish_denote_dir ="LLM_PublicHouseAllocation/LLM_decision_test/filtered_response_data_simulated/finished_denote/group/all",
-                       save_dir ="LLM_PublicHouseAllocation/LLM_decision_test/filtered_response_data_simulated/finished_denote/filter_same_answer"):
+def filter_same_answer(judge_keys =["robot_response_4_chinese",
+                                    "human_response"]):
     data_all =[]
-    files = os.listdir(finish_denote_dir)
-    for file in files:
-        file_path = os.path.join(finish_denote_dir,file)
-        data_all.extend(readinfo(file_path))
+    data_paths =[
+        "LLM_PublicHouseAllocation/LLM_decision_test/11_26_data/denotes_save_response/0.json",
+        "LLM_PublicHouseAllocation/LLM_decision_test/11_26_data/denotes_save_response/2.json",
+        "LLM_PublicHouseAllocation/LLM_decision_test/11_26_data/denotes_save_response/5.json",
+        "LLM_PublicHouseAllocation/LLM_decision_test/11_26_data/denotes_save_response/6.json",
+        "LLM_PublicHouseAllocation/LLM_decision_test/11_28_data/denotes_save_response/28_1.json",
+        "LLM_PublicHouseAllocation/LLM_decision_test/11_28_data/denotes_save_response/28_2.json",
+        ]
+    for data_path in data_paths:
+        
+        data_all.extend(readinfo(data_path))
         
         
     def judge_same(data,type)->bool:
         choice_strs ={key:{"str":data[key]["output"]}
-                      for key in ["human_response","robot_response"]}
+                      for key in judge_keys}
         if type == "housetype":
             for output_type, choice_str in choice_strs.items():
                 choice_str = choice_str["str"]
                 
-                if "不会" in choice_str or "没有" in choice_str:
+                if "不会" in choice_str or "没" in choice_str or "放弃" in choice_str:
                     choice_strs[output_type]["filtered_choice"]= "none"
                 elif "small" in choice_str or "小" in choice_str:
                     choice_strs[output_type]["filtered_choice"]= "small_house"
@@ -225,26 +232,31 @@ def filter_same_answer(finish_denote_dir ="LLM_PublicHouseAllocation/LLM_decisio
                     choice_strs[output_type]["filtered_choice"]= "middle_house"
                 elif "large" in choice_str or "大" in choice_str:
                     choice_strs[output_type]["filtered_choice"]= "large_house"
+                else:
+                    assert False, f"{choice_str},{data}"
         else:
             
             regex = f"(\d+)"
             
             for output_type, choice_str in choice_strs.items():
                 choice_str = choice_str["str"]
-                if "不" in choice_str or "没有" in choice_str:
+                if "不" in choice_str or "没" in choice_str or "放弃" in choice_str:
                     choice_strs[output_type]["filtered_choice"]= "none"
                 else:
-                    choice = re.search(regex,choice_str).group(1)
-                    choice_strs[output_type]["filtered_choice"]= choice
+                    try:
+                        choice = re.search(regex,choice_str).group(1)
+                        choice_strs[output_type]["filtered_choice"]= choice
+                    except:
+                        print(choice_str,data)
         
-        return choice_strs["human_response"]["filtered_choice"] == \
-            choice_strs["robot_response"]["filtered_choice"]
+        return choice_strs[judge_keys[0]]["filtered_choice"] == \
+            choice_strs[judge_keys[1]]["filtered_choice"]
             
     
     filtered_chooses = []
     same_chooses =[]
     for data_one in data_all:
-        if data_one["prompt_inputs"]["thought_type"] == "Your views on these house types.":
+        if "house type" in data_one["prompt_inputs"]["choose_type"]:
             if (not judge_same(data_one,"housetype")):
                 filtered_chooses.append(data_one)
             else:
@@ -254,15 +266,16 @@ def filter_same_answer(finish_denote_dir ="LLM_PublicHouseAllocation/LLM_decisio
             if (not judge_same(data_one,"other_type")):
                 filtered_chooses.append(data_one)
             else:same_chooses.append(data_one)
-                
-    if not os.path.exists(save_dir):
-        os.makedirs(save_dir)            
+       
+    print(f"{judge_keys[0]} same:{len(same_chooses)}, different:{len(filtered_chooses)}")         
+    # if not os.path.exists(save_dir):
+    #     os.makedirs(save_dir)            
     
-    with open(os.path.join(save_dir,"different.json"),'w',encoding = 'utf-8') as f:
-        json.dump(filtered_chooses, f, indent=4,separators=(',', ':'),ensure_ascii=False) 
+    # with open(os.path.join(save_dir,"different.json"),'w',encoding = 'utf-8') as f:
+    #     json.dump(filtered_chooses, f, indent=4,separators=(',', ':'),ensure_ascii=False) 
     
-    with open(os.path.join(save_dir,"same.json"),'w',encoding = 'utf-8') as f:
-        json.dump(same_chooses, f, indent=4,separators=(',', ':'),ensure_ascii=False)  
+    # with open(os.path.join(save_dir,"same.json"),'w',encoding = 'utf-8') as f:
+    #     json.dump(same_chooses, f, indent=4,separators=(',', ':'),ensure_ascii=False)  
 
 
 def filter_group_denote():
@@ -324,11 +337,12 @@ if __name__=="__main__":
     data_types = [
           "community","housetype","house",
                   ]
-    append_index()
+    # append_index()
     # for data_type in data_types:
     #     # filter_chinese_to_en(data_type)
     #     filter_en_to_cn(type_data=data_type)
-    # filter_same_answer()
+    filter_same_answer(judge_keys=["robot_response_4_chinese",
+                                    "human_response"])
     # filter_group_denote()
         
     

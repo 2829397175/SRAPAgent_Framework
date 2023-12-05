@@ -1,0 +1,563 @@
+[
+    {
+        "prompt_inputs":{
+            "task":"choose one house",
+            "thought_type":"请用【中文】输出你对于这些房屋的评价，以及做出决策的原因；请注意放弃的情况同样用【中文】给出原因",
+            "choose_type":"我的选择是 (The index of houses, should be one of [house_63,house_64])",
+            "house_info":"There are 2 houses available. The infomation of these houses are listed as follows:\nhouse_63: \nthis house costs about 2183. It's square fortage is about 48.5. The orientation of the house is NS. It is located at floor 4. It has elevator. This unit offers a balanced layout with a decent-sized bedroom. The inter-floor spacing is satisfactory, reducing noise disturbances. The bathroom is designed for quick showers, and the kitchen, though not very large, is efficient.\n\nhouse_64: \nthis house costs about 2194. It's square fortage is about 48.75. The orientation of the house is NS. It is located at floor 5. It has elevator. The house benefits from an effective use of space, ensuring all rooms are comfortably sized. The bathroom is ergonomically designed for easy usage, and a separate, modest-sized kitchen is available for culinary needs. ",
+            "thought_hint":"在选择房屋之前，请记住考虑以下事项：\n1. 该房屋的价格应在您的预算范围内。\n2. 应考虑每人的居住面积。\n3. 请具体说明为什么选择的房屋符合您的需求（例如：这个房屋满足我需要有电梯的要求）。\n4. 如果这些房屋都不符合您的要求，您可以选择放弃，但请记住要考虑您在队列中拥有的选择住房的机会，\n   以及您选择房屋的剩余机会。",
+            "memory":"Output:I choose none of these options.\nThought:The price of house_32 is within my budget, which is a positive factor. The square footage of 44.8 is also decent for me as a single person. The orientation is not specified, but I can assume it's east-west. The fact that it is located on the 23rd floor with an elevator is a good point as well. The description mentions an efficient layout and the luxury of a balcony, which aligns with my preference for a quiet and comfortable house with a peaceful environment. However, there is no mention of a nearby library, which is a requirement for me.\n",
+            "role_description":"You are Jackson. Your budget for renting a house for 2600.The maximum rent you can accept is 3640. Your family members include: Married, no children.You are 50 years old. Your job is Public servant. Your company is located in Donghuamen Street, Dongcheng District, Beijing. Jackson prefers a house with a nearby library for his reading hobbies. You still have 1 chances to choose house.    \n\nUp to now, your personal preference for house is :Jackson is looking for a quiet and comfortable house with a peaceful environment.",
+            "agent_scratchpad":""
+        },
+        "idx":9,
+        "robot_response":{
+            "output":"I choose none of these options.",
+            "thought":"Neither of these houses have a nearby library, which is a requirement for me. Therefore, I cannot choose either of these options."
+        },
+        "data_label":26,
+        "robot_response_4_chinese":{
+            "output":"我放弃这些选择",
+            "thought":"我对这两个房子的评价都很高。他们的价格都在我的预算范围内，面积也适中。他们都在有电梯的楼里，这对我来说很重要。但是，两个房子都没有提到附近有没有图书馆。我是个喜欢阅读的人，附近有图书馆对我来说很重要。考虑到我还有一次选择的机会，我决定放弃这两个选择，希望下一个选项中能有符合我需求的房子出现。"
+        },
+        "robot_response_3.5_chinese":{
+            "output":"我放弃这些选择",
+            "thought":"我认为这两个房屋都有一些吸引人的特点。房屋63的价格在我的预算范围内，而且房间的面积也比较大，适合一个人居住。此外，房间的布局也比较合理，可以减少噪音干扰。然而，这个房屋没有提到附近是否有图书馆，这是我非常关注的因素。房屋64的价格也在我的预算范围内，而且房间的面积稍微大一些。虽然房间的布局没有提到，但是有一个独立的厨房，这对我来说很重要。然而，这个房屋也没有提到附近是否有图书馆。所以，这两个房屋都没有完全符合我的需求，我决定放弃这些选择。",
+            "frame":0
+        },
+        "human_response":{
+            "output":"我没有选择任何一个。",
+            "thought":"房屋32的价格符合我的预算，这是一个积极的因素。44.8平方尺的面积对于我作为一个单身人士来说也足够了。虽然没有指定朝向，但我可以假设是东西向。它位于23楼并带有电梯，这也是一个优点。但附近没有图书馆，所以我干脆都不选。",
+            "frame":1
+        },
+        "reasonal_3.5":"robot_response_3.5_chinese"
+    },
+    {
+        "prompt_inputs":{
+            "task":"choose one house",
+            "thought_type":"请用【中文】输出你对于这些房屋的评价，以及做出决策的原因；请注意放弃的情况同样用【中文】给出原因",
+            "choose_type":"我想选 (The index of houses, should be one of [house_32,house_26,house_33])",
+            "house_info":"There are 3 houses available. The infomation of these houses are listed as follows:\nhouse_32: \nthis house costs about 1523. It's square fortage is about 44.8. The orientation of the house is EW. It is located at floor 23. It has elevator. This unit stands out with its efficient layout and the added luxury of a balcony, promising a well-rounded living experience.\n\nhouse_26: \nthis house costs about 1480. It's square fortage is about 43.5. The orientation of the house is EW. It is located at floor 17. It has elevator. The generous balcony complements the well-laid-out interiors, offering a complete living experience.\n\nhouse_33: \nthis house costs about 1530. It's square fortage is about 45.0. The orientation of the house is NS. It is located at floor 24. It has elevator. A premium unit offering a blend of space, comfort, and style. From the spacious bedroom to the balcony views, it's an urban dream. ",
+            "thought_hint":"在选择房屋之前，请记住考虑以下事项：\n1. 该房屋的价格应在您的预算范围内。\n2. 应考虑每人的居住面积。\n3. 请具体说明为什么选择的房屋符合您的需求（例如：这个房屋满足我需要有电梯的要求）。\n4. 如果这些房屋都不符合您的要求，您可以选择放弃，但请记住要考虑您在队列中拥有的选择住房的机会，\n   以及您选择房屋的剩余机会。",
+            "memory":"Output:I choose none of these options.\nThought:The price of house_32 is within my budget and it meets my preference for a cozy and family-friendly house. The square footage is also suitable for a small family. Additionally, the presence of an elevator and a balcony adds to the convenience and overall living experience. However, there is no mention of a nearby park, which was one of my preferences. Overall, this house seems like a decent option, but not perfect.\n",
+            "role_description":"You are Amelia. Your budget for renting a house for 2000.The maximum rent you can accept is 3000. Your family members include: Married with one child.You are 32 years old. Your job is Public servant. Your company is located in Xidan North Street, Xicheng District, Beijing. Amelia prefers a house with a nearby park for her child to play in. You still have 1 chances to choose house.    \n\nUp to now, your personal preference for house is :She prefers a cozy and family-friendly house.",
+            "agent_scratchpad":""
+        },
+        "idx":10,
+        "robot_response":{
+            "output":"I choose none of these options.",
+            "thought":"The price of house_32 is within my budget and it meets my preference for a cozy and family-friendly house. The square footage is also suitable for a small family. Additionally, the presence of an elevator and a balcony adds to the convenience and overall living experience. However, there is no mention of a nearby park, which was one of my preferences. Overall, this house seems like a decent option, but not perfect."
+        },
+        "data_label":26,
+        "robot_response_4_chinese":{
+            "output":"我放弃这些选择",
+            "thought":"在这三个选项中，house_32和house_33的价格和面积都略大于house_26，而且都有电梯和阳台，这些都符合我的需求。但是，这些房屋的信息里都没有提到附近是否有公园。虽然这些房子都不错，但都没有满足我希望有附近公园的要求。既然我还有一个选择的机会，我决定再等等，看看是否有更符合我需求的房子出现。"
+        },
+        "robot_response_3.5_chinese":{
+            "output":"我放弃这些选择",
+            "thought":"我对这些房屋的评价如下：\nhouse_32：这个房屋的价格在我的预算范围内，而且它非常适合一个小家庭居住，拥有舒适和适合家庭的特点。面积也适合一个小家庭。此外，有电梯和阳台的存在增加了方便性和整体居住体验。但是，没有提到附近有公园，而这是我对房屋的一个偏好。总体来说，这个房屋看起来是一个不错的选择，但并不完美。\n\nhouse_26：这个房屋的价格在我的预算范围内，而且它也很适合一个小家庭居住，拥有舒适和适合家庭的特点。面积也足够一个小家庭使用。此外，有电梯和宽敞的阳台，提供了完整的居住体验。但是，没有提到附近有公园，而这是我对房屋的一个偏好。总体来说，这个房屋看起来也是一个不错的选择，但也不完美。\n\nhouse_33：这个房屋的价格在我的预算范围内，而且它提供了空间、舒适和风格的完美结合。从宽敞的卧室到阳台的景色，它是一个城市的梦想。然而，它也没有提到附近有公园，而这是我对房屋的一个偏好。总体来说，这个房屋看起来也是一个不错的选择，但也不完美。\n\n根据以上信息，这些房屋都没有提到附近有公园，而这是我对房屋的一个重要需求。因此，我决定放弃这些选择。",
+            "frame":0
+        },
+        "human_response":{
+            "output":"我没有选择任何一个",
+            "thought":"house_32的价格在我的预算范围内，它符合我对舒适和家庭友好的房子的偏好。面积也适合一个小家庭。此外，电梯和阳台的存在增加了便利性和整体生活体验。然而，书中没有提到附近的公园，这是我的偏好之一。所以这些房子不完美。",
+            "frame":1
+        },
+        "reasonal_3.5":"robot_response_3.5_chinese"
+    },
+    {
+        "prompt_inputs":{
+            "task":"choose one house",
+            "thought_type":"请用【中文】输出你对于这些房屋的评价，以及做出决策的原因；请注意放弃的情况同样用【中文】给出原因",
+            "choose_type":"我决定选择 (The index of houses, should be one of [house_63,house_64])",
+            "house_info":"There are 2 houses available. The infomation of these houses are listed as follows:\nhouse_63: \nthis house costs about 2183. It's square fortage is about 48.5. The orientation of the house is NS. It is located at floor 4. It has elevator. This unit offers a balanced layout with a decent-sized bedroom. The inter-floor spacing is satisfactory, reducing noise disturbances. The bathroom is designed for quick showers, and the kitchen, though not very large, is efficient.\n\nhouse_64: \nthis house costs about 2194. It's square fortage is about 48.75. The orientation of the house is NS. It is located at floor 5. It has elevator. The house benefits from an effective use of space, ensuring all rooms are comfortably sized. The bathroom is ergonomically designed for easy usage, and a separate, modest-sized kitchen is available for culinary needs. ",
+            "thought_hint":"在选择房屋之前，请记住考虑以下事项：\n1. 该房屋的价格应在您的预算范围内。\n2. 应考虑每人的居住面积。\n3. 请具体说明为什么选择的房屋符合您的需求（例如：这个房屋满足我需要有电梯的要求）。\n4. 如果这些房屋都不符合您的要求，您可以选择放弃，但请记住要考虑您在队列中拥有的选择住房的机会，\n   以及您选择房屋的剩余机会。",
+            "memory":"\n",
+            "role_description":"You are Violet. Your budget for renting a house for 2000.The maximum rent you can accept is 2800. Your family members include: Married with no children.You are 45 years old. Your job is Government clerk. Your company is located in Nansihuan West Road, Fengtai District, Beijing. Violet prefers a house with a nearby shopping center for her leisure activities. You still have 2 chances to choose house.    \n\nUp to now, your personal preference for house is :She prefers a house with a traditional Chinese style.",
+            "agent_scratchpad":""
+        },
+        "idx":11,
+        "robot_response":{
+            "output":"My choice is house_63.",
+            "thought":"Both houses seem to meet my budget requirement. However, the square footage of the houses is similar and they both have an elevator. The slight difference in price is within my acceptable range beyond the rental budget. \n\nConsidering my preference for a traditional Chinese style house, I would choose house_63. Although the kitchen is not very large, it is described as efficient which suggests that it can still meet my culinary needs. The balanced layout and decent-sized bedroom also appeal to me."
+        },
+        "data_label":26,
+        "robot_response_4_chinese":{
+            "output":"我决定选择 house_63。",
+            "thought":"这两栋房子的价格都在我可以接受的范围内，面积也相差不大。我比较看重居住环境的安静，因此house_63的楼层间距适中，可以减少噪音干扰，对我来说更有吸引力。同时，我也比较喜欢它的房间布局和厨房设计。"
+        },
+        "robot_response_3.5_chinese":{
+            "output":"我决定选择 house_63.",
+            "thought":"我对这两个房屋的评价是，它们的价格都在我的预算范围内，居住面积也相对较大。对于house_63，它有电梯，房屋布局较为合理，而且浴室和厨房虽然不是很大，但功能齐全。对于house_64，它同样有电梯，房屋利用空间也很有效，确保了每个房间的大小都很舒适。浴室的设计人性化，厨房也有合适的面积供烹饪使用。",
+            "frame":1
+        },
+        "human_response":{
+            "output":"我没有选择任何一个",
+            "thought":"这两个房子看不出是中国传统风格的房子，并且没有提及周围有购物中心，所以我都不选择。",
+            "frame":0
+        },
+        "reasonal_3.5":"human_response"
+    },
+    {
+        "prompt_inputs":{
+            "task":"choose one house",
+            "thought_type":"请用【中文】输出你对于这些房屋的评价，以及做出决策的原因；请注意放弃的情况同样用【中文】给出原因",
+            "choose_type":"我决定选择 (The index of houses, should be one of [house_39,house_43,house_38])",
+            "house_info":"There are 3 houses available. The infomation of these houses are listed as follows:\nhouse_39: \nthis house costs about 2300. It's square fortage is about 57.50. The orientation of the house is NS. It is located at floor 12. It has elevator. This house radiates charm with its efficient layout, providing ample living space and a generously proportioned bedroom. The inter-floor space is airy, and both the bathroom and separate kitchen are expansive.\n\nhouse_43: \nthis house costs about 2328. It's square fortage is about 58.20. The orientation of the house is NS. It is located at floor 7. It has elevator. This home impresses with its expansive living quarters and a large bedroom. The inter-floor spacing is commendable, ensuring tranquillity. Both the bathroom and the separate kitchen are voluminous.\n\nhouse_38: \nthis house costs about 2260. It's square fortage is about 56.50. The orientation of the house is NS. It is located at floor 11. It has elevator. With its impeccable design, this property offers spacious living quarters and a vast bedroom. The generous spacing between floors ensures tranquillity, while the bathroom and separate kitchen are notably spacious. ",
+            "thought_hint":"在选择房屋之前，请记住考虑以下事项：\n1. 该房屋的价格应在您的预算范围内。\n2. 应考虑每人的居住面积。\n3. 请具体说明为什么选择的房屋符合您的需求（例如：这个房屋满足我需要有电梯的要求）。\n4. 如果这些房屋都不符合您的要求，您可以选择放弃，但请记住要考虑您在队列中拥有的选择住房的机会，\n   以及您选择房屋的剩余机会。",
+            "memory":"\n",
+            "role_description":"You are Elijah. Your budget for renting a house for 1600.The maximum rent you can accept is 2240. Your family members include: Married with two children, one in elementary school and one in middle school.You are 45 years old. Your job is Freelancer. Your company is located in Sanlitun Street, Chaoyang District, Beijing. Elijah prefers a house with a study room where he can work from home. You still have 2 chances to choose house.    \n\nUp to now, your personal preference for house is :He wants a house with a quiet neighborhood for his children's education.",
+            "agent_scratchpad":""
+        },
+        "idx":12,
+        "robot_response":{
+            "output":"My choice is house_38.",
+            "thought":"Based on the information provided, the three available houses seem to meet the criteria of having a quiet neighborhood for the children's education. However, I need to consider the price and per capita living area as well.\n\nLooking at the prices, house_39 is slightly above my budget at 2300, while house_43 is also slightly above at 2328. House_38 is priced at 2260, which is within my budget. \n\nConsidering the per capita living area, house_39 has a square footage of 57.50, house_43 has a square footage of 58.20, and house_38 has a square footage of 56.50.\n\nBased on the price and per capita living area, house_38 seems to be the best option. It is within my budget and has a slightly smaller square footage compared to the other two houses, which is acceptable."
+        },
+        "data_label":26,
+        "robot_response_4_chinese":{
+            "output":"我放弃这些选择",
+            "thought":"考虑到我的预算上限是2240，这三套房屋的租金都超过了我的预算上限，虽然他们的设计和布局都很符合我的需求，但是租金问题是我不能忽视的。剩余的选择次数也允许我再次筛选，因此我决定放弃这些选择。"
+        },
+        "robot_response_3.5_chinese":{
+            "output":"我决定选择house_43。",
+            "thought":"这三个房屋都在我的预算范围内，而且都有电梯，这符合我的需求。我注意到house_43的居住面积最大，而且房间间距较大，可以提供更多的安静和宽敞的空间。而且，它的楼层较低，这对于我45岁的年龄来说更加方便。因此，我决定选择house_43。",
+            "frame":1
+        },
+        "human_response":{
+            "output":"我没有选择任何一个。",
+            "thought":"我最多能接受2240的房子，这些房子都超过了2240，比如房子39是2328",
+            "frame":0
+        },
+        "reasonal_3.5":"human_response"
+    },
+    {
+        "prompt_inputs":{
+            "task":"choose one house",
+            "thought_type":"请用【中文】输出你对于这些房屋的评价，以及做出决策的原因；请注意放弃的情况同样用【中文】给出原因",
+            "choose_type":"我决定选择 (The index of houses, should be one of [house_23,house_25,house_22])",
+            "house_info":"There are 3 houses available. The infomation of these houses are listed as follows:\nhouse_23: \nthis house costs about 1285. It's square fortage is about 37.8. The orientation of the house is NS. It is located at floor 14. It has elevator. Though compact, this unit is enhanced by its balcony and a separate kitchen, making it feel larger than it is.\n\nhouse_25: \nthis house costs about 1435. It's square fortage is about 42.2. The orientation of the house is NS. It is located at floor 16. It has elevator. This unit is spacious with a well-planned layout, ensuring each area is usable and comfortable.\n\nhouse_22: \nthis house costs about 1207. It's square fortage is about 35.5. The orientation of the house is EW. It is located at floor 12. It has elevator. A well-lit space with a separate kitchen and a balcony, offering a great balance between size and functionality. ",
+            "thought_hint":"在选择房屋之前，请记住考虑以下事项：\n1. 该房屋的价格应在您的预算范围内。\n2. 应考虑每人的居住面积。\n3. 请具体说明为什么选择的房屋符合您的需求（例如：这个房屋满足我需要有电梯的要求）。\n4. 如果这些房屋都不符合您的要求，您可以选择放弃，但请记住要考虑您在队列中拥有的选择住房的机会，\n   以及您选择房屋的剩余机会。",
+            "memory":"\n",
+            "role_description":"You are Mia. Your budget for renting a house for 1800.The maximum rent you can accept is 2520. Your family members include: Single, no children.You are 29 years old. Your job is Graphic designer. Your company is located in 798 Art District, Chaoyang District, Beijing. Mia needs a house with a nearby art gallery for her inspiration. You still have 2 chances to choose house.    \n\nUp to now, your personal preference for house is :She prefers a house with a creative and artistic atmosphere.",
+            "agent_scratchpad":""
+        },
+        "idx":13,
+        "robot_response":{
+            "output":"I choose none of these options.",
+            "thought":"None of these houses meet my requirements for a nearby art gallery. Additionally, the price of house_25 exceeds my rental budget. Therefore, I will give up on choosing any of these options."
+        },
+        "data_label":26,
+        "robot_response_4_chinese":{
+            "output":"我决定选择 house_23.",
+            "thought":"这三所房子都在我的预算范围内，价格都可以接受。房子23和房子25的朝向都是南北，而房子22是东西朝向，一般来说南北朝向的采光和通风都会更好一些。房子23和房子22都有阳台和独立厨房，这对我来说很有吸引力，因为我喜欢有自己的空间去创作。房子25虽然面积稍大，但没有提到阳台，作为一个寻求创意和艺术氛围的平面设计师，阳台对我来说是一个很重要的因素，可能在那里我会有更多灵感。所以我倾向于选择房子23或房子22。考虑到房子23的楼层比房子22高，我更倾向于高层的房子，因为通常高层视野更开阔，更安静，可以提供更好的创作环境。因此，我选择房子23。"
+        },
+        "robot_response_3.5_chinese":{
+            "output":"我决定选择house_25。",
+            "thought":"对于这些房屋，我认为house_25是最适合我的选择。首先，它的租金是1435，处于我的预算范围内。其次，它的面积为42.2平方米，对于一个人来说足够宽敞。最重要的是，这个房屋位于16楼，有电梯，这符合我对于房屋的要求。此外，房屋布局合理，每个空间都被充分利用，让我感到舒适和实用。最后，这个房屋靠近798艺术区，对于我作为一个平面设计师来说，这个附近有艺术画廊将能给我提供灵感。",
+            "frame":1
+        },
+        "human_response":{
+            "output":"我的选择是house_25",
+            "thought":"房子的朝向是南北向。它位于16层。它有电梯。该单位空间宽敞，布局合理，确保每个区域都可用且舒适。空间宽敞有利于激发创作灵感。",
+            "frame":0
+        },
+        "reasonal_3.5":"human_response"
+    },
+    {
+        "prompt_inputs":{
+            "task":"choose one house",
+            "thought_type":"请用【中文】输出你对于这些房屋的评价，以及做出决策的原因；请注意放弃的情况同样用【中文】给出原因",
+            "choose_type":"我的选择是 (The index of houses, should be one of [house_6,house_3,house_4,house_8,house_1,house_2])",
+            "house_info":"There are 6 houses available. The infomation of these houses are listed as follows:\nhouse_6: \nthis house costs about 1860. It's square fortage is about 62.0. The orientation of the house is NS. It is located at floor 12. It has elevator. The living space in this unit is expansive, accompanied by a luxurious bedroom. The kitchen and bathroom designs are both modern and user-friendly.\n\nhouse_3: \nthis house costs about 1845. It's square fortage is about 61.5. The orientation of the house is EW. It is located at floor 8. It has elevator. This home boasts a seamless layout, optimizing the available space. The sizable bedroom is a highlight, accompanied by a practical bathroom design and a well-equipped kitchen.\n\nhouse_4: \nthis house costs about 1851. It's square fortage is about 61.7. The orientation of the house is NS. It is located at floor 9. It has elevator. The house layout is meticulous, presenting a sizable bedroom and a welcoming living area. The kitchen is well-equipped, and the bathroom design prioritizes convenience.\n\nhouse_8: \nthis house costs about 1875. It's square fortage is about 62.5. The orientation of the house is NS. It is located at floor 15. It has elevator. This unit manifests luxury with its vast bedroom and living area. The kitchen and bathroom resonate with modern designs and features.\n\nhouse_1: \nthis house costs about 1830. It's square fortage is about 61.0. The orientation of the house is NS. It is located at floor 5. It has elevator. The room layout in this house is quite pleasing, with ample spacing between floors. The bedroom is spacious, allowing for ample storage and movement. The bathroom is designed to facilitate easy showering. There's also a dedicated kitchen that's sizable.\n\nhouse_2: \nthis house costs about 1839. It's square fortage is about 61.3. The orientation of the house is NS. It is located at floor 6. It has elevator. A well-designed room layout complements the large spacing between floors. The bedroom offers a sense of grandeur, with a lot of space. The bathroom is built in such a way that showering is convenient. A separate large kitchen aids in culinary explorations. ",
+            "thought_hint":"在选择房屋之前，请记住考虑以下事项：\n1. 该房屋的价格应在您的预算范围内。\n2. 应考虑每人的居住面积。\n3. 请具体说明为什么选择的房屋符合您的需求（例如：这个房屋满足我需要有电梯的要求）。\n4. 如果这些房屋都不符合您的要求，您可以选择放弃，但请记住要考虑您在队列中拥有的选择住房的机会，\n   以及您选择房屋的剩余机会。",
+            "memory":"\n",
+            "role_description":"You are Jake. Your budget for renting a house for 1600.The maximum rent you can accept is 2240. Your family members include: Married with one child.You are 35 years old. Your job is Restaurant chef. Your company is located in Gongti North Road, Chaoyang District, Beijing. Jake prefers a house with a spacious kitchen where he can cook for his family. You still have 2 chances to choose house.    \n\nUp to now, your personal preference for house is :He prefers a house with a cozy and warm atmosphere.",
+            "agent_scratchpad":""
+        },
+        "idx":14,
+        "robot_response":{
+            "output":"My choice is house_1.",
+            "thought":"After reviewing the information about the available houses, I have decided to choose house_1. The price of this house is within my budget and it offers a square footage of 61.0, which is suitable for my family's needs. The orientation of the house is NS and it is located on the 5th floor with an elevator, which is convenient for us. The room layout is pleasing and there is ample spacing between floors. The spacious bedroom allows for ample storage and movement, which is important for a family with a child. The bathroom is designed to facilitate easy showering and there is also a dedicated kitchen that is sizable, fulfilling my preference for a spacious kitchen."
+        },
+        "data_label":26,
+        "robot_response_4_chinese":{
+            "output":"我的选择是house_2。",
+            "thought":"综合考虑价格，面积和我的个人偏好，我觉得house_2最适合我。它的价格在我的预算范围内，面积适中，而且有一个独立的大厨房，符合我想要有一个宽敞厨房的要求。它位于6楼，有电梯，符合我的需求。"
+        },
+        "robot_response_3.5_chinese":{
+            "output":"我的选择是house_6。",
+            "thought":"这些房屋中，我认为house_6和house_3是比较符合我的需求的选项。house_6的价格在我的预算范围内，而且它拥有一个宽敞的厨房，我可以在那里为我的家人做饭。此外，它还拥有一个豪华的卧室和现代化的厨房和卫生间设计。house_3的价格也在我的预算范围内，它的厨房设备齐全，卧室和卫生间的设计都很实用。我认为这两个房屋都能给我家人提供一个温馨舒适的居住环境。",
+            "frame":1
+        },
+        "human_response":{
+            "output":"我的选择是house_3",
+            "thought":"这所房子的房间布局很好，楼层之间有足够的间距。卧室很宽敞，有足够的储物空间和活动空间。浴室的设计是为了方便淋浴。还有一个相当大的专用厨房,非常符合我的需求。",
+            "frame":0
+        },
+        "reasonal_3.5":"both"
+    },
+    {
+        "prompt_inputs":{
+            "task":"choose one house",
+            "thought_type":"请用【中文】输出你对于这些房屋的评价，以及做出决策的原因；请注意放弃的情况同样用【中文】给出原因",
+            "choose_type":"我的选择是 (The index of houses, should be one of [house_64,house_62,house_67])",
+            "house_info":"There are 3 houses available. The infomation of these houses are listed as follows:\nhouse_64: \nthis house costs about 2194. It's square fortage is about 48.75. The orientation of the house is NS. It is located at floor 5. It has elevator. The house benefits from an effective use of space, ensuring all rooms are comfortably sized. The bathroom is ergonomically designed for easy usage, and a separate, modest-sized kitchen is available for culinary needs.\n\nhouse_62: \nthis house costs about 2177. It's square fortage is about 48.38. The orientation of the house is NS. It is located at floor 3. It has elevator. The property is designed with a well-proportioned layout that maximizes space. The bedroom is adequately sized for comfort, and the bathroom ensures an easy shower experience. The standalone kitchen, while not vast, is functional and meets everyday cooking needs.\n\nhouse_67: \nthis house costs about 2179. It's square fortage is about 48.44. The orientation of the house is NS. It is located at floor 8. It has elevator. Designed for modern living, the house offers a well-thought-out layout with sizable rooms. The bathroom ensures easy showering, and the standalone kitchen, while compact, serves its purpose efficiently. ",
+            "thought_hint":"在选择房屋之前，请记住考虑以下事项：\n1. 该房屋的价格应在您的预算范围内。\n2. 应考虑每人的居住面积。\n3. 请具体说明为什么选择的房屋符合您的需求（例如：这个房屋满足我需要有电梯的要求）。\n4. 如果这些房屋都不符合您的要求，您可以选择放弃，但请记住要考虑您在队列中拥有的选择住房的机会，\n   以及您选择房屋的剩余机会。",
+            "memory":"Output:I choose none of these options.\nThought:The house_64 does not meet my needs as it exceeds my rental budget. Additionally, the square footage is smaller than what I would prefer. Therefore, I will have to give up on this option.\n",
+            "role_description":"You are Lillian. Your budget for renting a house for 1000.The maximum rent you can accept is 1400. Your family members include: Married with no children.You are 60 years old. Your job is Retired. Your company is located in Wangfujing Street, Dongcheng District, Beijing. Lillian prefers a house with a nearby park for her daily walks. You still have 1 chances to choose house.    \n\nUp to now, your personal preference for house is :She prefers a house with a traditional Chinese courtyard.",
+            "agent_scratchpad":""
+        },
+        "idx":15,
+        "robot_response":{
+            "output":"I choose none of these options.",
+            "thought":"None of these houses meet my needs. The price of all three houses exceeds my rental budget, and the square footage of each house is smaller than what I would prefer. Additionally, none of the houses mentioned having a nearby park for my daily walks. Therefore, I will have to give up on these options."
+        },
+        "data_label":26,
+        "robot_response_4_chinese":{
+            "output":"我放弃这些选择",
+            "thought":"这三个房子的租金都超出了我设定的最高预算，所以我不能选择它们。我将继续寻找价格在我的预算范围内的房子。"
+        },
+        "robot_response_3.5_chinese":{
+            "output":"我放弃这些选择",
+            "thought":"这三个房屋中，house_64的价格超过了我的租金预算，并且房屋面积比我预期的要小。因此，我不得不放弃这个选项。",
+            "frame":0
+        },
+        "human_response":{
+            "output":"我没有选择任何一个",
+            "thought":"我最多接受价格为1400的房子，这三栋房子的价格都在2000以上，远远超出了我的预算。",
+            "frame":1
+        },
+        "reasonal_3.5":"human_response"
+    },
+    {
+        "prompt_inputs":{
+            "task":"choose one house",
+            "thought_type":"请用【中文】输出你对于这些房屋的评价，以及做出决策的原因；请注意放弃的情况同样用【中文】给出原因",
+            "choose_type":"我的选择是 (The index of houses, should be one of [house_77,house_82,house_79,house_78,house_81])",
+            "house_info":"There are 5 houses available. The infomation of these houses are listed as follows:\nhouse_77: \nthis house costs about 1500. It's square fortage is about 60. The orientation of the house is EW. It is located at floor 9. It has elevator. This dwelling boasts a spacious layout, offering residents a sense of freedom. The inter-floor gap might be on the narrower side, but the expansive master bedroom is a highlight. The integrated kitchen space is adequately roomy, and the bathroom ensures comfortable showers.\n\nhouse_82: \nthis house costs about 1505. It's square fortage is about 60.2. The orientation of the house is EW. It is located at floor 28. It has elevator. The well-thought-out layout of this house maximizes utility and space. The floor spacing might be a tad constrictive, but it's balanced by a vast bedroom. The house doesn't feature a distinct kitchen, but the current provision is ample.\n\nhouse_79: \nthis house costs about 1503. It's square fortage is about 60.1. The orientation of the house is EW. It is located at floor 18. It has elevator. Featuring an impressive layout, the house ensures that every corner is usable. The vertical spacing between the floors is manageable, but the highlight remains the voluminous bedroom. The house comes without a separate kitchen, but the existing space is expansive.\n\nhouse_78: \nthis house costs about 1508. It's square fortage is about 60.3. The orientation of the house is EW. It is located at floor 12. It has elevator. With a well-designed layout, space is optimized in this property. While the distance between the floors isn't vast, the commodious bedroom offers ample space for relaxation. The bathing area in the bathroom is efficiently designed, though it misses a distinct kitchen area.\n\nhouse_81: \nthis house costs about 1513. It's square fortage is about 60.5. The orientation of the house is EW. It is located at floor 25. It has elevator. Articulately designed, this house offers a spacious and comfortable living experience. The distance between the floors may be on the smaller side, yet the expansive bedroom space is a redeeming quality. The integrated kitchen area is also quite vast, providing a satisfactory cooking experience. ",
+            "thought_hint":"在选择房屋之前，请记住考虑以下事项：\n1. 该房屋的价格应在您的预算范围内。\n2. 应考虑每人的居住面积。\n3. 请具体说明为什么选择的房屋符合您的需求（例如：这个房屋满足我需要有电梯的要求）。\n4. 如果这些房屋都不符合您的要求，您可以选择放弃，但请记住要考虑您在队列中拥有的选择住房的机会，\n   以及您选择房屋的剩余机会。",
+            "memory":"\n",
+            "role_description":"You are Thomas. Your budget for renting a house for 1500.The maximum rent you can accept is 2150. Your family members include: Married with two children, both in elementary school.You are 38 years old. Your job is Freelancer. Your company is located in Wangfujing Street, Dongcheng District, Beijing. Thomas requires a house with a nearby school for his children's convenience. You still have 2 chances to choose house.    \n\nUp to now, your personal preference for house is :He prefers a house with a backyard for his children to play in.",
+            "agent_scratchpad":""
+        },
+        "idx":16,
+        "robot_response":{
+            "output":"My choice is house_77.",
+            "thought":"After considering the information provided, I have narrowed down my options to two houses: house_77 and house_79. Both houses are within my budget and have similar square footage and orientation. However, I am leaning towards house_77 because it is located on the 9th floor, which is a more convenient floor level compared to house_79 on the 18th floor. Additionally, house_77 has a spacious layout with an expansive master bedroom, which is a highlight for me. The integrated kitchen space and comfortable bathroom also meet my needs."
+        },
+        "data_label":26,
+        "robot_response_4_chinese":{
+            "output":"我放弃这些选择",
+            "thought":"这五个房子的价格都在我可以接受的范围内，也有电梯，符合我的需求。然而，他们都没有提到是否有后院供孩子们玩耍，这是我偏好的一个重要条件。另外，这些房子的楼层都偏高，我更希望选择楼层相对较低一些的房子，因为这样更安全一些。综合考虑，我决定放弃这次的选择，希望下次可以找到更符合我需求的房子。"
+        },
+        "robot_response_3.5_chinese":{
+            "output":"我的选择是house_78.",
+            "thought":"这些房屋都在我的预算范围内，而且居住面积都相对较大，符合我每个家庭成员的需求。根据我之前的偏好，我更倾向于选择有后院的房屋，让孩子们有地方可以玩耍。根据房屋的描述，我认为house_78是一个不错的选择，因为它拥有一个良好设计的布局，尽管楼层之间的距离不是很大，但宽敞的卧室提供了足够的休息空间。浴室的淋浴区域设计得很高效，虽然没有独立的厨房区域，但现有的空间也很宽敞。",
+            "frame":0
+        },
+        "human_response":{
+            "output":"我的选择是house_78",
+            "thought":"首先这个房子的价格可以接受，其次他拥有宽敞的卧室，并且楼层之间的距离不是很大，可以方便我的孩子们快乐地玩耍。",
+            "frame":1
+        },
+        "reasonal_3.5":"robot_response_3.5_chinese"
+    },
+    {
+        "prompt_inputs":{
+            "task":"choose one house",
+            "thought_type":"请用【中文】输出你对于这些房屋的评价，以及做出决策的原因；请注意放弃的情况同样用【中文】给出原因",
+            "choose_type":"我想选 (The index of houses, should be one of [house_94,house_91])",
+            "house_info":"There are 2 houses available. The infomation of these houses are listed as follows:\nhouse_94: \nthis house costs about 1110. It's square fortage is about 44.4. The orientation of the house is EW. It is located at floor 16. It has elevator. This house offers a blend of comfort and functionality. The kitchen and dining area flow seamlessly, making it great for solo residents or couples. The bathroom is streamlined for ease of use.\n\nhouse_91: \nthis house costs about 1106. It's square fortage is about 44.24. The orientation of the house is EW. It is located at floor 10. It has elevator. This compact layout is ideal for singles or young couples. The bedroom is decent in size, ensuring comfortable living. The kitchen, although not separate, offers ample space for cooking. The bathroom layout ensures easy and comfortable showers. ",
+            "thought_hint":"在选择房屋之前，请记住考虑以下事项：\n1. 该房屋的价格应在您的预算范围内。\n2. 应考虑每人的居住面积。\n3. 请具体说明为什么选择的房屋符合您的需求（例如：这个房屋满足我需要有电梯的要求）。\n4. 如果这些房屋都不符合您的要求，您可以选择放弃，但请记住要考虑您在队列中拥有的选择住房的机会，\n   以及您选择房屋的剩余机会。",
+            "memory":"Output:I choose none of these options.\nThought:The price of house_94 is within my budget and the square footage is reasonable. The fact that it has an elevator is a bonus. However, I am concerned about the orientation of the house and whether it will provide a peaceful and quiet environment.\n",
+            "role_description":"You are Hazel. Your budget for renting a house for 1200.The maximum rent you can accept is 1680. Your family members include: Single, no children.You are 26 years old. Your job is Teacher. Your company is located in Huilongguan Town, Changping District, Beijing. Hazel needs a house with a nearby park for her outdoor activities. You still have 1 chances to choose house.    \n\nUp to now, your personal preference for house is :She prefers a house with a peaceful and quiet environment.",
+            "agent_scratchpad":""
+        },
+        "idx":17,
+        "robot_response":{
+            "output":"I choose none of these options.",
+            "thought":"The price of house_94 is within my budget and the square footage is reasonable. The fact that it has an elevator is a bonus. However, I am concerned about the orientation of the house and whether it will provide a peaceful and quiet environment. On the other hand, house_91 also fits within my budget and has a similar square footage. It also has an elevator and a decent-sized bedroom. However, the kitchen is not separate and the bathroom layout is not specified. \n\nAfter considering all these factors, I have decided to give up on choosing either of these houses. Neither of them fully meets my requirement for a peaceful and quiet environment, and the layout of house_91 is not ideal for my needs. I will continue my search for a house that better suits my preferences."
+        },
+        "data_label":26,
+        "robot_response_4_chinese":{
+            "output":"我想选house_94",
+            "thought":"这两栋房子的价格都在我的预算范围内，并且都有电梯，这对我来说是一个加分项。而且，它们的户型设计都适合我这样的单身居民。然而，我更倾向于选择house_94，因为它在16楼，应该会更安静，更符合我希望有一个安静环境的需求。而且，相比house_91，house_94的厨房和餐厅区域连贯性更好，这对我来说更方便。"
+        },
+        "robot_response_3.5_chinese":{
+            "output":"我想选 house_94",
+            "thought":"我对这两个房屋的价格和居住面积都比较满意，但是对于房屋的朝向和环境是否安静还有些担忧。房屋94的价格在我的预算范围内，面积也还可以。而且它有电梯，这是一个加分项。然而，我对房屋的朝向和是否提供安静的环境有些担忧。房屋91的价格和面积也差不多，但是对于环境的要求我还是更倾向于房屋94。综合考虑，我决定选择房屋94。",
+            "frame":0
+        },
+        "human_response":{
+            "output":"我的选择是house_91",
+            "thought":"这房子价格为1106。它的平方英尺约为44.24英尺。房子的朝向是EW。它位于10楼。它有电梯。这种紧凑的布局是单身人士的理想，所以我选择这个。",
+            "frame":1
+        },
+        "reasonal_3.5":"robot_response_3.5_chinese"
+    },
+    {
+        "prompt_inputs":{
+            "task":"choose one house",
+            "thought_type":"请用【中文】输出你对于这些房屋的评价，以及做出决策的原因；请注意放弃的情况同样用【中文】给出原因",
+            "choose_type":"我选择 (The index of houses, should be one of [house_23,house_25,house_22])",
+            "house_info":"There are 3 houses available. The infomation of these houses are listed as follows:\nhouse_23: \nthis house costs about 1285. It's square fortage is about 37.8. The orientation of the house is NS. It is located at floor 14. It has elevator. Though compact, this unit is enhanced by its balcony and a separate kitchen, making it feel larger than it is.\n\nhouse_25: \nthis house costs about 1435. It's square fortage is about 42.2. The orientation of the house is NS. It is located at floor 16. It has elevator. This unit is spacious with a well-planned layout, ensuring each area is usable and comfortable.\n\nhouse_22: \nthis house costs about 1207. It's square fortage is about 35.5. The orientation of the house is EW. It is located at floor 12. It has elevator. A well-lit space with a separate kitchen and a balcony, offering a great balance between size and functionality. ",
+            "thought_hint":"在选择房屋之前，请记住考虑以下事项：\n1. 该房屋的价格应在您的预算范围内。\n2. 应考虑每人的居住面积。\n3. 请具体说明为什么选择的房屋符合您的需求（例如：这个房屋满足我需要有电梯的要求）。\n4. 如果这些房屋都不符合您的要求，您可以选择放弃，但请记住要考虑您在队列中拥有的选择住房的机会，\n   以及您选择房屋的剩余机会。",
+            "memory":"Output:I choose none of these options.\nThought:None of these houses meet my requirements for a nearby art gallery. Additionally, the price of house_25 exceeds my rental budget. Therefore, I will give up on choosing any of these options.\n",
+            "role_description":"You are Mia. Your budget for renting a house for 1800.The maximum rent you can accept is 2520. Your family members include: Single, no children.You are 29 years old. Your job is Graphic designer. Your company is located in 798 Art District, Chaoyang District, Beijing. Mia needs a house with a nearby art gallery for her inspiration. You still have 1 chances to choose house.    \n\nUp to now, your personal preference for house is :She prefers a house with a creative and artistic atmosphere.",
+            "agent_scratchpad":""
+        },
+        "idx":18,
+        "robot_response":{
+            "output":"I choose none of these options.",
+            "thought":"None of these houses meet my requirements for a nearby art gallery. Additionally, the price of house_25 exceeds my rental budget. Therefore, I will give up on choosing any of these options."
+        },
+        "data_label":26,
+        "robot_response_4_chinese":{
+            "output":"我放弃这些选择",
+            "thought":"虽然这三个房屋的价格都在我能接受的范围内，但是没有一个房屋提到了附近有艺术画廊的信息，这是我选择房屋的重要条件之一。因此，我决定放弃这些选择。"
+        },
+        "robot_response_3.5_chinese":{
+            "output":"我放弃这些选择",
+            "thought":"我对这些房屋的价格和面积都感到满意，但是没有一个房屋附近有艺术画廊。作为一名平面设计师，我需要一个有艺术氛围的房屋来激发我的创作灵感。因此，这些房屋都不符合我的需求。另外，house_25的租金超出了我的预算范围。因此，我决定放弃选择任何一个房屋。",
+            "frame":0
+        },
+        "human_response":{
+            "output":"我的选择是house_25",
+            "thought":"首先价格都在可以接受的范围之内，其次这个房子有充足的光线，是有利于激发创作灵感的。",
+            "frame":1
+        },
+        "reasonal_3.5":"human_response"
+    },
+    {
+        "prompt_inputs":{
+            "task":"choose one house",
+            "thought_type":"请用【中文】输出你对于这些房屋的评价，以及做出决策的原因；请注意放弃的情况同样用【中文】给出原因",
+            "choose_type":"我选择 (The index of houses, should be one of [house_6,house_3,house_4,house_8,house_2,house_5,house_7])",
+            "house_info":"There are 7 houses available. The infomation of these houses are listed as follows:\nhouse_6: \nthis house costs about 1860. It's square fortage is about 62.0. The orientation of the house is NS. It is located at floor 12. It has elevator. The living space in this unit is expansive, accompanied by a luxurious bedroom. The kitchen and bathroom designs are both modern and user-friendly.\n\nhouse_3: \nthis house costs about 1845. It's square fortage is about 61.5. The orientation of the house is EW. It is located at floor 8. It has elevator. This home boasts a seamless layout, optimizing the available space. The sizable bedroom is a highlight, accompanied by a practical bathroom design and a well-equipped kitchen.\n\nhouse_4: \nthis house costs about 1851. It's square fortage is about 61.7. The orientation of the house is NS. It is located at floor 9. It has elevator. The house layout is meticulous, presenting a sizable bedroom and a welcoming living area. The kitchen is well-equipped, and the bathroom design prioritizes convenience.\n\nhouse_8: \nthis house costs about 1875. It's square fortage is about 62.5. The orientation of the house is NS. It is located at floor 15. It has elevator. This unit manifests luxury with its vast bedroom and living area. The kitchen and bathroom resonate with modern designs and features.\n\nhouse_2: \nthis house costs about 1839. It's square fortage is about 61.3. The orientation of the house is NS. It is located at floor 6. It has elevator. A well-designed room layout complements the large spacing between floors. The bedroom offers a sense of grandeur, with a lot of space. The bathroom is built in such a way that showering is convenient. A separate large kitchen aids in culinary explorations.\n\nhouse_5: \nthis house costs about 1857. It's square fortage is about 61.9. The orientation of the house is EW. It is located at floor 11. It has elevator. This unit showcases a spacious bedroom, a vast living area, and an efficiently designed kitchen. The bathroom is tailored for ease of use.\n\nhouse_7: \nthis house costs about 1869. It's square fortage is about 62.3. The orientation of the house is EW. It is located at floor 14. It has elevator. The house is artistically laid out, offering a capacious bedroom and a luminous living area. The kitchen is state-of-the-art, and the bathroom ensures utmost convenience. ",
+            "thought_hint":"在选择房屋之前，请记住考虑以下事项：\n1. 该房屋的价格应在您的预算范围内。\n2. 应考虑每人的居住面积。\n3. 请具体说明为什么选择的房屋符合您的需求（例如：这个房屋满足我需要有电梯的要求）。\n4. 如果这些房屋都不符合您的要求，您可以选择放弃，但请记住要考虑您在队列中拥有的选择住房的机会，\n   以及您选择房屋的剩余机会。",
+            "memory":"\n",
+            "role_description":"You are Paisley. Your budget for renting a house for 2500.The maximum rent you can accept is 3750. Your family members include: Married with one child.You are 31 years old. Your job is Architect. Your company is located in Xinhua Street, Tongzhou District, Beijing. Paisley prefers a house with a nearby shopping mall for convenience. You still have 2 chances to choose house.    \n\nUp to now, your personal preference for house is :She wants a house with a modern design and plenty of natural light.",
+            "agent_scratchpad":""
+        },
+        "idx":19,
+        "robot_response":{
+            "output":"My choice is house_6.",
+            "thought":"After considering the information provided, I have narrowed down my choices to house_6 and house_4. Both houses are within my budget and have a similar square footage. However, I am drawn towards house_6 because it is located on a higher floor, which means it may have better views and less noise. Additionally, the expansive living space and luxurious bedroom align with my preference for a modern and spacious house with plenty of natural light. The modern and user-friendly kitchen and bathroom designs are also appealing to me."
+        },
+        "data_label":26,
+        "robot_response_4_chinese":{
+            "output":"我选择 house_8.",
+            "thought":"我注意到所有的房子都在我负担得起的价格范围内，但是我对房子的设计和自然光线有特别的要求。在所有的描述中，我觉得house_8的描述最符合我的需求，因为它有现代设计的厨房和卫生间，而且提到了这个单元展现了豪华的感觉，这让我联想到可能有大量的自然光线。而且，尽管所有的房子都有电梯，但是house_8位于15楼，比其他的房子更高，可能会有更好的视野和自然光线。"
+        },
+        "robot_response_3.5_chinese":{
+            "output":"我选择house_8。",
+            "thought":"根据我对这些房屋的评估，我决定选择house_8。这个房屋的价格在我的预算范围内，而且它的居住面积也很大，有足够的空间供我和我的家人居住。此外，这个房屋的设计非常豪华，卧室和起居区都很宽敞。厨房和浴室的设计也符合我对现代化和便利性的要求。最重要的是，这个房屋位于15楼，有电梯，方便进出。综上所述，house_8是我最理想的选择。",
+            "frame":0
+        },
+        "human_response":{
+            "output":"我的选择是house_6",
+            "thought":"房子的朝向是南北向的啊，所以采光是充足的，并且厨房和浴室的设计很现代化以及人性化，符合我的基本需求。",
+            "frame":1
+        },
+        "reasonal_3.5":"both"
+    },
+    {
+        "prompt_inputs":{
+            "task":"choose one house",
+            "thought_type":"请用【中文】输出你对于这些房屋的评价，以及做出决策的原因；请注意放弃的情况同样用【中文】给出原因",
+            "choose_type":"我的选择是 (The index of houses, should be one of [house_64,house_62,house_67])",
+            "house_info":"There are 3 houses available. The infomation of these houses are listed as follows:\nhouse_64: \nthis house costs about 2194. It's square fortage is about 48.75. The orientation of the house is NS. It is located at floor 5. It has elevator. The house benefits from an effective use of space, ensuring all rooms are comfortably sized. The bathroom is ergonomically designed for easy usage, and a separate, modest-sized kitchen is available for culinary needs.\n\nhouse_62: \nthis house costs about 2177. It's square fortage is about 48.38. The orientation of the house is NS. It is located at floor 3. It has elevator. The property is designed with a well-proportioned layout that maximizes space. The bedroom is adequately sized for comfort, and the bathroom ensures an easy shower experience. The standalone kitchen, while not vast, is functional and meets everyday cooking needs.\n\nhouse_67: \nthis house costs about 2179. It's square fortage is about 48.44. The orientation of the house is NS. It is located at floor 8. It has elevator. Designed for modern living, the house offers a well-thought-out layout with sizable rooms. The bathroom ensures easy showering, and the standalone kitchen, while compact, serves its purpose efficiently. ",
+            "thought_hint":"在选择房屋之前，请记住考虑以下事项：\n1. 该房屋的价格应在您的预算范围内。\n2. 应考虑每人的居住面积。\n3. 请具体说明为什么选择的房屋符合您的需求（例如：这个房屋满足我需要有电梯的要求）。\n4. 如果这些房屋都不符合您的要求，您可以选择放弃，但请记住要考虑您在队列中拥有的选择住房的机会，\n   以及您选择房屋的剩余机会。",
+            "memory":"Output:I choose none of these options.\nThought:The price of house_64 is within my budget and it meets my requirement for a spacious backyard for my child to play in. However, the square footage of the house is quite small and may not provide enough living space for my family. Additionally, the orientation of the house and its location on the 5th floor may not be ideal. Overall, I don't think house_64 fully satisfies my needs.\n",
+            "role_description":"You are Benjamin. Your budget for renting a house for 2400.The maximum rent you can accept is 3360. Your family members include: Married with one child.You are 32 years old. Your job is Programmer. Your company is located in No. 10 Jiuxianqiao Road, Chaoyang District, Beijing. Benjamin prefers a house with a nearby park for his child to play in. You still have 1 chances to choose house.    \n\nUp to now, your personal preference for house is :He wants a house with a spacious backyard for his child to play in.",
+            "agent_scratchpad":""
+        },
+        "idx":20,
+        "robot_response":{
+            "output":"I choose none of these options.",
+            "thought":"Based on the information provided, none of the available houses fully satisfy my needs. While all three houses are within my budget, none of them have a spacious backyard for my child to play in. Additionally, the square footage of the houses is quite small and may not provide enough living space for my family. The orientation of the houses and their locations on the 5th, 3rd, and 8th floors are not ideal either. Considering these factors, I choose none of these options."
+        },
+        "data_label":26,
+        "robot_response_4_chinese":{
+            "output":"我放弃这些选择",
+            "thought":"我审视了这三套房子，发现他们的价格都在我可承受的范围内。然而，我发现他们的面积都不太大，可能无法为我的家庭提供足够的生活空间。此外，其中没有一套房子提到有宽敞的后院供我的孩子玩耍。因此，虽然这些房子在价格上是可接受的，但并不满足我对居住空间和后院的需求。我决定放弃这次选择，希望下次能找到更符合我需求的房子。"
+        },
+        "robot_response_3.5_chinese":{
+            "output":"我放弃这些选择",
+            "thought":"对于这三个房屋，house_64的价格在我的预算范围内，而且有一个宽敞的后院供我的孩子玩耍。然而，房屋的面积相对较小，可能不提供足够的居住空间给我的家人。此外，房屋的朝向以及位于5楼的位置可能不是最理想的。总体来说，我觉得house_64并不完全满足我的需求。",
+            "frame":1
+        },
+        "human_response":{
+            "output":"我的选择是house_64",
+            "thought":"住宅得益于空间的有效利用，确保所有房间的大小都很舒适。浴室是符合人体工程学的设计，便于使用,孩子在那边玩耍不会受伤。",
+            "frame":0
+        },
+        "reasonal_3.5":"robot_response_3.5_chinese"
+    },
+    {
+        "prompt_inputs":{
+            "task":"choose one house",
+            "thought_type":"请用【中文】输出你对于这些房屋的评价，以及做出决策的原因；请注意放弃的情况同样用【中文】给出原因",
+            "choose_type":"我想选 (The index of houses, should be one of [house_64,house_62,house_67])",
+            "house_info":"There are 3 houses available. The infomation of these houses are listed as follows:\nhouse_64: \nthis house costs about 2194. It's square fortage is about 48.75. The orientation of the house is NS. It is located at floor 5. It has elevator. The house benefits from an effective use of space, ensuring all rooms are comfortably sized. The bathroom is ergonomically designed for easy usage, and a separate, modest-sized kitchen is available for culinary needs.\n\nhouse_62: \nthis house costs about 2177. It's square fortage is about 48.38. The orientation of the house is NS. It is located at floor 3. It has elevator. The property is designed with a well-proportioned layout that maximizes space. The bedroom is adequately sized for comfort, and the bathroom ensures an easy shower experience. The standalone kitchen, while not vast, is functional and meets everyday cooking needs.\n\nhouse_67: \nthis house costs about 2179. It's square fortage is about 48.44. The orientation of the house is NS. It is located at floor 8. It has elevator. Designed for modern living, the house offers a well-thought-out layout with sizable rooms. The bathroom ensures easy showering, and the standalone kitchen, while compact, serves its purpose efficiently. ",
+            "thought_hint":"在选择房屋之前，请记住考虑以下事项：\n1. 该房屋的价格应在您的预算范围内。\n2. 应考虑每人的居住面积。\n3. 请具体说明为什么选择的房屋符合您的需求（例如：这个房屋满足我需要有电梯的要求）。\n4. 如果这些房屋都不符合您的要求，您可以选择放弃，但请记住要考虑您在队列中拥有的选择住房的机会，\n   以及您选择房屋的剩余机会。",
+            "memory":"\n",
+            "role_description":"You are Aaron. Your budget for renting a house for 1400.The maximum rent you can accept is 1960. Your family members include: Married with no children.You are 42 years old. Your job is Bank clerk. Your company is located in Bajiao Street, Shijingshan District, Beijing. Aaron prefers a house with a nearby park for his daily exercise routine. You still have 2 chances to choose house.    \n\nUp to now, your personal preference for house is :He wants a house with a spacious balcony for enjoying the view.",
+            "agent_scratchpad":""
+        },
+        "idx":21,
+        "robot_response":{
+            "output":"My choice is house_62.",
+            "thought":"After considering the information provided, I have decided to choose house_62. This house meets my budget as it costs about 2177, which is within my acceptable price range. Additionally, the square footage of 48.38 is suitable for my needs. The well-proportioned layout maximizes the use of space, ensuring that all rooms are comfortably sized. The bathroom provides an easy shower experience and the standalone kitchen is functional for everyday cooking needs."
+        },
+        "data_label":26,
+        "robot_response_4_chinese":{
+            "output":"我放弃这些选择",
+            "thought":"这三个房屋的价格都超出了我的预算上限，而且没有提到是否靠近公园，也没有提到阳台的大小和景观，因此不符合我的需求。考虑到我还有两次选择机会，我决定放弃这些选择，继续寻找更符合我的需求和预算的房屋。"
+        },
+        "robot_response_3.5_chinese":{
+            "output":"我想选 house_62",
+            "thought":"根据我的预算范围和个人需求，我仔细比较了这三个房屋的信息。首先，house_64的价格超出了我的预算范围，因此我不能选择它。其次，house_62和house_67的价格都在我的预算范围内。根据房屋的面积和布局，它们都能提供足够的居住空间。然而，考虑到我想要一个宽敞的阳台欣赏风景，我决定选择house_62。虽然它的价格稍高一些，但它的面积和布局都能满足我的需求。此外，它位于三楼，有电梯，方便我进出。我相信这个房屋会给我带来舒适和便利。",
+            "frame":0
+        },
+        "human_response":{
+            "output":"我没有选择任何一个",
+            "thought":"这里面最便宜的一个房子是2177，以及超过我的最大预算1960了",
+            "frame":1
+        },
+        "reasonal_3.5":"human_response"
+    },
+    {
+        "prompt_inputs":{
+            "task":"choose one house",
+            "thought_type":"请用【中文】输出你对于这些房屋的评价，以及做出决策的原因；请注意放弃的情况同样用【中文】给出原因",
+            "choose_type":"我决定选择 (The index of houses, should be one of [house_23,house_25,house_22])",
+            "house_info":"There are 3 houses available. The infomation of these houses are listed as follows:\nhouse_23: \nthis house costs about 1285. It's square fortage is about 37.8. The orientation of the house is NS. It is located at floor 14. It has elevator. Though compact, this unit is enhanced by its balcony and a separate kitchen, making it feel larger than it is.\n\nhouse_25: \nthis house costs about 1435. It's square fortage is about 42.2. The orientation of the house is NS. It is located at floor 16. It has elevator. This unit is spacious with a well-planned layout, ensuring each area is usable and comfortable.\n\nhouse_22: \nthis house costs about 1207. It's square fortage is about 35.5. The orientation of the house is EW. It is located at floor 12. It has elevator. A well-lit space with a separate kitchen and a balcony, offering a great balance between size and functionality. ",
+            "thought_hint":"在选择房屋之前，请记住考虑以下事项：\n1. 该房屋的价格应在您的预算范围内。\n2. 应考虑每人的居住面积。\n3. 请具体说明为什么选择的房屋符合您的需求（例如：这个房屋满足我需要有电梯的要求）。\n4. 如果这些房屋都不符合您的要求，您可以选择放弃，但请记住要考虑您在队列中拥有的选择住房的机会，\n   以及您选择房屋的剩余机会。",
+            "memory":"\n",
+            "role_description":"You are Aubrey. Your budget for renting a house for 1000.The maximum rent you can accept is 1400. Your family members include: Single, no children.You are 29 years old. Your job is Hotel receptionist. Your company is located in Wangfujing Street, Dongcheng District, Beijing. Aubrey prefers a house with easy access to public transportation for her daily commute. You still have 2 chances to choose house.    \n\nUp to now, your personal preference for house is :She wants a cozy and affordable apartment for herself.",
+            "agent_scratchpad":""
+        },
+        "idx":22,
+        "robot_response":{
+            "output":"My choice is house_22.",
+            "thought":"Among the three available houses, house_22 seems to be the most suitable option for me. Firstly, its price of 1207 is within my budget of 1000.0, allowing me to comfortably afford it. Secondly, the square footage of 35.5 is decent for a single person like me, providing enough space for my needs. Lastly, the house is well-lit with a separate kitchen and a balcony, which offers both functionality and a cozy atmosphere that I desire. Additionally, the house is located at floor 12 with an elevator, making it easily accessible. Considering all these factors, house_22 meets my requirements for a cozy and affordable apartment."
+        },
+        "data_label":26,
+        "robot_response_4_chinese":{
+            "output":"我决定选择 house_23。",
+            "thought":"房屋25的租金超过了我的预算上限1400，所以这个是不能考虑的。房屋23和房屋22都在我能接受的租金范围内。房屋23的面积是37.8平方米，房屋22的面积是35.5平方米，两者面积差别不大。然而，我注意到房屋23有独立的厨房和阳台，可能会让空间感觉更大。所以我倾向于选择房屋23。"
+        },
+        "robot_response_3.5_chinese":{
+            "output":"我决定选择house_25。",
+            "thought":"我认为这三个房屋中，house_25是最符合我的需求的。虽然它的价格超过了我的预算范围，但是我还是可以接受它的租金。它的面积较大，42.2平方米，足够宽敞和舒适。此外，它位于16楼，有电梯，方便出行。房屋的朝向是南北方向，应该有良好的采光条件。总体来说，house_25提供了一个宽敞、舒适的居住空间，符合我对一个温馨且价格适中的公寓的要求。",
+            "frame":1
+        },
+        "human_response":{
+            "output":"我的选择是house_22",
+            "thought":"这是符合我的预算并且最便宜的房子了，而且它有电梯。一个光线充足的空间，有一个独立的厨房和阳台，在大小和功能之间提供了很好的平衡，我会住的很舒适。",
+            "frame":0
+        },
+        "reasonal_3.5":"human_response"
+    },
+    {
+        "prompt_inputs":{
+            "task":"choose one house",
+            "thought_type":"请用【中文】输出你对于这些房屋的评价，以及做出决策的原因；请注意放弃的情况同样用【中文】给出原因",
+            "choose_type":"我想选 (The index of houses, should be one of [house_39,house_43])",
+            "house_info":"There are 2 houses available. The infomation of these houses are listed as follows:\nhouse_39: \nthis house costs about 2300. It's square fortage is about 57.50. The orientation of the house is NS. It is located at floor 12. It has elevator. This house radiates charm with its efficient layout, providing ample living space and a generously proportioned bedroom. The inter-floor space is airy, and both the bathroom and separate kitchen are expansive.\n\nhouse_43: \nthis house costs about 2328. It's square fortage is about 58.20. The orientation of the house is NS. It is located at floor 7. It has elevator. This home impresses with its expansive living quarters and a large bedroom. The inter-floor spacing is commendable, ensuring tranquillity. Both the bathroom and the separate kitchen are voluminous. ",
+            "thought_hint":"在选择房屋之前，请记住考虑以下事项：\n1. 该房屋的价格应在您的预算范围内。\n2. 应考虑每人的居住面积。\n3. 请具体说明为什么选择的房屋符合您的需求（例如：这个房屋满足我需要有电梯的要求）。\n4. 如果这些房屋都不符合您的要求，您可以选择放弃，但请记住要考虑您在队列中拥有的选择住房的机会，\n   以及您选择房屋的剩余机会。",
+            "memory":"\n",
+            "role_description":"You are Maya. Your budget for renting a house for 2200.The maximum rent you can accept is 3080. Your family members include: Married with two children, one in kindergarten and one in elementary school.You are 36 years old. Your job is Public servant. Your company is located in Huangcun Town, Daxing District, Beijing. Maya prefers a house with a nearby hospital for her family's healthcare needs. You still have 2 chances to choose house.    \n\nUp to now, your personal preference for house is :She wants a house with a spacious backyard for her children to play in.",
+            "agent_scratchpad":""
+        },
+        "idx":23,
+        "robot_response":{
+            "output":"My choice is house_39.",
+            "thought":"Both house_39 and house_43 seem to meet my criteria of having a spacious backyard for my children to play in. However, I need to consider the price and the per capita living area before making a decision. \n\nUpon comparing the prices, both houses are slightly beyond my rental budget. However, house_39 is closer to my budget at 2300, while house_43 is slightly higher at 2328. \n\nConsidering the per capita living area, house_39 has a square footage of 57.50, while house_43 has a slightly larger square footage of 58.20. \n\nBased on these factors, I believe house_39 would be the better choice. It is closer to my budget and has a slightly smaller per capita living area, which means more space for each family member."
+        },
+        "data_label":26,
+        "robot_response_4_chinese":{
+            "output":"我放弃这些选择",
+            "thought":"从价格上看，这两套房子都在我可以接受的范围内。从房屋描述来看，两套房子的空间都较大，而且都有电梯，具备良好的居住环境。但是，我更看重的是有一个宽敞的后院供孩子们玩耍，这两套房子都没有明确提到这一点。因此，我决定放弃这两套房子，寻找更符合自己需求的房子。"
+        },
+        "robot_response_3.5_chinese":{
+            "output":"我想选house_43。",
+            "thought":"这两个房屋都在我的预算范围内，而且它们的面积也相对较大，符合我对宽敞后院的要求。我倾向于选择house_43，因为它的楼层较低，位置更接近一楼，方便出行。此外，这个房屋的卫生间和独立厨房都是宽敞的，符合我家庭的需求。",
+            "frame":0
+        },
+        "human_response":{
+            "output":"我的选择是house_39",
+            "thought":"这座房子以其高效的布局散发着魅力，提供了充足的生活空间和宽敞的卧室。楼层间的空间很通风，浴室和独立的厨房都很宽敞,很适合带着孩子们一起生活。",
+            "frame":1
+        },
+        "reasonal_3.5":"both"
+    },
+    {
+        "prompt_inputs":{
+            "task":"choose one house",
+            "thought_type":"请用【中文】输出你对于这些房屋的评价，以及做出决策的原因；请注意放弃的情况同样用【中文】给出原因",
+            "choose_type":"我的选择是 (The index of houses, should be one of [house_23,house_25])",
+            "house_info":"There are 2 houses available. The infomation of these houses are listed as follows:\nhouse_23: \nthis house costs about 1285. It's square fortage is about 37.8. The orientation of the house is NS. It is located at floor 14. It has elevator. Though compact, this unit is enhanced by its balcony and a separate kitchen, making it feel larger than it is.\n\nhouse_25: \nthis house costs about 1435. It's square fortage is about 42.2. The orientation of the house is NS. It is located at floor 16. It has elevator. This unit is spacious with a well-planned layout, ensuring each area is usable and comfortable. ",
+            "thought_hint":"在选择房屋之前，请记住考虑以下事项：\n1. 该房屋的价格应在您的预算范围内。\n2. 应考虑每人的居住面积。\n3. 请具体说明为什么选择的房屋符合您的需求（例如：这个房屋满足我需要有电梯的要求）。\n4. 如果这些房屋都不符合您的要求，您可以选择放弃，但请记住要考虑您在队列中拥有的选择住房的机会，\n   以及您选择房屋的剩余机会。",
+            "memory":"\n",
+            "role_description":"You are Charles. Your budget for renting a house for 1100.The maximum rent you can accept is 1540. Your family members include: Single, no children.You are 27 years old. Your job is Teacher. Your company is located in Huilongguan Town, Changping District, Beijing. Charles prefers a house with a nearby gym for his fitness routine. You still have 2 chances to choose house.    \n\nUp to now, your personal preference for house is :He wants a house with a quiet and peaceful environment for relaxation.",
+            "agent_scratchpad":""
+        },
+        "idx":24,
+        "robot_response":{
+            "output":"My choice is house_23.",
+            "thought":"Both house_23 and house_25 seem to have their advantages. The price of house_23 is within my budget, while house_25 is slightly more expensive but still within my acceptable price range. In terms of square footage, house_25 is larger than house_23, which is a positive aspect. Both houses have an elevator, which is convenient. \n\nConsidering my preference for a quiet and peaceful environment for relaxation, I believe house_23 would be a better choice. The compact size and separate kitchen make it feel larger and more functional. Additionally, the balcony provides an opportunity for outdoor relaxation."
+        },
+        "data_label":26,
+        "robot_response_4_chinese":{
+            "output":"我的选择是 house_23.",
+            "thought":"房子23的价格比较合理，而且有独立的厨房和阳台，使得房间感觉比实际面积大一些。虽然房子25的面积更大，但价格也相应增加，超出了我原本的预算。所以我更倾向于选择房子23。"
+        },
+        "robot_response_3.5_chinese":{
+            "output":"我的选择是house_25.",
+            "thought":"对于这两个房屋，house_23的价格为1285，面积为37.8平方米，house_25的价格为1435，面积为42.2平方米。根据我的预算和个人喜好，这两个房屋的价格都在我的预算范围内。我可以接受的最高租金是1540，所以这两个房屋的租金都在我可以接受的范围内。\n\n考虑到居住面积，house_25的面积较大，为42.2平方米，相较于house_23的37.8平方米更为宽敞。而且house_25的房屋布局合理，每个区域都能使用并且舒适。\n\n根据我的个人偏好，我喜欢安静平和的环境来放松。虽然这两个房屋都没有提到附近是否有健身房，但是我可以自行寻找附近的健身房来满足我的健身需求。\n\n基于以上考虑，我决定选择house_25作为我的住房选择。",
+            "frame":1
+        },
+        "human_response":{
+            "output":"我的选择是house_23",
+            "thought":"房子的价格符合预算，而且是更便宜的，房子的朝向是南北向。它位于14楼。它有电梯。这套公寓虽然紧凑，但它的阳台和一个独立的厨房让它感觉比实际更大。",
+            "frame":0
+        },
+        "reasonal_3.5":"robot_response_3.5_chinese"
+    },
+    {
+        "prompt_inputs":{
+            "task":"choose one house",
+            "thought_type":"请用【中文】输出你对于这些房屋的评价，以及做出决策的原因；请注意放弃的情况同样用【中文】给出原因",
+            "choose_type":"我的选择是 (The index of houses, should be one of [house_32,house_26,house_33,house_29])",
+            "house_info":"There are 4 houses available. The infomation of these houses are listed as follows:\nhouse_32: \nthis house costs about 1523. It's square fortage is about 44.8. The orientation of the house is EW. It is located at floor 23. It has elevator. This unit stands out with its efficient layout and the added luxury of a balcony, promising a well-rounded living experience.\n\nhouse_26: \nthis house costs about 1480. It's square fortage is about 43.5. The orientation of the house is EW. It is located at floor 17. It has elevator. The generous balcony complements the well-laid-out interiors, offering a complete living experience.\n\nhouse_33: \nthis house costs about 1530. It's square fortage is about 45.0. The orientation of the house is NS. It is located at floor 24. It has elevator. A premium unit offering a blend of space, comfort, and style. From the spacious bedroom to the balcony views, it's an urban dream.\n\nhouse_29: \nthis house costs about 1513. It's square fortage is about 44.5. The orientation of the house is NS. It is located at floor 20. It has elevator. Offering panoramic views from its balcony, this house ensures every square foot is optimally utilized. ",
+            "thought_hint":"在选择房屋之前，请记住考虑以下事项：\n1. 该房屋的价格应在您的预算范围内。\n2. 应考虑每人的居住面积。\n3. 请具体说明为什么选择的房屋符合您的需求（例如：这个房屋满足我需要有电梯的要求）。\n4. 如果这些房屋都不符合您的要求，您可以选择放弃，但请记住要考虑您在队列中拥有的选择住房的机会，\n   以及您选择房屋的剩余机会。",
+            "memory":"\n",
+            "role_description":"You are Emma. Your budget for renting a house for 2500.The maximum rent you can accept is 3750. Your family members include: Single, no children.You are 29 years old. Your job is Architect. Your company is located in No. 1 Jianguomenwai Street, Chaoyang District, Beijing. Emma hopes the apartment is in a quiet neighborhood, allowing her to focus on her work. You still have 2 chances to choose house.    \n\nUp to now, your personal preference for house is :She prefers a modern and well-designed apartment.",
+            "agent_scratchpad":""
+        },
+        "idx":25,
+        "robot_response":{
+            "output":"My choice is house_33.",
+            "thought":"After considering the information provided, I have decided to choose house_33. This house meets my requirements for a modern and well-designed apartment, as it offers a blend of space, comfort, and style. The square footage of 45.0 is within my acceptable range, and the orientation of the house being NS allows for natural light throughout the day. The balcony views are also appealing, providing a pleasant living environment. Additionally, the price of 1530 is within my budget, allowing me to comfortably afford this rental. Overall, house_33 seems to be the best option for me."
+        },
+        "data_label":26,
+        "robot_response_4_chinese":{
+            "output":"我的选择是house_33。",
+            "thought":"这些房屋的租金都在我的预算范围内，远低于我能接受的最高租金3750。这四套房屋的面积和价格相近，都有电梯，这符合我的基本需求。由于我是单身，这些房屋的面积对我来说是合适的。我更倾向于选择一个现代化且设计感强的公寓。从描述来看，house_33提供了空间、舒适度以及风格的完美融合，它的朝向是南北，这通常意味着更好的通风和采光。而且作为一个建筑师，我希望住在一个设计感强的房子里，house_33的描述让我觉得它可能会满足我的这一偏好。因此，我决定选择house_33。"
+        },
+        "robot_response_3.5_chinese":{
+            "output":"我的选择是house_32。",
+            "thought":"根据我对这些房屋的评估，我认为house_32是最适合我的选择。虽然它的价格是1523，略高于我的预算，但是它的面积为44.8平方米，符合我的居住需求。此外，房屋的朝向为东西向，位于23楼，有电梯方便出行。我喜欢这个房子的设计布局和阳台的奢华感，这将为我提供一个舒适宜居的居住环境。",
+            "frame":0
+        },
+        "human_response":{
+            "output":"我的选择是house_32",
+            "thought":"该单元以其高效的布局和额外的阳台豪华而脱颖而出，承诺提供全面的生活体验。想必很符合我对房子的现代化的需求，高效的布局可以让我更加舒适地工作。",
+            "frame":1
+        },
+        "reasonal_3.5":"robot_response_3.5_chinese"
+    }
+]

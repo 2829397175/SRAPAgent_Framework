@@ -1,0 +1,65 @@
+environment:
+  env_type: rent
+  max_turns: 10
+  rule:
+    describer:
+      type: base
+    order:
+      k: 2
+      type: kwaitlist
+      waitlist_ratio: 1.2
+    updater:
+      type: rent
+    visibility:
+      type: rent
+  tool: true
+managers:
+  community:
+    data_dir: data/community_39.json
+    distribution_batch_dir: data/distribution_batch_39_6_1.json
+    patch_method: portion_rentmoney
+  forum:
+    data_dir: data/forum.json
+  house:
+    data_dir: data/house_39.json
+  tenant:
+    agent_rule:
+      readcommunity_rule: available
+      readforum_rule: randomk
+      readhouse_rule: page_generator
+      writeforum_rule: append
+    choose_rating: false
+    data_dir: data/tenant_51.json
+    distribution_batch_dir: data/distribution_batch_tenant_51.json
+    llm:
+      llm_type: gpt-3.5-turbo-16k-0613
+      max_tokens: 300
+      temperature: 0.8
+    max_choose: 2
+    max_jug_time: 2
+    memory:
+      dialogue_threshold: 30
+      llm:
+        llm_type: gpt-3.5-turbo-16k-0613
+        max_tokens: 300
+        temperature: 0.8
+      memory_type: action_history
+      reflection: true
+      summary_threshold: 10
+    policy:
+      filter_house_labels:
+      - house_type
+      group_policy:
+        portion_attribute: family_members_num
+        portion_settings:
+        - 0.2
+        - 0.3
+        - 0.3
+        - 0.2
+        priority: true
+        type: portion
+      type: ver1
+    type_tenant: LangchainTenant
+name: ver1_nofilter_multilist(1.2)_portion4(f_member_num)_priority_8t_6h_p#portion_rent_money
+save_log: true
+save_root_dir: result

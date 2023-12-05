@@ -25,6 +25,11 @@ class WaitListOrder(BaseOrder):
     
     rule_description:str=""
     waitlist_ratio = 0.5 
+    
+    def __init__(self,**kargs) -> None:
+        return super().__init__(type = "waitlist",
+                                **kargs)
+    
     def get_next_agent_idx(self, environment) :
         """Return the index of the next agent to speak"""
         waitlist = environment.deque_dict["waitlist"]

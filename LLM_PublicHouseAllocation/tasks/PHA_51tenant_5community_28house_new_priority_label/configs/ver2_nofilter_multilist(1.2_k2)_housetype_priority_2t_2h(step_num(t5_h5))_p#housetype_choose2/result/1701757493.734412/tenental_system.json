@@ -1,0 +1,729 @@
+{
+    "group":{
+        "69":{
+            "log_round":{
+                "available_house_type":[
+                    "large_house",
+                    "middle_house",
+                    "small_house"
+                ],
+                "choose_house_type":"middle_house",
+                "choose_house_type_reason":"After considering the available house types, I believe the best option for my family would be the middle_house. This type of house is suitable for families of two people and can also accommodate a younger child, which fits our family size. Additionally, the per capita living area should be taken into consideration, and a middle_house would provide enough space for all of us without being too large."
+            },
+            "log_round_prompts":{
+                "choose_house_type":{
+                    "prompt_inputs":{
+                        "task":"choose one type of houses",
+                        "thought_type":"Your views on these house types and the reason why you made your choice.",
+                        "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+                        "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+                        "thought_hint":"Remember to consider the following things before choosing house:\n1. The per capita living area should be taken into consideration.\n2. Remember to give the reason why the selected house type meets your needs in thought(exp. My family has a large population and needs a larger house to live in)",
+                        "memory":"\nYou are in rent system. The queuing rules of this system is as follows:\n\nPlease note that before selecting a house, you need to follow these rules to queue up for house selection:The queue consists of the house-selection queue and the waiting queue. Being in the house-selection queue means you have a chance to select a house earlier. If you use up all your chances in the house selection queue, you will need to wait in the waiting queue to select a house.\n\n",
+                        "role_description":"You are Landon. Your budget for renting a house for 2500.0.Your acceptable price beyond the rental budget is 250.Your family members include: Married with one child, a toddler.You are 33 years old. Your job is Architect. Your company is located in Jianguomenwai Street, Chaoyang District, Beijing. As Landon, I prefer to rent a 40-50 square meter apartment with a rental budget of 2500.0, located in a family-friendly neighborhood with nearby amenities such as parks and schools, and an orientation that allows for ample natural light. You still have 2 chances to choose house.\nUp to now, your personal preference for house is :He is looking for a modern and spacious house with a home office for his architectural work."
+                    },
+                    "response":{
+                        "output":"My choice is middle_house.",
+                        "thought":"After considering the available house types, I believe the best option for my family would be the middle_house. This type of house is suitable for families of two people and can also accommodate a younger child, which fits our family size. Additionally, the per capita living area should be taken into consideration, and a middle_house would provide enough space for all of us without being too large."
+                    }
+                }
+            },
+            "queue_name":"middle_house"
+        },
+        "0":{
+            "log_round":{
+                "available_house_type":[
+                    "large_house",
+                    "middle_house",
+                    "small_house"
+                ],
+                "choose_house_type":"large_house",
+                "choose_house_type_reason":"Based on my personal preference for a cozy and family-friendly home, the large_house type seems to be the best fit for my needs. This type of house can accommodate more than three people, which is suitable for my family of three. Additionally, a larger house would provide more space for us to live comfortably."
+            },
+            "log_round_prompts":{
+                "choose_house_type":{
+                    "prompt_inputs":{
+                        "task":"choose one type of houses",
+                        "thought_type":"Your views on these house types and the reason why you made your choice.",
+                        "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+                        "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+                        "thought_hint":"Remember to consider the following things before choosing house:\n1. The per capita living area should be taken into consideration.\n2. Remember to give the reason why the selected house type meets your needs in thought(exp. My family has a large population and needs a larger house to live in)",
+                        "memory":"\nYou are in rent system. The queuing rules of this system is as follows:\n\nPlease note that before selecting a house, you need to follow these rules to queue up for house selection:The queue consists of the house-selection queue and the waiting queue. Being in the house-selection queue means you have a chance to select a house earlier. If you use up all your chances in the house selection queue, you will need to wait in the waiting queue to select a house.\n\n",
+                        "role_description":"You are Sarah. Your budget for renting a house for 2000.0.Your acceptable price beyond the rental budget is 160.Your family members include: Married with one child.You are 35 years old. Your job is Public servant. Your company is located in China World Trade Center, No. 32 Jianguomenwai Avenue, Chaoyang District, Beijing. As Sarah, my personal preference is to rent a 40-50 square meter apartment within my budget, preferably with a south-facing orientation, and located near public transportation and amenities such as schools and parks. You still have 2 chances to choose house.\nUp to now, your personal preference for house is :prefers a cozy and family-friendly home with nearby parks and recreational facilities."
+                    },
+                    "response":{
+                        "output":"My choice is large_house.",
+                        "thought":"Based on my personal preference for a cozy and family-friendly home, the large_house type seems to be the best fit for my needs. This type of house can accommodate more than three people, which is suitable for my family of three. Additionally, a larger house would provide more space for us to live comfortably."
+                    }
+                }
+            },
+            "queue_name":"large_house"
+        },
+        "1":{
+            "log_round":{
+                "available_house_type":[
+                    "large_house",
+                    "middle_house",
+                    "small_house"
+                ],
+                "choose_house_type":"small_house",
+                "choose_house_type_reason":"Based on my personal preference for a small and affordable house, as well as considering my single status and budget, the small_house type seems to be the most suitable option for me. This type of house is specifically designed for one person to live alone, which aligns with my needs. It also ensures that the per capita living area meets my requirement of a maximum area of 60 square meters."
+            },
+            "log_round_prompts":{
+                "choose_house_type":{
+                    "prompt_inputs":{
+                        "task":"choose one type of houses",
+                        "thought_type":"Your views on these house types and the reason why you made your choice.",
+                        "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+                        "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+                        "thought_hint":"Remember to consider the following things before choosing house:\n1. The per capita living area should be taken into consideration.\n2. Remember to give the reason why the selected house type meets your needs in thought(exp. My family has a large population and needs a larger house to live in)",
+                        "memory":"\nYou are in rent system. The queuing rules of this system is as follows:\n\nPlease note that before selecting a house, you need to follow these rules to queue up for house selection:The queue consists of the house-selection queue and the waiting queue. Being in the house-selection queue means you have a chance to select a house earlier. If you use up all your chances in the house selection queue, you will need to wait in the waiting queue to select a house.\n\n",
+                        "role_description":"You are Alex. Your budget for renting a house for 1500.0.Your acceptable price beyond the rental budget is 90.Your family members include: Single, no children.You are 28 years old. Your job is Freelancer. Your company is located in People's Bank of China Building, No. 36 Financial Street, Xicheng District, Beijing. My name is Alex, and I prefer to rent a small, affordable house with a maximum area of 60 square meters, within my budget of 1500.0, ideally located near amenities such as public transportation and grocery stores. You still have 2 chances to choose house.\nUp to now, your personal preference for house is :prefers a modern and minimalist apartment with convenient access to nearby cafes and co-working spaces."
+                    },
+                    "response":{
+                        "output":"My choice is small_house.",
+                        "thought":"Based on my personal preference for a small and affordable house, as well as considering my single status and budget, the small_house type seems to be the most suitable option for me. This type of house is specifically designed for one person to live alone, which aligns with my needs. It also ensures that the per capita living area meets my requirement of a maximum area of 60 square meters."
+                    }
+                }
+            },
+            "queue_name":"small_house"
+        },
+        "2":{
+            "log_round":{
+                "available_house_type":[
+                    "large_house",
+                    "middle_house",
+                    "small_house"
+                ],
+                "choose_house_type":"large_house",
+                "choose_house_type_reason":"Considering my family size and needs, I believe the best option for us would be the large_house. This type of house can accommodate more than three people, which is suitable for our family of four. As we have two young children, it is important to have enough space for them to play and grow. Additionally, a larger house would provide more room for storage and allow for comfortable living."
+            },
+            "log_round_prompts":{
+                "choose_house_type":{
+                    "prompt_inputs":{
+                        "task":"choose one type of houses",
+                        "thought_type":"Your views on these house types and the reason why you made your choice.",
+                        "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+                        "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+                        "thought_hint":"Remember to consider the following things before choosing house:\n1. The per capita living area should be taken into consideration.\n2. Remember to give the reason why the selected house type meets your needs in thought(exp. My family has a large population and needs a larger house to live in)",
+                        "memory":"\nYou are in rent system. The queuing rules of this system is as follows:\n\nPlease note that before selecting a house, you need to follow these rules to queue up for house selection:The queue consists of the house-selection queue and the waiting queue. Being in the house-selection queue means you have a chance to select a house earlier. If you use up all your chances in the house selection queue, you will need to wait in the waiting queue to select a house.\n\n",
+                        "role_description":"You are Lily. Your budget for renting a house for 1400.0.Your acceptable price beyond the rental budget is 112.Your family members include: Married with two children, both in elementary school.You are 39 years old. Your job is Hotel receptionist. Your company is located in Xiangjiang Plaza Building, No. 19 South 3rd Ring Middle Road, Fengtai District, Beijing. As Lily, my personal preference for housing is a 2-bedroom apartment within my budget, ideally located near elementary schools and public transportation, with an area between 30 and 60 square meters. You still have 2 chances to choose house.\nUp to now, your personal preference for house is :prefers a spacious and child-friendly apartment with nearby schools and parks."
+                    },
+                    "response":{
+                        "output":"My choice is large_house.",
+                        "thought":"Considering my family size and needs, I believe the best option for us would be the large_house. This type of house can accommodate more than three people, which is suitable for our family of four. As we have two young children, it is important to have enough space for them to play and grow. Additionally, a larger house would provide more room for storage and allow for comfortable living."
+                    }
+                }
+            },
+            "queue_name":"large_house"
+        },
+        "68":{
+            "log_round":{
+                "available_house_type":[
+                    "large_house",
+                    "middle_house",
+                    "small_house"
+                ],
+                "choose_house_type":"small_house",
+                "choose_house_type_reason":"Considering my personal preferences and needs, I think the small_house type would be the most suitable for me. As a single person with no children, a small house would provide me with the perfect amount of space and privacy. Additionally, it aligns with my budget of 1000.0 and the maximum area of 60 square meters. The cozy reading corner is also a great feature that matches my preference for a relaxing space. Overall, the small_house type meets all my requirements and is the ideal choice for me."
+            },
+            "log_round_prompts":{
+                "choose_house_type":{
+                    "prompt_inputs":{
+                        "task":"choose one type of houses",
+                        "thought_type":"Your views on these house types and the reason why you made your choice.",
+                        "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+                        "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+                        "thought_hint":"Remember to consider the following things before choosing house:\n1. The per capita living area should be taken into consideration.\n2. Remember to give the reason why the selected house type meets your needs in thought(exp. My family has a large population and needs a larger house to live in)",
+                        "memory":"\nYou are in rent system. The queuing rules of this system is as follows:\n\nPlease note that before selecting a house, you need to follow these rules to queue up for house selection:The queue consists of the house-selection queue and the waiting queue. Being in the house-selection queue means you have a chance to select a house earlier. If you use up all your chances in the house selection queue, you will need to wait in the waiting queue to select a house.\n\n",
+                        "role_description":"You are Clara. Your budget for renting a house for 1000.0.Your acceptable price beyond the rental budget is 80.Your family members include: Single, no children.You are 27 years old. Your job is Teacher. Your company is located in Huilongguan, Changping District, Beijing. As Clara, I prefer to rent a small, affordable house with a maximum area of 60 square meters, within my budget of 1000.0, and located in a convenient area with nearby amenities such as schools and public transportation. You still have 2 chances to choose house.\nUp to now, your personal preference for house is :She prefers a house with a cozy reading corner where she can relax with a book."
+                    },
+                    "response":{
+                        "output":"My choice is small_house.",
+                        "thought":"Considering my personal preferences and needs, I think the small_house type would be the most suitable for me. As a single person with no children, a small house would provide me with the perfect amount of space and privacy. Additionally, it aligns with my budget of 1000.0 and the maximum area of 60 square meters. The cozy reading corner is also a great feature that matches my preference for a relaxing space. Overall, the small_house type meets all my requirements and is the ideal choice for me."
+                    }
+                }
+            },
+            "queue_name":"small_house"
+        },
+        "66":{
+            "log_round":{
+                "available_house_type":[
+                    "large_house",
+                    "middle_house",
+                    "small_house"
+                ],
+                "choose_house_type":"large_house",
+                "choose_house_type_reason":"Based on my family's needs and preferences, the large_house type seems to be the most suitable option. This type of house can accommodate more than three people, which is perfect for my family of four. Additionally, a spacious kitchen is one of my preferences, and a large_house is more likely to have a spacious kitchen where I can enjoy cooking for my family. Overall, the large_house type meets my needs in terms of space and amenities."
+            },
+            "log_round_prompts":{
+                "choose_house_type":{
+                    "prompt_inputs":{
+                        "task":"choose one type of houses",
+                        "thought_type":"Your views on these house types and the reason why you made your choice.",
+                        "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+                        "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+                        "thought_hint":"Remember to consider the following things before choosing house:\n1. The per capita living area should be taken into consideration.\n2. Remember to give the reason why the selected house type meets your needs in thought(exp. My family has a large population and needs a larger house to live in)",
+                        "memory":"\nYou are in rent system. The queuing rules of this system is as follows:\n\nPlease note that before selecting a house, you need to follow these rules to queue up for house selection:The queue consists of the house-selection queue and the waiting queue. Being in the house-selection queue means you have a chance to select a house earlier. If you use up all your chances in the house selection queue, you will need to wait in the waiting queue to select a house.\n\n",
+                        "role_description":"You are Vivian. Your budget for renting a house for 1200.0.Your acceptable price beyond the rental budget is 96.Your family members include: Married with two children, both in elementary school.You are 38 years old. Your job is Hotel receptionist. Your company is located in Wangfujing Street, Dongcheng District, Beijing. As Vivian, I prefer a 2-bedroom apartment with a minimum of 40 square meters, within my rental budget, ideally located near elementary schools and public transportation in Beijing, China. You still have 2 chances to choose house.\nUp to now, your personal preference for house is :She prefers a house with a spacious kitchen where she can enjoy cooking for her family."
+                    },
+                    "response":{
+                        "output":"My choice is large_house.",
+                        "thought":"Based on my family's needs and preferences, the large_house type seems to be the most suitable option. This type of house can accommodate more than three people, which is perfect for my family of four. Additionally, a spacious kitchen is one of my preferences, and a large_house is more likely to have a spacious kitchen where I can enjoy cooking for my family. Overall, the large_house type meets my needs in terms of space and amenities."
+                    }
+                }
+            },
+            "queue_name":"large_house"
+        },
+        "65":{
+            "log_round":{
+                "available_house_type":[
+                    "large_house",
+                    "middle_house",
+                    "small_house"
+                ],
+                "choose_house_type":"small_house",
+                "choose_house_type_reason":"Based on my personal preferences and requirements, I think the small_house type would be the most suitable for me. As a single person with no children, I don't need a lot of space and a smaller house would be more affordable within my budget. Additionally, since I am a freelancer, I don't require a large living area for work purposes. The small_house type would provide me with a comfortable and cozy living space that meets my needs."
+            },
+            "log_round_prompts":{
+                "choose_house_type":{
+                    "prompt_inputs":{
+                        "task":"choose one type of houses",
+                        "thought_type":"Your views on these house types and the reason why you made your choice.",
+                        "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+                        "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+                        "thought_hint":"Remember to consider the following things before choosing house:\n1. The per capita living area should be taken into consideration.\n2. Remember to give the reason why the selected house type meets your needs in thought(exp. My family has a large population and needs a larger house to live in)",
+                        "memory":"\nYou are in rent system. The queuing rules of this system is as follows:\n\nPlease note that before selecting a house, you need to follow these rules to queue up for house selection:The queue consists of the house-selection queue and the waiting queue. Being in the house-selection queue means you have a chance to select a house earlier. If you use up all your chances in the house selection queue, you will need to wait in the waiting queue to select a house.\n\n",
+                        "role_description":"You are Madelyn. Your budget for renting a house for 1600.0.Your acceptable price beyond the rental budget is 128.Your family members include: Single, no children.You are 29 years old. Your job is Freelancer. Your company is located in Sanlitun, Chaoyang District, Beijing. As Madelyn, I prefer to rent a small, affordable house within my budget of 1600.0, ideally between 30 and 60 square meters, with convenient access to amenities and a location that allows me to easily commute to work as a freelancer in Beijing, China. You still have 2 chances to choose house.\nUp to now, your personal preference for house is :She is looking for a modern and stylish apartment with convenient access to trendy cafes and shops."
+                    },
+                    "response":{
+                        "output":"My choice is small_house.",
+                        "thought":"Based on my personal preferences and requirements, I think the small_house type would be the most suitable for me. As a single person with no children, I don't need a lot of space and a smaller house would be more affordable within my budget. Additionally, since I am a freelancer, I don't require a large living area for work purposes. The small_house type would provide me with a comfortable and cozy living space that meets my needs."
+                    }
+                }
+            },
+            "queue_name":"small_house"
+        },
+        "67":{
+            "log_round":{
+                "available_house_type":[
+                    "large_house",
+                    "middle_house",
+                    "small_house"
+                ],
+                "choose_house_type":"middle_house",
+                "choose_house_type_reason":"Based on my preferences and needs, I think the middle_house type would be the most suitable for me. Although I am married with no children, the middle_house type can still accommodate a younger child if needed. Additionally, since I mentioned earlier that I prefer a house with a large dining area to entertain guests, the middle_house type would provide enough space for that. It is also within my budget and meets my desired living area range of 30-60 square meters."
+            },
+            "log_round_prompts":{
+                "choose_house_type":{
+                    "prompt_inputs":{
+                        "task":"choose one type of houses",
+                        "thought_type":"Your views on these house types and the reason why you made your choice.",
+                        "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+                        "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+                        "thought_hint":"Remember to consider the following things before choosing house:\n1. The per capita living area should be taken into consideration.\n2. Remember to give the reason why the selected house type meets your needs in thought(exp. My family has a large population and needs a larger house to live in)",
+                        "memory":"\nYou are in rent system. The queuing rules of this system is as follows:\n\nPlease note that before selecting a house, you need to follow these rules to queue up for house selection:The queue consists of the house-selection queue and the waiting queue. Being in the house-selection queue means you have a chance to select a house earlier. If you use up all your chances in the house selection queue, you will need to wait in the waiting queue to select a house.\n\n",
+                        "role_description":"You are Diego. Your budget for renting a house for 1400.0.Your acceptable price beyond the rental budget is 112.Your family members include: Married, no children.You are 56 years old. Your job is Restaurant chef. Your company is located in Nanyuan Road, Fengtai District, Beijing. As Diego, I prefer to rent a small, affordable house within my budget, ideally between 30 and 60 square meters, with a convenient location near amenities such as grocery stores and public transportation. You still have 2 chances to choose house.\nUp to now, your personal preference for house is :He is looking for a house with a large dining area where he can entertain guests."
+                    },
+                    "response":{
+                        "output":"My choice is middle_house.",
+                        "thought":"Based on my preferences and needs, I think the middle_house type would be the most suitable for me. Although I am married with no children, the middle_house type can still accommodate a younger child if needed. Additionally, since I mentioned earlier that I prefer a house with a large dining area to entertain guests, the middle_house type would provide enough space for that. It is also within my budget and meets my desired living area range of 30-60 square meters."
+                    }
+                }
+            },
+            "queue_name":"middle_house"
+        },
+        "64":{
+            "log_round":{
+                "available_house_type":[
+                    "large_house",
+                    "middle_house",
+                    "small_house"
+                ],
+                "choose_house_type":"large_house",
+                "choose_house_type_reason":"After considering my family's needs and preferences, I have decided to choose the large_house type. This type of house can accommodate more than three people, which is suitable for my married status and two children. Additionally, having a small garden where my family can enjoy outdoor activities is one of my personal preferences. The large_house type would provide enough space for both indoor and outdoor activities for my family."
+            },
+            "log_round_prompts":{
+                "choose_house_type":{
+                    "prompt_inputs":{
+                        "task":"choose one type of houses",
+                        "thought_type":"Your views on these house types and the reason why you made your choice.",
+                        "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+                        "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+                        "thought_hint":"Remember to consider the following things before choosing house:\n1. The per capita living area should be taken into consideration.\n2. Remember to give the reason why the selected house type meets your needs in thought(exp. My family has a large population and needs a larger house to live in)",
+                        "memory":"\nYou are in rent system. The queuing rules of this system is as follows:\n\nPlease note that before selecting a house, you need to follow these rules to queue up for house selection:The queue consists of the house-selection queue and the waiting queue. Being in the house-selection queue means you have a chance to select a house earlier. If you use up all your chances in the house selection queue, you will need to wait in the waiting queue to select a house.\n\n",
+                        "role_description":"You are Eric. Your budget for renting a house for 2000.0.Your acceptable price beyond the rental budget is 160.Your family members include: Married with two children, one in elementary school and one in middle school.You are 45 years old. Your job is Government employee. Your company is located in Xidan North Street, Xicheng District, Beijing. As Eric, I prefer to rent a 40-50 square meter apartment within my budget, preferably with nearby amenities such as schools and public transportation, and an orientation that allows for natural light throughout the day. You still have 2 chances to choose house.\nUp to now, your personal preference for house is :He prefers a house with a small garden where his family can enjoy outdoor activities."
+                    },
+                    "response":{
+                        "output":"My choice is large_house.",
+                        "thought":"After considering my family's needs and preferences, I have decided to choose the large_house type. This type of house can accommodate more than three people, which is suitable for my married status and two children. Additionally, having a small garden where my family can enjoy outdoor activities is one of my personal preferences. The large_house type would provide enough space for both indoor and outdoor activities for my family."
+                    }
+                }
+            },
+            "queue_name":"large_house"
+        },
+        "63":{
+            "log_round":{
+                "available_house_type":[
+                    "large_house",
+                    "middle_house",
+                    "small_house"
+                ],
+                "choose_house_type":"middle_house",
+                "choose_house_type_reason":"Based on my personal preference for a cozy and comfortable house with good natural lighting, I think the middle_house type would be the most suitable for me. Although I am married with one child, we can still comfortably live in a house designed for two people. Additionally, the middle_house type allows for accommodating a younger child, which is perfect for our family size. The per capita living area will be sufficient for us, and we can still enjoy the coziness and comfort that we desire."
+            },
+            "log_round_prompts":{
+                "choose_house_type":{
+                    "prompt_inputs":{
+                        "task":"choose one type of houses",
+                        "thought_type":"Your views on these house types and the reason why you made your choice.",
+                        "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+                        "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+                        "thought_hint":"Remember to consider the following things before choosing house:\n1. The per capita living area should be taken into consideration.\n2. Remember to give the reason why the selected house type meets your needs in thought(exp. My family has a large population and needs a larger house to live in)",
+                        "memory":"\nYou are in rent system. The queuing rules of this system is as follows:\n\nPlease note that before selecting a house, you need to follow these rules to queue up for house selection:The queue consists of the house-selection queue and the waiting queue. Being in the house-selection queue means you have a chance to select a house earlier. If you use up all your chances in the house selection queue, you will need to wait in the waiting queue to select a house.\n\n",
+                        "role_description":"You are Lydia. Your budget for renting a house for 2400.0.Your acceptable price beyond the rental budget is 192.Your family members include: Married with one child.You are 32 years old. Your job is Programmer. Your company is located in No. 10 Jiuxianqiao Road, Chaoyang District, Beijing. As Lydia, I prefer to rent a 30-60 square meter house within my budget of 2400.0, ideally with nearby amenities such as schools and parks, and a south-facing orientation for ample sunlight. You still have 2 chances to choose house.\nUp to now, your personal preference for house is :She is looking for a cozy and comfortable house with good natural lighting."
+                    },
+                    "response":{
+                        "output":"My choice is middle_house.",
+                        "thought":"Based on my personal preference for a cozy and comfortable house with good natural lighting, I think the middle_house type would be the most suitable for me. Although I am married with one child, we can still comfortably live in a house designed for two people. Additionally, the middle_house type allows for accommodating a younger child, which is perfect for our family size. The per capita living area will be sufficient for us, and we can still enjoy the coziness and comfort that we desire."
+                    }
+                }
+            },
+            "queue_name":"middle_house"
+        },
+        "61":{
+            "log_round":{
+                "available_house_type":[
+                    "large_house",
+                    "middle_house",
+                    "small_house"
+                ],
+                "choose_house_type":"middle_house",
+                "choose_house_type_reason":"Based on my family size and needs, I believe the middle_house type would be the most suitable option for us. As we are a family of three, including a younger child, this type of house can accommodate all of us comfortably. Additionally, it meets my preference for a clean and well-maintained apartment with good security measures."
+            },
+            "log_round_prompts":{
+                "choose_house_type":{
+                    "prompt_inputs":{
+                        "task":"choose one type of houses",
+                        "thought_type":"Your views on these house types and the reason why you made your choice.",
+                        "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+                        "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+                        "thought_hint":"Remember to consider the following things before choosing house:\n1. The per capita living area should be taken into consideration.\n2. Remember to give the reason why the selected house type meets your needs in thought(exp. My family has a large population and needs a larger house to live in)",
+                        "memory":"\nYou are in rent system. The queuing rules of this system is as follows:\n\nPlease note that before selecting a house, you need to follow these rules to queue up for house selection:The queue consists of the house-selection queue and the waiting queue. Being in the house-selection queue means you have a chance to select a house earlier. If you use up all your chances in the house selection queue, you will need to wait in the waiting queue to select a house.\n\n",
+                        "role_description":"You are Aurora. Your budget for renting a house for 2200.0.Your acceptable price beyond the rental budget is 176.Your family members include: Married with one child.You are 36 years old. Your job is Bank clerk. Your company is located in Bank of China Building, No. 1 Jianguomennei Street, Chaoyang District, Beijing. As Aurora, I prefer to rent a 40-50 square meter apartment within my budget, preferably with a south-facing orientation, located near public transportation and amenities such as schools and parks. You still have 2 chances to choose house.\nUp to now, your personal preference for house is :prefers a clean and well-maintained apartment with good security measures."
+                    },
+                    "response":{
+                        "output":"My choice is middle_house.",
+                        "thought":"Based on my family size and needs, I believe the middle_house type would be the most suitable option for us. As we are a family of three, including a younger child, this type of house can accommodate all of us comfortably. Additionally, it meets my preference for a clean and well-maintained apartment with good security measures."
+                    }
+                }
+            },
+            "queue_name":"middle_house"
+        },
+        "62":{
+            "log_round":{
+                "available_house_type":[
+                    "large_house",
+                    "middle_house",
+                    "small_house"
+                ],
+                "choose_house_type":"large_house",
+                "choose_house_type_reason":"Considering my family members, which include two children, a large house would be the most suitable option for us. This would provide enough space for everyone and ensure their comfort and privacy. Additionally, a larger house would allow us to have separate bedrooms for each family member and provide a better overall living experience."
+            },
+            "log_round_prompts":{
+                "choose_house_type":{
+                    "prompt_inputs":{
+                        "task":"choose one type of houses",
+                        "thought_type":"Your views on these house types and the reason why you made your choice.",
+                        "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+                        "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+                        "thought_hint":"Remember to consider the following things before choosing house:\n1. The per capita living area should be taken into consideration.\n2. Remember to give the reason why the selected house type meets your needs in thought(exp. My family has a large population and needs a larger house to live in)",
+                        "memory":"\nYou are in rent system. The queuing rules of this system is as follows:\n\nPlease note that before selecting a house, you need to follow these rules to queue up for house selection:The queue consists of the house-selection queue and the waiting queue. Being in the house-selection queue means you have a chance to select a house earlier. If you use up all your chances in the house selection queue, you will need to wait in the waiting queue to select a house.\n\n",
+                        "role_description":"You are Hayden. Your budget for renting a house for 2600.0.Your acceptable price beyond the rental budget is 208.Your family members include: Married with two children, both in high school.You are 43 years old. Your job is State-owned enterprise staff. Your company is located in Great Hall of the People, No. 1 Xidan Beidajie, Xicheng District, Beijing. As Hayden, I prefer to rent a 40-50 square meter apartment within my budget, preferably with a south-facing orientation, located in a safe and convenient neighborhood with good schools and public transportation options nearby. You still have 2 chances to choose house.\nUp to now, your personal preference for house is :prefers a spacious and well-ventilated apartment with good educational resources nearby."
+                    },
+                    "response":{
+                        "output":"My choice is large_house.",
+                        "thought":"Considering my family members, which include two children, a large house would be the most suitable option for us. This would provide enough space for everyone and ensure their comfort and privacy. Additionally, a larger house would allow us to have separate bedrooms for each family member and provide a better overall living experience."
+                    }
+                }
+            },
+            "queue_name":"large_house"
+        },
+        "60":{
+            "log_round":{
+                "available_house_type":[
+                    "large_house",
+                    "middle_house",
+                    "small_house"
+                ],
+                "choose_house_type":"small_house",
+                "choose_house_type_reason":"Considering my personal preference for a small, affordable house within my budget and my family situation of being married with no children, I believe the most suitable house type for me would be a small_house. This type of house is ideal for one person to live alone, which fits my family size. Additionally, a small_house will also be within my budget and offer the right amount of living space for my needs."
+            },
+            "log_round_prompts":{
+                "choose_house_type":{
+                    "prompt_inputs":{
+                        "task":"choose one type of houses",
+                        "thought_type":"Your views on these house types and the reason why you made your choice.",
+                        "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+                        "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+                        "thought_hint":"Remember to consider the following things before choosing house:\n1. The per capita living area should be taken into consideration.\n2. Remember to give the reason why the selected house type meets your needs in thought(exp. My family has a large population and needs a larger house to live in)",
+                        "memory":"\nYou are in rent system. The queuing rules of this system is as follows:\n\nPlease note that before selecting a house, you need to follow these rules to queue up for house selection:The queue consists of the house-selection queue and the waiting queue. Being in the house-selection queue means you have a chance to select a house earlier. If you use up all your chances in the house selection queue, you will need to wait in the waiting queue to select a house.\n\n",
+                        "role_description":"You are Mike. Your budget for renting a house for 1800.0.Your acceptable price beyond the rental budget is 144.Your family members include: Married with no children.You are 55 years old. Your job is Restaurant manager. Your company is located in Wangfujing Street, Dongcheng District, Beijing. As Mike, I prefer to rent a small, affordable house within my budget of 1800.0, ideally between 30 and 60 square meters, with convenient access to amenities such as grocery stores and public transportation. You still have 2 chances to choose house.\nUp to now, your personal preference for house is :prefers a comfortable and well-equipped apartment with a convenient location for dining out."
+                    },
+                    "response":{
+                        "output":"My choice is small_house.",
+                        "thought":"Considering my personal preference for a small, affordable house within my budget and my family situation of being married with no children, I believe the most suitable house type for me would be a small_house. This type of house is ideal for one person to live alone, which fits my family size. Additionally, a small_house will also be within my budget and offer the right amount of living space for my needs."
+                    }
+                }
+            },
+            "queue_name":"small_house"
+        },
+        "58":{
+            "log_round":{
+                "available_house_type":[
+                    "large_house",
+                    "middle_house",
+                    "small_house"
+                ],
+                "choose_house_type":"small_house",
+                "choose_house_type_reason":"Based on my preferences and personal situation, I think the small_house type would be the most suitable for me. As a single person with no children, I don't need a large living space. Additionally, a small house would be more affordable and easier to maintain within my budget. Moreover, the small_house type would provide me with the privacy and independence I desire."
+            },
+            "log_round_prompts":{
+                "choose_house_type":{
+                    "prompt_inputs":{
+                        "task":"choose one type of houses",
+                        "thought_type":"Your views on these house types and the reason why you made your choice.",
+                        "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+                        "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+                        "thought_hint":"Remember to consider the following things before choosing house:\n1. The per capita living area should be taken into consideration.\n2. Remember to give the reason why the selected house type meets your needs in thought(exp. My family has a large population and needs a larger house to live in)",
+                        "memory":"\nYou are in rent system. The queuing rules of this system is as follows:\n\nPlease note that before selecting a house, you need to follow these rules to queue up for house selection:The queue consists of the house-selection queue and the waiting queue. Being in the house-selection queue means you have a chance to select a house earlier. If you use up all your chances in the house selection queue, you will need to wait in the waiting queue to select a house.\n\n",
+                        "role_description":"You are Brooklyn. Your budget for renting a house for 2500.0.Your acceptable price beyond the rental budget is 250.Your family members include: Single, no children.You are 27 years old. Your job is Architect. Your company is located in China World Trade Center Tower 1, No. 1 Jianguomenwai Street, Chaoyang District, Beijing. As Brooklyn, I prefer to rent a small, affordable house within my budget, ideally between 30 and 60 square meters, with a convenient location near amenities and good natural lighting. You still have 2 chances to choose house.\nUp to now, your personal preference for house is :prefers a modern and stylish apartment with a great view."
+                    },
+                    "response":{
+                        "output":"My choice is small_house.",
+                        "thought":"Based on my preferences and personal situation, I think the small_house type would be the most suitable for me. As a single person with no children, I don't need a large living space. Additionally, a small house would be more affordable and easier to maintain within my budget. Moreover, the small_house type would provide me with the privacy and independence I desire."
+                    }
+                }
+            },
+            "queue_name":"small_house"
+        },
+        "59":{
+            "log_round":{
+                "available_house_type":[
+                    "large_house",
+                    "middle_house",
+                    "small_house"
+                ],
+                "choose_house_type":"middle_house",
+                "choose_house_type_reason":"Based on my personal preferences and family situation, I believe the middle_house type would be the most suitable option for us. As a married couple with one child, this type of house can accommodate our small family comfortably. Additionally, the middle_house type can also accommodate a younger child, which aligns with our current family structure. Considering the per capita living area, a middle_house would provide enough space for each family member to have their own personal space."
+            },
+            "log_round_prompts":{
+                "choose_house_type":{
+                    "prompt_inputs":{
+                        "task":"choose one type of houses",
+                        "thought_type":"Your views on these house types and the reason why you made your choice.",
+                        "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+                        "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+                        "thought_hint":"Remember to consider the following things before choosing house:\n1. The per capita living area should be taken into consideration.\n2. Remember to give the reason why the selected house type meets your needs in thought(exp. My family has a large population and needs a larger house to live in)",
+                        "memory":"\nYou are in rent system. The queuing rules of this system is as follows:\n\nPlease note that before selecting a house, you need to follow these rules to queue up for house selection:The queue consists of the house-selection queue and the waiting queue. Being in the house-selection queue means you have a chance to select a house earlier. If you use up all your chances in the house selection queue, you will need to wait in the waiting queue to select a house.\n\n",
+                        "role_description":"You are Dylan. Your budget for renting a house for 1400.0.Your acceptable price beyond the rental budget is 112.Your family members include: Married with one child.You are 31 years old. Your job is Teacher. Your company is located in Zhongguancun Street, Haidian District, Beijing. As Dylan, I prefer to rent a 2-bedroom apartment within my budget, with a minimum area of 40 square meters, ideally located near schools and public transportation in Beijing, China. You still have 2 chances to choose house.\nUp to now, your personal preference for house is :prefers a quiet and family-oriented apartment with good educational resources."
+                    },
+                    "response":{
+                        "output":"My choice is middle_house.",
+                        "thought":"Based on my personal preferences and family situation, I believe the middle_house type would be the most suitable option for us. As a married couple with one child, this type of house can accommodate our small family comfortably. Additionally, the middle_house type can also accommodate a younger child, which aligns with our current family structure. Considering the per capita living area, a middle_house would provide enough space for each family member to have their own personal space."
+                    }
+                }
+            },
+            "queue_name":"middle_house"
+        },
+        "23":{
+            "log_round":{
+                "available_house_type":[
+                    "large_house",
+                    "middle_house",
+                    "small_house"
+                ],
+                "choose_house_type":"middle_house",
+                "choose_house_type_reason":"Based on my personal preference for a modern and high-tech apartment, as well as considering my budget and the fact that I am married with one child, I believe that the middle_house type would be the best option for me. Although it is suitable for a family of two people, it can also accommodate a younger child, which fits my family size. Additionally, the per capita living area of a middle_house would still be within my desired range of a maximum area of 60 square meters. Overall, the middle_house type meets my needs for a small, affordable, and family-friendly house."
+            },
+            "log_round_prompts":{
+                "choose_house_type":{
+                    "prompt_inputs":{
+                        "task":"choose one type of houses",
+                        "thought_type":"Your views on these house types and the reason why you made your choice.",
+                        "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+                        "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+                        "thought_hint":"Remember to consider the following things before choosing house:\n1. The per capita living area should be taken into consideration.\n2. Remember to give the reason why the selected house type meets your needs in thought(exp. My family has a large population and needs a larger house to live in)",
+                        "memory":"\nYou are in rent system. The queuing rules of this system is as follows:\n\nPlease note that before selecting a house, you need to follow these rules to queue up for house selection:The queue consists of the house-selection queue and the waiting queue. Being in the house-selection queue means you have a chance to select a house earlier. If you use up all your chances in the house selection queue, you will need to wait in the waiting queue to select a house.\n\n",
+                        "role_description":"You are John. Your budget for renting a house for 2500.0.Your acceptable price beyond the rental budget is 250.Your family members include: Married with one child.You are 50 years old. Your job is Programmer. Your company is located in Zhongguancun Street, Haidian District, Beijing. As John, I prefer to rent a small, affordable house with a maximum area of 60 square meters, within my budget of 2500.0, and ideally located near amenities such as schools and parks. You still have 2 chances to choose house.\nUp to now, your personal preference for house is :He prefers a modern and high-tech apartment."
+                    },
+                    "response":{
+                        "output":"My choice is middle_house.",
+                        "thought":"Based on my personal preference for a modern and high-tech apartment, as well as considering my budget and the fact that I am married with one child, I believe that the middle_house type would be the best option for me. Although it is suitable for a family of two people, it can also accommodate a younger child, which fits my family size. Additionally, the per capita living area of a middle_house would still be within my desired range of a maximum area of 60 square meters. Overall, the middle_house type meets my needs for a small, affordable, and family-friendly house."
+                    }
+                }
+            },
+            "queue_name":"middle_house"
+        },
+        "24":{
+            "log_round":{
+                "available_house_type":[
+                    "large_house",
+                    "middle_house",
+                    "small_house"
+                ],
+                "choose_house_type":"middle_house",
+                "choose_house_type_reason":"Based on my preferences for a cozy and warm atmosphere, and considering that I am married with one child, I think the middle_house type would be the best choice for me. This type of house is suitable for families of two people and can also accommodate a younger child. It would provide enough space for my small family while still maintaining a cozy and warm atmosphere."
+            },
+            "log_round_prompts":{
+                "choose_house_type":{
+                    "prompt_inputs":{
+                        "task":"choose one type of houses",
+                        "thought_type":"Your views on these house types and the reason why you made your choice.",
+                        "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+                        "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+                        "thought_hint":"Remember to consider the following things before choosing house:\n1. The per capita living area should be taken into consideration.\n2. Remember to give the reason why the selected house type meets your needs in thought(exp. My family has a large population and needs a larger house to live in)",
+                        "memory":"\nYou are in rent system. The queuing rules of this system is as follows:\n\nPlease note that before selecting a house, you need to follow these rules to queue up for house selection:The queue consists of the house-selection queue and the waiting queue. Being in the house-selection queue means you have a chance to select a house earlier. If you use up all your chances in the house selection queue, you will need to wait in the waiting queue to select a house.\n\n",
+                        "role_description":"You are Jake. Your budget for renting a house for 1600.0.Your acceptable price beyond the rental budget is 128.Your family members include: Married with one child.You are 35 years old. Your job is Restaurant chef. Your company is located in Gongti North Road, Chaoyang District, Beijing. As Jake, I prefer a cozy and affordable apartment with a minimum of 40 square meters in a convenient location near public transportation and amenities within my budget. You still have 2 chances to choose house.\nUp to now, your personal preference for house is :He prefers a house with a cozy and warm atmosphere."
+                    },
+                    "response":{
+                        "output":"My choice is middle_house.",
+                        "thought":"Based on my preferences for a cozy and warm atmosphere, and considering that I am married with one child, I think the middle_house type would be the best choice for me. This type of house is suitable for families of two people and can also accommodate a younger child. It would provide enough space for my small family while still maintaining a cozy and warm atmosphere."
+                    }
+                }
+            },
+            "queue_name":"middle_house"
+        },
+        "57":{
+            "log_round":{
+                "available_house_type":[
+                    "large_house",
+                    "middle_house",
+                    "small_house"
+                ],
+                "choose_house_type":"middle_house",
+                "choose_house_type_reason":"After considering my budget, family size, and personal preference for a family-friendly and affordable apartment, I believe the middle_house type would be the best option for me. This house type is suitable for my family of four, including two children in primary school. It can accommodate two adults and a younger child comfortably. Additionally, the middle_house type usually has a reasonable living area per capita, which is an important factor for me."
+            },
+            "log_round_prompts":{
+                "choose_house_type":{
+                    "prompt_inputs":{
+                        "task":"choose one type of houses",
+                        "thought_type":"Your views on these house types and the reason why you made your choice.",
+                        "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+                        "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+                        "thought_hint":"Remember to consider the following things before choosing house:\n1. The per capita living area should be taken into consideration.\n2. Remember to give the reason why the selected house type meets your needs in thought(exp. My family has a large population and needs a larger house to live in)",
+                        "memory":"\nYou are in rent system. The queuing rules of this system is as follows:\n\nPlease note that before selecting a house, you need to follow these rules to queue up for house selection:The queue consists of the house-selection queue and the waiting queue. Being in the house-selection queue means you have a chance to select a house earlier. If you use up all your chances in the house selection queue, you will need to wait in the waiting queue to select a house.\n\n",
+                        "role_description":"You are Carter. Your budget for renting a house for 1200.0.Your acceptable price beyond the rental budget is 96.Your family members include: Married with two children, both in primary school.You are 38 years old. Your job is Hotel waiter. Your company is located in Sanlitun Taikoo Li, Chaoyang District, Beijing. As Carter, I prefer to rent a small, affordable house within my budget of 1200.0, ideally between 30 and 60 square meters, with a convenient location near amenities such as schools and public transportation in Beijing, China. You still have 2 chances to choose house.\nUp to now, your personal preference for house is :prefers a family-friendly and affordable apartment with good community facilities."
+                    },
+                    "response":{
+                        "output":"My choice is middle_house.",
+                        "thought":"After considering my budget, family size, and personal preference for a family-friendly and affordable apartment, I believe the middle_house type would be the best option for me. This house type is suitable for my family of four, including two children in primary school. It can accommodate two adults and a younger child comfortably. Additionally, the middle_house type usually has a reasonable living area per capita, which is an important factor for me."
+                    }
+                }
+            },
+            "queue_name":"middle_house"
+        },
+        "56":{
+            "log_round":{
+                "available_house_type":[
+                    "large_house",
+                    "middle_house",
+                    "small_house"
+                ],
+                "choose_house_type":"small_house",
+                "choose_house_type_reason":"Based on my personal preference for a small, affordable house and considering that I am single with no children, the small_house type seems to be the most suitable option for me. This type of house is designed for one person to live alone, which aligns with my current living situation. Additionally, a small house would also be more affordable and fit within my budget."
+            },
+            "log_round_prompts":{
+                "choose_house_type":{
+                    "prompt_inputs":{
+                        "task":"choose one type of houses",
+                        "thought_type":"Your views on these house types and the reason why you made your choice.",
+                        "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+                        "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+                        "thought_hint":"Remember to consider the following things before choosing house:\n1. The per capita living area should be taken into consideration.\n2. Remember to give the reason why the selected house type meets your needs in thought(exp. My family has a large population and needs a larger house to live in)",
+                        "memory":"\nYou are in rent system. The queuing rules of this system is as follows:\n\nPlease note that before selecting a house, you need to follow these rules to queue up for house selection:The queue consists of the house-selection queue and the waiting queue. Being in the house-selection queue means you have a chance to select a house earlier. If you use up all your chances in the house selection queue, you will need to wait in the waiting queue to select a house.\n\n",
+                        "role_description":"You are Aria. Your budget for renting a house for 1600.0.Your acceptable price beyond the rental budget is 128.Your family members include: Single, no children.You are 29 years old. Your job is Freelancer. Your company is located in Nanluoguxiang, Dongcheng District, Beijing. As Aria, I prefer to rent a small, affordable house within my budget, ideally between 30 and 60 square meters, with a convenient location near amenities and a comfortable living environment. You still have 2 chances to choose house.\nUp to now, your personal preference for house is :prefers a cozy and artistic apartment with unique design features."
+                    },
+                    "response":{
+                        "output":"My choice is small_house.",
+                        "thought":"Based on my personal preference for a small, affordable house and considering that I am single with no children, the small_house type seems to be the most suitable option for me. This type of house is designed for one person to live alone, which aligns with my current living situation. Additionally, a small house would also be more affordable and fit within my budget."
+                    }
+                }
+            },
+            "queue_name":"small_house"
+        },
+        "55":{
+            "log_round":{
+                "available_house_type":[
+                    "large_house",
+                    "middle_house",
+                    "small_house"
+                ],
+                "choose_house_type":"large_house",
+                "choose_house_type_reason":"Based on my family's needs and preferences, the large_house type seems to be the most suitable option. As a family of four with two children, we need a house that can accommodate all of us comfortably. Additionally, I prefer a spacious living area for my family to move around freely. Therefore, the large_house type meets our needs perfectly."
+            },
+            "log_round_prompts":{
+                "choose_house_type":{
+                    "prompt_inputs":{
+                        "task":"choose one type of houses",
+                        "thought_type":"Your views on these house types and the reason why you made your choice.",
+                        "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+                        "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+                        "thought_hint":"Remember to consider the following things before choosing house:\n1. The per capita living area should be taken into consideration.\n2. Remember to give the reason why the selected house type meets your needs in thought(exp. My family has a large population and needs a larger house to live in)",
+                        "memory":"\nYou are in rent system. The queuing rules of this system is as follows:\n\nPlease note that before selecting a house, you need to follow these rules to queue up for house selection:The queue consists of the house-selection queue and the waiting queue. Being in the house-selection queue means you have a chance to select a house earlier. If you use up all your chances in the house selection queue, you will need to wait in the waiting queue to select a house.\n\n",
+                        "role_description":"You are Blake. Your budget for renting a house for 2000.0.Your acceptable price beyond the rental budget is 160.Your family members include: Married with two children, one in elementary school and one in middle school.You are 45 years old. Your job is Government employee. Your company is located in National Museum, No. 1 Fuxingmenwai Street, Xicheng District, Beijing. As Blake, I prefer to rent a 40-50 square meter apartment within my budget, preferably with a south-facing orientation, located in a safe neighborhood with nearby schools and public transportation options. You still have 2 chances to choose house.\nUp to now, your personal preference for house is :prefers a quiet and safe neighborhood with good schools nearby."
+                    },
+                    "response":{
+                        "output":"My choice is large_house.",
+                        "thought":"Based on my family's needs and preferences, the large_house type seems to be the most suitable option. As a family of four with two children, we need a house that can accommodate all of us comfortably. Additionally, I prefer a spacious living area for my family to move around freely. Therefore, the large_house type meets our needs perfectly."
+                    }
+                }
+            },
+            "queue_name":"large_house"
+        },
+        "54":{
+            "log_round":{
+                "available_house_type":[
+                    "large_house",
+                    "middle_house",
+                    "small_house"
+                ],
+                "choose_house_type":"large_house",
+                "choose_house_type_reason":"Considering my family size and preference for a modern and spacious apartment with good natural lighting, the suitable house type for us would be a large_house. This type of house can accommodate more than three people, which is perfect for our family of three. Additionally, a large_house would provide us with ample space for comfortable living."
+            },
+            "log_round_prompts":{
+                "choose_house_type":{
+                    "prompt_inputs":{
+                        "task":"choose one type of houses",
+                        "thought_type":"Your views on these house types and the reason why you made your choice.",
+                        "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+                        "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+                        "thought_hint":"Remember to consider the following things before choosing house:\n1. The per capita living area should be taken into consideration.\n2. Remember to give the reason why the selected house type meets your needs in thought(exp. My family has a large population and needs a larger house to live in)",
+                        "memory":"\nYou are in rent system. The queuing rules of this system is as follows:\n\nPlease note that before selecting a house, you need to follow these rules to queue up for house selection:The queue consists of the house-selection queue and the waiting queue. Being in the house-selection queue means you have a chance to select a house earlier. If you use up all your chances in the house selection queue, you will need to wait in the waiting queue to select a house.\n\n",
+                        "role_description":"You are Evelyn. Your budget for renting a house for 2400.0.Your acceptable price beyond the rental budget is 192.Your family members include: Married with one child.You are 32 years old. Your job is Programmer. Your company is located in Baidu Building, No. 10 Wangjing Street, Chaoyang District, Beijing. As Evelyn, I prefer to rent a small, affordable, and well-located apartment within my budget in Beijing, China, with a minimum area of 30 square meters and close proximity to amenities such as schools, parks, and public transportation. You still have 2 chances to choose house.\nUp to now, your personal preference for house is :prefers a modern and spacious apartment with good natural lighting."
+                    },
+                    "response":{
+                        "output":"My choice is large_house.",
+                        "thought":"Considering my family size and preference for a modern and spacious apartment with good natural lighting, the suitable house type for us would be a large_house. This type of house can accommodate more than three people, which is perfect for our family of three. Additionally, a large_house would provide us with ample space for comfortable living."
+                    }
+                }
+            },
+            "queue_name":"large_house"
+        },
+        "52":{
+            "log_round":{
+                "available_house_type":[
+                    "large_house",
+                    "middle_house",
+                    "small_house"
+                ],
+                "choose_house_type":"small_house",
+                "choose_house_type_reason":"Based on my personal preference for a quiet and peaceful house with a study room, I believe that the small_house type would be the most suitable option for me. As a single person, I do not need a large house and a small_house would provide me with enough space to live comfortably. Additionally, a small_house would likely be more affordable within my budget of 1500.0."
+            },
+            "log_round_prompts":{
+                "choose_house_type":{
+                    "prompt_inputs":{
+                        "task":"choose one type of houses",
+                        "thought_type":"Your views on these house types and the reason why you made your choice.",
+                        "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+                        "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+                        "thought_hint":"Remember to consider the following things before choosing house:\n1. The per capita living area should be taken into consideration.\n2. Remember to give the reason why the selected house type meets your needs in thought(exp. My family has a large population and needs a larger house to live in)",
+                        "memory":"\nYou are in rent system. The queuing rules of this system is as follows:\n\nPlease note that before selecting a house, you need to follow these rules to queue up for house selection:The queue consists of the house-selection queue and the waiting queue. Being in the house-selection queue means you have a chance to select a house earlier. If you use up all your chances in the house selection queue, you will need to wait in the waiting queue to select a house.\n\n",
+                        "role_description":"You are Zoey. Your budget for renting a house for 1500.0.Your acceptable price beyond the rental budget is 130.Your family members include: Married with no children.You are 36 years old. Your job is Teacher. Your company is located in Zhongguancun Street, Haidian District, Beijing. As Zoey, I prefer to rent a small, affordable house within my budget of 1500.0, ideally between 30 and 60 square meters, with a convenient location near amenities and good natural lighting. You still have 2 chances to choose house.\nUp to now, your personal preference for house is :Zoey prefers a quiet and peaceful house with a study room for her personal reading time."
+                    },
+                    "response":{
+                        "output":"My choice is small_house.",
+                        "thought":"Based on my personal preference for a quiet and peaceful house with a study room, I believe that the small_house type would be the most suitable option for me. As a single person, I do not need a large house and a small_house would provide me with enough space to live comfortably. Additionally, a small_house would likely be more affordable within my budget of 1500.0."
+                    }
+                }
+            },
+            "queue_name":"small_house"
+        },
+        "39":{
+            "log_round":{
+                "available_house_type":[
+                    "large_house",
+                    "middle_house",
+                    "small_house"
+                ],
+                "choose_house_type":"small_house",
+                "choose_house_type_reason":"Based on my personal preferences and needs, I believe the small_house type would be the most suitable option for me. As a single person with no children, a small_house would provide me with the perfect amount of space and privacy. Additionally, a small_house is typically more affordable and easier to maintain. I also appreciate the idea of living in a modern and well-designed apartment, which aligns with my personal style and taste."
+            },
+            "log_round_prompts":{
+                "choose_house_type":{
+                    "prompt_inputs":{
+                        "task":"choose one type of houses",
+                        "thought_type":"Your views on these house types and the reason why you made your choice.",
+                        "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+                        "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+                        "thought_hint":"Remember to consider the following things before choosing house:\n1. The per capita living area should be taken into consideration.\n2. Remember to give the reason why the selected house type meets your needs in thought(exp. My family has a large population and needs a larger house to live in)",
+                        "memory":"\nYou are in rent system. The queuing rules of this system is as follows:\n\nPlease note that before selecting a house, you need to follow these rules to queue up for house selection:The queue consists of the house-selection queue and the waiting queue. Being in the house-selection queue means you have a chance to select a house earlier. If you use up all your chances in the house selection queue, you will need to wait in the waiting queue to select a house.\n\n",
+                        "role_description":"You are Emma. Your budget for renting a house for 2500.0.Your acceptable price beyond the rental budget is 250.Your family members include: Single, no children.You are 29 years old. Your job is Architect. Your company is located in No. 1 Jianguomenwai Street, Chaoyang District, Beijing. As Emma, I prefer to rent a small, affordable house within my budget of 2500.0, ideally between 30 and 60 square meters, with a convenient location near amenities such as public transportation and grocery stores. You still have 2 chances to choose house.\nUp to now, your personal preference for house is :She prefers a modern and well-designed apartment."
+                    },
+                    "response":{
+                        "output":"My choice is small_house.",
+                        "thought":"Based on my personal preferences and needs, I believe the small_house type would be the most suitable option for me. As a single person with no children, a small_house would provide me with the perfect amount of space and privacy. Additionally, a small_house is typically more affordable and easier to maintain. I also appreciate the idea of living in a modern and well-designed apartment, which aligns with my personal style and taste."
+                    }
+                }
+            },
+            "queue_name":"small_house"
+        },
+        "33":{
+            "log_round":{
+                "available_house_type":[
+                    "large_house",
+                    "middle_house",
+                    "small_house"
+                ],
+                "choose_house_type":"middle_house",
+                "choose_house_type_reason":"Based on my personal preference for a spacious kitchen and the fact that I am married with no children, I believe a middle_house would be the best option for me. This type of house is suitable for a family of two people and can also accommodate a younger child if needed. Additionally, a middle_house would likely have a reasonable living area per capita for our small family."
+            },
+            "log_round_prompts":{
+                "choose_house_type":{
+                    "prompt_inputs":{
+                        "task":"choose one type of houses",
+                        "thought_type":"Your views on these house types and the reason why you made your choice.",
+                        "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+                        "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+                        "thought_hint":"Remember to consider the following things before choosing house:\n1. The per capita living area should be taken into consideration.\n2. Remember to give the reason why the selected house type meets your needs in thought(exp. My family has a large population and needs a larger house to live in)",
+                        "memory":"\nYou are in rent system. The queuing rules of this system is as follows:\n\nPlease note that before selecting a house, you need to follow these rules to queue up for house selection:The queue consists of the house-selection queue and the waiting queue. Being in the house-selection queue means you have a chance to select a house earlier. If you use up all your chances in the house selection queue, you will need to wait in the waiting queue to select a house.\n\n",
+                        "role_description":"You are Michael. Your budget for renting a house for 1200.0.Your acceptable price beyond the rental budget is 96.Your family members include: Married with no children.You are 55 years old. Your job is Restaurant manager. Your company is located in Nanyuanxiang, Fengtai District, Beijing. As Michael, I prefer to rent a small, affordable house within my budget of 1200.0, preferably between 30 and 60 square meters, with nearby amenities such as grocery stores and public transportation. You still have 2 chances to choose house.\nUp to now, your personal preference for house is :He wants a house with a spacious kitchen for his cooking hobby."
+                    },
+                    "response":{
+                        "output":"My choice is middle_house.",
+                        "thought":"Based on my personal preference for a spacious kitchen and the fact that I am married with no children, I believe a middle_house would be the best option for me. This type of house is suitable for a family of two people and can also accommodate a younger child if needed. Additionally, a middle_house would likely have a reasonable living area per capita for our small family."
+                    }
+                }
+            },
+            "queue_name":"middle_house"
+        },
+        "53":{
+            "log_round":{
+                "available_house_type":[
+                    "large_house",
+                    "middle_house",
+                    "small_house"
+                ],
+                "choose_house_type":"large_house",
+                "choose_house_type_reason":"Based on my personal preference for a spacious and well-equipped house, I believe the large_house type would be the most suitable option for me. This type of house can accommodate my family of four comfortably, with enough space for everyone. Additionally, the large_house type usually comes with modern amenities and a larger kitchen, which aligns with my cooking hobby."
+            },
+            "log_round_prompts":{
+                "choose_house_type":{
+                    "prompt_inputs":{
+                        "task":"choose one type of houses",
+                        "thought_type":"Your views on these house types and the reason why you made your choice.",
+                        "choose_type":"My choice is (house type, should be one of [large_house,middle_house,small_house])",
+                        "house_info":"There are 3 house types available. The infomation of these house types are listed as follows:\nlarge_house:This type of house can accommodate more than three people.\n\nmiddle_house:This type of house is suitable for families of two people,and can also accommodate a younger child.\n\nsmall_house:This type of house is suitable for one person to live alone. ",
+                        "thought_hint":"Remember to consider the following things before choosing house:\n1. The per capita living area should be taken into consideration.\n2. Remember to give the reason why the selected house type meets your needs in thought(exp. My family has a large population and needs a larger house to live in)",
+                        "memory":"\nYou are in rent system. The queuing rules of this system is as follows:\n\nPlease note that before selecting a house, you need to follow these rules to queue up for house selection:The queue consists of the house-selection queue and the waiting queue. Being in the house-selection queue means you have a chance to select a house earlier. If you use up all your chances in the house selection queue, you will need to wait in the waiting queue to select a house.\n\n",
+                        "role_description":"You are Isaac. Your budget for renting a house for 1800.0.Your acceptable price beyond the rental budget is 164.Your family members include: Married with two children, one in college and one in high school.You are 48 years old. Your job is Restaurant manager. Your company is located in Gongren Tiyuchang South Road, Sanlitun Street, Chaoyang District, Beijing. As Isaac, my personal preference for housing would be a 3-bedroom apartment within my budget, ideally located near schools, public transportation, and grocery stores, with a minimum area of 30 square meters and a maximum area of 60 square meters. You still have 2 chances to choose house.\nUp to now, your personal preference for house is :Isaac wants a spacious and well-equipped house with a modern kitchen for his cooking hobby."
+                    },
+                    "response":{
+                        "output":"My choice is large_house.",
+                        "thought":"Based on my personal preference for a spacious and well-equipped house, I believe the large_house type would be the most suitable option for me. This type of house can accommodate my family of four comfortably, with enough space for everyone. Additionally, the large_house type usually comes with modern amenities and a larger kitchen, which aligns with my cooking hobby."
+                    }
+                }
+            },
+            "queue_name":"large_house"
+        }
+    }
+}

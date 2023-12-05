@@ -30,7 +30,6 @@ class CommunityPolicy(BaseGroupPolicy):
         }
         
         if not choose_state:
-            tenant.update_times(choose_state)
             await tenant.publish_forum(forum_manager,system)
             return "default"
         

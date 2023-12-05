@@ -13,7 +13,8 @@
         "robot_response":{
             "output":"My choice is community_4.",
             "thought":"Based on the information provided, I have considered the factors such as price, location, and amenities offered by the communities. After careful consideration, I have decided to choose community_4 (wankecheng). This community meets my request for a modern and minimalist house with a rooftop garden. The community prioritizes sustainability and offers well-landscaped gardens, cozy seating areas, and beautiful water features. It also provides various activities at the community center, fostering a sense of camaraderie among neighbors. Furthermore, the community is surrounded by supermarkets, shopping malls, parks, and schools, which provide convenience for daily life. The subway stations nearby also ensure easy access to transportation."
-        }
+        },
+        "data_label":26
     },
     {
         "prompt_inputs":{
@@ -29,7 +30,8 @@
         "robot_response":{
             "output":"My choice is community_5.",
             "thought":"After considering the information provided, I have decided to choose community_5, sanhejiayuan. This community meets my request for a cozy and well-decorated house with a small garden. Additionally, it is located in a tranquil area on the outskirts of Beijing, which provides a peaceful environment for my family. The community is surrounded by various amenities such as supermarkets, shopping malls, parks, and schools, ensuring convenience for our daily needs. The middle_house in community_5 fits within my budget and offers a suitable size for my family's needs."
-        }
+        },
+        "data_label":26
     },
     {
         "prompt_inputs":{
@@ -45,7 +47,8 @@
         "robot_response":{
             "output":"My choice is community_4.",
             "thought":"After considering the information provided, I have decided to choose community_4, wankecheng. This community offers a modern and sustainable living environment with eco-friendly materials. The presence of silver pine trees and well-designed gardens create a serene and peaceful atmosphere. The community center also provides opportunities for socialization and community engagement. Additionally, wankecheng is conveniently connected to the city through efficient transport networks, making it easy to commute to work. The small_house in community_4 meets my preference for a cozy and quiet house with good natural lighting. The monthly rent of 1926.9 dollars is within my budget, and the area of 42.82 is suitable for me and my teenage child. The separate home office space in the small_house also satisfies my requirement for a work area. Overall, wankecheng in community_4 is the best choice for me."
-        }
+        },
+        "data_label":26
     },
     {
         "prompt_inputs":{
@@ -61,7 +64,8 @@
         "robot_response":{
             "output":"My choice is community_5.",
             "thought":"After considering the information provided, I have decided to choose community_5, sanhejiayuan. This community offers a contemporary living environment surrounded by lush greenery and picturesque landscapes. The spacious balconies with panoramic views and the tranquil surroundings align with my preference for a peaceful and modern living space. Additionally, the community is conveniently located near the subway, supermarkets, shopping malls, parks, schools, and restaurants, providing easy access to various amenities."
-        }
+        },
+        "data_label":26
     },
     {
         "prompt_inputs":{
@@ -77,7 +81,8 @@
         "robot_response":{
             "output":"My choice is community_2.",
             "thought":"Based on the information provided, I have narrowed down my choices to community_2 and community_5. Both communities have affordable rent prices and are located in Daxing District, Beijing. However, community_2 is closer to my workplace and has a variety of amenities and facilities nearby, such as supermarkets and schools. On the other hand, community_5 offers a more tranquil environment with scenic views and green spaces."
-        }
+        },
+        "data_label":26
     },
     {
         "prompt_inputs":{
@@ -93,7 +98,8 @@
         "robot_response":{
             "output":"My choice is community_5.",
             "thought":"After considering the information provided, I believe community_5, sanhejiayuan, would be the best choice for me. This community meets my request for a peaceful atmosphere and has a nearby park for my daily walks. Additionally, it is located in a tranquil area with lush greenery and picturesque landscapes, which is exactly what I am looking for. The rent for the middle_house in this community is within my budget and there are still 3 houses available. Overall, it seems to be a great fit for me."
-        }
+        },
+        "data_label":26
     },
     {
         "prompt_inputs":{
@@ -109,7 +115,8 @@
         "robot_response":{
             "output":"My choice is community_5.",
             "thought":"After considering the information provided, I have decided to choose community_5, sanhejiayuan. This community meets my request for a quiet and peaceful environment, as it is nestled in the tranquil outskirts of Beijing. The surrounding lush greenery and picturesque landscapes also provide a serene atmosphere for me. Additionally, having a nearby library or bookstore for my reading habit is important to me, and this community is surrounded by various amenities including a convenience mall, shopping centers, and schools. The middle_house in this community also fits within my budget, with a monthly rent of about 1210 dollars."
-        }
+        },
+        "data_label":26
     },
     {
         "prompt_inputs":{
@@ -125,7 +132,8 @@
         "robot_response":{
             "output":"My choice is community_5.",
             "thought":"After considering the information provided about the available communities, I have decided to choose community_5, sanhejiayuan. This community meets my preference for a quiet and safe neighborhood with good schools nearby. It is surrounded by parks, schools, and supermarkets, providing convenient access to essential amenities. Additionally, the contemporary design and spacious balconies with panoramic views of the surrounding hills are appealing. The monthly rent for the large_house in this community also fits within my budget."
-        }
+        },
+        "data_label":26
     },
     {
         "prompt_inputs":{
@@ -141,7 +149,8 @@
         "robot_response":{
             "output":"My choice is community_5.",
             "thought":"After considering the information provided, I have decided to choose community_5, sanhejiayuan.\nReason: This community meets my preference for a modern and spacious apartment with good natural lighting. Additionally, the surrounding amenities such as supermarkets, shopping malls, parks, and schools provide convenience for my family. The tranquil outskirts location also offers a peaceful environment for my child to play in a nearby park."
-        }
+        },
+        "data_label":26
     },
     {
         "prompt_inputs":{
@@ -157,7 +166,8 @@
         "robot_response":{
             "output":"My choice is community_4.",
             "thought":"After carefully considering the information provided, I have decided to choose community_4 (wankecheng) as my preferred community. This community meets my request for a modern and minimalist house with a rooftop garden. It prioritizes sustainability and offers well-landscaped gardens, cozy seating areas, and beautiful water features. The community center also provides various activities, fostering a sense of camaraderie among neighbors. Additionally, the community is surrounded by supermarkets, shopping malls, parks, and schools, providing convenience for daily life. The nearby subway stations ensure easy access to transportation."
-        }
+        },
+        "data_label":26
     },
     {
         "prompt_inputs":{
@@ -173,7 +183,8 @@
         "robot_response":{
             "output":"My choice is community_5.",
             "thought":"After considering the information provided, I have decided to choose community_5, sanhejiayuan. This community meets my request for a quiet and peaceful environment, as it is nestled in the tranquil outskirts of Beijing. The surrounding lush greenery and picturesque landscapes also provide a serene atmosphere for me. Additionally, having a nearby library or bookstore for my reading habit is important to me, and this community is surrounded by various amenities including a convenience mall, shopping centers, and schools. The middle_house in this community also fits within my budget, with a monthly rent of about 1210 dollars."
-        }
+        },
+        "data_label":26
     },
     {
         "prompt_inputs":{
@@ -189,7 +200,8 @@
         "robot_response":{
             "output":"My choice is community_5.",
             "thought":"After considering the information provided, I have decided to choose community_5, sanhejiayuan. This community meets my request for a cozy and well-decorated house with a small garden. Additionally, it is located in a tranquil area on the outskirts of Beijing, which provides a peaceful environment for my family. The community is surrounded by various amenities such as supermarkets, shopping malls, parks, and schools, ensuring convenience for our daily needs. The middle_house in community_5 fits within my budget and offers a suitable size for my family's needs."
-        }
+        },
+        "data_label":26
     },
     {
         "prompt_inputs":{
@@ -205,7 +217,8 @@
         "robot_response":{
             "output":"My choice is community_5.",
             "thought":"After considering the information provided, I have decided to choose community_5, sanhejiayuan. This community meets my preferences for a tranquil and peaceful environment with scenic views. I also appreciate the modern architectural design and the spacious balconies that provide panoramic views. Additionally, the availability of supermarkets, shopping malls, parks, and restaurants in the surrounding area is convenient. The small_house in community_5 fits within my budget and has enough space for me and my spouse."
-        }
+        },
+        "data_label":26
     },
     {
         "prompt_inputs":{
@@ -221,7 +234,8 @@
         "robot_response":{
             "output":"My choice is community_2.",
             "thought":"After considering the information provided, I have decided to choose community_2. This community is located in Daxing District, Beijing, which is a suitable location for me. The rent price of 34 dollars per square meter is within my budget, and there are still 3 available houses in the small_house category.\n\nAdditionally, community_2 has a variety of amenities and facilities nearby, such as supermarkets, schools, and restaurants. This is convenient for my daily needs. The fact that the green area of the community accounts for more than 30% of the total land area is also appealing to me, as I appreciate a peaceful and green environment.\n\nFurthermore, community_2 is closer to my workplace compared to community_5, which is an important factor for my daily commute. Being only 83 minutes away from my workplace by subway and bus, it will save me time and make my daily routine more efficient.\n\nOverall, community_2 meets my requirements in terms of location, rent price, amenities, and proximity to my workplace. Therefore, I have decided to choose community_2 as my preferred option."
-        }
+        },
+        "data_label":26
     },
     {
         "prompt_inputs":{
@@ -237,7 +251,8 @@
         "robot_response":{
             "output":"My choice is community_5.",
             "thought":"After considering the information provided, I have decided to choose community_5, sanhejiayuan. This community offers a contemporary living environment surrounded by lush greenery and picturesque landscapes. The spacious balconies with panoramic views and the tranquil surroundings align with my preference for a peaceful and modern living space. Additionally, the community is conveniently located near the subway, supermarkets, shopping malls, parks, schools, and restaurants, providing easy access to various amenities. The rent for the large_house in community_5 is within my budget, and the area of the apartment is suitable for my family's needs. The fact that there are still 3 houses available in this community gives me a better chance of securing a house for my family. Furthermore, the proximity to Huangcun West Street subway station is beneficial for my daily commute."
-        }
+        },
+        "data_label":26
     },
     {
         "prompt_inputs":{
@@ -253,7 +268,8 @@
         "robot_response":{
             "output":"My choice is community_5.",
             "thought":"After considering the information provided about the available communities, I have decided to choose community_5, sanhejiayuan. This community meets my preference for a quiet and safe neighborhood with good schools nearby. It is surrounded by parks, schools, and supermarkets, providing convenient access to essential amenities. Additionally, the contemporary design and spacious balconies with panoramic views of the surrounding hills are appealing. The monthly rent for the large_house in this community also fits within my budget."
-        }
+        },
+        "data_label":26
     },
     {
         "prompt_inputs":{
@@ -269,7 +285,8 @@
         "robot_response":{
             "output":"My choice is community_2.",
             "thought":"Based on the information provided, I have considered the price, location, and amenities of each community. After evaluating all the options, community_2, jinkejiayuan, stands out to me. The rent is reasonable at $34 per square meter, and it is located in Daxing District, which is a convenient location for me. The community has a good amount of green space and is surrounded by various amenities such as supermarkets, shopping malls, parks, and schools. Additionally, it does not have a hospital, which is not a necessity for me at the moment. Overall, jinkejiayuan meets my requirements for a modern and stylish apartment with a great view, and it offers a comfortable and convenient living environment."
-        }
+        },
+        "data_label":26
     },
     {
         "prompt_inputs":{
@@ -285,7 +302,8 @@
         "robot_response":{
             "output":"My choice is community_5.",
             "thought":"After considering the information provided, I have decided to choose community_5, sanhejiayuan. This community meets my request for a quiet and family-oriented apartment with good educational resources. It is located in a tranquil area with lush greenery and picturesque landscapes, providing a peaceful environment for my family. Additionally, it is surrounded by convenient facilities such as supermarkets, shopping malls, schools, and parks. The small_house in this community is suitable for my family's needs, with an acceptable monthly rent of about 1106 dollars."
-        }
+        },
+        "data_label":26
     },
     {
         "prompt_inputs":{
@@ -301,7 +319,8 @@
         "robot_response":{
             "output":"My choice is community_1.",
             "thought":"Based on the information provided, I have considered the options available and their respective prices, locations, and amenities. Among the available communities, I believe community_1, Longxing, meets my needs the best. \n\nLongxing community offers a family-friendly environment with sports facilities, including football fields and basketball courts. This is ideal for my children to play and stay active. Although it lacks a subway station, shopping mall, hospital, and park, I believe the presence of supermarkets and schools nearby compensates for these shortcomings. Additionally, the rent for the large_house in Longxing community fits within my budget, making it an affordable option for me."
-        }
+        },
+        "data_label":26
     },
     {
         "prompt_inputs":{
@@ -317,7 +336,8 @@
         "robot_response":{
             "output":"My choice is community_2.",
             "thought":"After considering the information provided, I have decided to choose community_2, jinkejiayuan. The rent for this community is within my budget, and it is located in Daxing District, which is a reasonable commuting distance from my workplace. The community has a good amount of green space and is surrounded by various amenities such as supermarkets, shopping malls, parks, and schools. Additionally, the small_house in community_2 meets my requirement for a cozy apartment with its unique design features. Therefore, I believe that community_2, jinkejiayuan, is the best choice for me."
-        }
+        },
+        "data_label":26
     },
     {
         "prompt_inputs":{
@@ -333,7 +353,8 @@
         "robot_response":{
             "output":"My choice is community_5.",
             "thought":"Based on the information provided, it seems that community_5 (sanhejiayuan) meets my needs the best. This community is surrounded by various amenities such as supermarkets, shopping malls, parks, and restaurants. Additionally, it is located in a tranquil area with lush greenery, which aligns with my preference for a peaceful environment. The small_house in this community also fits my budget and has a suitable area for me. Overall, this community seems to offer a comfortable and convenient living experience."
-        }
+        },
+        "data_label":26
     },
     {
         "prompt_inputs":{
@@ -349,7 +370,8 @@
         "robot_response":{
             "output":"My choice is community_1.",
             "thought":"After considering the information provided, I have decided to choose community_1, longxing. This community meets my request for a spacious living room for my yoga practice. It is also conveniently located near sports facilities, which allows me to engage in physical activities. The surrounding supermarkets and restaurants provide easy access to daily necessities and dining options. Additionally, the rental price per square meter is within my budget."
-        }
+        },
+        "data_label":26
     },
     {
         "prompt_inputs":{
@@ -365,7 +387,8 @@
         "robot_response":{
             "output":"My choice is community_4.",
             "thought":"Based on the information provided, the community that seems to meet my needs is community_4, wankecheng. This community offers modern living with eco-friendly materials and prioritizes sustainability. The presence of tall silver pine trees and landscaped gardens create a peaceful and relaxing environment. The community center also fosters a sense of community among neighbors. Additionally, the location of this community is convenient with access to efficient transport networks."
-        }
+        },
+        "data_label":26
     },
     {
         "prompt_inputs":{
@@ -381,7 +404,8 @@
         "robot_response":{
             "output":"My choice is community_4.",
             "thought":"Both community_3 and community_4 have their own advantages and meet some of my needs. However, considering my budget and personal preferences, I think community_4, wankecheng, would be a better choice for me. The community is constructed with eco-friendly materials and prioritizes sustainability, which aligns with my preference for a clean and well-maintained apartment. The meticulously landscaped gardens and cozy seating areas provide a peaceful and comfortable environment, which is important for me and my family. Additionally, the community center offering various activities fosters a sense of camaraderie among neighbors, which is a great opportunity for socializing. The location of the community is also convenient, with efficient transport networks connecting it to the city. Overall, wankecheng offers a combination of comfort, luxury, and sustainability, making it the ideal choice for me."
-        }
+        },
+        "data_label":26
     },
     {
         "prompt_inputs":{
@@ -397,7 +421,8 @@
         "robot_response":{
             "output":"My choice is community_4.",
             "thought":"After considering the information provided about the available communities, I have decided to choose community_4, wankecheng. This community stands out to me because of its modern living environment and eco-friendly construction materials. The presence of tall silver pine trees and landscaped gardens also adds to the appeal. Additionally, the community center and various activities foster a sense of community among the residents. The location of the community is also convenient, with easy access to transportation networks. Overall, I believe community_4 meets my needs for a comfortable and sustainable living environment."
-        }
+        },
+        "data_label":26
     },
     {
         "prompt_inputs":{
@@ -413,7 +438,8 @@
         "robot_response":{
             "output":"My choice is community_2.",
             "thought":"After considering the information provided, I have decided to choose community_2, jinkejiayuan. This community meets my request for a quiet environment since it is located in Daxing District, which is a peaceful area. Additionally, the community has a green area that accounts for more than 30% of the total land area, providing a pleasant and relaxing atmosphere. Furthermore, it is surrounded by various amenities such as supermarkets, shopping malls, parks, and schools, which adds to the convenience of living there. The small_house in community_2 fits within my budget and has a suitable area for me. Overall, community_2 seems to be the best option for me."
-        }
+        },
+        "data_label":26
     },
     {
         "prompt_inputs":{
@@ -429,7 +455,8 @@
         "robot_response":{
             "output":"My choice is community_2.",
             "thought":"Based on the information provided, I have compared the three communities available - Ronghui, Wankecheng, and Jinkejiayuan. \n\nRonghui community seems to have good greenery and various sports and fitness equipment, which is a positive factor. However, it does not have a nearby park, which is one of my preferences for my child to play in.\n\nWankecheng community offers a luxurious and sustainable living experience with beautiful landscaped gardens and water features. It also has a nearby park, which is a major advantage for me. The rent for the small_house is within my budget, but there is only one house available. The rent for the middle_house is slightly higher but still within my acceptable price range, and there are two houses available.\n\nJinkejiayuan community has a high percentage of green area and is surrounded by a park. This community meets my request for a walk in the nearby park. The rent for the small_house is within my budget, and there are still three houses available.\n\nConsidering all these factors, I believe Jinkejiayuan community is the best choice for me. The availability of multiple houses and the presence of a nearby park align with my preferences and requirements."
-        }
+        },
+        "data_label":26
     },
     {
         "prompt_inputs":{
@@ -445,7 +472,8 @@
         "robot_response":{
             "output":"My choice is community_5.",
             "thought":"After considering the information provided, I have decided to choose community_5 (sanhejiayuan). This community meets my requirement for a tranquil environment with lush greenery and picturesque landscapes. The spacious balconies with panoramic views are also a plus. Additionally, the community is surrounded by convenient amenities such as supermarkets, shopping malls, parks, and schools. The large_house in this community is a two rooms apartment with a spacious kitchen, which aligns with my preference for cooking for my family."
-        }
+        },
+        "data_label":26
     },
     {
         "prompt_inputs":{
@@ -461,7 +489,8 @@
         "robot_response":{
             "output":"My choice is community_4.",
             "thought":"After considering the information provided, I have decided to choose community_4, wankecheng. This community seems to meet my requirements for a modern and spacious house, as it is constructed with eco-friendly materials and offers luxurious amenities. The community's landscaped gardens and water features also appeal to me. Additionally, the location in the heart of Beijing's peaceful suburbs is a plus."
-        }
+        },
+        "data_label":26
     },
     {
         "prompt_inputs":{
@@ -477,7 +506,8 @@
         "robot_response":{
             "output":"My choice is community_5.",
             "thought":"After considering the information provided, I have decided to choose community_5, sanhejiayuan. This community meets my preferences for a tranquil and peaceful environment with scenic views. I also appreciate the modern architectural design and the spacious balconies that provide panoramic views. Additionally, the availability of supermarkets, shopping malls, parks, and restaurants in the surrounding area is convenient. The small_house in community_5 fits within my budget and has enough space for me and my spouse. Moreover, I am attracted to the fact that this community is located near my workplace, with a commute of 72 minutes by subway and bus."
-        }
+        },
+        "data_label":26
     },
     {
         "prompt_inputs":{
@@ -493,7 +523,8 @@
         "robot_response":{
             "output":"My choice is community_1.",
             "thought":"After considering the information provided, I have decided to choose community_1, longxing. This community meets my request for a spacious living room for my yoga practice. It is also conveniently located near sports facilities, which allows me to engage in physical activities. The surrounding supermarkets and restaurants provide easy access to daily necessities and dining options. Additionally, the rental price per square meter is within my budget."
-        }
+        },
+        "data_label":26
     },
     {
         "prompt_inputs":{
@@ -509,7 +540,8 @@
         "robot_response":{
             "output":"My choice is community_1.",
             "thought":"Based on the information provided, I have considered the options available and their respective prices, locations, and amenities. Among the available communities, I believe community_1, Longxing, meets my needs the best. \n\nLongxing community offers a family-friendly environment with sports facilities, including football fields and basketball courts. This is ideal for my children to play and stay active. Although it lacks a subway station, shopping mall, hospital, and park, I believe the presence of supermarkets and schools nearby compensates for these shortcomings. Additionally, the rent for the large_house in Longxing community fits within my budget, making it an affordable option for me."
-        }
+        },
+        "data_label":26
     },
     {
         "prompt_inputs":{
@@ -525,7 +557,8 @@
         "robot_response":{
             "output":"My choice is community_4.",
             "thought":"Based on my personal preference for a spacious and well-ventilated apartment with good educational resources nearby, I have reviewed the information of the available communities. \n\nCommunity_5, sanhejiayuan, offers a contemporary living environment surrounded by lush greenery. However, it does not mention the availability of a nearby library, which is important for my children's study needs.\n\nCommunity_4, wankecheng, stands out as a modern living community that prioritizes sustainability and offers a peaceful and relaxing environment. The presence of tall silver pine trees and landscaped gardens creates a serene atmosphere. Additionally, it is conveniently located with access to efficient transport networks. Although the monthly rent is slightly above my budget, the acceptable price beyond the rental budget allows me to consider this option.\n\nCommunity_1, longxing, offers sports facilities and a large green area. However, it does not mention any nearby educational resources or a library, which is a priority for my family.\n\nCommunity_3, ronghui, has good greenery and sports facilities, but it also does not mention the availability of a nearby library.\n\nConsidering all these factors, community_4, wankecheng, seems to be the most suitable option for my family's needs. It offers a spacious and well-ventilated apartment with good educational resources nearby. The community's focus on sustainability and the presence of a nearby library make it an ideal choice."
-        }
+        },
+        "data_label":26
     },
     {
         "prompt_inputs":{
@@ -541,7 +574,8 @@
         "robot_response":{
             "output":"My choice is community_2.",
             "thought":"After considering the information provided, I have decided to choose community_2, jinkejiayuan. This community meets my request for a quiet environment since it is located in Daxing District, which is a peaceful area. Additionally, the community has a green area that accounts for more than 30% of the total land area, providing a pleasant and relaxing atmosphere. Furthermore, it is surrounded by various amenities such as supermarkets, shopping malls, parks, and schools, which adds to the convenience of living there. The small_house in community_2 fits within my budget and has a suitable area for me. Moreover, community_2 is the closest to my workplace, which is located in Huilongguan, Changping District, Beijing. Overall, community_2 seems to be the best option for me."
-        }
+        },
+        "data_label":26
     },
     {
         "prompt_inputs":{
@@ -557,7 +591,8 @@
         "robot_response":{
             "output":"My choice is middle_house.",
             "thought":"Both the middle house and the small house seem to fit my budget. However, considering that my family includes a child, I think it would be better to choose the middle house. The square footage of the middle house is slightly larger, which can provide more space for my child to play. Additionally, the rent of the middle house is also within my acceptable price beyond the rental budget. Therefore, I believe the middle house would be a better choice for my family."
-        }
+        },
+        "data_label":26
     },
     {
         "prompt_inputs":{
@@ -573,7 +608,8 @@
         "robot_response":{
             "output":"My choice is middle_house.",
             "thought":"Based on the information provided, the middle_house type seems to be within my budget, with a rent range of 2177-2208, falling within my acceptable price beyond the rental budget of 1600. The square footage of 48.38-49.07 is reasonable for a family of three. Additionally, the fact that there is only 1 house of this type available indicates that it may be in high demand, suggesting that it meets the needs of other families as well. Considering my preference for a well-maintained and family-oriented apartment with green spaces and playgrounds, the middle_house type seems to be a suitable choice."
-        }
+        },
+        "data_label":26
     },
     {
         "prompt_inputs":{
@@ -589,7 +625,8 @@
         "robot_response":{
             "output":"My choice is large_house.",
             "thought":"Both the large_house and middle_house meet my budget requirements. However, considering the size of my family and the need for a study room, I believe the large_house would be a better fit. The larger square footage will provide more space for my family to live comfortably, and the study room will be beneficial for my children's education needs. Therefore, I think the large_house is the most suitable option for us."
-        }
+        },
+        "data_label":26
     },
     {
         "prompt_inputs":{
@@ -605,7 +642,8 @@
         "robot_response":{
             "output":"My choice is middle_house.",
             "thought":"Both the middle_house and small_house types have their own advantages and disadvantages. The middle_house type is slightly more expensive but offers a larger square footage, which is important for my family as we need more living space. On the other hand, the small_house type is cheaper but has a smaller square footage. \n\nConsidering my budget and the need for a larger living space, I think the middle_house type would be a better choice for us. It falls within my acceptable price beyond the rental budget, and the square footage range is suitable for my family."
-        }
+        },
+        "data_label":26
     },
     {
         "prompt_inputs":{
@@ -621,7 +659,8 @@
         "robot_response":{
             "output":"I choose none of these options.",
             "thought":"The available house types are a large house and a middle house. The large house fits within my budget of 1500.0, but the square footage is relatively small, which may not provide enough space for my family. Additionally, there is only one house of this type available. On the other hand, the middle house is more affordable with a rent of 1210.0 and has a slightly larger square footage. However, there is only one house of this type available as well. Neither of these options meets my preference of having a small garden for my children to play in. Considering these factors, I will give up on choosing any of the available house types."
-        }
+        },
+        "data_label":26
     },
     {
         "prompt_inputs":{
@@ -637,7 +676,8 @@
         "robot_response":{
             "output":"My choice is large_house.",
             "thought":"Both house types have their own advantages and disadvantages. The large_house type meets my preference for a house with a backyard for my children to play in. However, the rent for the large_house type is at the upper limit of my budget, leaving little room for other expenses. On the other hand, the middle_house type is more affordable, but it may not have a backyard for my children. Considering the limited options and my preference for a backyard, I believe the large_house type is a better choice."
-        }
+        },
+        "data_label":26
     },
     {
         "prompt_inputs":{
@@ -653,7 +693,8 @@
         "robot_response":{
             "output":"My choice is middle_house.",
             "thought":"Both house types are within my budget and have a reasonable square footage. However, considering that I am a teacher and need a study room for my teaching preparations, I believe the middle_house type would better meet my needs. The square footage is slightly larger, which would provide me with more space for a study room. Additionally, since there are only 5 houses of this type remaining, it may be a more popular option and could potentially get rented out quickly."
-        }
+        },
+        "data_label":26
     },
     {
         "prompt_inputs":{
@@ -669,7 +710,8 @@
         "robot_response":{
             "output":"My choice is small_house.",
             "thought":"Both the middle_house and small_house options seem to be within my budget. However, considering that I have a small family and do not require a large living area, the small_house type seems more suitable for my needs. Additionally, the rent for the small_house type is slightly lower, which is a bonus."
-        }
+        },
+        "data_label":26
     },
     {
         "prompt_inputs":{
@@ -685,7 +727,8 @@
         "robot_response":{
             "output":"My choice is small_house.",
             "thought":"Based on the information provided, both the middle_house and small_house types seem to be within my budget. However, considering that I have a child and prefer a cozy and comfortable house with good natural lighting, the small_house type seems to be a better fit. The rent for small_house is affordable and the square footage is reasonable for a small family like mine. Although the per capita living area might be a bit small, I believe it is worth giving the small_house type a try, especially since there are still 7 houses available. Additionally, the small_house type might provide a better chance of finding a house with a nearby park for my child to play in."
-        }
+        },
+        "data_label":26
     },
     {
         "prompt_inputs":{
@@ -701,7 +744,8 @@
         "robot_response":{
             "output":"My choice is middle_house.",
             "thought":"Both house types have their advantages, but considering my budget and the need for a separate study room, I believe the middle_house type would be more suitable for me. The rent for this type is within my budget, and the square footage is also reasonable. Additionally, having two houses of this type available gives me more options to choose from."
-        }
+        },
+        "data_label":26
     },
     {
         "prompt_inputs":{
@@ -717,7 +761,8 @@
         "robot_response":{
             "output":"My choice is large_house.",
             "thought":"Both the large_house and middle_house options seem to be within my budget. However, considering that I am married with one child and prefer a family-oriented apartment with green spaces and playgrounds, the large_house type seems more suitable. The larger square footage would provide more space for my family and the playgrounds would be great for my child."
-        }
+        },
+        "data_label":26
     },
     {
         "prompt_inputs":{
@@ -733,7 +778,8 @@
         "robot_response":{
             "output":"My choice is large_house.",
             "thought":"Both house types seem to be within my budget, so that is not a concern. However, considering my family's needs, I think the large house type would be more suitable for us. With a child, it would be beneficial to have a larger living space for them to play and move around comfortably. Additionally, the larger square footage of the large house type would allow for more storage and potentially a dedicated play area for my child."
-        }
+        },
+        "data_label":26
     },
     {
         "prompt_inputs":{
@@ -749,7 +795,8 @@
         "robot_response":{
             "output":"My choice is middle_house.",
             "thought":"After considering the available options, I have decided to choose the middle_house type of house.\nReason: The middle_house fits within my budget as the rent falls within the range of 2177-2208. Additionally, the square footage of the middle_house is suitable for my family's needs, as it ranges from 48.38-49.07. Although the large_house may offer more living space, the middle_house provides enough room for my family of three."
-        }
+        },
+        "data_label":26
     },
     {
         "prompt_inputs":{
@@ -765,7 +812,8 @@
         "robot_response":{
             "output":"My choice is middle_house.",
             "thought":"Both the large house and middle house types seem to be within my budget, but I need to consider the per capita living area as well. The large house has a square footage range of 56.14-58.33, which means it offers more space for me and my spouse. On the other hand, the middle house has a square footage range of 44.96-47.13, which might be slightly smaller but still sufficient for our needs. Considering my preference for a traditional Chinese courtyard, I believe the middle house type would be more suitable as it is likely to have a courtyard and also fits within my budget."
-        }
+        },
+        "data_label":26
     },
     {
         "prompt_inputs":{
@@ -781,7 +829,8 @@
         "robot_response":{
             "output":"My choice is middle_house.",
             "thought":"Both house types, large_house and middle_house, have their pros and cons. The large_house offers a spacious square footage, which would be ideal for my family to live comfortably. However, the rent for this type of house is slightly higher, and it may be difficult to stay within my budget. On the other hand, the middle_house is more affordable, but it has a slightly smaller square footage. Considering my budget and preferences, I believe the middle_house would be a more suitable choice for me and my family. The slightly smaller living area can be compensated by the fact that it is more cost-effective."
-        }
+        },
+        "data_label":26
     },
     {
         "prompt_inputs":{
@@ -797,6 +846,7 @@
         "robot_response":{
             "output":"My choice is middle_house.",
             "thought":"After considering the information provided, I have decided to choose the middle_house type. Although the large_house type offers more square footage, the middle_house type is more suitable for my needs. It falls within my budget, with a rent range of 1800-1885, and its square footage range of 44.96-47.13 is still sufficient for me and my spouse. Additionally, considering my preference for a traditional Chinese courtyard, the middle_house type is more likely to have a courtyard. Overall, the middle_house type meets my requirements and preferences adequately."
-        }
+        },
+        "data_label":26
     }
 ]

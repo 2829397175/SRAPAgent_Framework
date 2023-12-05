@@ -23,9 +23,19 @@ class KWaitListOrder(BaseOrder):
     
     """
     
-    rule_description:str=""
+    rule_description:str="""
+Please note that before selecting a house, you need to follow these rules to queue up for house selection:\
+The queue consists of the house-selection queue and the waiting queue. \
+Being in the house-selection queue means you have a chance to select a house earlier. \
+If you use up all your chances in the house selection queue, you will need to wait in the waiting queue to select a house.\
+"""
+    
     waitlist_ratio = 1.2 
     k:int = 2
+    
+    def __init__(self,**kargs) -> None:
+        return super().__init__(type = "kwaitlist",
+                                **kargs)
     
     def get_next_agent_idx(self, environment) ->dict: 
         # return queue_name:queue
@@ -60,15 +70,13 @@ class KWaitListOrder(BaseOrder):
 
     def requeue(self, environment, tenant):
         """re-queue"""
-        if tenant.available:
-            round_choose = tenant.choose_times % self.k         
-            for queue_name, queue_info in environment.deque_dict.items():
-                if queue_name == tenant.queue_name:
-                    if round_choose == 0:
-                        queue_info['queue'].append(tenant.id)
-                    else:
-                        queue_info["waitlist"].append(tenant.id)
-                    break
+        if tenant.available:       
+            queue_info = environment.deque_dict[tenant.queue_name]
+            if tenant.round_choose_times >= self.k:
+                tenant.finish_round()
+                queue_info['queue'].append(tenant.id)
+            else:
+                queue_info["waitlist"].append(tenant.id)
                         
         
     def reset(self,environment) -> None:
@@ -83,13 +91,24 @@ class KWaitListOrder(BaseOrder):
                 continue
             
             if int(pool_num*self.waitlist_ratio)>(len(environment.deque_dict[pool_name]["queue"])+len(environment.deque_dict[pool_name]["waitlist"])):
-                environment.deque_dict[pool_name]["waitlist"].extend(environment.deque_dict[pool_name]["queue"])
+                enter_tenant_ids = environment.deque_dict[pool_name]["queue"]
+                for enter_tenant_id in enter_tenant_ids:
+                    
+                    environment.tenant_manager[enter_tenant_id].finish_round()
+                    
+                environment.deque_dict[pool_name]["waitlist"].extend(enter_tenant_ids)
                 environment.deque_dict[pool_name]["queue"]=[]
             elif int(pool_num*self.waitlist_ratio)<len(environment.deque_dict[pool_name]["waitlist"]):
                 continue
             else:
                 enter_num=int(pool_num*self.waitlist_ratio)-len(environment.deque_dict[pool_name]["waitlist"])
-                environment.deque_dict[pool_name]["waitlist"].extend(environment.deque_dict[pool_name]["queue"][:enter_num])
+                
+                enter_tenant_ids = environment.deque_dict[pool_name]["queue"][:enter_num]
+                for enter_tenant_id in enter_tenant_ids:
+                    
+                    environment.tenant_manager[enter_tenant_id].finish_round() # 从queue到waitlist中，相当于用完了waitlist中的机会了
+                
+                environment.deque_dict[pool_name]["waitlist"].extend(enter_tenant_ids)
                 del environment.deque_dict[pool_name]["queue"][:enter_num]
                 
     def are_all_deques_empty(self,environment) -> bool:     

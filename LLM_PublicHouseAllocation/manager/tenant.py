@@ -120,23 +120,30 @@ class TenantManager(BaseManager):
             max_choose_time = base_config.pop('max_choose_time')
             llmname = base_config.pop('llm')
             memoryname = base_config.pop('memory')
+            
+            
+            
             role_description_template = """\
-                    You are {name}.You live with {family_members}. You earn {monthly_income} per month.\
+                    You are {name}.You live with {family_members}.
                     You are {age} years old. Your job is {profession}. \
                     Your company is located in {en_work_place}. \
-                    {special_request} \
+                    {special_request_poor} \
                     You expect to rent a house for {monthly_rent_budget}.
+                    Your acceptable price beyond the rental budget is {acceptable_outrange}.\
                 """
             id = 0
             agentrule = load_agentrule(base_config.pop("agent_rule"))
             for tenant_name,tenant_config in tenant_configs.items():
+                
+                monthly_income = tenant_config["monthly_income"] - tenant_config["monthly_rent_budget"] 
                 role_description = role_description_template.format(name=tenant_name,
                                                                     family_members=tenant_config["family_members"],
                                                                     monthly_income=tenant_config["monthly_income"],
                                                                     age=tenant_config["age"],
                                                                     profession=tenant_config["profession"],
                                                                     en_work_place=tenant_config["en_work_place"],
-                                                                    special_request=tenant_config["special_request"],
+                                                                    acceptable_outrange=int(monthly_income/100)*2,
+                                                                    special_request_poor=tenant_config["special_request_poor"],
                                                                     monthly_rent_budget=tenant_config["monthly_rent_budget"],
                                                                     ).replace("\n","").strip()
                 llm_base = load_llm(llmname)

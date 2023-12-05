@@ -65,9 +65,9 @@ class Rule(BaseModel):
         """Update the set of visible agents for the agent"""
         return self.visibility.filter_community(**kwargs)    
         
-    def filter_housetype(self, tenant,housetype_list):
-        """Update the set of visible agents for the agent"""
-        return self.visibility.filter_housetype(tenant,housetype_list)
+    # def filter_housetype(self, tenant,housetype_list):
+    #     """Update the set of visible agents for the agent"""
+    #     return self.visibility.filter_housetype(tenant,housetype_list)
     
     def rule_description(self):
         return self.order.rule_description+self.visibility.rule_description

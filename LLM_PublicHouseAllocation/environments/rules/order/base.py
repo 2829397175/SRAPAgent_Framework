@@ -10,6 +10,9 @@ if TYPE_CHECKING:
 
 class BaseOrder(BaseModel):
     rule_description:str=""
+    type:str ="base"
+    
+    
     
     @abstractmethod
     def get_next_agent_idx(self, environment: BaseEnvironment) -> List[int]:

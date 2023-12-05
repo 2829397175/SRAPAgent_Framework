@@ -96,6 +96,9 @@ def concat_experiment_results(task_path = "LLM_PublicHouseAllocation/tasks",
             tenental_system_path = os.path.join(ex_path,"tenental_system.json")
             tenental_system = readinfo(tenental_system_path)
             
+            # 把那些没有log_round 的filter了
+            tenental_system = dict(filter(lambda item: "log_round" in item[1].keys(),tenental_system))
+            
             for u_type in u_types:
                 u_type_dict[u_type] = {}
                 
