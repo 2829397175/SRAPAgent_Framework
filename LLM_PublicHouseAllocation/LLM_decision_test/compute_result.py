@@ -35,15 +35,22 @@ def compute_auc_choose_one(type_keys = ["4","3.5"]):
                         "none":0
                         } for type_key in type_keys}
     
-    data_paths =[
-        "LLM_PublicHouseAllocation/LLM_decision_test/11_26_data/denotes_save_response/0.json",
-        "LLM_PublicHouseAllocation/LLM_decision_test/11_26_data/denotes_save_response/2.json",
-        "LLM_PublicHouseAllocation/LLM_decision_test/11_26_data/denotes_save_response/5.json",
-        "LLM_PublicHouseAllocation/LLM_decision_test/11_28_data/denotes_save_response/28_1.json",
-        "LLM_PublicHouseAllocation/LLM_decision_test/11_28_data/denotes_save_response/28_2.json",
-        "LLM_PublicHouseAllocation/LLM_decision_test/11_26_data/denotes_save_response/6.json",
-        "LLM_PublicHouseAllocation/LLM_decision_test/11_28_data/denotes_save_response/28_0.json",
-        ]
+    # data_paths =[
+    #     "LLM_PublicHouseAllocation/LLM_decision_test/11_26_data/denotes_save_response/0.json",
+    #     "LLM_PublicHouseAllocation/LLM_decision_test/11_26_data/denotes_save_response/2.json",
+    #     "LLM_PublicHouseAllocation/LLM_decision_test/11_26_data/denotes_save_response/5.json",
+    #     "LLM_PublicHouseAllocation/LLM_decision_test/11_28_data/denotes_save_response/28_1.json",
+    #     "LLM_PublicHouseAllocation/LLM_decision_test/11_28_data/denotes_save_response/28_2.json",
+    #     "LLM_PublicHouseAllocation/LLM_decision_test/11_26_data/denotes_save_response/6.json",
+    #     "LLM_PublicHouseAllocation/LLM_decision_test/11_28_data/denotes_save_response/28_0.json",
+    #     ]
+    data_paths = []
+    
+    for data_root in ["LLM_PublicHouseAllocation/LLM_decision_test/11_26_data/denotes_save_response",
+                      "LLM_PublicHouseAllocation/LLM_decision_test/11_28_data/denotes_save_response"]:
+        for json_denote in os.listdir(data_root):
+            
+            data_paths.append(os.path.join(data_root,json_denote))
     
     data_all =[]
     

@@ -1,5 +1,5 @@
-Rounds,Ex.setting,Priority,Avg $House^{size}$,Var $House^{size}$,Rop,mean WT,gini coefficient,social welfare,ex_name,
-10,(a),FALSE,14.58415033,267.5338986,385,3.68627451,0.522799875,395.9,-4.145609756,ver1_nofilter_multilist(1.2)_multilist_nopriority_8t_6h_p#housetype
-10,(a),TRUE,15.52408497,274.3311067,428,3.901960784,0.503756951,415.7,-0.523658537,ver1_nofilter_multilist(1.2)_multilist_priority_8t_6h_p#housetype
-7,(b),FALSE,14.3577551,220.8256249,326,2.163265306,0.460567155,424.1,-1.702564103,ver2_nofilter_multilist(1.2_k2)_housetype_nopriority_8t_6h(step_num(t1_h1))_p#housetype_choose2
-8,(b),TRUE,12.71279412,199.126789,266,2.470588235,0.483704453,412.9,-1.43804878,ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2
+Rounds,Ex.setting,Priority,Avg $House^{size}\uparrow$,Var $House^{size}\downarrow$,Rop $\downarrow$,mean WT $\downarrow$,gini coefficient $\downarrow$,social welfare $\uparrow$,"F(W,G) $\uparrow$",ex_name,finished_replace
+8.0,(a),False,14.58415033,267.5338986,367.0,3.7058823529411766,0.5374855824682815,384.2000000000001,-2.168536585365852,ver1_nofilter_multilist(1.2)_multilist_nopriority_8t_6h_p#housetype,True
+7.0,(a),True,15.52408497,274.3311067,431.0,3.4901960784313726,0.5010110814527218,412.1,-1.0329268292682912,ver1_nofilter_multilist(1.2)_multilist_priority_8t_6h_p#housetype,True
+6.0,(b),False,14.3577551,220.8256249,215.0,1.809523809523809,0.3724604840769991,428.7,0.8095588235294127,ver2_nofilter_multilist(1.2_k2)_housetype_nopriority_8t_6h(step_num(t1_h1))_p#housetype_choose2,True
+9.0000$\pm$1.0000,(b),True,12.71279412,199.126789,327.0000$\pm$26.0000,3.0588$\pm$0.5098,0.4891$\pm$0.0006,419.8500$\pm$0.3500,-4.3379$\pm$0.7487,ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2,True

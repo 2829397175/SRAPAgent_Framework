@@ -45,11 +45,16 @@ def concat_experiment_results(task_path = "LLM_PublicHouseAllocation/tasks",
         
     } # ex_name[{u_type:{eval matrix}},]
     
-    
+    ex_idx = 0
     for ex_name in os.listdir(config_root):
         ex_root_path = os.path.join(config_root,ex_name)
         config_path = os.path.join(ex_root_path,"config.yaml")
         task_config = yaml.safe_load(open(config_path))
+        
+        group_policy = task_config["managers"]["tenant"]["policy"]["group_policy"]
+        if "portion_attribute" in group_policy:
+            group_policy["type"] += group_policy["portion_attribute"]
+            group_policy.pop("portion_attribute")
         
         tenant_dt_path = os.path.join(ex_root_path,task_config["managers"]["tenant"]["distribution_batch_dir"])
         tenant_dt = readinfo(tenant_dt_path)
@@ -85,20 +90,25 @@ def concat_experiment_results(task_path = "LLM_PublicHouseAllocation/tasks",
             result = task_config
             for config_key in config_key_list:
                 result = result.get(config_key)
+            if config_key_list[-1] == "patch_method" and result is None:
+                result = "random_avg"    
+            
             if not isinstance(result,dict):
                 result = {config_key_list[-1]:result}
                 configs_cols_append[config_key_list[-2]] = result
             else:
                 configs_cols_append[config_key_list[-1]] = result
+        
                 
         for ex_path in ex_paths:
+            ex_idx += 1
             u_type_dict = {}
             tenental_system_path = os.path.join(ex_path,"tenental_system.json")
             tenental_system = readinfo(tenental_system_path)
-            
             # 把那些没有log_round 的filter了
-            tenental_system = dict(filter(lambda item: "log_round" in item[1].keys(),tenental_system))
-            
+            tenental_system_filtered = dict(filter(lambda item: isinstance(item[1],dict) and "log_round" in item[1].keys(),tenental_system.items()))
+
+                       
             for u_type in u_types:
                 u_type_dict[u_type] = {}
                 
@@ -113,11 +123,19 @@ def concat_experiment_results(task_path = "LLM_PublicHouseAllocation/tasks",
                     
                     result_u_type["ex_name"] = ex_name
                     result_u_type.set_index('ex_name',inplace=True,append=True)
-                        
+                    result_u_type["ex_idx"] = ex_idx
+                    result_u_type.set_index('ex_idx',inplace=True,append=True)
 
                     cols_first_level = ["indicator_values" for i in range(result_u_type.shape[1])]
                     
-                    result_u_type["ex_len"] = list(tenental_system.keys())[-1]
+                    
+                    groups = [group_info["queue_name"] for group_info in tenental_system["group"].values()]
+                    group_size = len(np.unique(groups))
+                    result_u_type["group_size"] = group_size
+                    cols_first_level.append("group_size")
+                    
+                    
+                    result_u_type["ex_len"] = list(tenental_system_filtered.keys())[-1]
                     cols_first_level.append("experiment")
                     
                     for k,config in configs_cols_append.items():
@@ -129,16 +147,7 @@ def concat_experiment_results(task_path = "LLM_PublicHouseAllocation/tasks",
                             cols_first_level.append(k)
                         
                     assert len(cols_first_level) == len(result_u_type.columns)
-                    columns = [cols_first_level,list(result_u_type.columns)]
-                    values = result_u_type.values
-                        
-                    #[["indicator_values" for i in range(len(list(cols)))],list(cols)]
-                    # matrix = pd.DataFrame(values,
-                    #                     columns=columns,
-                    #                     index=pd.MultiIndex.from_tuples(
-                    #                         list(result_u_type.index)
-                    #                     )
-                    #                     )
+                    
                     u_type_dict[u_type][result_type] = result_u_type
                 
             results[ex_name].append(u_type_dict)
@@ -213,16 +222,29 @@ def group_multi_experiment_results(ex_setting = "PHA_51tenant_5community_28house
                         continue
                     if col_name in cols_agg:   
                         for indicator in result_types_indicators[result_type]:
-                            one_indicator_df = ex_result_grouped[ex_result_grouped.index == indicator] 
-                            values = one_indicator_df[col_name].values
-                            if values.shape[0]>1:
+                            values_df = ex_result_grouped.loc[indicator,col_name]
+                            if isinstance(values_df,(pd.DataFrame,pd.Series)):
+                                    values = values_df.values
+                            else:
+                                values = np.array(values_df)
+                            if np.isnan(values).any():
+                                result_one_ex.loc[indicator,col_name] = np.nan
+                                
+                            elif not values.shape ==() and values.shape[0]>1:
                                 err = np.std(values, ddof=1)/np.sqrt(values.shape[0])
                                 result_one_ex.loc[indicator,col_name]="{mean_value:.4f}$\pm${err:.4f}".format(mean_value =np.mean(values),
                                                                                                           err=err)
                                 result_one_ex["multi_ex"] = True
                             else:  
-                                for indicator in result_types_indicators[result_type]:
+                                try:
                                     result_one_ex.loc[indicator,col_name] = ex_result_grouped.loc[indicator,col_name]
+                                except Exception as e:
+                                    print(e)
+                                # for indicator in result_types_indicators[result_type]:
+                                #     try:
+                                #         result_one_ex.loc[indicator,col_name] = ex_result_grouped.loc[indicator,col_name]
+                                #     except Exception as e:
+                                #         print(e)
                                 result_one_ex["multi_ex"] = False
                     else:
                         for indicator in result_types_indicators[result_type]:
@@ -233,6 +255,7 @@ def group_multi_experiment_results(ex_setting = "PHA_51tenant_5community_28house
                                 for one_value in value.values[:-1]:
                                     if value_last is np.nan:
                                         continue
+                                    elif col_name =="ex_idx":continue
                                     else:
                                         assert value_last == one_value,f"incompatible value for col '{col_name}'"
                                 value = value_last
@@ -296,9 +319,11 @@ if __name__ == "__main__":
     #         "LLM_PublicHouseAllocation/tasks/PHA_51tenant_5community_28house/configs/ver2_nofilter_multilist_priority_7t_5h/result/1699435988.0701036"
     #         ]
     
-        
+    ex_setting ="PHA_51tenant_5community_28house_new_priority_label"
     
-    concat_experiment_results(ex_setting="PHA_51tenant_5community_28house",
-                              save_root="LLM_PublicHouseAllocation/experiments")
-    group_multi_experiment_results()
-    # get_ex_names_single_experiment()
+    concat_experiment_results(ex_setting=ex_setting,
+                             save_root="LLM_PublicHouseAllocation/experiments")
+    #group_multi_experiment_results(ex_setting=ex_setting)
+    # get_ex_names_single_experiment(ex_setting=ex_setting)
+    
+    

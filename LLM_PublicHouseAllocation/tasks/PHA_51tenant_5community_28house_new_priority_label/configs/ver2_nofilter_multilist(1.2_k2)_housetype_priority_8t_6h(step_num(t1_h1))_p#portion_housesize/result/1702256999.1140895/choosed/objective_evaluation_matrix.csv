@@ -1,0 +1,5 @@
+type_indicator,3>=family_num>=2,family_num=1,family_num>3,all
+mean_house_area,20.790925925925922,41.65,14.25,23.066770833333333
+mean_wait_turn,1.8888888888888888,2.6666666666666665,1.75,2.0
+var_mean_house_area,,,,100.63624807942709
+Rop,,,,19.0

@@ -1,6 +1,6 @@
-Rounds,$|Queue|$,Avg $House^{size}$,Var $House^{size}$,Rop,mean WT,gini coefficient,social welfare,ex_name
-9,1,9.573415033,166.8145315,237,3.764705882,0.599345818,333.9,ver1_nofilter_multilist(1.2)_portion1(f_member_num)_priority_8t_6h_p#portion_housesize
-10,2,12.76727,203.839,275,3.921569,0.493524,429.5,ver1_nofilter_multilist(1.2)_portion2(f_member_num)_priority_8t_6h_p#portion_housesize
-10,3,11.0299,150.9815,213,4,0.521932,397.4,ver1_nofilter_multilist(1.2)_portion3(f_member_num)_priority_8t_6h_p#portion_housesize
-10,4,12.74683,204.9238,310,4.196078,0.511077,406.6,ver1_nofilter_multilist(1.2)_portion4(f_member_num)_priority_8t_6h_p#portion_housesize
-10,5,11.24222,223.3689,336,4.509804,0.608875,328.7,ver1_nofilter_multilist(1.2)_portion5(f_member_num)_priority_8t_6h_p#portion_housesize
+Rounds,$|Queue|$,Avg $House^{size}\uparrow$,Var $House^{size}\downarrow$,Rop $\downarrow$,mean WT $\downarrow$,gini coefficient $\downarrow$,social welfare $\uparrow$,ex_name,finished_replace
+10.0,1,9.573415033,166.8145315,234.0,3.5098039215686274,0.5387153552863176,382.1,ver1_nofilter_multilist(1.2)_portion1(f_member_num)_priority_8t_6h_p#portion_housesize,True
+10.0,2,12.76727,203.839,292.0,3.7058823529411766,0.50534670498309,401.2000000000001,ver1_nofilter_multilist(1.2)_portion2(f_member_num)_priority_8t_6h_p#portion_housesize,True
+10.0000$\pm$0.0000,3,11.0299,150.9815,254.5000$\pm$23.5000,3.7549$\pm$0.1078,0.5084$\pm$0.0033,410.4000$\pm$2.8000,ver1_nofilter_multilist(1.2)_portion3(f_member_num)_priority_8t_6h_p#portion_housesize,True
+10.0,4,12.74683,204.9238,281.0,3.901960784313725,0.5249588290022937,394.1,ver1_nofilter_multilist(1.2)_portion4(f_member_num)_priority_8t_6h_p#portion_housesize,True
+8.0,5,11.24222,223.3689,406.0,3.627450980392157,0.5237658882648537,398.0,ver1_nofilter_multilist(1.2)_portion5(f_member_num)_priority_8t_6h_p#portion_housesize,True

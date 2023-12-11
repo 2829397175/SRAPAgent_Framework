@@ -1,0 +1,106 @@
+
+\begin{table*}[h]
+\renewcommand\arraystretch{1.5}
+\caption{Comparative experiments on different allocation methods.}
+\centering\begin{tabular}{rll|rrrrrrrr}
+\toprule
+Rounds & Family Grouping & House Allocation & Avg $House^{size}\uparrow$ & Var $House^{size}\downarrow$ & Rop $\downarrow$ & mean WT $\downarrow$ & gini coefficient $\downarrow$ & social welfare $\uparrow$ \\
+\midrule
+10.0$\pm$0.0 & Self-selection & Random & 6.931 & 207.036 & \textbf{73.5$\pm$24.5} & 6.1$\pm$0.3 & 0.9$\pm$0.0 & 83.8$\pm$32.0 \\
+9.0$\pm$1.0 & Self-selection & By $House^{label}$ & \textbf{12.1$\pm$0.8} & 228.8$\pm$28.4 & 327.0$\pm$26.0 & \textbf{3.1$\pm$0.5} & \textbf{0.5$\pm$0.0} & \textbf{419.9$\pm$0.3} \\
+10.0$\pm$0.0 & Self-selection & By $House^{rent}$ & 7.57 & 163.625 & \textbf{185.0$\pm$7.0} & 4.8$\pm$0.0 & 0.7$\pm$0.0 & 244.6$\pm$3.4 \\
+9 & Self-selection & By $House^{size}$ & 7.102 & 151.625 & \textbf{189} & 4.824 & 0.707 & 236.7 \\
+10 & By $R^{label}$ & Random & 5.647 & 187.74 & 244 & 6 & 0.874 & 102.2 \\
+7 & By $R^{label}$ & By $House^{label}$ & \textbf{15.524} & 274.331 & 431 & \textbf{3.49} & 0.501 & \textbf{412.1} \\
+10 & By $R^{label}$ & By $House^{rent}$ & 5.398 & \textbf{146.128} & \textbf{196} & 5.098 & 0.723 & 221 \\
+9.0$\pm$0.0 & By $R^{label}$ & By $House^{size}$ & 5.059 & \textbf{123.028} & 230.5$\pm$10.5 & 5.6$\pm$0.2 & 0.8$\pm$0.0 & 173.0$\pm$35.7 \\
+10.0$\pm$0.0 & By $R^{\text{family size}}$ & Random & 9.951 & 213.46 & 366.5$\pm$19.5 & 4.6$\pm$0.0 & 0.6$\pm$0.0 & 313.1$\pm$5.7 \\
+10.0$\pm$0.0 & By $R^{\text{family size}}$ & By $House^{rent}$ & \textbf{11.488} & \textbf{141.127} & 251.5$\pm$1.5 & \textbf{3.6$\pm$0.0} & \textbf{0.5$\pm$0.0} & \textbf{410.0$\pm$3.3} \\
+10.0$\pm$0.0 & By $R^{\text{family size}}$ & By $House^{size}$ & \textbf{11.03} & 150.982 & 254.5$\pm$23.5 & 3.8$\pm$0.1 & \textbf{0.5$\pm$0.0} & \textbf{410.4$\pm$2.8} \\
+10.0$\pm$0.0 & By $R^{\text{rent budget}}$ & Random & 8.691 & 217.183 & 300.0$\pm$10.0 & 4.4$\pm$0.1 & 0.6$\pm$0.0 & 313.2$\pm$11.2 \\
+10.0$\pm$0.0 & By $R^{\text{rent budget}}$ & By $House^{rent}$ & 9.868 & 159.255 & 246.5$\pm$4.5 & 3.9$\pm$0.0 & \textbf{0.5$\pm$0.0} & 402.7$\pm$1.4 \\
+10 & By $R^{\text{rent budget}}$ & By $House^{size}$ & 8.42 & \textbf{138.496} & 245 & \textbf{3.765} & 0.517 & 390.6 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+\begin{table*}[h]
+\renewcommand\arraystretch{1.5}
+\caption{Comparative experiments on $k$ and $ratio$ in k-waitlist}
+\centering\begin{tabular}{rll|rrrrrrrr}
+\toprule
+Rounds & k & ratio & Avg $House^{size}\uparrow$ & Var $House^{size}\downarrow$ & Rop $\downarrow$ & mean WT $\downarrow$ & gini coefficient $\downarrow$ & social welfare $\uparrow$ \\
+\midrule
+7.5$\pm$1.5 & 1 & 1.2 & 11.036 & \textbf{186.001} & 315.0$\pm$17.0 & 3.4$\pm$0.1 & 0.5$\pm$0.0 & 416.1$\pm$3.4 \\
+6 & 1 & 1.5 & 10.156 & 256.209 & 328 & 3.255 & 0.485 & \textbf{431.2} \\
+10 & 1 & 1.8 & 10.616 & 221.349 & 365 & 3.451 & 0.507 & 404.5 \\
+7 & 2 & 1.2 & \textbf{14.176} & 238.438 & 281 & 2.184 & 0.472 & 418.1 \\
+9 & 2 & 1.5 & 10.842 & 218.412 & 354 & 3.549 & 0.529 & 396.8 \\
+7 & 2 & 1.8 & 9.968 & 245.914 & 271 & 2.061 & 0.474 & 408.3 \\
+9 & 3 & 1.2 & 11.963 & \textbf{171.274} & 382 & 3.843 & 0.543 & 382.2 \\
+6 & 3 & 1.5 & \textbf{12.129} & 280.607 & \textbf{206} & \textbf{1.905} & \textbf{0.38} & 420.2 \\
+6 & 3 & 1.8 & 10.11 & 234.026 & \textbf{258} & \textbf{1.905} & \textbf{0.374} & \textbf{423.6} \\
+\bottomrule
+\end{tabular}
+\end{table*}
+\begin{table*}[h]
+\renewcommand\arraystretch{1.5}
+\caption{Comparative experiments on $Batch^{House}$}
+\centering\begin{tabular}{rll|rrrrrrrr}
+\toprule
+Rounds & $|Batch^{House}|$ & $|Batch_{gap}^{House}|$ & Avg $House^{size}\uparrow$ & Var $House^{size}\downarrow$ & Rop $\downarrow$ & mean WT $\downarrow$ & gini coefficient $\downarrow$ & social welfare $\uparrow$ \\
+\midrule
+9 & 1 & 1 & \textbf{12.379} & 195.353 & 316 & \textbf{3.824} & \textbf{0.486} & \textbf{425} \\
+10 & 3 & 1 & 11.573 & 182.68 & 306 & 4.647 & 0.525 & 391.2 \\
+10 & 3 & 2 & 12.265 & 193.738 & 306 & 4.647 & 0.525 & 391.2 \\
+10 & 3 & 3 & 11.804 & 180.75 & \textbf{281} & 5.137 & 0.529 & 380.5 \\
+10 & 6 & 1 & 11.759 & \textbf{177.788} & 284 & 4.667 & 0.51 & 400.7 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+\begin{table*}[h]
+\renewcommand\arraystretch{1.5}
+\caption{Comparative experiments on $|Queue|$}
+\centering\begin{tabular}{rl|rrrrrrrr}
+\toprule
+Rounds & $|Queue|$ & Avg $House^{size}\uparrow$ & Var $House^{size}\downarrow$ & Rop $\downarrow$ & mean WT $\downarrow$ & gini coefficient $\downarrow$ & social welfare $\uparrow$ \\
+\midrule
+10 & 1 & 9.573 & 166.815 & \textbf{234} & \textbf{3.51} & 0.539 & 382.1 \\
+10 & 2 & \textbf{12.767} & 203.839 & 292 & 3.706 & 0.505 & 401.2 \\
+10.0$\pm$0.0 & 3 & 11.03 & \textbf{150.982} & 254.5$\pm$23.5 & 3.8$\pm$0.1 & \textbf{0.5$\pm$0.0} & \textbf{410.4$\pm$2.8} \\
+10 & 4 & 12.747 & 204.924 & 281 & 3.902 & 0.525 & 394.1 \\
+8 & 5 & 11.242 & 223.369 & 406 & 3.627 & 0.524 & 398 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+\begin{table*}[h]
+\renewcommand\arraystretch{1.5}
+\caption{Comparison experiments on whether to consider vulnerable groups}
+\centering\begin{tabular}{rll|rrrrrrrrr}
+\toprule
+Rounds & Ex.setting & Priority & Avg $House^{size}\uparrow$ & Var $House^{size}\downarrow$ & Rop $\downarrow$ & mean WT $\downarrow$ & gini coefficient $\downarrow$ & social welfare $\uparrow$ & F(W,G) $\uparrow$ \\
+\midrule
+8 & (a) & False & 14.584 & 267.534 & 367 & 3.706 & 0.537 & 384.2 & -2.169 \\
+7 & (a) & True & \textbf{15.524} & 274.331 & 431 & 3.49 & 0.501 & 412.1 & -1.033 \\
+6 & (b) & False & 14.358 & 220.826 & \textbf{215} & \textbf{1.81} & \textbf{0.372} & \textbf{428.7} & \textbf{0.81} \\
+9.0$\pm$1.0 & (b) & True & 12.713 & \textbf{199.127} & 327.0$\pm$26.0 & 3.1$\pm$0.5 & 0.5$\pm$0.0 & 419.9$\pm$0.3 & -4.3$\pm$0.7 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+\begin{table*}[h]
+\renewcommand\arraystretch{1.5}
+\caption{Comparative experiments on $Batch^{Agent}$}
+\centering\begin{tabular}{rll|rrrrrrrr}
+\toprule
+Rounds & $|Batch^{Agent}|$ & $|Batch_{gap}^{Agent}|$ & Avg $House^{size}\uparrow$ & Var $House^{size}\downarrow$ & Rop $\downarrow$ & mean WT $\downarrow$ & gini coefficient $\downarrow$ & social welfare $\uparrow$ \\
+\midrule
+10 & 1 & 1 & \textbf{13.187} & 236.784 & 263 & 6.627 & 0.514 & 401.6 \\
+10 & 2 & 1 & \textbf{12.958} & 219.409 & 276 & 6.216 & \textbf{0.506} & \textbf{402.7} \\
+10 & 2 & 3 & 11.217 & 174.96 & 331 & 5.216 & 0.54 & 382.3 \\
+10 & 2 & 5 & 12.174 & 188.032 & 310 & 4.353 & 0.541 & 374.3 \\
+10 & 4 & 1 & 10.13 & \textbf{136.601} & \textbf{237} & 5.451 & \textbf{0.503} & \textbf{409.8} \\
+10 & 4 & 2 & 11.686 & \textbf{168.69} & \textbf{254} & \textbf{3.745} & 0.545 & 372.2 \\
+10 & 5 & 1 & 11.759 & 177.788 & 284 & 4.667 & 0.51 & 400.7 \\
+10 & 8 & 1 & 11.3 & 177.82 & 320 & \textbf{3.686} & 0.527 & 397.6 \\
+\bottomrule
+\end{tabular}
+\end{table*}

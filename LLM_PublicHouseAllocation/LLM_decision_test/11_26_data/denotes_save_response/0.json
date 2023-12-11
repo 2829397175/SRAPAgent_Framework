@@ -31,7 +31,10 @@
         },
         "data_label":26,
         "reasonal_3.5":"human_response",
-        "reasonal_4":"robot_response_4_chinese"
+        "reasonal_4":[
+            "robot_response_4_chinese",
+            "robot_response_4_chinese"
+        ]
     },
     {
         "prompt_inputs":{
@@ -65,7 +68,10 @@
         },
         "data_label":26,
         "reasonal_3.5":"human_response",
-        "reasonal_4":"robot_response_4_chinese"
+        "reasonal_4":[
+            "robot_response_4_chinese",
+            "robot_response_4_chinese"
+        ]
     },
     {
         "prompt_inputs":{
@@ -99,7 +105,10 @@
         },
         "data_label":26,
         "reasonal_3.5":"both",
-        "reasonal_4":"human_response"
+        "reasonal_4":[
+            "human_response",
+            "robot_response_4_chinese"
+        ]
     },
     {
         "prompt_inputs":{
@@ -133,7 +142,10 @@
         },
         "data_label":26,
         "reasonal_3.5":"human_response",
-        "reasonal_4":"human_response"
+        "reasonal_4":[
+            "human_response",
+            "both"
+        ]
     },
     {
         "prompt_inputs":{
@@ -167,7 +179,10 @@
         },
         "data_label":26,
         "reasonal_3.5":"none",
-        "reasonal_4":"robot_response_4_chinese"
+        "reasonal_4":[
+            "robot_response_4_chinese",
+            "robot_response_4_chinese"
+        ]
     },
     {
         "prompt_inputs":{
@@ -201,7 +216,10 @@
         },
         "data_label":26,
         "reasonal_3.5":"human_response",
-        "reasonal_4":"robot_response_4_chinese"
+        "reasonal_4":[
+            "robot_response_4_chinese",
+            "human_response"
+        ]
     },
     {
         "prompt_inputs":{
@@ -235,7 +253,10 @@
         },
         "data_label":26,
         "reasonal_3.5":"both",
-        "reasonal_4":"robot_response_4_chinese"
+        "reasonal_4":[
+            "robot_response_4_chinese",
+            "none"
+        ]
     },
     {
         "prompt_inputs":{
@@ -269,7 +290,10 @@
         },
         "data_label":26,
         "reasonal_3.5":"none",
-        "reasonal_4":"robot_response_4_chinese"
+        "reasonal_4":[
+            "robot_response_4_chinese",
+            "robot_response_4_chinese"
+        ]
     },
     {
         "prompt_inputs":{
@@ -303,7 +327,10 @@
         },
         "data_label":26,
         "reasonal_3.5":"robot_response_3.5_chinese",
-        "reasonal_4":"robot_response_4_chinese"
+        "reasonal_4":[
+            "robot_response_4_chinese",
+            "none"
+        ]
     },
     {
         "prompt_inputs":{
@@ -337,7 +364,10 @@
         },
         "data_label":26,
         "reasonal_3.5":"both",
-        "reasonal_4":"robot_response_4_chinese"
+        "reasonal_4":[
+            "robot_response_4_chinese",
+            "none"
+        ]
     },
     {
         "prompt_inputs":{
@@ -371,7 +401,10 @@
         },
         "data_label":26,
         "reasonal_3.5":"none",
-        "reasonal_4":"robot_response_4_chinese"
+        "reasonal_4":[
+            "robot_response_4_chinese",
+            "none"
+        ]
     },
     {
         "prompt_inputs":{
@@ -405,7 +438,10 @@
         },
         "data_label":26,
         "reasonal_3.5":"both",
-        "reasonal_4":"robot_response_4_chinese"
+        "reasonal_4":[
+            "robot_response_4_chinese",
+            "human_response"
+        ]
     },
     {
         "prompt_inputs":{
@@ -439,7 +475,10 @@
         },
         "data_label":26,
         "reasonal_3.5":"robot_response_3.5_chinese",
-        "reasonal_4":"robot_response_4_chinese"
+        "reasonal_4":[
+            "robot_response_4_chinese",
+            "none"
+        ]
     },
     {
         "prompt_inputs":{
@@ -473,7 +512,10 @@
         },
         "data_label":26,
         "reasonal_3.5":"robot_response_3.5_chinese",
-        "reasonal_4":"robot_response_4_chinese"
+        "reasonal_4":[
+            "robot_response_4_chinese",
+            "human_response"
+        ]
     },
     {
         "prompt_inputs":{
@@ -507,7 +549,10 @@
         },
         "data_label":26,
         "reasonal_3.5":"human_response",
-        "reasonal_4":"human_response"
+        "reasonal_4":[
+            "human_response",
+            "robot_response_4_chinese"
+        ]
     },
     {
         "prompt_inputs":{
@@ -541,7 +586,10 @@
         },
         "data_label":26,
         "reasonal_3.5":"robot_response_3.5_chinese",
-        "reasonal_4":"human_response"
+        "reasonal_4":[
+            "human_response",
+            "robot_response_4_chinese"
+        ]
     },
     {
         "prompt_inputs":{
@@ -575,7 +623,10 @@
         },
         "data_label":26,
         "reasonal_3.5":"both",
-        "reasonal_4":"robot_response_4_chinese"
+        "reasonal_4":[
+            "robot_response_4_chinese",
+            "none"
+        ]
     },
     {
         "prompt_inputs":{
@@ -609,7 +660,10 @@
         },
         "data_label":26,
         "reasonal_3.5":"both",
-        "reasonal_4":"robot_response_4_chinese"
+        "reasonal_4":[
+            "robot_response_4_chinese",
+            "robot_response_4_chinese"
+        ]
     },
     {
         "prompt_inputs":{
@@ -643,7 +697,10 @@
         },
         "data_label":26,
         "reasonal_3.5":"robot_response_3.5_chinese",
-        "reasonal_4":"robot_response_4_chinese"
+        "reasonal_4":[
+            "robot_response_4_chinese",
+            "none"
+        ]
     },
     {
         "prompt_inputs":{
@@ -677,7 +734,10 @@
         },
         "data_label":26,
         "reasonal_3.5":"both",
-        "reasonal_4":"robot_response_4_chinese"
+        "reasonal_4":[
+            "robot_response_4_chinese",
+            "none"
+        ]
     },
     {
         "prompt_inputs":{
@@ -711,7 +771,10 @@
         },
         "data_label":26,
         "reasonal_3.5":"robot_response_3.5_chinese",
-        "reasonal_4":"robot_response_4_chinese"
+        "reasonal_4":[
+            "robot_response_4_chinese",
+            "robot_response_4_chinese"
+        ]
     },
     {
         "prompt_inputs":{
@@ -745,7 +808,10 @@
         },
         "data_label":26,
         "reasonal_3.5":"robot_response_3.5_chinese",
-        "reasonal_4":"robot_response_4_chinese"
+        "reasonal_4":[
+            "robot_response_4_chinese",
+            "robot_response_4_chinese"
+        ]
     },
     {
         "prompt_inputs":{
@@ -779,7 +845,10 @@
         },
         "data_label":26,
         "reasonal_3.5":"both",
-        "reasonal_4":"robot_response_4_chinese"
+        "reasonal_4":[
+            "robot_response_4_chinese",
+            "robot_response_4_chinese"
+        ]
     },
     {
         "prompt_inputs":{
@@ -813,7 +882,10 @@
         },
         "data_label":26,
         "reasonal_3.5":"both",
-        "reasonal_4":"robot_response_4_chinese"
+        "reasonal_4":[
+            "robot_response_4_chinese",
+            "none"
+        ]
     },
     {
         "prompt_inputs":{
@@ -847,7 +919,10 @@
         },
         "data_label":26,
         "reasonal_3.5":"both",
-        "reasonal_4":"robot_response_4_chinese"
+        "reasonal_4":[
+            "robot_response_4_chinese",
+            "robot_response_4_chinese"
+        ]
     },
     {
         "prompt_inputs":{
@@ -881,7 +956,10 @@
         },
         "data_label":26,
         "reasonal_3.5":"both",
-        "reasonal_4":"robot_response_4_chinese"
+        "reasonal_4":[
+            "robot_response_4_chinese",
+            "robot_response_4_chinese"
+        ]
     },
     {
         "prompt_inputs":{
@@ -915,7 +993,10 @@
         },
         "data_label":26,
         "reasonal_3.5":"human_response",
-        "reasonal_4":"robot_response_4_chinese"
+        "reasonal_4":[
+            "robot_response_4_chinese",
+            "robot_response_4_chinese"
+        ]
     },
     {
         "prompt_inputs":{
@@ -949,7 +1030,10 @@
         },
         "data_label":26,
         "reasonal_3.5":"human_response",
-        "reasonal_4":"robot_response_4_chinese"
+        "reasonal_4":[
+            "robot_response_4_chinese",
+            "none"
+        ]
     },
     {
         "prompt_inputs":{
@@ -983,7 +1067,10 @@
         },
         "data_label":26,
         "reasonal_3.5":"none",
-        "reasonal_4":"robot_response_4_chinese"
+        "reasonal_4":[
+            "robot_response_4_chinese",
+            "robot_response_4_chinese"
+        ]
     },
     {
         "prompt_inputs":{
@@ -1017,7 +1104,10 @@
         },
         "data_label":26,
         "reasonal_3.5":"both",
-        "reasonal_4":"robot_response_4_chinese"
+        "reasonal_4":[
+            "robot_response_4_chinese",
+            "robot_response_4_chinese"
+        ]
     },
     {
         "prompt_inputs":{
@@ -1051,7 +1141,10 @@
         },
         "data_label":26,
         "reasonal_3.5":"human_response",
-        "reasonal_4":"robot_response_4_chinese"
+        "reasonal_4":[
+            "robot_response_4_chinese",
+            "none"
+        ]
     },
     {
         "prompt_inputs":{
@@ -1085,7 +1178,10 @@
         },
         "data_label":26,
         "reasonal_3.5":"none",
-        "reasonal_4":"robot_response_4_chinese"
+        "reasonal_4":[
+            "robot_response_4_chinese",
+            "none"
+        ]
     },
     {
         "prompt_inputs":{
@@ -1119,7 +1215,10 @@
         },
         "data_label":26,
         "reasonal_3.5":"both",
-        "reasonal_4":"robot_response_4_chinese"
+        "reasonal_4":[
+            "robot_response_4_chinese",
+            "robot_response_4_chinese"
+        ]
     },
     {
         "prompt_inputs":{
@@ -1153,7 +1252,10 @@
         },
         "data_label":26,
         "reasonal_3.5":"none",
-        "reasonal_4":"robot_response_4_chinese"
+        "reasonal_4":[
+            "robot_response_4_chinese",
+            "human_response"
+        ]
     },
     {
         "prompt_inputs":{
@@ -1187,7 +1289,10 @@
         },
         "data_label":26,
         "reasonal_3.5":"none",
-        "reasonal_4":"robot_response_4_chinese"
+        "reasonal_4":[
+            "robot_response_4_chinese",
+            "none"
+        ]
     },
     {
         "prompt_inputs":{
@@ -1221,7 +1326,10 @@
         },
         "data_label":26,
         "reasonal_3.5":"both",
-        "reasonal_4":"robot_response_4_chinese"
+        "reasonal_4":[
+            "robot_response_4_chinese",
+            "robot_response_4_chinese"
+        ]
     },
     {
         "prompt_inputs":{
@@ -1255,7 +1363,10 @@
         },
         "data_label":26,
         "reasonal_3.5":"human_response",
-        "reasonal_4":"human_response"
+        "reasonal_4":[
+            "human_response",
+            "none"
+        ]
     },
     {
         "prompt_inputs":{
@@ -1289,7 +1400,10 @@
         },
         "data_label":26,
         "reasonal_3.5":"human_response",
-        "reasonal_4":"robot_response_4_chinese"
+        "reasonal_4":[
+            "robot_response_4_chinese",
+            "human_response"
+        ]
     },
     {
         "prompt_inputs":{
@@ -1323,7 +1437,10 @@
         },
         "data_label":26,
         "reasonal_3.5":"both",
-        "reasonal_4":"robot_response_4_chinese"
+        "reasonal_4":[
+            "robot_response_4_chinese",
+            "none"
+        ]
     },
     {
         "prompt_inputs":{
@@ -1357,7 +1474,10 @@
         },
         "data_label":26,
         "reasonal_3.5":"both",
-        "reasonal_4":"robot_response_4_chinese"
+        "reasonal_4":[
+            "robot_response_4_chinese",
+            "robot_response_4_chinese"
+        ]
     },
     {
         "prompt_inputs":{
@@ -1391,7 +1511,10 @@
         },
         "data_label":26,
         "reasonal_3.5":"human_response",
-        "reasonal_4":"robot_response_4_chinese"
+        "reasonal_4":[
+            "robot_response_4_chinese",
+            "robot_response_4_chinese"
+        ]
     },
     {
         "prompt_inputs":{
@@ -1425,7 +1548,10 @@
         },
         "data_label":26,
         "reasonal_3.5":"both",
-        "reasonal_4":"robot_response_4_chinese"
+        "reasonal_4":[
+            "robot_response_4_chinese",
+            "robot_response_4_chinese"
+        ]
     },
     {
         "prompt_inputs":{
@@ -1459,7 +1585,10 @@
         },
         "data_label":26,
         "reasonal_3.5":"both",
-        "reasonal_4":"robot_response_4_chinese"
+        "reasonal_4":[
+            "robot_response_4_chinese",
+            "robot_response_4_chinese"
+        ]
     },
     {
         "prompt_inputs":{
@@ -1493,7 +1622,10 @@
         },
         "data_label":26,
         "reasonal_3.5":"human_response",
-        "reasonal_4":"robot_response_4_chinese"
+        "reasonal_4":[
+            "robot_response_4_chinese",
+            "robot_response_4_chinese"
+        ]
     },
     {
         "prompt_inputs":{
@@ -1527,7 +1659,10 @@
         },
         "data_label":26,
         "reasonal_3.5":"none",
-        "reasonal_4":"robot_response_4_chinese"
+        "reasonal_4":[
+            "robot_response_4_chinese",
+            "robot_response_4_chinese"
+        ]
     },
     {
         "prompt_inputs":{
@@ -1561,7 +1696,10 @@
         },
         "data_label":26,
         "reasonal_3.5":"both",
-        "reasonal_4":"robot_response_4_chinese"
+        "reasonal_4":[
+            "robot_response_4_chinese",
+            "none"
+        ]
     },
     {
         "prompt_inputs":{
@@ -1595,7 +1733,10 @@
         },
         "data_label":26,
         "reasonal_3.5":"both",
-        "reasonal_4":"robot_response_4_chinese"
+        "reasonal_4":[
+            "robot_response_4_chinese",
+            "robot_response_4_chinese"
+        ]
     },
     {
         "prompt_inputs":{
@@ -1629,7 +1770,10 @@
         },
         "data_label":26,
         "reasonal_3.5":"robot_response_3.5_chinese",
-        "reasonal_4":"robot_response_4_chinese"
+        "reasonal_4":[
+            "robot_response_4_chinese",
+            "human_response"
+        ]
     },
     {
         "prompt_inputs":{
@@ -1663,7 +1807,10 @@
         },
         "data_label":26,
         "reasonal_3.5":"both",
-        "reasonal_4":"robot_response_4_chinese"
+        "reasonal_4":[
+            "robot_response_4_chinese",
+            "robot_response_4_chinese"
+        ]
     },
     {
         "prompt_inputs":{
@@ -1697,6 +1844,9 @@
         },
         "data_label":26,
         "reasonal_3.5":"both",
-        "reasonal_4":"robot_response_4_chinese"
+        "reasonal_4":[
+            "robot_response_4_chinese",
+            "robot_response_4_chinese"
+        ]
     }
 ]

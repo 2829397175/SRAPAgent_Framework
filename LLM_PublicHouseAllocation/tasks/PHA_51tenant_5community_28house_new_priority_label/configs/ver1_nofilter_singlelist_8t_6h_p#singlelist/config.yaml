@@ -50,6 +50,7 @@ managers:
       filter_house_labels:
       - house_type
       group_policy:
+        priority: false
         type: single_list
       type: ver1
     type_tenant: LangchainTenant

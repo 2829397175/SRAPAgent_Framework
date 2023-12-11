@@ -30,19 +30,47 @@ parser.add_argument("--api_path",
                     default="LLM_PublicHouseAllocation/llms/api.json",
                     help="The default path of apis json.")
 
+
+parser.add_argument("--optimizer_type",
+                    type=str,
+                    default="genetic_algorithm",
+                    help="the type of the optimzer")
+
+parser.add_argument("--optimize",
+                    action='store_true',
+                    default=False,
+                    help="start the parameter optimization")
+
+parser.add_argument("--simulate",
+                    action='store_true',
+                    default=False,
+                    help="start the simulation process")
+
+
+
 args = parser.parse_args()  # 解析参数
 
-if args.clear_cache:
-    
-    result_dir = os.path.join("LLM_PublicHouseAllocation/tasks",
-                              args.data,
-                              "configs",
-                              args.task,
-                              "result")
-    if os.path.exists(result_dir):
-        shutil.rmtree(result_dir)
-    
-executor = Executor.from_task(args)
-# executor.load_log(args.log)
 
-executor.run()
+
+if __name__ == "__main__":
+    if args.clear_cache:
+        
+        result_dir = os.path.join("LLM_PublicHouseAllocation/tasks",
+                                args.data,
+                                "configs",
+                                args.task,
+                                "result")
+        if os.path.exists(result_dir):
+            shutil.rmtree(result_dir)
+        
+    if args.optimize:
+        from LLM_PublicHouseAllocation.optimizer import policy_optimizer_registry
+        optimizer = policy_optimizer_registry.load_data(args.optimizer_type,
+                                                        data = args.data,
+                                                        normalize = True)
+        optimizer.fit()
+        
+    if args.simulate:
+        executor = Executor.from_task(args)
+        # executor.load_log(args.log)
+        executor.run()

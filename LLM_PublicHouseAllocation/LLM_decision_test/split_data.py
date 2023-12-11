@@ -410,12 +410,12 @@ def append_data_label():
 
 def concat_label_data():
     src_path = "LLM_PublicHouseAllocation/LLM_decision_test/concat_json.json"
-    dst_path = "LLM_PublicHouseAllocation/LLM_decision_test/11_28_data/denotes_save_response/28_1.json"
+    dst_path = "LLM_PublicHouseAllocation/LLM_decision_test/11_26_data/denotes_save_response/2.json"
     
     src_json = readinfo(src_path)
     dst_json = readinfo(dst_path)
     
-    append_key = "reasonal_3.5"
+    append_key = "reasonal_4"
     
     assert len(src_json) == len(dst_json)
     

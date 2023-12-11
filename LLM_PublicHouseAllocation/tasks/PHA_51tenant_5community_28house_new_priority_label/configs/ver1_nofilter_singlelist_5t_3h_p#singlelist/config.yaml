@@ -16,7 +16,7 @@ environment:
 managers:
   community:
     data_dir: data/community_28.json
-    distribution_batch_dir: data/distribution_batch_28_3.json
+    distribution_batch_dir: data/distribution_batch_39_3_1.json
     patch_method: single_list
   forum:
     data_dir: data/forum.json
@@ -50,6 +50,7 @@ managers:
       filter_house_labels:
       - house_type
       group_policy:
+        priority: false
         type: single_list
       type: ver1
     type_tenant: LangchainTenant

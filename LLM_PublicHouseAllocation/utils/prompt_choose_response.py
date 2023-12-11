@@ -113,7 +113,7 @@ class Robot_Simulater():
         self.apis_u.append(api)
         llm = ChatOpenAI(
                         # model_name="gpt-3.5-turbo-16k-0613",
-                        model_name="gpt-4",
+                    model_name="gpt-4",
                        verbose = False,
                        max_tokens = 3000,
                        openai_api_key=api
@@ -286,7 +286,9 @@ async def get_all_robot_response():
         # "LLM_PublicHouseAllocation/LLM_decision_test/11_28_data/denotes_save_response/28_1.json"
         # "LLM_PublicHouseAllocation/LLM_decision_test/11_28_data/denotes_save_response/28_2.json",
         # "LLM_PublicHouseAllocation/LLM_decision_test/11_26_data/denotes_save_response/6.json",
-        "LLM_PublicHouseAllocation/LLM_decision_test/11_28_data/denotes_save_response/28_0.json"
+        # "LLM_PublicHouseAllocation/LLM_decision_test/11_28_data/denotes_save_response/28_0.json",
+        # "LLM_PublicHouseAllocation/LLM_decision_test/11_26_data/denotes_save_response/3.json",
+        "LLM_PublicHouseAllocation/LLM_decision_test/11_26_data/denotes_save_response/4.json"
         ]
             
     

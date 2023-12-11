@@ -30,7 +30,10 @@
             "thought":"房屋32的价格符合我的预算，这是一个积极的因素。44.8平方尺的面积对于我作为一个单身人士来说也足够了。虽然没有指定朝向，但我可以假设是东西向。它位于23楼并带有电梯，这也是一个优点。但附近没有图书馆，所以我干脆都不选。",
             "frame":1
         },
-        "reasonal_3.5":"robot_response_3.5_chinese"
+        "reasonal_3.5":"robot_response_3.5_chinese",
+        "reasonal_4":[
+            "both"
+        ]
     },
     {
         "prompt_inputs":{
@@ -63,7 +66,10 @@
             "thought":"house_32的价格在我的预算范围内，它符合我对舒适和家庭友好的房子的偏好。面积也适合一个小家庭。此外，电梯和阳台的存在增加了便利性和整体生活体验。然而，书中没有提到附近的公园，这是我的偏好之一。所以这些房子不完美。",
             "frame":1
         },
-        "reasonal_3.5":"robot_response_3.5_chinese"
+        "reasonal_3.5":"robot_response_3.5_chinese",
+        "reasonal_4":[
+            "both"
+        ]
     },
     {
         "prompt_inputs":{
@@ -96,7 +102,10 @@
             "thought":"这两个房子看不出是中国传统风格的房子，并且没有提及周围有购物中心，所以我都不选择。",
             "frame":0
         },
-        "reasonal_3.5":"human_response"
+        "reasonal_3.5":"human_response",
+        "reasonal_4":[
+            "human_response"
+        ]
     },
     {
         "prompt_inputs":{
@@ -129,7 +138,10 @@
             "thought":"我最多能接受2240的房子，这些房子都超过了2240，比如房子39是2328",
             "frame":0
         },
-        "reasonal_3.5":"human_response"
+        "reasonal_3.5":"human_response",
+        "reasonal_4":[
+            "both"
+        ]
     },
     {
         "prompt_inputs":{
@@ -162,7 +174,10 @@
             "thought":"房子的朝向是南北向。它位于16层。它有电梯。该单位空间宽敞，布局合理，确保每个区域都可用且舒适。空间宽敞有利于激发创作灵感。",
             "frame":0
         },
-        "reasonal_3.5":"human_response"
+        "reasonal_3.5":"human_response",
+        "reasonal_4":[
+            "human_response"
+        ]
     },
     {
         "prompt_inputs":{
@@ -195,7 +210,10 @@
             "thought":"这所房子的房间布局很好，楼层之间有足够的间距。卧室很宽敞，有足够的储物空间和活动空间。浴室的设计是为了方便淋浴。还有一个相当大的专用厨房,非常符合我的需求。",
             "frame":0
         },
-        "reasonal_3.5":"both"
+        "reasonal_3.5":"both",
+        "reasonal_4":[
+            "robot_response_4_chinese"
+        ]
     },
     {
         "prompt_inputs":{
@@ -228,7 +246,10 @@
             "thought":"我最多接受价格为1400的房子，这三栋房子的价格都在2000以上，远远超出了我的预算。",
             "frame":1
         },
-        "reasonal_3.5":"human_response"
+        "reasonal_3.5":"human_response",
+        "reasonal_4":[
+            "both"
+        ]
     },
     {
         "prompt_inputs":{
@@ -261,7 +282,10 @@
             "thought":"首先这个房子的价格可以接受，其次他拥有宽敞的卧室，并且楼层之间的距离不是很大，可以方便我的孩子们快乐地玩耍。",
             "frame":1
         },
-        "reasonal_3.5":"robot_response_3.5_chinese"
+        "reasonal_3.5":"robot_response_3.5_chinese",
+        "reasonal_4":[
+            "robot_response_4_chinese"
+        ]
     },
     {
         "prompt_inputs":{
@@ -294,7 +318,10 @@
             "thought":"这房子价格为1106。它的平方英尺约为44.24英尺。房子的朝向是EW。它位于10楼。它有电梯。这种紧凑的布局是单身人士的理想，所以我选择这个。",
             "frame":1
         },
-        "reasonal_3.5":"robot_response_3.5_chinese"
+        "reasonal_3.5":"robot_response_3.5_chinese",
+        "reasonal_4":[
+            "robot_response_4_chinese"
+        ]
     },
     {
         "prompt_inputs":{
@@ -327,7 +354,10 @@
             "thought":"首先价格都在可以接受的范围之内，其次这个房子有充足的光线，是有利于激发创作灵感的。",
             "frame":1
         },
-        "reasonal_3.5":"human_response"
+        "reasonal_3.5":"human_response",
+        "reasonal_4":[
+            "none"
+        ]
     },
     {
         "prompt_inputs":{
@@ -360,7 +390,10 @@
             "thought":"房子的朝向是南北向的啊，所以采光是充足的，并且厨房和浴室的设计很现代化以及人性化，符合我的基本需求。",
             "frame":1
         },
-        "reasonal_3.5":"both"
+        "reasonal_3.5":"both",
+        "reasonal_4":[
+            "both"
+        ]
     },
     {
         "prompt_inputs":{
@@ -393,7 +426,10 @@
             "thought":"住宅得益于空间的有效利用，确保所有房间的大小都很舒适。浴室是符合人体工程学的设计，便于使用,孩子在那边玩耍不会受伤。",
             "frame":0
         },
-        "reasonal_3.5":"robot_response_3.5_chinese"
+        "reasonal_3.5":"robot_response_3.5_chinese",
+        "reasonal_4":[
+            "robot_response_4_chinese"
+        ]
     },
     {
         "prompt_inputs":{
@@ -426,7 +462,10 @@
             "thought":"这里面最便宜的一个房子是2177，以及超过我的最大预算1960了",
             "frame":1
         },
-        "reasonal_3.5":"human_response"
+        "reasonal_3.5":"human_response",
+        "reasonal_4":[
+            "both"
+        ]
     },
     {
         "prompt_inputs":{
@@ -459,7 +498,10 @@
             "thought":"这是符合我的预算并且最便宜的房子了，而且它有电梯。一个光线充足的空间，有一个独立的厨房和阳台，在大小和功能之间提供了很好的平衡，我会住的很舒适。",
             "frame":0
         },
-        "reasonal_3.5":"human_response"
+        "reasonal_3.5":"human_response",
+        "reasonal_4":[
+            "both"
+        ]
     },
     {
         "prompt_inputs":{
@@ -492,7 +534,10 @@
             "thought":"这座房子以其高效的布局散发着魅力，提供了充足的生活空间和宽敞的卧室。楼层间的空间很通风，浴室和独立的厨房都很宽敞,很适合带着孩子们一起生活。",
             "frame":1
         },
-        "reasonal_3.5":"both"
+        "reasonal_3.5":"both",
+        "reasonal_4":[
+            "robot_response_4_chinese"
+        ]
     },
     {
         "prompt_inputs":{
@@ -525,7 +570,10 @@
             "thought":"房子的价格符合预算，而且是更便宜的，房子的朝向是南北向。它位于14楼。它有电梯。这套公寓虽然紧凑，但它的阳台和一个独立的厨房让它感觉比实际更大。",
             "frame":0
         },
-        "reasonal_3.5":"robot_response_3.5_chinese"
+        "reasonal_3.5":"robot_response_3.5_chinese",
+        "reasonal_4":[
+            "human_response"
+        ]
     },
     {
         "prompt_inputs":{
@@ -558,6 +606,9 @@
             "thought":"该单元以其高效的布局和额外的阳台豪华而脱颖而出，承诺提供全面的生活体验。想必很符合我对房子的现代化的需求，高效的布局可以让我更加舒适地工作。",
             "frame":1
         },
-        "reasonal_3.5":"robot_response_3.5_chinese"
+        "reasonal_3.5":"robot_response_3.5_chinese",
+        "reasonal_4":[
+            "both"
+        ]
     }
 ]

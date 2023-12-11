@@ -1,10 +1,10 @@
-Rounds,k,ratio,Avg $House^{size}$,Var $House^{size}$,Rop,mean WT,gini coefficient,social welfare,ex_name
-10,1,1.2,11.03620915,186.0009609,269,3.980392157,0.556351658,363.7,ver2_nofilter_multilist(1.2_k1)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3
-10,1,1.5,10.15591503,256.2085951,307,4.705882353,0.675020304,270.4,ver2_nofilter_multilist(1.5_k1)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3
-10,1,1.8,10.61601307,221.348741,306,4.68627451,0.632977415,303,ver2_nofilter_multilist(1.8_k1)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3
-7,2,1.2,14.17612245,238.4383575,303,2.285714286,0.47693598,408.8,ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3
-10,2,1.5,10.84215686,218.4122319,290,4.333333333,0.60991034,320.6,ver2_nofilter_multilist(1.5_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3
-10,2,1.8,9.968464052,245.9138719,298,4.862745098,0.666596614,279.9,ver2_nofilter_multilist(1.8_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3
-10,3,1.2,11.96334967,171.2743796,223,3.568627451,0.47933621,430.8,ver2_nofilter_multilist(1.2_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3
-10,3,1.5,12.12869281,280.6071298,374,4.62745098,0.614403181,325.5,ver2_nofilter_multilist(1.5_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3
-10,3,1.8,10.11006536,234.0256894,284,4.764705882,0.652663003,289,ver2_nofilter_multilist(1.8_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3
+Rounds,k,ratio,Avg $House^{size}\uparrow$,Var $House^{size}\downarrow$,Rop $\downarrow$,mean WT $\downarrow$,gini coefficient $\downarrow$,social welfare $\uparrow$,ex_name,finished_replace
+7.5000$\pm$1.5000,1,1.2,11.03620915,186.0009609,315.0000$\pm$17.0000,3.3529$\pm$0.1176,0.4925$\pm$0.0005,416.1500$\pm$3.3500,ver2_nofilter_multilist(1.2_k1)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3,True
+7.5000$\pm$1.5000,1,1.5,10.15591503,256.2085951,330.5000$\pm$2.5000,3.0588$\pm$0.1961,0.4885$\pm$0.0038,423.9000$\pm$7.3000,ver2_nofilter_multilist(1.5_k1)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3,True
+8.5000$\pm$1.5000,1,1.8,10.61601307,221.348741,333.0000$\pm$32.0000,2.7459$\pm$0.7051,0.4903$\pm$0.0163,409.8000$\pm$5.3000,ver2_nofilter_multilist(1.8_k1)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3,True
+7.0000$\pm$0.0000,2,1.2,14.17612245,238.4383575,269.5000$\pm$11.5000,2.1939$\pm$0.0102,0.4701$\pm$0.0017,420.3000$\pm$2.2000,ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3,True
+9.0,2,1.5,10.84215686,218.4122319,354.0,3.549019607843137,0.5289373814041747,396.8,ver2_nofilter_multilist(1.5_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3,True
+7.0,2,1.8,9.968464052,245.9138719,271.0,2.061224489795918,0.4740311995481513,408.3,ver2_nofilter_multilist(1.8_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3,True
+9.0,3,1.2,11.96334967,171.2743796,382.0,3.843137254901961,0.5434584090046275,382.2,ver2_nofilter_multilist(1.2_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3,True
+6.0,3,1.5,12.12869281,280.6071298,206.0,1.9047619047619049,0.3802157702681262,420.2,ver2_nofilter_multilist(1.5_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3,True
+6.0,3,1.8,10.11006536,234.0256894,258.0,1.9047619047619049,0.3743648545348262,423.6,ver2_nofilter_multilist(1.8_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3,True
