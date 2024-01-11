@@ -1,4 +1,4 @@
-Rounds,Family Grouping,House Allocation,Avg $House^{size}\uparrow$,Var $House^{size}\downarrow$,Rop $\downarrow$,mean WT $\downarrow$,gini coefficient $\downarrow$,social welfare $\uparrow$,ex_name,finished_replace
+Rounds,Family Grouping,House Allocation,Avg $House^{size}\uparrow$,Var $House^{size}\downarrow$,Rop $\downarrow$,Avg WT $\downarrow$,gini coefficient $\downarrow$,SW $\uparrow$,ex_name,finished_replace
 10.0000$\pm$0.0000,Self-selection,Random,6.930588235,207.0356742,73.5000$\pm$24.5000,6.0588$\pm$0.2549,0.8925$\pm$0.0362,83.7500$\pm$32.0500,ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#random_avg,True
 9.0000$\pm$1.0000,Self-selection,By $House^{label}$,12.1475$\pm$0.7965,228.8215$\pm$28.3841,327.0000$\pm$26.0000,3.0588$\pm$0.5098,0.4891$\pm$0.0006,419.8500$\pm$0.3500,ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2,True
 10.0000$\pm$0.0000,Self-selection,By $House^{rent}$,7.570196078,163.6251274,185.0000$\pm$7.0000,4.7647$\pm$0.0000,0.7050$\pm$0.0011,244.5500$\pm$3.3500,ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#portion_rentmoney,True

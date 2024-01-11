@@ -173,7 +173,7 @@
         },
         "data_label":28,
         "reasonal_3.5":[
-            "both"
+            "human_response"
         ],
         "reasonal_4":[
             "human_response"
@@ -572,7 +572,7 @@
             "human_response"
         ],
         "reasonal_4":[
-            "robot_response_4_chinese"
+            "human_response"
         ]
     },
     {
@@ -857,7 +857,7 @@
         },
         "data_label":28,
         "reasonal_3.5":[
-            "both"
+            "human_response"
         ],
         "reasonal_4":[
             "both"
@@ -1040,7 +1040,7 @@
             "both"
         ],
         "reasonal_4":[
-            "both"
+            "human_response"
         ]
     },
     {
@@ -1361,7 +1361,7 @@
         },
         "data_label":28,
         "reasonal_3.5":[
-            "robot_response_3.5_chinese"
+            "human_response"
         ],
         "reasonal_4":[
             "human_response"

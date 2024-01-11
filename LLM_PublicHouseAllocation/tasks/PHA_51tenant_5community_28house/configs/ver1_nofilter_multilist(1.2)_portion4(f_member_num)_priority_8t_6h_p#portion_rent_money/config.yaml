@@ -1,4 +1,5 @@
 environment:
+  communication_num: 10
   env_type: rent
   max_turns: 10
   rule:
@@ -56,7 +57,7 @@ managers:
         - 0.3
         - 0.3
         - 0.2
-        priority: true
+        sorting_type: priority
         type: portion
       type: ver1
     type_tenant: LangchainTenant

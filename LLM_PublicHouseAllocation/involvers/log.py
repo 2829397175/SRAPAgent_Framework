@@ -188,10 +188,13 @@ class LogRound(BaseModel):
         for group_id,group_matrix in utility_matrix_objective_grouped:
             objective_evaluation.loc["mean_house_area",group_id] = np.average(group_matrix["avg_area"])
             objective_evaluation.loc["mean_wait_turn",group_id] = np.average(group_matrix["wait_turn"])
+            objective_evaluation.loc["mean_idle_wait_turn",group_id] = np.average(group_matrix["IWT"])
             
         objective_evaluation.loc["mean_house_area","all"] = np.average(utility_matrix_objective["avg_area"])
         objective_evaluation.loc["var_mean_house_area","all"] = np.var(utility_matrix_objective["avg_area"])
         objective_evaluation.loc["mean_wait_turn","all"] = np.average(utility_matrix_objective["wait_turn"])
+        objective_evaluation.loc["mean_idle_wait_turn","all"] = np.average(utility_matrix_objective["IWT"])
+        
         
         # 计算逆序对
         count_rop = 0
@@ -224,6 +227,7 @@ class LogRound(BaseModel):
         # utility_eval_matrix.index = index
         utility_eval_matrix.to_csv(os.path.join(save_dir,"utility_eval_matrix.csv"))
         objective_evaluation.to_csv(os.path.join(save_dir,"objective_evaluation_matrix.csv"))
+        utility_matrix_objective.index.name = "tenant_ids"
         utility_matrix_objective.to_csv(os.path.join(save_dir,"utility_matrix_objective.csv"))
         
         
@@ -245,15 +249,25 @@ class LogRound(BaseModel):
     
     def evaluation_matrix(self,
                           global_score,
-                          system): # 评价系统的公平度，满意度
+                          system,
+                          max_count_rounds = 10 ): # 评价系统的公平度，满意度
         
         tenant_manager = global_score.tenant_manager
         """this function must be called at the end of running this system."""
         
-        
+        ### filter log
+        filtered_log = {}
+        for log_id, log in self.log.items():
+            if log_id == "group":
+                filtered_log[log_id] = log
+            elif int(log_id) <= max_count_rounds:
+                filtered_log[log_id] = log
                 
+        self.log = filtered_log
         utility = global_score.get_result()
         utility_choosed = {}
+        
+        
         for log_id,log in self.log.items():
             if log_id == "group":
                 continue
@@ -264,6 +278,7 @@ class LogRound(BaseModel):
             if log_round is None:
                 continue
             for tenant_id, tenant_info in log_round.items():
+                 
                 if "choose_house_id" in tenant_info.keys():
                     if tenant_info["choose_house_id"] !="None":
                         rating_score_choose_u = utility[str(tenant_id)]["ratings"][tenant_info["choose_house_id"]]
@@ -281,6 +296,25 @@ class LogRound(BaseModel):
                                     "wait_turn": int(log_id) - int(enter_turn)
                                 } 
                 
+        # 加入idle等待turn
+        for log_id,log in self.log.items():      
+            if log_id == "group":
+                continue
+            if log == {}:
+                continue 
+            log_round = log.get("log_round")
+            if log_round is None:
+                continue
+            
+            for tenant_id, tenant_info in log_round.items():
+                if tenant_id in utility_choosed.keys() and \
+                    utility_choosed[tenant_id].get("IWT",None) is None: 
+                        
+                    tenant = tenant_manager.total_tenant_datas[tenant_id]
+                    enter_turn = tenant_manager.get_tenant_enter_turn(tenant)
+                    offer_turn = int(log_id)
+                    utility_choosed[tenant_id]["IWT"] = int(offer_turn) - int(enter_turn)        
+        
         self.count_utility(utility_choosed,system,tenant_manager,"choosed")
         
         max_turn = list(self.log.keys())[-1]
@@ -299,7 +333,7 @@ class LogRound(BaseModel):
         
 
         for tenant_id in tenants_system:
-            if tenant_id not in utility_choosed:
+            if tenant_id not in utility_choosed.keys():
                 tenant = tenant_manager.total_tenant_datas[tenant_id]
                 group_id_t = self.group(tenant)
                 enter_turn = tenant_manager.get_tenant_enter_turn(tenant)
@@ -310,6 +344,27 @@ class LogRound(BaseModel):
                                     "choose_house_id": "None",
                                     "wait_turn": max_turn - int(enter_turn)
                                 } 
+        
+        # 加入idle等待turn
+        for log_id,log in self.log.items():      
+            if log_id == "group":
+                continue
+            if log == {}:
+                continue 
+            log_round = log.get("log_round")
+            if log_round is None:
+                continue
+            
+            for tenant_id, tenant_info in log_round.items():
+                if utility_choosed[tenant_id].get("IWT",None) is None: 
+                    tenant = tenant_manager.total_tenant_datas[tenant_id]
+                    enter_turn = tenant_manager.get_tenant_enter_turn(tenant)
+                    offer_turn = int(log_id)
+                    utility_choosed[tenant_id]["IWT"] = int(offer_turn) - int(enter_turn)
+                    
+        for tenant_id in utility_choosed.keys():
+            if utility_choosed[tenant_id].get("IWT",None) is None: 
+                utility_choosed[tenant_id]["IWT"] = utility_choosed[tenant_id]["wait_turn"]
         
         self.count_utility(utility_choosed,system,tenant_manager,"all")
         

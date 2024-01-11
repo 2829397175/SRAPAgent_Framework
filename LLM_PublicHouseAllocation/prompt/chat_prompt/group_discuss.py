@@ -49,7 +49,8 @@ class GroupDiscussPromptTemplate(BaseChatPromptTemplate):
                      "acquaintances",
                      "acquaintance_num",
                      "agent_scratchpad",
-                     "memory"])
+                     "memory",
+                     "latest_context"])
         
         super().__init__(template=template,
                          input_variables=input_variables,

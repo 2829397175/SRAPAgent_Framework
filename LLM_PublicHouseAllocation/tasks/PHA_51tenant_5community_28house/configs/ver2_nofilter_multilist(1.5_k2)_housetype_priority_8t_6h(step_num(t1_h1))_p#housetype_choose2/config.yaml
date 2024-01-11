@@ -1,10 +1,12 @@
 environment:
+  communication_num: 10
   env_type: rent
   max_turns: 10
   rule:
     describer:
       type: base
     order:
+      k: 2
       type: kwaitlist
       waitlist_ratio: 1.5
     updater:
@@ -49,7 +51,7 @@ managers:
       filter_house_labels:
       - house_type
       group_policy:
-        priority: true
+        sorting_type: priority
         type: house_type
       type: ver2
     type_tenant: LangchainTenant

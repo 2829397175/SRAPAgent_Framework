@@ -1,0 +1,2 @@
+$\pi$,Avg $House^{size}\uparrow$,Var $House^{size}\downarrow$,Rop $\downarrow$,Avg WT $\downarrow$,gini coefficient $\downarrow$,SW $\uparrow$,ex_name,finished_replace
+$\pi_{KM}$,16.043333333333333,275.7146069716776,511.0,,0.4603545472521175,485.9,optimal_utility,True

@@ -32,7 +32,8 @@
         },
         "reasonal_3.5":"robot_response_3.5_chinese",
         "reasonal_4":[
-            "both"
+            "both",
+            "robot_response_4_chinese"
         ]
     },
     {
@@ -68,6 +69,7 @@
         },
         "reasonal_3.5":"robot_response_3.5_chinese",
         "reasonal_4":[
+            "both",
             "both"
         ]
     },
@@ -104,6 +106,7 @@
         },
         "reasonal_3.5":"human_response",
         "reasonal_4":[
+            "human_response",
             "human_response"
         ]
     },
@@ -140,7 +143,8 @@
         },
         "reasonal_3.5":"human_response",
         "reasonal_4":[
-            "both"
+            "both",
+            "robot_response_4_chinese"
         ]
     },
     {
@@ -176,6 +180,7 @@
         },
         "reasonal_3.5":"human_response",
         "reasonal_4":[
+            "human_response",
             "human_response"
         ]
     },
@@ -212,6 +217,7 @@
         },
         "reasonal_3.5":"both",
         "reasonal_4":[
+            "robot_response_4_chinese",
             "robot_response_4_chinese"
         ]
     },
@@ -248,7 +254,8 @@
         },
         "reasonal_3.5":"human_response",
         "reasonal_4":[
-            "both"
+            "both",
+            "human_response"
         ]
     },
     {
@@ -284,6 +291,7 @@
         },
         "reasonal_3.5":"robot_response_3.5_chinese",
         "reasonal_4":[
+            "robot_response_4_chinese",
             "robot_response_4_chinese"
         ]
     },
@@ -320,6 +328,7 @@
         },
         "reasonal_3.5":"robot_response_3.5_chinese",
         "reasonal_4":[
+            "robot_response_4_chinese",
             "robot_response_4_chinese"
         ]
     },
@@ -356,7 +365,8 @@
         },
         "reasonal_3.5":"human_response",
         "reasonal_4":[
-            "none"
+            "none",
+            "robot_response_4_chinese"
         ]
     },
     {
@@ -392,7 +402,8 @@
         },
         "reasonal_3.5":"both",
         "reasonal_4":[
-            "both"
+            "both",
+            "robot_response_4_chinese"
         ]
     },
     {
@@ -428,6 +439,7 @@
         },
         "reasonal_3.5":"robot_response_3.5_chinese",
         "reasonal_4":[
+            "robot_response_4_chinese",
             "robot_response_4_chinese"
         ]
     },
@@ -464,6 +476,7 @@
         },
         "reasonal_3.5":"human_response",
         "reasonal_4":[
+            "both",
             "both"
         ]
     },
@@ -500,6 +513,7 @@
         },
         "reasonal_3.5":"human_response",
         "reasonal_4":[
+            "both",
             "both"
         ]
     },
@@ -536,7 +550,8 @@
         },
         "reasonal_3.5":"both",
         "reasonal_4":[
-            "robot_response_4_chinese"
+            "robot_response_4_chinese",
+            "human_response"
         ]
     },
     {
@@ -572,6 +587,7 @@
         },
         "reasonal_3.5":"robot_response_3.5_chinese",
         "reasonal_4":[
+            "human_response",
             "human_response"
         ]
     },
@@ -608,7 +624,8 @@
         },
         "reasonal_3.5":"robot_response_3.5_chinese",
         "reasonal_4":[
-            "both"
+            "both",
+            "none"
         ]
     }
 ]

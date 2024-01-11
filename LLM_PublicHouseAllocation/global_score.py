@@ -13,6 +13,8 @@ from tqdm import tqdm
 import random
 import numpy as np
 import copy
+import pandas as pd
+import os
 
 class Global_Score(BaseModel):
     tenant_manager:Optional[TenantManager]=None
@@ -22,6 +24,7 @@ class Global_Score(BaseModel):
     llm_pool:Optional[APIKeyPool]=None
     examples :list =[]
     llm_configs:dict = {}
+    optimal_pair:dict = {}
     
     
     def __init__(self,**kargs) -> None:
@@ -460,3 +463,184 @@ End of example
     def get_result(self):
         return self.result
      
+    def calculate_max_utility(self):
+        from scipy.optimize import linear_sum_assignment
+        tenant_ids = list(self.tenant_manager.total_tenant_datas.keys())
+        house_ids = list(self.system.house_manager.data.keys())
+        
+        # 构建一个权重矩阵
+        cost_matrix = np.zeros((len(tenant_ids), len(house_ids)))
+
+        # 填充权重矩阵
+        for id_x, tenant_id in enumerate(tenant_ids):
+            for id_y, house_id in enumerate(house_ids):
+                utility = self.result[tenant_id]["ratings"][house_id]
+                # 将分数作为负数填充，因为linear_sum_assignment函数是寻找最小费用的匹配
+                cost_matrix[id_x,id_y] = -utility["score"]
+                
+        # 应用Kuhn-Munkres算法找到最优匹配
+        row_ind, col_ind = linear_sum_assignment(cost_matrix)
+        
+        df_optimal_match_utility = pd.DataFrame()
+        
+        house_ids_pair = ["None" for i in range(len(tenant_ids))]
+        
+        # 准备最优匹配结果
+        optimal_matches = [(tenant_ids[i], house_ids[j], -cost_matrix[i, j]) for i, j in zip(row_ind, col_ind)]
+        total_score = -cost_matrix[row_ind, col_ind].sum()
+        
+        for match in optimal_matches:
+            id_tenant = tenant_ids.index(match[0])
+            house_ids_pair[id_tenant] = match[1]
+        
+        df_optimal_match_utility["tenant_ids"] = tenant_ids
+        df_optimal_match_utility.set_index("tenant_ids",inplace=True)
+        
+        df_optimal_match_utility["choose_house_id"] = house_ids_pair
+        
+        for tenant_id in tenant_ids:
+            house_id = df_optimal_match_utility.loc[tenant_id,"choose_house_id"]
+            choose_u = 0 if house_id == 'None' else self.result[tenant_id]["ratings"][house_id]["score"]
+            tenant = self.tenant_manager.total_tenant_datas[tenant_id]
+            append_dict ={
+                "choose_u": choose_u,
+                "priority": not all(not value for value in tenant.priority_item.values()),
+            }
+            df_optimal_match_utility.loc[tenant_id,
+                                         list(append_dict.keys())] = \
+                list(append_dict.values())
+                
+        self.count_utility(df_optimal_match_utility,
+                           self.system,
+                           self.tenant_manager,
+                           "all")
+        
+    def count_utility(self,
+                      utility_matrix:pd.DataFrame,
+                      system,
+                      tenant_manager,
+                      type_utility = "all"):
+        
+        save_dir = os.path.dirname(self.save_dir,"KM_max_pair")
+        save_dir = os.path.join(save_dir,type_utility)
+        
+        if not os.path.exists(save_dir):
+            os.makedirs(save_dir)
+
+        utility_eval_matrix = pd.DataFrame()
+
+        """整体的公平性和满意度"""
+        scores = utility_matrix["choose_u"]
+        utility_eval_matrix.loc[f"least_misery","all"] = min(scores)
+        utility_eval_matrix.loc[f"variance","all"] = np.var(scores)
+         
+        # 满意度
+
+        utility_eval_matrix.loc[f"sw","all"] = np.sum(scores)
+
+                
+        """弱势群体的公平度"""
+        utility_p = utility_matrix[utility_matrix["priority"]]
+        utility_np = utility_matrix[utility_matrix["priority"]!= True]
+        if utility_p.shape[0]!= 0 and utility_np.shape[0]!=0:
+            utility_eval_matrix.loc["F(W,G)","all"] = np.sum(utility_p["choose_u"])/utility_p.shape[0] -\
+            np.sum(utility_np["choose_u"])/utility_np.shape[0]
+        
+        
+        """计算基尼指数,原本的定义是将收入分配作为输入,
+        这里为了衡量公平性, 将房屋分配的utitlity作为输入"""
+        # Calculate Gini coefficient and Lorenz curve coordinates
+        gini, x, y = self.calculate_gini(utility_matrix["choose_u"])
+        import matplotlib.pyplot as plt
+        # Plot the Lorenz curve
+        plt.figure(figsize=(6, 6))
+        plt.plot(x, y, marker='o', linestyle='-', color='b')
+        plt.plot([0, 1], [0, 1], linestyle='--', color='k')
+        plt.fill_between(x, x, y, color='lightgray')
+        plt.xlabel("Cumulative % of Population")
+        plt.ylabel("Cumulative % of Income/Wealth")
+        plt.title(f"Lorenz Curve (Gini Index: {gini:.2f})")
+        plt.grid(True)
+        plt.savefig(os.path.join(save_dir,"GINI_index.png"))
+        
+        utility_eval_matrix.loc["GINI_index","all"] = gini
+
+        """一些客观的指标（例如人均住宅面积）"""
+        objective_evaluation = pd.DataFrame()
+        for tenant_id, choosed_info in utility_matrix.iterrows():
+            house_id  = choosed_info["choose_house_id"]
+            utility_matrix.loc[tenant_id,"family_members_num"] = tenant_manager.total_tenant_datas[tenant_id].family_num
+            try:
+                house_size = system.house_manager.data.get(house_id).get("house_area")
+                house_size = float(house_size.strip())
+                utility_matrix.loc[tenant_id,"house_size"] = house_size
+
+                
+            except Exception as e:
+                utility_matrix.loc[tenant_id,"house_size"] = 0
+        
+        utility_matrix_objective = utility_matrix[utility_matrix["house_size"]!=None]
+        utility_matrix_objective["avg_area"] = utility_matrix_objective["house_size"]/utility_matrix_objective["family_members_num"]
+        
+
+            
+        objective_evaluation.loc["mean_house_area","all"] = np.average(utility_matrix_objective["avg_area"])
+        objective_evaluation.loc["var_mean_house_area","all"] = np.var(utility_matrix_objective["avg_area"])
+        
+        # 计算逆序对
+        count_rop = 0
+        for tenant_id_a in utility_matrix.index.values:
+            for tenant_id_b in utility_matrix.index.values:
+                if (tenant_manager.total_tenant_datas[tenant_id_a].family_num < \
+                tenant_manager.total_tenant_datas[tenant_id_b].family_num ) and \
+                    (utility_matrix.loc[tenant_id_a,"house_size"]>
+                     utility_matrix.loc[tenant_id_b,"house_size"]):
+                    count_rop+=1
+        objective_evaluation.loc["Rop","all"] = count_rop
+        objective_evaluation.index.name = 'type_indicator'
+        
+        # 设置指标的标签
+        index_map ={
+            "Satisfaction":["sw"],
+            "Fairness":["least_misery","variance","jain'sfair","min_max_ratio","F(W,G)","GINI_index"]
+        } 
+        
+        index_ori = utility_eval_matrix.index
+        index_transfered = [index_ori,[]]
+        for index_one in index_ori:
+            for k_type, type_list in index_map.items():
+                if index_one in type_list:
+                    index_transfered[1].append(k_type)
+                    break
+                
+        utility_eval_matrix.index = pd.MultiIndex.from_arrays(
+            index_transfered, names=('type_indicator', 'eval_type'))
+        # utility_eval_matrix.index = index
+        utility_eval_matrix.to_csv(os.path.join(save_dir,"utility_eval_matrix.csv"))
+        objective_evaluation.to_csv(os.path.join(save_dir,"objective_evaluation_matrix.csv"))
+        utility_matrix_objective.index.name = "tenant_ids"
+        utility_matrix_objective.to_csv(os.path.join(save_dir,"utility_matrix_objective.csv"))
+    
+    def calculate_gini(self,data):
+        import numpy as np
+        # Sort the data in ascending order
+        data = np.sort(data)
+        
+        # Calculate the cumulative proportion of income/wealth
+        cumulative_income = np.cumsum(data)
+        
+        # Calculate the Lorenz curve coordinates
+        x = np.arange(1, len(data) + 1) / len(data)
+        y = cumulative_income / np.sum(data)
+        
+        # Calculate the area under the Lorenz curve (A)
+        area_under_curve = np.trapz(y, x)
+        
+        # Calculate the area under the line of perfect equality (B)
+        area_perfect_equality = 0.5
+        
+        # Calculate the Gini coefficient
+        gini_coefficient = (area_perfect_equality - area_under_curve) / area_perfect_equality
+        
+        return gini_coefficient, x, y
+    

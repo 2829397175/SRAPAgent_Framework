@@ -821,7 +821,8 @@ Your current plan to respond is (Your plan to communicate with your friends, com
             response = response.get("return_values")
             
             
-            if response.get("output") =="fail to discuss":
+            if response.get("output") =="fail to discuss" or \
+                "communication" not in response.keys():
                 jug_response = False
                 continue
             else:
@@ -1779,6 +1780,7 @@ And you're willing to publish house information online. Keep this in mind!"""
     async def publish_forum(self,
                       forum_manager,
                       system):
+        return 
         publish_memory = await self.memory.memory_tenant("publish",name=self.name)+self.infos.get("extra_info")
         publish_plan_respond_format = """You think (Your true opionion about these communities or houses).
 For now, Whether you want to publish information honestly online: (Yes or No). 
@@ -1818,7 +1820,7 @@ Your current plan is (Your plan to publish which kind of info online, be concise
             prompt_inputs["memory"] = publish_memory + "\n" + "".join(tip)
                         
             response = await self.astep(prompt_inputs)
-            response = response.get("return_values",[])
+            response = response.get("return_values",None)
             
             if not isinstance(response,list):
                 return

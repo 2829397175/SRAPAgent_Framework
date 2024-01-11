@@ -207,8 +207,12 @@ def filter_same_answer(judge_keys =["robot_response_4_chinese",
     data_paths =[
         "LLM_PublicHouseAllocation/LLM_decision_test/11_26_data/denotes_save_response/0.json",
         "LLM_PublicHouseAllocation/LLM_decision_test/11_26_data/denotes_save_response/2.json",
+        "LLM_PublicHouseAllocation/LLM_decision_test/11_26_data/denotes_save_response/3.json",
+        "LLM_PublicHouseAllocation/LLM_decision_test/11_26_data/denotes_save_response/4.json",
         "LLM_PublicHouseAllocation/LLM_decision_test/11_26_data/denotes_save_response/5.json",
         "LLM_PublicHouseAllocation/LLM_decision_test/11_26_data/denotes_save_response/6.json",
+        "LLM_PublicHouseAllocation/LLM_decision_test/11_28_data/denotes_save_response/28_0.json",
+        # "LLM_PublicHouseAllocation/LLM_decision_test/11_28_data/denotes_save_response/28_0_ver2.json",
         "LLM_PublicHouseAllocation/LLM_decision_test/11_28_data/denotes_save_response/28_1.json",
         "LLM_PublicHouseAllocation/LLM_decision_test/11_28_data/denotes_save_response/28_2.json",
         ]
@@ -341,7 +345,7 @@ if __name__=="__main__":
     # for data_type in data_types:
     #     # filter_chinese_to_en(data_type)
     #     filter_en_to_cn(type_data=data_type)
-    filter_same_answer(judge_keys=["robot_response_4_chinese",
+    filter_same_answer(judge_keys=["robot_response_3.5_chinese",
                                     "human_response"])
     # filter_group_denote()
         

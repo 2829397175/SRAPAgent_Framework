@@ -544,7 +544,7 @@
             "thought":"Both the large_house and middle_house meet my budget requirement. However, considering that I have two children and I need a study room for them to do their homework, I believe the large_house would be a better choice. With a larger square footage, it can provide enough space for my family to live comfortably and for my children to have their own study area."
         },
         "human_response":{
-            "output":"我选择middel_house。",
+            "output":"我选择middle_house。",
             "thought":"所有的房间的价格都在我的预算范围内，但是基于租房的性价比和我的需求来看middle_house完全可以满足我的基本需要。"
         },
         "robot_response_3.5_chinese":{

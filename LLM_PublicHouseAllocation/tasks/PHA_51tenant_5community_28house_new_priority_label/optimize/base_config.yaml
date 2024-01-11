@@ -1,6 +1,7 @@
 environment:
   env_type: rent
   max_turns: 10
+  communication_num: 10
   rule:
     describer:
       type: base

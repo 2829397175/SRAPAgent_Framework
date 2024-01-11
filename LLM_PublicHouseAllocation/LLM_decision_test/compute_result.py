@@ -72,18 +72,18 @@ def compute_auc_choose_one(type_keys = ["4","3.5"]):
     
     for type_key in type_keys:
         result_type_key = results[f"reasonal_{type_key}"]
-        
+        len_data = sum(result_type_key.values())
         for k, v in result_type_key.items():
             print(f"{type_key} {k}: {v}")
             if "robot_response" in k:
                 k = "robot_response"
-            df_acc.loc[type_key,k] = v   
+            df_acc.loc[type_key,k] = v/len_data
             
         human_robot =(result_type_key['human_response']+result_type_key['both']) / \
         (result_type_key[f'robot_response_{type_key}_chinese']+result_type_key['both'])
         print(f"human/robot {human_robot:.3f} ")
-        len_data = sum(result_type_key.values())
-        df_acc.loc[type_key,"human/robot"] =human_robot
+        
+        df_acc.loc[type_key,"human/robot"] = human_robot
         df_acc.loc[type_key,"data_len"] = len_data
         
     df_acc.to_csv("LLM_PublicHouseAllocation/LLM_decision_test/acc_choose_one.csv")

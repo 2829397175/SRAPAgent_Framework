@@ -1,0 +1,6 @@
+Rounds,$|Queue|$,Avg $House^{size}\uparrow$,Var $House^{size}\downarrow$,Rop $\downarrow$,Avg WT $\downarrow$,gini coefficient $\downarrow$,SW $\uparrow$,ex_name,finished_replace
+10.0000$\pm$0.0000,1,12.1137$\pm$0.9329,190.7607$\pm$28.2163,270.0000$\pm$36.0000,3.5196$\pm$0.0098,0.5232$\pm$0.0155,391.6000$\pm$9.5000,ver1_nofilter_multilist(1.2)_portion1(f_member_num)_priority_8t_6h_p#portion_housesize,True
+10.0000$\pm$0.0000,2,12.4720$\pm$0.2818,188.1514$\pm$6.9376,268.0000$\pm$24.0000,3.7157$\pm$0.0098,0.5122$\pm$0.0069,402.2000$\pm$1.0000,ver1_nofilter_multilist(1.2)_portion2(f_member_num)_priority_8t_6h_p#portion_housesize,True
+10.0000$\pm$0.0000,3,11.6821$\pm$0.3039,159.9076$\pm$9.4210,254.5000$\pm$23.5000,3.7549$\pm$0.1078,0.5084$\pm$0.0033,410.4000$\pm$2.8000,ver1_nofilter_multilist(1.2)_portion3(f_member_num)_priority_8t_6h_p#portion_housesize,True
+9.0000$\pm$1.0000,4,11.8340$\pm$0.3668,174.1607$\pm$12.0957,263.0000$\pm$18.0000,3.8627$\pm$0.0392,0.5203$\pm$0.0046,401.4000$\pm$7.3000,ver1_nofilter_multilist(1.2)_portion4(f_member_num)_priority_8t_6h_p#portion_housesize,True
+8.0000$\pm$0.0000,5,14.0450$\pm$0.0008,245.2222$\pm$0.0336,405.5000$\pm$0.5000,3.7059$\pm$0.0784,0.5203$\pm$0.0035,400.1000$\pm$2.1000,ver1_nofilter_multilist(1.2)_portion5(f_member_num)_priority_8t_6h_p#portion_housesize,True

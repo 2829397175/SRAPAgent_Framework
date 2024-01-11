@@ -229,10 +229,14 @@ def mix_and_shuffle(save_path = "LLM_PublicHouseAllocation\LLM_decision_test\dat
     with open(save_path, 'w', encoding='utf-8') as file:
         json.dump(mixed_json, file, indent=4,separators=(',', ':'),ensure_ascii=False)
 
+
+
 if __name__ == "__main__":
+    
+    
     # make data
-    clear_database()
-    batch_read_data()
+    # clear_database()
+    # batch_read_data()
     
     # mix judge data (only robot)
     # mix_and_shuffle()

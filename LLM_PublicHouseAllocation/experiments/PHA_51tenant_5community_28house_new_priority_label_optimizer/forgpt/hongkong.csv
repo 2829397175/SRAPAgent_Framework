@@ -1,0 +1,10 @@
+k,$Agent^{max(choose)}$,Avg $House^{size}\uparrow$,Var $House^{size}\downarrow$,Rop $\downarrow$,mean WT $\downarrow$,mean IWT $\downarrow$,gini coefficient $\downarrow$,social welfare $\uparrow$,ex_name,finished_replace
+1.0,5.0,17.110357142857143,232.2067579743008,226.0,1.8333333333333333,1.4761904761904765,0.3682814302191465,433.5,ver2_nofilter_multilist(2.1_k1)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose5,True
+2.0,5.0,13.675392156862744,223.58709134948097,327.0,3.4705882352941178,2.4901960784313726,0.4897216579843118,425.7,ver2_nofilter_multilist(2.1_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose5,True
+3.0,5.0,15.855694444444444,196.00827149195325,161.0,1.9285714285714288,1.4047619047619049,0.3793904393032934,413.1,ver2_nofilter_multilist(2.1_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose5,True
+4.0,5.0,16.328293650793654,226.9033374984253,209.0,1.9047619047619049,1.5,0.3813642708404841,416.2,ver2_nofilter_multilist(2.1_k4)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose5,True
+5.0,5.0,16.836666666666662,213.48093320105824,248.0,1.9523809523809523,1.5238095238095235,0.3910186572245676,419.6,ver2_nofilter_multilist(2.1_k5)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose5,True
+1.0,1.0,13.38516339869281,201.2326031868085,303.0,2.4705882352941178,1.4901960784313726,0.4781669767884065,433.1,ver2_nofilter_multilist(2.1_k1)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose1,True
+2.0,2.0,16.7515873015873,204.898140734442,237.0,1.7857142857142858,1.5238095238095235,0.3829473398663999,421.3,ver2_nofilter_multilist(2.1_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2,True
+3.0,3.0,17.357996031746033,236.95058707207423,250.0,1.9285714285714288,1.5952380952380951,0.3917568983583653,409.0,ver2_nofilter_multilist(2.1_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3,True
+4.0,4.0,15.802400793650794,189.4632991469041,202.0,1.9047619047619049,1.4761904761904765,0.3778886976477338,415.0,ver2_nofilter_multilist(2.1_k4)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose4,True

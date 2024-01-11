@@ -415,7 +415,7 @@ def concat_label_data():
     src_json = readinfo(src_path)
     dst_json = readinfo(dst_path)
     
-    append_key = "reasonal_4"
+    append_key = "reasonal_3.5"
     
     assert len(src_json) == len(dst_json)
     

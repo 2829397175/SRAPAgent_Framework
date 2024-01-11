@@ -36,7 +36,7 @@ def run_tasks(tasks,
     
     for idx,task in enumerate(tasks):
         
-        task_root_path =os.path.join("LLM_PublicHouseAllocation/tasks",data,"configs",task,"result")
+        task_root_path = os.path.join("LLM_PublicHouseAllocation/tasks",data,"configs",task,"result")
 
         done_times = 0
         if os.path.exists(task_root_path):
@@ -80,11 +80,12 @@ def run_tasks(tasks,
                     indent=4,
                     separators=(',', ':'),ensure_ascii=False)
         
-def run_tasks_logs(data ="PHA_51tenant_5community_28house",
+def run_tasks_logs(data = "PHA_51tenant_5community_28house",
+                   configs:list = None
                    ):
     config_root = f"LLM_PublicHouseAllocation/tasks/{data}/configs"
     
-    configs = os.listdir(config_root)
+    configs = os.listdir(config_root) if configs is None else configs
     
     
     command_template = "python main.py --task {task} --data {data} --log {log}"
@@ -101,6 +102,8 @@ def run_tasks_logs(data ="PHA_51tenant_5community_28house",
             result_files = os.listdir(result_path)
             paths = []
             for result_file in result_files:
+                # if os.path.exists(os.path.join(result_path,result_file,"tenental_system.json")) \ 
+                # and os.path.exists(os.path.join(result_path,result_file,"all")):
                 if os.path.exists(os.path.join(result_path,result_file,"tenental_system.json")):
                 # result_file_path = os.path.join(result_path,result_file,"all")
                 # if os.path.exists(result_file_path):
@@ -117,9 +120,9 @@ def run_tasks_logs(data ="PHA_51tenant_5community_28house",
         count[config]=paths
                 
                 
-    print(count)
+    # print(count)
     
-    print(len(count))
+    # print(len(count))
                     
             
 def test_task_logs(data ="PHA_51tenant_5community_28house",
@@ -215,13 +218,24 @@ def set_data_configs(data):
             if (data_type in data_file):
                 dirs[data_type] = os.path.join("data",data_file)
                 break
+            
+    
     
     for task_name in task_names:
         config_path = os.path.join(config_root,task_name,"config.yaml")
         task_config = yaml.safe_load(open(config_path))
         
-        if "priority" not in task_config["managers"]["tenant"]["policy"]["group_policy"].keys():
-            task_config["managers"]["tenant"]["policy"]["group_policy"]["priority"] = False
+        """default k"""
+        if task_config["environment"]["rule"]["order"]["type"] == "kwaitlist":
+            if "k" not in task_config["environment"]["rule"]["order"].keys():
+                task_config["environment"]["rule"]["order"]["k"] = 2
+            if "waitlist_ratio" not in task_config["environment"]["rule"]["order"].keys():
+                task_config["environment"]["rule"]["order"]["waitlist_ratio"] = 1.2
+                
+        """communication_num"""
+        task_config["environment"]["communication_num"] = 10
+        
+       
         
         distribution_data_paths = os.listdir(os.path.join(config_root,task_name,"data"))
         for data_path in distribution_data_paths:
@@ -261,7 +275,25 @@ def replace_distribution_batch(data):
             os.remove(os.path.join(config_root,task_name,"data",origin_name))
             shutil.copyfile(new_json_path,
                             os.path.join(config_root,task_name,"data",new_name))
-        
+            
+def run_optimizer(optimize_times = 20):
+    command_args = [
+                "--data","PHA_51tenant_5community_28house_new_priority_label_optimizer",
+                "--optimize",
+                "--optimize_regressor_max_samples","60",
+                "--optimize_regressor_threshold","0.3",
+                "--optimize_refine_first"
+            ]   
+    
+    command_template = "python main.py "
+    
+    command = command_template + " ".join(command_args) 
+    
+    for _ in range(optimize_times):
+        try:
+            return_val = os.system(command)
+        except Exception as e:
+            print(e)
     
 if __name__ == "__main__":
     
@@ -269,13 +301,33 @@ if __name__ == "__main__":
     # data = "PHA_51tenant_5community_28house"
     
     data = "PHA_51tenant_5community_28house_new_priority_label"
-    
-    # data = "PHA_51tenant_5community_39house_new_priority_label"
+    # data = "PHA_51tenant_5community_28house_new_priority_label_optimizer"
+    # # data = "PHA_70tenant_100houses_hongkong"
+    # data = "PHA_70tenant_38houses_hongkong"
+    # data ="PHA_51tenant_5community_28house_new_priority_perpersonlabel"
+
+    # priority_compare_tasks =[
+    #     "ver1_nofilter_multilist(1.2)_portion3(f_earn_money)_nopriority_8t_6h_p#portion_housesize",
+    #     "ver1_nofilter_multilist(1.2)_portion3(f_earn_money)_priority_8t_6h_p#portion_housesize",
+    #     "ver1_nofilter_multilist(1.2)_multilist_nopriority_8t_6h_p#portion_rentmoney",
+    #     "ver1_nofilter_multilist(1.2)_multilist_priority_8t_6h_p#portion_rentmoney"
+    # ]
     
     config_root = os.path.join(task_dir,data,"configs")
     task_names = os.listdir(config_root)
 
-    task_names=[
+#     task_names = [
+#     "ver1_nofilter_multilist(1.2)_multilist_priority_8t_6h_p#housetype",
+#     "ver1_nofilter_multilist(1.2)_multilist_housing_points_8t_6h_p#housetype",
+#     "ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2",
+#     "ver2_nofilter_multilist(1.2_k2)_housetype_housing_points_8t_6h(step_num(t1_h1))_p#housetype_choose2",
+#     "ver1_nofilter_multilist(1.2)_portion3(f_earn_money)_priority_8t_6h_p#portion_housesize",
+#     "ver1_nofilter_multilist(1.2)_portion3(f_earn_money)_housing_points_8t_6h_p#portion_housesize",
+#     "ver1_nofilter_multilist(1.2)_multilist_priority_8t_6h_p#portion_rentmoney",
+#     "ver1_nofilter_multilist(1.2)_multilist_housing_points_8t_6h_p#portion_rentmoney"
+# ]
+
+    task_names =[
     "ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#random_avg",
     "ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2",
     "ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#portion_rentmoney",
@@ -318,13 +370,77 @@ if __name__ == "__main__":
     "ver1_nofilter_singlelist_8t_6h_p#singlelist"
 ]
     
-   
+    task_names = [
+        #"ver2_nofilter_multilist(2.1_k1)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose1",
+           "ver2_nofilter_multilist(1.8_k4)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose5",
+        "ver2_nofilter_multilist(1.8_k5)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose5",
+        "ver2_nofilter_multilist(1.8_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose5",
+        "ver2_nofilter_multilist(1.8_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose5",
+        
+     
+        
+        ]
     
+    task_names =[
+    "ver2_nofilter_multilist(2.1_k1)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose5",
+    "ver2_nofilter_multilist(1.8_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2",
+    "ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3",
+    "ver2_nofilter_multilist(2.1_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3",
+    "ver2_nofilter_multilist(1.8_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3",
+    "ver1_nofilter_multilist(1.2)_portion3(f_rent_money_budget)_priority_8t_6h_p#portion_rent_money",
+    "ver1_nofilter_multilist(1.2)_portion2(f_member_num)_priority_8t_6h_p#portion_housesize",
+    "ver2_nofilter_multilist(1.2_k2)_housetype_housing_points_8t_6h(step_num(t1_h1))_p#housetype_choose2",
+    "ver2_nofilter_multilist(2.1_k1)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose1",
+    "ver2_nofilter_multilist(2.1_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose5",
+    "ver2_nofilter_multilist(2.1_k4)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose5",
+    "ver2_nofilter_multilist(2.4_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3",
+    "ver2_nofilter_multilist(2.1_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose5",
+    "ver1_nofilter_singlelist_5t_1h_p#singlelist",
+    "ver2_nofilter_multilist(1.5_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2"
+]    
+    # task_names = [
+    #     'optimized_task_config_23',
+    #     'optimized_task_config_24'
+    # ]
     
-    log_dir = f"LLM_PublicHouseAllocation/tasks/{data}/cache"
+    task_names = [
+                # 'ver2_nofilter_multilist(2.1_k1)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose5', 
+                #   'ver2_nofilter_multilist(2.1_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose5', 
+                #   'optimized_task_config_90',
+                  'ver2_nofilter_multilist(3_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3', 
+                  'ver2_nofilter_multilist(3_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3', 
+                  'optimized_task_config_87']
+    task_names =['ver2_nofilter_multilist(2.1_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose5', 
+                 'ver2_nofilter_multilist(2.1_k4)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose4', 
+                 'ver2_nofilter_multilist(2.1_k5)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose5', 
+                 'ver2_nofilter_multilist(2.1_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3', 
+                 'ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2', 
+                 'ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2', 
+                 'ver1_nofilter_multilist(1.2)_portion2(f_member_num)_priority_8t_6h_p#portion_housesize', 
+                 'ver1_nofilter_multilist(1.2)_portion4(f_member_num)_priority_8t_6h_p#portion_housesize', 
+                 'ver1_nofilter_multilist(1.2)_portion2(f_member_num)_priority_8t_6h_p#portion_housesize', 
+                 'ver1_nofilter_multilist(1.2)_portion2(f_member_num)_priority_8t_6h_p#portion_housesize', 
+                 'ver1_nofilter_multilist(1.2)_portion1(f_member_num)_priority_8t_6h_p#portion_housesize', 
+                 'ver2_nofilter_multilist(2.1_k4)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose5', 
+                 'ver2_nofilter_multilist(2.1_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2', 
+                 'ver2_nofilter_multilist(2.1_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3', 
+                 'ver1_nofilter_multilist(1.2)_portion2(f_member_num)_priority_8t_6h_p#portion_housesize', 
+                 'ver1_nofilter_multilist(1.8)_portion3(f_member_num)_priority_8t_6h_p#portion_housesize', 
+                 'ver1_nofilter_singlelist_4t_6h(step_num(t2_h1))_p#singlelist', 
+                 'ver1_nofilter_multilist(1.2)_portion2(f_member_num)_priority_8t_6h_p#portion_housesize', 
+                 'ver2_nofilter_multilist(2.1_k1)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose1', 
+                 'ver2_nofilter_multilist(1.8_k1)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3', 
+                 'ver1_nofilter_multilist(1.2)_portion2(f_member_num)_priority_8t_6h_p#portion_housesize', 
+                 'ver1_nofilter_singlelist_8t_6h_p#singlelist']
+    
+         
+    
+     
+    log_dir = f"LLM_PublicHouseAllocation/tasks/{data}/cache_optimize_2"
     
 
-
+    # run_optimizer()
+    
     run_tasks(task_names,
               data,
               log_dir,
@@ -334,13 +450,14 @@ if __name__ == "__main__":
     
     # set_data_configs(data)
     
-    # 谨慎执行，有可能导致未结束的实验 进行matrix计算
-    # run_tasks_logs(data)
+    """ 谨慎执行，有可能导致未结束的实验 进行matrix计算 """
+    # run_tasks_logs(data,
+    #                configs=task_names)
     
     # test_task_logs()
     
     
     """ 请谨慎执行，确保备份 """
-    # clear_cache_ex_data(data)
+    # clear_all_cache_ex_data(data)
     
     # clear_unfinished_ex_data(data)

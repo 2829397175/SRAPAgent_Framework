@@ -1,0 +1,9 @@
+$\pi$,Avg $House^{size}\uparrow$,Var $House^{size}\downarrow$,Rop $\downarrow$,Avg WT $\downarrow$,gini coefficient $\downarrow$,SW $\uparrow$,ex_name,$y_{gt}$,$y_{predict}$
+$\pi_{KM}$,,,,,,,optimal_utility,nan,nan
+$\pi_{optimized}$,,,,,,,ver2_nofilter_multilist(2.1_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose5,8.536983257901934,9.460144940488474
+$\pi y_{gt}^1$,,,,,,,ver2_nofilter_multilist(2.1_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3,8.5978787188032,7.512860752621201
+$\pi y_{gt}^2$,,,,,,,ver2_nofilter_multilist(1.2_k2)_housetype_nopriority_8t_6h(step_num(t1_h1))_p#housetype_choose2,7.603213927762312,7.946268944870546
+$\pi y_{gt}^3$,,,,,,,ver2_nofilter_multilist(3_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3,8.554058899750583,7.512860752621201
+$\pi y_{predict}^1$,,,,,,,ver2_nofilter_multilist(2.1_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose5,8.536983257901934,9.460144940488474
+$\pi y_{predict}^2$,,,,,,,ver2_nofilter_multilist(2.1_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose5,8.536983257901934,9.460144940488474
+$\pi y_{predict}^3$,,,,,,,ver2_nofilter_multilist(2.1_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose5,6.930675311966917,9.13236763820095

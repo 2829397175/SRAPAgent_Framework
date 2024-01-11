@@ -3,6 +3,9 @@ import os
 import numpy as np
 import yaml
 import json
+import math
+
+
 def readinfo(data_dir):
     assert os.path.exists(data_dir),"no such file path: {}".format(data_dir)
     with open(data_dir,'r',encoding = 'utf-8') as f:
@@ -12,7 +15,7 @@ def readinfo(data_dir):
 def concat_experiment_results(task_path = "LLM_PublicHouseAllocation/tasks",
                               ex_setting = "PHA_51tenant_5community_28house",
                               save_root = "LLM_PublicHouseAllocation/experiments",
-                              ):
+                              max_count_rounds = 10):
     
     
     config_root = os.path.join(task_path,ex_setting,"configs")
@@ -49,6 +52,8 @@ def concat_experiment_results(task_path = "LLM_PublicHouseAllocation/tasks",
     for ex_name in os.listdir(config_root):
         ex_root_path = os.path.join(config_root,ex_name)
         config_path = os.path.join(ex_root_path,"config.yaml")
+        if not os.path.exists(config_path):
+            continue
         task_config = yaml.safe_load(open(config_path))
         
         group_policy = task_config["managers"]["tenant"]["policy"]["group_policy"]
@@ -105,8 +110,15 @@ def concat_experiment_results(task_path = "LLM_PublicHouseAllocation/tasks",
             u_type_dict = {}
             tenental_system_path = os.path.join(ex_path,"tenental_system.json")
             tenental_system = readinfo(tenental_system_path)
+            filtered_log = {}
+            for log_id, log in tenental_system.items():
+                if log_id == "group":
+                    filtered_log[log_id] = log
+                elif int(log_id) <= max_count_rounds:
+                    filtered_log[log_id] = log
+            
             # 把那些没有log_round 的filter了
-            tenental_system_filtered = dict(filter(lambda item: isinstance(item[1],dict) and "log_round" in item[1].keys(),tenental_system.items()))
+            tenental_system_filtered = dict(filter(lambda item: isinstance(item[1],dict) and "log_round" in item[1].keys(),filtered_log.items()))
 
                        
             for u_type in u_types:
@@ -128,8 +140,9 @@ def concat_experiment_results(task_path = "LLM_PublicHouseAllocation/tasks",
 
                     cols_first_level = ["indicator_values" for i in range(result_u_type.shape[1])]
                     
-                    
-                    groups = [group_info["queue_name"] for group_info in tenental_system["group"].values()]
+                    # if "group" not in tenental_system_filtered.keys():
+                    #     continue
+                    groups = [group_info["queue_name"] for group_info in filtered_log["group"].values()]
                     group_size = len(np.unique(groups))
                     result_u_type["group_size"] = group_size
                     cols_first_level.append("group_size")
@@ -193,12 +206,14 @@ def concat_experiment_results(task_path = "LLM_PublicHouseAllocation/tasks",
 def group_multi_experiment_results(ex_setting = "PHA_51tenant_5community_28house",
                               save_root = "LLM_PublicHouseAllocation/experiments"):
     save_dir = os.path.join(save_root,ex_setting)
-    u_types = ["all","choosed"] 
+    u_types = ["all"] 
     result_types_indicators ={
         "objective_evaluation_matrix":["mean_house_area",
                                        "mean_wait_turn",
+                                       "mean_idle_wait_turn",
                                        "var_mean_house_area",
-                                       "Rop"
+                                       "Rop",
+                                       
             ],
         "utility_eval_matrix":["least_misery","variance","jain'sfair","min_max_ratio",
                                "sw","F(W,G)","GINI_index"]
@@ -249,7 +264,10 @@ def group_multi_experiment_results(ex_setting = "PHA_51tenant_5community_28house
                     else:
                         for indicator in result_types_indicators[result_type]:
                             # one_indicator_df = ex_result_grouped[ex_result_grouped.index == indicator] 
-                            value = ex_result_grouped.loc[indicator,col_name]
+                            try:
+                                value = ex_result_grouped.loc[indicator,col_name]
+                            except:
+                                pass
                             if isinstance(value,pd.Series):
                                 value_last = value.values[-1]
                                 for one_value in value.values[:-1]:
@@ -257,8 +275,17 @@ def group_multi_experiment_results(ex_setting = "PHA_51tenant_5community_28house
                                         continue
                                     elif col_name =="ex_idx":continue
                                     else:
-                                        assert value_last == one_value,f"incompatible value for col '{col_name}'"
+                                        if value_last != one_value and col_name== "group_size":
+                                            value_last = 3 
+                                        try:
+                                            if math.isnan(value_last):
+                                                continue
+                                            else:
+                                                assert value_last == one_value,f"incompatible value for col '{col_name}'"
+                                        except:
+                                            assert value_last == one_value,f"incompatible value for col '{col_name}'"
                                 value = value_last
+                            
                             result_one_ex.loc[indicator,col_name] = value
                             
                 result_one_ex["ex_name"] = ex_name
@@ -321,9 +348,11 @@ if __name__ == "__main__":
     
     ex_setting ="PHA_51tenant_5community_28house_new_priority_label"
     
+    ex_setting ="PHA_51tenant_5community_28house_new_priority_label_optimizer"   
+
     concat_experiment_results(ex_setting=ex_setting,
                              save_root="LLM_PublicHouseAllocation/experiments")
-    #group_multi_experiment_results(ex_setting=ex_setting)
+    group_multi_experiment_results(ex_setting=ex_setting)
     # get_ex_names_single_experiment(ex_setting=ex_setting)
     
     

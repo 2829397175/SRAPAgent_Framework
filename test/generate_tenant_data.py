@@ -267,7 +267,11 @@ def priority_item(tenant_json):
     "families_with_2_or_more_minor_children":False
     }
     
-    low_income_indexs = list(dict(sorted(tenant_json.items(),key = lambda x:x[1]["monthly_rent_budget"])).keys())
+    for tenant_id,tenant_info in tenant_json.items():
+        tenant_info["per_member_rent_budget"] = tenant_info["monthly_rent_budget"]/tenant_info["family_members_num"]
+        
+        
+    low_income_indexs = list(dict(sorted(tenant_json.items(),key = lambda x:x[1]["per_member_rent_budget"])).keys())
     low_income_indexs = low_income_indexs[:int(rate*len(low_income_indexs))]#升序
     
     for tenant_id,tenant_info in tenant_json.items():
@@ -279,8 +283,8 @@ def priority_item(tenant_json):
             tenant_info["priority_item"] = p_item
             
     tenant_json = dict(sorted(tenant_json.items(),key = lambda x:x[0]) )#升序
-    # with open(os.path.join(dir,"tenant_51.json"), 'w', encoding='utf-8') as file:
-    #     json.dump(tenant_json, file, indent=4,separators=(',', ':'),ensure_ascii=False)
+    with open("test/generate_data/tenant_70_newpriority.json", 'w', encoding='utf-8') as file:
+        json.dump(tenant_json, file, indent=4,separators=(',', ':'),ensure_ascii=False)
     return tenant_json
         
         
@@ -461,23 +465,23 @@ if __name__ == "__main__":
     
     """ Generate priority item """
     
-    # with open("test/generate_data/tenant_51.json",'r',encoding = 'utf-8') as f:
-    #     tenant = json.load(f)
+    with open("test/generate_data/tenant_70.json",'r',encoding = 'utf-8') as f:
+        tenant = json.load(f)
         
-    # priority_item(tenant,"test/generate_data")
+    tenant_json = priority_item(tenant)
               
               
               
     """ Generate personal preference """
-    prompt_template = prompt_template_yaml["personal_preference"]
+    # prompt_template = prompt_template_yaml["personal_preference"]
     
     
-    prompt = PromptTemplate(input_variables=["role_description"], 
-                        template=prompt_template)
+    # prompt = PromptTemplate(input_variables=["role_description"], 
+    #                     template=prompt_template)
     
-    generator = Data_generater(prompt=prompt)
+    # generator = Data_generater(prompt=prompt)
     
-    get_origin_json_info(generator)
+    # get_origin_json_info(generator)
     # asyncio.run(modify_tenant_attribute(generator,"personal_preference"))
               
     """ save data"""

@@ -223,6 +223,8 @@ group_discuss_template_oldver: &group_discuss_template_oldver |-
   Jane: friend
   Bob: friend
 
+  {latest_context}
+
   [Sarah]:
   Thought: I think house price is important, house_10000 is cheap
   Action: GroupDiscuss
@@ -325,9 +327,6 @@ group_discuss_back_template: &group_discuss_back_template |-
 
   Here's your plan to response to these messages:
     {plan}
-
-  Here's your communication dialogue with your acquaintances:
-    {acquaintance_communication}
     
   - If you have collected enough information, or the chatting dialogue starts repeatation, Respond in this format.
     Your decision on continue this chatting dialogue: False
@@ -337,7 +336,12 @@ group_discuss_back_template: &group_discuss_back_template |-
     Your decision on continue this chatting dialogue: True
     (The words you want to say to {acquaintance_name}, make your words informative, concise and clear; make sure your words are consistent with your plan and thought)
 
-  Now please respond to {acquaintance_name} in first person:
+  Here's your communication dialogue with your acquaintances:
+    {acquaintance_communication}
+
+  Now please respond to {acquaintance_name} in first person. Be careful not to repeat the {acquaintance_name}'s words. Please be aware that you are communicating, try to answer {acquaintance_name}'s questions or requests:
+  
+  Your decision on continue this chatting dialogue:
   {agent_scratchpad}
   
   

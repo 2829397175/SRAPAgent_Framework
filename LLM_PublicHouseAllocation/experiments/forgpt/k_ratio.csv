@@ -1,4 +1,4 @@
-Rounds,k,ratio,Avg $House^{size}\uparrow$,Var $House^{size}\downarrow$,Rop $\downarrow$,mean WT $\downarrow$,gini coefficient $\downarrow$,social welfare $\uparrow$,ex_name,finished_replace
+Rounds,k,ratio,Avg $House^{size}\uparrow$,Var $House^{size}\downarrow$,Rop $\downarrow$,Avg WT $\downarrow$,gini coefficient $\downarrow$,SW $\uparrow$,ex_name,finished_replace
 7.5000$\pm$1.5000,1,1.2,11.03620915,186.0009609,315.0000$\pm$17.0000,3.3529$\pm$0.1176,0.4925$\pm$0.0005,416.1500$\pm$3.3500,ver2_nofilter_multilist(1.2_k1)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3,True
 7.5000$\pm$1.5000,1,1.5,10.15591503,256.2085951,330.5000$\pm$2.5000,3.0588$\pm$0.1961,0.4885$\pm$0.0038,423.9000$\pm$7.3000,ver2_nofilter_multilist(1.5_k1)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3,True
 8.5000$\pm$1.5000,1,1.8,10.61601307,221.348741,333.0000$\pm$32.0000,2.7459$\pm$0.7051,0.4903$\pm$0.0163,409.8000$\pm$5.3000,ver2_nofilter_multilist(1.8_k1)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3,True

@@ -16,9 +16,9 @@
                 "house_1",
                 "house_2",
                 "house_3",
-                "house_4",
                 "house_5",
-                "house_7"
+                "house_7",
+                "house_8"
             ],
             "size":"60.92-61.8",
             "cost":"1830"
@@ -27,8 +27,8 @@
             "remain_number":2,
             "living_room":"zero room",
             "index":[
-                "house_13",
-                "house_18"
+                "house_11",
+                "house_16"
             ],
             "size":"37.96-38.09",
             "cost":"1140"
@@ -82,10 +82,10 @@
             "remain_number":4,
             "living_room":"two rooms",
             "index":[
-                "house_37",
-                "house_39",
-                "house_40",
-                "house_42"
+                "house_34",
+                "house_35",
+                "house_38",
+                "house_39"
             ],
             "size":"56.14-58.33",
             "cost":"2240-2320"
@@ -94,9 +94,9 @@
             "remain_number":5,
             "living_room":"one room",
             "index":[
-                "house_44",
-                "house_46",
+                "house_47",
                 "house_48",
+                "house_49",
                 "house_51",
                 "house_52"
             ],
@@ -118,8 +118,8 @@
             "remain_number":3,
             "living_room":"two rooms",
             "index":[
-                "house_55",
-                "house_57",
+                "house_56",
+                "house_58",
                 "house_61"
             ],
             "size":"58.54-60.83",
@@ -131,8 +131,8 @@
             "index":[
                 "house_63",
                 "house_64",
-                "house_65",
-                "house_68"
+                "house_68",
+                "house_69"
             ],
             "size":"48.38-49.07",
             "cost":"2177-2208"
@@ -159,8 +159,8 @@
             "remain_number":2,
             "living_room":"two rooms",
             "index":[
-                "house_80",
-                "house_81"
+                "house_78",
+                "house_82"
             ],
             "size":"60-60.62",
             "cost":"1500"
@@ -170,9 +170,9 @@
             "living_room":"one room",
             "index":[
                 "house_83",
-                "house_86",
-                "house_87",
-                "house_89"
+                "house_84",
+                "house_85",
+                "house_90"
             ],
             "size":"48.35-49.06",
             "cost":"1210"
@@ -181,7 +181,7 @@
             "remain_number":1,
             "living_room":"zero room",
             "index":[
-                "house_93"
+                "house_97"
             ],
             "size":"44.24-44.51",
             "cost":"1106"

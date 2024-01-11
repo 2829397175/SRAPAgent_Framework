@@ -33,12 +33,10 @@ class RentEnvironment(BaseEnvironment):
     deque_dict: dict = {}
     log: Optional[LogRound] = None
     save_log:bool = True
-    
-
-    
+    communication_num :int = 10
     
     # 对于api调换的Loader类
-    llm_loader:APIKeyPool
+    llm_loader: APIKeyPool
 
     # rating benchmark
     global_score: Global_Score
@@ -106,7 +104,7 @@ class RentEnvironment(BaseEnvironment):
 
                 self.system.save_data()
                 self.forum_manager.save_data()
-                self.llm_loader.save_apis()
+
 
                 #self.log.evaluation_matrix(self.tenant_manager)
             return True
@@ -139,10 +137,9 @@ class RentEnvironment(BaseEnvironment):
             
     #test 测试用 要改
     def communication(self, 
-                      tenant_ids,
-                      communication_num = 3):
+                      tenant_ids):
              
-        
+        communication_num = self.communication_num
         c_num = 0
         while(len(tenant_ids) > 0 and c_num < communication_num):
             async def run_parallel(tenant_ids):
@@ -227,7 +224,7 @@ class RentEnvironment(BaseEnvironment):
         
         pool_num_dict = self.system.community_manager.get_pool_num() 
         
-        while not all(len(waitlist)==0 for waitlist in tenant_waitlists.values()):
+        while not all(len(waitlist)==0 for waitlist in tenant_waitlists.values()) :
             # change tenant api
             first_tenant_ids = []
             for queue_name, waitlist in tenant_waitlists.items():
@@ -240,9 +237,12 @@ class RentEnvironment(BaseEnvironment):
                     first_tenant_ids.append(waitlist.pop(0))
             
             async def run_parallel(first_tenant_ids):
+                if len(first_tenant_ids) ==0:
+                    return
                 await asyncio.gather(*[self.tenant_step(self.tenant_manager[tenant_id]) for tenant_id in first_tenant_ids])
                 
-                
+            if len(first_tenant_ids)==0:
+                return
             asyncio.run(run_parallel(first_tenant_ids))
             
                 
@@ -310,36 +310,22 @@ class RentEnvironment(BaseEnvironment):
             groups[group_id] = [*queues["waitlist"],*queues["queue"]]
         
         
-        if self.tenant_manager.policy.group_policy.priority: 
-            # 如果分组的时候，需要考虑优先级
-            # 首先將tenant 按照 弱势 -> 一般进行排列
-            for key in tenant_groups.keys():
-                p_tenants = []
-                normal_tenants = []
-                for tenant_id in tenant_groups[key]:
-                    tenant = self.tenant_manager[tenant_id]
-                    if all(not value for value in tenant.priority_item.values()):
-                        normal_tenants.append(tenant_id)
-                    else:
-                        p_tenants.append(tenant_id)
-                        
-                tenant_groups[key] = [*p_tenants,*normal_tenants]
+        if "default" in tenant_groups.keys() and \
+            self.tenant_manager.policy.group_policy.type in ["house_type"] \
+            and len(tenant_groups) > 1: 
+            # 如果通过house_type进行tenant分组, 需要将default分组中的tenant重新random分配
+            import random    
+            default_tenant_ids = tenant_groups.get("default",[])
+            for default_tenant_id in default_tenant_ids:
+                random_group_id = random.sample(list(tenant_groups.keys()),1)[0]
+                tenant_groups[random_group_id].append(default_tenant_id)
+            del tenant_groups["default"]
+        
+        
+        tenant_groups = self.tenant_manager.policy.group_policy.sort_tenant_groups(tenant_groups=tenant_groups,
+                                                                                   tenant_manager=self.tenant_manager)
                 
-            if "default" in tenant_groups.keys() and \
-                self.tenant_manager.policy.group_policy.type in ["house_type"] \
-                and len(tenant_groups) > 1: 
-                # 如果通过house_type进行tenant分组
-                import random    
-                default_tenant_ids = tenant_groups.get("default",[])
-                for default_tenant_id in default_tenant_ids:
-                    random_group_id = random.sample(list(tenant_groups.keys()),1)[0]
-                    tenant = self.tenant_manager[tenant_id]
-                    if all(not value for value in tenant.priority_item.values()):
-                        tenant_groups[random_group_id].append(default_tenant_id)
-                    else:
-                        tenant_groups[random_group_id].insert(0,default_tenant_id)
-                del tenant_groups["default"]
-                
+            
                 
         for key,tenant_ids in tenant_groups.items():
             self.tenant_manager.groups[key]=[*groups.get(key,[]),
@@ -388,14 +374,8 @@ class RentEnvironment(BaseEnvironment):
                         }
                         ]
                 elif k == "social_network":
-                    for t_id, t_infos in v.items():
-                        dialogue_transfered = []
-                        for dialogue in t_infos.get("dialogues",[]):
-                            dialogue_dict = {}
-                            for key in keys_message:
-                                dialogue_dict[key] = getattr(dialogue,key)
-                            dialogue_transfered.append(dialogue_dict)
-                        t_infos["dialogues"] = dialogue_transfered
+                    v = self.filter_memory_tenant_social_network(v,
+                                                                 keys_message)
                         
                 elif k == "post_message_buffer":
                     dialogue_transfered = []
@@ -422,7 +402,44 @@ class RentEnvironment(BaseEnvironment):
         self.log.set_social_network_mem(social_network_mem=log_memory)
 
 
+    def filter_memory_tenant_social_network(self,
+                                            memory_tenant_sn,
+                                            keys_message):
+        for t_id, t_infos in memory_tenant_sn.items():
+            dialogue_transfered = []
+            for dialogue in t_infos.get("dialogues",[]):
+                dialogue_dict = {}
+                for key in keys_message:
+                    dialogue_dict[key] = getattr(dialogue,key)
+                
+                processed = False
+                for idx_t,dialogue_buffer_one in enumerate(dialogue_transfered):
+                    dialogue_buffer_one_context = dialogue_buffer_one["context"]
+                    same = True
+                    ## 检查新的dialogue更少的情况，直接不用处理
+                    if len(dialogue_dict["context"])<=len(dialogue_buffer_one_context):
+                        for idx in range(len(dialogue_dict["context"])):
+                            if dialogue_dict["context"][idx] != dialogue_buffer_one_context[idx]:
+                                same = False
+                                break
+                        if same:
+                            processed = True
+                            break
+                    else:
+                        for idx in range(len(dialogue_buffer_one_context)):
+                            if dialogue_dict["context"][idx] != dialogue_buffer_one_context[idx]:
+                                same = False
+                                break
+                        if same:
+                            dialogue_transfered[idx_t] = dialogue_dict
+                            processed = True
+                            break
+                    
+                if not processed:
+                    dialogue_transfered.append(dialogue_dict)
+                    
+            t_infos["dialogues"] = dialogue_transfered
+        return memory_tenant_sn
 
-
-
-
+    def calculate_max_utility(self):
+        self.global_score.calculate_max_utility()
