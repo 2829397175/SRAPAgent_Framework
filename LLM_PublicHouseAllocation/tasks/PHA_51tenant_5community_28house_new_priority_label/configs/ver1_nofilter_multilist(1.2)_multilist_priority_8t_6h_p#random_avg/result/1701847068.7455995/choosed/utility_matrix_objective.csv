@@ -1,8 +1,0 @@
-tenant_ids,choose_u,group_id,priority,choose_house_id,wait_turn,IWT,family_members_num,house_size,avg_area
-65,17.0,family_num=1,False,house_25,1.0,1.0,1.0,42.2,42.2
-58,14.0,family_num=1,False,house_10,1.0,1.0,1.0,38.05,38.05
-56,14.8,family_num=1,False,house_74,1.0,1.0,1.0,42.82,42.82
-39,15.0,family_num=1,False,house_13,1.0,1.0,1.0,38.25,38.25
-49,17.1,family_num=1,False,house_71,2.0,1.0,1.0,42.82,42.82
-32,14.5,family_num=1,True,house_29,1.0,1.0,1.0,44.5,44.5
-51,9.8,3>=family_num>=2,False,house_57,3.0,3.0,3.0,60.1,20.033333333333335

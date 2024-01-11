@@ -1,5 +1,5 @@
 完成CHATtenant，LangchainTenant框架合并。
-結果存于：.LLM_PublicHouseAllocation\tasks\PHA_50tenant_3community_19house\result
+結果存于：.EconAgent\tasks\PHA_50tenant_3community_19house\result
 step函数返回每一步的json数据
 
 

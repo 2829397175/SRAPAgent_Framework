@@ -1,4 +1,0 @@
-from LLM_PublicHouseAllocation.registry import Registry
-multiprompt_tenant_registry = Registry(name="MultiPromptTenantRegistry")
-from LLM_PublicHouseAllocation.tenant.multiprompt_tenant.CAHT_tenant import CAHTTenant
-from LLM_PublicHouseAllocation.tenant.multiprompt_tenant.base import BaseMultiPromptTenant

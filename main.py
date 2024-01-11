@@ -1,4 +1,4 @@
-from LLM_PublicHouseAllocation.executor import Executor
+from EconAgent.executor import Executor
 
 import argparse
 import os
@@ -27,7 +27,7 @@ parser.add_argument("--clear_cache",
 
 parser.add_argument("--api_path",
                     type=str,
-                    default="LLM_PublicHouseAllocation/llms/api.json",
+                    default="EconAgent/llms/api.json",
                     help="The default path of apis json.")
 
 
@@ -90,7 +90,7 @@ if __name__ == "__main__":
     
     if args["clear_cache"]:
         
-        result_dir = os.path.join("LLM_PublicHouseAllocation/tasks",
+        result_dir = os.path.join("EconAgent/tasks",
                                 args["data"],
                                 "configs",
                                 args["task"],
@@ -99,7 +99,7 @@ if __name__ == "__main__":
             shutil.rmtree(result_dir)
         
     if args["optimize"]:
-        from LLM_PublicHouseAllocation.optimizer import policy_optimizer_registry
+        from EconAgent.optimizer import policy_optimizer_registry
         optimizer = policy_optimizer_registry.load_data(args["optimizer_type"],
                                                         data = args["data"],
                                                         normalize = False)

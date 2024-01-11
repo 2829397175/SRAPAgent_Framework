@@ -1,7 +1,0 @@
-type_indicator,ex_name,3>=family_num>=2,family_num=1,family_num>3,all
-mean_house_area,ver1_nofilter_singlel,9.697555555555557,30.530000000000005,4.5760000000000005,13.186601307189544
-var_mean_house_area,ver1_nofilter_singlel,,,,236.78357189115297
-Rop,ver1_nofilter_singlel,,,,363.0
-mean_house_area,ver1_nofilter_multilist_priority_7,10.246444444444444,41.31,2.9925,15.52408496732026
-var_mean_house_area,ver1_nofilter_multilist_priority_7,,,,274.33110667905504
-Rop,ver1_nofilter_multilist_priority_7,,,,428.0
