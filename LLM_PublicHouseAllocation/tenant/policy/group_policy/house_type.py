@@ -1,6 +1,6 @@
 from . import group_registry
 from .base import BaseGroupPolicy
-
+import random
 @group_registry.register("house_type")
 class HouseTypePolicy(BaseGroupPolicy):
     
@@ -21,9 +21,14 @@ class HouseTypePolicy(BaseGroupPolicy):
         choose_state = False
         upper_bound = 3
         times = 0
+        
+        thought_hint = """Remember to consider the following things before choosing house:
+1. The per capita living area should be taken into consideration.
+2. Remember to give the reason why the selected house type meets your needs in thought(exp. \
+My family has a large population and needs a larger house to live in)"""
         while not choose_state and \
             times < upper_bound:
-            choose_state, house_type_id, house_type_reason = await tenant.choose_house_type(system,rule)
+            choose_state, house_type_id, house_type_reason = await tenant.choose_house_type(system,rule,thought_hint = thought_hint)
             log_round_tenant.set_choose_house_type(house_type_id,house_type_reason)
             self.log_fixed[tenant.id] = {
                 "choose_house_type":house_type_id,
@@ -32,7 +37,20 @@ class HouseTypePolicy(BaseGroupPolicy):
             times += 1
             
         if not choose_state:
-            return "default"
+            if tenant.family_num>2:
+                house_type_id = "large_house"
+            elif tenant.family_num==2: 
+                house_type_id = "middle_house"
+            else:
+                house_type_id = "small_house"
+                
+            house_type_reason += f"I choose none of these options for {upper_bound} times. So the system choose this type of hosue for me."
+            log_round_tenant.set_choose_house_type(house_type_id,house_type_reason)
+            self.log_fixed[tenant.id] = {
+                "choose_house_type":house_type_id,
+                "choose_house_type_reason": house_type_reason
+            }
+            
         return house_type_id # belong to group_id(house_type_id) queue
             
     

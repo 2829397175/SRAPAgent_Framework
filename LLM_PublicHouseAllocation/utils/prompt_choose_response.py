@@ -102,6 +102,7 @@ class Robot_Simulater():
     
         self.apis_u =[]
         self.output_parser = CustomOutputParser()
+        self.tenant_json = readinfo("LLM_PublicHouseAllocation/tasks/PHA_70tenant_5community_100house/data/tenant_70.json")
     
     def get_llm(self):
         if self.apis_a == []:
@@ -110,9 +111,11 @@ class Robot_Simulater():
         
         api = self.apis_a.pop()
         self.apis_u.append(api)
-        llm = ChatOpenAI(model_name="gpt-3.5-turbo-16k-0613",
+        llm = ChatOpenAI(
+                        # model_name="gpt-3.5-turbo-16k-0613",
+                    model_name="gpt-4",
                        verbose = False,
-                       max_tokens = 300,
+                       max_tokens = 3000,
                        openai_api_key=api
                        )  
         return llm   
@@ -122,6 +125,25 @@ class Robot_Simulater():
         llm = self.get_llm()
         chain = LLMChain(llm=llm, prompt=prompt)
         return chain
+    
+
+    def get_update_role_description(self,role_description):
+        regex = r"Your budget for renting a house for (\d+.\d+).Your acceptable price beyond the rental budget is (\d+)."
+        try:
+            match = re.search(regex, role_description, re.DOTALL|re.IGNORECASE)
+            
+            rent_budget = int(float(match.group(1)))
+            rent_outrange = int(match.group(2))
+            
+            role_description_b = "Your budget for renting a house for {budget}.The maximum rent you can accept is {max_budget}. "
+            role_description_b = role_description_b.format(budget = rent_budget,
+                                                    max_budget = rent_budget+rent_outrange)
+            
+            role_description = role_description.replace(match.group(0),role_description_b)
+            
+            return role_description
+        except:
+            return role_description
         
     async def get_robot_response(self,
                         type_data,
@@ -164,24 +186,65 @@ class Robot_Simulater():
 This community meets my request for a walk in the nearby park).
 3. If you have already made a choice of community in your memory, 
 You can choose to abandon all the current residential areas and wait for the ones you want to be released later (choose Giveup Action)\
-Alternatively, provide specific reasons for why you want to abandon the previously selected residential area and change your choice""",
-                'thought_type':"请用中文输出你对于这些小区的评价，以及做出决策的原因"
+Alternatively, provide specific reasons for why you want to abandon the previously selected residential area and change your choice
+4. You can choose to give up if none of these communities meet your requiremtent, but remember to consider your valuable chances to choose house you have within the queue \
+and the remaining chances you have to select a house.""",
+                'thought_type':"请用【中文】输出你对于这些小区的评价，以及做出决策的原因； 请注意放弃的情况同样用【中文】给出原因"
             },
             "housetype":{
                 'thought_hint':"""Remember to consider the following things before choosing house:
 1. The price of this house type should be within your budget.
 2. The per capita living area should be taken into consideration.
 3. Remember to give the reason why the selected house type meets your needs in thought(exp. \
-My family has a large population and needs a larger house to live in)""",
-                'thought_type':"请用中文输出你对于这些房屋类型的评价，以及做出决策的原因"
+My family has a large population and needs a larger house to live in)
+4. You can choose to give up if none of these house types meet your requiremtent, \
+but remember to consider your valuable chances to choose house you have within the queue \
+and the remaining chances you have to select a house.""",
+                'thought_type':"请用【中文】输出你对于这些房屋类型的评价，以及做出决策的原因； 请注意放弃的情况同样用【中文】给出原因"
             },
             "house":{
                 'thought_hint':"""Remember to consider the following things before choosing house:
 1. The price of this house should be within your budget.
 2. The per capita living area should be taken into consideration.
 3. Remember to give specific reason why the selected house meets your needs in thought (exp. \
-This house meets the requirements of my family for a large study).""",
-                'thought_type':"请用中文输出你对于这些房屋的评价，以及做出决策的原因"
+This house meets my requirement of having a elevator).
+4. You can choose to give up if none of these houses meet your requiremtent, \
+but remember to consider your valuable chances to choose house you have within the queue \
+and the remaining chances you have to select a house.""",
+                'thought_type':"请用【中文】输出你对于这些房屋的评价，以及做出决策的原因；请注意放弃的情况同样用【中文】给出原因"
+            },
+            
+        }
+        
+        input_prompt_types={
+            "community":{
+                'thought_hint': """在选择小区之前，请记住考虑以下事项：
+1. 应考虑该小区的价格和位置。
+2. 请在思考中说明为什么选择的小区符合您的需求（例如：这个小区符合我附近有公园散步的要求）。
+3. 如果您已经在记忆中选择了一个小区，
+   您可以选择放弃当前所有的居住区，并等待后续的选择释放（选择“放弃行动”），
+   或者提供具体的原因，解释为什么要放弃先前选择的居住区并改变选择。
+4. 如果这些小区都不符合您的要求，您可以选择放弃，但请记住要考虑您在队列中拥有的选择住房的机会，
+   以及您选择房屋的剩余机会。""",
+                'thought_type':"请用【中文】输出你对于这些小区的评价，以及做出决策的原因； 请注意放弃的情况同样用【中文】给出原因"
+            },
+            "housetype":{
+                'thought_hint': """在选择房屋类型之前，请记住考虑以下事项：
+1. 该房屋类型的价格应在您的预算范围内。
+2. 应考虑每人的居住面积。
+3. 请在思考中说明为什么选择的房屋类型符合您的需求（例如：我的家庭人口众多，需要一个更大的住房）。
+4. 如果这些房屋类型都不符合您的要求，您可以选择放弃，但请记住要考虑您在队列中拥有的选择住房的机会，
+   以及您选择房屋的剩余机会。""",
+                'thought_type':"请用【中文】输出你对于这些房屋类型的评价，以及做出决策的原因； 请注意放弃的情况同样用【中文】给出原因"
+            },
+            "house":{
+                'thought_hint':"""在选择房屋之前，请记住考虑以下事项：
+1. 该房屋的价格应在您的预算范围内。
+2. 应考虑每人的居住面积。
+3. 请具体说明为什么选择的房屋符合您的需求（例如：这个房屋满足我需要有电梯的要求）。
+4. 如果这些房屋都不符合您的要求，您可以选择放弃，但请记住要考虑您在队列中拥有的选择住房的机会，
+   以及您选择房屋的剩余机会。""",
+                'thought_type':"请用【中文】输出你对于这些房屋的评价，以及做出决策的原因；请注意放弃的情况同样用【中文】给出原因"
             },
             
         }
@@ -197,6 +260,9 @@ This house meets the requirements of my family for a large study).""",
         chinese_ver = random.sample(choose_chinese_vers,1)[0]
         input_arguments["choose_type"] = input_arguments["choose_type"].replace("My choice is",chinese_ver)
         input_arguments['agent_scratchpad']=""
+        role_des = input_arguments["role_description"]
+        input_arguments["role_description"] = self.get_update_role_description(role_des)
+        
         for i in range(5):
             try:
                 response = await agent_executor.arun(input_arguments)
@@ -211,38 +277,51 @@ def readinfo(data_dir):
         data_list = json.load(f)
     return data_list
 
-async def get_all_robot_response(filter_data_dir="LLM_PublicHouseAllocation\LLM_decision_test/filtered_response_data",
-                           save_dir ="LLM_PublicHouseAllocation\LLM_decision_test/filtered_response_data_simulated"):
-    data_types = [
-          "community",
-          "housetype",
-          "house",
-                  ]
+async def get_all_robot_response():
+    
+    data_paths =[
+        # "LLM_PublicHouseAllocation/LLM_decision_test/11_26_data/denotes_save_response/0.json",
+        # "LLM_PublicHouseAllocation/LLM_decision_test/11_26_data/denotes_save_response/2.json",
+        # "LLM_PublicHouseAllocation/LLM_decision_test/11_26_data/denotes_save_response/5.json",
+        # "LLM_PublicHouseAllocation/LLM_decision_test/11_28_data/denotes_save_response/28_1.json"
+        # "LLM_PublicHouseAllocation/LLM_decision_test/11_28_data/denotes_save_response/28_2.json",
+        # "LLM_PublicHouseAllocation/LLM_decision_test/11_26_data/denotes_save_response/6.json",
+        # "LLM_PublicHouseAllocation/LLM_decision_test/11_28_data/denotes_save_response/28_0.json",
+        # "LLM_PublicHouseAllocation/LLM_decision_test/11_26_data/denotes_save_response/3.json",
+        "LLM_PublicHouseAllocation/LLM_decision_test/11_26_data/denotes_save_response/4.json"
+        ]
+            
+    
     simulator = Robot_Simulater()
     
-    async def async_simulate_one_type(data_type):
-        
-        save_path = os.path.join(save_dir,f"{data_type}.json")
-        if os.path.exists(save_path):
-            data_responses = readinfo(save_path)
-        else:
-            data_path = os.path.join(filter_data_dir,f"{data_type}.json")
-            data_responses = readinfo(data_path)
-            
-        pbar_size =len(data_responses)
-        pbar=tqdm(range(int(pbar_size)), ncols=100,desc=f"simulating {data_type}") 
+    async def async_simulate_one_type(data_path,
+                                      robot_response_key = "robot_response"):
 
-        for k,v in data_responses.items():
+        data_responses = readinfo(data_path)
+
+        pbar_size =len(data_responses)
+        pbar=tqdm(range(int(pbar_size)), ncols=100,desc=f"simulating {os.path.basename(data_path)}") 
+
+        
+        
+        for response in data_responses:
             done = False
             
-            while(not done):
+            if "community" in response["prompt_inputs"]["choose_type"]:
+                data_type = "community"
+            elif "house type" in response["prompt_inputs"]["choose_type"]:
+                data_type = "housetype"
+            else:
+                data_type = "house"
+            
+            for i in range(5):
                 
-                if "robot_response" in v.keys():
-                    robot_response = v["robot_response"]
+                if robot_response_key in response.keys():
+                    robot_response = response[robot_response_key]
                     thought = robot_response["thought"]
-                    output = robot_response["output"]
+                    output = robot_response["output"].strip()
                     if is_chinese(thought):
-                        if output == 'I choose none of these options.':
+                        if "放弃" in output:
                             done = True
                             break
                         if data_type == "housetype":
@@ -255,28 +334,28 @@ async def get_all_robot_response(filter_data_dir="LLM_PublicHouseAllocation\LLM_
                             if data_type in output:
                                 done = True
                                 break
+                    else:
+                        pass
                     
 
-                response_robot = await simulator.get_robot_response(data_type,
-                                                            v["prompt_inputs"])
+                response_robot = await simulator.get_robot_response(data_type,response["prompt_inputs"])
                 if response_robot == None:
                     continue
-                v["robot_response"] = response_robot
-                
-                
-            if "response" in v:
-                del v["response"]
-            v["idx"] = k
+                response[robot_response_key] = response_robot
             
             pbar.update()
-        if not os.path.exists(save_dir):
-            os.makedirs(save_dir)    
-            
         
-        with open(save_path,'w',encoding = 'utf-8') as f:
+        
+        with open(data_path,'w',encoding = 'utf-8') as f:
             json.dump(data_responses, f, indent=4,separators=(',', ':'),ensure_ascii=False)  
     
-    await asyncio.gather(*[async_simulate_one_type(data_type) for data_type in data_types])
+    # await asyncio.gather(*[async_simulate_one_type(data_path=data_path,
+    #                                                robot_response_key="robot_response_3.5_chinese") 
+    #                        for data_path in data_paths])
+    await asyncio.gather(*[async_simulate_one_type(data_path=data_path,
+                                                   robot_response_key="robot_response_4_chinese") 
+                           for data_path in data_paths])
+
             
             
 

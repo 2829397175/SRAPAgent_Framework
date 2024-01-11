@@ -6,3 +6,10 @@ __pycache__/
 revision.md
 .vscode
 LLM_PublicHouseAllocation/tasks/PHA_50tenant_3community_19house/backup_data
+LLM_PublicHouseAllocation/tasks
+LLM_PublicHouseAllocation/optimizer/logs
+LLM_PublicHouseAllocation/optimizer/logs_fairness
+docs
+test/generate_data
+social_net_log
+media

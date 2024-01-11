@@ -51,8 +51,9 @@ class CAHTTenant(BaseMultiPromptTenant):
                                                                                                    community_info[
                                                                                                        "community_name"]))
             collect_info[community_info["community_name"]]["get_shortest_commute_time"] = map.baidumap.get_shortest_commute_time(self.workplace,
-                                                                                                 community_info[
-                                                                                                     "location"])
+                                                                                                 community_info["location"],
+                                                                                                 community_info["community_id"],
+                                                                                                 community_info["community_name"])
         return collect_info
     def summary_collect_info(self,community_infos,collect_info):
         community_infoss = community_infos.copy()

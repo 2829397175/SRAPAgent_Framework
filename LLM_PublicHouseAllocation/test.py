@@ -1,99 +1,31 @@
-import re
-def choose_community_extract_info(input_string):
-    input_string = input_string.strip()
-    action = ''
-    community_name = ''
-    house_type = ''
-    reason = ''
+from scipy.optimize import linear_sum_assignment
+import numpy as np
 
-    # Define the patterns for the two expected formats
-    choose_pattern = r".*?Action: Choose\s*Result:\s*'?.*?My choice is (?:the )?\[?((?:large|middle|small)\s?\w+)\]? in (?:the )?\[?(\w+)\]?.*?'?\s*Reason: (.+)$"
-    not_choose_pattern = r".*?Action: Not Choose\s*Result: (.+)\s*Reason：(.+)$"
+# 定义租客、房屋和匹配关系
+tenants = ['Tenant1', 'Tenant2', 'Tenant3']
+houses = ['House1', 'House2', 'House3','House4']
+matches = [('Tenant1', 'House2', 1), ('Tenant2', 'House1', 2), ('Tenant2', 'House2', 3), ('Tenant3', 'House1', 2)]
 
-    # Try to match the input_string with the first format
-    match = re.search(choose_pattern, input_string, re.MULTILINE | re.IGNORECASE)
-    if match:
-        action = 'Choose'
-        house_type = match.group(1).replace(" ", "_")  # replace the space with an underscore
-        community_name = match.group(2)
-        reason = match.group(3)
-        return True, action, community_name, house_type, reason
+# 构建一个权重矩阵
+# n = max(len(tenants), len(houses))
+cost_matrix = np.zeros((len(tenants), len(houses)))
 
-    # Try to match the input_string with the second format
-    match = re.search(not_choose_pattern, input_string, re.MULTILINE | re.IGNORECASE)
-    if match:
-        action = 'Not Choose'
-        reason = match.group(2)
-        return True, action, community_name, house_type, reason
+# 填充权重矩阵
+for match in matches:
+    tenant_index = tenants.index(match[0])
+    house_index = houses.index(match[1])
+    # 将分数作为负数填充，因为linear_sum_assignment函数是寻找最小费用的匹配
+    cost_matrix[tenant_index, house_index] = -match[2]
 
-    # If the input_string does not match any of the expected formats
-    return False, action, community_name, house_type, reason
+# 应用Kuhn-Munkres算法找到最优匹配
+row_ind, col_ind = linear_sum_assignment(cost_matrix)
 
-# Modifying the function to handle optional underscore between 'house' and the id
+# 准备最优匹配结果
+optimal_matches = [(tenants[i], houses[j], -cost_matrix[i, j]) for i, j in zip(row_ind, col_ind)]
+total_score = -cost_matrix[row_ind, col_ind].sum()
 
-# def choose_house_extract_info(input_string):
-#     input_string = input_string.strip()
-#     action = ''
-#     house_id = ''
-#     reason = ''
-#
-#     # Define the patterns for the two expected formats
-#     choose_pattern = r".*?Action: Choose\s*Result:\s*'?.*My choice is the house\s?_?(\d+).*'?\s*Reason: (.+)$"
-#     not_choose_pattern = r".*?Action: Not Choose\s*Result: (.+)\s*Reason：(.+)$"
-#
-#     # Try to match the input_string with the first format
-#     match = re.search(choose_pattern, input_string, re.MULTILINE | re.IGNORECASE)
-#     if match:
-#         action = 'Choose'
-#         house_id = 'house_' + match.group(1)
-#         reason = match.group(2)
-#         return True, action, house_id, reason
-#
-#     # Try to match the input_string with the second format
-#     match = re.search(not_choose_pattern, input_string, re.MULTILINE | re.IGNORECASE)
-#     if match:
-#         action = 'Not Choose'
-#         reason = match.group(2)
-#         return True, action, house_id, reason
-#
-#     # If the input_string does not match any of the expected formats
-#     return False, action, house_id, reason
+optimal_matches, total_score
 
-def choose_house_extract_info(input_string):
-    input_string = input_string.strip()
-    print(input_string)
-    house_id = ''
-    reason = ''
+print(total_score)
 
-    # Define the patterns for the two expected formats
-    choose_pattern = r".*?Action: Choose\s*Result:\s*'?.*My choice is(?: the)? house\s?_?(\d+).*'?\s*Reason: (.+)$"
-    not_choose_pattern = r".*?Action: Not Choose\s*Result: (.+)\s*Reason：(.+)$"
-
-    # Try to match the input_string with the first format
-    match = re.search(choose_pattern, input_string, re.MULTILINE | re.IGNORECASE)
-    if match:
-        house_id = 'house_' + match.group(1)
-        reason = match.group(2)
-        return True, True, house_id, reason
-
-    # Try to match the input_string with the second format
-    match = re.search(not_choose_pattern, input_string, re.MULTILINE | re.IGNORECASE)
-    if match:
-        reason = match.group(2)
-        return True, False, house_id, reason
-    return False, False, house_id, reason
-str2 = """
-Action: Choose
-Result: My choice is the house_3.
-Reason: House 3 has a good location, good elevator access and the lowest rent of all the options. The sound insulation is not the best, but it is acceptable.
-"""
-str3 = """
-Action: Choose
-Result: My choice is house_3.
-Reason: House 3 has a good location, good elevator access and the lowest rent of all the options. The sound insulation is not the best, but it is acceptable.
-"""
-
-print(choose_house_extract_info(str2))
-print(choose_house_extract_info(str3))
-
-
+print(optimal_matches)

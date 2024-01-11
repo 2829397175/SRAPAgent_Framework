@@ -66,7 +66,9 @@ def clear_database():
 def clear_1(data:list):
     data_return = []
     for dict_one in data:
-        v = dict_one["prompt_inputs"]["house_info"]
+        v = dict_one["prompt_inputs"]["house_info"].strip()
+        if v == "":
+            continue
         if "没有可用的" in v or "有0个社区" in v:
 
             continue
@@ -227,13 +229,17 @@ def mix_and_shuffle(save_path = "LLM_PublicHouseAllocation\LLM_decision_test\dat
     with open(save_path, 'w', encoding='utf-8') as file:
         json.dump(mixed_json, file, indent=4,separators=(',', ':'),ensure_ascii=False)
 
+
+
 if __name__ == "__main__":
+    
+    
     # make data
     # clear_database()
     # batch_read_data()
     
     # mix judge data (only robot)
-    mix_and_shuffle()
+    # mix_and_shuffle()
     
     # clear response
     json_types = ["housetype","house","community"]

@@ -138,6 +138,32 @@ class CommunityManager(BaseManager):
         
         def house_type_groups(house_ids,
                               queue_names): # 默认返回三个group
+            
+            # if tenant_manager.policy.group_policy.type == "portion":
+            #     assert len(queue_names) <=3, "unsupported length of queue!"
+            #     import re
+            #     regex = f"(\d+\.*\d*)<(.*)<(\d+\.*\d*)"
+                
+            #     portions = []
+            #     attr =""
+            #     valid_tenant_postive_attr = ["family_members_num",
+            #                         "monthly_income",
+            #                         "monthly_rent_budget"] # 指标越大 选 越大的房子（正向指标）
+            #     for queue_name in queue_names:
+            #         try:
+            #             match = re.search(regex, queue_name)
+            #             attr = match.group(2)
+            #             portions.append((queue_name,float(match.group(3))))
+            #             assert attr in valid_tenant_postive_attr
+            #         except:
+            #             raise Exception(f"invalid queue name! :{queue_name}")
+                
+            #     portions.sort(key=lambda x:x[1])
+                
+            #     for (queue_name,portion_left), house_type in zip()
+                
+                
+                
             queue_houses = {}
             random.shuffle(house_ids)
             for house_id in house_ids:
@@ -153,28 +179,42 @@ class CommunityManager(BaseManager):
                            queue_names,
                            portion_attr ="house_area"): # 默认按照房子大小按比例分配
             
-            
-            
             queue_lens = len(queue_names)
-            if queue_lens <=1:
-                return house_ids
-            import re
-            regex = f"(\d+\.*\d*)<(.*)<(\d+\.*\d*)"
+            if queue_lens ==1:
+                return {queue_names[0]:house_ids}
             
-            portions = []
-            attr =""
-            valid_tenant_postive_attr = ["family_members_num",
-                                 "monthly_income",
-                                 "monthly_rent_budget"] # 指标越大 选 越大的房子（正向指标）
-            for queue_name in queue_names:
-                try:
-                    match = re.search(regex, queue_name)
-                    attr = match.group(2)
-                    portions.append((queue_name,float(match.group(3))))
-                    assert attr in valid_tenant_postive_attr
-                except:
-                    raise Exception(f"invalid queue name! :{queue_name}")
+            if tenant_manager.policy.group_policy.type != "portion": 
+                # 自选房型 或者 房型标签的方式
                 
+                queue_names_sorted = []
+                for house_type in ["small_house","middle_house","large_house"]:
+                    if house_type in queue_names:
+                        queue_names_sorted.append(house_type)
+                
+                queue_portion_lens_dict ={
+                    1:[1],
+                    2:[0.5,1],
+                    3:[0.3,0.7,1],
+                }
+                portions = list(zip(queue_names_sorted,queue_portion_lens_dict[len(queue_names_sorted)]))
+            else:
+                import re
+                regex = f"(\d+\.*\d*)<(.*)<(\d+\.*\d*)"
+                
+                portions = []
+                attr =""
+                valid_tenant_postive_attr = ["family_members_num",
+                                    "monthly_income",
+                                    "monthly_rent_budget"] # 指标越大 选 越大的房子（正向指标）
+                for queue_name in queue_names:
+                    try:
+                        match = re.search(regex, queue_name)
+                        attr = match.group(2)
+                        portions.append((queue_name,float(match.group(3))))
+                        assert attr in valid_tenant_postive_attr
+                    except:
+                        raise Exception(f"invalid queue name! :{queue_name}")
+                    
             index_house_basic_infos = {house_id:house_manager[house_id] for house_id in house_ids}
             list_sorted_index_house_basic_infos = sorted(index_house_basic_infos.items(),key =lambda x: float(x[1].get(portion_attr,0)))
             
@@ -185,7 +225,7 @@ class CommunityManager(BaseManager):
             n = len(list_sorted_index_house_basic_infos)
             for idx_group,portion_tuple in enumerate(portions):
                 ptr_r = int(portion_tuple[1]*n)
-                if idx_group == len(portions):
+                if idx_group == len(portions) - 1:
                     portion_indexs = [ x[0] for x in list_sorted_index_house_basic_infos[ptr_l:]]
                 else:
                     portion_indexs = [ x[0] for x in list_sorted_index_house_basic_infos[ptr_l:ptr_r]]
@@ -216,10 +256,11 @@ class CommunityManager(BaseManager):
             queue_group_h_ids = avg_groups(queue_house_ids,
                                            len(queue_names),
                                                 queue_names)
-        elif self.patch_method == "portion":
-            # queue_group_h_ids = portion_groups(queue_house_ids,
-            #                                  queue_names,
-            #                                 "house_area")
+        elif self.patch_method == "portion_housesize":
+            queue_group_h_ids = portion_groups(queue_house_ids,
+                                             queue_names,
+                                            "house_area")
+        elif self.patch_method == "portion_rentmoney":
             queue_group_h_ids = portion_groups(queue_house_ids,
                                              queue_names,
                                             "rent_money")
@@ -252,6 +293,18 @@ class CommunityManager(BaseManager):
             pool_num_dict[pool_name] = cur_house_num
         return pool_num_dict
     
+    def get_unreleased_house_num(self,
+                                 cnt_turn):
+        add_turn_future = []
+        for add_turn  in self.distribution_batch_data.keys():
+            if int(add_turn)> int(cnt_turn):
+                add_turn_future.append(add_turn)
+                
+        future_add_houses_num = [len(self.distribution_batch_data.get(str(add_turn),[]))
+                             for add_turn in add_turn_future]    
+        
+        return sum(future_add_houses_num)
+            
     
     def community_str(self,
                       curcommunity_list,
@@ -423,7 +476,7 @@ The {housetype} in {community_id} is a {living_room} apartment, with an area of 
         if not isinstance(house_types,list):
             house_types = [house_types]
         community_infos = self.data[queue_name][community_id]
-        house_indexs = [community_infos[filter_key].get('index', []) for filter_key in house_types]
+        house_indexs = [community_infos.get(filter_key,{}).get('index', []) for filter_key in house_types]
 
         house_indexs_concat = []
         for house_index in house_indexs:

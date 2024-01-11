@@ -1,0 +1,17 @@
+tenant_ids,choose_u,group_id,priority,choose_house_id,wait_turn,IWT,family_members_num,house_size,avg_area
+69,16.2,3>=family_num>=2,False,house_39,1.0,1.0,3.0,57.5,19.166666666666668
+66,13.4,family_num>3,True,house_51,1.0,1.0,4.0,46.1,11.525
+1,18.0,family_num=1,False,house_25,2.0,2.0,1.0,42.2,42.2
+64,17.0,3>=family_num>=2,False,house_4,1.0,1.0,3.0,61.7,20.566666666666666
+62,16.9,family_num>3,False,house_57,2.0,1.0,4.0,60.1,15.025
+65,15.0,family_num=1,False,house_98,3.0,3.0,1.0,44.5,44.5
+67,16.5,3>=family_num>=2,False,house_85,2.0,1.0,2.0,48.7,24.35
+60,11.8,3>=family_num>=2,False,house_19,2.0,2.0,2.0,27.76,13.88
+63,18.0,3>=family_num>=2,False,house_64,2.0,1.0,2.0,48.75,24.375
+55,16.7,3>=family_num>=2,False,house_37,1.0,1.0,3.0,58.0,19.333333333333332
+54,16.6,3>=family_num>=2,False,house_54,2.0,1.0,2.0,58.54,29.27
+61,15.2,3>=family_num>=2,False,house_52,3.0,2.0,3.0,44.3,14.766666666666666
+58,12.5,family_num=1,False,house_13,3.0,3.0,1.0,38.25,38.25
+23,16.0,3>=family_num>=2,False,house_71,3.0,3.0,2.0,42.82,21.41
+53,15.4,family_num>3,False,house_3,2.0,1.0,4.0,61.5,15.375
+27,14.6,family_num>3,False,house_78,2.0,1.0,4.0,60.3,15.075

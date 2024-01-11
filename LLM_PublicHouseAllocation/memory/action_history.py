@@ -29,7 +29,7 @@ class SummarizerMixin(BaseModel):
     def request(self,
                 chain:LLMChain,
                 **kargs):
-        
+        response = None
         for i in range(self.max_retry):
             try:
                 response = chain.predict(**kargs)
@@ -53,6 +53,9 @@ class SummarizerMixin(BaseModel):
     async def arequest(self,
                        chain:LLMChain,
                        **kargs):
+        
+        response = None
+        
         for i in range(self.max_retry):
             try:
                 response = await chain.apredict(**kargs)
@@ -361,11 +364,11 @@ class ActionHistoryMemory(BaseMemory,SummarizerMixin):
                       "floor_type")
         
         TYPE_MEM={
-            "community":{"type_messages":["community"],"social_network":True},
-            "house":{"type_messages":["house"],"social_network":False},
-            "house_type":{"type_messages":["house_type"],"social_network":False},
-            "house_orientation":{"type_messages":["house_orientation"],"social_network":False},
-            "floor_type":{"type_messages":["floor_type"],"social_network":False},
+            "community":{"type_messages":["base","community"],"social_network":True},
+            "house":{"type_messages":["base","house"],"social_network":False},
+            "house_type":{"type_messages":["base","house_type"],"social_network":False},
+            "house_orientation":{"type_messages":["base","house_orientation"],"social_network":False},
+            "floor_type":{"type_messages":["base","floor_type"],"social_network":False},
         } # 注 forum暂时只有小区消息
         
         
@@ -412,9 +415,14 @@ class ActionHistoryMemory(BaseMemory,SummarizerMixin):
                       type_messages:List[str],
                       name:str = None,
                       social_network = False):
-    
+        memory_return =""
+        if "base" in type_messages:
+            memory_return += self.to_string_default(add_sender_prefix=False,
+                                        type_message=["base"])
+            type_messages.remove("base")
+        
         if not self.reflection:
-            memory_return = self.to_string_default(add_sender_prefix=False,
+            memory_return += self.to_string_default(add_sender_prefix=False,
                                         type_message=type_messages)
         else:
             messages_left = []
@@ -440,7 +448,7 @@ class ActionHistoryMemory(BaseMemory,SummarizerMixin):
             memory_str_summary = self.to_string(messages=messages_summary,
                                   add_sender_prefix=False)
             
-            memory_return = messages_str_left + memory_str_summary
+            memory_return += (messages_str_left + memory_str_summary)
         
         
         if social_network:

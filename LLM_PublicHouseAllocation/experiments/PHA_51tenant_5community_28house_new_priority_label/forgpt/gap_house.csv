@@ -1,0 +1,6 @@
+Rounds,$|Batch^{House}|$,$|Batch_{gap}^{House}|$,Avg $House^{size}\uparrow$,Var $House^{size}\downarrow$,Rop $\downarrow$,Avg WT $\downarrow$,gini coefficient $\downarrow$,SW $\uparrow$,ex_name,finished_replace
+9.5000$\pm$0.5000,1,1,13.7285$\pm$0.2331,230.0871$\pm$4.2513,348.0000$\pm$32.0000,4.0294$\pm$0.2059,0.4982$\pm$0.0121,414.2000$\pm$10.8000,ver1_nofilter_singlelist_5t_1h_p#singlelist,True
+10.0000$\pm$0.0000,3,1,12.3934$\pm$0.2161,191.1989$\pm$2.9014,299.5000$\pm$6.5000,4.5882$\pm$0.0588,0.5118$\pm$0.0137,399.1000$\pm$7.9000,ver1_nofilter_singlelist_5t_3h(step_num(t1_h2))_p#singlelist,True
+10.0000$\pm$0.0000,3,2,12.3934$\pm$0.2161,191.1989$\pm$2.9014,299.5000$\pm$6.5000,4.5882$\pm$0.0588,0.5118$\pm$0.0137,399.1000$\pm$7.9000,ver1_nofilter_singlelist_5t_3h(step_num(t1_h2))_p#singlelist,True
+10.0000$\pm$0.0000,3,3,12.1706$\pm$0.0383,210.8463$\pm$13.0842,306.0000$\pm$25.0000,5.1569$\pm$0.0196,0.5322$\pm$0.0030,385.5000$\pm$5.0000,ver1_nofilter_singlelist_5t_3h(step_num(t1_h3))_p#singlelist,True
+10.0000$\pm$0.0000,6,1,12.6943$\pm$0.2679,209.7746$\pm$7.2859,322.0000$\pm$38.0000,4.6765$\pm$0.0098,0.5134$\pm$0.0031,399.8500$\pm$0.8500,ver1_nofilter_singlelist_5t_6h_p#singlelist,True

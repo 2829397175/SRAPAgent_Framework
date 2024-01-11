@@ -45,7 +45,7 @@ class Ver3Policy(BasePolicy):
                 assert NotImplementedError
                 
             if not choose_state:
-                tenant.update_times(choose_state)
+                
                 await tenant.publish_forum(forum_manager,system)
                 return False,"None"
                 
@@ -59,7 +59,7 @@ class Ver3Policy(BasePolicy):
         await tenant.publish_forum(system=system,
                            forum_manager=forum_manager)
         # 更改tenant 的选择状态
-        tenant.update_times(choose_state)
+        
              
         if not choose_state:
             return False,"None"

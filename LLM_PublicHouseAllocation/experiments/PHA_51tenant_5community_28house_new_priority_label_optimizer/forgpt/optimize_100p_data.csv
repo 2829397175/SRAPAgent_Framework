@@ -1,0 +1,22 @@
+Optimizer Round,Rounds,Avg $House^{size}\uparrow$,Var $House^{size}\downarrow$,Rop $\downarrow$,mean WT $\downarrow$,gini coefficient $\downarrow$,social welfare $\uparrow$,ex_name,finished_replace
+,,16.043333333333333,275.7146069716776,511.0,,0.4603545472521175,485.9,optimal_utility,True
+1.0,,,,,,,,optimized_task_config_65,False
+2.0,,,,,,,,optimized_task_config_66,False
+3.0,,,,,,,,optimized_task_config_67,False
+4.0,,,,,,,,optimized_task_config_68,False
+5.0,,,,,,,,optimized_task_config_69,False
+6.0,,,,,,,,optimized_task_config_70,False
+7.0,,,,,,,,optimized_task_config_74,False
+8.0,,,,,,,,optimized_task_config_75,False
+9.0,,,,,,,,optimized_task_config_76,False
+10.0,,,,,,,,optimized_task_config_77,False
+11.0,,,,,,,,optimized_task_config_78,False
+12.0,,,,,,,,optimized_task_config_79,False
+13.0,,,,,,,,optimized_task_config_80,False
+14.0,,,,,,,,optimized_task_config_81,False
+15.0,,,,,,,,optimized_task_config_82,False
+16.0,,,,,,,,optimized_task_config_83,False
+final,,,,,,,,optimized_task_config_77,False
+best gt y:1,,,,,,,,optimized_task_config_67,False
+best gt y:2,,,,,,,,optimized_task_config_53,False
+best gt y:3,7.5000$\pm$1.5000,13.7763$\pm$0.1591,219.9030$\pm$1.5084,330.5000$\pm$2.5000,3.0588$\pm$0.1961,0.4885$\pm$0.0038,423.9000$\pm$7.3000,ver2_nofilter_multilist(1.5_k1)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3,True

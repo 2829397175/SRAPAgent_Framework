@@ -32,6 +32,6 @@ def compute_auc(data_dict:dict):
 
 if __name__ =="__main__":
     # test2: 
-    result_dir = "result"
+    result_dir = "LLM_PublicHouseAllocation/LLM_decision_test/social_network/result_modify"
     auc = count_auc(result_dir)
     print(auc)

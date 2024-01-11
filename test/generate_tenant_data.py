@@ -10,9 +10,22 @@ import random
 import numpy as np
 import copy
 
-from langchain.prompts.prompt import PromptTemplate
-os.environ["OPENAI_API_KEY"]= "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"
+import asyncio
+import platform
 
+from langchain.prompts.prompt import PromptTemplate
+os.environ["OPENAI_API_KEY"]= "sk-CImwWzGewBSmm6aR4d69016423Ed42C9Ad90585e510386C9"
+
+import json
+def readinfo(data_dir):
+    assert os.path.exists(data_dir),"no such file path: {}".format(data_dir)
+    with open(data_dir,'r',encoding = 'utf-8') as f:
+        data_list = json.load(f)
+    return data_list
+
+def writeinfo(data_dir,info):
+    with open(data_dir,'w',encoding = 'utf-8') as f:
+            json.dump(info, f, indent=4,separators=(',', ':'),ensure_ascii=False)
 class Data_generater():
     
     def __init__(self,prompt) -> None:
@@ -23,6 +36,9 @@ class Data_generater():
     
     def generate(self,**inputs):
         return self.llm_chain.predict(**inputs)
+    
+    async def agenerate(self,**inputs):
+        return await self.llm_chain.apredict(**inputs)
         
     def chain(self,prompt):
         self.llm_chain = LLMChain(llm=self.llm, prompt=prompt)
@@ -233,7 +249,7 @@ def check(tenant_sn, tenant_json, dir):
         json.dump(tenant_json_changed, file, indent=4,separators=(',', ':'),ensure_ascii=False)
         
         
-def priority_item(tenant_json,dir):
+def priority_item(tenant_json):
     rate = 0.2 # 20%的弱势群体
               
     p_item = {
@@ -251,36 +267,86 @@ def priority_item(tenant_json,dir):
     "families_with_2_or_more_minor_children":False
     }
     
-    random_indexs = np.random.choice(list(tenant_json.keys()),
-                                 int(rate*len(tenant_json))).tolist()
+    for tenant_id,tenant_info in tenant_json.items():
+        tenant_info["per_member_rent_budget"] = tenant_info["monthly_rent_budget"]/tenant_info["family_members_num"]
+        
+        
+    low_income_indexs = list(dict(sorted(tenant_json.items(),key = lambda x:x[1]["per_member_rent_budget"])).keys())
+    low_income_indexs = low_income_indexs[:int(rate*len(low_income_indexs))]#升序
     
     for tenant_id,tenant_info in tenant_json.items():
-        if tenant_id in random_indexs:
-            random_p_k = np.random.choice(list(p_item.keys()),1).tolist()[0]
+        if tenant_id in low_income_indexs:
             p_item_cp = copy.deepcopy(p_item)
-            p_item_cp[random_p_k] = True
+            p_item_cp["low_income_families"] = True
             tenant_info["priority_item"] = p_item_cp
         else:
             tenant_info["priority_item"] = p_item
-        
-    with open(os.path.join(dir,"tenant.json"), 'w', encoding='utf-8') as file:
+            
+    tenant_json = dict(sorted(tenant_json.items(),key = lambda x:x[0]) )#升序
+    with open("test/generate_data/tenant_70_newpriority.json", 'w', encoding='utf-8') as file:
         json.dump(tenant_json, file, indent=4,separators=(',', ':'),ensure_ascii=False)
+    return tenant_json
+        
+        
+
+        
+async def modify_tenant_attribute(data_generator:Data_generater,
+                            tenant_json
+                            ):
+    # for tenant_id,tenant_info in tenant_json.items():
+    
+    async def get_one_preference(tenant_info):
+        template ="""\
+You are {name}. Your budget for renting a house for {monthly_rent_budget}.\
+Your acceptable price beyond the rental budget is {acceptable_outrange}.\
+Your family members include: {family_members}.\
+You are {age} years old. Your job is {profession}. \
+""" 
+
+        monthly_income = tenant_info["monthly_income"] - tenant_info["monthly_rent_budget"] 
+        role_description = template.format_map({
+                                    "acceptable_outrange": int(monthly_income/100)*2,
+                                    **tenant_info}
+                                )
+        personal_preference = await data_generator.agenerate(role_description = role_description)
+        tenant_info["special_request_poor"] = personal_preference
+        
+    await asyncio.gather(*[get_one_preference(tenant_info) for tenant_info in tenant_json.values()])
+    return tenant_json
+    
+        
+def get_origin_json_info(data_generator):
+    origin_info=readinfo("test/generate_data/tenant_70.json")
+    tenant_51 = readinfo("test/generate_data/tenant_51.json")
+    
+    origin_info = priority_item(origin_info)
+    
+    origin_info = asyncio.run(modify_tenant_attribute(data_generator,origin_info))
+    
+    
+    for k in tenant_51.keys():
+        tenant_51[k] = origin_info[k]
+        
+    writeinfo("test/generate_data/tenant_70.json",origin_info)
+    writeinfo("test/generate_data/tenant_51.json",tenant_51)
+    
         
 
 if __name__ == "__main__":
-    
+    if platform.system()=='Windows':
+        asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
     prompt_template_yaml = yaml.safe_load(open("test/tenant_template.yaml","rb"))
-    prompt_template = prompt_template_yaml["social_info"]
-    
-    
-    prompt = PromptTemplate(input_variables=["used_names"], 
-                        template=prompt_template)
-    
-    generator = Data_generater(prompt=prompt)
     parser = outputparser()    
     
     """ Generate name, personality, social network. """
+    # prompt_template = prompt_template_yaml["social_info"]
     
+    
+    # prompt = PromptTemplate(input_variables=["used_names"], 
+    #                     template=prompt_template)
+    
+    # generator = Data_generater(prompt=prompt)
+    # parser = outputparser()    
     # # parser.load_json("test\generate_data/tenant_sn.json")
     
     # prompt_template = prompt_template_yaml["social_info"]
@@ -384,27 +450,39 @@ if __name__ == "__main__":
     
     """ check tenant_sn with tenant """
         
-    with open("test\generate_data/tenant_sn.json",'r',encoding = 'utf-8') as f:
-        tenant_sn = json.load(f)
+    # with open("test\generate_data/tenant_sn.json",'r',encoding = 'utf-8') as f:
+    #     tenant_sn = json.load(f)
         
-    with open("test\generate_data/tenant_info.json",'r',encoding = 'utf-8') as f:
-        tenant_info = json.load(f)
-    
-    with open("test\generate_data/tenant.json",'r',encoding = 'utf-8') as f:
-        tenant = json.load(f)
-    
-    check(tenant_sn,
-          tenant_json=tenant,
-          dir= "test\generate_data")
-    
-    """ Generate priority item """
+    # with open("test\generate_data/tenant_info.json",'r',encoding = 'utf-8') as f:
+    #     tenant_info = json.load(f)
     
     # with open("test\generate_data/tenant.json",'r',encoding = 'utf-8') as f:
     #     tenant = json.load(f)
+    
+    # check(tenant_sn,
+    #       tenant_json=tenant,
+    #       dir= "test\generate_data")
+    
+    """ Generate priority item """
+    
+    with open("test/generate_data/tenant_70.json",'r',encoding = 'utf-8') as f:
+        tenant = json.load(f)
         
-    # priority_item(tenant,"test\generate_data")
+    tenant_json = priority_item(tenant)
               
               
+              
+    """ Generate personal preference """
+    # prompt_template = prompt_template_yaml["personal_preference"]
+    
+    
+    # prompt = PromptTemplate(input_variables=["role_description"], 
+    #                     template=prompt_template)
+    
+    # generator = Data_generater(prompt=prompt)
+    
+    # get_origin_json_info(generator)
+    # asyncio.run(modify_tenant_attribute(generator,"personal_preference"))
               
     """ save data"""
     # parser.save_json("test\generate_data")

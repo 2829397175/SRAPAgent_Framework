@@ -33,6 +33,10 @@ class System(BaseModel):
         num = sum(pool_num_dict.values())    
         return num
     
+    def unreleased_house_num(self,
+                             cnt_turn):
+        return self.community_manager.get_unreleased_house_num(cnt_turn)
+    
     
     def get_community_abstract(self,
                                queue_name=None,
@@ -117,15 +121,19 @@ and can also accommodate a younger child.",
             for house_id in self.house_manager.community_to_house[community_name]:
                 house_info = self.house_manager[house_id]
                 floor = house_info.get("floor") 
+                elevator = house_info.get("elevator","not have")
                 floor_type = "high" if floor>= 10 else "low"
                 if floor_type not in floor_types:
-                    floor_types.append(floor_type)
+                    floor_types.append({"floor_type":floor_type,
+                                        "elevator":elevator})
                     
             
         floor_description = ""
         for floor_type in floor_types:
-            floor_description +="{floor_type}:{floor_description}\n".format(floor_type = floor_type,
-                                                                          floor_description = common_knowledge_orientation[floor_type])
+            floor_description +="{floor_type}:{floor_description}, This type of house {elevator} elevator.\n".format(
+                                                                        floor_type = floor_type["floor_type"],
+                                                                          floor_description = common_knowledge_orientation[ floor_type["floor_type"]],
+                                                                          elevator =  floor_type["elevator"])
         
         head_prompt = "There are {num_floor} types of house floors available. \
 The infomation of these floor types are listed as follows:\n{floor_description} "

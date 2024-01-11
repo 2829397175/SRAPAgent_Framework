@@ -23,8 +23,10 @@ openai_logger.setLevel(logging.WARNING)
 
 class Executor():
     def __init__(self,
-                 environment:RentEnvironment):
+                 environment:RentEnvironment,
+                 ex_idx:str):
         self.environment = environment
+        self.ex_idx = ex_idx# 标识实验的index
 
     @classmethod
     def from_task(cls, 
@@ -34,7 +36,7 @@ class Executor():
         Then this method will load the configuration from the yaml file in that directory.
         """
         # Prepare the config of the task
-        task_config,task_path,data_path = prepare_task_config(args.task,args.data)
+        task_config,task_path,data_path = prepare_task_config(args["task"],args["data"])
         
         if platform.system()=='Windows':
             asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
@@ -59,7 +61,7 @@ class Executor():
         
         tenant_configs = manager_configs.pop('tenant')
 
-        llm_loader = APIKeyPool(args.api_path)
+        llm_loader = APIKeyPool(args["api_path"])
         
         
         tenant_manager = load_manager({**tenant_configs,
@@ -86,6 +88,7 @@ class Executor():
         env_config['tenant_manager'] = tenant_manager
         env_config["forum_manager"] = forum_manager
         env_config["log"] = LogRound(save_dir = os.path.join(save_dir,"tenental_system.json"))
+        
         if env_config.get('tool',False):
             tool = Tool(forum_manager)
             env_config['tool'] = tool
@@ -118,7 +121,8 @@ class Executor():
                                         "save_log":save_log})
         
         
-        return cls(environment)
+        return cls(environment = environment,
+                   ex_idx = time_stamp)
     
     
 
@@ -129,16 +133,11 @@ class Executor():
         self.environment.load_log(result_dir)
 
 
+    
     def run(self):
         """Run the environment from scratch until it is done."""
-        # self.environment.reset() # 待改memory模块
                     
         self.environment.log.reset()
-        
-        # self.environment.group() # tenant->group(tenants)
-        # self.environment.line_up()
-    
-    
         
         while not self.environment.is_done():
             tenant_waitlists = self.environment.rule.get_next_agent_idx(self.environment)
@@ -151,11 +150,14 @@ class Executor():
             """采样所有系统中的tenant交流"""
             # tenant_ids = list(self.environment.tenant_manager.data.keys())
                         
-            self.environment.communication(tenant_ids,
-                                           communication_num = 10)
+            self.environment.communication(tenant_ids)
            
             self.environment.step(tenant_waitlists)
             
+        return self.ex_idx
+            
+    def calculate_max_utility(self):
+        self.environment.calculate_max_utility()
             
 
     def reset(self):

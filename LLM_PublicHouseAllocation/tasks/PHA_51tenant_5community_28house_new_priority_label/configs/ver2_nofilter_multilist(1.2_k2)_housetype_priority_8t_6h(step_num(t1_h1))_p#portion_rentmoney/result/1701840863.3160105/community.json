@@ -1,0 +1,271 @@
+{
+    "small_house":{
+        "community_5":{
+            "sum_num":4,
+            "sum_remain_num":1,
+            "middle_house":{
+                "remain_number":1,
+                "living_room":"one room",
+                "index":[
+                    "house_83"
+                ],
+                "size":"48.35-49.06",
+                "cost":"1210"
+            },
+            "small_house":{
+                "remain_number":0,
+                "index":[],
+                "living_room":"zero room",
+                "size":"44.24-44.51",
+                "cost":"1106"
+            },
+            "community_id":"community_5",
+            "community_name":"sanhejiayuan",
+            "location":"北京市大兴区三合北巷2、4号院",
+            "en_location":"No. 2 and 4 Court, Sanhe North Lane, Daxing District, Beijing",
+            "value_inch":25,
+            "description":"sanhejiayuan is a contemporary community nestled in the tranquil outskirts of Beijing. This newly erected haven offers an escape from the hustle and bustle of city life. Enveloped by lush greenery and picturesque landscapes, residents can enjoy serene morning walks alongside babbling brooks and well-maintained pathways. Each building showcases modern architectural design with spacious balconies that provide panoramic views of the surrounding hills. ",
+            "nearby_info":"This commnunity is surrounded by: The subway includes Huangcun West Street; supermarkets include Sanhe Nanli Convenience Mall and Xiqingde Department Store; shopping malls include Bailian Qingcheng International Shopping Center and Jixing Deyi Life Plaza; hospitals include Daxing District Town Yonghua Beili Community Health Service Station; parks include Xingwang Park (South District); schools include the Experimental School Affiliated to the National Institute of Educational Administration, Daxing District No. 2 Primary School; restaurants include Tibetan Style Restaurant (Daxing Branch), Huangni Roast Pigeon (Huangcun Branch); banks include Tianjin Bank (Beijing Daxing Branch), Tianjin Bank 24-hour self-service banking (Daxing Branch).",
+            "available":true
+        },
+        "community_2":{
+            "community_id":"community_2",
+            "community_name":"jinkejiayuan",
+            "location":"北京市大兴区永旺路1号",
+            "en_location":"No. 1 Yongwang Road, Daxing District, Beijing",
+            "value_inch":34,
+            "sum_num":1,
+            "sum_remain_num":0,
+            "description":"The green area of the community should account for more than 30% of the total land area, and the central urban area should not be less than 25%.",
+            "nearby_info":"This commnunity is surrounded by: Metro includes biomedical base; supermarkets include Sure Beauty Fresh Life Supermarket (Jinke Tianwei Store), Tiangong Courtyard Convenience Store; shopping malls include Yuejie Times Square, Longhu Beijing Daxing Tianjie; parks include Yongxing River Wetland Park; schools include Daxing Experimental Primary School affiliated to Beijing Education College (Merging Campus), Tsinghua University School Primary School; restaurants include Fan Laoman (Tiangong Courtyard Store), Xinlong Sijiu Meat (Tiangong Courtyard Store); banks include Beijing Rural Commercial Bank 24-hour Self-help Bank (Beibei Village Branch), Beijing Daxing Jiuiyin Village Bank (Tiangong Courtyard Branch); .This commnunity does not have: Hospital,",
+            "small_house":{
+                "remain_number":0,
+                "living_room":"zero room",
+                "index":[],
+                "size":"27.76-44.62",
+                "cost":"952-1517"
+            },
+            "available":true
+        }
+    },
+    "middle_house":{
+        "community_2":{
+            "sum_num":3,
+            "sum_remain_num":3,
+            "small_house":{
+                "remain_number":3,
+                "index":[
+                    "house_25",
+                    "house_30",
+                    "house_29"
+                ],
+                "living_room":"zero room",
+                "size":"27.76-44.62",
+                "cost":"952-1517"
+            },
+            "community_id":"community_2",
+            "community_name":"jinkejiayuan",
+            "location":"北京市大兴区永旺路1号",
+            "en_location":"No. 1 Yongwang Road, Daxing District, Beijing",
+            "value_inch":34,
+            "description":"The green area of the community should account for more than 30% of the total land area, and the central urban area should not be less than 25%.",
+            "nearby_info":"This commnunity is surrounded by: Metro includes biomedical base; supermarkets include Sure Beauty Fresh Life Supermarket (Jinke Tianwei Store), Tiangong Courtyard Convenience Store; shopping malls include Yuejie Times Square, Longhu Beijing Daxing Tianjie; parks include Yongxing River Wetland Park; schools include Daxing Experimental Primary School affiliated to Beijing Education College (Merging Campus), Tsinghua University School Primary School; restaurants include Fan Laoman (Tiangong Courtyard Store), Xinlong Sijiu Meat (Tiangong Courtyard Store); banks include Beijing Rural Commercial Bank 24-hour Self-help Bank (Beibei Village Branch), Beijing Daxing Jiuiyin Village Bank (Tiangong Courtyard Branch); .This commnunity does not have: Hospital,",
+            "available":true
+        },
+        "community_3":{
+            "sum_num":3,
+            "sum_remain_num":0,
+            "middle_house":{
+                "remain_number":0,
+                "index":[],
+                "living_room":"one room",
+                "size":"44.96-47.13",
+                "cost":"1800-1885"
+            },
+            "community_id":"community_3",
+            "community_name":"ronghui",
+            "location":"北京市大兴区华伦路1号院",
+            "en_location":"Courtyard No. 1, Hualun Road, Daxing District, Beijing",
+            "value_inch":40,
+            "description":"The community has good greenery, a parking lot, and several kinds of sports and fitness equipment.",
+            "nearby_info":"This commnunity is surrounded by: Metro includes Huangcun Railway Station, Huangcun West Street; Supermarket includes Wumi Supermarket (Jianxing Store), Ma Jie Department Store Flagship Store (Daxing Daxing Dazhong Fengli Store); Mall includes Daxing Dazheng Chunli, Daxing Xingcheng Commercial Building; Hospital includes Beijing Daxing Town Dazheng Dongli Community Health Service Station, Beijing Daxing Jingnan Traditional Chinese Medicine Hospital; Park includes Daxing Street Park, Daxing Agricultural Machinery Park; School includes Beijing Daxing District First Middle School, Beijing Daxing District Fifth Elementary School; Restaurants include Half-Demon Green Pepper Grilled Fish (Daxing Hotel Branch), Meizhou Dongpo Restaurant (Daxing Huangcun Branch); Bank includes Industrial and Commercial Bank of China ATM (Beijing Daxing Branch), Postal Savings Bank of China (Daxing Branch); .This commnunity: not have\n",
+            "available":true
+        },
+        "community_1":{
+            "sum_num":3,
+            "sum_remain_num":3,
+            "small_house":{
+                "remain_number":3,
+                "index":[
+                    "house_10",
+                    "house_13",
+                    "house_17"
+                ],
+                "living_room":"zero room",
+                "size":"37.96-38.09",
+                "cost":"1140"
+            },
+            "community_id":"community_1",
+            "community_name":"longxing",
+            "location":"北京市大兴区隆平大街2号",
+            "en_location":"No. 2, Longping Street, Daxing District, Beijing",
+            "value_inch":30,
+            "description":"There are sports facilities, including football fields and basketball courts, with a large green area and a large distance between buildings.",
+            "nearby_info":"This community is surrounded by: Supermarkets include Hualian Boutique Supermarket (Guaxiang Road Branch), Carrefour Supermarket (Danish Town Branch); Schools include Zhongrui Hotel Management College, Beijing Second Foreign Language College Zhongrui Hotel Management College Living Area; Restaurants include microfood origin Hunan Cuisine (Hunan Cuisine Branch), fisherman's handle iron pot (Longjing Bay 2nd District Branch); Banks include Agricultural Bank of China ATM (Longgazhuang Shunjing Road Branch); .This commnunity does not have: subway, shopping mall, hospital, park,",
+            "available":true
+        },
+        "community_5":{
+            "sum_num":2,
+            "sum_remain_num":1,
+            "large_house":{
+                "remain_number":1,
+                "living_room":"two rooms",
+                "index":[
+                    "house_77"
+                ],
+                "size":"60-60.62",
+                "cost":"1500"
+            },
+            "middle_house":{
+                "remain_number":0,
+                "living_room":"one room",
+                "index":[],
+                "size":"48.35-49.06",
+                "cost":"1210"
+            },
+            "community_id":"community_5",
+            "community_name":"sanhejiayuan",
+            "location":"北京市大兴区三合北巷2、4号院",
+            "en_location":"No. 2 and 4 Court, Sanhe North Lane, Daxing District, Beijing",
+            "value_inch":25,
+            "description":"sanhejiayuan is a contemporary community nestled in the tranquil outskirts of Beijing. This newly erected haven offers an escape from the hustle and bustle of city life. Enveloped by lush greenery and picturesque landscapes, residents can enjoy serene morning walks alongside babbling brooks and well-maintained pathways. Each building showcases modern architectural design with spacious balconies that provide panoramic views of the surrounding hills. ",
+            "nearby_info":"This commnunity is surrounded by: The subway includes Huangcun West Street; supermarkets include Sanhe Nanli Convenience Mall and Xiqingde Department Store; shopping malls include Bailian Qingcheng International Shopping Center and Jixing Deyi Life Plaza; hospitals include Daxing District Town Yonghua Beili Community Health Service Station; parks include Xingwang Park (South District); schools include the Experimental School Affiliated to the National Institute of Educational Administration, Daxing District No. 2 Primary School; restaurants include Tibetan Style Restaurant (Daxing Branch), Huangni Roast Pigeon (Huangcun Branch); banks include Tianjin Bank (Beijing Daxing Branch), Tianjin Bank 24-hour self-service banking (Daxing Branch).",
+            "available":true
+        },
+        "community_4":{
+            "community_id":"community_4",
+            "community_name":"wankecheng",
+            "location":"北京市大兴区天河西路2号院",
+            "en_location":"No. 2 Court, Tianhe West Road, Daxing District, Beijing",
+            "value_inch":45,
+            "sum_num":1,
+            "sum_remain_num":0,
+            "description":"wankecheng stands as a testament to modern living in the heart of Beijing's peaceful suburbs. Constructed with the latest eco-friendly materials, this community prioritizes sustainability while ensuring comfort and luxury. The tall silver pine trees, from which the community gets its name, dot the skyline and provide refreshing shade during the summer months. Residents can benefit from the meticulously landscaped gardens, which are interspersed with cozy seating areas and beautiful water features. The community center offers various activities, fostering a sense of camaraderie among neighbors. Despite its secluded location, Silver Pine Heights remains connected to the city through efficient transport networks, making daily commutes and weekend getaways equally convenient.",
+            "nearby_info":"This commnunity is surrounded by: The subway includes Huangcun Railway Station and Huangcun West Street; supermarkets include vegetable supermarkets and Wumart Supermarket (Daxing Huangcun store); shopping malls include Daxing Dayue Chunfengli and Daxing Star City Commercial Building; hospitals include Xingzheng Town, Daxing District, Beijing Dongli Community Health Service Station, Jingnan Hospital of Traditional Chinese Medicine, Daxing District, Beijing; Parks include Street Center Park; Schools include Beijing Daxing District No. 1 Middle School, Beijing Daxing District No. 8 Primary School; restaurants include Bantian Yao Green Pepper Grilled Fish (Daxing Hotel Store), Jingmen Laobao San (Guanyin Temple Store); banks include Industrial and Commercial Bank of China (Beijing Daxing Branch), Industrial and Commercial Bank of China ATM (Beijing Daxing Branch).",
+            "middle_house":{
+                "remain_number":0,
+                "living_room":"one room",
+                "index":[],
+                "size":"48.38-49.07",
+                "cost":"2177-2208"
+            },
+            "available":true
+        }
+    },
+    "large_house":{
+        "community_4":{
+            "sum_num":5,
+            "sum_remain_num":3,
+            "large_house":{
+                "remain_number":0,
+                "index":[],
+                "living_room":"two rooms",
+                "size":"58.54-60.83",
+                "cost":"2634-2737"
+            },
+            "middle_house":{
+                "remain_number":1,
+                "living_room":"one room",
+                "index":[
+                    "house_65"
+                ],
+                "size":"48.38-49.07",
+                "cost":"2177-2208"
+            },
+            "small_house":{
+                "remain_number":2,
+                "index":[
+                    "house_74",
+                    "house_71"
+                ],
+                "living_room":"zero room",
+                "size":"42.82",
+                "cost":"1926.9"
+            },
+            "community_id":"community_4",
+            "community_name":"wankecheng",
+            "location":"北京市大兴区天河西路2号院",
+            "en_location":"No. 2 Court, Tianhe West Road, Daxing District, Beijing",
+            "value_inch":45,
+            "description":"wankecheng stands as a testament to modern living in the heart of Beijing's peaceful suburbs. Constructed with the latest eco-friendly materials, this community prioritizes sustainability while ensuring comfort and luxury. The tall silver pine trees, from which the community gets its name, dot the skyline and provide refreshing shade during the summer months. Residents can benefit from the meticulously landscaped gardens, which are interspersed with cozy seating areas and beautiful water features. The community center offers various activities, fostering a sense of camaraderie among neighbors. Despite its secluded location, Silver Pine Heights remains connected to the city through efficient transport networks, making daily commutes and weekend getaways equally convenient.",
+            "nearby_info":"This commnunity is surrounded by: The subway includes Huangcun Railway Station and Huangcun West Street; supermarkets include vegetable supermarkets and Wumart Supermarket (Daxing Huangcun store); shopping malls include Daxing Dayue Chunfengli and Daxing Star City Commercial Building; hospitals include Xingzheng Town, Daxing District, Beijing Dongli Community Health Service Station, Jingnan Hospital of Traditional Chinese Medicine, Daxing District, Beijing; Parks include Street Center Park; Schools include Beijing Daxing District No. 1 Middle School, Beijing Daxing District No. 8 Primary School; restaurants include Bantian Yao Green Pepper Grilled Fish (Daxing Hotel Store), Jingmen Laobao San (Guanyin Temple Store); banks include Industrial and Commercial Bank of China (Beijing Daxing Branch), Industrial and Commercial Bank of China ATM (Beijing Daxing Branch).",
+            "available":true
+        },
+        "community_3":{
+            "sum_num":3,
+            "sum_remain_num":1,
+            "large_house":{
+                "remain_number":0,
+                "index":[],
+                "living_room":"two rooms",
+                "size":"56.14-58.33",
+                "cost":"2240-2320"
+            },
+            "middle_house":{
+                "remain_number":1,
+                "living_room":"one room",
+                "index":[
+                    "house_44"
+                ],
+                "size":"44.96-47.13",
+                "cost":"1800-1885"
+            },
+            "community_id":"community_3",
+            "community_name":"ronghui",
+            "location":"北京市大兴区华伦路1号院",
+            "en_location":"Courtyard No. 1, Hualun Road, Daxing District, Beijing",
+            "value_inch":40,
+            "description":"The community has good greenery, a parking lot, and several kinds of sports and fitness equipment.",
+            "nearby_info":"This commnunity is surrounded by: Metro includes Huangcun Railway Station, Huangcun West Street; Supermarket includes Wumi Supermarket (Jianxing Store), Ma Jie Department Store Flagship Store (Daxing Daxing Dazhong Fengli Store); Mall includes Daxing Dazheng Chunli, Daxing Xingcheng Commercial Building; Hospital includes Beijing Daxing Town Dazheng Dongli Community Health Service Station, Beijing Daxing Jingnan Traditional Chinese Medicine Hospital; Park includes Daxing Street Park, Daxing Agricultural Machinery Park; School includes Beijing Daxing District First Middle School, Beijing Daxing District Fifth Elementary School; Restaurants include Half-Demon Green Pepper Grilled Fish (Daxing Hotel Branch), Meizhou Dongpo Restaurant (Daxing Huangcun Branch); Bank includes Industrial and Commercial Bank of China ATM (Beijing Daxing Branch), Postal Savings Bank of China (Daxing Branch); .This commnunity: not have\n",
+            "available":true
+        },
+        "community_1":{
+            "sum_num":2,
+            "sum_remain_num":0,
+            "large_house":{
+                "remain_number":0,
+                "index":[],
+                "living_room":"one room",
+                "size":"60.92-61.8",
+                "cost":"1830"
+            },
+            "community_id":"community_1",
+            "community_name":"longxing",
+            "location":"北京市大兴区隆平大街2号",
+            "en_location":"No. 2, Longping Street, Daxing District, Beijing",
+            "value_inch":30,
+            "description":"There are sports facilities, including football fields and basketball courts, with a large green area and a large distance between buildings.",
+            "nearby_info":"This community is surrounded by: Supermarkets include Hualian Boutique Supermarket (Guaxiang Road Branch), Carrefour Supermarket (Danish Town Branch); Schools include Zhongrui Hotel Management College, Beijing Second Foreign Language College Zhongrui Hotel Management College Living Area; Restaurants include microfood origin Hunan Cuisine (Hunan Cuisine Branch), fisherman's handle iron pot (Longjing Bay 2nd District Branch); Banks include Agricultural Bank of China ATM (Longgazhuang Shunjing Road Branch); .This commnunity does not have: subway, shopping mall, hospital, park,",
+            "available":true
+        },
+        "community_5":{
+            "community_id":"community_5",
+            "community_name":"sanhejiayuan",
+            "location":"北京市大兴区三合北巷2、4号院",
+            "en_location":"No. 2 and 4 Court, Sanhe North Lane, Daxing District, Beijing",
+            "value_inch":25,
+            "sum_num":1,
+            "sum_remain_num":0,
+            "description":"sanhejiayuan is a contemporary community nestled in the tranquil outskirts of Beijing. This newly erected haven offers an escape from the hustle and bustle of city life. Enveloped by lush greenery and picturesque landscapes, residents can enjoy serene morning walks alongside babbling brooks and well-maintained pathways. Each building showcases modern architectural design with spacious balconies that provide panoramic views of the surrounding hills. ",
+            "nearby_info":"This commnunity is surrounded by: The subway includes Huangcun West Street; supermarkets include Sanhe Nanli Convenience Mall and Xiqingde Department Store; shopping malls include Bailian Qingcheng International Shopping Center and Jixing Deyi Life Plaza; hospitals include Daxing District Town Yonghua Beili Community Health Service Station; parks include Xingwang Park (South District); schools include the Experimental School Affiliated to the National Institute of Educational Administration, Daxing District No. 2 Primary School; restaurants include Tibetan Style Restaurant (Daxing Branch), Huangni Roast Pigeon (Huangcun Branch); banks include Tianjin Bank (Beijing Daxing Branch), Tianjin Bank 24-hour self-service banking (Daxing Branch).",
+            "large_house":{
+                "remain_number":0,
+                "living_room":"two rooms",
+                "index":[],
+                "size":"60-60.62",
+                "cost":"1500"
+            },
+            "available":true
+        }
+    }
+}

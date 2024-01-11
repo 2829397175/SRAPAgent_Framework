@@ -29,6 +29,10 @@ families with major illnesses or surgeries, severely disabled families, and fami
 """
 
 
+    def __init__(self,**kargs) -> None:
+        return super().__init__(type = "priority",
+                                **kargs)
+    
     def get_next_agent_idx(self, environment) -> dict:
         """Return the index of the next agent to speak"""
         # result=[]

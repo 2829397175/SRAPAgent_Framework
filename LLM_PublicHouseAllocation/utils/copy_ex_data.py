@@ -3,24 +3,24 @@ import shutil
 root_dir = "LLM_PublicHouseAllocation/tasks"
 
 # save_root ="LLM_PublicHouseAllocation/LLM_decision_test/data/"
-save_root ="LLM_PublicHouseAllocation\LLM_decision_test\social_network\data"
+save_root ="LLM_PublicHouseAllocation/LLM_decision_test/data"
 
-ex_setting = "PHA_51tenant_5community_28house"
+ex_setting = "PHA_70tenant_5community_100house"
+ex_dir = os.path.join(root_dir,ex_setting,"configs")
+
 
 if not os.path.exists(save_root):
     os.makedirs(save_root)
 
-tasks = os.listdir(root_dir)
-tasks.remove("backup_data")
+configs = os.listdir(ex_dir)
+
+# tasks.remove("backup_data")
 # tasks =["PHA_5tenant_3community_19house_ver1_nofilter_hightem"]
 
-for task in tasks:
-    results_dir = os.path.join(root_dir,task,"result")
-    if ex_setting not in task:
-        continue
-    if os.path.exists(results_dir):
-        results = os.listdir(results_dir)
-        for result in results:
-            result_dir = os.path.join(results_dir,result,"tenental_system.json")
-            if (os.path.exists(result_dir)):
-                shutil.copyfile(result_dir,os.path.join(save_root,f"{task}_{result}_ts.json"))
+for config in configs:
+    
+    results_dir = os.path.join(ex_dir,config,"result")
+    for time_stamp in list(os.listdir(results_dir)):
+        result_path = os.path.join(results_dir,time_stamp,"tenental_system.json")
+        if (os.path.exists(result_path)):
+            shutil.copyfile(result_path,os.path.join(save_root,f"{ex_setting}_{config}_{time_stamp}.json"))
