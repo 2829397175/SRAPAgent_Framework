@@ -23,7 +23,7 @@ def run_tasks(tasks,
     
     failed_tasks = []
     
-    command_template = "python main.py --task {task} --data {data} --simulate"
+    command_template = "python main.py --task {data} --config {task} --simulate"
     if not os.path.exists(log_dir):
         os.makedirs(log_dir)
 
@@ -278,7 +278,7 @@ def replace_distribution_batch(data):
             
 def run_optimizer(optimize_times = 20):
     command_args = [
-                "--data","PHA_51tenant_5community_28house_new_priority_label_optimizer",
+                "--data","public_housing_optimizer",
                 "--optimize",
                 "--optimize_regressor_max_samples","60",
                 "--optimize_regressor_threshold","0.3",
@@ -298,148 +298,92 @@ def run_optimizer(optimize_times = 20):
 if __name__ == "__main__":
     
     task_dir ="EconAgent/tasks"
-    # data = "PHA_51tenant_5community_28house"
-    
-    data = "PHA_51tenant_5community_28house_new_priority_label"
-    # data = "PHA_51tenant_5community_28house_new_priority_label_optimizer"
-    # # data = "PHA_70tenant_100houses_hongkong"
-    # data = "PHA_70tenant_38houses_hongkong"
-    # data ="PHA_51tenant_5community_28house_new_priority_perpersonlabel"
 
-    # priority_compare_tasks =[
-    #     "ver1_nofilter_multilist(1.2)_portion3(f_earn_money)_nopriority_8t_6h_p#portion_housesize",
-    #     "ver1_nofilter_multilist(1.2)_portion3(f_earn_money)_priority_8t_6h_p#portion_housesize",
-    #     "ver1_nofilter_multilist(1.2)_multilist_nopriority_8t_6h_p#portion_rentmoney",
-    #     "ver1_nofilter_multilist(1.2)_multilist_priority_8t_6h_p#portion_rentmoney"
-    # ]
-    
-    config_root = os.path.join(task_dir,data,"configs")
-    task_names = os.listdir(config_root)
-
-#     task_names = [
-#     "ver1_nofilter_multilist(1.2)_multilist_priority_8t_6h_p#housetype",
-#     "ver1_nofilter_multilist(1.2)_multilist_housing_points_8t_6h_p#housetype",
-#     "ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2",
-#     "ver2_nofilter_multilist(1.2_k2)_housetype_housing_points_8t_6h(step_num(t1_h1))_p#housetype_choose2",
-#     "ver1_nofilter_multilist(1.2)_portion3(f_earn_money)_priority_8t_6h_p#portion_housesize",
-#     "ver1_nofilter_multilist(1.2)_portion3(f_earn_money)_housing_points_8t_6h_p#portion_housesize",
-#     "ver1_nofilter_multilist(1.2)_multilist_priority_8t_6h_p#portion_rentmoney",
-#     "ver1_nofilter_multilist(1.2)_multilist_housing_points_8t_6h_p#portion_rentmoney"
-# ]
-
-    task_names =[
-    "ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#random_avg",
-    "ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2",
-    "ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#portion_rentmoney",
-    "ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#portion_housesize",
-    "ver1_nofilter_multilist(1.2)_multilist_priority_8t_6h_p#random_avg",
-    "ver1_nofilter_multilist(1.2)_multilist_priority_8t_6h_p#housetype",
-    "ver1_nofilter_multilist(1.2)_multilist_priority_8t_6h_p#portion_rentmoney",
-    "ver1_nofilter_multilist(1.2)_multilist_priority_8t_6h_p#portion_housesize",
-    "ver1_nofilter_multilist(1.2)_portion3(f_member_num)_priority_8t_6h_p#random_avg",
-    "ver1_nofilter_multilist(1.2)_portion3(f_member_num)_priority_8t_6h_p#portion_rent_money",
-    "ver1_nofilter_multilist(1.2)_portion3(f_member_num)_priority_8t_6h_p#portion_housesize",
-    "ver1_nofilter_multilist(1.2)_portion3(f_rent_money_budget)_priority_8t_6h_p#random_avg",
-    "ver1_nofilter_multilist(1.2)_portion3(f_rent_money_budget)_priority_8t_6h_p#portion_rent_money",
-    "ver1_nofilter_multilist(1.2)_portion3(f_rent_money_budget)_priority_8t_6h_p#portion_housesize",
-    "ver2_nofilter_multilist(1.2_k1)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3",
-    "ver2_nofilter_multilist(1.5_k1)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3",
-    "ver2_nofilter_multilist(1.8_k1)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3",
-    "ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3",
-    "ver2_nofilter_multilist(1.5_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3",
-    "ver2_nofilter_multilist(1.8_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3",
-    "ver2_nofilter_multilist(1.2_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3",
-    "ver2_nofilter_multilist(1.5_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3",
-    "ver2_nofilter_multilist(1.8_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3",
-    "ver1_nofilter_singlelist_5t_1h_p#singlelist",
-    "ver1_nofilter_singlelist_5t_3h(step_num(t1_h2))_p#singlelist",
-    "ver1_nofilter_singlelist_5t_3h(step_num(t1_h3))_p#singlelist",
-    "ver1_nofilter_singlelist_5t_6h_p#singlelist",
-    "ver1_nofilter_multilist(1.2)_portion1(f_member_num)_priority_8t_6h_p#portion_housesize",
-    "ver1_nofilter_multilist(1.2)_portion2(f_member_num)_priority_8t_6h_p#portion_housesize",
-    "ver1_nofilter_multilist(1.2)_portion4(f_member_num)_priority_8t_6h_p#portion_housesize",
-    "ver1_nofilter_multilist(1.2)_portion5(f_member_num)_priority_8t_6h_p#portion_housesize",
-    "ver1_nofilter_multilist(1.2)_multilist_nopriority_8t_6h_p#housetype",
-    "ver2_nofilter_multilist(1.2_k2)_housetype_nopriority_8t_6h(step_num(t1_h1))_p#housetype_choose2",
-    "ver1_nofilter_singlelist_1t_6h(step_num(t1_h1)_p#singlelist",
-    "ver1_nofilter_singlelist_2t_6h(step_num(t1_h1))_p#singlelist",
-    "ver1_nofilter_singlelist_2t_6h(step_num(t3_h1))_p#singlelist",
-    "ver1_nofilter_singlelist_2t_6h(step_num(t5_h1))_p#singlelist",
-    "ver1_nofilter_singlelist_4t_6h(step_num(t1_h1))_p#singlelist",
-    "ver1_nofilter_singlelist_4t_6h(step_num(t2_h1))_p#singlelist",
-    "ver1_nofilter_singlelist_8t_6h_p#singlelist"
-]
+    """multi_list experiment"""
     
     task_names = [
-        #"ver2_nofilter_multilist(2.1_k1)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose1",
-           "ver2_nofilter_multilist(1.8_k4)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose5",
-        "ver2_nofilter_multilist(1.8_k5)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose5",
-        "ver2_nofilter_multilist(1.8_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose5",
-        "ver2_nofilter_multilist(1.8_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose5",
-        
-     
-        
-        ]
+        "ver2_nofilter_multilist(1.2_k1)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3",
+        "ver2_nofilter_multilist(1.5_k1)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3",
+        "ver2_nofilter_multilist(1.8_k1)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3",
+        "ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3",
+        "ver2_nofilter_multilist(1.5_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3",
+        "ver2_nofilter_multilist(1.8_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3",
+        "ver2_nofilter_multilist(1.2_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3",
+        "ver2_nofilter_multilist(1.5_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3",
+        "ver2_nofilter_multilist(1.8_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3"
+    ]
+    data = "public_housing"
     
-    task_names =[
-    "ver2_nofilter_multilist(2.1_k1)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose5",
-    "ver2_nofilter_multilist(1.8_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2",
-    "ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3",
-    "ver2_nofilter_multilist(2.1_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3",
-    "ver2_nofilter_multilist(1.8_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3",
-    "ver1_nofilter_multilist(1.2)_portion3(f_rent_money_budget)_priority_8t_6h_p#portion_rent_money",
-    "ver1_nofilter_multilist(1.2)_portion2(f_member_num)_priority_8t_6h_p#portion_housesize",
-    "ver2_nofilter_multilist(1.2_k2)_housetype_housing_points_8t_6h(step_num(t1_h1))_p#housetype_choose2",
-    "ver2_nofilter_multilist(2.1_k1)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose1",
-    "ver2_nofilter_multilist(2.1_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose5",
-    "ver2_nofilter_multilist(2.1_k4)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose5",
-    "ver2_nofilter_multilist(2.4_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3",
-    "ver2_nofilter_multilist(2.1_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose5",
-    "ver1_nofilter_singlelist_5t_1h_p#singlelist",
-    "ver2_nofilter_multilist(1.5_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2"
-]    
-    # task_names = [
-    #     'optimized_task_config_23',
-    #     'optimized_task_config_24'
-    # ]
+    """entrance policy for house"""
     
     task_names = [
-                # 'ver2_nofilter_multilist(2.1_k1)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose5', 
-                #   'ver2_nofilter_multilist(2.1_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose5', 
-                #   'optimized_task_config_90',
-                  'ver2_nofilter_multilist(3_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3', 
-                  'ver2_nofilter_multilist(3_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3', 
-                  'optimized_task_config_87']
-    task_names =['ver2_nofilter_multilist(2.1_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose5', 
-                 'ver2_nofilter_multilist(2.1_k4)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose4', 
-                 'ver2_nofilter_multilist(2.1_k5)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose5', 
-                 'ver2_nofilter_multilist(2.1_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3', 
-                 'ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2', 
-                 'ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2', 
-                 'ver1_nofilter_multilist(1.2)_portion2(f_member_num)_priority_8t_6h_p#portion_housesize', 
-                 'ver1_nofilter_multilist(1.2)_portion4(f_member_num)_priority_8t_6h_p#portion_housesize', 
-                 'ver1_nofilter_multilist(1.2)_portion2(f_member_num)_priority_8t_6h_p#portion_housesize', 
-                 'ver1_nofilter_multilist(1.2)_portion2(f_member_num)_priority_8t_6h_p#portion_housesize', 
-                 'ver1_nofilter_multilist(1.2)_portion1(f_member_num)_priority_8t_6h_p#portion_housesize', 
-                 'ver2_nofilter_multilist(2.1_k4)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose5', 
-                 'ver2_nofilter_multilist(2.1_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2', 
-                 'ver2_nofilter_multilist(2.1_k3)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3', 
-                 'ver1_nofilter_multilist(1.2)_portion2(f_member_num)_priority_8t_6h_p#portion_housesize', 
-                 'ver1_nofilter_multilist(1.8)_portion3(f_member_num)_priority_8t_6h_p#portion_housesize', 
-                 'ver1_nofilter_singlelist_4t_6h(step_num(t2_h1))_p#singlelist', 
-                 'ver1_nofilter_multilist(1.2)_portion2(f_member_num)_priority_8t_6h_p#portion_housesize', 
-                 'ver2_nofilter_multilist(2.1_k1)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose1', 
-                 'ver2_nofilter_multilist(1.8_k1)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose3', 
-                 'ver1_nofilter_multilist(1.2)_portion2(f_member_num)_priority_8t_6h_p#portion_housesize', 
-                 'ver1_nofilter_singlelist_8t_6h_p#singlelist']
+        "ver1_nofilter_singlelist_5t_1h_p#singlelist",
+        "ver1_nofilter_singlelist_5t_3h(step_num(t1_h2))_p#singlelist",
+        "ver1_nofilter_singlelist_5t_3h(step_num(t1_h2))_p#singlelist",
+        "ver1_nofilter_singlelist_5t_3h(step_num(t1_h3))_p#singlelist",
+        "ver1_nofilter_singlelist_5t_6h_p#singlelist"
+    ]
+    data = "public_housing"
+   
+    """entrance policy for tenant"""
     
-         
+    task_names = [
+        "ver1_nofilter_singlelist_1t_6h(step_num(t1_h1)_p#singlelist",
+        "ver1_nofilter_singlelist_2t_6h(step_num(t1_h1))_p#singlelist",
+        "ver1_nofilter_singlelist_2t_6h(step_num(t3_h1))_p#singlelist",
+        "ver1_nofilter_singlelist_2t_6h(step_num(t5_h1))_p#singlelist",
+        "ver1_nofilter_singlelist_4t_6h(step_num(t1_h1))_p#singlelist",
+        "ver1_nofilter_singlelist_4t_6h(step_num(t2_h1))_p#singlelist",
+        "ver1_nofilter_singlelist_5t_6h_p#singlelist",
+        "ver1_nofilter_singlelist_8t_6h_p#singlelist"
+    ]
+    data = "public_housing"
     
+    """allocation experiments"""
      
-    log_dir = f"EconAgent/tasks/{data}/cache_optimize_2"
+    task_names =[
+        "ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#random_avg",
+        "ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2",
+        "ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#portion_rentmoney",
+        "ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#portion_housesize",
+        "ver1_nofilter_multilist(1.2)_multilist_priority_8t_6h_p#random_avg",
+        "ver1_nofilter_multilist(1.2)_multilist_priority_8t_6h_p#housetype",
+        "ver1_nofilter_multilist(1.2)_multilist_priority_8t_6h_p#portion_rentmoney",
+        "ver1_nofilter_multilist(1.2)_multilist_priority_8t_6h_p#portion_housesize",
+        "ver1_nofilter_multilist(1.2)_portion3(f_member_num)_priority_8t_6h_p#random_avg",
+        "ver1_nofilter_multilist(1.2)_portion3(f_member_num)_priority_8t_6h_p#portion_rent_money",
+        "ver1_nofilter_multilist(1.2)_portion3(f_member_num)_priority_8t_6h_p#portion_housesize",
+        "ver1_nofilter_multilist(1.2)_portion3(f_rent_money_budget)_priority_8t_6h_p#random_avg",
+        "ver1_nofilter_multilist(1.2)_portion3(f_rent_money_budget)_priority_8t_6h_p#portion_rent_money",
+        "ver1_nofilter_multilist(1.2)_portion3(f_rent_money_budget)_priority_8t_6h_p#portion_housesize"
+    ]
+    data = "public_housing"
+    
+    """sorting policy"""
+    data = "public_housing_sorting_policy"
+    task_names =[
+        "ver1_nofilter_multilist(1.2)_multilist_priority_8t_6h_p#housetype",
+        "ver1_nofilter_multilist(1.2)_multilist_housing_points_8t_6h_p#housetype",
+        "ver2_nofilter_multilist(1.2_k2)_housetype_priority_8t_6h(step_num(t1_h1))_p#housetype_choose2",
+        "ver2_nofilter_multilist(1.2_k2)_housetype_housing_points_8t_6h(step_num(t1_h1))_p#housetype_choose2",
+        "ver1_nofilter_multilist(1.2)_portion3(f_earn_money)_priority_8t_6h_p#portion_housesize",
+        "ver1_nofilter_multilist(1.2)_portion3(f_earn_money)_housing_points_8t_6h_p#portion_housesize",
+        "ver1_nofilter_multilist(1.2)_multilist_priority_8t_6h_p#portion_rentmoney",
+        "ver1_nofilter_multilist(1.2)_multilist_housing_points_8t_6h_p#portion_rentmoney",
+        "ver1_nofilter_multilist(1.2)_multilist_nopriority_8t_6h_p#housetype",
+        "ver1_nofilter_multilist(1.2)_multilist_nopriority_8t_6h_p#housetype",
+        "ver2_nofilter_multilist(1.2_k2)_housetype_nopriority_8t_6h(step_num(t1_h1))_p#housetype_choose2",
+        "ver2_nofilter_multilist(1.2_k2)_housetype_nopriority_8t_6h(step_num(t1_h1))_p#housetype_choose2",
+        "ver1_nofilter_multilist(1.2)_portion3(f_earn_money)_nopriority_8t_6h_p#portion_housesize",
+        "ver1_nofilter_multilist(1.2)_portion3(f_earn_money)_nopriority_8t_6h_p#portion_housesize",
+        "ver1_nofilter_multilist(1.2)_multilist_nopriority_8t_6h_p#portion_rentmoney",
+        "ver1_nofilter_multilist(1.2)_multilist_nopriority_8t_6h_p#portion_rentmoney"
+    ]
+    
+    
+    log_dir = f"EconAgent/tasks/{data}/cache"
     
 
-    # run_optimizer()
     
     run_tasks(task_names,
               data,

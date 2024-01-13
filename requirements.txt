@@ -8,3 +8,4 @@ openai == 0.27.6
 openapi-schema-pydantic == 1.2.4
 huggingface-hub == 0.14.1
 openpyxl
+scikit-learn 

@@ -5,15 +5,15 @@ import os
 import shutil
 
 parser = argparse.ArgumentParser(description='housing_system')  # 创建解析器
-parser.add_argument('--task', 
+parser.add_argument('--config', 
                     type=str, 
                     default="ver1_nofilter_multilist(1.2)_multilist_nopriority_8t_6h_p#housetype", 
-                    help='The task of simulation system.')  # 添加参数
+                    help='The config of policy for simulation system.')  # 添加参数
 
-parser.add_argument('--data', 
+parser.add_argument('--task', 
                     type=str, 
-                    default="PHA_51tenant_5community_28house", 
-                    help='The data setting for the task')  # 添加参数
+                    default="public_housing", 
+                    help='The task setting for the EconAgent')  # 添加参数
 
 parser.add_argument("--log",
                     type=str,
@@ -91,9 +91,9 @@ if __name__ == "__main__":
     if args["clear_cache"]:
         
         result_dir = os.path.join("EconAgent/tasks",
-                                args["data"],
-                                "configs",
                                 args["task"],
+                                "configs",
+                                args["config"],
                                 "result")
         if os.path.exists(result_dir):
             shutil.rmtree(result_dir)
@@ -101,7 +101,7 @@ if __name__ == "__main__":
     if args["optimize"]:
         from EconAgent.optimizer import policy_optimizer_registry
         optimizer = policy_optimizer_registry.load_data(args["optimizer_type"],
-                                                        data = args["data"],
+                                                        data = args["task"],
                                                         normalize = False)
         # optimizer.fit()
         # optimizer.simulate_optimize_task("optimized_task_config_1",

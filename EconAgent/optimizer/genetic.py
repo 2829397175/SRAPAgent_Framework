@@ -559,8 +559,8 @@ class Genetic_algorithm_Optimizer(BaseOptimizer):
       
         self.prepare_individual_regressor_with_refinement_experiment(threshold = optimize_regressor_threshold,
                                                     sample_size_round = 1,
-                                                    init_data_size = 40,
-                                                    max_round = int((optimize_regressor_max_samples-40)/1),
+                                                    init_data_size = 30,
+                                                    max_round = int((optimize_regressor_max_samples-30)/1),
                                                     max_run_task_round = 0, # debug用
                                                     model_save_dir= os.path.join(root_optimize,"regressor_model"),
                                                     geneic_fit_round="init")

@@ -36,7 +36,7 @@ class Executor():
         Then this method will load the configuration from the yaml file in that directory.
         """
         # Prepare the config of the task
-        task_config,task_path,data_path = prepare_task_config(args["task"],args["data"])
+        task_config,task_path,data_path = prepare_task_config(args["config"],args["task"])
         
         if platform.system()=='Windows':
             asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
