@@ -5,8 +5,6 @@ apis.txt
 __pycache__/
 revision.md
 .vscode
-EconAgent/tasks/PHA_50tenant_3community_19house/backup_data
-EconAgent/tasks
 EconAgent/optimizer/logs
 EconAgent/optimizer/logs_fairness
 docs
