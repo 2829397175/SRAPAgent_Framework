@@ -1,4 +1,4 @@
-from EconAgent.executor import Executor
+from SARPAgent.executor import Executor
 
 import argparse
 import os
@@ -13,7 +13,7 @@ parser.add_argument('--config',
 parser.add_argument('--task', 
                     type=str, 
                     default="public_housing", 
-                    help='The task setting for the EconAgent')  # 添加参数
+                    help='The task setting for the SARPAgent')  # 添加参数
 
 parser.add_argument("--log",
                     type=str,
@@ -27,7 +27,7 @@ parser.add_argument("--clear_cache",
 
 parser.add_argument("--api_path",
                     type=str,
-                    default="EconAgent/llms/api.json",
+                    default="SARPAgent/llms/api.json",
                     help="The default path of apis json.")
 
 
@@ -90,7 +90,7 @@ if __name__ == "__main__":
     
     if args["clear_cache"]:
         
-        result_dir = os.path.join("EconAgent/tasks",
+        result_dir = os.path.join("SARPAgent/tasks",
                                 args["task"],
                                 "configs",
                                 args["config"],
@@ -99,7 +99,7 @@ if __name__ == "__main__":
             shutil.rmtree(result_dir)
         
     if args["optimize"]:
-        from EconAgent.optimizer import policy_optimizer_registry
+        from SARPAgent.optimizer import policy_optimizer_registry
         optimizer = policy_optimizer_registry.load_data(args["optimizer_type"],
                                                         data = args["task"],
                                                         normalize = False)
@@ -107,14 +107,11 @@ if __name__ == "__main__":
         # optimizer.simulate_optimize_task("optimized_task_config_1",
         #                                  use_cache=True)
         
-        if args["optimize_refine_first"]:
-            optimizer.fit_experiment_evaluate_ver_2(optimize_regressor_threshold = args["optimize_regressor_threshold"],
-                                          optimize_regressor_max_samples = args["optimize_regressor_max_samples"])
-        # else:
-        #     optimizer.fit_experiment_evaluate(threshold = args["optimize_threshold"],
-        #                                   max_round = args["optimize_rounds"],
-        #                                   optimize_regressor_rounds = args["optimize_regressor_rounds"],
-        #                                   optimize_regressor_threshold = args["optimize_regressor_threshold"])
+
+        optimizer.fit_experiment_evaluate(threshold = args["optimize_threshold"],
+                                        max_round = args["optimize_rounds"],
+                                        optimize_regressor_rounds = args["optimize_regressor_rounds"],
+                                        optimize_regressor_threshold = args["optimize_regressor_threshold"])
         
     if args["log"] is not None:
         executor = Executor.from_task(args)

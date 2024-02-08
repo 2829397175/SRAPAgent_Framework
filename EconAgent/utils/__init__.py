@@ -1,1 +1,0 @@
-from .concat_experiment_result import readinfo

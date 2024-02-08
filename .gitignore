@@ -5,8 +5,8 @@ apis.txt
 __pycache__/
 revision.md
 .vscode
-EconAgent/optimizer/logs
-EconAgent/optimizer/logs_fairness
+SARPAgent/optimizer/logs
+SARPAgent/optimizer/logs_fairness
 docs
 test/generate_data
 social_net_log

@@ -3,7 +3,7 @@ import shutil
 import json
 import yaml
 import time
-
+import openai
 def readinfo(data_dir):
     assert os.path.exists(data_dir),"no such file path: {}".format(data_dir)
     with open(data_dir,'r',encoding = 'utf-8') as f:
@@ -36,7 +36,7 @@ def run_tasks(tasks,
     
     for idx,task in enumerate(tasks):
         
-        task_root_path = os.path.join("EconAgent/tasks",data,"configs",task,"result")
+        task_root_path = os.path.join("SARPAgent/tasks",data,"configs",task,"result")
 
         done_times = 0
         if os.path.exists(task_root_path):
@@ -83,7 +83,7 @@ def run_tasks(tasks,
 def run_tasks_logs(data = "PHA_51tenant_5community_28house",
                    configs:list = None
                    ):
-    config_root = f"EconAgent/tasks/{data}/configs"
+    config_root = f"SARPAgent/tasks/{data}/configs"
     
     configs = os.listdir(config_root) if configs is None else configs
     
@@ -128,7 +128,7 @@ def run_tasks_logs(data = "PHA_51tenant_5community_28house",
 def test_task_logs(data ="PHA_51tenant_5community_28house",
                    ):
     
-    config_root = f"EconAgent/tasks/{data}/configs"
+    config_root = f"SARPAgent/tasks/{data}/configs"
     
     configs = os.listdir(config_root)
   
@@ -154,13 +154,13 @@ def test_task_logs(data ="PHA_51tenant_5community_28house",
                         pass
             if (not ok):not_available_results.append([config,list(tenental_info.keys())[-1]])
                         
-    with open("EconAgent/tasks/PHA_51tenant_5community_28house/cache/not_available_tasks.json",
+    with open("SARPAgent/tasks/PHA_51tenant_5community_28house/cache/not_available_tasks.json",
               'w',encoding = 'utf-8') as f:
         json.dump(not_available_results, f, indent=4,separators=(',', ':'),ensure_ascii=False)
     
     
 def clear_all_cache_ex_data(data):
-    task_root_dir = os.path.join("EconAgent/tasks",data)
+    task_root_dir = os.path.join("SARPAgent/tasks",data)
     configs = os.listdir(os.path.join(task_root_dir,"configs"))
     for config in configs:
         config_path = os.path.join(task_root_dir,"configs",config)
@@ -169,7 +169,7 @@ def clear_all_cache_ex_data(data):
             shutil.rmtree(result_path)
             
 def clear_unfinished_ex_data(data):
-    task_root_dir = os.path.join("EconAgent/tasks",data)
+    task_root_dir = os.path.join("SARPAgent/tasks",data)
     configs = os.listdir(os.path.join(task_root_dir,"configs"))
     for config in configs:
         config_path = os.path.join(task_root_dir,"configs",config)
@@ -187,7 +187,7 @@ def clear_unfinished_ex_data(data):
             
             
 def set_data_configs(data):
-    task_dir ="EconAgent/tasks"
+    task_dir ="SARPAgent/tasks"
     
     config_root = os.path.join(task_dir,data,"configs")
     task_names = os.listdir(config_root)
@@ -256,7 +256,7 @@ def set_data_configs(data):
     
     
 def replace_distribution_batch(data):
-    task_dir ="EconAgent/tasks"
+    task_dir ="SARPAgent/tasks"
     
     config_root = os.path.join(task_dir,data,"configs")
     task_names = os.listdir(config_root)
@@ -297,7 +297,7 @@ def run_optimizer(optimize_times = 20):
     
 if __name__ == "__main__":
     
-    task_dir ="EconAgent/tasks"
+    task_dir ="SARPAgent/tasks"
 
     """multi_list experiment"""
     
@@ -381,7 +381,7 @@ if __name__ == "__main__":
     ]
     
     
-    log_dir = f"EconAgent/tasks/{data}/cache"
+    log_dir = f"SARPAgent/tasks/{data}/cache"
     
 
     
