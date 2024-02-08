@@ -20,27 +20,18 @@ Then create the experiment, and install the required packages:
     pip install -i "requirements.txt"
     ```
 
-- To start simulation in SARPAgent, you can simly run:
-
-    ```cmd
-    python main.py --task "public_housing" --config "ver1_nofilter_multilist(1.2)_multilist_priority_8t_6h_p#housetype" --simulate
-    ```
-
-
-
-- you can run to reproduce the results in paper
-    ```cmd
-    python start.py
-    ```
-    - Remember to comment out the data and task_name except for the corresponding experiment.
-
-
-
 
 - To start simulation in SARPAgent, you should first specify the dir of data and the config name, and then simply run by
     ```cmd
     python main.py --task public_housing --config "ver1_nofilter_multilist(1.2)_multilist_priority_8t_6h_p#housetype" --simulate
     ```
+
+
+- You can run this script to reproduce the results in paper
+    ```cmd
+    python start.py
+    ```
+    - Remember to comment out the data and task_name except for the corresponding experiment.
 
 - If you want optimize with certern kind of policy parameters, run it simply by (the max_samples should not exceed the number of runned experiments, the minimum number required for optimizing is 30)
     ```cmd
