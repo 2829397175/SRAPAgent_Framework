@@ -44,5 +44,5 @@ Then create the experiment, and install the required packages:
 
 - If you want optimize with certern kind of policy parameters, run it simply by (the max_samples should not exceed the number of runned experiments, the minimum number required for optimizing is 30)
     ```cmd
-    python main.py --task public_housing --optimize_refine_first --optimize --optimize_regressor_threshold 0.3 --optimize_regressor_max_samples 60
+    python main.py --task public_housing -optimize --optimize_regressor_threshold 0.3 --optimize_regressor_max_samples 60
     ```

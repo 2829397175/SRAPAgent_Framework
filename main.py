@@ -49,7 +49,7 @@ parser.add_argument("--optimize_refine_first",
 
 parser.add_argument("--optimize_threshold",
                     type=float,
-                    default=0.5,
+                    default=0.05,
                     help="threshold of the optimization process")
 
 parser.add_argument("--optimize_rounds",
