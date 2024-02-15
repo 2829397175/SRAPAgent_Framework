@@ -1,6 +1,6 @@
 from scipy.optimize import linear_sum_assignment
 import numpy as np
-
+importop
 # 定义租客、房屋和匹配关系
 tenants = ['Tenant1', 'Tenant2', 'Tenant3']
 houses = ['House1', 'House2', 'House3','House4']
